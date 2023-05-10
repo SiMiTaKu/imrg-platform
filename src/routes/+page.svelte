@@ -1,26 +1,28 @@
 <script lang="ts">
+  import Radio                from "./common/form/Radio.svelte";
+  import { executionDeduct }  from '../ts/form/executionDeduct/store';
+  import { deductionOptions } from '../ts/form/executionDeduct/model';
 
-  type radioDeduction = {
-    label:     string,
-    deduction: number,
-  };
+  const options = deductionOptions;
 
-  const options: radioDeduction[] = [
-    { label: "0",  deduction: 0.5  },
-    { label: "1",  deduction: 0.45 },
-    { label: "2",  deduction: 0.4  },
-    { label: "3",  deduction: 0.35 },
-    { label: "4",  deduction: 0.3  },
-    { label: "5",  deduction: 0.25 },
-    { label: "6",  deduction: 0.2  },
-    { label: "7",  deduction: 0.15 },
-    { label: "8",  deduction: 0.1  },
-    { label: "9",  deduction: 0.05 },
-    { label: "10", deduction: 0    },
-  ];
+  let result: number;
 
-  const uniqueID = Math.floor(Math.random() * 100);
-  let userSelected;
+  /** @note 整数値にしてから計算し直すことで、小数点のずれを無くしている*/
+  executionDeduct.subscribe(data => {
+    result = (
+      (data.beautifulPose.value       ? data.beautifulPose.value       : 0) * 100 +
+      (data.flexibility.value         ? data.flexibility.value         : 0) * 100 +
+      (data.naturalMovement.value     ? data.naturalMovement.value     : 0) * 100 +
+      (data.bendingWeight.value       ? data.bendingWeight.value       : 0) * 100 +
+      (data.jumpingHeight.value       ? data.jumpingHeight.value       : 0) * 100 +
+      (data.bodyControl.value         ? data.bodyControl.value         : 0) * 100 +
+      (data.heelRaise.value           ? data.heelRaise.value           : 0) * 100 +
+      (data.weaknessAndStrength.value ? data.weaknessAndStrength.value : 0) * 100 +
+      (data.connectMovement.value     ? data.connectMovement.value     : 0) * 100 +
+      (data.apparatusControl.value    ? data.apparatusControl.value    : 0) * 100 +
+      (data.musicImage.value          ? data.musicImage.value          : 0) * 100
+    ) / 100
+  });
 </script>
 
 <svelte:head>
@@ -28,51 +30,39 @@
 </svelte:head>
 
 <section>
-	<div
-    role            = "radio"
-    class           = "group-container"
-    aria-labelledby = "label-${uniqueID}">
-    {#each options as option}
-      <input
-        id           = {option.label}
-        type         = "radio"
-        value        = {option.deduction}
-        aria-checked = false
-        bind:group   = {userSelected}
-      />
-      <label for={option.label}>{option.label}</label>
-    {/each}
+  <div class="form">
+    A
+    <h2>徒手の技術</h2>
+    <Radio title={$executionDeduct.beautifulPose.title} options={options} bind:userSelected={$executionDeduct.beautifulPose.value}/>
+    <Radio title={$executionDeduct.flexibility.title} options={options} bind:userSelected={$executionDeduct.flexibility.value}/>
+    <Radio title={$executionDeduct.naturalMovement.title} options={options} bind:userSelected={$executionDeduct.naturalMovement.value}/>
+    <Radio title={$executionDeduct.bendingWeight.title} options={options} bind:userSelected={$executionDeduct.bendingWeight.value}/>
+    <Radio title={$executionDeduct.jumpingHeight.title} options={options} bind:userSelected={$executionDeduct.jumpingHeight.value}/>
+    <Radio title={$executionDeduct.bodyControl.title} options={options} bind:userSelected={$executionDeduct.bodyControl.value}/>
+    <Radio title={$executionDeduct.heelRaise.title} options={options} bind:userSelected={$executionDeduct.heelRaise.value}/>
+    <Radio title={$executionDeduct.weaknessAndStrength.title} options={options} bind:userSelected={$executionDeduct.weaknessAndStrength.value}/>
+    <Radio title={$executionDeduct.connectMovement.title} options={options} bind:userSelected={$executionDeduct.connectMovement.value}/>
+    <h2>手具の技術</h2>
+    <Radio title={$executionDeduct.apparatusControl.title} options={options} bind:userSelected={$executionDeduct.apparatusControl.value}/>
+    <h2>音楽</h2>
+    <Radio title={$executionDeduct.musicImage.title} options={options} bind:userSelected={$executionDeduct.musicImage.value}/>
+
+    <h2>合計減点</h2>
+    <div>
+      {result}
+    </div>
+
+    B
+    ミスによる減点（∞）
+
+    １０．００　－　A　ー　B　＝
+
+    決定点
   </div>
-
-  {#if userSelected !== undefined}
-    <div>減点：{userSelected}</div>
-  {/if}
-  A
-  徒手の技術
-  美しい姿勢 ～0.5
-  柔軟性 ～0.5
-  動きの技術（自然・幅） ～0.5
-  動きの技術（膝の踏み込み） ～0.5
-  跳躍の高さ ～0.5
-  四肢の制御 ～0.5
-  かかとの引き上げ ～0.5
-  張りや活気、間、アクセント ～0.5
-  運動のつなぎの技術 ～0.5
-
-  手具の技術
-  自然な手具操作に欠ける ～0.5
-
-  音楽
-  音楽のイメージ ～0.5
-
-  B
-  ミスによる減点（∞）
-
-  １０．００　－　A　ー　B　＝
-
-  決定点
 </section>
-
 <style>
-
+  .form {
+    width:  700px;
+    margin: 0 auto;
+  }
 </style>

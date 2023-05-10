@@ -1,21 +1,24 @@
-<!--<script lang="ts">-->
+<script lang="ts">
+  export let title;
+  export let options
+  export let userSelected;
+  const uniqueID = Math.floor(Math.random() * 100);
+</script>
 
-<!--</script>-->
-
-<!--<div-->
-<!--  role            = "radio"-->
-<!--  class           = "group-container"-->
-<!--  aria-labelledby = "label-${uniqueID}">-->
-<!--  {#each options as { label, value }}-->
-<!--    <input-->
-<!--      id           = {label}-->
-<!--      type         = "radio"-->
-<!--      value        = {value}-->
-<!--      bind:group   = {userSelected}-->
-<!--    />-->
-<!--    <label for={label}>{label}</label>-->
-<!--  {/each}-->
-<!--</div>-->
-
-<!--<div>減点：{userSelected}</div>-->
+<div>{title}</div>
+<div
+  role            = "radio"
+  class           = "group-container"
+  aria-labelledby = "label-${uniqueID}">
+  {#each options as option}
+    <input
+      id           = {option.label}
+      type         = "radio"
+      value        = {option.value}
+      aria-checked = false
+      bind:group   = {userSelected}
+    />
+    <label for={option.label}>{option.label}</label>
+  {/each}
+</div>
 
