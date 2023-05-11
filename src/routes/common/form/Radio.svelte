@@ -1,26 +1,28 @@
 <script lang="ts">
   export let title;
-  export let options
+  export let options;
   export let userSelected;
+  
   const uniqueID = Math.floor(Math.random() * 100);
+  import { fly } from 'svelte/transition';
 </script>
 
-<div class="radio-question">
+<div class="radio-question" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
   <div class="radio-question__title">{title}</div>
   <div
-    role            = "radio"
-    class           = "radio-group"
+    role         = "radio"
+    class        = "radio-group"
+    aria-checked = false
     aria-labelledby = "label-${uniqueID}">
     {#each options as option}
       <input
-        id           = {option.label}
+        id           = {option.label + uniqueID}
         type         = "radio"
         value        = {option.value}
         aria-checked = false
-        class        = "radio-input"
         bind:group   = {userSelected}
       />
-      <label for={option.label} class="radio-button">{option.label}</label>
+      <label for={option.label + uniqueID}>{option.label}</label>
     {/each}
   </div>
 </div>
@@ -36,11 +38,15 @@
     font-weight:   bold;
   }
 
-  /*.radio-input {*/
-  /*  visibility: hidden;*/
-  /*}*/
+  input[type=radio] { display: none; }
+  
+  input[type=radio]:checked + label {
+    background: #5996cb;
+    border:     solid 4px #32538d;
+    color:      #113c69;
+  }
 
-  .radio-button {
+  label {
     display:      inline-block;
     width:         40px;
     height:        40px;
@@ -53,10 +59,10 @@
     border:        solid 4px #AAAAAA;
     color:         #8D8D8D;
     text-align:    center;
-    transition:    .5s;
+    transition:    .3s;
   }
 
-  .radio-button:hover {
+  label:hover {
     cursor:  pointer;
     opacity: .5;
   }

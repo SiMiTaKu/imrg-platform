@@ -1,7 +1,8 @@
 <script lang="ts">
   import Radio                from "./common/form/Radio.svelte";
-  import { executionDeduct }  from '../ts/form/executionDeduct/store';
+  import { executionDeduct  } from '../ts/form/executionDeduct/store';
   import { deductionOptions } from '../ts/form/executionDeduct/model';
+  import { fly              } from "svelte/transition";
 
   const options = deductionOptions;
 
@@ -31,22 +32,48 @@
 
 <section id="judgement-form-section">
   <div class="form-container">
-    A
-    <h2 class="form-container__title">徒手の技術</h2>
-    <Radio title={$executionDeduct.beautifulPose.title} options={options} bind:userSelected={$executionDeduct.beautifulPose.value}/>
-    <Radio title={$executionDeduct.flexibility.title} options={options} bind:userSelected={$executionDeduct.flexibility.value}/>
-    <Radio title={$executionDeduct.naturalMovement.title} options={options} bind:userSelected={$executionDeduct.naturalMovement.value}/>
-    <Radio title={$executionDeduct.bendingWeight.title} options={options} bind:userSelected={$executionDeduct.bendingWeight.value}/>
-    <Radio title={$executionDeduct.jumpingHeight.title} options={options} bind:userSelected={$executionDeduct.jumpingHeight.value}/>
-    <Radio title={$executionDeduct.bodyControl.title} options={options} bind:userSelected={$executionDeduct.bodyControl.value}/>
-    <Radio title={$executionDeduct.heelRaise.title} options={options} bind:userSelected={$executionDeduct.heelRaise.value}/>
-    <Radio title={$executionDeduct.weaknessAndStrength.title} options={options} bind:userSelected={$executionDeduct.weaknessAndStrength.value}/>
-    <Radio title={$executionDeduct.connectMovement.title} options={options} bind:userSelected={$executionDeduct.connectMovement.value}/>
-    <h2 class="form-container__title">手具の技術</h2>
-    <Radio title={$executionDeduct.apparatusControl.title} options={options} bind:userSelected={$executionDeduct.apparatusControl.value}/>
-    <h2 class="form-container__title">音楽</h2>
-    <Radio title={$executionDeduct.musicImage.title} options={options} bind:userSelected={$executionDeduct.musicImage.value}/>
-
+    <div class="form-container__radio-area">
+      A
+      {#if $executionDeduct.connectMovement.value === undefined } <!-- 徒手の技術の最後の回答がされるまで表示 -->
+        <h2 class="form-container__title" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>徒手の技術</h2>
+      {/if}
+      {#if $executionDeduct.beautifulPose.value === undefined }
+        <Radio title={$executionDeduct.beautifulPose.title} options={options} bind:userSelected={$executionDeduct.beautifulPose.value}/>
+      {/if}
+      {#if $executionDeduct.flexibility.value === undefined && $executionDeduct.beautifulPose.value !== undefined }
+        <Radio title={$executionDeduct.flexibility.title} options={options} bind:userSelected={$executionDeduct.flexibility.value}/>
+      {/if}
+      {#if $executionDeduct.naturalMovement.value === undefined && $executionDeduct.flexibility.value !== undefined }
+        <Radio title={$executionDeduct.naturalMovement.title} options={options} bind:userSelected={$executionDeduct.naturalMovement.value}/>
+      {/if}
+      {#if $executionDeduct.bendingWeight.value === undefined && $executionDeduct.naturalMovement.value !== undefined }
+        <Radio title={$executionDeduct.bendingWeight.title} options={options} bind:userSelected={$executionDeduct.bendingWeight.value}/>
+      {/if}
+      {#if $executionDeduct.jumpingHeight.value === undefined && $executionDeduct.bendingWeight.value !== undefined }
+        <Radio title={$executionDeduct.jumpingHeight.title} options={options} bind:userSelected={$executionDeduct.jumpingHeight.value}/>
+      {/if}
+      {#if $executionDeduct.bodyControl.value === undefined && $executionDeduct.jumpingHeight.value !== undefined }
+        <Radio title={$executionDeduct.bodyControl.title} options={options} bind:userSelected={$executionDeduct.bodyControl.value}/>
+      {/if}
+      {#if $executionDeduct.heelRaise.value === undefined && $executionDeduct.bodyControl.value !== undefined }
+        <Radio title={$executionDeduct.heelRaise.title} options={options} bind:userSelected={$executionDeduct.heelRaise.value}/>
+      {/if}
+      {#if $executionDeduct.weaknessAndStrength.value === undefined && $executionDeduct.heelRaise.value !== undefined }
+        <Radio title={$executionDeduct.weaknessAndStrength.title} options={options} bind:userSelected={$executionDeduct.weaknessAndStrength.value}/>
+      {/if}
+      {#if $executionDeduct.connectMovement.value === undefined && $executionDeduct.weaknessAndStrength.value !== undefined }
+        <Radio title={$executionDeduct.connectMovement.title} options={options} bind:userSelected={$executionDeduct.connectMovement.value}/>
+      {/if}
+      {#if $executionDeduct.apparatusControl.value === undefined && $executionDeduct.connectMovement.value !== undefined }
+        <h2 class="form-container__title" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>手具の技術</h2>
+        <Radio title={$executionDeduct.apparatusControl.title} options={options} bind:userSelected={$executionDeduct.apparatusControl.value}/>
+      {/if}
+      {#if $executionDeduct.musicImage.value === undefined && $executionDeduct.apparatusControl.value !== undefined }
+        <h2 class="form-container__title" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>音楽</h2>
+        <Radio title={$executionDeduct.musicImage.title} options={options} bind:userSelected={$executionDeduct.musicImage.value}/>
+      {/if}
+    </div>
+    
     <h2>合計減点</h2>
     <div>
       {result}
@@ -76,5 +103,10 @@
   .form-container__title {
     font-weight: bold;
     font-size:   24px;
+  }
+  
+  .form-container__radio-area {
+    display: block;
+    height:  300px;
   }
 </style>
