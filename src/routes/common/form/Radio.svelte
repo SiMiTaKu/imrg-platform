@@ -42,7 +42,7 @@
   
   input[type=radio]:checked + label {
     background: #5996cb;
-    border:     solid 4px #32538d;
+    border:     solid 4px #32538D;
     color:      #113c69;
   }
 

@@ -12,6 +12,6 @@ export const executionDeduct = writable({
   connectMovement:     { title: "運動のつなぎの技術",        value: undefined },
   apparatusControl:    { title: "自然な手具操作に欠ける",    value: undefined },
   musicImage:          { title: "音楽のイメージ",           value: undefined },
-  miss:                { title: "ミスによる失点",           value: undefined },
+  miss:                { title: "ミスによる減点",           value: undefined },
 })
 
