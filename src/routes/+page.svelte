@@ -29,10 +29,10 @@
 	<title>ホーム</title>
 </svelte:head>
 
-<section>
-  <div class="form">
+<section id="judgement-form-section">
+  <div class="form-container">
     A
-    <h2>徒手の技術</h2>
+    <h2 class="form-container__title">徒手の技術</h2>
     <Radio title={$executionDeduct.beautifulPose.title} options={options} bind:userSelected={$executionDeduct.beautifulPose.value}/>
     <Radio title={$executionDeduct.flexibility.title} options={options} bind:userSelected={$executionDeduct.flexibility.value}/>
     <Radio title={$executionDeduct.naturalMovement.title} options={options} bind:userSelected={$executionDeduct.naturalMovement.value}/>
@@ -42,9 +42,9 @@
     <Radio title={$executionDeduct.heelRaise.title} options={options} bind:userSelected={$executionDeduct.heelRaise.value}/>
     <Radio title={$executionDeduct.weaknessAndStrength.title} options={options} bind:userSelected={$executionDeduct.weaknessAndStrength.value}/>
     <Radio title={$executionDeduct.connectMovement.title} options={options} bind:userSelected={$executionDeduct.connectMovement.value}/>
-    <h2>手具の技術</h2>
+    <h2 class="form-container__title">手具の技術</h2>
     <Radio title={$executionDeduct.apparatusControl.title} options={options} bind:userSelected={$executionDeduct.apparatusControl.value}/>
-    <h2>音楽</h2>
+    <h2 class="form-container__title">音楽</h2>
     <Radio title={$executionDeduct.musicImage.title} options={options} bind:userSelected={$executionDeduct.musicImage.value}/>
 
     <h2>合計減点</h2>
@@ -61,8 +61,20 @@
   </div>
 </section>
 <style>
-  .form {
-    width:  700px;
-    margin: 0 auto;
+  #judgement-form-section {
+    background: #dcecec;
+  }
+
+  .form-container {
+    width:         720px;
+    padding:       40px;
+    margin:        0 auto;
+    background:    white;
+    border-radius: 8px;
+  }
+
+  .form-container__title {
+    font-weight: bold;
+    font-size:   24px;
   }
 </style>
