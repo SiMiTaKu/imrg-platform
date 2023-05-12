@@ -98,7 +98,7 @@
         class="form-miss-point"
         bind:value={$executionDeduct.miss.value}
       />
-      <button in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}} type="button" on:click={submit()}>決定</button>
+      <button in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}} type="button" on:click={submit}>決定</button>
     {/if}
     <ExecutionPointResultModal aPoint={aPoint} bPoint={bPoint} decisionPoint={decisionPoint} show={submitted}/>
   </div>
