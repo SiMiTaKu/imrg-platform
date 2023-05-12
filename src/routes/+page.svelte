@@ -1,22 +1,27 @@
 <script lang="ts">
-  import Radio                from "./common/form/Radio.svelte";
-  import { executionDeduct  } from '../ts/form/executionDeduct/store';
-  import { deductionOptions } from '../ts/form/executionDeduct/model';
-  import { fly              } from "svelte/transition";
+  import Radio                     from './common/form/Radio.svelte';
+  import ExecutionPointResultModal from './ExecutionPointResultModal.svelte'
+  import { executionDeduct       } from '../ts/form/executionDeduct/store';
+  import { deductionOptions      } from '../ts/form/executionDeduct/model';
+  import { fly                   } from 'svelte/transition';
 
   const options = deductionOptions;
 
   let submitted: boolean = false;
   function submit() { submitted = true; }
-  
-  function maxBPoint() { return 10 - resultAPoint; }
-  let resultAPoint: number;
-  let resultBPoint: number;
-  let resultAmount: number;
 
-  /** @note 整数値にしてから計算し直すことで、小数点のずれを無くしている*/
+  /**
+   * @note Aの減点の合計を計算する処理
+   * @note 整数値にしてから計算し直すことで、小数点のずれを無くしている
+   * @return Aの減点の合計点
+   */
+
+  let aPoint;
+  let bPoint;
+  let decisionPoint;
+
   executionDeduct.subscribe(data => {
-    resultAPoint = (
+    aPoint = (
       (data.beautifulPose.value       ? data.beautifulPose.value       : 0) * 100 +
       (data.flexibility.value         ? data.flexibility.value         : 0) * 100 +
       (data.naturalMovement.value     ? data.naturalMovement.value     : 0) * 100 +
@@ -29,8 +34,8 @@
       (data.apparatusControl.value    ? data.apparatusControl.value    : 0) * 100 +
       (data.musicImage.value          ? data.musicImage.value          : 0) * 100
     ) / 100
-    resultBPoint = data.miss.value ? data.miss.value : 0
-    resultAmount = 10 - (resultAPoint + resultBPoint);
+    bPoint        = data.miss.value ? data.miss.value : 0
+    decisionPoint = 10.00 - (aPoint + bPoint);
   });
 </script>
 
@@ -89,17 +94,13 @@
       <input in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}
         type="number"
         step="0.05"
-        max={maxBPoint()}
+        max={10 - aPoint}
         class="form-miss-point"
         bind:value={$executionDeduct.miss.value}
       />
       <button in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}} type="button" on:click={submit}>決定</button>
     {/if}
-    {#if submitted !== false}
-      <h2 in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>決定点</h2>
-      <div in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>１０．００　－　{resultAPoint}　ー　{resultBPoint}</div>
-      <div in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}} class="result-amount-point">{resultAmount}</div>
-    {/if}
+    <ExecutionPointResultModal aPoint={aPoint} bPoint={bPoint} decisionPoint={decisionPoint} show={submitted}/>
   </div>
 </section>
 <style>
@@ -139,11 +140,5 @@
   
   .form-miss-point:focus {
     border: solid 4px #32538D;
-  }
-  
-  .result-amount-point {
-    font-size:    32px;
-    font-weight:  bold;
-    word-spacing: 1.5em;
   }
 </style>
