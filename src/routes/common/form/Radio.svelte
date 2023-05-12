@@ -1,14 +1,17 @@
 <script lang="ts">
   export let title;
   export let options;
-  export let userSelected;
+  export let userSelected: number;
+  export let annotation: string;
   
   const uniqueID = Math.floor(Math.random() * 100);
   import { fly } from 'svelte/transition';
 </script>
 
 <div class="radio-question" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
-  <div class="radio-question__title">{title}</div>
+  <div class="radio-question__title">
+    {title}<span class="radio-question__annotation">※{annotation}</span>
+  </div>
   <div
     role         = "radio"
     class        = "radio-group"
@@ -33,9 +36,15 @@
   }
 
   .radio-question__title {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     font-size:     20px;
     font-weight:   bold;
+  }
+  
+  .radio-question__annotation {
+    font-size:   15px;
+    font-weight: normal;
+    margin-left: 8px;
   }
 
   input[type=radio] { display: none; }

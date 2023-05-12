@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { fade } from 'svelte/transition';
+  import ExecutionPointResultModal from './ExecutionPointResultModal.svelte'
+  import { fade                  } from 'svelte/transition';
   export let aPoint:        number;
   export let bPoint:        number;
   export let decisionPoint: number;
@@ -37,7 +38,7 @@
   }
 
   .decision-point-container {
-    position:         absolute;
+    position:         relative;
     top:              50%;
     left:             50%;
     width:            400px;
@@ -48,9 +49,14 @@
   }
 
   .decision-point-container__title {
-    font-size:   32px;
-    font-weight: bold;
-    margin:      0 0 16px;
+    display:       inline-block;
+    padding:       0 24px;
+    font-size:     24px;
+    font-weight:   bold;
+    color:         white;
+    margin:        0 0 16px;
+    border-radius: 8px;
+    background:    #32538D;
   }
 
   .decision-point-container__format {
@@ -59,7 +65,18 @@
   }
 
   .decision-point-container__result {
-    font-size:   40px;
-    font-weight: bold;
+    padding-left: 20px;
+    font-size:    40px;
+    font-weight:  bold;
+  }
+
+  .decision-point-container__result:after {
+    content:    "";
+    position:   absolute;
+    display:    block;
+    width:      200px;
+    height:     4px;
+    left:       40px;
+    background: #AAAAAA;
   }
 </style>
