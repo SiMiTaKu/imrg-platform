@@ -147,67 +147,69 @@
           class="form-miss-point"
           bind:value={$executionDeduct.miss.value}
         />
-        <button class="form-miss-point-submit-button" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}} type="button" on:click={submit}>決定</button>
+        <button class="form-miss-point-submit-button" on:click={submit}>決定</button>
       </div>
     {/if}
     <ExecutionPointResultModal aPoint={aPoint} bPoint={bPoint} decisionPoint={decisionPoint} show={submitted}/>
   </div>
 </section>
-<style>
+<style lang="scss">
   #judgement-form-section {
-    background: #dcecec;
-  }
+    background: #DCECEC;
 
-  .form-container {
-    width:         720px;
-    height:        300px;
-    padding:       40px;
-    margin:        0 auto;
-    background:    white;
-    border-radius: 8px;
-  }
+    .form-container {
+      width:         720px;
+      height:        300px;
+      padding:       40px;
+      margin:        0 auto;
+      background:    white;
+      border-radius: 8px;
 
-  .form-container__title {
-    font-weight: bold;
-    font-size:   24px;
-  }
-  
-  .form-miss-point {
-    height:        56px;
-    width:         200px;
-    margin-bottom: 8px;
-    padding-left:  24px;
-    font-size:     20px;
-    font-weight:   bold;
-    border:        solid 4px #AAAAAA;
-    border-radius: 8px;
-    outline:       none;
-    transition:    .3s;
-    box-sizing:    border-box;
-  }
-  
-  .form-miss-point-annotation {
-    margin-bottom: 16px;
-  }
-  
-  .form-miss-point:focus {
-    border: solid 4px #32538D;
-  }
-  
-  .form-miss-point-submit-button {
-    width:         100px;
-    height:        56px;
-    font-weight:   bold;
-    font-size:     20px;
-    color:         white;
-    border:        unset;
-    border-radius: 8px;
-    background:    #32538D;
-    transition:    .3s;
-  }
+      &__title {
+        font-weight: bold;
+        font-size:   24px;
+      }
+    }
 
-  .form-miss-point-submit-button:hover {
-    cursor:  pointer;
-    opacity: .5;
+
+    .form-miss-point {
+      height:        56px;
+      width:         200px;
+      margin-bottom: 8px;
+      padding-left:  24px;
+      font-size:     20px;
+      font-weight:   bold;
+      border:        solid 4px #AAAAAA;
+      border-radius: 8px;
+      outline:       none;
+      transition:    .3s;
+      box-sizing:    border-box;
+
+      &:focus {
+        border: solid 4px #32538D;
+      }
+    }
+
+    .form-miss-point-annotation {
+      margin-bottom: 16px;
+    }
+
+
+    .form-miss-point-submit-button {
+      width:         100px;
+      height:        56px;
+      font-weight:   bold;
+      font-size:     20px;
+      color:         white;
+      border:        unset;
+      border-radius: 8px;
+      background:    #32538D;
+      transition:    .3s;
+
+      &:hover {
+        cursor:  pointer;
+        opacity: .5;
+      }
+    }
   }
 </style>
