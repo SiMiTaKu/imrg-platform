@@ -3,7 +3,7 @@
   export let options;
   export let userSelected: number;
   export let annotation: string;
-  
+
   const uniqueID = Math.floor(Math.random() * 100);
   import { fly } from 'svelte/transition';
 </script>
@@ -30,25 +30,25 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .radio-question {
     margin-bottom: 24px;
-  }
 
-  .radio-question__title {
-    margin-bottom: 8px;
-    font-size:     20px;
-    font-weight:   bold;
-  }
-  
-  .radio-question__annotation {
-    font-size:   15px;
-    font-weight: normal;
-    margin-left: 8px;
+    &__title {
+      margin-bottom: 8px;
+      font-size:     20px;
+      font-weight:   bold;
+    }
+
+    &__annotation {
+      font-size:   15px;
+      font-weight: normal;
+      margin-left: 8px;
+    }
   }
 
   input[type=radio] { display: none; }
-  
+
   input[type=radio]:checked + label {
     background: #5996cb;
     border:     solid 4px #32538D;
@@ -69,10 +69,10 @@
     color:         #8D8D8D;
     text-align:    center;
     transition:    .3s;
-  }
 
-  label:hover {
-    cursor:  pointer;
-    opacity: .5;
+    &:hover {
+      cursor:  pointer;
+      opacity: .5;
+    }
   }
 </style>

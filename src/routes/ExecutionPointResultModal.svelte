@@ -18,7 +18,7 @@
   </section>
 {/if}
 
-<style>
+<style lang="scss">
   #execution-point-result-modal {
     position: fixed;
     top:      0;
@@ -46,37 +46,37 @@
     transform:        translate(-50%, -50%);
     background-color: white;
     border-radius:    8px;
-  }
 
-  .decision-point-container__title {
-    display:       inline-block;
-    padding:       0 24px;
-    font-size:     24px;
-    font-weight:   bold;
-    color:         white;
-    margin:        0 0 16px;
-    border-radius: 8px;
-    background:    #32538D;
-  }
+    &__title {
+      display:       inline-block;
+      padding:       0 24px;
+      font-size:     24px;
+      font-weight:   bold;
+      color:         white;
+      margin:        0 0 16px;
+      border-radius: 8px;
+      background:    #32538D;
+    }
 
-  .decision-point-container__format {
-    font-size:     24px;
-    margin-bottom: 16px;
-  }
+    &__format {
+      font-size:     24px;
+      margin-bottom: 16px;
+    }
 
-  .decision-point-container__result {
-    padding-left: 20px;
-    font-size:    40px;
-    font-weight:  bold;
-  }
+    &__result {
+      padding-left: 20px;
+      font-size:    40px;
+      font-weight:  bold;
+    }
 
-  .decision-point-container__result:after {
-    content:    "";
-    position:   absolute;
-    display:    block;
-    width:      200px;
-    height:     4px;
-    left:       40px;
-    background: #AAAAAA;
+    &__result:after {
+      content:    "";
+      position:   absolute;
+      display:    block;
+      width:      200px;
+      height:     4px;
+      left:       40px;
+      background: #AAAAAA;
+    }
   }
 </style>
