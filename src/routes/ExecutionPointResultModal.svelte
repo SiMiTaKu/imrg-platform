@@ -1,6 +1,5 @@
 <script lang="ts">
-  import ExecutionPointResultModal from './ExecutionPointResultModal.svelte'
-  import { fade                  } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
   export let aPoint:        number;
   export let bPoint:        number;
   export let decisionPoint: number;

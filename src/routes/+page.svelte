@@ -10,16 +10,16 @@
   let submitted: boolean = false;
   function submit() { submitted = true; }
 
-  /**
-   * @note Aの減点の合計を計算する処理
-   * @note 整数値にしてから計算し直すことで、小数点のずれを無くしている
-   * @return Aの減点の合計点
-   */
 
   let aPoint;
   let bPoint;
   let decisionPoint;
 
+  /**
+   * @note Aの減点の合計を計算する処理
+   * @note 整数値にしてから計算し直すことで、小数点のずれを無くしている
+   * @return Aの減点の合計点
+   */
   executionDeduct.subscribe(data => {
     aPoint = (
       (data.beautifulPose.value       ? data.beautifulPose.value       : 0) * 100 +
