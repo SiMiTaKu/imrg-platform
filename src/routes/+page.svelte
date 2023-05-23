@@ -4,6 +4,7 @@
   import { executionDeduct       } from '../ts/form/executionDeduct/store';
   import { deductionOptions      } from '../ts/form/executionDeduct/model';
   import { fly                   } from 'svelte/transition';
+  import { getAmountOfAPoint     } from '../ts/form/executionDeduct/Culculator';
 
   const options = deductionOptions;
 
@@ -21,20 +22,8 @@
    * @return Aの減点の合計点
    */
   executionDeduct.subscribe(data => {
-    aPoint = (
-      (data.pointA.beautifulPose.value       ? data.pointA.beautifulPose.value       : 0) * 100 +
-      (data.pointA.flexibility.value         ? data.pointA.flexibility.value         : 0) * 100 +
-      (data.pointA.naturalMovement.value     ? data.pointA.naturalMovement.value     : 0) * 100 +
-      (data.pointA.bendingWeight.value       ? data.pointA.bendingWeight.value       : 0) * 100 +
-      (data.pointA.jumpingHeight.value       ? data.pointA.jumpingHeight.value       : 0) * 100 +
-      (data.pointA.bodyControl.value         ? data.pointA.bodyControl.value         : 0) * 100 +
-      (data.pointA.heelRaise.value           ? data.pointA.heelRaise.value           : 0) * 100 +
-      (data.pointA.weaknessAndStrength.value ? data.pointA.weaknessAndStrength.value : 0) * 100 +
-      (data.pointA.connectMovement.value     ? data.pointA.connectMovement.value     : 0) * 100 +
-      (data.pointA.apparatusControl.value    ? data.pointA.apparatusControl.value    : 0) * 100 +
-      (data.pointA.musicImage.value          ? data.pointA.musicImage.value          : 0) * 100
-    ) / 100
-    bPoint        = data.pointB.miss.value ? data.pointB.miss.value : 0
+    aPoint = getAmountOfAPoint(data);
+    bPoint = data.pointB.miss.value ? data.pointB.miss.value : 0
     decisionPoint = 10.00 - (aPoint + bPoint);
   });
 </script>

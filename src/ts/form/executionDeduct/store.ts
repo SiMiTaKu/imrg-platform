@@ -2,7 +2,7 @@ import { writable             } from 'svelte/store';
 import type { Writable        } from 'svelte/store';
 import type { ExecutionDeduct } from './model';
 
-export const executionDeduct: Writable<ExecutionDeduct>  = writable({
+export const executionDeduct: Writable<ExecutionDeduct> = writable({
   pointA: {
     beautifulPose: {
       title: "美しい姿勢",
