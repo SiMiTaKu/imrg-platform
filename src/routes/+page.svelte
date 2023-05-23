@@ -4,7 +4,12 @@
   import { executionDeduct       } from '../ts/form/executionDeduct/store';
   import { deductionOptions      } from '../ts/form/executionDeduct/model';
   import { fly                   } from 'svelte/transition';
-  import { getAmountOfAPoint     } from '../ts/form/executionDeduct/Culculator';
+  import {
+    getAmountOfPointA,
+    getAmountOfPointB,
+    getDecisionPoints,
+    getMaxPointB
+  } from '../ts/form/executionDeduct/Culculator';
 
   const options = deductionOptions;
 
@@ -12,19 +17,15 @@
   function submit() { submitted = true; }
 
 
-  let aPoint;
-  let bPoint;
-  let decisionPoint;
-
-  /**
-   * @note Aの減点の合計を計算する処理
-   * @note 整数値にしてから計算し直すことで、小数点のずれを無くしている
-   * @return Aの減点の合計点
-   */
+  let pointA;
+  let pointB;
+  let maxOfPointB;
+  let decisionPoints;
   executionDeduct.subscribe(data => {
-    aPoint = getAmountOfAPoint(data);
-    bPoint = data.pointB.miss.value ? data.pointB.miss.value : 0
-    decisionPoint = 10.00 - (aPoint + bPoint);
+    pointA         = getAmountOfPointA(data);
+    pointB         = getAmountOfPointB(data);
+    maxOfPointB    = getMaxPointB(data);
+    decisionPoints = getDecisionPoints(data);
   });
 </script>
 
@@ -132,14 +133,14 @@
         <input
           type="number"
           step="0.05"
-          max={10 - aPoint}
+          max={maxOfPointB}
           class="form-miss-point"
           bind:value={$executionDeduct.pointB.miss.value}
         />
         <button class="form-miss-point-submit-button" on:click={submit}>決定</button>
       </div>
     {/if}
-    <ExecutionPointResultModal aPoint={aPoint} bPoint={bPoint} decisionPoint={decisionPoint} show={submitted}/>
+    <ExecutionPointResultModal pointA={pointA} pointB={pointB} decisionPoints={decisionPoints} show={submitted}/>
   </div>
 </section>
 <style lang="scss">

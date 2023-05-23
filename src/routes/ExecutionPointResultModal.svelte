@@ -1,8 +1,9 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  export let aPoint:        number;
-  export let bPoint:        number;
-  export let decisionPoint: number;
+
+  export let pointA:         number;
+  export let pointB:         number;
+  export let decisionPoints: number;
   export let show;
 </script>
 
@@ -11,8 +12,8 @@
     <div class="modal-overlay"></div>
     <div class="decision-point-container">
       <h2 class="decision-point-container__title">決定点</h2>
-      <div class="decision-point-container__format">10.00　-　( {aPoint.toFixed(3)} + {bPoint.toFixed(3)} )</div>
-      <div class="decision-point-container__result">{decisionPoint.toFixed(3)}</div>
+      <div class="decision-point-container__format">10.00　-　( {pointA.toFixed(3)} + {pointB.toFixed(3)} )</div>
+      <div class="decision-point-container__result">{decisionPoints.toFixed(3)}</div>
     </div>
   </section>
 {/if}
