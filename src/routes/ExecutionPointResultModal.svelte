@@ -8,7 +8,7 @@
 
 {#if show}
   <section id="execution-point-result-modal" transition:fade>
-    <div class="modal-overlay" on:click={close} />
+    <div class="modal-overlay"></div>
     <div class="decision-point-container">
       <h2 class="decision-point-container__title">決定点</h2>
       <div class="decision-point-container__format">10.00　-　( {aPoint.toFixed(3)} + {bPoint.toFixed(3)} )</div>

@@ -15,3 +15,36 @@ export const deductionOptions: radioDeduction[] = [
   { label: "9",  value: 0.1  },
   { label: "10", value: 0.05 },
 ];
+
+export interface ExecutionDeduct {
+  pointA: PointA
+  pointB: PointB
+}
+
+export interface PointA {
+  beautifulPose:       PointAItem
+  flexibility:         PointAItem
+  naturalMovement:     PointAItem
+  bendingWeight:       PointAItem
+  jumpingHeight:       PointAItem
+  bodyControl:         PointAItem
+  heelRaise:           PointAItem
+  weaknessAndStrength: PointAItem
+  connectMovement:     PointAItem
+  apparatusControl:    PointAItem
+  musicImage:          PointAItem
+}
+
+export interface PointAItem {
+  title:      string
+  value:      number
+  annotation: string
+}
+
+export interface PointB {
+  miss: {
+    title:      string
+    value:      number
+    annotation: string
+  }
+}
