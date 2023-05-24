@@ -5,6 +5,18 @@ import type { ExecutionDeduct } from './model';
  * @return Aの項目の減点の合計
  */
 export function getAmountOfPointA(data: ExecutionDeduct): number {
+  if(data.pointA.beautifulPose.value       < 0) throw new Error('beautifulPoseが0未満です。');
+  if(data.pointA.flexibility.value         < 0) throw new Error('flexibilityが0未満です。');
+  if(data.pointA.naturalMovement.value     < 0) throw new Error('naturalMovementが0未満です。');
+  if(data.pointA.bendingWeight.value       < 0) throw new Error('bendingWeightが0未満です。');
+  if(data.pointA.jumpingHeight.value       < 0) throw new Error('jumpingHeightが0未満です。');
+  if(data.pointA.bodyControl.value         < 0) throw new Error('bodyControlが0未満です。');
+  if(data.pointA.heelRaise.value           < 0) throw new Error('heelRaiseが0未満です。');
+  if(data.pointA.weaknessAndStrength.value < 0) throw new Error('weaknessAndStrengthが0未満です。');
+  if(data.pointA.connectMovement.value     < 0) throw new Error('connectMovementが0未満です。');
+  if(data.pointA.apparatusControl.value    < 0) throw new Error('apparatusControlが0未満です。');
+  if(data.pointA.musicImage.value          < 0) throw new Error('musicImageが0未満です。');
+
   const beautifulPoseValue       = data.pointA.beautifulPose.value       ? data.pointA.beautifulPose.value       : 0;
   const flexibilityValue         = data.pointA.flexibility.value         ? data.pointA.flexibility.value         : 0;
   const naturalMovementValue     = data.pointA.naturalMovement.value     ? data.pointA.naturalMovement.value     : 0;
@@ -35,6 +47,7 @@ export function getAmountOfPointA(data: ExecutionDeduct): number {
 }
 
 export function getAmountOfPointB(data: ExecutionDeduct): number {
+  if(data.pointB.miss.value < 0) throw new Error('missが0未満です。');
   const missPoint = data.pointB.miss.value ? data.pointB.miss.value : 0;
   return missPoint;
 }

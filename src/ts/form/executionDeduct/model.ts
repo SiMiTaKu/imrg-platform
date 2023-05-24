@@ -16,11 +16,29 @@ export const deductionOptions: radioDeduction[] = [
   { label: "10", value: 0.05 },
 ];
 
-export interface ExecutionDeduct {
+export class ExecutionDeduct {
   pointA: PointA
   pointB: PointB
+
+  constructor(pointA: PointA, pointB: PointB) {
+    this.pointA = pointA;
+    this.pointB = pointB;
+  }
 }
 
+/**
+ * @param beautifulPose
+ * @param flexibility
+ * @param naturalMovement
+ * @param bendingWeight
+ * @param jumpingHeight
+ * @param bodyControl
+ * @param heelRaise
+ * @param weaknessAndStrength
+ * @param connectMovement
+ * @param apparatusControl
+ * @param musicImage
+ */
 export interface PointA {
   beautifulPose:       PointAItem
   flexibility:         PointAItem

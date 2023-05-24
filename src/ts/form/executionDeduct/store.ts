@@ -1,9 +1,10 @@
 import { writable             } from 'svelte/store';
 import type { Writable        } from 'svelte/store';
-import type { ExecutionDeduct } from './model';
+import { ExecutionDeduct      } from './model';
+import type { PointA, PointB  } from "./model";
 
-export const executionDeduct: Writable<ExecutionDeduct> = writable({
-  pointA: {
+export const executionDeduct: Writable<ExecutionDeduct> = writable(new ExecutionDeduct(
+  ({
     beautifulPose: {
       title: "美しい姿勢",
       value: undefined,
@@ -61,13 +62,13 @@ export const executionDeduct: Writable<ExecutionDeduct> = writable({
       value: undefined,
       annotation: "どのくらい音楽にあった演技をしていたか"
     },
-  },
-  pointB: {
+  } as PointA),
+  ({
     miss: {
       title: "ミスによる減点",
       value: undefined,
       annotation: ""
     },
-  }
-} as ExecutionDeduct);
+  } as PointB)
+));
 
