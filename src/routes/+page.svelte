@@ -3,29 +3,17 @@
   import ExecutionPointResultModal from './ExecutionPointResultModal.svelte';
   import { executionDeduct       } from '../ts/form/executionDeduct/store';
   import { deductionOptions      } from '../ts/form/executionDeduct/model';
+  import { getMaxPointB          } from '../ts/form/executionDeduct/Culculator';
   import { fly                   } from 'svelte/transition';
-  import {
-    getAmountOfPointA,
-    getAmountOfPointB,
-    getDecisionPoints,
-    getMaxPointB
-  } from '../ts/form/executionDeduct/Culculator';
 
   const options = deductionOptions;
 
   let submitted: boolean = false;
   function submit() { submitted = true; }
 
-
-  let pointA;
-  let pointB;
   let maxOfPointB;
-  let decisionPoints;
   executionDeduct.subscribe(data => {
-    pointA         = getAmountOfPointA(data);
-    pointB         = getAmountOfPointB(data);
-    maxOfPointB    = getMaxPointB(data);
-    decisionPoints = getDecisionPoints(data);
+    maxOfPointB = getMaxPointB(data);
   });
 </script>
 
@@ -140,7 +128,7 @@
         <button class="form-miss-point-submit-button" on:click={submit}>決定</button>
       </div>
     {/if}
-    <ExecutionPointResultModal pointA={pointA} pointB={pointB} decisionPoints={decisionPoints} show={submitted}/>
+    <ExecutionPointResultModal show={submitted}/>
   </div>
 </section>
 <style lang="scss">
