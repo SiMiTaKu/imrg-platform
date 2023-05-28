@@ -48,8 +48,10 @@ export function getAmountOfPointA(data: ExecutionDeduct): number {
 
 export function getAmountOfPointB(data: ExecutionDeduct): number {
   if(data.pointB.miss.value < 0) throw new Error('missが0未満です。');
+  const maxPointB = getMaxPointB(data)
   const missPoint = data.pointB.miss.value ? data.pointB.miss.value : 0;
-  return missPoint;
+
+  if(missPoint >= maxPointB) return maxPointB; else return missPoint;
 }
 
 export function getMaxPointB(data: ExecutionDeduct): number {

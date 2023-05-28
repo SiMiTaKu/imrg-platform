@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fade, fly       } from 'svelte/transition';
+  import { fade            } from 'svelte/transition';
   import { executionDeduct } from "../ts/form/executionDeduct/store";
   import { Motion          } from "svelte-motion";
   import {
@@ -7,6 +7,12 @@
     getAmountOfPointB,
     getDecisionPoints,
   } from "../ts/form/executionDeduct/Culculator";
+
+
+  /** ---------------------------------------------------- */
+  import { Chart   } from 'chart.js/auto';
+
+  /** ---------------------------------------------------- */
 
   let pointA:           number;
   let pointB:           number;
@@ -22,15 +28,95 @@
   let pointDetailButtonTitle: string = '内訳を見る';
   let pointDetailOpacity:     number = 0;
   let pointDetailHeight:      number = 0;
+  let pointDetailMarginTop:   string = '0px';
+
   function switchShowPointADetail() {
     if(pointDetailOpacity === 0) {
+      renderPointDetailChart();
+      pointDetailMarginTop   = '-72px';
       pointDetailButtonTitle = '内訳を閉じる';
       pointDetailHeight      = 430;
       setTimeout(() => { pointDetailOpacity = 1; }, 100);
     } else {
+      pointDetailMarginTop   = '0px';
       pointDetailButtonTitle = '内訳を見る';
       pointDetailOpacity     = 0;
-      setTimeout(() => { pointDetailHeight  = 0; }, 100);
+      setTimeout(() => { pointDetailHeight = 0; }, 100);
+    }
+  }
+
+  /** @note Chartが描画されているか判別する変数 */
+  let myChart = undefined;
+  function renderPointDetailChart() {
+    let ctx = <HTMLCanvasElement> document.getElementById("point-detail-chart");
+    if(myChart) {
+      myChart.clear();
+      myChart.destroy();
+    }
+    myChart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: [
+          $executionDeduct.pointA.beautifulPose.title,
+          $executionDeduct.pointA.flexibility.title,
+          $executionDeduct.pointA.naturalMovement.title,
+          $executionDeduct.pointA.bendingWeight.title,
+          $executionDeduct.pointA.jumpingHeight.title,
+          $executionDeduct.pointA.bodyControl.title,
+          $executionDeduct.pointA.heelRaise.title,
+          $executionDeduct.pointA.weaknessAndStrength.title,
+          $executionDeduct.pointA.connectMovement.title,
+          $executionDeduct.pointA.apparatusControl.title,
+          $executionDeduct.pointA.musicImage.title
+        ],
+        datasets: [{
+          data: [
+            calculateRadarValue($executionDeduct.pointA.beautifulPose.value),
+            calculateRadarValue($executionDeduct.pointA.flexibility.value),
+            calculateRadarValue($executionDeduct.pointA.naturalMovement.value),
+            calculateRadarValue($executionDeduct.pointA.bendingWeight.value),
+            calculateRadarValue($executionDeduct.pointA.jumpingHeight.value),
+            calculateRadarValue($executionDeduct.pointA.bodyControl.value),
+            calculateRadarValue($executionDeduct.pointA.heelRaise.value),
+            calculateRadarValue($executionDeduct.pointA.weaknessAndStrength.value),
+            calculateRadarValue($executionDeduct.pointA.connectMovement.value),
+            calculateRadarValue($executionDeduct.pointA.apparatusControl.value),
+            calculateRadarValue($executionDeduct.pointA.musicImage.value)
+          ]
+        }],
+      },
+      options: {
+        scales: {
+          r: {
+            max: 10,       //グラフの最大値
+            min: 0,        //グラフの最小値
+            ticks: {
+              stepSize: 1  //目盛間隔
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  }
+
+  function calculateRadarValue(value: number): number {
+    switch(value){
+      case 0.05: return 10;
+      case 0.1 : return 9;
+      case 0.15: return 8;
+      case 0.2 : return 7;
+      case 0.25: return 6;
+      case 0.3 : return 5;
+      case 0.35: return 4;
+      case 0.4 : return 3;
+      case 0.45: return 2;
+      case 0.5:  return 1;
+      default: return 0;
     }
   }
 </script>
@@ -39,63 +125,70 @@
   <section id="execution-point-result-modal" transition:fade>
     <div class="modal-overlay"></div>
     <div class="decision-point-container">
-      <h2 class="decision-point-container__title">決定点</h2>
-      <button class="point-a-detail__pull-down-button" on:click={switchShowPointADetail}>{pointDetailButtonTitle}</button>
-      <Motion animate={{opacity: pointDetailOpacity, height: pointDetailHeight}} transition={{ duration: .5 }} let:motion>
-        <ul class="point-a-detail" use:motion>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.beautifulPose.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.beautifulPose.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.flexibility.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.flexibility.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.naturalMovement.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.naturalMovement.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.bendingWeight.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.bendingWeight.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.jumpingHeight.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.jumpingHeight.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.bodyControl.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.bodyControl.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.heelRaise.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.heelRaise.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.weaknessAndStrength.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.weaknessAndStrength.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.connectMovement.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.connectMovement.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.apparatusControl.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.apparatusControl.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointA.musicImage.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointA.musicImage.value.toFixed(3)}</span>
-          </li>
-          <li class="point-a-detail__item">
-            <span class="point-a-detail__title">{$executionDeduct.pointB.miss.title}</span>
-            <span class="point-a-detail__value">{$executionDeduct.pointB.miss.value.toFixed(3)}</span>
-          </li>
-        </ul>
+      <div class="decision-point-container__header">
+        <h2 class="decision-point-container__title">決定点</h2>
+        <button class="point-a-detail__pull-down-button" on:click={switchShowPointADetail}>{pointDetailButtonTitle}</button>
+      </div>
+      <Motion animate={{opacity: pointDetailOpacity, height: pointDetailHeight, marginTop: pointDetailMarginTop}} transition={{ duration: .5 }} let:motion>
+        <div id="point-detail-pull-down" use:motion>
+          <div class="point-detail-chart-area">
+            <canvas id="point-detail-chart" width="500" height="400"></canvas>
+          </div>
+          <ul class="point-a-detail">
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.beautifulPose.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.beautifulPose.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.flexibility.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.flexibility.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.naturalMovement.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.naturalMovement.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.bendingWeight.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.bendingWeight.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.jumpingHeight.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.jumpingHeight.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.bodyControl.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.bodyControl.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.heelRaise.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.heelRaise.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.weaknessAndStrength.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.weaknessAndStrength.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.connectMovement.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.connectMovement.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.apparatusControl.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.apparatusControl.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointA.musicImage.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointA.musicImage.value.toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">{$executionDeduct.pointB.miss.title}</span>
+              <span class="point-a-detail__value">{$executionDeduct.pointB.miss.value.toFixed(3)}</span>
+            </li>
+          </ul>
+        </div>
       </Motion>
       <div class="decision-point-container__format">10.00　-　( {pointA.toFixed(3)} + {pointB.toFixed(3)} )</div>
       <div class="decision-point-container__result">{decisionPoints.toFixed(3)}</div>
@@ -104,6 +197,12 @@
 {/if}
 
 <style lang="scss">
+  .point-detail-chart-area {
+    display:        inline-block;
+    margin-right:   32px;
+    vertical-align: middle;
+  }
+
   #execution-point-result-modal {
     position: fixed;
     top:      0;
@@ -125,11 +224,17 @@
       position:         relative;
       top:              50%;
       left:             50%;
-      width:            400px;
-      padding:          100px 50px;
+      width:            800px;
+      padding:          100px 50px 50px;
       transform:        translate(-50%, -50%);
       background-color: white;
       border-radius:    8px;
+
+      &__header {
+        position: absolute;
+        top:      50px;
+        z-index:  100;
+      }
 
       &__title {
         display:       inline-block;
@@ -148,7 +253,7 @@
       }
 
       &__result {
-        padding-left: 20px;
+        padding-left: 40px;
         font-size:    40px;
         font-weight:  bold;
       }
@@ -159,18 +264,25 @@
         display:    block;
         width:      200px;
         height:     4px;
-        left:       40px;
+        left:       50px;
         background: #AAAAAA;
       }
     }
 
+    /** ポイント詳細 プルダウン ------------------------- */
+    #point-detail-pull-down {
+      opacity:    0;
+      height:     0;
+      margin:     0;
+    }
+
     /** ポイントA 詳細 ------------------------------- */
     .point-a-detail {
-      width:   320px;
-      height:  0;
-      margin:  0 0 16px;
-      padding: 0;
-      opacity: 0;
+      display:        inline-block;
+      width:          220px;
+      margin:         0 0 16px;
+      padding:        0;
+      vertical-align: middle;
 
       &__pull-down-button {
         margin-bottom: 8px;
@@ -180,13 +292,15 @@
 
       &__item {
         margin-bottom: 8px;
+        font-size:     12px;
         list-style:    none;
         border-bottom: 1px solid #AAAAAA;
       }
 
       &__title {
-        display: inline-block;
-        width:   250px;
+        display:   inline-block;
+        width:     180px;
+        font-size: 12px;
       }
     }
   }

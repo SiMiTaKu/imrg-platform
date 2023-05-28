@@ -3,18 +3,12 @@
   import ExecutionPointResultModal from './ExecutionPointResultModal.svelte';
   import { executionDeduct       } from '../ts/form/executionDeduct/store';
   import { deductionOptions      } from '../ts/form/executionDeduct/model';
-  import { getMaxPointB          } from '../ts/form/executionDeduct/Culculator';
   import { fly                   } from 'svelte/transition';
 
   const options = deductionOptions;
 
   let submitted: boolean = false;
   function submit() { submitted = true; }
-
-  let maxOfPointB;
-  executionDeduct.subscribe(data => {
-    maxOfPointB = getMaxPointB(data);
-  });
 </script>
 
 <svelte:head>
@@ -121,7 +115,7 @@
         <input
           type="number"
           step="0.05"
-          max={maxOfPointB}
+          min="0"
           class="form-miss-point"
           bind:value={$executionDeduct.pointB.miss.value}
         />
