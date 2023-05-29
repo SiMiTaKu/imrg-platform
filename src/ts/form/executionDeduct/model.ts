@@ -1,9 +1,9 @@
-type radioDeduction = {
+export interface RadioDeduction {
   label: string,
   value: number,
 };
 
-export const deductionOptions: radioDeduction[] = [
+export const deductionOptions: RadioDeduction[] = [
   { label: "1",  value: 0.5  },
   { label: "2",  value: 0.45 },
   { label: "3",  value: 0.4  },

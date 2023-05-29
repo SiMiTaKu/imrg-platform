@@ -1,11 +1,12 @@
 <script lang="ts">
-  export let title;
-  export let options;
+  import { fly                 } from 'svelte/transition';
+  import type { RadioDeduction } from "../../../ts/form/executionDeduct/model";
+  export let title       : string;
+  export let options     : RadioDeduction[];
   export let userSelected: number;
-  export let annotation: string;
+  export let annotation:   string;
 
   const uniqueID = Math.floor(Math.random() * 100);
-  import { fly } from 'svelte/transition';
 </script>
 
 <div class="radio-question" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
