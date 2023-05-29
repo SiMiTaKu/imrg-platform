@@ -2,6 +2,7 @@
   import { fade            } from 'svelte/transition';
   import { executionDeduct } from "../ts/form/executionDeduct/store";
   import { Motion          } from "svelte-motion";
+  import { Chart           } from 'chart.js/auto';
   import {
     getAmountOfPointA,
     getAmountOfPointB,
@@ -9,10 +10,6 @@
   } from "../ts/form/executionDeduct/Culculator";
 
 
-  /** ---------------------------------------------------- */
-  import { Chart   } from 'chart.js/auto';
-
-  /** ---------------------------------------------------- */
 
   let pointA:           number;
   let pointB:           number;
