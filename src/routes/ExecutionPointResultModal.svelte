@@ -7,6 +7,7 @@
     getAmountOfPointA,
     getAmountOfPointB,
     getDecisionPoints,
+    getDeductionOfPointA,
   } from "../ts/form/executionDeduct/Culculator";
 
 
@@ -68,17 +69,17 @@
         ],
         datasets: [{
           data: [
-            calculateRadarValue($executionDeduct.pointA.beautifulPose.value),
-            calculateRadarValue($executionDeduct.pointA.flexibility.value),
-            calculateRadarValue($executionDeduct.pointA.naturalMovement.value),
-            calculateRadarValue($executionDeduct.pointA.bendingWeight.value),
-            calculateRadarValue($executionDeduct.pointA.jumpingHeight.value),
-            calculateRadarValue($executionDeduct.pointA.bodyControl.value),
-            calculateRadarValue($executionDeduct.pointA.heelRaise.value),
-            calculateRadarValue($executionDeduct.pointA.weaknessAndStrength.value),
-            calculateRadarValue($executionDeduct.pointA.connectMovement.value),
-            calculateRadarValue($executionDeduct.pointA.apparatusControl.value),
-            calculateRadarValue($executionDeduct.pointA.musicImage.value)
+            $executionDeduct.pointA.beautifulPose.value,
+            $executionDeduct.pointA.flexibility.value,
+            $executionDeduct.pointA.naturalMovement.value,
+            $executionDeduct.pointA.bendingWeight.value,
+            $executionDeduct.pointA.jumpingHeight.value,
+            $executionDeduct.pointA.bodyControl.value,
+            $executionDeduct.pointA.heelRaise.value,
+            $executionDeduct.pointA.weaknessAndStrength.value,
+            $executionDeduct.pointA.connectMovement.value,
+            $executionDeduct.pointA.apparatusControl.value,
+            $executionDeduct.pointA.musicImage.value
           ]
         }],
       },
@@ -100,22 +101,6 @@
       }
     });
   }
-
-  function calculateRadarValue(value: number): number {
-    switch(value){
-      case 0.05: return 10;
-      case 0.1 : return 9;
-      case 0.15: return 8;
-      case 0.2 : return 7;
-      case 0.25: return 6;
-      case 0.3 : return 5;
-      case 0.35: return 4;
-      case 0.4 : return 3;
-      case 0.45: return 2;
-      case 0.5:  return 1;
-      default: return 0;
-    }
-  }
 </script>
 
 {#if show}
@@ -134,51 +119,51 @@
           <ul class="point-a-detail">
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.beautifulPose.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.beautifulPose.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.beautifulPose.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.beautifulPose.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.flexibility.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.flexibility.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.flexibility.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.naturalMovement.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.naturalMovement.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.naturalMovement.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.bendingWeight.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.bendingWeight.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.bendingWeight.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.jumpingHeight.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.jumpingHeight.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.jumpingHeight.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.bodyControl.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.bodyControl.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.bodyControl.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.heelRaise.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.heelRaise.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.heelRaise.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.weaknessAndStrength.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.weaknessAndStrength.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.weaknessAndStrength.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.connectMovement.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.connectMovement.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.connectMovement.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.apparatusControl.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.apparatusControl.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.apparatusControl.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.musicImage.title}</span>
-              <span class="point-a-detail__value">{$executionDeduct.pointA.musicImage.value.toFixed(3)}</span>
+              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.musicImage.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointB.miss.title}</span>

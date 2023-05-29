@@ -4,16 +4,16 @@ export interface RadioDeduction {
 };
 
 export const deductionOptions: RadioDeduction[] = [
-  { label: "1",  value: 0.5  },
-  { label: "2",  value: 0.45 },
-  { label: "3",  value: 0.4  },
-  { label: "4",  value: 0.35 },
-  { label: "5",  value: 0.3  },
-  { label: "6",  value: 0.25 },
-  { label: "7",  value: 0.2  },
-  { label: "8",  value: 0.15 },
-  { label: "9",  value: 0.1  },
-  { label: "10", value: 0.05 },
+  { label: "1",  value: 1  },
+  { label: "2",  value: 2  },
+  { label: "3",  value: 3  },
+  { label: "4",  value: 4  },
+  { label: "5",  value: 5  },
+  { label: "6",  value: 6  },
+  { label: "7",  value: 7  },
+  { label: "8",  value: 8  },
+  { label: "9",  value: 9  },
+  { label: "10", value: 10 },
 ];
 
 export class ExecutionDeduct {
