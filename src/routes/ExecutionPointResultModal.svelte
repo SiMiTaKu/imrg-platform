@@ -8,6 +8,7 @@
     getAmountOfPointB,
     getDecisionPoints,
     getDeductionOfPointA,
+    getDeductionOfDropedApparatus,
   } from "../ts/form/executionDeduct/Culculator";
 
 
@@ -164,6 +165,10 @@
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.musicImage.title}</span>
               <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.musicImage.value).toFixed(3)}</span>
+            </li>
+            <li class="point-a-detail__item">
+              <span class="point-a-detail__title">手具を落とした減点</span>
+              <span class="point-a-detail__value">{getDeductionOfDropedApparatus($executionDeduct).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointB.miss.title}</span>
