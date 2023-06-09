@@ -1,1 +1,8 @@
+body {
+  margin:      0;
+  font-family: YuGothic, sans-serif;
+}
 
+section {
+  padding: 40px 0;
+}
