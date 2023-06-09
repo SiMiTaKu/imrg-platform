@@ -51,29 +51,33 @@
   input[type=radio] { display: none; }
 
   input[type=radio]:checked + label {
-    background: #5996cb;
-    border:     solid 4px #32538D;
-    color:      #113c69;
+    background: #2c567e;
+    color:      white;
+    opacity:    1;
   }
 
   label {
     display:      inline-block;
-    width:         40px;
-    height:        40px;
+    width:         50px;
+    height:        50px;
     margin-right:  8px;
     font-size:     20px;
     font-weight:   bold;
-    line-height:   40px;
+    line-height:   50px;
     border-radius: 8px;
     background:    #E1E1E1;
-    border:        solid 4px #AAAAAA;
-    color:         #8D8D8D;
+    color:         #333333;
     text-align:    center;
     transition:    .3s;
 
     &:hover {
       cursor:  pointer;
       opacity: .5;
+    }
+
+    &:focus {
+      transition: .2s;
+      opacity:    1;
     }
   }
 </style>

@@ -270,6 +270,9 @@
         margin-bottom: 8px;
         background:    white;
         border-radius: 4px;
+        font-family:   YuGothic, sans-serif;
+
+        &:hover { cursor: pointer; }
       }
 
       &__item {
