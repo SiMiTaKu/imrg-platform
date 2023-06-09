@@ -110,6 +110,24 @@
     {#if $executionDeduct.pointA.musicImage.value !== undefined}
       <div class="form-container__miss-point-area" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
         <h2>B</h2>
+        <h3>手具を落とした回数</h3>
+        <div class="form-miss-point-annotation">※数字で入力してください。</div>
+        <div>1つの手具を落とした回数</div>
+        <input
+          type="number"
+          step="1"
+          min="0"
+          class="form-miss-point"
+          bind:value={$executionDeduct.pointB.dropedApparatus.singleApparatus.value}
+        />{$executionDeduct.pointB.dropedApparatus.singleApparatus.value}
+        <div>2つの手具を同時に落とした回数</div>
+        <input
+          type="number"
+          step="1"
+          min="0"
+          class="form-miss-point"
+          bind:value={$executionDeduct.pointB.dropedApparatus.doubleApparatus.value}
+        />{$executionDeduct.pointB.dropedApparatus.doubleApparatus.value}
         <h3>{$executionDeduct.pointB.miss.title}</h3>
         <div class="form-miss-point-annotation">※数字で入力してください。</div>
         <input
@@ -119,6 +137,7 @@
           class="form-miss-point"
           bind:value={$executionDeduct.pointB.miss.value}
         />
+<!--  @TODO 値がなくても決定ボタンを押せてしまう。 -->
         <button class="form-miss-point-submit-button" on:click={submit}>決定</button>
       </div>
     {/if}
@@ -131,7 +150,6 @@
 
     .form-container {
       width:         720px;
-      height:        300px;
       padding:       40px;
       margin:        0 auto;
       background:    white;
