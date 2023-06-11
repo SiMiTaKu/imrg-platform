@@ -6,10 +6,11 @@
   export let userSelected: number;
   export let annotation:   string;
 
+  /** @todo このuniqueIDが稀に同じになってしまうときがあるため、それぞれにもたせるように変更する */
   const uniqueID = Math.floor(Math.random() * 100);
 </script>
 
-<div class="radio-question" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
+<div class="radio-question">
   <div class="radio-question__title">
     {title}<span class="radio-question__annotation">※{annotation}</span>
   </div>
