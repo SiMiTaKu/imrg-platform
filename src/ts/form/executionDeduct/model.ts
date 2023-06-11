@@ -60,7 +60,7 @@ export interface PointAItem {
 }
 
 export interface PointB {
-  dropedApparatus: { 
+  droppedApparatus: {
     singleApparatus: { value: number } // 1つの手具を落とした回数
     doubleApparatus: { value: number } // 2つの手具(リング、クラブ）を同時に落とした回数
   }

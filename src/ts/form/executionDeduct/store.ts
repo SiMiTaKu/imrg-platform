@@ -20,11 +20,11 @@ export const executionDeduct: Writable<ExecutionDeduct> = writable(new Execution
     musicImage:          { title: "音楽のイメージ",            value: undefined, annotation: "どのくらい音楽にあった演技をしていたか"},
   } as unknown as PointA),
   ({
-    dropedApparatus: {
+    droppedApparatus: {
       singleApparatus: { value: undefined },
       doubleApparatus: { value: undefined }
     },
-    miss: { title: "ミスによる減点", value: undefined, annotation: "" },
+    miss: { title: "その他ミスによる減点", value: undefined, annotation: "" },
   } as unknown as PointB)
 ));
 

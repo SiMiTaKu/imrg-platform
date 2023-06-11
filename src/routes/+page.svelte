@@ -17,12 +17,11 @@
 
 <section id="judgement-form-section">
   <div class="form-container">
+<!--    @todo AとBをぱーつとしてHTMLを分ける。-->
     {#if $executionDeduct.pointA.musicImage.value === undefined } <!-- Aの最後の回答がされるまで表示 -->
       <div class="form-container__radio-area" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
         <h2>Aの減点項目</h2>
-        <div>
-          ※あなたが感じた直感を信じて1〜10点満点で選択してください。
-        </div>
+        <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
         <h3 class="form-container__title">徒手の技術</h3>
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.beautifulPose.title}
@@ -87,34 +86,39 @@
       <div class="form-container__miss-point-area" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
         <h2>B</h2>
         <h3>手具を落とした回数</h3>
-        <div class="form-miss-point-annotation">※数字で入力してください。</div>
-        <div>1つの手具を落とした回数</div>
-        <input
-          type="number"
-          step="1"
-          min="0"
-          class="form-miss-point"
-          bind:value={$executionDeduct.pointB.dropedApparatus.singleApparatus.value}
-        />{$executionDeduct.pointB.dropedApparatus.singleApparatus.value}
-        <div>2つの手具を同時に落とした回数</div>
-        <input
-          type="number"
-          step="1"
-          min="0"
-          class="form-miss-point"
-          bind:value={$executionDeduct.pointB.dropedApparatus.doubleApparatus.value}
-        />{$executionDeduct.pointB.dropedApparatus.doubleApparatus.value}
+        <div class="form-dropped-apparatus">
+          <h4>1つの手具を落とした回数</h4>
+          <input
+            type       = "number"
+            step       = "1"
+            min        = "0"
+            class      = "form-miss-point"
+            bind:value = {$executionDeduct.pointB.droppedApparatus.singleApparatus.value}
+          />
+        </div>
+        <div class="form-dropped-apparatus">
+          <h4>2つの手具を同時に落とした回数</h4>
+          <input
+            type       = "number"
+            step       = "1"
+            min        = "0"
+            class      = "form-miss-point"
+            bind:value = {$executionDeduct.pointB.droppedApparatus.doubleApparatus.value}
+          />
+        </div>
         <h3>{$executionDeduct.pointB.miss.title}</h3>
         <div class="form-miss-point-annotation">※数字で入力してください。</div>
         <input
-          type="number"
-          step="0.05"
-          min="0"
-          class="form-miss-point"
-          bind:value={$executionDeduct.pointB.miss.value}
+          type       = "number"
+          step       = "0.05"
+          min        = "0"
+          class      = "form-miss-point"
+          bind:value = {$executionDeduct.pointB.miss.value}
         />
 <!--  @TODO 値がなくても決定ボタンを押せてしまう。 -->
-        <button class="form-miss-point-submit-button" on:click={submit}>決定</button>
+        <div class="form-submit-container">
+          <button class="form-submit-container__button" on:click={submit}>決定</button>
+        </div>
       </div>
     {/if}
     <ExecutionPointResultModal show={submitted}/>
@@ -137,6 +141,10 @@
       }
     }
 
+    .form-dropped-apparatus {
+      display: inline-block;
+      width:   355px;
+    }
 
     .form-miss-point {
       height:        56px;
@@ -151,30 +159,30 @@
       transition:    .3s;
       box-sizing:    border-box;
 
-      &:focus {
-        border: solid 4px #32538D;
-      }
+      &:focus { border: solid 4px #32538D; }
     }
 
-    .form-miss-point-annotation {
-      margin-bottom: 16px;
-    }
+    .form-miss-point-annotation { margin-bottom: 16px; }
 
 
-    .form-miss-point-submit-button {
-      width:         100px;
-      height:        56px;
-      font-weight:   bold;
-      font-size:     20px;
-      color:         white;
-      border:        unset;
-      border-radius: 8px;
-      background:    #32538D;
-      transition:    .3s;
+    .form-submit-container {
+      text-align: center;
 
-      &:hover {
-        cursor:  pointer;
-        opacity: .5;
+      &__button {
+        width:         100px;
+        height:        56px;
+        font-weight:   bold;
+        font-size:     20px;
+        color:         white;
+        border:        unset;
+        border-radius: 8px;
+        background:    #32538D;
+        transition:    .3s;
+
+        &:hover {
+          cursor:  pointer;
+          opacity: .5;
+        }
       }
     }
   }
