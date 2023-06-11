@@ -18,93 +18,69 @@
 <section id="judgement-form-section">
   <div class="form-container">
     {#if $executionDeduct.pointA.musicImage.value === undefined } <!-- Aの最後の回答がされるまで表示 -->
-      <div class="form-container__radio-area">
-        <h2 in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>Aの減点項目</h2>
-        <div in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
+      <div class="form-container__radio-area" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
+        <h2>Aの減点項目</h2>
+        <div>
           ※あなたが感じた直感を信じて1〜10点満点で選択してください。
         </div>
-        {#if $executionDeduct.pointA.connectMovement.value === undefined } <!-- 徒手の技術の最後の回答がされるまで表示 -->
-          <h3 class="form-container__title" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>徒手の技術</h3>
-        {/if}
-        {#if $executionDeduct.pointA.beautifulPose.value === undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.beautifulPose.title}
-                 bind:userSelected = {$executionDeduct.pointA.beautifulPose.value}
-                 annotation        = {$executionDeduct.pointA.beautifulPose.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.flexibility.value === undefined && $executionDeduct.pointA.beautifulPose.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.flexibility.title}
-                 bind:userSelected = {$executionDeduct.pointA.flexibility.value}
-                 annotation        = {$executionDeduct.pointA.flexibility.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.naturalMovement.value === undefined && $executionDeduct.pointA.flexibility.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.naturalMovement.title}
-                 bind:userSelected = {$executionDeduct.pointA.naturalMovement.value}
-                 annotation        = {$executionDeduct.pointA.naturalMovement.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.bendingWeight.value === undefined && $executionDeduct.pointA.naturalMovement.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.bendingWeight.title}
-                 bind:userSelected = {$executionDeduct.pointA.bendingWeight.value}
-                 annotation        = {$executionDeduct.pointA.bendingWeight.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.jumpingHeight.value === undefined && $executionDeduct.pointA.bendingWeight.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.jumpingHeight.title}
-                 bind:userSelected = {$executionDeduct.pointA.jumpingHeight.value}
-                 annotation        = {$executionDeduct.pointA.jumpingHeight.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.bodyControl.value === undefined && $executionDeduct.pointA.jumpingHeight.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.bodyControl.title}
-                 bind:userSelected = {$executionDeduct.pointA.bodyControl.value}
-                 annotation        = {$executionDeduct.pointA.bodyControl.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.heelRaise.value === undefined && $executionDeduct.pointA.bodyControl.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.heelRaise.title}
-                 bind:userSelected = {$executionDeduct.pointA.heelRaise.value}
-                 annotation        = {$executionDeduct.pointA.heelRaise.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.weaknessAndStrength.value === undefined && $executionDeduct.pointA.heelRaise.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.weaknessAndStrength.title}
-                 bind:userSelected = {$executionDeduct.pointA.weaknessAndStrength.value}
-                 annotation        = {$executionDeduct.pointA.weaknessAndStrength.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.connectMovement.value === undefined && $executionDeduct.pointA.weaknessAndStrength.value !== undefined }
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.connectMovement.title}
-                 bind:userSelected = {$executionDeduct.pointA.connectMovement.value}
-                 annotation        = {$executionDeduct.pointA.connectMovement.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.apparatusControl.value === undefined && $executionDeduct.pointA.connectMovement.value !== undefined }
-          <h3 class="form-container__title" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>手具の技術</h3>
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.apparatusControl.title}
-                 bind:userSelected = {$executionDeduct.pointA.apparatusControl.value}
-                 annotation        = {$executionDeduct.pointA.apparatusControl.annotation}
-          />
-        {/if}
-        {#if $executionDeduct.pointA.musicImage.value === undefined && $executionDeduct.pointA.apparatusControl.value !== undefined }
-          <h3 class="form-container__title" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>音楽</h3>
-          <Radio options           = {options}
-                 title             = {$executionDeduct.pointA.musicImage.title}
-                 bind:userSelected = {$executionDeduct.pointA.musicImage.value}
-                 annotation        = {$executionDeduct.pointA.musicImage.annotation}
-          />
-        {/if}
+        <h3 class="form-container__title">徒手の技術</h3>
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.beautifulPose.title}
+               bind:userSelected = {$executionDeduct.pointA.beautifulPose.value}
+               annotation        = {$executionDeduct.pointA.beautifulPose.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.flexibility.title}
+               bind:userSelected = {$executionDeduct.pointA.flexibility.value}
+               annotation        = {$executionDeduct.pointA.flexibility.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.naturalMovement.title}
+               bind:userSelected = {$executionDeduct.pointA.naturalMovement.value}
+               annotation        = {$executionDeduct.pointA.naturalMovement.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.bendingWeight.title}
+               bind:userSelected = {$executionDeduct.pointA.bendingWeight.value}
+               annotation        = {$executionDeduct.pointA.bendingWeight.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.jumpingHeight.title}
+               bind:userSelected = {$executionDeduct.pointA.jumpingHeight.value}
+               annotation        = {$executionDeduct.pointA.jumpingHeight.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.bodyControl.title}
+               bind:userSelected = {$executionDeduct.pointA.bodyControl.value}
+               annotation        = {$executionDeduct.pointA.bodyControl.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.heelRaise.title}
+               bind:userSelected = {$executionDeduct.pointA.heelRaise.value}
+               annotation        = {$executionDeduct.pointA.heelRaise.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.weaknessAndStrength.title}
+               bind:userSelected = {$executionDeduct.pointA.weaknessAndStrength.value}
+               annotation        = {$executionDeduct.pointA.weaknessAndStrength.annotation}
+        />
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.connectMovement.title}
+               bind:userSelected = {$executionDeduct.pointA.connectMovement.value}
+               annotation        = {$executionDeduct.pointA.connectMovement.annotation}
+        />
+        <h3 class="form-container__title">手具の技術</h3>
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.apparatusControl.title}
+               bind:userSelected = {$executionDeduct.pointA.apparatusControl.value}
+               annotation        = {$executionDeduct.pointA.apparatusControl.annotation}
+        />
+        <h3 class="form-container__title">音楽</h3>
+        <Radio options           = {options}
+               title             = {$executionDeduct.pointA.musicImage.title}
+               bind:userSelected = {$executionDeduct.pointA.musicImage.value}
+               annotation        = {$executionDeduct.pointA.musicImage.annotation}
+        />
       </div>
     {/if}
     {#if $executionDeduct.pointA.musicImage.value !== undefined}
