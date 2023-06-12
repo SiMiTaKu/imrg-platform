@@ -9,7 +9,7 @@ frontend:
         - npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
-    baseDirectory: .svelte-kit/output/prerendered/pages/index.html
+    baseDirectory: .svelte-kit/output/prerendered/pages
     files:
       - '**/*'
   cache:
