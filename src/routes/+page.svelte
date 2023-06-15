@@ -27,58 +27,69 @@
                title             = {$executionDeduct.pointA.beautifulPose.title}
                bind:userSelected = {$executionDeduct.pointA.beautifulPose.value}
                annotation        = {$executionDeduct.pointA.beautifulPose.annotation}
+               uniqueId          = "beautifulPose"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.flexibility.title}
                bind:userSelected = {$executionDeduct.pointA.flexibility.value}
                annotation        = {$executionDeduct.pointA.flexibility.annotation}
+               uniqueId          = "flexibility"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.naturalMovement.title}
                bind:userSelected = {$executionDeduct.pointA.naturalMovement.value}
                annotation        = {$executionDeduct.pointA.naturalMovement.annotation}
+               uniqueId          = "naturalMovement"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.bendingWeight.title}
                bind:userSelected = {$executionDeduct.pointA.bendingWeight.value}
                annotation        = {$executionDeduct.pointA.bendingWeight.annotation}
+               uniqueId          = "bendingWeight"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.jumpingHeight.title}
                bind:userSelected = {$executionDeduct.pointA.jumpingHeight.value}
                annotation        = {$executionDeduct.pointA.jumpingHeight.annotation}
+               uniqueId          = "jumpingHeight"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.bodyControl.title}
                bind:userSelected = {$executionDeduct.pointA.bodyControl.value}
                annotation        = {$executionDeduct.pointA.bodyControl.annotation}
+               uniqueId          = "bodyControl"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.heelRaise.title}
                bind:userSelected = {$executionDeduct.pointA.heelRaise.value}
                annotation        = {$executionDeduct.pointA.heelRaise.annotation}
+               uniqueId          = "heelRaise"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.weaknessAndStrength.title}
                bind:userSelected = {$executionDeduct.pointA.weaknessAndStrength.value}
                annotation        = {$executionDeduct.pointA.weaknessAndStrength.annotation}
+               uniqueId          = "weaknessAndStrength"
         />
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.connectMovement.title}
                bind:userSelected = {$executionDeduct.pointA.connectMovement.value}
                annotation        = {$executionDeduct.pointA.connectMovement.annotation}
+               uniqueId          = "connectMovement"
         />
         <h3 class="form-container__title">手具の技術</h3>
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.apparatusControl.title}
                bind:userSelected = {$executionDeduct.pointA.apparatusControl.value}
                annotation        = {$executionDeduct.pointA.apparatusControl.annotation}
+               uniqueId          = "apparatusControl"
         />
         <h3 class="form-container__title">音楽</h3>
         <Radio options           = {options}
                title             = {$executionDeduct.pointA.musicImage.title}
                bind:userSelected = {$executionDeduct.pointA.musicImage.value}
                annotation        = {$executionDeduct.pointA.musicImage.annotation}
+               uniqueId          = "musicImage"
         />
       </div>
     {/if}
