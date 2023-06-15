@@ -5,9 +5,7 @@
   export let options     : RadioDeduction[];
   export let userSelected: number;
   export let annotation:   string;
-
-  /** @todo このuniqueIDが稀に同じになってしまうときがあるため、それぞれにもたせるように変更する */
-  const uniqueID = Math.floor(Math.random() * 100);
+  export let uniqueId: string
 </script>
 
 <div class="radio-question">
@@ -15,19 +13,19 @@
     {title}<span class="radio-question__annotation">※{annotation}</span>
   </div>
   <div
-    role         = "radio"
-    class        = "radio-group"
-    aria-checked = false
-    aria-labelledby = "label-${uniqueID}">
+    role            = "radio"
+    class           = "radio-group"
+    aria-checked    = false
+    aria-labelledby = "label-${uniqueId}">
     {#each options as option}
       <input
-        id           = {option.label + uniqueID}
+        id           = {option.label + uniqueId}
         type         = "radio"
         value        = {option.value}
         aria-checked = false
         bind:group   = {userSelected}
       />
-      <label for={option.label + uniqueID}>{option.label}</label>
+      <label for={option.label + uniqueId}>{option.label}</label>
     {/each}
   </div>
 </div>
