@@ -1,5 +1,6 @@
 <script>
   import Header from './common/layout/Header.svelte';
+  import Footer from './common/layout/Footer.svelte';
   import './styles.css';
 </script>
 
@@ -10,9 +11,7 @@
     <slot />
   </main>
 
-  <footer>
-    ふったー
-  </footer>
+  <Footer />
 </div>
 
 <style>
