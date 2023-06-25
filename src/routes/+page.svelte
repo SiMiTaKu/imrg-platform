@@ -4,17 +4,31 @@
   import { executionDeduct       } from '../ts/form/executionDeduct/store';
   import { deductionOptions      } from '../ts/form/executionDeduct/model';
   import { fly                   } from 'svelte/transition';
+  import {
+    getResponsiveDesign,
+    designOfPC,
+    designOfSP
+  } from '../ts/common/ResponsiveDesign';
 
   const options = deductionOptions;
 
   let submitted: boolean = false;
   function submit() { submitted = true; }
+
+  let screenWidth;
 </script>
 
 <svelte:head>
 	<title>ホーム</title>
 </svelte:head>
 
+<svelte:window bind:innerWidth={screenWidth}/>
+
+{#if getResponsiveDesign(screenWidth) === designOfPC}
+  これPC
+{:else}
+  これSP
+{/if}
 <section id="judgement-form-section">
   <div class="form-container">
 <!--    @todo AとBをぱーつとしてHTMLを分ける。-->
