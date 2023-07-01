@@ -8,8 +8,8 @@
     getAmountOfPointB,
     getDecisionPoints,
     getDeductionOfPointA,
-    getDeductionOfDroppedApparatus,
-  } from "../../../../ts/form/executionDeduct/Culculator";
+    getDeductionOfDroppedApparatus
+  } from '../../../../ts/form/executionDeduct/Culculator';
 
   let pointA:           number;
   let pointB:           number;
@@ -31,7 +31,7 @@
     if(pointDetailOpacity === 0) {
       renderPointDetailChart();
       pointDetailButtonTitle = '内訳を閉じる';
-      pointDetailHeight      = 430;
+      pointDetailHeight      = 400;
       setTimeout(() => { pointDetailOpacity = 1; }, 100);
     } else {
       pointDetailButtonTitle = '内訳を見る';
@@ -99,6 +99,8 @@
       }
     });
   }
+
+  function oneMoreJudge(): void { location.reload(); }
 </script>
 
 {#if show}
@@ -176,6 +178,9 @@
       </Motion>
       <div class="decision-point-container__format">10.00　-　( {pointA.toFixed(3)} + {pointB.toFixed(3)} )</div>
       <div class="decision-point-container__result">{decisionPoints.toFixed(3)}</div>
+      <div class="decision-point-container__reset-button-container">
+        <button class="decision-point-container__reset-button" on:click={oneMoreJudge}>もう一度採点する</button>
+      </div>
     </div>
   </section>
 {/if}
@@ -231,9 +236,10 @@
       }
 
       &__result {
-        padding-left: 40px;
-        font-size:    40px;
-        font-weight:  bold;
+        padding-left:  70px;
+        font-size:     40px;
+        font-weight:   bold;
+        margin-bottom: 24px;
       }
 
       &__result:after {
@@ -245,6 +251,19 @@
         left:       50px;
         background: #AAAAAA;
       }
+
+      &__reset-button-container { text-align: center; }
+
+      &__reset-button {
+        width:         180px;
+        height:        48px;
+        font-size:     16px;
+        font-weight:   bold;
+        color:         white;
+        background:    #32538D;
+        border:        none;
+        border-radius: 8px;
+      }
     }
 
     /** ポイント詳細 プルダウン ------------------------- */
@@ -252,12 +271,17 @@
       opacity:    0;
       height:     0;
       margin:     0;
+      overflow:   scroll;
     }
 
     /** ポイントA 詳細 ------------------------------- */
+    .point-detail-chart-area {
+      margin-bottom: 8px;
+    }
+
     .point-a-detail {
-      width:          220px;
-      margin:         0 0 16px;
+      width:          270px;
+      margin:         0 auto 16px;
       padding:        0;
       vertical-align: middle;
 
@@ -272,15 +296,15 @@
 
       &__item {
         margin-bottom: 8px;
-        font-size:     12px;
+        font-size:     16px;
         list-style:    none;
         border-bottom: 1px solid #AAAAAA;
       }
 
       &__title {
         display:   inline-block;
-        width:     180px;
-        font-size: 12px;
+        width:     220px;
+        font-size: 16px;
       }
     }
   }
