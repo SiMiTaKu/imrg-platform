@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fly                 } from 'svelte/transition';
-  import type { RadioDeduction } from "../../../ts/form/executionDeduct/model";
+  import type { RadioDeduction } from "../../../../ts/form/executionDeduct/model";
   export let title       : string;
   export let options     : RadioDeduction[];
   export let userSelected: number;
