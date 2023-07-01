@@ -15,7 +15,7 @@
   <div class="form-container">
     <!--    @todo AとBをぱーつとしてHTMLを分ける。-->
     {#if $executionDeduct.pointA.musicImage.value === undefined } <!-- Aの最後の回答がされるまで表示 -->
-      <div class="form-container__radio-area" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
+      <div class="form-container__radio-area" in:fly={{y: 200, delay: 600}} out:fly={{y: -200, delay: 200}}>
         <h2>Aの減点項目</h2>
         <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
         <h3 class="form-container__title">徒手の技術</h3>
@@ -89,8 +89,11 @@
         />
       </div>
     {/if}
-    {#if $executionDeduct.pointA.musicImage.value !== undefined}
-      <div class="form-container__miss-point-area" in:fly={{x: 200, delay: 600}} out:fly={{x: -200, delay: 200}}>
+    {#if
+
+      $executionDeduct.pointA.musicImage.value          !== undefined
+    }
+      <div class="form-container__miss-point-area" in:fly={{y: 200, delay: 600}} out:fly={{y: -200, delay: 200}}>
         <h2>B</h2>
         <h3>手具を落とした回数</h3>
         <div class="form-dropped-apparatus">
@@ -171,7 +174,6 @@
     }
 
     .form-miss-point-annotation { margin-bottom: 16px; }
-
 
     .form-submit-container {
       text-align: center;

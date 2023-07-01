@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fly                 } from 'svelte/transition';
   import type { RadioDeduction } from "../../../../ts/form/executionDeduct/model";
   export let title       : string;
   export let options     : RadioDeduction[];
@@ -9,9 +8,7 @@
 </script>
 
 <div class="radio-question">
-  <div class="radio-question__title">
-    {title}
-  </div>
+  <div class="radio-question__title">{title}</div>
   <div class="radio-question__annotation">※{annotation}</div>
   <div
     role            = "radio"
