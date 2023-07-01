@@ -100,6 +100,8 @@
       }
     });
   }
+
+  function oneMoreJudge(): void { location.reload(); }
 </script>
 
 {#if show}
@@ -177,6 +179,9 @@
       </Motion>
       <div class="decision-point-container__format">10.00　-　( {pointA.toFixed(3)} + {pointB.toFixed(3)} )</div>
       <div class="decision-point-container__result">{decisionPoints.toFixed(3)}</div>
+      <div class="decision-point-container__reset-button-container">
+        <button class="decision-point-container__reset-button" on:click={oneMoreJudge}>もう一度採点する</button>
+      </div>
     </div>
   </section>
 {/if}
@@ -238,9 +243,10 @@
       }
 
       &__result {
-        padding-left: 40px;
-        font-size:    40px;
-        font-weight:  bold;
+        padding-left:  40px;
+        font-size:     40px;
+        font-weight:   bold;
+        margin-bottom: 20px;
       }
 
       &__result:after {
@@ -251,6 +257,19 @@
         height:     4px;
         left:       50px;
         background: #AAAAAA;
+      }
+
+      &__reset-button-container { text-align: center; }
+
+      &__reset-button {
+        width:         200px;
+        height:        48px;
+        font-size:     16px;
+        font-weight:   bold;
+        color:         white;
+        background:    #32538D;
+        border:        none;
+        border-radius: 8px;
       }
     }
 
