@@ -18,19 +18,15 @@
 <div>
   {#if getResponsiveDesign(screenWidth) === designOfPC}
     <PCHeader />
-    <main>
-      <slot />
-    </main>
-    <PCFooter />
   {:else if getResponsiveDesign(screenWidth) === designOfSP}
     <SPHeader />
-    <main>
-      <slot />
-    </main>
+  {/if}
+  <main>
+    <slot />
+  </main>
+  {#if getResponsiveDesign(screenWidth) === designOfPC}
+    <PCFooter />
+  {:else if getResponsiveDesign(screenWidth) === designOfSP}
     <SPFooter />
   {/if}
 </div>
-
-<style>
-
-</style>
