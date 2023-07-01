@@ -262,6 +262,7 @@
       &__reset-button-container { text-align: center; }
 
       &__reset-button {
+        position:      relative;
         width:         200px;
         height:        48px;
         font-size:     16px;
@@ -270,6 +271,8 @@
         background:    #32538D;
         border:        none;
         border-radius: 8px;
+        z-index:       100;
+        cursor:        pointer;
       }
     }
 
