@@ -11,8 +11,6 @@
     getDeductionOfDroppedApparatus,
   } from "../../../../ts/form/executionDeduct/Culculator";
 
-
-
   let pointA:           number;
   let pointB:           number;
   let decisionPoints:   number;

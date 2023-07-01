@@ -89,8 +89,17 @@
         />
       </div>
     {/if}
+      <!--$executionDeduct.pointA.beautifulPose.value       !== undefined &&-->
+      <!--$executionDeduct.pointA.flexibility.value         !== undefined &&-->
+      <!--$executionDeduct.pointA.naturalMovement.value     !== undefined &&-->
+      <!--$executionDeduct.pointA.bendingWeight.value       !== undefined &&-->
+      <!--$executionDeduct.pointA.jumpingHeight.value       !== undefined &&-->
+      <!--$executionDeduct.pointA.bodyControl.value         !== undefined &&-->
+      <!--$executionDeduct.pointA.heelRaise.value           !== undefined &&-->
+      <!--$executionDeduct.pointA.weaknessAndStrength.value !== undefined &&-->
+      <!--$executionDeduct.pointA.connectMovement.value     !== undefined &&-->
+      <!--$executionDeduct.pointA.apparatusControl.value    !== undefined &&-->
     {#if
-
       $executionDeduct.pointA.musicImage.value          !== undefined
     }
       <div class="form-container__miss-point-area" in:fly={{y: 200, delay: 600}} out:fly={{y: -200, delay: 200}}>
