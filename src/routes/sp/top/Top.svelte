@@ -137,8 +137,8 @@
     background: #DCECEC;
 
     .form-container {
-      //width:         720px;
-      padding:       40px;
+      width:         83%;
+      padding:       5%;
       margin:        0 auto;
       background:    white;
       border-radius: 8px;
