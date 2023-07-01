@@ -11,8 +11,6 @@
     getDeductionOfDroppedApparatus,
   } from "../../../../ts/form/executionDeduct/Culculator";
 
-
-
   let pointA:           number;
   let pointB:           number;
   let decisionPoints:   number;
@@ -32,12 +30,10 @@
   function switchShowPointADetail() {
     if(pointDetailOpacity === 0) {
       renderPointDetailChart();
-      pointDetailMarginTop   = '-72px';
       pointDetailButtonTitle = '内訳を閉じる';
       pointDetailHeight      = 430;
       setTimeout(() => { pointDetailOpacity = 1; }, 100);
     } else {
-      pointDetailMarginTop   = '0px';
       pointDetailButtonTitle = '内訳を見る';
       pointDetailOpacity     = 0;
       setTimeout(() => { pointDetailHeight = 0; }, 100);
@@ -91,7 +87,8 @@
             min: 0,        //グラフの最小値
             ticks: {
               stepSize: 1  //目盛間隔
-            }
+            },
+            pointLabels: false
           }
         },
         plugins: {
@@ -115,7 +112,7 @@
       <Motion animate={{opacity: pointDetailOpacity, height: pointDetailHeight, marginTop: pointDetailMarginTop}} transition={{ duration: .5 }} let:motion>
         <div id="point-detail-pull-down" use:motion>
           <div class="point-detail-chart-area">
-            <canvas id="point-detail-chart" width="500" height="400"></canvas>
+            <canvas id="point-detail-chart" width="350" height="250"></canvas>
           </div>
           <ul class="point-a-detail">
             <li class="point-a-detail__item">
@@ -184,12 +181,6 @@
 {/if}
 
 <style lang="scss">
-  .point-detail-chart-area {
-    display:        inline-block;
-    margin-right:   32px;
-    vertical-align: middle;
-  }
-
   #execution-point-result-modal {
     position: fixed;
     top:      0;
@@ -211,8 +202,8 @@
       position:         relative;
       top:              50%;
       left:             50%;
-      width:            800px;
-      padding:          100px 50px 50px;
+      width:            85%;
+      padding:          100px 5% 50px;
       transform:        translate(-50%, -50%);
       background-color: white;
       border-radius:    8px;
@@ -265,7 +256,6 @@
 
     /** ポイントA 詳細 ------------------------------- */
     .point-a-detail {
-      display:        inline-block;
       width:          220px;
       margin:         0 0 16px;
       padding:        0;
