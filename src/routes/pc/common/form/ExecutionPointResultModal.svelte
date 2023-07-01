@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade            } from 'svelte/transition';
-  import { executionDeduct } from "../ts/form/executionDeduct/store";
+  import { executionDeduct } from "../../../../ts/form/executionDeduct/store";
   import { Motion          } from "svelte-motion";
   import { Chart           } from 'chart.js/auto';
   import {
@@ -9,7 +9,7 @@
     getDecisionPoints,
     getDeductionOfPointA,
     getDeductionOfDroppedApparatus,
-  } from "../ts/form/executionDeduct/Culculator";
+  } from "../../../../ts/form/executionDeduct/Culculator";
 
 
 

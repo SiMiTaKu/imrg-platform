@@ -137,7 +137,7 @@
     background: #DCECEC;
 
     .form-container {
-      width:         720px;
+      //width:         720px;
       padding:       40px;
       margin:        0 auto;
       background:    white;
