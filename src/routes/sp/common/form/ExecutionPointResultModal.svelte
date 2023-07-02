@@ -288,6 +288,7 @@
         height:         32px;
         font-size:      14px;
         font-weight:    bold;
+        color:          #555555;
         background:     white;
         border-radius:  4px;
         border:         2px solid #555555;
