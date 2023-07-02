@@ -28,15 +28,14 @@
   let pointDetailMarginTop:   string  = '0px';
   let isPointDetailShown:     boolean = false;
 
-  function switchShowPointADetail() {
+  function switchShowPointADetail(): void {
+    isPointDetailShown = !isPointDetailShown;
     if(isPointDetailShown) {
       renderPointDetailChart();
-      isPointDetailShown     = false;
       pointDetailButtonTitle = '内訳を閉じる';
       pointDetailHeight      = 400;
       setTimeout(() => { pointDetailOpacity = 1; }, 100);
     } else {
-      isPointDetailShown     = true;
       pointDetailButtonTitle = '内訳を見る';
       pointDetailOpacity     = 0;
       setTimeout(() => { pointDetailHeight = 0; }, 100);
@@ -112,7 +111,7 @@
     <div class="decision-point-container">
       <div class="decision-point-container__header">
         <h2 class="decision-point-container__title">決定点</h2>
-        <button class="point-a-detail__pull-down-button" on:click={switchShowPointADetail}>{pointDetailButtonTitle}</button>
+        <button class="point-a-detail__pull-down-button" on:touchstart={switchShowPointADetail}>{pointDetailButtonTitle}</button>
       </div>
       <Motion animate={{opacity: pointDetailOpacity, height: pointDetailHeight, marginTop: pointDetailMarginTop}} transition={{ duration: .5 }} let:motion>
         <div id="point-detail-pull-down" use:motion>
@@ -297,6 +296,7 @@
         border:         2px solid #555555;
         font-family:    YuGothic, sans-serif;
         vertical-align: middle;
+        cursor:         pointer;
       }
 
       &__item {
