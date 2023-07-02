@@ -79,8 +79,7 @@ export function getAmountOfPointB(data: ExecutionDeduct): number {
 
 export function getMaxPointB(data: ExecutionDeduct): number {
   const pointA = getAmountOfPointA(data);
-  const result = 10 - pointA;
-  return result;
+  return 10 - pointA;
 }
 
 /** @note 手具を落とした回数から減点を返す */
@@ -93,6 +92,5 @@ export function getDeductionOfDroppedApparatus(data: ExecutionDeduct): number {
 export function getDecisionPoints(data: ExecutionDeduct): number {
   const pointA = getAmountOfPointA(data);
   const pointB = getAmountOfPointB(data);
-  const result = 10 - (pointA + pointB);
-  return result;
+  return 10 - (pointA + pointB);
 }
