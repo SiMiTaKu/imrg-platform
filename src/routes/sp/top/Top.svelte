@@ -14,7 +14,19 @@
 <section id="judgement-form-section">
   <div class="form-container">
     <!--    @todo AとBをぱーつとしてHTMLを分ける。-->
-    {#if $executionDeduct.pointA.musicImage.value === undefined } <!-- Aの最後の回答がされるまで表示 -->
+    {#if
+      $executionDeduct.pointA.beautifulPose.value       === undefined ||
+      $executionDeduct.pointA.flexibility.value         === undefined ||
+      $executionDeduct.pointA.naturalMovement.value     === undefined ||
+      $executionDeduct.pointA.bendingWeight.value       === undefined ||
+      $executionDeduct.pointA.jumpingHeight.value       === undefined ||
+      $executionDeduct.pointA.bodyControl.value         === undefined ||
+      $executionDeduct.pointA.heelRaise.value           === undefined ||
+      $executionDeduct.pointA.weaknessAndStrength.value === undefined ||
+      $executionDeduct.pointA.connectMovement.value     === undefined ||
+      $executionDeduct.pointA.apparatusControl.value    === undefined ||
+      $executionDeduct.pointA.musicImage.value          === undefined
+    } <!-- Aの最後の回答がされるまで表示 -->
       <div class="form-container__radio-area" in:fly={{y: 200, delay: 600}} out:fly={{y: -200, delay: 200}}>
         <h2>Aの減点項目</h2>
         <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
@@ -89,17 +101,17 @@
         />
       </div>
     {/if}
-      <!--$executionDeduct.pointA.beautifulPose.value       !== undefined &&-->
-      <!--$executionDeduct.pointA.flexibility.value         !== undefined &&-->
-      <!--$executionDeduct.pointA.naturalMovement.value     !== undefined &&-->
-      <!--$executionDeduct.pointA.bendingWeight.value       !== undefined &&-->
-      <!--$executionDeduct.pointA.jumpingHeight.value       !== undefined &&-->
-      <!--$executionDeduct.pointA.bodyControl.value         !== undefined &&-->
-      <!--$executionDeduct.pointA.heelRaise.value           !== undefined &&-->
-      <!--$executionDeduct.pointA.weaknessAndStrength.value !== undefined &&-->
-      <!--$executionDeduct.pointA.connectMovement.value     !== undefined &&-->
-      <!--$executionDeduct.pointA.apparatusControl.value    !== undefined &&-->
     {#if
+      $executionDeduct.pointA.beautifulPose.value       !== undefined &&
+      $executionDeduct.pointA.flexibility.value         !== undefined &&
+      $executionDeduct.pointA.naturalMovement.value     !== undefined &&
+      $executionDeduct.pointA.bendingWeight.value       !== undefined &&
+      $executionDeduct.pointA.jumpingHeight.value       !== undefined &&
+      $executionDeduct.pointA.bodyControl.value         !== undefined &&
+      $executionDeduct.pointA.heelRaise.value           !== undefined &&
+      $executionDeduct.pointA.weaknessAndStrength.value !== undefined &&
+      $executionDeduct.pointA.connectMovement.value     !== undefined &&
+      $executionDeduct.pointA.apparatusControl.value    !== undefined &&
       $executionDeduct.pointA.musicImage.value          !== undefined
     }
       <div class="form-container__miss-point-area" in:fly={{y: 200, delay: 600}} out:fly={{y: -200, delay: 200}}>
