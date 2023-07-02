@@ -28,7 +28,7 @@
   let pointDetailMarginTop:   string  = '0px';
   let isPointDetailShown:     boolean = false;
 
-  function switchShowPointADetail() {
+  function switchShowPointADetail(): void {
     if(isPointDetailShown) {
       renderPointDetailChart();
       isPointDetailShown     = false;
