@@ -22,18 +22,21 @@
     decisionPoints = getDecisionPoints(data);
   });
 
-  let pointDetailButtonTitle: string = '内訳を見る';
-  let pointDetailOpacity:     number = 0;
-  let pointDetailHeight:      number = 0;
-  let pointDetailMarginTop:   string = '0px';
+  let pointDetailButtonTitle: string  = '内訳を見る';
+  let pointDetailOpacity:     number  = 0;
+  let pointDetailHeight:      number  = 0;
+  let pointDetailMarginTop:   string  = '0px';
+  let isPointDetailShown:     boolean = false;
 
   function switchShowPointADetail() {
-    if(pointDetailOpacity === 0) {
+    if(isPointDetailShown) {
       renderPointDetailChart();
+      isPointDetailShown     = false;
       pointDetailButtonTitle = '内訳を閉じる';
       pointDetailHeight      = 400;
       setTimeout(() => { pointDetailOpacity = 1; }, 100);
     } else {
+      isPointDetailShown     = true;
       pointDetailButtonTitle = '内訳を見る';
       pointDetailOpacity     = 0;
       setTimeout(() => { pointDetailHeight = 0; }, 100);
