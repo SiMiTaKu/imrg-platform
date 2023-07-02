@@ -297,6 +297,7 @@
         border:         2px solid #555555;
         font-family:    YuGothic, sans-serif;
         vertical-align: middle;
+        cursor:         pointer;
       }
 
       &__item {
