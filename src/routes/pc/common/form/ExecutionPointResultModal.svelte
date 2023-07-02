@@ -123,10 +123,6 @@
               <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.beautifulPose.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
-              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.beautifulPose.value).toFixed(3)}</span>
-            </li>
-            <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.flexibility.title}</span>
               <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.flexibility.value).toFixed(3)}</span>
             </li>

@@ -11,9 +11,9 @@
     getDeductionOfDroppedApparatus
   } from '../../../../ts/form/executionDeduct/Culculator';
 
-  let pointA:           number;
-  let pointB:           number;
-  let decisionPoints:   number;
+  let pointA:         number;
+  let pointB:         number;
+  let decisionPoints: number;
   export let show;
 
   executionDeduct.subscribe(data => {
@@ -122,10 +122,6 @@
               <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.beautifulPose.value).toFixed(3)}</span>
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title">{$executionDeduct.pointA.beautifulPose.title}</span>
-              <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.beautifulPose.value).toFixed(3)}</span>
-            </li>
-            <li class="point-a-detail__item">
               <span class="point-a-detail__title">{$executionDeduct.pointA.flexibility.title}</span>
               <span class="point-a-detail__value">{getDeductionOfPointA($executionDeduct.pointA.flexibility.value).toFixed(3)}</span>
             </li>
@@ -220,14 +216,15 @@
       }
 
       &__title {
-        display:       inline-block;
-        padding:       0 24px;
-        font-size:     24px;
-        font-weight:   bold;
-        color:         white;
-        margin:        0 0 16px;
-        border-radius: 8px;
-        background:    #32538D;
+        display:        inline-block;
+        margin:         0;
+        padding:        0 24px;
+        font-size:      24px;
+        font-weight:    bold;
+        color:          white;
+        border-radius:  8px;
+        background:     #32538D;
+        vertical-align: middle;
       }
 
       &__format {
@@ -286,12 +283,16 @@
       vertical-align: middle;
 
       &__pull-down-button {
-        margin-bottom: 8px;
-        background:    white;
-        border-radius: 4px;
-        font-family:   YuGothic, sans-serif;
-
-        &:hover { cursor: pointer; }
+        display:        inline-block;
+        width:          100px;
+        height:         32px;
+        font-size:      14px;
+        font-weight:    bold;
+        background:     white;
+        border-radius:  4px;
+        border:         2px solid #555555;
+        font-family:    YuGothic, sans-serif;
+        vertical-align: middle;
       }
 
       &__item {
