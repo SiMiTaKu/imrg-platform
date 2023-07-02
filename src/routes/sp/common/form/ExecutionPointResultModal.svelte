@@ -284,7 +284,7 @@
 
       &__pull-down-button {
         display:        inline-block;
-        width:          100px;
+        width:          120px;
         height:         32px;
         font-size:      14px;
         font-weight:    bold;
