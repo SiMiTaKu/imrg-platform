@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>ホーム</title>
+	<title>男子新体操国際化プロジェクト</title>
 </svelte:head>
 
 <svelte:window bind:outerWidth={screenWidth}/>
