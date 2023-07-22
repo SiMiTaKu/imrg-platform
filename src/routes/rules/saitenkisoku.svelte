@@ -119,10 +119,10 @@
           ３　主任審判員が１審を兼ねる場合<br>
           　　構成実施それぞれに主任審判員を含めた４名の審判員の最高点および最低点を除外し、有効点の平均（少数第４位以下を切り捨て）を求め合計する。主任審判員が適用する減点があった場合は、その平均点の合計から原点する。<br>
           ４　有効点の開きは以下の点数より大きくてはならない。<br>
-          <img src="yuukouten.png" alt="有効点の開き" width="400px">
+          <img src="../../../static/image/rules/yuukouten.png" alt="有効点の開き" width="400px">
           <br>
           ５　全審判員の採点最高点と最低点の開きは以下の点数より大きくてはならない。<br>
-          <img src="tennsuu.png" alt="全審判員の点数の開き" width="400px">
+          <img src="../../../static/image/rules/tennsuu.png" alt="全審判員の点数の開き" width="400px">
           <br>
         </p>
 
@@ -204,9 +204,9 @@
         <h3>1 団体競技（自由演技）の採点</h3>
             <h4>第25条 団体（自由演技）の採点項目と配点</h4>
             <p>自由演技の配点と採点項目は以下の通りとする。<br>
-              <img src="SK(D)group.png" alt="採点項目（Ｄ）" width="50%"><br>
+              <img src="../../../static/image/rules/SK(D)group.png" alt="採点項目（Ｄ）" width="50%"><br>
               <br>
-              <img src="SK(E)group.png" alt="採点項目（Ｅ）" width="50%"><br>
+              <img src="../../../static/image/rules/SK(E)group.png" alt="採点項目（Ｅ）" width="50%"><br>
             </p>
 
         <h3>2 構成（Ｄ・Ａ）</h3>
@@ -225,7 +225,7 @@
               競技では、事故の体を完全に支配すべきものであるから、演技は競技者の能力に応じた力強さと美しさと安定が必要である。<br>
               ２　難度要素の価値とレベル<br>
               団体競技の難度要素としては以下の難度を入れなければならない。<br>
-              <img src="(D)requirement.png" alt="難度の要求要素表" width="40%"><br>
+              <img src="../../../static/image/rules/(D)requirement.png" alt="難度の要求要素表" width="40%"><br>
               【違反した場合　　減点：　Ｂ難度不足　１つにつき・・・0.10点<br>
               　　　　　　　　　　　　　Ｃ難度不足　１つにつき・・・0.30点<br>
               　　　　　　　　　　　　　Ｄ難度不足　１つにつき・・・0.50点】<br>
@@ -236,7 +236,7 @@
             <p>演技には徒手系基礎要素群１〜５全て入れなければならない。<br>
               ２〜５は難度要素として数えることができるが、全員が同時または時間差で行われるものでなければならない。<br>
               また、静止は全員が同時に行うものでなければならない。<br>
-              <img src="(BM)requirement.png" alt="徒手系の要求要素表" width="55%"><br>
+              <img src="../../../static/image/rules/(BM)requirement.png" alt="徒手系の要求要素表" width="55%"><br>
                  １　徒手系基礎要素群の１つが全くない場合　　　【減点：１つにつき・・・1.00点】<br>
                  ２　徒手系基礎要素群の１つが不十分な場合　　　【減点：１名につき・・・0.20点】<br>
                  ※不十分とは実施しない競技者がいた場合を示し、静止時間不足や柔軟性不足は実施減点とする。</p>
@@ -268,7 +268,7 @@
                【違反した場合　減点・・・0.30点】<br>
                ２　演技には次の転回系基礎要素群１・２を入れなければならない。<br>
                　　また転回系基礎要素群３は２回まで入れることができる。<br>
-               <img src="(AM)requirement.png" alt="転回系の要求要素" width="350"><br>
+               <img src="../../../static/image/rules/(AM)requirement.png" alt="転回系の要求要素" width="350"><br>
                【違反した場合：減点・・・0.30点】<br>
                   ※組・組立運動または接触でのスタートは３群扱いとする。</p>
 
@@ -335,7 +335,7 @@
                　　【小欠点　　少し欠けた場合　　　　　減点・・・0.10点】<br>
                　　【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】<br>
                構成欠点表<br>
-               <img src="(D)kettenhyou.png" alt="構成欠点表" width="60%"><br>
+               <img src="../../../static/image/rules/(D)kettenhyou.png" alt="構成欠点表" width="60%"><br>
             </p>
 
         <h3>3 実施（Ｅ）</h3>
@@ -383,19 +383,19 @@
               　　【小欠点　　少し欠けた場合　　　　　減点・・・0.10点】<br>
               　　【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】<br>
               実施欠点表<br>
-              <img src="(E)kettenhyou1.png" alt="実施欠点表（D）１" width="55%"><br>
-              <img src="(E)kettenhyou2.png" alt="実施欠点表（D）２" width="55%"><br>
+              <img src="../../../static/image/rules/(E)kettenhyou1.png" alt="実施欠点表（D）１" width="55%"><br>
+              <img src="../../../static/image/rules/(E)kettenhyou2.png" alt="実施欠点表（D）２" width="55%"><br>
               <p>倒立、バランス、柔軟の実施減点<br>
-              <img src="(E)kettenhyou3.png" alt="実施欠点表（D）３" width="55%"><br>
+              <img src="../../../static/image/rules/(E)kettenhyou3.png" alt="実施欠点表（D）３" width="55%"><br>
             </p>
 
     <h2>5 個人競技</h2>
         <h3>1 配点と採点項目</h3>
             <h4>第47条 個人競技の採点項目と配点</h4>
             <p>個人競技の配点と採点項目は以下の通りとする。<br>
-               <img src="SK(D)single.png" alt="採点項目（Ｄ）" width="50%"><br>
+               <img src="../../../static/image/rules/SK(D)single.png" alt="採点項目（Ｄ）" width="50%"><br>
                <br>
-               <img src="SK(E)single.png" alt="採点項目（Ｅ）" width="50%"><br>
+               <img src="../../../static/image/rules/SK(E)single.png" alt="採点項目（Ｅ）" width="50%"><br>
             </p>
         <h3>2 構成（Ｄ・Ａ）</h3>
             <h4>第48条 演技の構成</h4>
@@ -404,7 +404,7 @@
 
             <h4>第49条 難度の要求要素</h4>
             <p>個人競技の難度要素としては以下の難度を入れなければならない。<br>
-            <img src="(D)requirement.png" alt="難度の要求要素表" width ="40%"><br>
+            <img src="../../../static/image/rules/(D)requirement.png" alt="難度の要求要素表" width ="40%"><br>
               【違反した場合　　減点：　Ｂ難度不足　１つにつき・・・0.10点<br>
                　　　　　　　　　　　　　Ｃ難度不足　１つにつき・・・0.30点<br>
                　　　　　　　　　　　　　Ｄ難度不足　１つにつき・・・0.50点】<br>
@@ -547,7 +547,7 @@
                　　【小欠点　　少し欠けた場合　　　　　減点・・・0.10点】<br>
                　　【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】<br>
                構成欠点表<br>
-               <img src="(D)kettenhyou(S).png" alt="構成欠点表" width="55%"><br>
+               <img src="../../../static/image/rules/(D)kettenhyou(S).png" alt="構成欠点表" width="55%"><br>
             </p>
 
         <h3>3 実施（Ｅ）</h3>
@@ -595,7 +595,7 @@
                　　【小欠点　　少し欠けた場合　　　　　減点・・・0.10点】<br>
                　　【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】<br>
                実施欠点表<br>
-               <img src="(E)kettenhyou(S).png" alt="実施欠点表" width="55%"><br>
+               <img src="../../../static/image/rules/(E)kettenhyou(S).png" alt="実施欠点表" width="55%"><br>
             </p>
     <h2>6 難度</h2>
         <h3>1 徒手系難度</h3>
@@ -609,40 +609,40 @@
            　　ウ　静止の２秒は同時でなければならない。<br>
            基礎難度表<br>
               １　跳躍<br>
-           <img src="jumpdifficulties.png" alt="徒手系難度（跳躍）" width="55%"><br>
+           <img src="../../../static/image/rules/jumpdifficulties.png" alt="徒手系難度（跳躍）" width="55%"><br>
 
            ２　バランス<br>
-           <img src="balansedifficulties.png" alt="徒手系難度（バランス）" width="55%"><br>
+           <img src="../../../static/image/rules/balansedifficulties.png" alt="徒手系難度（バランス）" width="55%"><br>
 
            ３　倒立（静止２秒）<br>
-           <img src="handstanddifficulties.png" alt="徒手系難度（跳躍）" width="55%"><br>
+           <img src="../../../static/image/rules/handstanddifficulties.png" alt="徒手系難度（跳躍）" width="55%"><br>
 
            ４　柔軟Ａ　〜静的柔軟〜<br>
-           <img src="stretchdifficulties.png" alt="徒手系難度（跳躍）" width="55%"><br>
+           <img src="../../../static/image/rules/stretchdifficulties.png" alt="徒手系難度（跳躍）" width="55%"><br>
         </p>
 
         <h3>2 転回系難度</h3>
             <h4>第67条 転回系難度</h4>
             <p>転回系の難度は次の基礎難度をもとに価値が決められる。<br>
                １　とび技ひねり技<br>
-            <img src="jumpturndifficulties.png" alt="とびひねり技の難度表" width="55%"><br>
+            <img src="../../../static/image/rules/jumpturndifficulties.png" alt="とびひねり技の難度表" width="55%"><br>
 
                ２　前方系の跳躍技<br>
-            <img src="forwardjumpdifficulties.png" alt="前方系跳躍技の難度表" width="55%"><br>
+            <img src="../../../static/image/rules/forwardjumpdifficulties.png" alt="前方系跳躍技の難度表" width="55%"><br>
 
                ３　後方系の跳躍技<br>
-            <img src="backwardjumpdifficulties.png" alt="後方系の跳躍技の難度表" width="55%"><br>
+            <img src="../../../static/image/rules/backwardjumpdifficulties.png" alt="後方系の跳躍技の難度表" width="55%"><br>
 
                ４　側方系の跳躍技<br>
-            <img src="sidewardjumpdifficulties.png" alt="側方系の跳躍技の難度表" width="55%"><br>
+            <img src="../../../static/image/rules/sidewardjumpdifficulties.png" alt="側方系の跳躍技の難度表" width="55%"><br>
 
                ５　宙返りの連続<br>
-            <img src="combinationdifficulties.png" alt="宙返りの連続の難度表" width="55%"><br>
+            <img src="../../../static/image/rules/combinationdifficulties.png" alt="宙返りの連続の難度表" width="55%"><br>
                　　※宙返り以外の技では２ー３、３ー15の転回系も同等の扱いとする。<br>
             <br></p>
 
             <p>６　転回系の連続<br>
-            <img src="combinationdifficulties2.png" alt="転回系の連続の難度表" width="55%"><br>
+            <img src="../../../static/image/rules/combinationdifficulties2.png" alt="転回系の連続の難度表" width="55%"><br>
 
                ※１　テンポ宙返りは直ちに後方系の展開に続けた場合のみ、その扱いとする。<br>
                ※２　６人全員が同時に実施した場合のみ格上げの対象とする。<br>
@@ -660,14 +660,14 @@
                　　　　②　着地後に跳び越えた場合は（１）の扱いとする。<br>
                　　　　③　２段の交差技の難度<br>
 
-               <img src="AMCdifficulties.png" alt="転回系の組合せ難度表" width="40%"><br>
+               <img src="../../../static/image/rules/AMCdifficulties.png" alt="転回系の組合せ難度表" width="40%"><br>
 
                　　　　④３段以上の交差技をすべてＢ難度以上の展開系で実施した場合はＤ難度とする。Ａ難度が入っていた場合は、この扱いにはならない。</p>
             <p>２　組・組立運動<br>
                　　組・組立運動の難度は以下のとおりとする。<br>
                　（１）　組み・組立運動の難度表<br>
 
-               <img src="liftdifficulties.png" alt="組・組立運動の難度表" width="55%"><br>
+               <img src="../../../static/image/rules/liftdifficulties.png" alt="組・組立運動の難度表" width="55%"><br>
 
                　　　　※１　次に展開系に続けた場合に難度として扱う。<br>
                　　　　※２　Ｃ難度以上の転回系の場合は、その転回系の難度とする。<br>
@@ -683,7 +683,7 @@
                　　　　　ア　原則として、高い難度を実施したグループの難度を採用する。<br>
                　　　　　イ　異なる種目であっても、６名以上が実施すれば難度が上がる種目の組み合わせの場合は、ランクアップされる。<br>
                　　　　　（例）３・３の場合<br>
-               　　　　　<img src="serisedifficulties1.png" alt="シリーズ難度判定表１" width="30%"><br>
+               　　　　　<img src="../../../static/image/rules/serisedifficulties1.png" alt="シリーズ難度判定表１" width="30%"><br>
                　　　　　※６名で実施した場合に難度が格上げになる技<br>
                <br>
                　　　　②　４・２または５・１に分かれた場合<br>
@@ -691,7 +691,7 @@
                　　　　　イ　異なる種目であっても、６名が実施すれば難度が上がる種目の組み合わせの場合はランクアップされる。<br>
                　　　　　ウ　人数の少ないグループが、交差技または組・組立運動の場合は難度として採用し、難度の高いグループを採用する。<br>
                　　　　　（例）４・１の場合<br>
-               　　　　　<img src="serisedifficulties2.png" alt="シリーズ難度判定表２" width="30%"><br>
+               　　　　　<img src="../../../static/image/rules/serisedifficulties2.png" alt="シリーズ難度判定表２" width="30%"><br>
                　　　　　※６名で実施した場合に難度が格上げになる技<br>
                <br>
                　（３）　いくつかのグループに分かれて異なる難度の転回系を実施した場合<br>
@@ -727,7 +727,7 @@
             <p>演技の中で投げ受けを実施した場合、その間に実施した徒手系（※）または転回系の数によって以下のように難度が決められる。<br>
                ただし、転回系が含まれていた場合は第69条の１の条件と比較して、高い方の難度を採用する。<br>
                　※ここでの徒手系は、縦軸または横軸で、360°回転したもののみを１つとして数える。<br>
-               　<img src="tossdifficulties.png" alt="投げ受けの難度表" width="30%"></p>
+               　<img src="../../../static/image/rules/tossdifficulties.png" alt="投げ受けの難度表" width="30%"></p>
 
             <h4>第71条 手具操作をともなった徒手系の難度</h4>
             <p>演技の中で手具操作をともなって徒手系難度を実施した場合は、徒手系難度を採用する。</p>

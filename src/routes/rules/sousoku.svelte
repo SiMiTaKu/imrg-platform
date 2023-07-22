@@ -359,7 +359,7 @@
     <h2>9 手具</h2>
         <h4>第49条 手具の規格</h4>
         <p>競技に使用する器具ならびに手具は、（公財）基本体操協会認定規格による。<br>
-          <img src="syugukikakuhyou.png" alt="手具規格" width="80%"><br>
+          <img src="../../../static/image/rules/syugukikakuhyou.png" alt="手具規格" width="80%"><br>
           ＊ジュニアは、ジュニア適用規則を参照
         </p>
 
