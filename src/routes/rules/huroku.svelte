@@ -37,7 +37,7 @@
 
                <h4>手具の規格</h4>
                <p>体格差が大きいため、（公財）日本体操協会指定業者が販売する手具が使用できない場合は、規格通りであれば自作でも可とする。<br>
-               <img src="../../../static/image/rules/syugukikaku(J).png" alt="ジュニア手具規格表" width="60%">
+               <img src="image/rules/syugukikaku(J).png" alt="ジュニア手具規格表" width="60%">
                </p>
 
             <h3>2 小学生適用規則</h3>
@@ -67,7 +67,7 @@
 
                <h4>採点用紙</h4>
                <p>次の観点から、演技の採点を行う。<br>
-                  <img src="../../../static/image/rules/junior(PCS).png" alt="新体操小学校適用規則採点用紙" width="60%"></p>
+                  <img src="image/rules/junior(PCS).png" alt="新体操小学校適用規則採点用紙" width="60%"></p>
 
             <h3>3 高体連規則</h3>
             <p>次に示すものを除き、（公財）日本体操協会男子新体操採点規則による。</p>
@@ -131,7 +131,7 @@
 
         <h4>徒手の要素の典型的な欠点</h4>
         <p>（１）構成の欠点<br>
-            <img src="../../../static/image/rules/tosyukettenhyou.png" alt="徒手欠点表" width="55%"><br>
+            <img src="image/rules/tosyukettenhyou.png" alt="徒手欠点表" width="55%"><br>
             <br>
            （２）実施の欠点①<br>
            徒手の難度レベルを判断するための一般的な目安<br>
@@ -153,24 +153,24 @@
            　難度のレベルを決定するには、一般目安の項を参照のこと。<br>
            <br>
            （１）跳躍<br>
-           <img src="../../../static/image/rules/jump(D).png" alt="徒手の難度表（跳躍）" width="40%"><br>
+           <img src="image/rules/jump(D).png" alt="徒手の難度表（跳躍）" width="40%"><br>
            <br>
            （２）倒立<br>
-           <img src="../../../static/image/rules/handstand(D).png" alt="徒手の難度表（倒立）" width="40%"><br>
+           <img src="image/rules/handstand(D).png" alt="徒手の難度表（倒立）" width="40%"><br>
            <br>
            （３）支持回転系<br>
-           <img src="../../../static/image/rules/sijikaiten(D).png" alt="徒手の難度表（支持回転表）" width="40%"><br>
+           <img src="image/rules/sijikaiten(D).png" alt="徒手の難度表（支持回転表）" width="40%"><br>
            <br>
            （４）旋回・回旋<br>
-           <img src="../../../static/image/rules/kaisen(D).png" alt="徒手の難度表（旋回・ 回旋)" width="40%"><br>
+           <img src="image/rules/kaisen(D).png" alt="徒手の難度表（旋回・ 回旋)" width="40%"><br>
            （５）転向（ターン）<br>
-           <img src="../../../static/image/rules/turn(D).png" alt="徒手の難度表（転向（ターン））" width="40%"><br>
+           <img src="image/rules/turn(D).png" alt="徒手の難度表（転向（ターン））" width="40%"><br>
            （６）平均<br>
-           <img src="../../../static/image/rules/balance(D).png" alt="徒手の難度表（平均）" width="40%"><br>
+           <img src="image/rules/balance(D).png" alt="徒手の難度表（平均）" width="40%"><br>
            （７）柔軟Ａ　〜静的柔軟〜<br>
-           <img src="../../../static/image/rules/stretchA(D).png" alt="徒手の難度表（静的柔軟）" width="40%"><br>
+           <img src="image/rules/stretchA(D).png" alt="徒手の難度表（静的柔軟）" width="40%"><br>
            （８）柔軟Ｂ　〜動的柔軟〜<br>
-           <img src="../../../static/image/rules/stretchB(D).png" alt="徒手の難度表（動的柔軟）" width="40%"><br>
+           <img src="image/rules/stretchB(D).png" alt="徒手の難度表（動的柔軟）" width="40%"><br>
            　※徒手の難度は、団体競技の場合、全員が実施すれば１ランクあがる。</p>
 
         <h2>4 個人競技の演技</h2>

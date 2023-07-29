@@ -534,7 +534,7 @@ export const vvRuleBook: RuleBook = {
         title:   "手具の規格",
         content:
           "競技に使用する器具ならびに手具は、（公財）基本体操協会認定規格による。" +
-          "<div><img src=\"image/rules/syugukikakuhyou.png\" alt=\"手具規格\" width=\"80%\"></div>" +
+          "<div><img src='image/rules/syugukikakuhyou.png' alt='手具規格' width='80%'></div>" +
           "＊ジュニアは、ジュニア適用規則を参照",
         block:   []
       } as Section, {
@@ -719,11 +719,11 @@ export const vvRuleBook: RuleBook = {
             "</li>" +
             "<li>" +
               "有効点の開きは以下の点数より大きくてはならない。" +
-              "<div><img src=\"image/rules/yuukouten.png\" alt=\"有効点の開き\" width=\"400px\"></div>" +
+              "<div><img src='image/rules/yuukouten.png' alt='有効点の開き' width='400px'></div>" +
             "</li>" +
             "<li>" +
               "全審判員の採点最高点と最低点の開きは以下の点数より大きくてはならない。" +
-              "<div><img src=\"image/rules/tennsuu.png\" alt=\"全審判員の点数の開き\" width=\"400px\"></div>" +
+              "<div><img src='image/rules/tennsuu.png' alt='全審判員の点数の開き' width='400px'></div>" +
             "</li>" +
           "</ol>",
         block:   []
@@ -868,8 +868,8 @@ export const vvRuleBook: RuleBook = {
           title:   "団体（自由演技）の採点項目と配点",
           element:
             "自由演技の配点と採点項目は以下の通りとする。" +
-            "<div><img src=\"image/rules/SK(D)group.png\" alt=\"採点項目（Ｄ）\" width=\"75%\"></div>" +
-            "<div><img src=\"image/rules/SK(E)group.png\" alt=\"採点項目（Ｅ）\" width=\"75%\"></div>"
+            "<div><img src='image/rules/SK(D)group.png' alt='採点項目（Ｄ）' width='75%'></div>" +
+            "<div><img src='image/rules/SK(E)group.png' alt='採点項目（Ｅ）' width='75%'></div>"
         } as Block]
       } as Section, {
         title:   "構成（Ｄ・Ａ）" ,
@@ -896,7 +896,7 @@ export const vvRuleBook: RuleBook = {
               "<li>" +
                 "難度要素の価値とレベル\n" +
                 "団体競技の難度要素としては以下の難度を入れなければならない。" +
-                "<div><img src=\"image/rules/(D)requirement.png\" alt=\"難度の要求要素表\" width=\"40%\"></div>" +
+                "<div><img src='image/rules/(D)requirement.png' alt='難度の要求要素表' width='40%'></div>" +
                 "【違反した場合　　減点：　Ｂ難度不足　１つにつき・・・0.10点\n" +
                 "　　　　　　　　　　　　　Ｃ難度不足　１つにつき・・・0.30点\n" +
                 "　　　　　　　　　　　　　Ｄ難度不足　１つにつき・・・0.50点】\n" +
@@ -909,7 +909,7 @@ export const vvRuleBook: RuleBook = {
             "演技には徒手系基礎要素群１〜５全て入れなければならない。\n" +
             "２〜５は難度要素として数えることができるが、全員が同時または時間差で行われるものでなければならない。\n" +
             "また、静止は全員が同時に行うものでなければならない。" +
-            "<div><img src=\"image/rules/(BM)requirement.png\" alt=\"徒手系の要求要素表\" width=\"55%\"></div>" +
+            "<div><img src='image/rules/(BM)requirement.png' alt='徒手系の要求要素表' width='55%'></div>" +
             "<ol>" +
               "<li>徒手系基礎要素群の１つが全くない場合　　　【減点：１つにつき・・・1.00点】</li>" +
               "<li>徒手系基礎要素群の１つが不十分な場合　　　【減点：１名につき・・・0.20点】</li>" +
@@ -962,7 +962,7 @@ export const vvRuleBook: RuleBook = {
               "<li>" +
                 "演技には次の転回系基礎要素群１・２を入れなければならない。" +
                 "また転回系基礎要素群３は２回まで入れることができる。" +
-                "<div><img src=\"image/rules/(AM)requirement.png\" alt=\"転回系の要求要素\" width=\"350\"></div>" +
+                "<div><img src='image/rules/(AM)requirement.png' alt='転回系の要求要素' width='350'></div>" +
                 "【違反した場合：減点・・・0.30点】\n" +
                 "※組・組立運動または接触でのスタートは３群扱いとする。" +
               "</li>" +
@@ -1066,7 +1066,7 @@ export const vvRuleBook: RuleBook = {
             "【小欠点　　少し欠けた場合　　　　　減点・・・0.10点】\n" +
             "【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】\n" +
             "<b>構成欠点表</b>\n" +
-            "<div><img src=\"image/rules/(D)kettenhyou.png\" alt=\"構成欠点表\" width=\"60%\"></div>"
+            "<div><img src='image/rules/(D)kettenhyou.png' alt='構成欠点表' width='60%'></div>"
         } as Block]
       } as Section, {
         title:   "実施（Ｅ）",
@@ -1139,10 +1139,10 @@ export const vvRuleBook: RuleBook = {
             "　　【小欠点　　少し欠けた場合　　　　　減点・・・0.10点】\n" +
             "　　【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】\n" +
             "実施欠点表\n" +
-            "<div><img src=\"image/rules/(E)kettenhyou1.png\" alt=\"実施欠点表（D）１\" width=\"75%\"></div>" +
-            "<div><img src=\"image/rules/(E)kettenhyou2.png\" alt=\"実施欠点表（D）２\" width=\"75%\"></div>" +
+            "<div><img src='image/rules/(E)kettenhyou1.png' alt='実施欠点表（D）１' width='75%'></div>" +
+            "<div><img src='image/rules/(E)kettenhyou2.png' alt='実施欠点表（D）２' width='75%'></div>" +
             "倒立、バランス、柔軟の実施減点" +
-            "<div><img src=\"image/rules/(E)kettenhyou3.png\" alt=\"実施欠点表（D）３\" width=\"75%\"></div>"
+            "<div><img src='image/rules/(E)kettenhyou3.png' alt='実施欠点表（D）３' width='75%'></div>"
         } as Block]
       } as Section]
     } as Article, {
@@ -1153,8 +1153,8 @@ export const vvRuleBook: RuleBook = {
           title:   "個人競技の採点項目と配点",
           element:
             "個人競技の配点と採点項目は以下の通りとする。" +
-            "<div><img src=\"image/rules/SK(D)single.png\" alt=\"採点項目（Ｄ）\" width=\"75%\"></div>" +
-            "<div><img src=\"image/rules/SK(E)single.png\" alt=\"採点項目（Ｅ）\" width=\"75%\"></div>"
+            "<div><img src='image/rules/SK(D)single.png' alt='採点項目（Ｄ）' width='75%'></div>" +
+            "<div><img src='image/rules/SK(E)single.png' alt='採点項目（Ｅ）' width='75%'></div>"
         } as Block]
       } as Section, {
         title:   "構成（Ｄ・Ａ）",
@@ -1166,7 +1166,7 @@ export const vvRuleBook: RuleBook = {
           title:   "難度の要求要素",
           element:
             "個人競技の難度要素としては以下の難度を入れなければならない。\n" +
-            "<div><img src=\"image/rules/(D)requirement.png\" alt=\"難度の要求要素表\" width =\"50%\"></div>" +
+            "<div><img src='image/rules/(D)requirement.png' alt='難度の要求要素表' width ='50%'></div>" +
             "【違反した場合　　減点：　Ｂ難度不足　１つにつき・・・0.10点\n" +
             "　　　　　　　　　　　　　Ｃ難度不足　１つにつき・・・0.30点\n" +
             "　　　　　　　　　　　　　Ｄ難度不足　１つにつき・・・0.50点】\n" +
@@ -1371,7 +1371,7 @@ export const vvRuleBook: RuleBook = {
             "　　【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】\n" +
             "\n" +
             "<b>構成欠点表</b>\n" +
-            "<div><img src=\"image/rules/(D)kettenhyou(S).png\" alt=\"構成欠点表\" width=\"70%\"></div>"
+            "<div><img src='image/rules/(D)kettenhyou(S).png' alt='構成欠点表' width='70%'></div>"
         } as Block]
       } as Section, {
         title:   "実施（Ｅ）",
@@ -1446,7 +1446,7 @@ export const vvRuleBook: RuleBook = {
             "　　【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】\n" +
             "\n" +
             "<b>実施欠点表</b>\n" +
-            "<div><img src=\"image/rules/(E)kettenhyou(S).png\" alt=\"実施欠点表\" width=\"70%\"></div>"
+            "<div><img src='image/rules/(E)kettenhyou(S).png' alt='実施欠点表' width='70%'></div>"
         } as Block]
       } as Section]
     } as Article, {
@@ -1472,19 +1472,19 @@ export const vvRuleBook: RuleBook = {
             "<ol>" +
               "<li>" +
                 "跳躍" +
-                "<div><img src=\"image/rules/jumpdifficulties.png\" alt=\"徒手系難度（跳躍）\" width=\"70%\"></div>" +
+                "<div><img src='image/rules/jumpdifficulties.png' alt='徒手系難度（跳躍）' width='70%'></div>" +
               "</li>" +
               "<li>" +
                 "バランス" +
-                "<div><img src=\"image/rules/balansedifficulties.png\" alt=\"徒手系難度（バランス）\" width=\"70%\"></div>" +
+                "<div><img src='image/rules/balansedifficulties.png' alt='徒手系難度（バランス）' width='70%'></div>" +
               "</li>" +
               "<li>" +
                 "倒立（静止２秒）" +
-                "<div><img src=\"image/rules/handstanddifficulties.png\" alt=\"徒手系難度（跳躍）\" width=\"70%\"></div>" +
+                "<div><img src='image/rules/handstanddifficulties.png' alt='徒手系難度（跳躍）' width='70%'></div>" +
               "</li>" +
               "<li>" +
                 "柔軟Ａ　〜静的柔軟〜" +
-                "<div><img src=\"image/rules/stretchdifficulties.png\" alt=\"徒手系難度（跳躍）\" width=\"70%\"></div>" +
+                "<div><img src='image/rules/stretchdifficulties.png' alt='徒手系難度（跳躍）' width='70%'></div>" +
               "</li>" +
             "</ol>"
         } as Block]
@@ -1493,27 +1493,184 @@ export const vvRuleBook: RuleBook = {
         content: "",
         block:   [{
           title:   "転回系難度",
-          element: ""
+          element:
+            "転回系の難度は次の基礎難度をもとに価値が決められる。" +
+            "<ol>" +
+              "<li>" +
+                "<b>とび技ひねり技</b>" +
+                "<div><img src='image/rules/jumpturndifficulties.png' alt='とびひねり技の難度表' width='55%'></div>" +
+              "</li>" +
+              "<li>" +
+                "<b>前方系の跳躍技</b>" +
+                "<div><img src='image/rules/forwardjumpdifficulties.png' alt='前方系跳躍技の難度表' width='55%'></div>" +
+              "</li>" +
+              "<li>" +
+                "<b>後方系の跳躍技</b>" +
+                "<div><img src='image/rules/backwardjumpdifficulties.png' alt='後方系の跳躍技の難度表' width='55%'></div>" +
+              "</li>" +
+              "<li>" +
+                "<b>側方系の跳躍技</b>" +
+                "<div><img src='image/rules/sidewardjumpdifficulties.png' alt='側方系の跳躍技の難度表' width='55%'></div>" +
+              "</li>" +
+              "<li>" +
+                "<b>宙返りの連続</b>" +
+                "<div><img src='image/rules/combinationdifficulties.png' alt='宙返りの連続の難度表' width='55%'></div>" +
+                "※宙返り以外の技では２ー３、３ー15の転回系も同等の扱いとする。" +
+              "</li>" +
+              "<li>" +
+                "<b>転回系の連続</b>" +
+                "<div><img src='image/rules/combinationdifficulties2.png' alt='転回系の連続の難度表' width='55%'></div>" +
+                "※テンポ宙返りは直ちに後方系の展開に続けた場合のみ、その扱いとする。" +
+                "※６人全員が同時に実施した場合のみ格上げの対象とする。" +
+                "　３回以上の連続後転とびの一部がＢ難度以上の転回系に変わったものも同等として扱う。" +
+                "　後方伸身宙返りにひねりが加わった場合も同等の扱いとする。" +
+              "</li>" +
+            "</ol>",
         } as Block]
       } as Section, {
         title:   "団体競技における難度の組み合わせ",
         content: "",
         block:   [{
           title:   "交差技と組運動の難度",
-          element: ""
+          element:
+            "<ol>" +
+              "<li>" +
+                "<b>交差技</b>\n" +
+                "交差技の難度は以下の通りとする。" +
+                "<ol>" +
+                  "<li>徒手系の上を転回系で跳び越えた場合は転回系の種目の難度を採用する。</li>" +
+                  "<li>" +
+                    "転回系の交差技は、転回系の途中を飛び越えていなければならない。最低条件として、転回系の着地寸前に跳び越えることとする。" +
+                    "<li>転回系の交差技は、転回系の途中を跳び越えていなければならない。</li>" +
+                    "<li>着地後に跳び越えた場合は（１）の扱いとする。</li>" +
+                    "<li>" +
+                      "２段の交差技の難度" +
+                      "<div><img src='image/rules/AMCdifficulties.png' alt='転回系の組合せ難度表' width='50%'></div>" +
+                    "</li>" +
+                    "<li>３段以上の交差技をすべてＢ難度以上の展開系で実施した場合はＤ難度とする。Ａ難度が入っていた場合は、この扱いにはならない。</li>" +
+                  "</ol>" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>組・組立運動</b>\n" +
+                "組・組立運動の難度は以下のとおりとする。" +
+                "<ol>" +
+                  "<li>" +
+                  "組み・組立運動の難度表" +
+                  "<div><img src='image/rules/liftdifficulties.png' alt='組・組立運動の難度表' width='60%'></div>" +
+                  "※次に展開系に続けた場合に難度として扱う。" +
+                  "※Ｃ難度以上の転回系の場合は、その転回系の難度とする。" +
+                  "</li>" +
+                  "<li>組・組立運動での難度の格上げ</li>" +
+                  "<ol>" +
+                    "<li>肩上倒立をとばし技で超えた場合は、跳躍系は１ランク、宙返り系は２ランク難度が上がる。</li>" +
+                    "<li>組倒立で片手倒立または支持者が伸腕で支持した場合は、１ランク難度が上がる。</li>" +
+                  "</ol>" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>シリーズの難度の判定</b>\n" +
+                "競技者が、いくつかのグループに分かれ、次々と転回系を行なった場合、難度の判定は以下のとおりとする。" +
+                "<ol>" +
+                  "<li>原則として交差技と組・組立運動を除き、３名以上が実施した難度を採用する。ただし高い難度の技を低い難度として読み替えることはできる。</li>" +
+                  "<li>" +
+                    "いくつかのグループに分かれて同じ難度の転回系を実施した場合" +
+                    "<ol>" +
+                      "<li>" +
+                      "３：３に分かれた場合" +
+                      "<ol>" +
+                        "<li>原則として、高い難度を実施したグループの難度を採用する。</li>" +
+                        "<li>" +
+                          "異なる種目であっても、６名以上が実施すれば難度が上がる種目の組み合わせの場合は、ランクアップされる。" +
+                          "<div><img src='image/rules/serisedifficulties1.png' alt='シリーズ難度判定表１' width='40%'></div>" +
+                          "※６名で実施した場合に難度が格上げになる技" +
+                        "</li>" +
+                      "</ol>" +
+                      "</li>" +
+                      "<li>" +
+                        "４・２または５・１に分かれた場合" +
+                        "<ol>" +
+                          "<li>原則として、人数の多いグループの難度を採用する。</li>" +
+                          "<li>異なる種目であっても、６名が実施すれば難度が上がる種目の組み合わせの場合はランクアップされる。</li>" +
+                          "<li>" +
+                            "人数の少ないグループが、交差技または組・組立運動の場合は難度として採用し、難度の高いグループを採用する。" +
+                            "（例）４・１の場合" +
+                            "<div><img src='image/rules/serisedifficulties2.png' alt='シリーズ難度判定表２' width='40%'></div>" +
+                            "※６名で実施した場合に難度が格上げになる技" +
+                          "</li>" +
+                        "</ol>" +
+                      "</li>" +
+                    "</ol>" +
+                  "</li>" +
+                  "<li>" +
+                    "いくつかのグループに分かれて異なる難度の転回系を実施した場合" +
+                    "<ol>" +
+                      "<li>３名以上が実施した難度を採用する。</li>" +
+                      "<li>シリーズに含まれる交差技または組・組立運動が、シリーズに中で最も高い難度の場合は、人数にかかわらず、その難度を採用する。</li>" +
+                      "<li>高い難度を低い難度で読み替えても、すべての難度が３名未満の場合は、難度として認めない。</li>" +
+                    "</ol>" +
+                  "</li>" +
+                "</ol>" +
+              "</li>" +
+            "</ol>"
         } as Block]
       } as Section, {
         title:    "個人競技における難度",
         content:  "",
         block:    [{
           title:   "転回系における手具操作と難度",
-          element: ""
+          element:
+            "演技の中で転回系を実施した場合の難度は、基礎難度表によって価値が決められる。ただし、以下の条件に当てはまる場合は、その難度から１ランクアップされる。" +
+            "<ol>" +
+              "<li>手具の投げ受けの間に転回系を実施した場合は、その転回系の難度から１ランクアップされる。</li>" +
+              "<li>" +
+                "２回以上の手具操作をともなって、実施した場合。" +
+                "<ol>" +
+                "<li>" +
+                  "<b>スティック</b>\n" +
+                  "<ol>" +
+                    "<li>端または中央部などを持って２回以上回す。</li>" +
+                    "<li>左右の手を持ち替えて１回以上回す。</li>" +
+                  "</ol>" +
+                "<li>" +
+                  "<b>リング</b>\n" +
+                  "<ol>" +
+                    "<li>１つのリングまたは２つのリングを２回以上回す。</li>" +
+                    "<li>２つのリングを１回転づつ順番に回す。</li>" +
+                    "<li>１つのリングを左右の手を持ち替えて１回以上回す。</li>" +
+                  "</ol>" +
+                "<li>" +
+                  "<b>ロープ</b>\n" +
+                  "<ol>" +
+                    "<li>片手または両手で、１本、２つ折り、３つ折り、４つ折りなどにして２回転以上回す。</li>" +
+                    "<li>左右の手を持ち替えて、１回以上回す。</li>" +
+                  "</ol>" +
+                "<li>" +
+                  "<b>クラブ</b>\n" +
+                  "<ol>" +
+                    "<li>頭、または首を持って２回以上回す。</li>" +
+                    "<li>２本のクラブを１回転ずつ順番に回す。</li>" +
+                    "<li>１つのクラブを左右の手を持ち替えて、１回以上回す。</li>" +
+                  "</ol>" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>その他の手具操作</b>" +
+                "<ol>" +
+                  "<li>転回系を実施している間に手具を床に打ちつけてとる。</li>" +
+                  "<li>転回系を実施している間に手具を転がして、着地と同時にとる。</li>" +
+                "</ol>" +
+              "</li>" +
+            "</ol>"
         } as Block, {
           title:   "投げ受けの難度",
-          element: ""
+          element:
+            "演技の中で投げ受けを実施した場合、その間に実施した徒手系（※）または転回系の数によって以下のように難度が決められる。ただし、転回系が含まれていた場合は第69条の１の条件と比較して、高い方の難度を採用する。\n" +
+            "※ここでの徒手系は、縦軸または横軸で、360°回転したもののみを１つとして数える。" +
+            "<div><img src='image/rules/tossdifficulties.png' alt='投げ受けの難度表' width='30%'></div>"
         } as Block, {
           title:   "手具操作をともなった徒手系の難度",
-          element: ""
+          element: "演技の中で手具操作をともなって徒手系難度を実施した場合は、徒手系難度を採用する。"
         } as Block]
       } as Section]
     } as Article]
@@ -1521,16 +1678,180 @@ export const vvRuleBook: RuleBook = {
     title: "付録", article: [{
       title: "難度解図", section: [{
         title:   "徒手系難度",
-        content: "1 徒手系難度\n2 転回系難度",
-        block:   []
+        content: "",
+        block:   [{
+          title:   "徒手系難度",
+          element: ""
+        } as Block, {
+          title:   "転回系難度",
+          element: ""
+        } as Block]
       } as Section, {
         title:   "特別規則",
-        content: "1 ジュニア適用規則\n2 小学生適用規則\n3 高体連規則",
-        block:   []
+        content: "",
+        block:   [{
+          title:   "ジュニア適用規則",
+          element:
+            "次に示すものを除き、（公財）日本体操協会新体操採点規則による。" +
+            "<ol>" +
+              "<li>" +
+                "<b>禁止技</b>\n" +
+                "団体競技、個人競技共に以下の技を禁止する。なお、禁止技を行なった場合は構成・実施ともに０点とする。" +
+                "<ol>" +
+                  "<li>前方宙返り転（１と１／２回転）以上</li>" +
+                  "<li>後方２回宙返り以上</li>" +
+                  "<li>前方宙返り直接正面支持臥</li>" +
+                  "<li>後方２回宙返り直接正面支持臥</li>" +
+                  "※いずれも組運動からの実施を含む。また（１）（３）は後ろとびからのひねりを含む。" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>難度の要求要素</b>\n" +
+                "団体競技、個人競技とも１Ｄ２Ｃ３Ｂとする。" +
+              "</li>" +
+              "<li>" +
+                "<b>特別難度</b>\n" +
+                "団体競技で以下の転回系を実施した場合は、特別難度として採用する。" +
+                "<ol>" +
+                  "<li>後転とびからの伸身宙返りを６人で実施した場合はＤ難度とする。</li>" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>減点緩和</b>\n" +
+                "ロープの３重跳びの要素不足" +
+              "</li>" +
+              "<li>" +
+                "<b>手具の規格</b>\n" +
+                "体格差が大きいため、（公財）日本体操協会指定業者が販売する手具が使用できない場合は、規格通りであれば自作でも可とする。" +
+                "<div><img src='image/rules/syugukikaku(J).png' alt='ジュニア手具規格表' width='70%'></div>" +
+              "</li>" +
+            "</ol>"
+        } as Block, {
+          title: "小学生適用規則" ,
+          element:
+            "次に示すものを除き、（公財）日本体操協会新体操採点規則による。\n\n" +
+            "<b>団体競技</b>\n" +
+            "自由演技" +
+            "<ol>" +
+              "<li>自由演技はラジオ体操１を基本とし、徒手体操で構成する。</li>" +
+              "<li>演技時間はラジオ体操１の演技時間とする。</li>" +
+              "<li>団体競技は、４名以上で演技を行う。</li>" +
+              "<li>" +
+                "<b>自由演技の配点</b>\n" +
+                "次の５項目を基準とする。各項目は10点満点で採点し、その平均点を各審判の得点とする。各チームの得点は、全審判員の平均点とする。\n" +
+                "<b>採点基準</b>" +
+                "<ol>" +
+                  "<li>運動の大きさ・深さ・アクセントなど体操が正確にできたか。</li>" +
+                  "<li>音楽と体操の調和がとれていたか。</li>" +
+                  "<li>隊形の変化や移動が工夫されていたか。</li>" +
+                  "<li>演技全体を通じてリズミカルにできたか。</li>" +
+                  "<li>チーム全体が元気よく楽しく演技できたか。</li>" +
+                "</ol>" +
+              "</li>" +
+              "<li>伴奏音楽はつけることが望ましいが、号令で実施しても良い。</li>" +
+              "<li>転回系は宙返りを除いた程度のものを入れてもよい。</li>" +
+              "<li>隊形の変化や体型移動を工夫する。</li>" +
+              "<li>服装は自由とする。</li>" +
+              "<li>審判構成は10名を基準とする。</li>" +
+              "<li>表彰は大会要項による。</li>" +
+            "</ol>" +
+            "<b>採点用紙</b>\n" +
+            "次の観点から、演技の採点を行う。" +
+            "<div><img src='image/rules/junior(PCS).png' alt='新体操小学校適用規則採点用紙' width='70%'></div>",
+        } as Block, {
+          title:   "高体連規則",
+          element:
+            "次に示すものを除き、（公財）日本体操協会男子新体操採点規則による。" +
+            "<ol>" +
+              "<li>" +
+                "<b>禁止技について</b>\n" +
+                "団体競技・個人競技ともに下記の技を禁止する。なお、禁止技を行なった場合は、その演技を０点とする。\n" +
+                "※いずれも組運動を含む。" +
+                "<ol>" +
+                  "<li>前方宙返り転（１と１／２回転）以上（後ろとびからのひねりを含む）</li>" +
+                  "<li>後方２回宙返り以上</li>" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>制限技について</b>\n" +
+                "後方系の跳躍技からひねりをともなって直接正面支持臥の技は、男子採点規則　第２章　第31条の構成条件の中で使用できる回数を１回限りとする。上記の回数を超えて使用した場合はその演技の構成点を０点とする。" +
+              "</li>" +
+              "<li>" +
+                "<b>所属マークについて</b>\n" +
+                "マークは規定どおりとし、ユニフォームと区別がつくようにする。" +
+              "</li>" +
+              "<li>" +
+                "<b>同点順位の決定方法について</b>\n" +
+                "<ol>" +
+                  "<li>" +
+                  "<b>団体競技</b>" +
+                  "<ol>" +
+                    "<li>構成得点の上位チーム</li>" +
+                    "<li>上記の条件が全て同点の場合、主任審判員（構成・実施）の合計得点の上位チーム。</li>" +
+                    "<li>上記の条件が全て同点の場合、主任審判員を除く８名の審判員の合計得点の上位チーム。</li>" +
+                    "<li>上記の条件が全て同点の場合、主催団体に一任する。</li>" +
+                  "</ol>" +
+                  "<li>" +
+                    "<b>個人競技</b>\n" +
+                    "<ol>" +
+                      "<li>２種のうち、最高得点を獲得したもの。</li>" +
+                      "<li>上記の条件が全て同点の場合、２種目の主任審判員の合計点の上位者。</li>" +
+                      "<li>上記の条件が全て同点の場合、主任審判員を除く８名の審判員の合計得点の上位者。</li>" +
+                      "<li>上記の条件が全て同点の場合、主催団体に一任する。</li>" +
+                    "</ol>" +
+                  "</li>" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>演技中の停電・選手のゲガの処置について</b>" +
+                "<ol>" +
+                  "<li>落雷などにより競技場が停電し、伴奏音楽が停止した場合には、審判長の判断により演技を中断してもよい。再演技を行わせる。</li>" +
+                  "<li>演技中、選手が怪我をした場合、監督の判断により演技を中断させてもよい。</li>" +
+                "</ol>" +
+              "</li>" +
+              "<li>" +
+                "<b>成績順位および表彰について</b>\n" +
+                "不慮の事故等で種目の危険があった場合、種目別選手権の表彰対象とする。" +
+              "</li>" +
+            "</ol>"
+        } as Block]
       } as Section, {
         title:   "徒手の演技",
         content: "",
-        block:   []
+        block:   [{
+          title: "徒手の基礎要素群",
+          element:
+            "<ol>" +
+              "<li>" +
+                "<b>各種の徒手</b>\n" +
+                "上肢、下肢、体前屈、体側屈、体回旋、腕の振動、脚の屈伸、胸の後反、体の弾性、波動（蛇動）など様々な複合運動" +
+              "</li>" +
+              "<li>" +
+                "<b>各種の跳躍（ジャンプ）</b>\n" +
+                "鹿跳び、前後開脚跳び、左右開脚跳びなどさまざまな跳躍。" +
+              "</li>" +
+              "<li>" +
+                "<b>柔軟</b>\n" +
+                "左右開脚体前屈柔軟、前後開脚柔軟、閉脚体前屈柔軟なさまざまな柔軟。</li>" +
+              "<li>" +
+                "<b>バランス</b>\n" +
+                "さまざまなバランスなど。" +
+              "</li>" +
+              "<li>" +
+                "<b>倒立</b>\n" +
+                "さまざまな倒立など。" +
+              "</li>" +
+              "<li>" +
+                "<b>各種の歩走</b>\n" +
+                "さまざまなステップなど。" +
+              "</li>" +
+              "<li>" +
+                "<b>回転及び転向</b>\n" +
+                "ターン・ピヴォット。" +
+              "</li>" +
+            "</ol>" +
+            "以上の要素は、さまざまな方向、さまざまな面、移動を伴うあるいは伴わない、片足支持あるいは両足支持、腕の動きと結びつけるなどの多彩な動きを考慮に入れて実施することができる。"
+        } as Block]
       } as Section, {
         title:   "個人競技の演技",
         content: "",
