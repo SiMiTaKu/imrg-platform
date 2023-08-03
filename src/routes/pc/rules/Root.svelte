@@ -1,48 +1,7 @@
 <script lang="ts">
-  import { vvRuleBook } from '../../../ts/rules/ViewValueRuleBook';
+  import { vvRuleBook, calculateIndexOfArticle } from '../../../ts/rules/ViewValueRuleBook';
 
-  /**
-   * 条項(section)のインデックスを計算する
-   * @param chapterIndex 章のインデックス
-   * @param articleIndex 大項のインデックス
-   * @param sectionIndex 条項のインデックス
-   * @param blockIndex   小項のインデックス
-   * @returns 条項のインデックス
-   */
-  function calculateIndexOfArticle(chapterIndex: number, articleIndex: number, sectionIndex: number, blockIndex: number = undefined): number {
-    let index = 0;
-    // 現在のchapterIndexの持つarticleの数分ループさせる。
-    for (let i = 0; i < vvRuleBook.chapter[chapterIndex].article.length; i++) {
-      // 現在のarticleIndex以下かどうか判別
-      if(i < articleIndex) {
-        // articleIndex未満のarticleのsectionの数分ループさせる。
-        for (let j = 0; j < vvRuleBook.chapter[chapterIndex].article[i].section.length; j++) {
-          // sectionがブロックを持つか判別
-          if(vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length > 0) {
-            // ブロックを持つ場合 + ブロックリストの長さ分
-            index += vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length;
-          } else {
-            // ブロックを持たない場合 + 1
-            index ++;
-          }
-        }
-      } else if (i === articleIndex) {
-        // articleIndex未満のarticleのsectionの数分ループさせる。
-        for (let j = 0; j < vvRuleBook.chapter[chapterIndex].article[i].section.length; j++) {
-          // sectionがブロックを持つか判別
-          if(j < sectionIndex && vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length > 0) {
-            // ブロックを持つ場合 + ブロックリストの長さ分
-            index += vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length;
-          } else if(j <= sectionIndex) {
-            // ブロックを持たない場合 + 1
-            index ++;
-          }
-        }
-      }
-    }
-    blockIndex !== undefined ? index += blockIndex : "";
-    return index;
-  }
+
 </script>
 
 <article id="mrg-rules" class="rule-book">
