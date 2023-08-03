@@ -1868,7 +1868,7 @@ export const vvRuleBook: RuleBook = {
           "<ol>" +
             "<li>" +
               "<b>構成の欠点</b>" +
-              "<div><img src=\"image/rules/tosyukettenhyou.png\" alt=\"徒手欠点表\" width=\"55%\"></div>" +
+              "<div><img src='image/rules/tosyukettenhyou.png' alt='徒手欠点表' width='55%'></div>" +
             "</li>" +
             "<li>" +
               "<b>実施の欠点</b>" +
@@ -1907,38 +1907,38 @@ export const vvRuleBook: RuleBook = {
           "<ol>" +
             "<li>" +
               "<b>跳躍</b>" +
-              "<div><img src=\"image/rules/jump(D).png\" alt=\"徒手の難度表（跳躍）\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/jump(D).png' alt='徒手の難度表（跳躍）' width='60%'></div>" +
             "</li>" +
             "           " +
             "<li>" +
               "<b>倒立</b>" +
-              "<div><img src=\"image/rules/handstand(D).png\" alt=\"徒手の難度表（倒立）\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/handstand(D).png' alt='徒手の難度表（倒立）' width='60%'></div>" +
             "</li>" +
             "           " +
             "<li>" +
               "<b>支持回転系</b>" +
-              "<div><img src=\"image/rules/sijikaiten(D).png\" alt=\"徒手の難度表（支持回転表）\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/sijikaiten(D).png' alt='徒手の難度表（支持回転表）' width='60%'></div>" +
             "</li>" +
             "           " +
             "<li>" +
               "<b>旋回・回旋</b>" +
-              "<div><img src=\"image/rules/kaisen(D).png\" alt=\"徒手の難度表（旋回・ 回旋)\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/kaisen(D).png' alt='徒手の難度表（旋回・ 回旋)' width='60%'></div>" +
             "</li>" +
             "<li>" +
               "<b>転向（ターン）</b>" +
-              "<div><img src=\"image/rules/turn(D).png\" alt=\"徒手の難度表（転向（ターン））\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/turn(D).png' alt='徒手の難度表（転向（ターン））' width='60%'></div>" +
             "</li>" +
             "<li>" +
               "<b>平均</b>" +
-              "<div><img src=\"image/rules/balance(D).png\" alt=\"徒手の難度表（平均）\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/balance(D).png' alt='徒手の難度表（平均）' width='60%'></div>" +
             "</li>" +
             "<li>" +
               "<b>柔軟Ａ　〜静的柔軟〜</b>" +
-              "<div><img src=\"image/rules/stretchA(D).png\" alt=\"徒手の難度表（静的柔軟）\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/stretchA(D).png' alt='徒手の難度表（静的柔軟）' width='60%'></div>" +
             "</li>" +
             "<li>" +
               "<b>柔軟Ｂ　〜動的柔軟〜</b>" +
-              "<div><img src=\"image/rules/stretchB(D).png\" alt=\"徒手の難度表（動的柔軟）\" width=\"60%\"></div>" +
+              "<div><img src='image/rules/stretchB(D).png' alt='徒手の難度表（動的柔軟）' width='60%'></div>" +
             "</li>" +
             "※徒手の難度は、団体競技の場合、全員が実施すれば１ランクあがる。" +
           "</ol>"

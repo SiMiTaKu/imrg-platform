@@ -37,8 +37,9 @@
 
 <style lang="scss">
   #mrg-rules {
-    width:  355px;
-    margin: 0 auto;
+    width:    355px;
+    margin:   0 auto;
+    overflow: hidden;
   }
 
   .rule-book {
@@ -48,4 +49,5 @@
 
     &__record-text { margin: 0; }
   }
+
 </style>
