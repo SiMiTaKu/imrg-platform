@@ -1,17 +1,17 @@
 <script lang="ts">
-  import PCRoot from './pc/top/Root.svelte';
-  import SPRoot from './sp/top/Root.svelte';
+  import PCRoot from '../pc/rules/Root.svelte';
+  import SPRoot from '../sp/rules/Root.svelte';
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP
-  } from '../ts/common/ResponsiveDesign';
+  } from '../../ts/common/ResponsiveDesign';
 
   let screenWidth;
 </script>
 
 <svelte:head>
-	<title>男子新体操国際化プロジェクト</title>
+  <title>男子新体操国際化プロジェクト | ルール</title>
 </svelte:head>
 
 <svelte:window bind:outerWidth={screenWidth}/>

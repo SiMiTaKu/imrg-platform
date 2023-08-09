@@ -8,11 +8,14 @@
 
 <style>
   #global-header {
-    display:    block;
-    width:      100%;
-    height:     40px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 150);
-    padding:    20px 0;
+    display:     block;
+    width:       100%;
+    height:      32px;
+    font-size:   32px;
+    line-height: 32px;
+    box-shadow:  1px 1px 1px rgba(0, 0, 0, 150);
+    padding:     16px 0;
+    text-align:  center;
   }
 
   .header-content {

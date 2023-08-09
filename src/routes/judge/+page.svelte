@@ -1,11 +1,11 @@
 <script lang="ts">
-  import PCRoot from './pc/top/Root.svelte';
-  import SPRoot from './sp/top/Root.svelte';
+  import PCRoot from '../pc/judge/Root.svelte';
+  import SPRoot from '../sp/judge/Root.svelte';
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP
-  } from '../ts/common/ResponsiveDesign';
+  } from '../../ts/common/ResponsiveDesign';
 
   let screenWidth;
 </script>
