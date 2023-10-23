@@ -1,8 +1,8 @@
 <script>
-  import PCHeader from './pc/common/layout/Header.svelte';
-  import PCFooter from './pc/common/layout/Footer.svelte';
-  import SPHeader from './sp/common/layout/Header.svelte';
-  import SPFooter from './sp/common/layout/Footer.svelte';
+  import PCHeader from '../web/pc/common/layout/Header.svelte';
+  import PCFooter from '../web/pc/common/layout/Footer.svelte';
+  import SPHeader from '../web/sp/common/layout/Header.svelte';
+  import SPFooter from '../web/sp/common/layout/Footer.svelte';
   import './styles.css';
   import {
     getResponsiveDesign,
