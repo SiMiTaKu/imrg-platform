@@ -3,7 +3,7 @@
 </script>
 
 <section id="site-top">
-  <img class="main-image" src="image/top/main-image.png" alt="男子新体操国際化プロジェクト"/>
+  <img class="main-image" src="image/common/imrg-logo.png" alt="男子新体操国際化プロジェクト"/>
   <div class="description-activities">
     <div class="description-activities__sub-title">
       日本の文化を<br>

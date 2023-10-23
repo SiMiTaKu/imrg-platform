@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PCRoot from './pc/top/Root.svelte';
-  import SPRoot from './sp/top/Root.svelte';
+  import PCRoot from '../web/pc/top/Root.svelte';
+  import SPRoot from '../web/sp/top/Root.svelte';
   import {
     getResponsiveDesign,
     designOfPC,
@@ -12,6 +12,7 @@
 
 <svelte:head>
 	<title>男子新体操国際化プロジェクト</title>
+  <link rel="imrg icon" href="/image/common/imrg-logo.jpg">
 </svelte:head>
 
 <svelte:window bind:outerWidth={screenWidth}/>

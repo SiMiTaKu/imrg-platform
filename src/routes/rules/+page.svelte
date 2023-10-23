@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PCRoot from '../pc/rules/Root.svelte';
-  import SPRoot from '../sp/rules/Root.svelte';
+  import PCRoot from '../../web/pc/rules/Root.svelte';
+  import SPRoot from '../../web/sp/rules/Root.svelte';
   import {
     getResponsiveDesign,
     designOfPC,
