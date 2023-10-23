@@ -31,14 +31,15 @@
     {/each}
   {/each}
   <div class="top">
-    <p><a href="/">TOPに戻る</a><p>
+    <p><a href="/static">TOPに戻る</a><p>
   </div>
 </article>
 
 <style lang="scss">
   #mrg-rules {
-    width:  1024px;
-    margin: 0 auto;
+    width:    355px;
+    margin:   0 auto;
+    overflow: hidden;
   }
 
   .rule-book {
@@ -47,5 +48,36 @@
     }
 
     &__record-text { margin: 0; }
+  }
+
+  h1 {
+    font-size:   24px;
+    font-weight: bold;
+    padding:     24px 0;
+    text-align:  center;
+    margin:      0;
+  }
+
+  h2 {
+    font-size:   20px;
+    font-weight: bold;
+    margin:      0 0 24px;
+  }
+
+  h3 {
+    font-size:   18px;
+    font-weight: bold;
+    margin:      0 0 16px;
+  }
+
+  h4, h5 {
+    font-size:   16px;
+    font-weight: bold;
+    margin:      0 0 16px;
+  }
+
+  p {
+    font-size: 14px;
+    margin:    0;
   }
 </style>
