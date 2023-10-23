@@ -12,6 +12,7 @@
 
 <svelte:head>
 	<title>男子新体操国際化プロジェクト</title>
+  <link rel="imrg icon" href="/image/common/imrg-logo.jpg">
 </svelte:head>
 
 <svelte:window bind:outerWidth={screenWidth}/>
