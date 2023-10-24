@@ -1,6 +1,6 @@
 <script lang="ts"></script>
 
-<header id="global-header">
+<header id="common-header">
   <div class="header">
     <img class="header__icon" src="image/common/imrg-logo.png" alt="男子新体操国際化プロジェクト"/>
     <div class="header__title">
@@ -9,13 +9,24 @@
     </div>
   </div>
 </header>
+<div id="common-header-space"></div>
 
 <style lang="scss">
-  #global-header {
+  #common-header-space {
     display:    block;
+    height:     80px;
+    background: transparent;
+  }
+
+  #common-header {
+    position:   fixed;
+    display:    block;
+    top:        0;
     width:      100%;
     height:     80px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 150);
+    background: white;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+    z-index:    1000;
   }
 
   .header {
