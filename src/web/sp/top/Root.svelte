@@ -3,7 +3,7 @@
 </script>
 
 <section id="site-top">
-  <img class="main-image" src="image/common/imrg-logo.jpg" alt="男子新体操国際化プロジェクト"/>
+  <img class="main-image" src="image/common/imrg-logo.png" alt="男子新体操国際化プロジェクト"/>
   <div class="description-activities">
     <div class="description-activities__sub-title">
       日本の文化を<br>
@@ -31,8 +31,6 @@
 
 <style lang="scss">
   #site-top {
-    padding-top: 0;
-
     .main-image {
       width: 100%;
     }
@@ -44,10 +42,10 @@
       padding:     0 16px;
 
       &__sub-title {
-        font-size:     24px;
-        font-weight:   bold;
-        text-align:    center;
-        margin-bottom: 40px;
+        font-size:   24px;
+        font-weight: bold;
+        text-align:  center;
+        margin:      16px 0 32px;
       }
 
       &__title {
