@@ -45,7 +45,7 @@
         font-size:   24px;
         font-weight: bold;
         text-align:  center;
-        padding:     16px 0 32px;
+        margin:      16px 0 32px;
       }
 
       &__title {
