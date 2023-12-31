@@ -139,7 +139,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.beautifulPose.value,
+                  $executionDeduct.pointA.beautifulPose.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -149,7 +149,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.flexibility.value,
+                  $executionDeduct.pointA.flexibility.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -159,7 +159,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.naturalMovement.value,
+                  $executionDeduct.pointA.naturalMovement.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -169,7 +169,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bendingWeight.value,
+                  $executionDeduct.pointA.bendingWeight.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -179,7 +179,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.jumpingHeight.value,
+                  $executionDeduct.pointA.jumpingHeight.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -189,7 +189,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bodyControl.value,
+                  $executionDeduct.pointA.bodyControl.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -199,7 +199,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.heelRaise.value,
+                  $executionDeduct.pointA.heelRaise.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -209,7 +209,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.weaknessAndStrength.value,
+                  $executionDeduct.pointA.weaknessAndStrength.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -219,7 +219,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.connectMovement.value,
+                  $executionDeduct.pointA.connectMovement.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -229,7 +229,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.apparatusControl.value,
+                  $executionDeduct.pointA.apparatusControl.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -239,7 +239,7 @@
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
-                  $executionDeduct.pointA.musicImage.value,
+                  $executionDeduct.pointA.musicImage.value
                 ).toFixed(3)}</span
               >
             </li>
@@ -247,7 +247,7 @@
               <span class="point-a-detail__title">手具を落とした減点</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfDroppedApparatus($executionDeduct).toFixed(
-                  3,
+                  3
                 )}</span
               >
             </li>
