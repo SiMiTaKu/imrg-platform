@@ -3137,7 +3137,7 @@ export function calculateIndexOfArticle(
   chapterIndex: number,
   articleIndex: number,
   sectionIndex: number,
-  blockIndex: number = undefined,
+  blockIndex: number = undefined
 ): number {
   let index = 0;
   // 現在のchapterIndexの持つarticleの数分ループさせる。

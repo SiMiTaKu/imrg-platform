@@ -23,7 +23,7 @@
                   chapterIndex,
                   articleIndex,
                   sectionIndex,
-                  blockIndex,
+                  blockIndex
                 )}条 {block.title}
               </h5>
               <p class="rule-book__record-text">{block.element}</p>
@@ -35,7 +35,7 @@
               第{calculateIndexOfArticle(
                 chapterIndex,
                 articleIndex,
-                sectionIndex,
+                sectionIndex
               )}条 {section.title}
             </h4>
             <p class="rule-book__record-text">{section.content}</p>

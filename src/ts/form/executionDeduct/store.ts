@@ -72,6 +72,6 @@ export const executionDeduct: Writable<ExecutionDeduct> = writable(
         doubleApparatus: { value: undefined },
       },
       miss: { title: "その他ミスによる減点", value: undefined, annotation: "" },
-    } as unknown as PointB,
-  ),
+    } as unknown as PointB
+  )
 );
