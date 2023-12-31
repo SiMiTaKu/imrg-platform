@@ -1,19 +1,29 @@
 <script lang="ts">
-
 </script>
 
 <section id="site-top">
-  <img class="main-image" src="image/common/imrg-logo.png" alt="男子新体操国際化プロジェクト"/>
+  <img
+    class="main-image"
+    src="image/common/imrg-logo.png"
+    alt="男子新体操国際化プロジェクト"
+  />
   <div class="description-activities">
     <div class="description-activities__sub-title">
-      日本の文化を<br>
+      日本の文化を<br />
       世界のスポーツへ
     </div>
-    <h1 class="description-activities__title">『男子新体操国際化プロジェクト』</h1> とは、
+    <h1 class="description-activities__title">
+      『男子新体操国際化プロジェクト』
+    </h1>
+    とは、
     <span class="description-activities__important-word">男子新体操</span>を
-    <span class="description-activities__important-word">オリンピックスポーツ</span>にしたいという想いで、
-    その<span class="description-activities__important-word">魅力</span>を
-    <span class="description-activities__important-word">全世界</span>へ発信するための活動です。
+    <span class="description-activities__important-word"
+      >オリンピックスポーツ</span
+    >にしたいという想いで、 その<span
+      class="description-activities__important-word">魅力</span
+    >を
+    <span class="description-activities__important-word">全世界</span
+    >へ発信するための活動です。
   </div>
   <div class="application-link">
     <div class="application-link__item">
@@ -36,26 +46,26 @@
     }
 
     .description-activities {
-      font-size:   12px;
+      font-size: 12px;
       font-weight: normal;
-      margin:      0 0 40px;
-      padding:     0 16px;
+      margin: 0 0 40px;
+      padding: 0 16px;
 
       &__sub-title {
-        font-size:   24px;
+        font-size: 24px;
         font-weight: bold;
-        text-align:  center;
-        margin:      16px 0 32px;
+        text-align: center;
+        margin: 16px 0 32px;
       }
 
       &__title {
-        display:     inline;
-        font-size:   16px;
+        display: inline;
+        font-size: 16px;
         font-weight: bold;
       }
 
       &__important-word {
-        font-size:   14px;
+        font-size: 14px;
         font-weight: bold;
       }
     }
@@ -64,16 +74,16 @@
       padding: 0 16px;
 
       &__item {
-        border-bottom: 1px solid #AAAAAA;
-        text-align:    center;
+        border-bottom: 1px solid #aaaaaa;
+        text-align: center;
 
         &:first-child {
-          border-top: 1px solid #AAAAAA;
+          border-top: 1px solid #aaaaaa;
         }
       }
 
       &__route {
-        color:           inherit;
+        color: inherit;
         text-decoration: none;
       }
 
