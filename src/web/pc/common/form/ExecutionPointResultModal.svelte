@@ -85,18 +85,12 @@
       options: {
         scales: {
           r: {
-            max: 10,       //グラフの最大値
-            min: 0,        //グラフの最小値
-            ticks: {
-              stepSize: 1  //目盛間隔
-            }
+            max: 10, //グラフの最大値
+            min: 0, //グラフの最小値
+            ticks: {stepSize: 1}//目盛間隔
           }
         },
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
+        plugins: {legend: {display: false}}
       }
     });
   }
