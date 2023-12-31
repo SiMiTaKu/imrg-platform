@@ -1,25 +1,25 @@
 export interface RuleBook {
-  title:   string;
+  title: string;
   chapter: Chapter[];
 }
 
 export interface Chapter {
-  title:   string;
+  title: string;
   article: Article[];
 }
 
 export interface Article {
-  title:   string;
+  title: string;
   section: Section[];
 }
 
 export interface Section {
-  title:   string;
+  title: string;
   content?: string;
-  block?:  Block[];
+  block?: Block[];
 }
 
 export interface Block {
-  title:   string;
+  title: string;
   element: string;
 }

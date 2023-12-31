@@ -1,0 +1,64 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:svelte/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "extraFileExtensions": [
+      ".svelte"
+    ]
+    // This is a required setting in `@typescript-eslint/parser` v4.24.0.
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.svelte"
+      ],
+      "parser": "svelte-eslint-parser",
+      // Parse the `<script>` in `.svelte` as TypeScript by adding the following configuration.
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      }
+    }
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "array-callback-return": 2,
+    "no-constructor-return": 2,
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "only-multiline",
+        "functions": "never"
+      }
+    ],
+    "object-curly-newline": [
+      2,
+      {
+        "multiline": true
+      }
+    ],
+    "array-element-newline": [
+      2,
+      "always",
+      {
+        "ArrayExpression": "consistent",
+        "ArrayPattern": {
+          "minItems": 1
+        }
+      }
+    ]
+  }
+}
