@@ -12,8 +12,8 @@
   }
 
   .footer-content {
-    color:      white;
-    font-size:  12px;
+    color: white;
+    font-size: 12px;
     text-align: center;
   }
 </style>

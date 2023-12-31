@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { vvRuleBook, calculateIndexOfArticle } from '../../../ts/rules/ViewValueRuleBook';
+  import {
+    vvRuleBook,
+    calculateIndexOfArticle,
+  } from "../../../ts/rules/ViewValueRuleBook";
 </script>
 
 <article id="mrg-rules" class="rule-book">
@@ -15,13 +18,26 @@
           <h4>{sectionIndex + 1} {section.title}</h4>
           {#each section.block as block, blockIndex}
             <div class="rule-book__record">
-              <h5>第{calculateIndexOfArticle(chapterIndex, articleIndex, sectionIndex, blockIndex)}条 {block.title}</h5>
+              <h5>
+                第{calculateIndexOfArticle(
+                  chapterIndex,
+                  articleIndex,
+                  sectionIndex,
+                  blockIndex,
+                )}条 {block.title}
+              </h5>
               <p class="rule-book__record-text">{block.element}</p>
             </div>
           {/each}
         {:else}
           <div class="rule-book__record">
-            <h4 class="rule-book__record-title">第{calculateIndexOfArticle(chapterIndex, articleIndex, sectionIndex)}条 {section.title}</h4>
+            <h4 class="rule-book__record-title">
+              第{calculateIndexOfArticle(
+                chapterIndex,
+                articleIndex,
+                sectionIndex,
+              )}条 {section.title}
+            </h4>
             <p class="rule-book__record-text">{section.content}</p>
           </div>
         {/if}
@@ -29,13 +45,14 @@
     {/each}
   {/each}
   <div class="top">
-    <p><a href="/">TOPに戻る</a><p>
+    <p><a href="/">TOPに戻る</a></p>
+    <p></p>
   </div>
 </article>
 
 <style lang="scss">
   #mrg-rules {
-    width:  1024px;
+    width: 1024px;
     margin: 0 auto;
   }
 
