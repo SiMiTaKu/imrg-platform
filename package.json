@@ -11,6 +11,18 @@
 		"lint:fix": "npx eslint --fix \"src/**/*.{ts,svelte}\"",
 		"format": "npx prettier --write \"src/**/*.{ts,svelte}\""
 	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{ts,svelte}": [
+			"npm run format",
+			"npm run lint:fix",
+			"npm run lint"
+		]
+	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",
 		"@neoconfetti/svelte": "^1.0.0",
@@ -26,6 +38,8 @@
 		"eslint-plugin-n": "^16.6.0",
 		"eslint-plugin-promise": "^6.1.1",
 		"eslint-plugin-svelte": "^2.35.1",
+		"husky": "^8.0.3",
+		"lint-staged": "^15.2.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"sass": "^1.62.1",
