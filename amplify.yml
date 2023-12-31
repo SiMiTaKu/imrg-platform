@@ -1,12 +1,10 @@
 version: 1
 frontend:
   phases:
-    checkVersion:
+    preBuild:
       commands:
         - npm install
         - node -v
-    preBuild:
-      commands:
         - npm install
     build:
       commands:
