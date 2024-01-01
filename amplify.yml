@@ -3,11 +3,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        - strings /lib64/libc.so.6|grep GLIBC_
-        - nvm install 18.16.0
-        - nvm use 18
-        - npm --version
-        - node -v
         - npm ci
     build:
       commands:
