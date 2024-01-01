@@ -5,10 +5,6 @@ on:
       - develop
       - feature/*
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-
   format code:
     runs-on: ubuntu-latest
     steps:
