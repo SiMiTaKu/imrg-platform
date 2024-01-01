@@ -2,8 +2,8 @@ name: feature-branch-updated
 on:
   pull_request:
     branches:
+      - master
       - develop
-      - feature/*
 jobs:
   pull_request_actions:
     runs-on: ubuntu-latest
