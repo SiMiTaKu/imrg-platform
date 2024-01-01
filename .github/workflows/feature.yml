@@ -5,7 +5,7 @@ on:
       - develop
       - feature/*
 jobs:
-  format code:
+  format_code:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
       - run: npm run format
       - run: npm run lint:fix
       - run: npm run lint
-  test code:
+  test_code:
     runs-on: ubuntu-latest
     steps:
       - run: npm run test
