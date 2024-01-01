@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.19.0'
+      - run: ls
       - run: npm run format
       - run: npm run lint:fix
       - run: npm run lint
