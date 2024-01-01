@@ -1,0 +1,19 @@
+name: feature-branch-updated
+on: [pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+
+  format code:
+    runs-on: ubuntu-latest
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.19.0'
+      - run: npm run format
+      - run: npm run lint:fix
+      - run: npm run lint
+  test code:
+    steps:
+      - run: npm run test
