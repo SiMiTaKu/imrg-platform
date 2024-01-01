@@ -5,18 +5,19 @@ on:
       - develop
       - feature/*
 jobs:
-  format_code:
+  pull_request_actions:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: '16.19.0'
-      - run: npm install
-      - run: npm run format
-      - run: npm run lint:fix
-      - run: npm run lint
-  test_code:
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm run test
+      - name: Init
+        run: npm install
+      - name: Format Code
+        run: |
+          npm run format
+          npm run lint:fix
+          npm run lint
+      - name: Test
+        run: npm run test
