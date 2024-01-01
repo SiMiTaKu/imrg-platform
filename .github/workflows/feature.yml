@@ -1,0 +1,20 @@
+name: feature-branch-updated
+on:
+  pull_request:
+    branches:
+      - develop
+      - feature/*
+jobs:
+  pull_request_actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.19.0'
+      - name: Init
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm run test
