@@ -3,7 +3,7 @@
  * @return ResponsiveDesign
  */
 export function getResponsiveDesign(screenWidth: number): ResponsiveDesign {
-  if (screenWidth >= 400) return designOfPC;
+  if (screenWidth > 400) return designOfPC;
   else return designOfSP;
 }
 
