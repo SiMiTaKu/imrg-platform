@@ -5,6 +5,7 @@ frontend:
       commands:
         - nvm install 21.4.0
         - nvm use 21
+        - npm --version
         - node -v
         - npm ci
     build:
