@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import type { Writable } from "svelte/store";
-import { ExecutionDeduct } from "./model";
-import type { PointA, PointB } from "./model";
+import { ExecutionDeduct } from "../_service/model";
+import type { PointA, PointB } from "../_service/model";
 
 /** @TODO 動的でないデータもここに記載しているためフォームのデータのみにしたい。 */
 /** @TODO ExecutionDeductが全てのデータを持つ必要はないから切り出したい。 */

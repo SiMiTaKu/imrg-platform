@@ -1,8 +1,5 @@
 <script lang="ts">
-  import {
-    vvRuleBook,
-    calculateIndexOfArticle,
-  } from "../../../ts/rules/ViewValueRuleBook";
+  import { vvRuleBook, calculateIndexOfArticle } from "./data/data";
 </script>
 
 <article id="mrg-rules" class="rule-book">
@@ -45,7 +42,7 @@
     {/each}
   {/each}
   <div class="top">
-    <p><a href="/">TOPに戻る</a></p>
+    <p><a href="/static">TOPに戻る</a></p>
     <p></p>
   </div>
 </article>
