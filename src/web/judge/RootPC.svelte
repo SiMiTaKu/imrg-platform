@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Radio from "../common/form/RadioPC.svelte";
-  import ExecutionPointResultModal from "../common/form/ExecutionPointResultModalPC.svelte";
+  import Radio from "./_component/RadioPC.svelte";
+  import ExecutionPointResultModal from "./_component/ExecutionPointResultModalPC.svelte";
   import { executionDeduct } from "../../ts/form/executionDeduct/store";
   import { deductionOptions } from "../../ts/form/executionDeduct/model";
   import { fly } from "svelte/transition";
