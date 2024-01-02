@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { executionDeduct } from "../../../../ts/form/executionDeduct/store";
+  import { executionDeduct } from "../../../ts/form/executionDeduct/store";
   import { Motion } from "svelte-motion";
   import { Chart } from "chart.js/auto";
   import {
@@ -9,7 +9,7 @@
     getDecisionPoints,
     getDeductionOfPointA,
     getDeductionOfDroppedApparatus,
-  } from "../../../../ts/form/executionDeduct/Culculator";
+  } from "../../../ts/form/executionDeduct/Culculator";
 
   let pointA: number;
   let pointB: number;
@@ -26,18 +26,18 @@
   let pointDetailOpacity: number = 0;
   let pointDetailHeight: number = 0;
   let pointDetailMarginTop: string = "0px";
+  let isPointDetailShown: boolean = false;
 
-  function switchShowPointADetail() {
-    if (pointDetailOpacity === 0) {
+  function switchShowPointADetail(): void {
+    isPointDetailShown = !isPointDetailShown;
+    if (isPointDetailShown) {
       renderPointDetailChart();
-      pointDetailMarginTop = "-72px";
       pointDetailButtonTitle = "内訳を閉じる";
-      pointDetailHeight = 430;
+      pointDetailHeight = 400;
       setTimeout(() => {
         pointDetailOpacity = 1;
       }, 100);
     } else {
-      pointDetailMarginTop = "0px";
       pointDetailButtonTitle = "内訳を見る";
       pointDetailOpacity = 0;
       setTimeout(() => {
@@ -94,6 +94,7 @@
             max: 10, //グラフの最大値
             min: 0, //グラフの最小値
             ticks: { stepSize: 1 }, //目盛間隔
+            pointLabels: false,
           },
         },
         plugins: { legend: { display: false } },
@@ -114,7 +115,8 @@
         <h2 class="decision-point-container__title">決定点</h2>
         <button
           class="point-a-detail__pull-down-button"
-          on:click={switchShowPointADetail}>{pointDetailButtonTitle}</button
+          on:touchstart={switchShowPointADetail}
+          >{pointDetailButtonTitle}</button
         >
       </div>
       <Motion
@@ -128,7 +130,7 @@
       >
         <div id="point-detail-pull-down" use:motion>
           <div class="point-detail-chart-area">
-            <canvas id="point-detail-chart" width="500" height="400"></canvas>
+            <canvas id="point-detail-chart" width="350" height="250"></canvas>
           </div>
           <ul class="point-a-detail">
             <li class="point-a-detail__item">
@@ -277,12 +279,6 @@
 {/if}
 
 <style lang="scss">
-  .point-detail-chart-area {
-    display: inline-block;
-    margin-right: 32px;
-    vertical-align: middle;
-  }
-
   #execution-point-result-modal {
     position: fixed;
     top: 0;
@@ -304,8 +300,8 @@
       position: relative;
       top: 50%;
       left: 50%;
-      width: 800px;
-      padding: 100px 50px 50px;
+      width: 85%;
+      padding: 100px 5% 50px;
       transform: translate(-50%, -50%);
       background-color: white;
       border-radius: 8px;
@@ -318,13 +314,14 @@
 
       &__title {
         display: inline-block;
+        margin: 0;
         padding: 0 24px;
         font-size: 24px;
         font-weight: bold;
         color: white;
-        margin: 0 0 16px;
         border-radius: 8px;
         background: #32538d;
+        vertical-align: middle;
       }
 
       &__format {
@@ -333,10 +330,10 @@
       }
 
       &__result {
-        padding-left: 40px;
+        padding-left: 70px;
         font-size: 40px;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
       }
 
       &__result:after {
@@ -354,8 +351,7 @@
       }
 
       &__reset-button {
-        position: relative;
-        width: 200px;
+        width: 180px;
         height: 48px;
         font-size: 16px;
         font-weight: bold;
@@ -363,8 +359,6 @@
         background: #32538d;
         border: none;
         border-radius: 8px;
-        z-index: 100;
-        cursor: pointer;
       }
     }
 
@@ -373,38 +367,46 @@
       opacity: 0;
       height: 0;
       margin: 0;
+      overflow: scroll;
     }
 
     /** ポイントA 詳細 ------------------------------- */
+    .point-detail-chart-area {
+      margin-bottom: 8px;
+    }
+
     .point-a-detail {
-      display: inline-block;
-      width: 220px;
-      margin: 0 0 16px;
+      width: 270px;
+      margin: 0 auto 16px;
       padding: 0;
       vertical-align: middle;
 
       &__pull-down-button {
-        margin-bottom: 8px;
+        display: inline-block;
+        width: 120px;
+        height: 32px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #555555;
         background: white;
         border-radius: 4px;
+        border: 2px solid #555555;
         font-family: YuGothic, sans-serif;
-
-        &:hover {
-          cursor: pointer;
-        }
+        vertical-align: middle;
+        cursor: pointer;
       }
 
       &__item {
         margin-bottom: 8px;
-        font-size: 12px;
+        font-size: 16px;
         list-style: none;
         border-bottom: 1px solid #aaaaaa;
       }
 
       &__title {
         display: inline-block;
-        width: 180px;
-        font-size: 12px;
+        width: 220px;
+        font-size: 16px;
       }
     }
   }

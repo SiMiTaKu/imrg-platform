@@ -2,7 +2,7 @@
   import {
     vvRuleBook,
     calculateIndexOfArticle,
-  } from "../../../ts/rules/ViewValueRuleBook";
+  } from "../../ts/rules/ViewValueRuleBook";
 </script>
 
 <article id="mrg-rules" class="rule-book">
@@ -45,7 +45,7 @@
     {/each}
   {/each}
   <div class="top">
-    <p><a href="/">TOPに戻る</a></p>
+    <p><a href="/static">TOPに戻る</a></p>
     <p></p>
   </div>
 </article>

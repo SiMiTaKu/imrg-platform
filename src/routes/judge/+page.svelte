@@ -1,6 +1,6 @@
 <script lang="ts">
-  import PCRoot from "../../web/pc/judge/Root.svelte";
-  import SPRoot from "../../web/sp/judge/Root.svelte";
+  import RootPC from "../../web/judge/RootPC.svelte";
+  import RootSP from "../../web/judge/RootSP.svelte";
   import {
     getResponsiveDesign,
     designOfPC,
@@ -17,9 +17,9 @@
 <svelte:window bind:outerWidth={screenWidth} />
 
 {#if getResponsiveDesign(screenWidth) === designOfPC}
-  <PCRoot />
+  <RootPC />
 {:else if getResponsiveDesign(screenWidth) === designOfSP}
-  <SPRoot />
+  <RootSP />
 {/if}
 
 <style lang="scss">
