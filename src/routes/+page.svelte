@@ -5,7 +5,7 @@
     getResponsiveDesign,
     designOfPC,
     designOfSP,
-  } from "../ts/common/ResponsiveDesign";
+  } from "../ts/common/responsive-design";
 
   let screenWidth;
 </script>
