@@ -1,14 +1,17 @@
-<script>
-  import PCHeader from "../web/pc/common/layout/Header.svelte";
-  import PCFooter from "../web/pc/common/layout/Footer.svelte";
-  import SPHeader from "../web/sp/common/layout/Header.svelte";
-  import SPFooter from "../web/sp/common/layout/Footer.svelte";
+<script lang="ts" context="module">
+  import HeaderPC from "../web/layout/HeaderPC.svelte";
+  import FooterPC from "../web/layout/FooterPC.svelte";
   import "./styles.css";
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP,
   } from "../ts/common/ResponsiveDesign";
+</script>
+
+<script lang="ts">
+  import SPHeader from "../web/sp/common/layout/Header.svelte";
+  import SPFooter from "../web/sp/common/layout/Footer.svelte";
 
   let screenWidth;
 </script>
@@ -17,7 +20,7 @@
 
 <div>
   {#if getResponsiveDesign(screenWidth) === designOfPC}
-    <PCHeader />
+    <HeaderPC />
   {:else if getResponsiveDesign(screenWidth) === designOfSP}
     <SPHeader />
   {/if}
@@ -25,7 +28,7 @@
     <slot />
   </main>
   {#if getResponsiveDesign(screenWidth) === designOfPC}
-    <PCFooter />
+    <FooterPC />
   {:else if getResponsiveDesign(screenWidth) === designOfSP}
     <SPFooter />
   {/if}
