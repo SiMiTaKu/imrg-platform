@@ -1,5 +1,5 @@
 import {describe, expect, test} from '@jest/globals';
-import {designOfPC, designOfSP, getResponsiveDesign} from "../src/ts/common/ResponsiveDesign";
+import {designOfPC, designOfSP, getResponsiveDesign} from "../src/ts/common/responsive-design";
 
 describe('test getResponsiveDesign', () => {
   test.each([

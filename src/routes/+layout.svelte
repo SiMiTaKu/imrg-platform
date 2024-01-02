@@ -8,7 +8,7 @@
     getResponsiveDesign,
     designOfPC,
     designOfSP,
-  } from "../ts/common/ResponsiveDesign";
+  } from "../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
