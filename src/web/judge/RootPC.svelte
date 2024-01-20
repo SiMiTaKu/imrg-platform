@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Radio from "../common/form/Radio.svelte";
-  import ExecutionPointResultModal from "../common/form/ExecutionPointResultModal.svelte";
-  import { executionDeduct } from "../../../ts/form/executionDeduct/store";
-  import { deductionOptions } from "../../../ts/form/executionDeduct/model";
+  import Radio from "./_component/RadioPC.svelte";
+  import ExecutionPointResultModal from "./_component/ExecutionPointResultModalPC.svelte";
+  import { executionDeduct } from "./store/store";
+  import { deductionOptions } from "./_service/model";
   import { fly } from "svelte/transition";
 
   const options = deductionOptions;

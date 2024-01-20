@@ -1,10 +1,4 @@
-import type {
-  RuleBook,
-  Chapter,
-  Article,
-  Section,
-  Block,
-} from "./RuleBookModel";
+import type { RuleBook, Chapter, Article, Section, Block } from "./model";
 
 export const vvRuleBook: RuleBook = {
   title: "2015年  新体操男子規則",
