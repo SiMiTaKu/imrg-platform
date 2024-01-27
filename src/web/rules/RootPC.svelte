@@ -3,6 +3,11 @@
 </script>
 
 <article id="mrg-rules" class="rule-book">
+  <p>
+    ※こちらのページは未完成です。適宜更新を行なっておりますので、お待ちください。<br
+    />
+    ※見やすいサイト作りを心がけております。
+  </p>
   <h1>{vvRuleBook.title}</h1>
   {#each vvRuleBook.chapter as chapter, chapterIndex}
     <h2>第{chapterIndex + 1}章 {chapter.title}</h2>
@@ -36,6 +41,15 @@
               )}条 {section.title}
             </h4>
             <p class="rule-book__record-text">{section.content}</p>
+            {#if section.image}
+              <div>
+                <img
+                  src={`/image/rules/${section.image.fileName}`}
+                  alt={section.image.alt}
+                  width="100%"
+                />
+              </div>
+            {/if}
           </div>
         {/if}
       {/each}
