@@ -23,6 +23,7 @@ export interface Section {
 export interface Block {
   title: string;
   element: string;
+  image?: Image[];
 }
 
 export interface Image {
