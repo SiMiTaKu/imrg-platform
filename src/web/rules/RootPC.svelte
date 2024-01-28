@@ -29,6 +29,17 @@
                 )}条 {block.title}
               </h5>
               <p class="rule-book__record-text">{block.element}</p>
+              {#if block.image}
+                {#each block.image as image}
+                  <div>
+                    <img
+                      src={`/image/rules/${image.fileName}`}
+                      alt={image.alt}
+                      width="100%"
+                    />
+                  </div>
+                {/each}
+              {/if}
             </div>
           {/each}
         {:else}
@@ -42,13 +53,15 @@
             </h4>
             <p class="rule-book__record-text">{section.content}</p>
             {#if section.image}
-              <div>
-                <img
-                  src={`/image/rules/${section.image.fileName}`}
-                  alt={section.image.alt}
-                  width="100%"
-                />
-              </div>
+              {#each section.image as image}
+                <div>
+                  <img
+                    src={`/image/rules/${image.fileName}`}
+                    alt={image.alt}
+                    width="100%"
+                  />
+                </div>
+              {/each}
             {/if}
           </div>
         {/if}
