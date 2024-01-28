@@ -17,7 +17,7 @@ export interface Section {
   title: string;
   content?: string;
   block?: Block[];
-  image?: Image;
+  image?: Image[];
 }
 
 export interface Block {
