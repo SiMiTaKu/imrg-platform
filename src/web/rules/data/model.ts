@@ -1,3 +1,5 @@
+import type { Image } from "../../../ts/common/image";
+
 export interface RuleBook {
   title: string;
   chapter: Chapter[];
@@ -24,9 +26,4 @@ export interface Block {
   title: string;
   element: string;
   image?: Image[];
-}
-
-export interface Image {
-  fileName: string;
-  alt: string;
 }

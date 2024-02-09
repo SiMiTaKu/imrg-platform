@@ -18,7 +18,7 @@
 <img
   {width}
   {height}
-  src={image.url}
+  src={image.src}
   loading={isLazy ? 'lazy' : 'eager'}
   alt={image.alt}
   style:transition={fadeIn ? '1s' : 'none'}
