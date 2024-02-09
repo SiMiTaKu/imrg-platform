@@ -47,10 +47,6 @@
 
 <style lang="scss">
   #site-top {
-    .main-image {
-      width: 100%;
-    }
-
     .description-activities {
       font-size: 12px;
       font-weight: normal;
