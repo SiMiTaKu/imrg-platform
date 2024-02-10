@@ -1,13 +1,21 @@
-<script lang="ts">
+<script lang="ts" context="module">
+  import Image from "../../view/atomic/image/Image.svelte";
+
+  const MAIN_IMAGE = {
+    src: "image/common/imrg-logo.png",
+    alt: "男子新体操国際化プロジェクト",
+  };
 </script>
 
 <section id="site-top">
   <div class="main-visual">
-    <img
-      class="main-visual__image"
-      src="image/common/imrg-logo.png"
-      alt="男子新体操国際化プロジェクト"
-    />
+    <div class="main-visual__image">
+      <Image
+        height="100%"
+        image={MAIN_IMAGE}
+        isLazy={false}
+      />
+    </div>
     <div class="main-visual__title">
       日本の文化を<br />
       世界のスポーツへ

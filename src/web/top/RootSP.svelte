@@ -1,12 +1,18 @@
-<script lang="ts">
+<script lang="ts" context="module">
+  import Image from "../../view/atomic/image/Image.svelte";
+  const MAIN_IMAGE = {
+    src: "image/common/imrg-logo.png",
+    alt: "男子新体操国際化プロジェクト",
+  };
 </script>
 
 <section id="site-top">
-  <img
-    class="main-image"
-    src="image/common/imrg-logo.png"
-    alt="男子新体操国際化プロジェクト"
+  <Image
+    width="100%"
+    image={MAIN_IMAGE}
+    isLazy={false}
   />
+
   <div class="description-activities">
     <div class="description-activities__sub-title">
       日本の文化を<br />
@@ -41,10 +47,6 @@
 
 <style lang="scss">
   #site-top {
-    .main-image {
-      width: 100%;
-    }
-
     .description-activities {
       font-size: 12px;
       font-weight: normal;
