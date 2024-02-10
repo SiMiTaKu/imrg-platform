@@ -1,11 +1,25 @@
 <script lang="ts" context="module">
-  import Image from '../../view/atomic/image/Image.svelte';
-</script>
-<script lang="ts">
+  import Image from "../../view/atomic/image/Image.svelte";
   import { vvRuleBook, calculateIndexOfArticle } from "./data/data";
+
+  import {
+    getResponsiveDesign,
+    designOfPC,
+    designOfSP,
+  } from "../../ts/common/responsive-design";
 </script>
 
-<article id="mrg-rules" class="rule-book">
+<script lang="ts">
+  let screenWidth;
+</script>
+
+<svelte:window bind:outerWidth={screenWidth} />
+
+<article
+  class="rule-book"
+  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
+  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+>
   <p>
     ※こちらのページは未完成です。適宜更新を行なっておりますので、お待ちください。<br
     />
@@ -35,11 +49,7 @@
               {#if block.image}
                 {#each block.image as image}
                   <div>
-                    <Image
-                      image={image}
-                      width="100%"
-                      isLazy={true}
-                    />
+                    <Image {image} width="100%" isLazy={true} />
                   </div>
                 {/each}
               {/if}
@@ -58,11 +68,7 @@
             {#if section.image}
               {#each section.image as image}
                 <div>
-                  <Image
-                    image={image}
-                    width="100%"
-                    isLazy={true}
-                  />
+                  <Image {image} width="100%" isLazy={true} />
                 </div>
               {/each}
             {/if}
@@ -78,12 +84,17 @@
 </article>
 
 <style lang="scss">
-  #mrg-rules {
-    width: 1024px;
-    margin: 0 auto;
+  .pc {
+    --width: 1024px;
+  }
+
+  .sp {
+    --width: 90%;
   }
 
   .rule-book {
+    width: var(--width);
+    margin: 0 auto;
     &__record {
       margin-bottom: 48px;
     }
