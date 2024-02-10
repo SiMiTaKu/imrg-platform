@@ -17,18 +17,16 @@
 
 <svelte:window bind:outerWidth={screenWidth} />
 
-<div>
-  {#if getResponsiveDesign(screenWidth) === designOfPC}
-    <HeaderPC />
-  {:else if getResponsiveDesign(screenWidth) === designOfSP}
-    <HeaderSP />
-  {/if}
-  <main>
-    <slot />
-  </main>
-  {#if getResponsiveDesign(screenWidth) === designOfPC}
-    <FooterPC />
-  {:else if getResponsiveDesign(screenWidth) === designOfSP}
-    <FooterSP />
-  {/if}
-</div>
+{#if getResponsiveDesign(screenWidth) === designOfPC}
+  <HeaderPC />
+{:else if getResponsiveDesign(screenWidth) === designOfSP}
+  <HeaderSP />
+{/if}
+<main>
+  <slot />
+</main>
+{#if getResponsiveDesign(screenWidth) === designOfPC}
+  <FooterPC />
+{:else if getResponsiveDesign(screenWidth) === designOfSP}
+  <FooterSP />
+{/if}

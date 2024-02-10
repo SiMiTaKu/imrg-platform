@@ -1,5 +1,6 @@
 <script lang="ts">
   import { vvRuleBook, calculateIndexOfArticle } from "./data/data";
+  import Image from "../../view/atomic/image/Image.svelte";
 </script>
 
 <article id="mrg-rules" class="rule-book">
@@ -32,10 +33,10 @@
               {#if block.image}
                 {#each block.image as image}
                   <div>
-                    <img
-                      src={`/image/rules/${image.fileName}`}
-                      alt={image.alt}
+                    <Image
+                      image={image}
                       width="100%"
+                      isLazy={true}
                     />
                   </div>
                 {/each}
@@ -55,10 +56,10 @@
             {#if section.image}
               {#each section.image as image}
                 <div>
-                  <img
-                    src={`/image/rules/${image.fileName}`}
-                    alt={image.alt}
+                  <Image
+                    image={image}
                     width="100%"
+                    isLazy={true}
                   />
                 </div>
               {/each}
