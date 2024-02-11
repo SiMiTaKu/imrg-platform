@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  import Image from "../../view/atomic/image/Image.svelte";
+  import Image from "../atomic/image/Image.svelte";
   import {
     getResponsiveDesign,
     designOfPC,

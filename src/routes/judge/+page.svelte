@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  import Root from "../../web/judge/Root.svelte";
+  import Root from "../../view/page/judge/Root.svelte";
 </script>
 
 <svelte:head>

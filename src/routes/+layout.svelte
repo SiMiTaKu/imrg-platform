@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
-  import Header from "../web/layout/Header.svelte";
-  import Footer from "../web/layout/Footer.svelte";
+  import Header from "../view/layout/Header.svelte";
+  import Footer from "../view/layout/Footer.svelte";
   import "./styles.css";
   import {
     getResponsiveDesign,

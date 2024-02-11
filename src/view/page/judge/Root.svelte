@@ -6,7 +6,7 @@
     getResponsiveDesign,
     designOfPC,
     designOfSP,
-  } from "../../ts/common/responsive-design";
+  } from "../../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">

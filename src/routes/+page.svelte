@@ -1,6 +1,6 @@
 <script lang="ts">
-  import RootPC from "../web/top/RootPC.svelte";
-  import RootSP from "../web/top/RootSP.svelte";
+  import RootPC from "../view/page/top/RootPC.svelte";
+  import RootSP from "../view/page/top/RootSP.svelte";
   import {
     getResponsiveDesign,
     designOfPC,

@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-  import Image from "../../view/atomic/image/Image.svelte";
+  import Image from "../../atomic/image/Image.svelte";
   import { vvRuleBook, calculateIndexOfArticle } from "./data/data";
 
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP,
-  } from "../../ts/common/responsive-design";
+  } from "../../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">

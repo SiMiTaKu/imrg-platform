@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  import Image from "../../view/atomic/image/Image.svelte";
+  import Image from "../../atomic/image/Image.svelte";
   const MAIN_IMAGE = {
     src: "image/common/imrg-logo.png",
     alt: "男子新体操国際化プロジェクト",
