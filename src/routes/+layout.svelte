@@ -1,8 +1,6 @@
 <script lang="ts" context="module">
-  import HeaderPC from "../web/layout/HeaderPC.svelte";
-  import FooterPC from "../web/layout/FooterPC.svelte";
-  import HeaderSP from "../web/layout/HeaderSP.svelte";
-  import FooterSP from "../web/layout/FooterSP.svelte";
+  import Header from "../view/layout/Header.svelte";
+  import Footer from "../view/layout/Footer.svelte";
   import "./styles.css";
   import {
     getResponsiveDesign,
@@ -17,16 +15,24 @@
 
 <svelte:window bind:outerWidth={screenWidth} />
 
-{#if getResponsiveDesign(screenWidth) === designOfPC}
-  <HeaderPC />
-{:else if getResponsiveDesign(screenWidth) === designOfSP}
-  <HeaderSP />
-{/if}
-<main>
+<Header />
+<main
+  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
+  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+>
   <slot />
 </main>
-{#if getResponsiveDesign(screenWidth) === designOfPC}
-  <FooterPC />
-{:else if getResponsiveDesign(screenWidth) === designOfSP}
-  <FooterSP />
-{/if}
+<Footer />
+
+<style lang="scss">
+  .pc {
+    --header-padding: 80px;
+  }
+  .sp {
+    --header-padding: 64px;
+  }
+
+  main {
+    padding-top: var(--header-padding);
+  }
+</style>

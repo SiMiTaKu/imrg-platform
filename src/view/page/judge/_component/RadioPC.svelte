@@ -8,9 +8,8 @@
 </script>
 
 <div class="radio-question">
-  <div class="radio-question__title">
-    {title}<span class="radio-question__annotation">※{annotation}</span>
-  </div>
+  <div class="radio-question__title">{title}</div>
+  <div class="radio-question__annotation">※{annotation}</div>
   <div
     role="radio"
     class="radio-group"
@@ -35,16 +34,22 @@
     margin-bottom: 24px;
 
     &__title {
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       font-size: 20px;
       font-weight: bold;
     }
 
     &__annotation {
       font-size: 15px;
+      margin-bottom: 12px;
       font-weight: normal;
-      margin-left: 8px;
     }
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   input[type="radio"] {
@@ -61,7 +66,6 @@
     display: inline-block;
     width: 50px;
     height: 50px;
-    margin-right: 8px;
     font-size: 20px;
     font-weight: bold;
     line-height: 50px;

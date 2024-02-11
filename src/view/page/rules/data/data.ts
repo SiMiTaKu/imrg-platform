@@ -1483,20 +1483,20 @@ export const vvRuleBook: RuleBook = {
 跳躍・バランス・倒立（静止2秒）・柔軟A〜静的柔軟〜を以下に示す`,
                   image: [
                     {
-                      src: '/image/rules/jumpdifficulties.png',
-                      alt: '徒手系難度（跳躍）',
+                      src: "/image/rules/jumpdifficulties.png",
+                      alt: "徒手系難度（跳躍）",
                     },
                     {
-                      src: '/image/rules/balansedifficulties.png',
-                      alt: '徒手系難度（バランス）',
+                      src: "/image/rules/balansedifficulties.png",
+                      alt: "徒手系難度（バランス）",
                     },
                     {
-                      src: '/image/rules/handstanddifficulties.png',
-                      alt: '倒立（静止２秒',
+                      src: "/image/rules/handstanddifficulties.png",
+                      alt: "倒立（静止２秒",
                     },
                     {
-                      src: '/image/rules/stretchdifficulties.png',
-                      alt: '柔軟Ａ　〜静的柔軟〜',
+                      src: "/image/rules/stretchdifficulties.png",
+                      alt: "柔軟Ａ　〜静的柔軟〜",
                     },
                   ],
                 } as Block,
@@ -1519,24 +1519,24 @@ export const vvRuleBook: RuleBook = {
 後方伸身宙返りにひねりが加わった場合も同等の扱いとする。`,
                   image: [
                     {
-                      src: '/image/rules/jumpturndifficulties.png',
-                      alt: 'とびひねり技の難度表',
+                      src: "/image/rules/jumpturndifficulties.png",
+                      alt: "とびひねり技の難度表",
                     },
                     {
-                      src: '/image/rules/forwardjumpdifficulties.png',
-                      alt: '前方系跳躍技の難度表',
+                      src: "/image/rules/forwardjumpdifficulties.png",
+                      alt: "前方系跳躍技の難度表",
                     },
                     {
-                      src: '/image/rules/backwardjumpdifficulties.png',
-                      alt: '後方系の跳躍技の難度表',
+                      src: "/image/rules/backwardjumpdifficulties.png",
+                      alt: "後方系の跳躍技の難度表",
                     },
                     {
-                      src: '/image/rules/combinationdifficulties.png',
-                      alt: '宙返りの連続の難度表',
+                      src: "/image/rules/combinationdifficulties.png",
+                      alt: "宙返りの連続の難度表",
                     },
                     {
-                      src: '/image/rules/combinationdifficulties2.png',
-                      alt: '転回系の連続の難度表',
+                      src: "/image/rules/combinationdifficulties2.png",
+                      alt: "転回系の連続の難度表",
                     },
                   ],
                 } as Block,
@@ -2019,7 +2019,7 @@ e. チーム全体が元気よく楽しく演技できたか。
                 } as Block,
                 {
                   title: "リング（輪）の技術",
-                  element:　`【諸要素群】
+                  element: `【諸要素群】
 1. 基礎要素群
   a. まわし（手・身体）
   b. ころがし
@@ -2125,7 +2125,7 @@ e. チーム全体が元気よく楽しく演技できたか。
               block: [
                 {
                   title: "ロープ（縄）の規格",
-                  element:　`1. 素材
+                  element: `1. 素材
 麻製または合成繊維。ただし、合成繊維の場合は麻製のように軽くしなやかなものとする。
 
 2. 重量
@@ -2253,7 +2253,7 @@ e. チーム全体が元気よく楽しく演技できたか。
                 } as Block,
                 {
                   title: "クラブ（棍）の技術",
-                  element:　`【各要素群】
+                  element: `【各要素群】
 1. 基礎要素群
   a. プロペラ回旋（風車）
   b. ころがし
