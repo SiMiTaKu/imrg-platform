@@ -1,26 +1,9 @@
-<script lang="ts">
-  import RootPC from "../../web/judge/RootPC.svelte";
-  import RootSP from "../../web/judge/RootSP.svelte";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../ts/common/responsive-design";
-
-  let screenWidth;
+<script lang="ts" context="module">
+  import Root from "../../web/judge/Root.svelte";
 </script>
 
 <svelte:head>
-  <title>男子新体操国際化プロジェクト</title>
+  <title>採点アプリ（実施）｜男子新体操国際化プロジェクト</title>
 </svelte:head>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
-{#if getResponsiveDesign(screenWidth) === designOfPC}
-  <RootPC />
-{:else if getResponsiveDesign(screenWidth) === designOfSP}
-  <RootSP />
-{/if}
-
-<style lang="scss">
-</style>
+<Root />
