@@ -1,33 +1,32 @@
 <script lang="ts" context="module">
-  import Image from "../../view/atomic/image/Image.svelte";
+  import Image from "../../atomic/image/Image.svelte";
+
   const MAIN_IMAGE = {
     src: "image/common/imrg-logo.png",
-    alt: "男子新体操国際化プロジェクト",
+    alt: "男子新体操国際化プロジェクトロゴ",
   };
 </script>
 
 <section id="site-top">
-  <Image
-    width="100%"
-    image={MAIN_IMAGE}
-    isLazy={false}
-  />
-
-  <div class="description-activities">
-    <div class="description-activities__sub-title">
+  <div class="main-visual">
+    <div class="main-visual__image">
+      <Image height="100%" image={MAIN_IMAGE} isLazy={false} />
+    </div>
+    <div class="main-visual__title">
       日本の文化を<br />
       世界のスポーツへ
     </div>
+  </div>
+  <div class="description-activities">
     <h1 class="description-activities__title">
       『男子新体操国際化プロジェクト』
     </h1>
-    とは、
+    とは、<br />
     <span class="description-activities__important-word">男子新体操</span>を
     <span class="description-activities__important-word"
       >オリンピックスポーツ</span
-    >にしたいという想いで、 その<span
-      class="description-activities__important-word">魅力</span
-    >を
+    >にしたいという想いで、<br />
+    その<span class="description-activities__important-word">魅力</span>を
     <span class="description-activities__important-word">全世界</span
     >へ発信するための活動です。
   </div>
@@ -47,51 +46,73 @@
 
 <style lang="scss">
   #site-top {
-    .description-activities {
-      font-size: 12px;
-      font-weight: normal;
-      margin: 0 0 40px;
-      padding: 0 16px;
+    width: 1024px;
+    margin: 0 auto;
 
-      &__sub-title {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        margin: 16px 0 32px;
+    .main-visual {
+      position: relative;
+      width: 1024px;
+      height: 500px;
+      margin-bottom: 80px;
+
+      &__image {
+        position: absolute;
+        right: -50px;
+        height: 100%;
       }
 
       &__title {
+        position: relative;
+        display: inline-block;
+        top: 200px;
+        padding: 24px;
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 64px;
+        color: #777777;
+      }
+    }
+
+    .description-activities {
+      font-size: 20px;
+      width: 700px;
+      margin: 0 auto 80px;
+      line-height: 48px;
+      text-align: center;
+
+      &__title {
         display: inline;
-        font-size: 16px;
+        font-size: 24px;
         font-weight: bold;
       }
 
       &__important-word {
-        font-size: 14px;
+        font-size: 24px;
         font-weight: bold;
       }
     }
 
     .application-link {
-      padding: 0 16px;
-
       &__item {
-        border-bottom: 1px solid #aaaaaa;
+        display: inline-block;
+        width: 49%;
+        height: 64px;
+        font-size: 20px;
+        line-height: 64px;
         text-align: center;
 
-        &:first-child {
-          border-top: 1px solid #aaaaaa;
+        &:not(:last-child) {
+          border-right: solid 4px #777777;
         }
       }
 
       &__route {
-        color: inherit;
+        color: #333333;
         text-decoration: none;
-      }
 
-      &__text {
-        display: block;
-        padding: 16px 0;
+        &:hover {
+          opacity: 0.7;
+        }
       }
     }
   }

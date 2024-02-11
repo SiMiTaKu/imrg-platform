@@ -1,6 +1,15 @@
+<script lang="ts" context="module">
+  import Radio from "./_component/RadioPC.svelte";
+  import ExecutionPointResultModalPC from "./_component/ExecutionPointResultModalPC.svelte";
+  import ExecutionPointResultModalSP from "./_component/ExecutionPointResultModalSP.svelte";
+  import {
+    getResponsiveDesign,
+    designOfPC,
+    designOfSP,
+  } from "../../../ts/common/responsive-design";
+</script>
+
 <script lang="ts">
-  import Radio from "./_component/RadioSP.svelte";
-  import ExecutionPointResultModal from "./_component/ExecutionPointResultModalSP.svelte";
   import { executionDeduct } from "./store/store";
   import { deductionOptions } from "./_service/model";
   import { fly } from "svelte/transition";
@@ -11,17 +20,25 @@
   function submit() {
     submitted = true;
   }
+
+  let screenWidth;
 </script>
 
-<section id="judgement-form-section">
+<svelte:window bind:outerWidth={screenWidth} />
+
+<section
+  class="judgement-form"
+  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
+  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+>
   <div class="form-container">
     <!--    @todo AとBをぱーつとしてHTMLを分ける。-->
     {#if $executionDeduct.pointA.beautifulPose.value === undefined || $executionDeduct.pointA.flexibility.value === undefined || $executionDeduct.pointA.naturalMovement.value === undefined || $executionDeduct.pointA.bendingWeight.value === undefined || $executionDeduct.pointA.jumpingHeight.value === undefined || $executionDeduct.pointA.bodyControl.value === undefined || $executionDeduct.pointA.heelRaise.value === undefined || $executionDeduct.pointA.weaknessAndStrength.value === undefined || $executionDeduct.pointA.connectMovement.value === undefined || $executionDeduct.pointA.apparatusControl.value === undefined || $executionDeduct.pointA.musicImage.value === undefined}
       <!-- Aの最後の回答がされるまで表示 -->
       <div
         class="form-container__radio-area"
-        in:fly={{ y: 200, delay: 600 }}
-        out:fly={{ y: -200, delay: 200 }}
+        in:fly={{ x: 200, delay: 600 }}
+        out:fly={{ x: -200, delay: 200 }}
       >
         <h2>Aの減点項目</h2>
         <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
@@ -110,8 +127,8 @@
     {#if $executionDeduct.pointA.beautifulPose.value !== undefined && $executionDeduct.pointA.flexibility.value !== undefined && $executionDeduct.pointA.naturalMovement.value !== undefined && $executionDeduct.pointA.bendingWeight.value !== undefined && $executionDeduct.pointA.jumpingHeight.value !== undefined && $executionDeduct.pointA.bodyControl.value !== undefined && $executionDeduct.pointA.heelRaise.value !== undefined && $executionDeduct.pointA.weaknessAndStrength.value !== undefined && $executionDeduct.pointA.connectMovement.value !== undefined && $executionDeduct.pointA.apparatusControl.value !== undefined && $executionDeduct.pointA.musicImage.value !== undefined}
       <div
         class="form-container__miss-point-area"
-        in:fly={{ y: 200, delay: 600 }}
-        out:fly={{ y: -200, delay: 200 }}
+        in:fly={{ x: 200, delay: 600 }}
+        out:fly={{ x: -200, delay: 200 }}
       >
         <h2>B</h2>
         <h3>手具を落とした回数</h3>
@@ -154,17 +171,31 @@
         </div>
       </div>
     {/if}
-    <ExecutionPointResultModal show={submitted} />
+    {#if getResponsiveDesign(screenWidth) === designOfPC}
+      <ExecutionPointResultModalPC show={submitted} />
+    {:else}
+      <ExecutionPointResultModalSP show={submitted} />
+    {/if}
   </div>
 </section>
 
 <style lang="scss">
-  #judgement-form-section {
+  .pc {
+    --container-width: 720px;
+    --container-padding: 40px;
+  }
+
+  .sp {
+    --container-width: 83%;
+    --container-padding: 24px;
+  }
+
+  .judgement-form {
     background: #dcecec;
 
     .form-container {
-      width: 83%;
-      padding: 5%;
+      width: var(--container-width);
+      padding: var(--container-padding);
       margin: 0 auto;
       background: white;
       border-radius: 8px;
