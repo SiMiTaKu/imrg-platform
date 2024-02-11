@@ -1,17 +1,15 @@
-<script lang="ts"></script>
-
-<footer id="global-footer">
-  <div class="footer-content">
+<footer class="footer">
+  <div class="content">
     ©︎ Internationalize Men's Rhythmic Gymnastics Project 2020-2023
   </div>
 </footer>
 
 <style>
-  #global-footer {
+  .footer {
     background: #666666;
   }
 
-  .footer-content {
+  .content {
     color: white;
     font-size: 12px;
     text-align: center;

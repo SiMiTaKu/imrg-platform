@@ -7,11 +7,7 @@
 </script>
 
 <section id="site-top">
-  <Image
-    width="100%"
-    image={MAIN_IMAGE}
-    isLazy={false}
-  />
+  <Image width="100%" image={MAIN_IMAGE} isLazy={false} />
 
   <div class="description-activities">
     <div class="description-activities__sub-title">

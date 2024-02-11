@@ -3,18 +3,14 @@
 
   const MAIN_IMAGE = {
     src: "image/common/imrg-logo.png",
-    alt: "男子新体操国際化プロジェクト",
+    alt: "男子新体操国際化プロジェクトロゴ",
   };
 </script>
 
 <section id="site-top">
   <div class="main-visual">
     <div class="main-visual__image">
-      <Image
-        height="100%"
-        image={MAIN_IMAGE}
-        isLazy={false}
-      />
+      <Image height="100%" image={MAIN_IMAGE} isLazy={false} />
     </div>
     <div class="main-visual__title">
       日本の文化を<br />
