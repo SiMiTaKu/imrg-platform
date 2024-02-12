@@ -1,15 +1,11 @@
 <script lang="ts" context="module">
-  import Image from "../atomic/image/Image.svelte";
+  import ImageAssets from "../atomic/image/ImageAssets.svelte";
+  import MainImage from "../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP,
   } from "../../ts/common/responsive-design";
-
-  const MAIN_IMAGE = {
-    src: "image/common/imrg-logo.png",
-    alt: "男子新体操国際化プロジェクトロゴ",
-  };
 </script>
 
 <script lang="ts">
@@ -25,7 +21,13 @@
 >
   <div class="content">
     <div class="content__image">
-      <Image height="100%" image={MAIN_IMAGE} isLazy={false} />
+      <ImageAssets
+        srcMeta={MainImage}
+        width="100%"
+        height="100%"
+        lazy={true}
+        alt="男子新体操国際化プロジェクトロゴ"
+      />
     </div>
     <div class="content__title">
       <span class="content__title--main">男子新体操国際化プロジェクト</span>
@@ -72,7 +74,8 @@
 
     &__image {
       position: absolute;
-      height: 100%;
+      top: -25%;
+      height: 160%;
       opacity: 0.1;
     }
 

@@ -1,21 +1,39 @@
 <script lang="ts" context="module">
-  import Image from "../../atomic/image/Image.svelte";
-
-  const MAIN_IMAGE = {
-    src: "image/common/imrg-logo.png",
-    alt: "男子新体操国際化プロジェクトロゴ",
-  };
+  import ImageAssets from "../../atomic/image/ImageAssets.svelte";
+  import MainImage from "../../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
 </script>
 
-<section id="site-top">
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { fly, fade } from "svelte/transition";
+
+  let isShowMainVisual = false;
+
+  onMount(() => {
+    isShowMainVisual = true;
+  });
+</script>
+
+<section class="site-top">
   <div class="main-visual">
-    <div class="main-visual__image">
-      <Image height="100%" image={MAIN_IMAGE} isLazy={false} />
-    </div>
-    <div class="main-visual__title">
-      日本の文化を<br />
-      世界のスポーツへ
-    </div>
+    {#if isShowMainVisual}
+      <div class="main-visual__image" transition:fade={{ duration: 1000 }}>
+        <ImageAssets
+          srcMeta={MainImage}
+          width="100%"
+          height="100%"
+          lazy={true}
+          alt="男子新体操国際化プロジェクトロゴ"
+        />
+      </div>
+      <div
+        class="main-visual__title"
+        transition:fly={{ y: 56, delay: 500, duration: 1000 }}
+      >
+        日本の文化を<br />
+        世界のスポーツへ
+      </div>
+    {/if}
   </div>
   <div class="description-activities">
     <h1 class="description-activities__title">
@@ -45,31 +63,35 @@
 </section>
 
 <style lang="scss">
-  #site-top {
+  .site-top {
     width: 1024px;
     margin: 0 auto;
 
     .main-visual {
       position: relative;
       width: 1024px;
-      height: 500px;
+      height: 536px;
       margin-bottom: 80px;
+      overflow: hidden;
 
       &__image {
         position: absolute;
-        right: -50px;
-        height: 100%;
+        width: 840px;
+        margin-top: -160px;
+        object-fit: cover;
+        z-index: 0;
       }
 
       &__title {
-        position: relative;
-        display: inline-block;
+        position: absolute;
         top: 200px;
-        padding: 24px;
+        right: 0;
+        padding: 24px 56px;
         font-size: 36px;
         font-weight: bold;
         line-height: 64px;
-        color: #777777;
+        background-color: #777777dd;
+        color: white;
       }
     }
 
