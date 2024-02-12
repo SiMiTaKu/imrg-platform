@@ -1,15 +1,11 @@
 <script lang="ts" context="module">
-  import Image from "../atomic/image/Image.svelte";
+  import ImageAssets from "../atomic/image/ImageAssets.svelte";
+  import MainImage from "../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP,
   } from "../../ts/common/responsive-design";
-
-  const MAIN_IMAGE = {
-    src: "image/common/imrg-logo.png",
-    alt: "男子新体操国際化プロジェクトロゴ",
-  };
 </script>
 
 <script lang="ts">
@@ -25,7 +21,13 @@
 >
   <div class="content">
     <div class="content__image">
-      <Image height="100%" image={MAIN_IMAGE} isLazy={false} />
+      <ImageAssets
+        srcMeta={MainImage}
+        width="100%"
+        height="100%"
+        lazy={false}
+        alt="男子新体操国際化プロジェクトロゴ"
+      />
     </div>
     <div class="content__title">
       <span class="content__title--main">男子新体操国際化プロジェクト</span>
@@ -39,6 +41,7 @@
 <style lang="scss">
   .pc {
     --height: 80px;
+    --image-size: 128px;
     --content-width: 1024px;
     --title-margin-top: 8px;
     --main-font-size: 30px;
@@ -47,6 +50,7 @@
 
   .sp {
     --height: 64px;
+    --image-size: 102px;
     --content-width: 90%;
     --title-margin-top: 10px;
     --main-font-size: 22px;
@@ -66,14 +70,18 @@
   }
 
   .content {
+    position: relative;
     width: var(--content-width);
     height: 100%;
     margin: 0 auto;
 
     &__image {
       position: absolute;
-      height: 100%;
+      top: -25%;
+      width: var(--image-size);
+      height: var(--image-size);
       opacity: 0.1;
+      object-fit: cover;
     }
 
     &__title {
