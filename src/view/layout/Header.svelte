@@ -25,7 +25,7 @@
         srcMeta={MainImage}
         width="100%"
         height="100%"
-        lazy={true}
+        lazy={false}
         alt="男子新体操国際化プロジェクトロゴ"
       />
     </div>
