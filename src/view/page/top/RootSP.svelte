@@ -88,7 +88,7 @@
 
   .label {
     position: absolute;
-    top: 96px;
+    top: 104px;
     right: 0;
     padding: 10px 22px;
     font-size: 18px;

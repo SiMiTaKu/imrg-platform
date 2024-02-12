@@ -4,16 +4,15 @@
     src: string;
     width: number;
   };
+  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
 </script>
 
 <script lang="ts">
   export let srcMeta: SrcMeta[];
-  export let lazy: boolean = true;
+  export let lazy: boolean;
   export let width: string;
   export let height: string = "auto";
-  export let opacity: number = 1;
   export let alt: string;
-  export let shadow: string | undefined = undefined;
 
   /** formatのデフォルト値 */
   const imgFormats = ["webp",
@@ -35,6 +34,8 @@
       )
       .join(", ");
   }
+
+  const fadeInImage = lazy ? toggleImageOpacityOnInterSection : () => {};
 </script>
 
 <img
@@ -42,7 +43,6 @@
   loading={lazy ? "lazy" : "eager"}
   src={getSrc()}
   srcset={getSrcSet()}
-  style="width: {width}; height: {height}; opacity: {opacity}; {shadow
-    ? shadow
-    : undefined}"
+  style="width: {width}; height: {height};"
+  use:fadeInImage
 />
