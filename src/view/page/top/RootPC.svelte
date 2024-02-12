@@ -76,8 +76,9 @@
 
       &__image {
         position: absolute;
-        width: 840px;
-        margin-top: -160px;
+        width: 856px;
+        left: -40px;
+        top: -160px;
         object-fit: cover;
         z-index: 0;
       }
