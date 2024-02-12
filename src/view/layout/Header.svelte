@@ -41,6 +41,7 @@
 <style lang="scss">
   .pc {
     --height: 80px;
+    --image-size: 128px;
     --content-width: 1024px;
     --title-margin-top: 8px;
     --main-font-size: 30px;
@@ -49,6 +50,7 @@
 
   .sp {
     --height: 64px;
+    --image-size: 102px;
     --content-width: 90%;
     --title-margin-top: 10px;
     --main-font-size: 22px;
@@ -68,6 +70,7 @@
   }
 
   .content {
+    position: relative;
     width: var(--content-width);
     height: 100%;
     margin: 0 auto;
@@ -75,8 +78,10 @@
     &__image {
       position: absolute;
       top: -25%;
-      height: 160%;
+      width: var(--image-size);
+      height: var(--image-size);
       opacity: 0.1;
+      object-fit: cover;
     }
 
     &__title {
