@@ -20,8 +20,6 @@
       <div class="image" in:fade={{ duration: 1000 }}>
         <ImageAssets
           srcMeta={MainImage}
-          width="100%"
-          height="100%"
           lazy={false}
           alt="男子新体操国際化プロジェクトロゴ"
         />
