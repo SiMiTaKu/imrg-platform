@@ -17,7 +17,7 @@
 <section class="main-visual">
   <div class="first-view">
     {#if isShowMainVisual}
-      <div class="image" transition:fade={{ duration: 1000 }}>
+      <div class="image" in:fade={{ duration: 1000 }}>
         <ImageAssets
           srcMeta={MainImage}
           width="100%"
@@ -26,7 +26,7 @@
           alt="男子新体操国際化プロジェクトロゴ"
         />
       </div>
-      <div class="label" transition:fly={{ y: 32, delay: 500, duration: 1000 }}>
+      <div class="label" in:fly={{ y: 32, delay: 500, duration: 1000 }}>
         日本の文化を<br />
         世界のスポーツへ
       </div>
