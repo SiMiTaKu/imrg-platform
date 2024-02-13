@@ -42,7 +42,7 @@ export const SNS: Sns[] = [
   },
   {
     name: "TikTok",
-    href: "https://www.tiktok.com/@internationalizemrg?lang=ja-JP",
+    href: "https://www.tiktok.com/@takumishimizu43?lang=ja-JP",
     icon: {
       srcMeta: TiktokIcon,
       alt: "TikTokアイコン",
