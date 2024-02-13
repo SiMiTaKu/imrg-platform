@@ -17,18 +17,16 @@
 <section class="site-top">
   <div class="main-visual">
     {#if isShowMainVisual}
-      <div class="main-visual__image" transition:fade={{ duration: 1000 }}>
+      <div class="main-visual__image" in:fade={{ duration: 1000 }}>
         <ImageAssets
           srcMeta={MainImage}
-          width="100%"
-          height="100%"
           lazy={false}
           alt="男子新体操国際化プロジェクトロゴ"
         />
       </div>
       <div
         class="main-visual__title"
-        transition:fly={{ y: 56, delay: 500, duration: 1000 }}
+        in:fly={{ y: 56, delay: 500, duration: 1000 }}
       >
         日本の文化を<br />
         世界のスポーツへ

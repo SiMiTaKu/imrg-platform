@@ -1,17 +1,17 @@
 <script lang="ts" context="module">
+  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
   export type SrcMeta = {
     format: string;
     src: string;
     width: number;
   };
-  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
 </script>
 
 <script lang="ts">
   export let srcMeta: SrcMeta[];
   export let lazy: boolean;
-  export let width: string;
-  export let height: string = "auto";
+  export let width: string = "100%";
+  export let height: string = "100%";
   export let alt: string;
 
   /** formatのデフォルト値 */
