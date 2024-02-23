@@ -5,7 +5,9 @@
   import Contact from "./_component/Contact.svelte";
 </script>
 
-<MainVisual />
-<WorkList />
-<Price />
-<Contact />
+<article>
+  <MainVisual />
+  <WorkList />
+  <Price />
+  <Contact />
+</article>

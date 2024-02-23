@@ -14,29 +14,33 @@
 
 <svelte:window bind:outerWidth={screenWidth} />
 
-<header
-  class="header"
+<div
   class:pc={getResponsiveDesign(screenWidth) === designOfPC}
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
-  <div class="content">
-    <div class="content__image">
-      <ImageAssets
-        srcMeta={MainImage}
-        width="100%"
-        height="100%"
-        lazy={false}
-        alt="男子新体操国際化プロジェクトロゴ"
-      />
+  <header class="header-background" />
+  <header class="header-main">
+    <div class="content">
+      <a class="header-link" href="/">
+        <div class="content__image">
+          <ImageAssets
+            srcMeta={MainImage}
+            width="100%"
+            height="100%"
+            lazy={false}
+            alt="男子新体操国際化プロジェクトロゴ"
+          />
+        </div>
+        <div class="content__title">
+          <span class="content__title--main">男子新体操国際化プロジェクト</span>
+          <span class="content__title--sub"
+            >Internationalize Men's Rhythmic Gymnastics</span
+          >
+        </div>
+      </a>
     </div>
-    <div class="content__title">
-      <span class="content__title--main">男子新体操国際化プロジェクト</span>
-      <span class="content__title--sub"
-        >Internationalize Men's Rhythmic Gymnastics</span
-      >
-    </div>
-  </div>
-</header>
+  </header>
+</div>
 
 <style lang="scss">
   .pc {
@@ -57,16 +61,30 @@
     --sub-font-size: 11px;
   }
 
-  .header {
+  .header-background {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: var(--height);
+    background: white;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0.8;
+  }
+
+  .header-main {
     position: fixed;
     display: flex;
     align-items: center;
     top: 0;
     width: 100vw;
     height: var(--height);
-    background: white;
-    box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    overflow: hidden;
+  }
+
+  .header-link {
+    text-decoration: none;
   }
 
   .content {
