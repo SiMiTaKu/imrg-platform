@@ -1,10 +1,6 @@
 <script lang="ts" context="module">
   import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
-  export type SrcMeta = {
-    format: string;
-    src: string;
-    width: number;
-  };
+  import type { SrcMeta } from "./type";
 </script>
 
 <script lang="ts">
