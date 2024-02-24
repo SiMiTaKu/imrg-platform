@@ -77,6 +77,7 @@
     width: var(--width);
     margin: 0 auto;
     padding: 0 0 80px;
+    overflow: hidden;
   }
 
   .title {
