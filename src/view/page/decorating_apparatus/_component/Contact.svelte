@@ -49,7 +49,7 @@
   </a>
 </section>
 
-<style>
+<style lang="scss">
   .pc {
     --width: 1024px;
     --title-font-size: 40px;
@@ -126,14 +126,20 @@
   .tap-icon {
     position: absolute;
     bottom: -40px;
-    right: -40px;
+    right: -30px;
+    width: 80px;
     height: 80px;
     transition: 1s;
+
+    :global(img) {
+      object-fit: cover;
+    }
   }
 
   .big-icon {
     bottom: -55px;
-    right: -60px;
+    right: -50px;
+    width: 110px;
     height: 110px;
   }
 </style>
