@@ -59,6 +59,7 @@
   }
 
   .contents-footer {
+    padding: 40px 0;
     background-color: #eeeeee;
   }
 

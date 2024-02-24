@@ -10,14 +10,14 @@ describe('test getResponsiveDesign', () => {
     [
       'widthの値が400以下の場合：SPのデザインが返る',
       {
-        width: 400,
+        width: 500,
         expect: designOfSP,
       },
     ],
     [
       'widthの値が400より大きい場合：PCのデザインが返る',
       {
-        width: 401,
+        width: 501,
         expect: designOfPC,
       },
     ]
