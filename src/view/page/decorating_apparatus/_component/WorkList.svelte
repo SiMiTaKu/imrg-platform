@@ -33,7 +33,6 @@
 <style lang="scss">
   .pc {
     --width: 1024px;
-    --title-margin: 0 0 40px;
     --title-font-size: 40px;
     --english-title-font-size: 20px;
     --item-size: calc((var(--width) - 16px * 2) / 3);
@@ -41,7 +40,6 @@
 
   .sp {
     --width: 90%;
-    --title-margin: 0 0 40px;
     --title-font-size: 30px;
     --english-title-font-size: 16px;
     --item-size: 350px;
@@ -56,11 +54,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: var(--title-margin);
+    margin: 0 0 40px;
     font-size: var(--title-font-size);
     line-height: var(--title-font-size);
     color: #333333;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
   }
 
   .english-title {

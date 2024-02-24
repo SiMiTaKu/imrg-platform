@@ -43,7 +43,8 @@
   let screenWidth: number;
   let currentIndex = Math.floor(Math.random() * 5);
   let currentVisual = MAIN_VISUALS[currentIndex];
-  let isShow = true;
+  let isShow = false;
+  let initialized = false;
   let isMobile = getResponsiveDesign(screenWidth) === designOfSP;
   let flyInProps = isMobile
     ? { duration: 1000, y: 50 }
@@ -53,6 +54,8 @@
     : { duration: 1000, x: -100 };
 
   onMount(() => {
+    isShow = true;
+    initialized = true;
     setInterval(() => {
       changeImage();
     }, 5000);
@@ -91,8 +94,17 @@
   {/if}
   <div class="content-wrapper">
     <div class="content">
-      <h1 class="title">手具装飾</h1>
-      <div class="english-title">Decorating Apparatus</div>
+      {#if initialized}
+        <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>
+          手具装飾
+        </h1>
+        <div
+          class="english-title"
+          in:fly={{ duration: 1000, delay: 600, y: 50 }}
+        >
+          Decorating Apparatus
+        </div>
+      {/if}
       {#if isShow}
         <div class="description" in:fly={flyInProps} out:fly={flyOutProps}>
           {currentVisual.description}
@@ -167,6 +179,7 @@
   }
 
   .title {
+    display: inline-block;
     font-size: var(--title-font-size);
     font-weight: bold;
     line-height: var(--title-font-size);
