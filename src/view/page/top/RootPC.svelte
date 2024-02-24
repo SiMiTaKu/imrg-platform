@@ -47,16 +47,9 @@
     >へ発信するための活動です。
   </div>
   <div class="application-link">
-    <div class="application-link__item">
-      <a class="application-link__route" href="/judge">
-        <span class="application-link__text">審判を体験したい</span>
-      </a>
-    </div>
-    <div class="application-link__item">
-      <a class="application-link__route" href="/rules">
-        <span class="application-link__text">ルールが知りたい</span>
-      </a>
-    </div>
+    <a class="item" href="/decorating_apparatus">手具装飾を依頼する</a>
+    <a class="item" href="/judge">審判を体験する</a>
+    <a class="item" href="/rules">ルールを知る</a>
   </div>
 </section>
 
@@ -114,26 +107,27 @@
     }
 
     .application-link {
-      &__item {
-        display: inline-block;
-        width: 49%;
-        height: 64px;
-        font-size: 20px;
-        line-height: 64px;
-        text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 16px;
+      width: 100%;
 
-        &:not(:last-child) {
-          border-right: solid 4px #777777;
-        }
-      }
-
-      &__route {
-        color: #333333;
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc((100% - 16px * 2) / 3);
+        height: 56px;
         text-decoration: none;
-
-        &:hover {
-          opacity: 0.7;
-        }
+        font-size: 24px;
+        font-weight: bold;
+        color: #333333;
+        text-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
+        border-radius: 8px;
+        background-color: white;
+        border: 2px solid #333333;
+        box-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
       }
     }
   }

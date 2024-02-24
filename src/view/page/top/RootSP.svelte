@@ -45,16 +45,9 @@
     >へ発信するための活動です。
   </div>
   <div class="application-link">
-    <div class="application-link__item">
-      <a class="application-link__route" href="/judge">
-        <span class="application-link__text">審判を体験したい</span>
-      </a>
-    </div>
-    <div class="application-link__item">
-      <a class="application-link__route" href="/rules">
-        <span class="application-link__text">ルールが知りたい</span>
-      </a>
-    </div>
+    <a class="item" href="/decorating_apparatus">手具装飾を依頼する</a>
+    <a class="item" href="/judge">審判を体験する</a>
+    <a class="item" href="/rules">ルールを知る</a>
   </div>
 </section>
 
@@ -65,7 +58,7 @@
     align-items: center;
     width: 90vw;
     margin: 0 auto;
-    padding-top: 0;
+    padding: 24px 0 64px;
   }
 
   .first-view {
@@ -89,7 +82,7 @@
     top: 104px;
     right: 0;
     padding: 10px 22px;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     line-height: 32px;
     background-color: #777777dd;
@@ -97,42 +90,44 @@
   }
 
   .description-activities {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: normal;
-    margin-bottom: 24px;
+    margin-bottom: 56px;
 
     &__title {
       display: inline;
-      font-size: 16px;
+      font-size: 24px;
       font-weight: bold;
     }
 
     &__important-word {
-      font-size: 14px;
+      font-size: 22px;
       font-weight: bold;
     }
   }
 
   .application-link {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
     width: 100%;
 
-    &__item {
-      border-bottom: 1px solid #aaaaaa;
-      text-align: center;
-
-      &:first-child {
-        border-top: 1px solid #aaaaaa;
-      }
-    }
-
-    &__route {
-      color: inherit;
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 320px;
+      height: 56px;
       text-decoration: none;
-    }
-
-    &__text {
-      display: block;
-      padding: 16px 0;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333333;
+      text-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
+      border-radius: 8px;
+      background-color: white;
+      border: 2px solid #333333;
+      box-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
     }
   }
 </style>
