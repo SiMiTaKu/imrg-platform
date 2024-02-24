@@ -92,7 +92,7 @@
     --item-width: calc(100% - 24px);
     --item-padding: 8px 8px 8px 16px;
     --item-label-width: 36%;
-    --item-label-font-size: 20px;
+    --item-label-font-size: 18px;
     --item-label-after-width: 2px;
     --item-label-after-height: 30px;
     --item-label-after-top: 50%;
