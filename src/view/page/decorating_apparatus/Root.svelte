@@ -2,7 +2,6 @@
   import MainVisual from "./_component/MainVisual.svelte";
   import WorkList from "./_component/WorkList.svelte";
   import Summary from "./_component/Summary.svelte";
-  import Price from "./_component/Price.svelte";
   import Contact from "./_component/Contact.svelte";
 </script>
 
@@ -10,6 +9,5 @@
   <MainVisual />
   <WorkList />
   <Summary />
-  <Price />
   <Contact />
 </article>
