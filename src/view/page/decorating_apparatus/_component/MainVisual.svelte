@@ -128,18 +128,18 @@
   .sp {
     --width: 90%;
     --min-height: 450px;
-    --content-margin: 200px auto 0;
+    --content-margin: 180px auto 0;
     --title-font-size: 48px;
     --english-title-font-size: 22px;
-    --english-margin-bottom: 100px;
-    --description-font-size: 36px;
+    --english-margin-bottom: 80px;
+    --description-font-size: 32px;
   }
 
   .main-visual {
     position: relative;
     padding: 0;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100dvh - 80px);
     min-height: var(--min-height);
 
     &:after {
@@ -147,7 +147,7 @@
       top: 0;
       left: 0;
       content: "";
-      height: calc(100vh - 80px);
+      height: calc(100dvh - 80px);
       width: 75%;
       background: linear-gradient(to right, #000, transparent);
       opacity: 0.3;
@@ -190,7 +190,7 @@
   .english-title {
     font-size: var(--english-title-font-size);
     margin-bottom: var(--english-margin-bottom);
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   }
 
