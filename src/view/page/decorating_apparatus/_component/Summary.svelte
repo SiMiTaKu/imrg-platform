@@ -30,6 +30,8 @@
 </script>
 
 <script lang="ts">
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
+
   let screenWidth;
 </script>
 
@@ -43,9 +45,7 @@
   <div class="message">
     あなたの要望に合わせた<br />世界に一つだけの装飾をいたします!!
   </div>
-  <h2 class="title">
-    装飾の流れ<span class="english-title">Decorating Flow</span>
-  </h2>
+  <WithEnglishHeading title="装飾の流れ" englishTitle="Decorating Flow" />
   <ul class="flow">
     {#each FLOW as flow, index}
       <li class="item">

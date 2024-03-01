@@ -6,10 +6,63 @@
     designOfPC,
     designOfSP,
   } from "../../../../ts/common/responsive-design";
+  const MAIN_VISUALS = [
+    {
+      description: "大好きな曲を、自然な演技時間に短縮！",
+    },
+    {
+      description: "最適な編曲で、最高の演技体験を！",
+    },
+    {
+      description: "音楽の魔法で、あなたの演技を引き立てます！",
+    },
+    {
+      description: "No Music, No Life. \nあなたの演技に音楽を添えて！",
+    },
+    {
+      description: "豊かな音色があなたの演技の魅力を加速させる！",
+    },
+  ];
 </script>
 
 <script lang="ts">
+  import { onMount } from "svelte";
+  import { fade, fly } from "svelte/transition";
+
   let screenWidth: number;
+  let currentIndex = Math.floor(Math.random() * 5);
+  let currentVisual = MAIN_VISUALS[currentIndex];
+  let isShow = false;
+  let initialized = false;
+  let isMobile = getResponsiveDesign(screenWidth) === designOfSP;
+  let flyInProps = isMobile
+    ? { duration: 1000, y: 50 }
+    : { duration: 1000, x: 100 };
+  let flyOutProps = isMobile
+    ? { duration: 1000, y: -50 }
+    : { duration: 1000, x: -100 };
+
+  onMount(() => {
+    isShow = true;
+    initialized = true;
+    setInterval(() => {
+      changeVisuals();
+    }, 5000);
+  });
+
+  function changeVisuals() {
+    isShow = false;
+    setTimeout(() => {
+      isShow = true;
+    }, 1250);
+
+    if (currentIndex === MAIN_VISUALS.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex++;
+    }
+    currentVisual = MAIN_VISUALS[currentIndex];
+  }
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
@@ -24,8 +77,19 @@
   </div>
   <div class="content-wrapper">
     <div class="content">
-      <h1 class="title">曲編集</h1>
-      <div class="english-title">Background Music Editing</div>
+      {#if initialized}
+        <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>
+          曲編集
+        </h1>
+        <div class="english-title" in:fly={{ duration: 1000, delay: 600, y: 50 }}>
+          Background Music Editing
+        </div>
+      {/if}
+      {#if isShow}
+        <div class="description" in:fly={flyInProps} out:fly={flyOutProps}>
+          {currentVisual.description}
+        </div>
+      {/if}
     </div>
   </div>
 </section>
@@ -108,5 +172,12 @@
     margin-bottom: var(--english-margin-bottom);
     letter-spacing: 0.25em;
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .description {
+    font-size: var(--description-font-size);
+    font-weight: bold;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    white-space: pre-line;
   }
 </style>

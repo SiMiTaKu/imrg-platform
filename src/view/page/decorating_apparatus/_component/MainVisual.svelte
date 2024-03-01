@@ -57,11 +57,11 @@
     isShow = true;
     initialized = true;
     setInterval(() => {
-      changeImage();
+      changeVisuals();
     }, 5000);
   });
 
-  function changeImage() {
+  function changeVisuals() {
     isShow = false;
     setTimeout(() => {
       isShow = true;

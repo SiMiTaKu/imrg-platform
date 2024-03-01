@@ -1,15 +1,14 @@
 <script lang="ts" context="module">
-  import TapIcon from "./_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta";
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP,
-  } from "../../../../ts/common/responsive-design";
+  } from "../../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
   import { onMount } from "svelte";
+  import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte";
 
   let screenWidth;
 
@@ -29,7 +28,7 @@
   class:pc={getResponsiveDesign(screenWidth) === designOfPC}
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
-  <h2 class="title">お問合せ先<span class="english-title">Contact</span></h2>
+  <WithEnglishHeading title="問合わせ先" englishTitle="Contact" />
   <a
     href="https://www.instagram.com/takumi.rg/"
     class="content"
@@ -41,9 +40,7 @@
       お気軽にお問い合わせください。
       <div class="button">
         問い合わせる
-        <div class="tap-icon" class:big-icon={bigIcon}>
-          <ImageAssets srcMeta={TapIcon} lazy={true} alt="タップアイコン" />
-        </div>
+        <div class="tap-icon" class:big-icon={bigIcon}></div>
       </div>
     </div>
   </a>

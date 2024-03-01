@@ -7,6 +7,8 @@
 </script>
 
 <script lang="ts">
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
+
   let screenWidth;
 </script>
 
@@ -17,7 +19,7 @@
   class:pc={getResponsiveDesign(screenWidth) === designOfPC}
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
-  <h2 class="title">過去の作品<span class="english-title">Work List</span></h2>
+  <WithEnglishHeading title="過去の実績" englishTitle="Work List" />
 </section>
 
 <style lang="scss">
