@@ -8,6 +8,7 @@
 
 <script lang="ts">
   import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
+  import { WORK_LIST } from "./_data/work-list";
 
   let screenWidth;
 </script>
