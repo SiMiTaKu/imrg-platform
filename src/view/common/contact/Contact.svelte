@@ -9,6 +9,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte";
+  import ImageAssets from "../../atomic/image/ImageAssets.svelte";
+  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta";
 
   let screenWidth;
 
@@ -40,7 +42,13 @@
       お気軽にお問い合わせください。
       <div class="button">
         問い合わせる
-        <div class="tap-icon" class:big-icon={bigIcon}></div>
+        <div class="tap-icon" class:big-icon={bigIcon}>
+          <ImageAssets
+            srcMeta={TapIcon}
+            alt="タップアイコン"
+            lazy={true}
+          />
+        </div>
       </div>
     </div>
   </a>
