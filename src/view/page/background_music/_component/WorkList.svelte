@@ -28,7 +28,12 @@
   <ul class="cards">
     {#each WORK_LIST as work}
       <li class="card">
-        <a class="link" href={work.youtube} target="_blank">
+        <a
+          class="link"
+          href={work.youtube}
+          target="_blank"
+          on:click={() => (tapped = true)}
+        >
           <span class="name">{work.customerName}</span>
           <span class="apparatus">{work.apparatus}</span>
           <div class="youtube">
@@ -39,11 +44,7 @@
             />
           </div>
           {#if !tapped}
-            <button
-              class="tap-icon"
-              on:click={() => (tapped = true)}
-              type="button"
-            >
+            <button class="tap-icon" type="button">
               <ImageAssets srcMeta={TapIcon} alt="タップアイコン" lazy={true} />
             </button>
           {/if}
