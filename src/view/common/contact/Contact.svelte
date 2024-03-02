@@ -1,15 +1,16 @@
 <script lang="ts" context="module">
-  import TapIcon from "./_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta";
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP,
-  } from "../../../../ts/common/responsive-design";
+  } from "../../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
   import { onMount } from "svelte";
+  import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte";
+  import ImageAssets from "../../atomic/image/ImageAssets.svelte";
+  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta";
 
   let screenWidth;
 
@@ -29,7 +30,7 @@
   class:pc={getResponsiveDesign(screenWidth) === designOfPC}
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
-  <h2 class="title">お問合せ先<span class="english-title">Contact</span></h2>
+  <WithEnglishHeading title="問合わせ先" englishTitle="Contact" />
   <a
     href="https://www.instagram.com/takumi.rg/"
     class="content"
@@ -42,7 +43,7 @@
       <div class="button">
         問い合わせる
         <div class="tap-icon" class:big-icon={bigIcon}>
-          <ImageAssets srcMeta={TapIcon} lazy={true} alt="タップアイコン" />
+          <ImageAssets srcMeta={TapIcon} alt="タップアイコン" lazy={true} />
         </div>
       </div>
     </div>
@@ -78,20 +79,6 @@
     margin: 0 auto;
     padding: 0 0 80px;
     overflow: hidden;
-  }
-
-  .title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 0 40px;
-    color: #333333;
-    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
-    font-size: var(--title-font-size);
-  }
-
-  .english-title {
-    font-size: var(--english-title-font-size);
   }
 
   .content {
