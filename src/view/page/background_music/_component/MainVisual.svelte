@@ -7,11 +7,11 @@
     designOfSP,
   } from "../../../../ts/common/responsive-design";
   const MAIN_VISUALS = [
-    {description: "大好きな曲を、自然な演技時間に短縮！"},
-    {description: "最適な編曲で、最高の演技体験を！"},
-    {description: "音楽の魔法で、あなたの演技を引き立てます！"},
-    {description: "No Music, No Life. \nあなたの演技に音楽を添えて！"},
-    {description: "豊かな音色があなたの演技の魅力を加速させる！"},
+    { description: "大好きな曲を、自然な演技時間に短縮！" },
+    { description: "最適な編曲で、最高の演技体験を！" },
+    { description: "音楽の魔法で、あなたの演技を引き立てます！" },
+    { description: "No Music, No Life. \nあなたの演技に音楽を添えて！" },
+    { description: "豊かな音色があなたの演技の魅力を加速させる！" },
   ];
 </script>
 
