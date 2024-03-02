@@ -44,9 +44,9 @@
             />
           </div>
           {#if !tapped}
-            <button class="tap-icon" type="button">
+            <div class="tap-icon">
               <ImageAssets srcMeta={TapIcon} alt="タップアイコン" lazy={true} />
-            </button>
+            </div>
           {/if}
         </a>
       </li>
@@ -65,7 +65,7 @@
   .sp {
     --width: 90%;
     --card-width: calc((100% - 16px) / 2);
-    --name-font-size: 20px;
+    --name-font-size: 24px;
     --apparatus-font-size: 16px;
   }
 
@@ -134,21 +134,18 @@
   @keyframes tap-icon-animation {
     0% {
       width: 40px;
-      height: 40px;
       bottom: -4px;
       right: 0;
     }
 
     50% {
       width: 30px;
-      height: 30px;
       bottom: 0;
       right: 4px;
     }
 
     100% {
       width: 40px;
-      height: 40px;
       bottom: -4px;
       right: 0;
     }
