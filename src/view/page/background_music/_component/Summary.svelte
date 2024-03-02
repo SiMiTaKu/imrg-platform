@@ -39,7 +39,7 @@
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
   <div class="message">
-    あらゆるアーティストの曲を<br />演技に合わせて編曲いたします!!
+    あらゆる曲を演技に<br />合わせて編曲します!!
   </div>
   <WithEnglishHeading title="編曲の流れ" englishTitle="Editing Flow" />
   <ul class="flow">
@@ -58,8 +58,6 @@
     --width: 1024px;
     --message-font-size: 36px;
     --message-margin-bottom: 80px;
-    --title-font-size: 40px;
-    --english-title-font-size: 20px;
     --flow-flex-direction: row;
     --item-flex-direction: column;
     --item-gap: 20px;
@@ -80,8 +78,6 @@
     --width: 90%;
     --message-font-size: 30px;
     --message-margin-bottom: 60px;
-    --title-font-size: 30px;
-    --english-title-font-size: 16px;
     --flow-flex-direction: column;
     --item-flex-direction: row;
     --item-gap: 24px;
@@ -110,20 +106,6 @@
     color: #666666;
     font-weight: bold;
     text-shadow: 3px 3px #ffffaa;
-  }
-
-  .title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 0 40px;
-    color: #333333;
-    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
-    font-size: var(--title-font-size);
-  }
-
-  .english-title {
-    font-size: var(--english-title-font-size);
   }
 
   .flow {

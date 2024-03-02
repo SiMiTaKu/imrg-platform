@@ -43,11 +43,7 @@
       <div class="button">
         問い合わせる
         <div class="tap-icon" class:big-icon={bigIcon}>
-          <ImageAssets
-            srcMeta={TapIcon}
-            alt="タップアイコン"
-            lazy={true}
-          />
+          <ImageAssets srcMeta={TapIcon} alt="タップアイコン" lazy={true} />
         </div>
       </div>
     </div>
@@ -83,20 +79,6 @@
     margin: 0 auto;
     padding: 0 0 80px;
     overflow: hidden;
-  }
-
-  .title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 0 40px;
-    color: #333333;
-    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
-    font-size: var(--title-font-size);
-  }
-
-  .english-title {
-    font-size: var(--english-title-font-size);
   }
 
   .content {

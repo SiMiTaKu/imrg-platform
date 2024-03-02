@@ -48,6 +48,7 @@
   </div>
   <div class="application-link">
     <a class="item" href="/decorating_apparatus">手具装飾を依頼する</a>
+    <a class="item" href="/background_music">曲編集を依頼する</a>
     <a class="item" href="/judge">審判を体験する</a>
     <a class="item" href="/rules">ルールを知る</a>
   </div>
@@ -109,7 +110,9 @@
     .application-link {
       display: flex;
       align-items: center;
+      justify-content: center;
       flex-direction: row;
+      flex-wrap: wrap;
       gap: 16px;
       width: 100%;
 
@@ -117,7 +120,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: calc((100% - 16px * 2) / 3);
+        width: calc((100% - 16px) / 3);
         height: 56px;
         text-decoration: none;
         font-size: 24px;

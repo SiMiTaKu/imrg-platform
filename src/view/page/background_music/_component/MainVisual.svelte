@@ -7,29 +7,19 @@
     designOfSP,
   } from "../../../../ts/common/responsive-design";
   const MAIN_VISUALS = [
-    {
-      description: "大好きな曲を、自然な演技時間に短縮！",
-    },
-    {
-      description: "最適な編曲で、最高の演技体験を！",
-    },
-    {
-      description: "音楽の魔法で、あなたの演技を引き立てます！",
-    },
-    {
-      description: "No Music, No Life. \nあなたの演技に音楽を添えて！",
-    },
-    {
-      description: "豊かな音色があなたの演技の魅力を加速させる！",
-    },
+    {description: "大好きな曲を、自然な演技時間に短縮！"},
+    {description: "最適な編曲で、最高の演技体験を！"},
+    {description: "音楽の魔法で、あなたの演技を引き立てます！"},
+    {description: "No Music, No Life. \nあなたの演技に音楽を添えて！"},
+    {description: "豊かな音色があなたの演技の魅力を加速させる！"},
   ];
 </script>
 
 <script lang="ts">
   import { onMount } from "svelte";
-  import { fade, fly } from "svelte/transition";
+  import { fly } from "svelte/transition";
 
-  let screenWidth: number;
+  let screenWidth: number = 0;
   let currentIndex = Math.floor(Math.random() * 5);
   let currentVisual = MAIN_VISUALS[currentIndex];
   let isShow = false;
@@ -81,7 +71,10 @@
         <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>
           曲編集
         </h1>
-        <div class="english-title" in:fly={{ duration: 1000, delay: 600, y: 50 }}>
+        <div
+          class="english-title"
+          in:fly={{ duration: 1000, delay: 600, y: 50 }}
+        >
           Background Music Editing
         </div>
       {/if}

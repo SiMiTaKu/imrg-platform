@@ -1,9 +1,22 @@
 <script lang="ts">
+  import {
+    getResponsiveDesign,
+    designOfPC,
+    designOfSP,
+  } from "../../../ts/common/responsive-design";
+
   export let title: string;
   export let englishTitle: string;
+  let screenWidth;
 </script>
 
-<h2 class="title">
+<svelte:window bind:outerWidth={screenWidth} />
+
+<h2
+  class="title"
+  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
+  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+>
   {title}
   <span class="english-title">
     {englishTitle}

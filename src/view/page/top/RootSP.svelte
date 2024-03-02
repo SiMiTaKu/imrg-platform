@@ -46,6 +46,7 @@
   </div>
   <div class="application-link">
     <a class="item" href="/decorating_apparatus">手具装飾を依頼する</a>
+    <a class="item" href="/background_music">曲編集を依頼する</a>
     <a class="item" href="/judge">審判を体験する</a>
     <a class="item" href="/rules">ルールを知る</a>
   </div>
