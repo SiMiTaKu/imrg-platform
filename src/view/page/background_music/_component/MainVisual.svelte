@@ -1,46 +1,25 @@
 <script lang="ts" context="module">
   import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
-  import Image1 from "./_image/main-visual-1.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image2 from "./_image/main-visual-3.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image3 from "./_image/main-visual-5.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image4 from "./_image/main-visual-2.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image5 from "./_image/main-visual-4.jpg?w=1024;2048&format=webp;jpg&as=meta";
+  import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp;jpg&as=meta";
   import {
     getResponsiveDesign,
     designOfPC,
     designOfSP,
   } from "../../../../ts/common/responsive-design";
-
   const MAIN_VISUALS = [
-    {
-      image: Image1,
-      description: "装飾にルールはない！\n自由な発想でユニークな手具を作ろう。",
-    },
-    {
-      image: Image2,
-      description: "個性を輝かせる、あなただけの手具を！",
-    },
-    {
-      image: Image3,
-      description:
-        "手具装飾のアートで個性を注入し、\n さらなる華やかな演技を。",
-    },
-    {
-      image: Image4,
-      description: "手具のデコレーションから周りと差をつけろ！",
-    },
-    {
-      image: Image5,
-      description: "豊かな彩が君の表現の進化を加速させる。",
-    },
+    {description: "大好きな曲を、自然な演技時間に短縮！"},
+    {description: "最適な編曲で、最高の演技体験を！"},
+    {description: "音楽の魔法で、あなたの演技を引き立てます！"},
+    {description: "No Music, No Life. \nあなたの演技に音楽を添えて！"},
+    {description: "豊かな音色があなたの演技の魅力を加速させる！"},
   ];
 </script>
 
 <script lang="ts">
   import { onMount } from "svelte";
-  import { fade, fly } from "svelte/transition";
+  import { fly } from "svelte/transition";
 
-  let screenWidth: number;
+  let screenWidth: number = 0;
   let currentIndex = Math.floor(Math.random() * 5);
   let currentVisual = MAIN_VISUALS[currentIndex];
   let isShow = false;
@@ -83,26 +62,20 @@
   class:pc={getResponsiveDesign(screenWidth) === designOfPC}
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
-  {#if isShow}
-    <div class="image" transition:fade={{ duration: 1000 }}>
-      <ImageAssets
-        srcMeta={currentVisual.image}
-        lazy={false}
-        alt="メインビジュアル"
-      />
-    </div>
-  {/if}
+  <div class="image">
+    <ImageAssets srcMeta={MainVisual} lazy={false} alt="メインビジュアル" />
+  </div>
   <div class="content-wrapper">
     <div class="content">
       {#if initialized}
         <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>
-          手具装飾
+          曲編集
         </h1>
         <div
           class="english-title"
           in:fly={{ duration: 1000, delay: 600, y: 50 }}
         >
-          Decorating Apparatus
+          Background Music Editing
         </div>
       {/if}
       {#if isShow}
@@ -148,9 +121,9 @@
       left: 0;
       content: "";
       height: calc(100dvh - 80px);
-      width: 75%;
+      width: 85%;
       background: linear-gradient(to right, #000, transparent);
-      opacity: 0.3;
+      opacity: 0.5;
       z-index: 0;
     }
   }
