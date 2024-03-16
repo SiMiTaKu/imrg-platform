@@ -22,23 +22,17 @@ export class ExecutionDeduct {
  * @param musicImage
  */
 export interface PointA {
-  beautifulPose: PointAItem;
-  flexibility: PointAItem;
-  naturalMovement: PointAItem;
-  bendingWeight: PointAItem;
-  jumpingHeight: PointAItem;
-  bodyControl: PointAItem;
-  heelRaise: PointAItem;
-  weaknessAndStrength: PointAItem;
-  connectMovement: PointAItem;
-  apparatusControl: PointAItem;
-  musicImage: PointAItem;
-}
-
-export interface PointAItem {
-  title: string;
-  value: number;
-  annotation: string;
+  beautifulPose: number | undefined;
+  flexibility: number | undefined;
+  naturalMovement: number | undefined;
+  bendingWeight: number | undefined;
+  jumpingHeight: number | undefined;
+  bodyControl: number | undefined;
+  heelRaise: number | undefined;
+  weaknessAndStrength: number | undefined;
+  connectMovement: number | undefined;
+  apparatusControl: number | undefined;
+  musicImage: number | undefined;
 }
 
 export interface PointB {

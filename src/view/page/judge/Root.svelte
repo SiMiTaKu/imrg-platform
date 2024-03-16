@@ -30,7 +30,7 @@
 >
   <div class="form-container">
     <!--    @todo AとBをぱーつとしてHTMLを分ける。-->
-    {#if $executionDeduct.pointA.beautifulPose.value === undefined || $executionDeduct.pointA.flexibility.value === undefined || $executionDeduct.pointA.naturalMovement.value === undefined || $executionDeduct.pointA.bendingWeight.value === undefined || $executionDeduct.pointA.jumpingHeight.value === undefined || $executionDeduct.pointA.bodyControl.value === undefined || $executionDeduct.pointA.heelRaise.value === undefined || $executionDeduct.pointA.weaknessAndStrength.value === undefined || $executionDeduct.pointA.connectMovement.value === undefined || $executionDeduct.pointA.apparatusControl.value === undefined || $executionDeduct.pointA.musicImage.value === undefined}
+    {#if !$executionDeduct.pointA.beautifulPose || !$executionDeduct.pointA.flexibility || !$executionDeduct.pointA.naturalMovement || !$executionDeduct.pointA.bendingWeight || !$executionDeduct.pointA.jumpingHeight || !$executionDeduct.pointA.bodyControl || !$executionDeduct.pointA.heelRaise || !$executionDeduct.pointA.weaknessAndStrength || !$executionDeduct.pointA.connectMovement || !$executionDeduct.pointA.apparatusControl || !$executionDeduct.pointA.musicImage}
       <!-- Aの最後の回答がされるまで表示 -->
       <div
         class="form-container__radio-area"
@@ -41,76 +41,76 @@
         <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
         <h3 class="form-container__title">徒手の技術</h3>
         <Radio
-          title={$executionDeduct.pointA.beautifulPose.title}
-          bind:userSelected={$executionDeduct.pointA.beautifulPose.value}
-          annotation={$executionDeduct.pointA.beautifulPose.annotation}
+          title="美しい姿勢"
+          bind:userSelected={$executionDeduct.pointA.beautifulPose}
+          annotation="単純にどのくらい綺麗だと感じたか"
           uniqueId="beautifulPose"
         />
         <Radio
-          title={$executionDeduct.pointA.flexibility.title}
-          bind:userSelected={$executionDeduct.pointA.flexibility.value}
-          annotation={$executionDeduct.pointA.flexibility.annotation}
+          title="柔軟性"
+          bind:userSelected={$executionDeduct.pointA.flexibility}
+          annotation="どのくらい身体の柔らかさを感じたか"
           uniqueId="flexibility"
         />
         <Radio
-          title={$executionDeduct.pointA.naturalMovement.title}
-          bind:userSelected={$executionDeduct.pointA.naturalMovement.value}
-          annotation={$executionDeduct.pointA.naturalMovement.annotation}
+          title="動きの技術（自然・幅）"
+          bind:userSelected={$executionDeduct.pointA.naturalMovement}
+          annotation="どのくらい大きく、自然な動きで演技していたか"
           uniqueId="naturalMovement"
         />
         <Radio
-          title={$executionDeduct.pointA.bendingWeight.title}
-          bind:userSelected={$executionDeduct.pointA.bendingWeight.value}
-          annotation={$executionDeduct.pointA.bendingWeight.annotation}
+          title="動きの技術（膝の踏み込み）"
+          bind:userSelected={$executionDeduct.pointA.bendingWeight}
+          annotation="どのくらい屈伸運動に強さを感じたか"
           uniqueId="bendingWeight"
         />
         <Radio
-          title={$executionDeduct.pointA.jumpingHeight.title}
-          bind:userSelected={$executionDeduct.pointA.jumpingHeight.value}
-          annotation={$executionDeduct.pointA.jumpingHeight.annotation}
+          title="跳躍の高さ"
+          bind:userSelected={$executionDeduct.pointA.jumpingHeight}
+          annotation="どのくらい高く跳躍していたか\nタンブリングの高さではありません"
           uniqueId="jumpingHeight"
         />
         <Radio
-          title={$executionDeduct.pointA.bodyControl.title}
-          bind:userSelected={$executionDeduct.pointA.bodyControl.value}
-          annotation={$executionDeduct.pointA.bodyControl.annotation}
+          title="四肢の制御"
+          bind:userSelected={$executionDeduct.pointA.bodyControl}
+          annotation="どのくらい身体を自在に操っていたか"
           uniqueId="bodyControl"
         />
         <Radio
-          title={$executionDeduct.pointA.heelRaise.title}
-          bind:userSelected={$executionDeduct.pointA.heelRaise.value}
-          annotation={$executionDeduct.pointA.heelRaise.annotation}
+          title="かかとの引き上げ"
+          bind:userSelected={$executionDeduct.pointA.heelRaise}
+          annotation="どのくらい踵（かかと）を高い位置で演技できていたか"
           uniqueId="heelRaise"
         />
         <Radio
-          title={$executionDeduct.pointA.weaknessAndStrength.title}
-          bind:userSelected={$executionDeduct.pointA.weaknessAndStrength.value}
-          annotation={$executionDeduct.pointA.weaknessAndStrength.annotation}
+          title="張りや活気、間、アクセント"
+          bind:userSelected={$executionDeduct.pointA.weaknessAndStrength}
+          annotation="どのくらい緩急や強弱を感じたか"
           uniqueId="weaknessAndStrength"
         />
         <Radio
-          title={$executionDeduct.pointA.connectMovement.title}
-          bind:userSelected={$executionDeduct.pointA.connectMovement.value}
-          annotation={$executionDeduct.pointA.connectMovement.annotation}
+          title="運動のつなぎの技術"
+          bind:userSelected={$executionDeduct.pointA.connectMovement}
+          annotation="どのくらい動きと動きの間が途切れることなく演技できていたか"
           uniqueId="connectMovement"
         />
         <h3 class="form-container__title">手具の技術</h3>
         <Radio
-          title={$executionDeduct.pointA.apparatusControl.title}
-          bind:userSelected={$executionDeduct.pointA.apparatusControl.value}
-          annotation={$executionDeduct.pointA.apparatusControl.annotation}
+          title="自然な手具操作"
+          bind:userSelected={$executionDeduct.pointA.apparatusControl}
+          annotation="どのくらい自然に手具を操作していたか"
           uniqueId="apparatusControl"
         />
         <h3 class="form-container__title">音楽</h3>
         <Radio
-          title={$executionDeduct.pointA.musicImage.title}
-          bind:userSelected={$executionDeduct.pointA.musicImage.value}
-          annotation={$executionDeduct.pointA.musicImage.annotation}
+          title="音楽のイメージ"
+          bind:userSelected={$executionDeduct.pointA.musicImage}
+          annotation="どのくらい音楽にあった演技をしていたか"
           uniqueId="musicImage"
         />
       </div>
     {/if}
-    {#if $executionDeduct.pointA.beautifulPose.value !== undefined && $executionDeduct.pointA.flexibility.value !== undefined && $executionDeduct.pointA.naturalMovement.value !== undefined && $executionDeduct.pointA.bendingWeight.value !== undefined && $executionDeduct.pointA.jumpingHeight.value !== undefined && $executionDeduct.pointA.bodyControl.value !== undefined && $executionDeduct.pointA.heelRaise.value !== undefined && $executionDeduct.pointA.weaknessAndStrength.value !== undefined && $executionDeduct.pointA.connectMovement.value !== undefined && $executionDeduct.pointA.apparatusControl.value !== undefined && $executionDeduct.pointA.musicImage.value !== undefined}
+    {#if $executionDeduct.pointA.beautifulPose && $executionDeduct.pointA.flexibility && $executionDeduct.pointA.naturalMovement && $executionDeduct.pointA.bendingWeight && $executionDeduct.pointA.jumpingHeight && $executionDeduct.pointA.bodyControl && $executionDeduct.pointA.heelRaise && $executionDeduct.pointA.weaknessAndStrength && $executionDeduct.pointA.connectMovement && $executionDeduct.pointA.apparatusControl && $executionDeduct.pointA.musicImage}
       <div
         class="form-container__miss-point-area"
         in:fly={{ x: 200, delay: 600 }}
@@ -167,7 +167,7 @@
 
 <style lang="scss">
   .pc {
-    --container-width: 720px;
+    --container-width: 1024px;
     --container-padding: 40px;
   }
 

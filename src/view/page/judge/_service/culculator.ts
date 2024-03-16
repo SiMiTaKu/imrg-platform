@@ -5,61 +5,61 @@ import type { ExecutionDeduct } from "./model";
  * @return Aの項目の減点の合計
  */
 export function getAmountOfPointA(data: ExecutionDeduct): number {
-  if (data.pointA.beautifulPose.value < 0)
+  if (data.pointA.beautifulPose && data.pointA.beautifulPose < 0)
     throw new Error("beautifulPoseが0未満です。");
-  if (data.pointA.flexibility.value < 0)
+  if (data.pointA.flexibility && data.pointA.flexibility < 0)
     throw new Error("flexibilityが0未満です。");
-  if (data.pointA.naturalMovement.value < 0)
+  if (data.pointA.naturalMovement && data.pointA.naturalMovement < 0)
     throw new Error("naturalMovementが0未満です。");
-  if (data.pointA.bendingWeight.value < 0)
+  if (data.pointA.bendingWeight && data.pointA.bendingWeight < 0)
     throw new Error("bendingWeightが0未満です。");
-  if (data.pointA.jumpingHeight.value < 0)
+  if (data.pointA.jumpingHeight && data.pointA.jumpingHeight < 0)
     throw new Error("jumpingHeightが0未満です。");
-  if (data.pointA.bodyControl.value < 0)
+  if (data.pointA.bodyControl && data.pointA.bodyControl < 0)
     throw new Error("bodyControlが0未満です。");
-  if (data.pointA.heelRaise.value < 0)
+  if (data.pointA.heelRaise && data.pointA.heelRaise < 0)
     throw new Error("heelRaiseが0未満です。");
-  if (data.pointA.weaknessAndStrength.value < 0)
+  if (data.pointA.weaknessAndStrength && data.pointA.weaknessAndStrength < 0)
     throw new Error("weaknessAndStrengthが0未満です。");
-  if (data.pointA.connectMovement.value < 0)
+  if (data.pointA.connectMovement && data.pointA.connectMovement < 0)
     throw new Error("connectMovementが0未満です。");
-  if (data.pointA.apparatusControl.value < 0)
+  if (data.pointA.apparatusControl && data.pointA.apparatusControl < 0)
     throw new Error("apparatusControlが0未満です。");
-  if (data.pointA.musicImage.value < 0)
+  if (data.pointA.musicImage && data.pointA.musicImage < 0)
     throw new Error("musicImageが0未満です。");
 
-  const beautifulPoseValue = data.pointA.beautifulPose.value
-    ? getDeductionOfPointA(data.pointA.beautifulPose.value)
+  const beautifulPoseValue = data.pointA.beautifulPose
+    ? getDeductionOfPointA(data.pointA.beautifulPose)
     : 0;
-  const flexibilityValue = data.pointA.flexibility.value
-    ? getDeductionOfPointA(data.pointA.flexibility.value)
+  const flexibilityValue = data.pointA.flexibility
+    ? getDeductionOfPointA(data.pointA.flexibility)
     : 0;
-  const naturalMovementValue = data.pointA.naturalMovement.value
-    ? getDeductionOfPointA(data.pointA.naturalMovement.value)
+  const naturalMovementValue = data.pointA.naturalMovement
+    ? getDeductionOfPointA(data.pointA.naturalMovement)
     : 0;
-  const bendingWeightValue = data.pointA.bendingWeight.value
-    ? getDeductionOfPointA(data.pointA.bendingWeight.value)
+  const bendingWeightValue = data.pointA.bendingWeight
+    ? getDeductionOfPointA(data.pointA.bendingWeight)
     : 0;
-  const jumpingHeightValue = data.pointA.jumpingHeight.value
-    ? getDeductionOfPointA(data.pointA.jumpingHeight.value)
+  const jumpingHeightValue = data.pointA.jumpingHeight
+    ? getDeductionOfPointA(data.pointA.jumpingHeight)
     : 0;
-  const bodyControlValue = data.pointA.bodyControl.value
-    ? getDeductionOfPointA(data.pointA.bodyControl.value)
+  const bodyControlValue = data.pointA.bodyControl
+    ? getDeductionOfPointA(data.pointA.bodyControl)
     : 0;
-  const heelRaiseValue = data.pointA.heelRaise.value
-    ? getDeductionOfPointA(data.pointA.heelRaise.value)
+  const heelRaiseValue = data.pointA.heelRaise
+    ? getDeductionOfPointA(data.pointA.heelRaise)
     : 0;
-  const weaknessAndStrengthValue = data.pointA.weaknessAndStrength.value
-    ? getDeductionOfPointA(data.pointA.weaknessAndStrength.value)
+  const weaknessAndStrengthValue = data.pointA.weaknessAndStrength
+    ? getDeductionOfPointA(data.pointA.weaknessAndStrength)
     : 0;
-  const connectMovementValue = data.pointA.connectMovement.value
-    ? getDeductionOfPointA(data.pointA.connectMovement.value)
+  const connectMovementValue = data.pointA.connectMovement
+    ? getDeductionOfPointA(data.pointA.connectMovement)
     : 0;
-  const apparatusControlValue = data.pointA.apparatusControl.value
-    ? getDeductionOfPointA(data.pointA.apparatusControl.value)
+  const apparatusControlValue = data.pointA.apparatusControl
+    ? getDeductionOfPointA(data.pointA.apparatusControl)
     : 0;
-  const musicImageValue = data.pointA.musicImage.value
-    ? getDeductionOfPointA(data.pointA.musicImage.value)
+  const musicImageValue = data.pointA.musicImage
+    ? getDeductionOfPointA(data.pointA.musicImage)
     : 0;
 
   /** @note 小数点の誤差をなくすため整数で計算してから元に戻している */
