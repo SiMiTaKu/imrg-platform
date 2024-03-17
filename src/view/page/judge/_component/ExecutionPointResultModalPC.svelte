@@ -10,17 +10,20 @@
     getDeductionOfPointA,
     getDeductionOfDroppedApparatus,
   } from "../_service/culculator";
+  import { onMount } from "svelte";
 
   let pointA: number;
   let pointB: number;
   let decisionPoints: number;
   export let show;
 
-  executionDeduct.subscribe((data) => {
-    pointA = getAmountOfPointA(data);
-    pointB = getAmountOfPointB(data);
-    decisionPoints = getDecisionPoints(data);
-  });
+  onMount(() => {
+    executionDeduct.subscribe((data) => {
+      pointA = getAmountOfPointA(data);
+      pointB = getAmountOfPointB(data);
+      decisionPoints = getDecisionPoints(data);
+    });
+  })
 
   let pointDetailButtonTitle: string = "内訳を見る";
   let pointDetailOpacity: number = 0;

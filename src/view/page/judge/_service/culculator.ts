@@ -1,33 +1,11 @@
-import type { ExecutionDeduct } from "./model";
+import type { ExecutionDeduct } from "../_model/execution-deduct";
+import type {PointAValue}       from "../_model/point-a";
 
 /**
  * @param data 実施の採点項目
  * @return Aの項目の減点の合計
  */
 export function getAmountOfPointA(data: ExecutionDeduct): number {
-  if (data.pointA.beautifulPose && data.pointA.beautifulPose < 0)
-    throw new Error("beautifulPoseが0未満です。");
-  if (data.pointA.flexibility && data.pointA.flexibility < 0)
-    throw new Error("flexibilityが0未満です。");
-  if (data.pointA.naturalMovement && data.pointA.naturalMovement < 0)
-    throw new Error("naturalMovementが0未満です。");
-  if (data.pointA.bendingWeight && data.pointA.bendingWeight < 0)
-    throw new Error("bendingWeightが0未満です。");
-  if (data.pointA.jumpingHeight && data.pointA.jumpingHeight < 0)
-    throw new Error("jumpingHeightが0未満です。");
-  if (data.pointA.bodyControl && data.pointA.bodyControl < 0)
-    throw new Error("bodyControlが0未満です。");
-  if (data.pointA.heelRaise && data.pointA.heelRaise < 0)
-    throw new Error("heelRaiseが0未満です。");
-  if (data.pointA.weaknessAndStrength && data.pointA.weaknessAndStrength < 0)
-    throw new Error("weaknessAndStrengthが0未満です。");
-  if (data.pointA.connectMovement && data.pointA.connectMovement < 0)
-    throw new Error("connectMovementが0未満です。");
-  if (data.pointA.apparatusControl && data.pointA.apparatusControl < 0)
-    throw new Error("apparatusControlが0未満です。");
-  if (data.pointA.musicImage && data.pointA.musicImage < 0)
-    throw new Error("musicImageが0未満です。");
-
   const beautifulPoseValue = data.pointA.beautifulPose
     ? getDeductionOfPointA(data.pointA.beautifulPose)
     : 0;
@@ -96,14 +74,14 @@ const deductionOfPointA = new Map<number, number>([
  * @param value radioボタンで選択された値
  * @return 選択された評価から減点を返す
  */
-export function getDeductionOfPointA(value: number): number {
+export function getDeductionOfPointA(value: PointAValue): number {
   const result = deductionOfPointA.get(value);
   return result!;
 }
 
 /** @note Bの減点項目の合計を返す。減点のMaxを超えた場合はMaxの値を返す。 */
 export function getAmountOfPointB(data: ExecutionDeduct): number {
-  if (data.pointB.miss.value < 0) throw new Error("missが0未満です。");
+  if (data.pointB.miss.value! < 0) throw new Error("missが0未満です。");
   const maxPointB = getMaxPointB(data);
   const droppedApparatus = getDeductionOfDroppedApparatus(data);
   const missPoint = data.pointB.miss.value ? data.pointB.miss.value : 0;

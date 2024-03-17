@@ -10,17 +10,20 @@
     getDeductionOfPointA,
     getDeductionOfDroppedApparatus,
   } from "../_service/culculator";
+  import { onMount } from "svelte";
 
   let pointA: number;
   let pointB: number;
   let decisionPoints: number;
   export let show;
 
-  executionDeduct.subscribe((data) => {
-    pointA = getAmountOfPointA(data);
-    pointB = getAmountOfPointB(data);
-    decisionPoints = getDecisionPoints(data);
-  });
+  onMount(() => {
+    executionDeduct.subscribe((data) => {
+      pointA = getAmountOfPointA(data);
+      pointB = getAmountOfPointB(data);
+      decisionPoints = getDecisionPoints(data);
+    });
+  })
 
   let pointDetailButtonTitle: string = "内訳を見る";
   let pointDetailOpacity: number = 0;
@@ -58,32 +61,32 @@
       type: "radar",
       data: {
         labels: [
-          $executionDeduct.pointA.beautifulPose.title,
-          $executionDeduct.pointA.flexibility.title,
-          $executionDeduct.pointA.naturalMovement.title,
-          $executionDeduct.pointA.bendingWeight.title,
-          $executionDeduct.pointA.jumpingHeight.title,
-          $executionDeduct.pointA.bodyControl.title,
-          $executionDeduct.pointA.heelRaise.title,
-          $executionDeduct.pointA.weaknessAndStrength.title,
-          $executionDeduct.pointA.connectMovement.title,
-          $executionDeduct.pointA.apparatusControl.title,
-          $executionDeduct.pointA.musicImage.title,
+          "美しい姿勢",
+          "柔軟性",
+          "動きの技術（自然・幅）",
+          "動きの技術（膝の踏み込み）",
+          "跳躍の高さ",
+          "四肢の制御",
+          "かかとの引き上げ",
+          "張りや活気、間、アクセント",
+          "運動のつなぎの技術",
+          "自然な手具操作",
+          "音楽のイメージ",
         ],
         datasets: [
           {
             data: [
-              $executionDeduct.pointA.beautifulPose.value,
-              $executionDeduct.pointA.flexibility.value,
-              $executionDeduct.pointA.naturalMovement.value,
-              $executionDeduct.pointA.bendingWeight.value,
-              $executionDeduct.pointA.jumpingHeight.value,
-              $executionDeduct.pointA.bodyControl.value,
-              $executionDeduct.pointA.heelRaise.value,
-              $executionDeduct.pointA.weaknessAndStrength.value,
-              $executionDeduct.pointA.connectMovement.value,
-              $executionDeduct.pointA.apparatusControl.value,
-              $executionDeduct.pointA.musicImage.value,
+              $executionDeduct.pointA.beautifulPose,
+              $executionDeduct.pointA.flexibility,
+              $executionDeduct.pointA.naturalMovement,
+              $executionDeduct.pointA.bendingWeight,
+              $executionDeduct.pointA.jumpingHeight,
+              $executionDeduct.pointA.bodyControl,
+              $executionDeduct.pointA.heelRaise,
+              $executionDeduct.pointA.weaknessAndStrength,
+              $executionDeduct.pointA.connectMovement,
+              $executionDeduct.pointA.apparatusControl,
+              $executionDeduct.pointA.musicImage,
             ],
           },
         ],
@@ -135,128 +138,128 @@
           <ul class="point-a-detail">
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.beautifulPose.title}</span
+              >美しい姿勢</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.beautifulPose.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.beautifulPose
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.flexibility.title}</span
+              >柔軟性</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.flexibility.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.flexibility
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.naturalMovement.title}</span
+              >動きの技術（自然・幅）</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.naturalMovement.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.naturalMovement
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.bendingWeight.title}</span
+              >動きの技術（膝の踏み込み）</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bendingWeight.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.bendingWeight
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.jumpingHeight.title}</span
+              >跳躍の高さ</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.jumpingHeight.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.jumpingHeight
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.bodyControl.title}</span
+              >四肢の制御</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bodyControl.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.bodyControl
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.heelRaise.title}</span
+              >かかとの引き上げ</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.heelRaise.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.heelRaise
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.weaknessAndStrength.title}</span
+              >張りや活気、間、アクセント</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.weaknessAndStrength.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.weaknessAndStrength
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.connectMovement.title}</span
+              >運動のつなぎの技術</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.connectMovement.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.connectMovement
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.apparatusControl.title}</span
+              >自然な手具操作</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.apparatusControl.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.apparatusControl
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointA.musicImage.title}</span
+              >音楽のイメージ</span
               >
               <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.musicImage.value
-                ).toFixed(3)}</span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.musicImage
+              ).toFixed(3)}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title">手具を落とした減点</span>
               <span class="point-a-detail__value"
-                >{getDeductionOfDroppedApparatus($executionDeduct).toFixed(
-                  3
-                )}</span
+              >{getDeductionOfDroppedApparatus($executionDeduct).toFixed(
+                3
+              )}</span
               >
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >{$executionDeduct.pointB.miss.title}</span
+              >{$executionDeduct.pointB.miss.title}</span
               >
               <span class="point-a-detail__value"
-                >{$executionDeduct.pointB.miss.value.toFixed(3)}</span
+              >{$executionDeduct.pointB.miss.value.toFixed(3)}</span
               >
             </li>
           </ul>
