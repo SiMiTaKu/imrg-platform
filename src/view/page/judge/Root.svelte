@@ -35,7 +35,6 @@
       <div
         class="form-container__radio-area"
         in:fly={{ x: 200, delay: 600 }}
-        out:fly={{ x: -200, delay: 200 }}
       >
         <h2>Aの減点項目</h2>
         <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
@@ -114,9 +113,8 @@
       <div
         class="form-container__miss-point-area"
         in:fly={{ x: 200, delay: 600 }}
-        out:fly={{ x: -200, delay: 200 }}
       >
-        <h2>B</h2>
+        <h2>Bの減点項目</h2>
         <h3>手具を落とした回数</h3>
         <div class="form-dropped-apparatus">
           <h4>1つの手具を落とした回数</h4>

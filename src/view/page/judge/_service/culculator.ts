@@ -79,35 +79,26 @@ export function getAmountOfPointA(data: ExecutionDeduct): number {
   );
 }
 
+const deductionOfPointA = new Map<number, number>([
+  [1, 0.5],
+  [2, 0.45],
+  [3, 0.4],
+  [4, 0.35],
+  [5, 0.3],
+  [6, 0.25],
+  [7, 0.2],
+  [8, 0.15],
+  [9, 0.1],
+  [10, 0.05],
+]);
+
 /**
  * @param value radioボタンで選択された値
  * @return 選択された評価から減点を返す
  */
 export function getDeductionOfPointA(value: number): number {
-  switch (value) {
-    case 1:
-      return 0.5;
-    case 2:
-      return 0.45;
-    case 3:
-      return 0.4;
-    case 4:
-      return 0.35;
-    case 5:
-      return 0.3;
-    case 6:
-      return 0.25;
-    case 7:
-      return 0.2;
-    case 8:
-      return 0.15;
-    case 9:
-      return 0.1;
-    case 10:
-      return 0.05;
-    default:
-      return 0;
-  }
+  const result = deductionOfPointA.get(value);
+  return result!;
 }
 
 /** @note Bの減点項目の合計を返す。減点のMaxを超えた場合はMaxの値を返す。 */
