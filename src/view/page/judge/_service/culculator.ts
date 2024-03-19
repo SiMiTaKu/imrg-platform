@@ -1,5 +1,5 @@
 import type { ExecutionDeduct } from "../_model/execution-deduct";
-import type {PointAValue}       from "../_model/point-a";
+import type { PointAValue } from "../_model/point-a";
 
 /**
  * @param data 実施の採点項目
@@ -58,16 +58,26 @@ export function getAmountOfPointA(data: ExecutionDeduct): number {
 }
 
 const deductionOfPointA = new Map<number, number>([
-  [1, 0.5],
-  [2, 0.45],
-  [3, 0.4],
-  [4, 0.35],
-  [5, 0.3],
-  [6, 0.25],
-  [7, 0.2],
-  [8, 0.15],
-  [9, 0.1],
-  [10, 0.05],
+  [1,
+0.5],
+  [2,
+0.45],
+  [3,
+0.4],
+  [4,
+0.35],
+  [5,
+0.3],
+  [6,
+0.25],
+  [7,
+0.2],
+  [8,
+0.15],
+  [9,
+0.1],
+  [10,
+0.05],
 ]);
 
 /**

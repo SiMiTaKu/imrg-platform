@@ -40,7 +40,7 @@ export const PointA = {
       weaknessAndStrength: undefined,
       connectMovement: undefined,
       apparatusControl: undefined,
-      musicImage: undefined
-    }
-  }
-}
+      musicImage: undefined,
+    };
+  },
+};
