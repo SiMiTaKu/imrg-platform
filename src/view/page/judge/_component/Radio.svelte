@@ -1,15 +1,11 @@
-<script lang="ts">
-  export let title: string;
-  export let userSelected: number;
-  export let annotation: string;
-  export let uniqueId: string;
+<script context="module" lang="ts">
+  import {
+    getResponsiveDesign,
+    designOfPC,
+    designOfSP,
+  } from "../../../../ts/common/responsive-design";
 
-  interface RadioDeduction {
-    label: string;
-    value: number;
-  }
-
-  const OPTIONS: RadioDeduction[] = [
+  const OPTIONS = [
     { label: "1", value: 1 },
     { label: "2", value: 2 },
     { label: "3", value: 3 },
@@ -23,9 +19,26 @@
   ];
 </script>
 
-<div class="radio-question">
-  <div class="radio-question__title">{title}</div>
-  <div class="radio-question__annotation">※{annotation}</div>
+<script lang="ts">
+  export let title: string;
+  export let userSelected: number;
+  export let annotation: string;
+  export let uniqueId: string;
+
+  let screenWidth;
+</script>
+
+<svelte:window bind:outerWidth={screenWidth} />
+
+<div
+  class="radio-question"
+  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
+  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+>
+  <div class="header">
+    <div class="title">{title}</div>
+    <div class="annotation">※{annotation}</div>
+  </div>
   <div
     role="radio"
     class="radio-group"
@@ -46,25 +59,43 @@
 </div>
 
 <style lang="scss">
+  .pc {
+    --header-flex-direction: row;
+    --radio-group-gap: 12px;
+    --radio-button-size: 72px;
+  }
+
+  .sp {
+    --header-flex-direction: column;
+    --radio-group-gap: 8px;
+    --radio-button-size: 56px;
+  }
+
   .radio-question {
-    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-    &__title {
-      margin-bottom: 4px;
-      font-size: 20px;
-      font-weight: bold;
-    }
+  .header {
+    display: flex;
+    align-items: baseline;
+    flex-direction: var(--header-flex-direction);
+    gap: 8px;
+  }
 
-    &__annotation {
-      font-size: 15px;
-      margin-bottom: 12px;
-      font-weight: normal;
-    }
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .annotation {
+    font-size: 15px;
   }
 
   .radio-group {
     display: flex;
-    gap: 8px;
+    gap: var(--radio-group-gap);
     flex-wrap: wrap;
   }
 
@@ -79,16 +110,16 @@
   }
 
   label {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--radio-button-size);
+    height: var(--radio-button-size);
     font-size: 20px;
     font-weight: bold;
-    line-height: 50px;
     border-radius: 8px;
     background: #e1e1e1;
     color: #333333;
-    text-align: center;
     transition: 0.3s;
 
     &:hover {

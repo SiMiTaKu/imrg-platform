@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { executionDeduct } from "../store/store";
+  import { executionDeduct } from "../_store/store";
   import { Motion } from "svelte-motion";
   import { Chart } from "chart.js/auto";
   import {
@@ -23,7 +23,7 @@
       pointB = getAmountOfPointB(data);
       decisionPoints = getDecisionPoints(data);
     });
-  })
+  });
 
   let pointDetailButtonTitle: string = "内訳を見る";
   let pointDetailOpacity: number = 0;
@@ -135,9 +135,7 @@
           </div>
           <ul class="point-a-detail">
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >美しい姿勢</span
-              >
+              <span class="point-a-detail__title">美しい姿勢</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.beautifulPose
@@ -145,9 +143,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >柔軟性</span
-              >
+              <span class="point-a-detail__title">柔軟性</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.flexibility
@@ -155,9 +151,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >動きの技術（自然・幅）</span
-              >
+              <span class="point-a-detail__title">動きの技術（自然・幅）</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.naturalMovement
@@ -175,9 +169,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >跳躍の高さ</span
-              >
+              <span class="point-a-detail__title">跳躍の高さ</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.jumpingHeight
@@ -185,9 +177,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >四肢の制御</span
-              >
+              <span class="point-a-detail__title">四肢の制御</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.bodyControl
@@ -195,9 +185,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >かかとの引き上げ</span
-              >
+              <span class="point-a-detail__title">かかとの引き上げ</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.heelRaise
@@ -215,9 +203,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >運動のつなぎの技術</span
-              >
+              <span class="point-a-detail__title">運動のつなぎの技術</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.connectMovement
@@ -225,9 +211,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >自然な手具操作</span
-              >
+              <span class="point-a-detail__title">自然な手具操作</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.apparatusControl
@@ -235,9 +219,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >音楽のイメージ</span
-              >
+              <span class="point-a-detail__title">音楽のイメージ</span>
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
                   $executionDeduct.pointA.musicImage
