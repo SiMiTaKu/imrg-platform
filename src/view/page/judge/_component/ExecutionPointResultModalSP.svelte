@@ -36,7 +36,7 @@
     if (isPointDetailShown) {
       renderPointDetailChart();
       pointDetailButtonTitle = "内訳を閉じる";
-      pointDetailHeight = 400;
+      pointDetailHeight = 300;
       setTimeout(() => {
         pointDetailOpacity = 1;
       }, 100);
@@ -132,116 +132,122 @@
         let:motion
       >
         <div id="point-detail-pull-down" use:motion>
-          <div class="point-detail-chart-area">
-            <canvas id="point-detail-chart" width="350" height="250"></canvas>
+          <div class="container">
+            <div class="point-detail-chart-area">
+              <canvas id="point-detail-chart" width="256" height="256"></canvas>
+            </div>
+            <ul class="point-a-detail">
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">美しい姿勢</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.beautifulPose
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">柔軟性</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.flexibility
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">動きの技術（自然・幅）</span
+                >
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.naturalMovement
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title"
+                  >動きの技術（膝の踏込み）</span
+                >
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.bendingWeight
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">跳躍の高さ</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.jumpingHeight
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">四肢の制御</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.bodyControl
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">かかとの引き上げ</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.heelRaise
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title"
+                  >張り, 活気, 間, アクセント</span
+                >
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.weaknessAndStrength
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">運動のつなぎの技術</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.connectMovement
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">自然な手具操作</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.apparatusControl
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">音楽のイメージ</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfPointA(
+                    $executionDeduct.pointA.musicImage
+                  ).toFixed(3)}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">手具を落とした減点</span>
+                <span class="point-a-detail__value"
+                  >{getDeductionOfDroppedApparatus($executionDeduct).toFixed(
+                    3
+                  )}</span
+                >
+              </li>
+              <li class="point-a-detail__item">
+                <span class="point-a-detail__title">
+                  その他ミスによる減点
+                </span>
+                <span class="point-a-detail__value"
+                  >{$executionDeduct.pointB.miss.toFixed(3)}</span
+                >
+              </li>
+            </ul>
           </div>
-          <ul class="point-a-detail">
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">美しい姿勢</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.beautifulPose
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">柔軟性</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.flexibility
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">動きの技術（自然・幅）</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.naturalMovement
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">動きの技術（膝の踏込み）</span
-              >
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bendingWeight
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">跳躍の高さ</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.jumpingHeight
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">四肢の制御</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bodyControl
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">かかとの引き上げ</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.heelRaise
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >張り, 活気, 間, アクセント</span
-              >
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.weaknessAndStrength
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">運動のつなぎの技術</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.connectMovement
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">自然な手具操作</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.apparatusControl
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">音楽のイメージ</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.musicImage
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">手具を落とした減点</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfDroppedApparatus($executionDeduct).toFixed(
-                  3
-                )}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title"> その他ミスによる減点 </span>
-              <span class="point-a-detail__value"
-                >{$executionDeduct.pointB.miss.toFixed(3)}</span
-              >
-            </li>
-          </ul>
         </div>
       </Motion>
       <div class="decision-point-container__format">
@@ -350,10 +356,17 @@
       height: 0;
       margin: 0;
       overflow: scroll;
+
+      .container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
     }
 
     /** ポイントA 詳細 ------------------------------- */
     .point-detail-chart-area {
+      width: 256px;
       margin-bottom: 8px;
     }
 
