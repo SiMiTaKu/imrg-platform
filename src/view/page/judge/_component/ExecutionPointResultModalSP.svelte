@@ -64,11 +64,11 @@
           "美しい姿勢",
           "柔軟性",
           "動きの技術（自然・幅）",
-          "動きの技術（膝の踏み込み）",
+          "動きの技術（膝の踏込み）",
           "跳躍の高さ",
           "四肢の制御",
           "かかとの引き上げ",
-          "張りや活気、間、アクセント",
+          "張り, 活気, 間, アクセント",
           "運動のつなぎの技術",
           "自然な手具操作",
           "音楽のイメージ",
@@ -161,8 +161,7 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >動きの技術（膝の踏み込み）</span
+              <span class="point-a-detail__title">動きの技術（膝の踏込み）</span
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(
@@ -196,7 +195,7 @@
             </li>
             <li class="point-a-detail__item">
               <span class="point-a-detail__title"
-                >張りや活気、間、アクセント</span
+                >張り, 活気, 間, アクセント</span
               >
               <span class="point-a-detail__value"
                 >{getDeductionOfPointA(

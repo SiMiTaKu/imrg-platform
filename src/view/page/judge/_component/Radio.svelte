@@ -36,8 +36,8 @@
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
   <div class="header">
-    <div class="title">{title}</div>
-    <div class="annotation">※{annotation}</div>
+    <span class="title"><span class="icon">Q</span>{title}</span>
+    <span class="annotation">※{annotation}</span>
   </div>
   <div
     role="radio"
@@ -84,13 +84,29 @@
     gap: 8px;
   }
 
-  .title {
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: white;
     font-size: 20px;
+    font-weight: bold;
+    background: #3e7cb7;
+    border-radius: 1em;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    font-size: 22px;
     font-weight: bold;
   }
 
   .annotation {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .radio-group {

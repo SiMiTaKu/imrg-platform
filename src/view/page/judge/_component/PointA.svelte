@@ -50,7 +50,7 @@
         uniqueId="naturalMovement"
       />
       <Radio
-        title="動きの技術（膝の踏み込み）"
+        title="動きの技術（膝の踏込み）"
         bind:userSelected={$executionDeduct.pointA.bendingWeight}
         annotation="どのくらい屈伸運動に強さを感じたか"
         uniqueId="bendingWeight"
@@ -74,7 +74,7 @@
         uniqueId="heelRaise"
       />
       <Radio
-        title="張りや活気、間、アクセント"
+        title="張り, 活気, 間, アクセント"
         bind:userSelected={$executionDeduct.pointA.weaknessAndStrength}
         annotation="どのくらい緩急や強弱を感じたか"
         uniqueId="weaknessAndStrength"
@@ -111,11 +111,13 @@
   .pc {
     --header-flex-direction: row;
     --gap: 16px;
+    --section-font-size: 26px;
   }
 
   .sp {
     --header-flex-direction: column;
     --gap: 8px;
+    --section-font-size: 20px;
   }
 
   .point-a {
@@ -141,5 +143,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .section-title {
+    font-size: var(--section-font-size);
   }
 </style>

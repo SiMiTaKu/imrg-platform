@@ -4,11 +4,11 @@ export type PointAValue = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
  * @param beautifulPose       美しい姿勢
  * @param flexibility         柔軟性
  * @param naturalMovement     動きの技術（自然・幅）
- * @param bendingWeight       動きの技術（膝の踏み込み）
+ * @param bendingWeight       動きの技術（膝の踏込み）
  * @param jumpingHeight       跳躍の高さ
  * @param bodyControl         四肢の制御
  * @param heelRaise           かかとの引き上げ
- * @param weaknessAndStrength 張りや活気、間、アクセント
+ * @param weaknessAndStrength 張り, 活気, 間, アクセント
  * @param connectMovement     運動のつなぎの技術
  * @param apparatusControl    自然な手具操作
  * @param musicImage          音楽のイメージ
