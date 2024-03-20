@@ -111,6 +111,7 @@
 
   .radio-group {
     display: flex;
+    justify-content: center;
     gap: var(--radio-group-gap);
     flex-wrap: wrap;
   }

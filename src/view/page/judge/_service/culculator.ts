@@ -91,10 +91,10 @@ export function getDeductionOfPointA(value: PointAValue): number {
 
 /** @note Bの減点項目の合計を返す。減点のMaxを超えた場合はMaxの値を返す。 */
 export function getAmountOfPointB(data: ExecutionDeduct): number {
-  if (data.pointB.miss.value! < 0) throw new Error("missが0未満です。");
+  if (data.pointB.miss! < 0) throw new Error("missが0未満です。");
   const maxPointB = getMaxPointB(data);
   const droppedApparatus = getDeductionOfDroppedApparatus(data);
-  const missPoint = data.pointB.miss.value ? data.pointB.miss.value : 0;
+  const missPoint = data.pointB.miss ? data.pointB.miss : 0;
 
   const result = droppedApparatus + missPoint;
   if (result >= maxPointB) return maxPointB;
@@ -108,13 +108,11 @@ export function getMaxPointB(data: ExecutionDeduct): number {
 
 /** @note 手具を落とした回数から減点を返す */
 export function getDeductionOfDroppedApparatus(data: ExecutionDeduct): number {
-  const deductionSingleApparatus = data.pointB.droppedApparatus.singleApparatus
-    .value
-    ? data.pointB.droppedApparatus.singleApparatus.value * 0.3
+  const deductionSingleApparatus = data.pointB.droppedApparatus.single
+    ? data.pointB.droppedApparatus.single * 0.3
     : 0;
-  const deductionDoubleApparatus = data.pointB.droppedApparatus.doubleApparatus
-    .value
-    ? data.pointB.droppedApparatus.doubleApparatus.value * 0.5
+  const deductionDoubleApparatus = data.pointB.droppedApparatus.double
+    ? data.pointB.droppedApparatus.double * 0.5
     : 0;
   return deductionSingleApparatus + deductionDoubleApparatus;
 }

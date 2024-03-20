@@ -117,7 +117,7 @@
   .sp {
     --header-flex-direction: column;
     --gap: 8px;
-    --section-font-size: 20px;
+    --section-font-size: 24px;
   }
 
   .point-a {

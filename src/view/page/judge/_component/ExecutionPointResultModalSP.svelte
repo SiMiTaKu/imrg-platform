@@ -236,11 +236,9 @@
               >
             </li>
             <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >{$executionDeduct.pointB.miss.title}</span
-              >
+              <span class="point-a-detail__title"> その他ミスによる減点 </span>
               <span class="point-a-detail__value"
-                >{$executionDeduct.pointB.miss.value.toFixed(3)}</span
+                >{$executionDeduct.pointB.miss.toFixed(3)}</span
               >
             </li>
           </ul>

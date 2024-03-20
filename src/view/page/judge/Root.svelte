@@ -52,13 +52,13 @@
 
   .sp {
     --container-width: 83%;
-    --container-padding: 24px;
+    --container-padding: 16px;
   }
 
   .judgement-form {
     display: flex;
     justify-content: center;
-    background: #dcecec;
+    background: #e6f6ff;
   }
 
   .form-container {
