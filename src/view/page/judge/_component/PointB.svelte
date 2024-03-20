@@ -14,23 +14,6 @@
   const dispatch = createEventDispatcher();
 
   let screenWidth;
-
-  $: disabled = !(
-    $executionDeduct.pointA.beautifulPose &&
-    $executionDeduct.pointA.flexibility &&
-    $executionDeduct.pointA.naturalMovement &&
-    $executionDeduct.pointA.bendingWeight &&
-    $executionDeduct.pointA.jumpingHeight &&
-    $executionDeduct.pointA.bodyControl &&
-    $executionDeduct.pointA.heelRaise &&
-    $executionDeduct.pointA.weaknessAndStrength &&
-    $executionDeduct.pointA.connectMovement &&
-    $executionDeduct.pointA.apparatusControl &&
-    $executionDeduct.pointA.musicImage &&
-    $executionDeduct.pointB.droppedApparatus.single &&
-    $executionDeduct.pointB.droppedApparatus.double &&
-    $executionDeduct.pointB.miss
-  );
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
@@ -83,12 +66,7 @@
     />
   </div>
   <div class="submit">
-    <button
-      class="submit-button"
-      class:disabled
-      on:click={() => dispatch("submit")}
-      {disabled}
-    >
+    <button class="submit-button" on:click={() => dispatch("submit")}>
       決定
     </button>
   </div>
@@ -178,11 +156,6 @@
     &:hover {
       cursor: pointer;
       opacity: 0.5;
-    }
-
-    &.disabled {
-      background: #aaaaaa;
-      pointer-events: none;
     }
   }
 </style>
