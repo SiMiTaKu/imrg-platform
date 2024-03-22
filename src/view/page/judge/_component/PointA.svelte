@@ -20,7 +20,9 @@
   class="point-a"
   class:pc={getResponsiveDesign(screenWidth) === designOfPC}
   class:sp={getResponsiveDesign(screenWidth) === designOfSP}
-  in:fly={{ x: 200, delay: 600 }}
+  in:fly={getResponsiveDesign(screenWidth) === designOfPC
+    ? { x: 200 }
+    : { y: 50 }}
 >
   <header class="header">
     <h2 class="header-title">Aの減点項目</h2>
