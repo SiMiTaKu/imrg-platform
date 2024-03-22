@@ -5,18 +5,16 @@
     designOfSP,
   } from "../../../../ts/common/responsive-design";
 
-  const OPTIONS = [
-    { label: "1", value: 1 },
-    { label: "2", value: 2 },
-    { label: "3", value: 3 },
-    { label: "4", value: 4 },
-    { label: "5", value: 5 },
-    { label: "6", value: 6 },
-    { label: "7", value: 7 },
-    { label: "8", value: 8 },
-    { label: "9", value: 9 },
-    { label: "10", value: 10 },
-  ];
+  const OPTIONS = [1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10];
 </script>
 
 <script lang="ts">
@@ -47,13 +45,13 @@
   >
     {#each OPTIONS as option}
       <input
-        id={option.label + uniqueId}
+        id={`${uniqueId}_${option}`}
         type="radio"
-        value={option.value}
+        value={option}
         aria-checked="false"
         bind:group={userSelected}
       />
-      <label for={option.label + uniqueId}>{option.label}</label>
+      <label for={`${uniqueId}_${option}`}>{option}</label>
     {/each}
   </div>
 </div>
