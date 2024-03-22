@@ -1,65 +1,43 @@
-import type { ExecutionDeduct } from "./model";
+import type { ExecutionDeduct } from "../_model/execution-deduct";
+import type { PointAValue } from "../_model/point-a";
 
 /**
  * @param data 実施の採点項目
  * @return Aの項目の減点の合計
  */
 export function getAmountOfPointA(data: ExecutionDeduct): number {
-  if (data.pointA.beautifulPose.value < 0)
-    throw new Error("beautifulPoseが0未満です。");
-  if (data.pointA.flexibility.value < 0)
-    throw new Error("flexibilityが0未満です。");
-  if (data.pointA.naturalMovement.value < 0)
-    throw new Error("naturalMovementが0未満です。");
-  if (data.pointA.bendingWeight.value < 0)
-    throw new Error("bendingWeightが0未満です。");
-  if (data.pointA.jumpingHeight.value < 0)
-    throw new Error("jumpingHeightが0未満です。");
-  if (data.pointA.bodyControl.value < 0)
-    throw new Error("bodyControlが0未満です。");
-  if (data.pointA.heelRaise.value < 0)
-    throw new Error("heelRaiseが0未満です。");
-  if (data.pointA.weaknessAndStrength.value < 0)
-    throw new Error("weaknessAndStrengthが0未満です。");
-  if (data.pointA.connectMovement.value < 0)
-    throw new Error("connectMovementが0未満です。");
-  if (data.pointA.apparatusControl.value < 0)
-    throw new Error("apparatusControlが0未満です。");
-  if (data.pointA.musicImage.value < 0)
-    throw new Error("musicImageが0未満です。");
-
-  const beautifulPoseValue = data.pointA.beautifulPose.value
-    ? getDeductionOfPointA(data.pointA.beautifulPose.value)
+  const beautifulPoseValue = data.pointA.beautifulPose
+    ? getDeductionOfPointA(data.pointA.beautifulPose)
     : 0;
-  const flexibilityValue = data.pointA.flexibility.value
-    ? getDeductionOfPointA(data.pointA.flexibility.value)
+  const flexibilityValue = data.pointA.flexibility
+    ? getDeductionOfPointA(data.pointA.flexibility)
     : 0;
-  const naturalMovementValue = data.pointA.naturalMovement.value
-    ? getDeductionOfPointA(data.pointA.naturalMovement.value)
+  const naturalMovementValue = data.pointA.naturalMovement
+    ? getDeductionOfPointA(data.pointA.naturalMovement)
     : 0;
-  const bendingWeightValue = data.pointA.bendingWeight.value
-    ? getDeductionOfPointA(data.pointA.bendingWeight.value)
+  const bendingWeightValue = data.pointA.bendingWeight
+    ? getDeductionOfPointA(data.pointA.bendingWeight)
     : 0;
-  const jumpingHeightValue = data.pointA.jumpingHeight.value
-    ? getDeductionOfPointA(data.pointA.jumpingHeight.value)
+  const jumpingHeightValue = data.pointA.jumpingHeight
+    ? getDeductionOfPointA(data.pointA.jumpingHeight)
     : 0;
-  const bodyControlValue = data.pointA.bodyControl.value
-    ? getDeductionOfPointA(data.pointA.bodyControl.value)
+  const bodyControlValue = data.pointA.bodyControl
+    ? getDeductionOfPointA(data.pointA.bodyControl)
     : 0;
-  const heelRaiseValue = data.pointA.heelRaise.value
-    ? getDeductionOfPointA(data.pointA.heelRaise.value)
+  const heelRaiseValue = data.pointA.heelRaise
+    ? getDeductionOfPointA(data.pointA.heelRaise)
     : 0;
-  const weaknessAndStrengthValue = data.pointA.weaknessAndStrength.value
-    ? getDeductionOfPointA(data.pointA.weaknessAndStrength.value)
+  const weaknessAndStrengthValue = data.pointA.weaknessAndStrength
+    ? getDeductionOfPointA(data.pointA.weaknessAndStrength)
     : 0;
-  const connectMovementValue = data.pointA.connectMovement.value
-    ? getDeductionOfPointA(data.pointA.connectMovement.value)
+  const connectMovementValue = data.pointA.connectMovement
+    ? getDeductionOfPointA(data.pointA.connectMovement)
     : 0;
-  const apparatusControlValue = data.pointA.apparatusControl.value
-    ? getDeductionOfPointA(data.pointA.apparatusControl.value)
+  const apparatusControlValue = data.pointA.apparatusControl
+    ? getDeductionOfPointA(data.pointA.apparatusControl)
     : 0;
-  const musicImageValue = data.pointA.musicImage.value
-    ? getDeductionOfPointA(data.pointA.musicImage.value)
+  const musicImageValue = data.pointA.musicImage
+    ? getDeductionOfPointA(data.pointA.musicImage)
     : 0;
 
   /** @note 小数点の誤差をなくすため整数で計算してから元に戻している */
@@ -79,43 +57,44 @@ export function getAmountOfPointA(data: ExecutionDeduct): number {
   );
 }
 
+const deductionOfPointA = new Map<number, number>([
+  [1,
+0.5],
+  [2,
+0.45],
+  [3,
+0.4],
+  [4,
+0.35],
+  [5,
+0.3],
+  [6,
+0.25],
+  [7,
+0.2],
+  [8,
+0.15],
+  [9,
+0.1],
+  [10,
+0.05],
+]);
+
 /**
  * @param value radioボタンで選択された値
  * @return 選択された評価から減点を返す
  */
-export function getDeductionOfPointA(value: number): number {
-  switch (value) {
-    case 1:
-      return 0.5;
-    case 2:
-      return 0.45;
-    case 3:
-      return 0.4;
-    case 4:
-      return 0.35;
-    case 5:
-      return 0.3;
-    case 6:
-      return 0.25;
-    case 7:
-      return 0.2;
-    case 8:
-      return 0.15;
-    case 9:
-      return 0.1;
-    case 10:
-      return 0.05;
-    default:
-      return 0;
-  }
+export function getDeductionOfPointA(value: PointAValue): number {
+  const result = deductionOfPointA.get(value);
+  return result!;
 }
 
 /** @note Bの減点項目の合計を返す。減点のMaxを超えた場合はMaxの値を返す。 */
 export function getAmountOfPointB(data: ExecutionDeduct): number {
-  if (data.pointB.miss.value < 0) throw new Error("missが0未満です。");
+  if (data.pointB.miss! < 0) throw new Error("missが0未満です。");
   const maxPointB = getMaxPointB(data);
   const droppedApparatus = getDeductionOfDroppedApparatus(data);
-  const missPoint = data.pointB.miss.value ? data.pointB.miss.value : 0;
+  const missPoint = data.pointB.miss ? data.pointB.miss : 0;
 
   const result = droppedApparatus + missPoint;
   if (result >= maxPointB) return maxPointB;
@@ -129,13 +108,11 @@ export function getMaxPointB(data: ExecutionDeduct): number {
 
 /** @note 手具を落とした回数から減点を返す */
 export function getDeductionOfDroppedApparatus(data: ExecutionDeduct): number {
-  const deductionSingleApparatus = data.pointB.droppedApparatus.singleApparatus
-    .value
-    ? data.pointB.droppedApparatus.singleApparatus.value * 0.3
+  const deductionSingleApparatus = data.pointB.droppedApparatus.single
+    ? data.pointB.droppedApparatus.single * 0.3
     : 0;
-  const deductionDoubleApparatus = data.pointB.droppedApparatus.doubleApparatus
-    .value
-    ? data.pointB.droppedApparatus.doubleApparatus.value * 0.5
+  const deductionDoubleApparatus = data.pointB.droppedApparatus.double
+    ? data.pointB.droppedApparatus.double * 0.5
     : 0;
   return deductionSingleApparatus + deductionDoubleApparatus;
 }
