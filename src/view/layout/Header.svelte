@@ -1,23 +1,13 @@
 <script lang="ts" context="module">
   import ImageAssets from "../atomic/image/ImageAssets.svelte";
   import MainImage from "../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
-  let screenWidth;
+  import { page } from "$app/stores";
 </script>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
-<div
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
->
+<div class:pc={!$page.data.isMobile} class:sp={$page.data.isMobile}>
   <header class="header-background" />
   <header class="header-main">
     <div class="content">

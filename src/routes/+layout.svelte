@@ -3,24 +3,14 @@
   import Footer from "../view/layout/Footer.svelte";
   import ContentsFooter from "../view/layout/ContentsFooter.svelte";
   import "./styles.css";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
-  let screenWidth;
+  import { page } from "$app/stores";
 </script>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
 <Header />
-<main
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
->
+<main class:pc={!$page.data.isMobile} class:sp={$page.data.isMobile}>
   <slot />
 </main>
 <ContentsFooter />
