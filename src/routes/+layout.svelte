@@ -9,6 +9,14 @@
   import { page } from "$app/stores";
 </script>
 
+<svelte:head>
+  {#if $page.data.isMobile}
+    <meta name="viewport" content="width=375, user-scalable=no" />
+  {:else}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {/if}
+</svelte:head>
+
 <Header />
 <main class:pc={!$page.data.isMobile} class:sp={$page.data.isMobile}>
   <slot />
