@@ -4,7 +4,17 @@ body {
 }
 
 section {
-  padding: 80px 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ol {
+  margin: 0;
+  padding: 0;
 }
 
 h1 {

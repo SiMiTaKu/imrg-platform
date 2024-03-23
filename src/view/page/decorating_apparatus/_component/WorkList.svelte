@@ -45,6 +45,7 @@
   .work-list {
     width: var(--width);
     margin: 0 auto;
+    padding: 80px 0;
   }
 
   .list {
