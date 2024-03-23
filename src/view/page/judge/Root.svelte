@@ -38,18 +38,20 @@
 
 <style lang="scss">
   .pc {
+    --padding: 64px 0;
     --container-width: #{calc(1024px - 160px)};
     --container-padding: 40px 80px;
   }
 
   .sp {
-    --container-width: 83%;
-    --container-padding: 16px;
+    --padding: 40px 0;
+    --container-width: #{calc(351px - 24px)};
+    --container-padding: 32px 12px;
   }
 
   .judgement-form {
     display: flex;
-    padding: 64px 0;
+    padding: var(--padding);
     justify-content: center;
     background: #e6f6ff;
   }

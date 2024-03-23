@@ -71,7 +71,6 @@
   {/each}
   <div class="top">
     <p><a href="/static">TOPに戻る</a></p>
-    <p></p>
   </div>
 </article>
 
