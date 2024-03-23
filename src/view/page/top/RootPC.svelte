@@ -58,6 +58,7 @@
   .site-top {
     width: 1024px;
     margin: 0 auto;
+    padding: 80px 0;
 
     .main-visual {
       position: relative;

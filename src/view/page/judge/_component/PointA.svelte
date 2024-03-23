@@ -60,7 +60,7 @@
       <Radio
         title="跳躍の高さ"
         bind:userSelected={$executionDeduct.pointA.jumpingHeight}
-        annotation="どのくらい高く跳躍していたか\nタンブリングの高さではありません"
+        annotation="どのくらい高く跳躍していたか（タンブリングの高さではありません）"
         uniqueId="jumpingHeight"
       />
       <Radio
