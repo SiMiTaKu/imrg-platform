@@ -9,8 +9,8 @@
 
 <article
   class="rule-book"
-  class:pc={!$page.data.isMoblie}
-  class:sp={$page.data.isMoblie}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   <p>
     ※こちらのページは未完成です。適宜更新を行なっておりますので、お待ちください。<br
