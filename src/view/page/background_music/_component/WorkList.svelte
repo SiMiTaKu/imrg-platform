@@ -1,28 +1,21 @@
 <script lang="ts" context="module">
   import YoutubeIcon from "./_image/youtube-icon.png?w=120;240&format=webp;jpg&as=meta";
   import TapIcon from "./_image/tap-icon.png?w=60;120&format=webp;jpg&as=meta";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
+  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
+  import { WORK_LIST } from "./_data/work-list";
 </script>
 
 <script lang="ts">
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
-  import { WORK_LIST } from "./_data/work-list";
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
+  import { page } from "$app/stores";
 
-  let screenWidth;
   let tapped = false;
 </script>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
 <section
   class="work-list"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   <WithEnglishHeading title="過去の実績" englishTitle="Work List" />
   <ul class="cards">

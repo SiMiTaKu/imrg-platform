@@ -5,11 +5,6 @@
   import Image3 from "./_image/main-visual-5.jpg?w=1024;2048&format=webp;jpg&as=meta";
   import Image4 from "./_image/main-visual-2.jpg?w=1024;2048&format=webp;jpg&as=meta";
   import Image5 from "./_image/main-visual-4.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
 
   const MAIN_VISUALS = [
     {
@@ -39,17 +34,16 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
+  import { page } from "$app/stores";
 
-  let screenWidth: number;
   let currentIndex = Math.floor(Math.random() * 5);
   let currentVisual = MAIN_VISUALS[currentIndex];
   let isShow = false;
   let initialized = false;
-  let isMobile = getResponsiveDesign(screenWidth) === designOfSP;
-  let flyInProps = isMobile
+  $: flyInProps = $page.data.isMobile
     ? { duration: 1000, y: 50 }
     : { duration: 1000, x: 100 };
-  let flyOutProps = isMobile
+  $: flyOutProps = $page.data.isMobile
     ? { duration: 1000, y: -50 }
     : { duration: 1000, x: -100 };
 
@@ -76,12 +70,10 @@
   }
 </script>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
 <section
   class="main-visual"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   {#if isShow}
     <div class="image" transition:fade={{ duration: 1000 }}>

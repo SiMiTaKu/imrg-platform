@@ -1,21 +1,14 @@
 <script lang="ts">
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../ts/common/responsive-design";
+  import { page } from "$app/stores";
 
   export let title: string;
   export let englishTitle: string;
-  let screenWidth;
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <h2
   class="title"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   {title}
   <span class="english-title">

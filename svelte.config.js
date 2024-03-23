@@ -17,7 +17,12 @@ const config = {
       fallback:    'index.html',
       precompress: false,
       strict:      true
-    })
+    }),
+    files: {
+      hooks: {
+        server: 'src/server/hooks/hooks.server.ts',
+      }
+    }
   }
 };
 
