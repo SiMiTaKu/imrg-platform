@@ -8,11 +8,10 @@
 </script>
 
 <div class:pc={!$page.data.isMobile} class:sp={$page.data.isMobile}>
-  <header class="header-background" />
   <header class="header-main">
     <div class="content">
       <a class="header-link" href="/">
-        <div class="content__image">
+        <div class="image">
           <ImageAssets
             srcMeta={MainImage}
             width="100%"
@@ -21,11 +20,9 @@
             alt="男子新体操国際化プロジェクトロゴ"
           />
         </div>
-        <div class="content__title">
-          <span class="content__title--main">男子新体操国際化プロジェクト</span>
-          <span class="content__title--sub"
-            >Internationalize Men's Rhythmic Gymnastics</span
-          >
+        <div class="title">
+          <span class="main">男子新体操国際化プロジェクト</span>
+          <span class="sub">Internationalize Men's Rhythmic Gymnastics</span>
         </div>
       </a>
     </div>
@@ -51,17 +48,6 @@
     --sub-font-size: 11px;
   }
 
-  .header-background {
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: var(--height);
-    background: white;
-    box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    opacity: 0.8;
-  }
-
   .header-main {
     position: fixed;
     display: flex;
@@ -71,6 +57,17 @@
     height: var(--height);
     z-index: 1000;
     overflow: hidden;
+
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      height: var(--height);
+      background: white;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+      opacity: 0.8;
+    }
   }
 
   .header-link {
@@ -82,32 +79,33 @@
     width: var(--content-width);
     height: 100%;
     margin: 0 auto;
+  }
 
-    &__image {
-      position: absolute;
-      top: -25%;
-      width: var(--image-size);
-      height: var(--image-size);
-      opacity: 0.1;
-      object-fit: cover;
-    }
+  .image {
+    position: absolute;
+    top: -25%;
+    width: var(--image-size);
+    height: var(--image-size);
+    opacity: 0.1;
+    object-fit: cover;
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--title-margin-top);
+    font-weight: bold;
+    color: #555;
+  }
 
-    &__title {
-      display: flex;
-      flex-direction: column;
-      margin-top: var(--title-margin-top);
-      font-weight: bold;
-      color: #555;
+  .main {
+    display: block;
+    font-size: var(--main-font-size);
+    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
+  }
 
-      &--main {
-        display: block;
-        font-size: var(--main-font-size);
-      }
-
-      &--sub {
-        display: block;
-        font-size: var(--sub-font-size);
-      }
-    }
+  .sub {
+    display: block;
+    font-size: var(--sub-font-size);
+    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
   }
 </style>

@@ -98,7 +98,7 @@
     text-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
     border-radius: 8px;
     background-color: white;
-    border: 2px solid #333333;
+    border: 1px solid #333333;
     box-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
   }
 
