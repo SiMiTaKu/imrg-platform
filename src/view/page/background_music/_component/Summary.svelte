@@ -1,10 +1,5 @@
 <script lang="ts" context="module">
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
-
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
   const FLOW = [
     {
       title: "問い合わせ",
@@ -26,17 +21,13 @@
 </script>
 
 <script lang="ts">
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
-
-  let screenWidth;
+  import { pageData } from "../../../atomic/device-store/store";
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <section
   class="flow-section"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="message">
     あらゆる曲を演技に<br />合わせて編曲します!!

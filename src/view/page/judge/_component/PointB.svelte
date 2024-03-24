@@ -1,30 +1,20 @@
 <script context="module" lang="ts">
   import { createEventDispatcher } from "svelte";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
   import { executionDeduct } from "../_store/store";
   import { fly } from "svelte/transition";
+  import { pageData } from "../../../atomic/device-store/store";
 
   const dispatch = createEventDispatcher();
-
-  let screenWidth;
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <div
   class="point-b"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
-  in:fly={getResponsiveDesign(screenWidth) === designOfPC
-    ? { x: 200 }
-    : { y: 50 }}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
+  in:fly={$pageData.isMobile ? { y: 50 } : { x: 200 }}
 >
   <header class="header">
     <h2 class="header-title">Bの減点項目</h2>

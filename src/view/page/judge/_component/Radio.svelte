@@ -1,10 +1,4 @@
 <script context="module" lang="ts">
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
-
   const OPTIONS = [1,
 2,
 3,
@@ -18,20 +12,18 @@
 </script>
 
 <script lang="ts">
+  import { pageData } from "../../../atomic/device-store/store";
+
   export let title: string;
   export let userSelected: number;
   export let annotation: string;
   export let uniqueId: string;
-
-  let screenWidth;
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <div
   class="radio-question"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="header">
     <span class="title"><span class="icon">Q</span>{title}</span>

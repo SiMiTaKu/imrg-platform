@@ -1,11 +1,6 @@
 <script lang="ts" context="module">
   import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
   import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp;jpg&as=meta";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
   const MAIN_VISUALS = [
     { description: "大好きな曲を、自然な演技時間に短縮！" },
     { description: "最適な編曲で、最高の演技体験を！" },
@@ -18,19 +13,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
+  import { pageData } from "../../../atomic/device-store/store";
 
-  let screenWidth: number = 0;
   let currentIndex = Math.floor(Math.random() * 5);
   let currentVisual = MAIN_VISUALS[currentIndex];
   let isShow = false;
   let initialized = false;
-  let isMobile = getResponsiveDesign(screenWidth) === designOfSP;
-  let flyInProps = isMobile
-    ? { duration: 1000, y: 50 }
-    : { duration: 1000, x: 100 };
-  let flyOutProps = isMobile
-    ? { duration: 1000, y: -50 }
-    : { duration: 1000, x: -100 };
 
   onMount(() => {
     isShow = true;
@@ -55,12 +43,10 @@
   }
 </script>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
 <section
   class="main-visual"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="image">
     <ImageAssets srcMeta={MainVisual} lazy={false} alt="メインビジュアル" />
@@ -79,7 +65,15 @@
         </div>
       {/if}
       {#if isShow}
-        <div class="description" in:fly={flyInProps} out:fly={flyOutProps}>
+        <div
+          class="description"
+          in:fly={$pageData.isMobile
+            ? { duration: 1000, y: 50 }
+            : { duration: 1000, x: 100 }}
+          out:fly={$pageData.isMobile
+            ? { duration: 1000, y: -50 }
+            : { duration: 1000, x: -100 }}
+        >
           {currentVisual.description}
         </div>
       {/if}

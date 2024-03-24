@@ -1,28 +1,21 @@
 <script lang="ts" context="module">
   import YoutubeIcon from "./_image/youtube-icon.png?w=120;240&format=webp;jpg&as=meta";
   import TapIcon from "./_image/tap-icon.png?w=60;120&format=webp;jpg&as=meta";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
+  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
+  import { WORK_LIST } from "./_data/work-list";
 </script>
 
 <script lang="ts">
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
-  import { WORK_LIST } from "./_data/work-list";
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
+  import { pageData } from "../../../atomic/device-store/store";
 
-  let screenWidth;
   let tapped = false;
 </script>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
 <section
   class="work-list"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <WithEnglishHeading title="過去の実績" englishTitle="Work List" />
   <ul class="cards">
@@ -72,6 +65,7 @@
   .work-list {
     width: var(--width);
     margin: 0 auto;
+    padding: 80px 0;
   }
 
   .cards {
@@ -133,7 +127,7 @@
 
   @keyframes tap-icon-animation {
     0% {
-      width: 40px;
+      width: 48px;
       bottom: -4px;
       right: 0;
     }
@@ -145,7 +139,7 @@
     }
 
     100% {
-      width: 40px;
+      width: 48px;
       bottom: -4px;
       right: 0;
     }

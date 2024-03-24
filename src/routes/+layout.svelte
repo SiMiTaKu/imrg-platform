@@ -3,24 +3,28 @@
   import Footer from "../view/layout/Footer.svelte";
   import ContentsFooter from "../view/layout/ContentsFooter.svelte";
   import "./styles.css";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
-  let screenWidth;
+  import { pageData } from "../view/atomic/device-store/store";
+
+  let screenWidth = 0;
+
+  $: pageData.update(screenWidth);
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
 
+<svelte:head>
+  {#if $pageData.isMobile}
+    <meta name="viewport" content="width=375, user-scalable=no" />
+  {:else}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {/if}
+</svelte:head>
+
 <Header />
-<main
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
->
+<main class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <slot />
 </main>
 <ContentsFooter />
