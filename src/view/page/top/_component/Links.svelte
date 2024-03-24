@@ -44,7 +44,7 @@
     flex-wrap: wrap;
     gap: 16px;
     width: var(--width);
-    padding: 40px 0 80px;
+    padding: 24px 0 80px;
   }
 
   .item {

@@ -11,7 +11,7 @@
   <header class="header-main">
     <div class="content">
       <a class="header-link" href="/">
-        <div class="content__image">
+        <div class="image">
           <ImageAssets
             srcMeta={MainImage}
             width="100%"
@@ -20,11 +20,9 @@
             alt="男子新体操国際化プロジェクトロゴ"
           />
         </div>
-        <div class="content__title">
-          <span class="content__title--main">男子新体操国際化プロジェクト</span>
-          <span class="content__title--sub"
-            >Internationalize Men's Rhythmic Gymnastics</span
-          >
+        <div class="title">
+          <span class="main">男子新体操国際化プロジェクト</span>
+          <span class="sub">Internationalize Men's Rhythmic Gymnastics</span>
         </div>
       </a>
     </div>
@@ -81,34 +79,33 @@
     width: var(--content-width);
     height: 100%;
     margin: 0 auto;
+  }
 
-    &__image {
-      position: absolute;
-      top: -25%;
-      width: var(--image-size);
-      height: var(--image-size);
-      opacity: 0.1;
-      object-fit: cover;
-    }
+  .image {
+    position: absolute;
+    top: -25%;
+    width: var(--image-size);
+    height: var(--image-size);
+    opacity: 0.1;
+    object-fit: cover;
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--title-margin-top);
+    font-weight: bold;
+    color: #555;
+  }
 
-    &__title {
-      display: flex;
-      flex-direction: column;
-      margin-top: var(--title-margin-top);
-      font-weight: bold;
-      color: #555;
+  .main {
+    display: block;
+    font-size: var(--main-font-size);
+    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
+  }
 
-      &--main {
-        display: block;
-        font-size: var(--main-font-size);
-        text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
-      }
-
-      &--sub {
-        display: block;
-        font-size: var(--sub-font-size);
-        text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
-      }
-    }
+  .sub {
+    display: block;
+    font-size: var(--sub-font-size);
+    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
   }
 </style>
