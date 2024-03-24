@@ -1,16 +1,23 @@
 <script lang="ts" context="module">
   import { SNS } from "./_data/contents-footer-data";
   import ImageAssets from "../atomic/image/ImageAssets.svelte";
+  import {
+    getResponsiveDesign,
+    designOfPC,
+    designOfSP,
+  } from "../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
-  import { page } from "$app/stores";
+  let screenWidth;
 </script>
+
+<svelte:window bind:outerWidth={screenWidth} />
 
 <section
   class="contents-footer"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
+  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
 >
   <div class="container">
     <div class="sns">
