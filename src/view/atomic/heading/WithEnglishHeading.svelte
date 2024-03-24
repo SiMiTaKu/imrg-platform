@@ -1,15 +1,11 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../device-store/store";
 
   export let title: string;
   export let englishTitle: string;
 </script>
 
-<h2
-  class="title"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
->
+<h2 class="title" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   {title}
   <span class="english-title">
     {englishTitle}

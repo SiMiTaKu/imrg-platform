@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  import { page } from "$app/stores";
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
 
   const FLOW = [
     {
@@ -26,13 +26,13 @@
 </script>
 
 <script lang="ts">
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
+  import { pageData } from "../../../atomic/device-store/store";
 </script>
 
 <section
   class="flow-section"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="message">
     あなたの要望に合わせた<br />世界に一つだけの装飾をいたします!!

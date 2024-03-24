@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-  import { page } from "$app/stores";
   const OPTIONS = [1,
 2,
 3,
@@ -13,6 +12,8 @@
 </script>
 
 <script lang="ts">
+  import { pageData } from "../../../atomic/device-store/store";
+
   export let title: string;
   export let userSelected: number;
   export let annotation: string;
@@ -21,8 +22,8 @@
 
 <div
   class="radio-question"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="header">
     <span class="title"><span class="icon">Q</span>{title}</span>

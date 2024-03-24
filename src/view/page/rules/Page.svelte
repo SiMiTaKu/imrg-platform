@@ -4,13 +4,13 @@
 </script>
 
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../../atomic/device-store/store";
 </script>
 
 <article
   class="rule-book"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <p>
     ※こちらのページは未完成です。適宜更新を行なっておりますので、お待ちください。<br

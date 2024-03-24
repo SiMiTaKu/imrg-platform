@@ -13,18 +13,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
-  import { page } from "$app/stores";
+  import { pageData } from "../../../atomic/device-store/store";
 
   let currentIndex = Math.floor(Math.random() * 5);
   let currentVisual = MAIN_VISUALS[currentIndex];
   let isShow = false;
   let initialized = false;
-  $: flyInProps = $page.data.isMobile
-    ? { duration: 1000, y: 50 }
-    : { duration: 1000, x: 100 };
-  $: flyOutProps = $page.data.isMobile
-    ? { duration: 1000, y: -50 }
-    : { duration: 1000, x: -100 };
 
   onMount(() => {
     isShow = true;
@@ -51,8 +45,8 @@
 
 <section
   class="main-visual"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="image">
     <ImageAssets srcMeta={MainVisual} lazy={false} alt="メインビジュアル" />
@@ -71,7 +65,15 @@
         </div>
       {/if}
       {#if isShow}
-        <div class="description" in:fly={flyInProps} out:fly={flyOutProps}>
+        <div
+          class="description"
+          in:fly={$pageData.isMobile
+            ? { duration: 1000, y: 50 }
+            : { duration: 1000, x: 100 }}
+          out:fly={$pageData.isMobile
+            ? { duration: 1000, y: -50 }
+            : { duration: 1000, x: -100 }}
+        >
           {currentVisual.description}
         </div>
       {/if}

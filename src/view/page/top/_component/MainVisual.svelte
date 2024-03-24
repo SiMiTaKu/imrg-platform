@@ -6,7 +6,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fly, fade } from "svelte/transition";
-  import { page } from "$app/stores";
+  import { pageData } from "../../../atomic/device-store/store";
 
   let isShowMainVisual = false;
 
@@ -17,8 +17,8 @@
 
 <section
   class="main-visual"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   {#if isShowMainVisual}
     <div class="image" in:fade={{ duration: 1000 }}>
@@ -30,7 +30,7 @@
     </div>
     <div
       class="title"
-      in:fly={{ y: $page.data.isMobile ? 32 : 50, delay: 500, duration: 1000 }}
+      in:fly={{ y: $pageData.isMobile ? 32 : 50, delay: 500, duration: 1000 }}
     >
       {"日本の文化を\n世界のスポーツへ"}
     </div>

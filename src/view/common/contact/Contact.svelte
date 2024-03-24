@@ -6,7 +6,7 @@
 
 <script lang="ts">
   import { onMount } from "svelte";
-  import { page } from "$app/stores";
+  import { pageData } from "../../atomic/device-store/store";
 
   let bigIcon = false;
 
@@ -19,8 +19,8 @@
 
 <section
   class="contact"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <WithEnglishHeading title="問合わせ先" englishTitle="Contact" />
   <a

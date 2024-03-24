@@ -4,13 +4,13 @@
 </script>
 
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../atomic/device-store/store";
 </script>
 
 <section
   class="contents-footer"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="container">
     <div class="sns">

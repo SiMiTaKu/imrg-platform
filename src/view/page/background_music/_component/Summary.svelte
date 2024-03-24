@@ -21,13 +21,13 @@
 </script>
 
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../../../atomic/device-store/store";
 </script>
 
 <section
   class="flow-section"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="message">
     あらゆる曲を演技に<br />合わせて編曲します!!

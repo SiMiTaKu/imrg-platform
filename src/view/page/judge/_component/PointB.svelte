@@ -5,16 +5,16 @@
 <script lang="ts">
   import { executionDeduct } from "../_store/store";
   import { fly } from "svelte/transition";
-  import { page } from "$app/stores";
+  import { pageData } from "../../../atomic/device-store/store";
 
   const dispatch = createEventDispatcher();
 </script>
 
 <div
   class="point-b"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
-  in:fly={$page.data.isMobile ? { y: 50 } : { x: 200 }}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
+  in:fly={$pageData.isMobile ? { y: 50 } : { x: 200 }}
 >
   <header class="header">
     <h2 class="header-title">Bの減点項目</h2>

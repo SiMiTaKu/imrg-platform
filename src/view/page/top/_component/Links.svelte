@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../../../atomic/device-store/store";
   import ButtonLink from "../../../atomic/button/ButtonLink.svelte";
   const LINKS = [
     { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
@@ -11,8 +11,8 @@
 
 <section
   class="links"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   {#each LINKS as { href, text }}
     <div class="item">

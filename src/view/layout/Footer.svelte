@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../atomic/device-store/store";
 </script>
 
 <footer
   class="footer"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="content">
     ©︎ Internationalize Men's Rhythmic Gymnastics Project 2020-2023

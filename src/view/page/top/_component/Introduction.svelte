@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../../../atomic/device-store/store";
 </script>
 
 <section
   class="introduction"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <h1 class="title">男子新体操国際化プロジェクト</h1>
   <div class="body">

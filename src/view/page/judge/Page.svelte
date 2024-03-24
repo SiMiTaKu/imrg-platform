@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import { executionDeduct } from "./_store/store";
-  import { page } from "$app/stores";
+  import { pageData } from "../../atomic/device-store/store";
 
   let submitted: boolean = false;
   function submit() {
@@ -17,8 +17,8 @@
 
 <section
   class="judgement-form"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
 >
   <div class="form-container">
     <!-- Aの最後の回答がされるまで表示 -->
@@ -28,7 +28,7 @@
     {#if $executionDeduct.pointA.beautifulPose && $executionDeduct.pointA.flexibility && $executionDeduct.pointA.naturalMovement && $executionDeduct.pointA.bendingWeight && $executionDeduct.pointA.jumpingHeight && $executionDeduct.pointA.bodyControl && $executionDeduct.pointA.heelRaise && $executionDeduct.pointA.weaknessAndStrength && $executionDeduct.pointA.connectMovement && $executionDeduct.pointA.apparatusControl && $executionDeduct.pointA.musicImage}
       <PointB on:submit={() => submit()} />
     {/if}
-    {#if $page.data.isMobile}
+    {#if $pageData.isMobile}
       <ExecutionPointResultModalSP show={submitted} />
     {:else}
       <ExecutionPointResultModalPC show={submitted} />

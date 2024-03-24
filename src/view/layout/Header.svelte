@@ -4,10 +4,10 @@
 </script>
 
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../atomic/device-store/store";
 </script>
 
-<div class:pc={!$page.data.isMobile} class:sp={$page.data.isMobile}>
+<div class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <header class="header-main">
     <div class="content">
       <a class="header-link" href="/">

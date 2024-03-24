@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { pageData } from "../device-store/store";
 
   export let width: string;
   export let height: string;
@@ -9,8 +9,8 @@
 
 <a
   class="button-link"
-  class:pc={!$page.data.isMobile}
-  class:sp={$page.data.isMobile}
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
   {href}
   style:width
   style:height
