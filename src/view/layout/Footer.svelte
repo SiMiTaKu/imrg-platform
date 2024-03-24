@@ -1,21 +1,11 @@
-<script lang="ts" context="module">
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../ts/common/responsive-design";
-</script>
-
 <script lang="ts">
-  let screenWidth;
+  import { page } from "$app/stores";
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <footer
   class="footer"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   <div class="content">
     ©︎ Internationalize Men's Rhythmic Gymnastics Project 2020-2023

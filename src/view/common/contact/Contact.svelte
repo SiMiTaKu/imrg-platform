@@ -1,18 +1,12 @@
 <script lang="ts" context="module">
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../ts/common/responsive-design";
+  import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte";
+  import ImageAssets from "../../atomic/image/ImageAssets.svelte";
+  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta";
 </script>
 
 <script lang="ts">
   import { onMount } from "svelte";
-  import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte";
-  import ImageAssets from "../../atomic/image/ImageAssets.svelte";
-  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta";
-
-  let screenWidth;
+  import { page } from "$app/stores";
 
   let bigIcon = false;
 
@@ -23,12 +17,10 @@
   });
 </script>
 
-<svelte:window bind:outerWidth={screenWidth} />
-
 <section
   class="contact"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   <WithEnglishHeading title="問合わせ先" englishTitle="Contact" />
   <a
@@ -106,7 +98,7 @@
     text-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
     border-radius: 8px;
     background-color: white;
-    border: 2px solid #333333;
+    border: 1px solid #333333;
     box-shadow: 0 0 5px rgba(50, 150, 255, 0.5);
   }
 
