@@ -127,7 +127,7 @@
 
   @keyframes tap-icon-animation {
     0% {
-      width: 40px;
+      width: 48px;
       bottom: -4px;
       right: 0;
     }
@@ -139,7 +139,7 @@
     }
 
     100% {
-      width: 40px;
+      width: 48px;
       bottom: -4px;
       right: 0;
     }
