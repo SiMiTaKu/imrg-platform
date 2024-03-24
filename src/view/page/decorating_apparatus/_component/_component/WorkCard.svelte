@@ -6,14 +6,27 @@
 
 <script lang="ts">
   import { fade } from "svelte/transition";
+  import { onMount } from "svelte";
 
   export let images: SrcMeta[] = [];
   export let workIndex: number;
-
   let frontImageIndex = 0;
   let backImageIndex = (frontImageIndex + 1) % images.length;
   let flipped = false;
+
+  let showTapIcon = true;
   let tapped = false;
+
+  onMount(() => {
+    setInterval(() => {
+      if (!tapped) {
+        showTapIcon = true;
+      }
+      setTimeout(() => {
+        showTapIcon = false;
+      }, 2500);
+    }, 4000);
+  });
 
   const flip = () => {
     flipped = !flipped;
@@ -21,6 +34,7 @@
     if (flipped) {
       frontImageIndex = (backImageIndex + 1) % images.length;
       tapped = true;
+      showTapIcon = false;
     } else {
       backImageIndex = (frontImageIndex + 1) % images.length;
     }
@@ -45,8 +59,8 @@
       />
     </div>
   {/if}
-  {#if !tapped}
-    <div class="tap-icon">
+  {#if showTapIcon}
+    <div class="tap-icon" transition:fade>
       <ImageAssets srcMeta={TapIcon} lazy={true} alt="タップアイコン" />
     </div>
   {/if}
@@ -106,33 +120,14 @@
 
   .tap-icon {
     position: absolute;
-    border: none;
-    background: transparent;
-    animation: tap-icon-animation 2s infinite;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
     z-index: 2;
 
     :global(img) {
       object-fit: cover;
-    }
-  }
-
-  @keyframes tap-icon-animation {
-    0% {
-      width: 64px;
-      bottom: 0;
-      right: 0;
-    }
-
-    50% {
-      width: 40px;
-      bottom: 4px;
-      right: 4px;
-    }
-
-    100% {
-      width: 64px;
-      bottom: 0;
-      right: 0;
     }
   }
 </style>
