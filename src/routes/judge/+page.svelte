@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
-  import Root from "../../view/page/judge/Root.svelte";
+  import Page from "../../view/page/judge/Page.svelte";
 </script>
 
 <svelte:head>
   <title>採点アプリ（実施）｜男子新体操国際化プロジェクト</title>
 </svelte:head>
 
-<Root />
+<Page />

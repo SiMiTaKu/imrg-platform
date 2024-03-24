@@ -1,24 +1,16 @@
 <script lang="ts" context="module">
   import Image from "../../atomic/image/Image.svelte";
   import { vvRuleBook, calculateIndexOfArticle } from "./data/data";
-
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
-  let screenWidth;
+  import { page } from "$app/stores";
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <article
   class="rule-book"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   <p>
     ※こちらのページは未完成です。適宜更新を行なっておりますので、お待ちください。<br
@@ -79,7 +71,6 @@
   {/each}
   <div class="top">
     <p><a href="/static">TOPに戻る</a></p>
-    <p></p>
   </div>
 </article>
 
@@ -95,6 +86,7 @@
   .rule-book {
     width: var(--width);
     margin: 0 auto;
+
     &__record {
       margin-bottom: 48px;
     }

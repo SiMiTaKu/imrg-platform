@@ -1,25 +1,17 @@
 <script lang="ts" context="module">
+  import WorkCard from "./_component/WorkCard.svelte";
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
   import { WORK_LIST } from "./_data/work-list";
-  import {
-    getResponsiveDesign,
-    designOfPC,
-    designOfSP,
-  } from "../../../../ts/common/responsive-design";
 </script>
 
 <script lang="ts">
-  import WorkCard from "./_component/WorkCard.svelte";
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
-
-  let screenWidth;
+  import { page } from "$app/stores";
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <section
   class="work-list"
-  class:pc={getResponsiveDesign(screenWidth) === designOfPC}
-  class:sp={getResponsiveDesign(screenWidth) === designOfSP}
+  class:pc={!$page.data.isMobile}
+  class:sp={$page.data.isMobile}
 >
   <WithEnglishHeading title="過去の作品" englishTitle="Work List" />
   <ul class="list">
@@ -45,6 +37,7 @@
   .work-list {
     width: var(--width);
     margin: 0 auto;
+    padding: 80px 0;
   }
 
   .list {
