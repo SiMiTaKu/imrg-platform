@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Root from "../../view/page/background_music/Root.svelte";
+  import Page from "../../view/page/background_music/Page.svelte";
 </script>
 
 <svelte:head>
@@ -10,4 +10,4 @@
   />
 </svelte:head>
 
-<Root />
+<Page />

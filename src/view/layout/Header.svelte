@@ -8,7 +8,6 @@
 </script>
 
 <div class:pc={!$page.data.isMobile} class:sp={$page.data.isMobile}>
-  <header class="header-background" />
   <header class="header-main">
     <div class="content">
       <a class="header-link" href="/">
@@ -51,17 +50,6 @@
     --sub-font-size: 11px;
   }
 
-  .header-background {
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: var(--height);
-    background: white;
-    box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    opacity: 0.8;
-  }
-
   .header-main {
     position: fixed;
     display: flex;
@@ -71,6 +59,17 @@
     height: var(--height);
     z-index: 1000;
     overflow: hidden;
+
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      height: var(--height);
+      background: white;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+      opacity: 0.8;
+    }
   }
 
   .header-link {
@@ -102,11 +101,13 @@
       &--main {
         display: block;
         font-size: var(--main-font-size);
+        text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
       }
 
       &--sub {
         display: block;
         font-size: var(--sub-font-size);
+        text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
       }
     }
   }
