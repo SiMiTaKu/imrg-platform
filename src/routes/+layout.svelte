@@ -10,7 +10,7 @@
 
   let screenWidth = 0;
 
-  pageData.update(screenWidth);
+  $: pageData.update(screenWidth);
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
