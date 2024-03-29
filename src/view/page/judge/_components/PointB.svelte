@@ -1,68 +1,72 @@
-<script context="module" lang="ts">
+<script context='module' lang='ts'>
   import { createEventDispatcher } from "svelte";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { executionDeduct } from "../_store/store";
   import { fly } from "svelte/transition";
   import { pageData } from "../../../atomic/device-store/store";
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher<{ submit: void }>();
 </script>
 
 <div
-  class="point-b"
+  class='point-b'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
   in:fly={$pageData.isMobile ? { y: 50 } : { x: 200 }}
 >
-  <header class="header">
-    <h2 class="header-title">Bの減点項目</h2>
-    <div class="header-annotation">※数字で入力してください。</div>
+  <header class='header'>
+    <h2>Bの減点項目</h2>
+    <div>※数字で入力してください。</div>
   </header>
-  <div class="section">
-    <h3 class="section-title">手具を落とした回数</h3>
-    <div class="section-container">
-      <div class="dropped-apparatus">
-        <h4 class="dropped-apparatus-title">1つの手具を落とした回数</h4>
+  <div class='section'>
+    <h3>手具を落とした回数</h3>
+    <div class='section-container'>
+      <div class='dropped-apparatus'>
+        <h4>1つの手具を落とした回数</h4>
         <input
-          type="number"
-          step="1"
-          min="0"
-          class="miss-point"
+          class='miss-point'
+          min='0'
+          step='1'
+          type='number'
           bind:value={$executionDeduct.pointB.droppedApparatus.single}
         />
       </div>
-      <div class="dropped-apparatus">
-        <h4 class="dropped-apparatus-title">2つの手具を同時に落とした回数</h4>
+      <div class='dropped-apparatus'>
+        <h4>2つの手具を同時に落とした回数</h4>
         <input
-          type="number"
-          step="1"
-          min="0"
-          class="miss-point"
+          class='miss-point'
+          min='0'
+          step='1'
+          type='number'
           bind:value={$executionDeduct.pointB.droppedApparatus.double}
         />
       </div>
     </div>
   </div>
-  <div class="section">
-    <h3 class="section-title">その他ミスによる減点</h3>
+  <div class='section'>
+    <h3>その他ミスによる減点</h3>
     <input
-      type="number"
-      step="0.05"
-      min="0"
-      class="miss-point"
+      class='miss-point'
+      min='0'
+      step='0.05'
+      type='number'
       bind:value={$executionDeduct.pointB.miss}
     />
   </div>
-  <div class="submit">
-    <button class="submit-button" on:click={() => dispatch("submit")}>
+  <div class='submit'>
+    <button
+      class='submit-button'
+      type='submit'
+      on:click={() => dispatch("submit")}
+    >
       決定
     </button>
   </div>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --header-flex-direction: row;
     --gap: 16px;

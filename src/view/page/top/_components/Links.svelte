@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
   import ButtonLink from "../../../atomic/button/ButtonLink.svelte";
   const LINKS = [
@@ -10,18 +10,21 @@
 </script>
 
 <section
-  class="links"
+  class='links'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  {#each LINKS as { href, text }}
-    <div class="item">
-      <ButtonLink width="100%" height="100%" {href} {text} />
+  {#each LINKS as { href, text }, index (index)}
+    <div class='item'>
+      <ButtonLink height='100%'
+                  {href}
+                  {text}
+                  width='100%' />
     </div>
   {/each}
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --flex-direction: row;

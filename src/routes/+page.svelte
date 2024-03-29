@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script context='module' lang='ts'>
   import Page from "../view/page/top/Page.svelte";
 </script>
 

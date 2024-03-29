@@ -1,9 +1,9 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import type { Image } from "../../../ts/common/image";
   import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   export let image: Image;
   export let width: string = "auto";
   export let height: string = "auto";
@@ -14,12 +14,12 @@
 </script>
 
 <img
-  {width}
-  {height}
-  src={image.src}
-  loading={isLazy ? "lazy" : "eager"}
-  alt={image.alt}
   style:transition={fadeIn ? "1s" : "none"}
   style:opacity={fadeIn ? 0 : 1}
+  alt={image.alt}
+  {height}
+  loading={isLazy ? "lazy" : "eager"}
+  src={image.src}
+  {width}
   use:fadeInImage
 />

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang='ts'>
   import { fade } from "svelte/transition";
   import { executionDeduct } from "../_store/store";
   import { Motion } from "svelte-motion";
@@ -10,20 +10,12 @@
     getDeductionOfPointA,
     getDeductionOfDroppedApparatus,
   } from "../_service/culculator";
-  import { onMount } from "svelte";
 
-  let pointA: number;
-  let pointB: number;
-  let decisionPoints: number;
   export let show;
 
-  onMount(() => {
-    executionDeduct.subscribe((data) => {
-      pointA = getAmountOfPointA(data);
-      pointB = getAmountOfPointB(data);
-      decisionPoints = getDecisionPoints(data);
-    });
-  });
+  $: pointA = getAmountOfPointA($executionDeduct);
+  $: pointB = getAmountOfPointB($executionDeduct);
+  $: decisionPoints = getDecisionPoints($executionDeduct);
 
   let pointDetailButtonTitle: string = "内訳を見る";
   let pointDetailOpacity: number = 0;
@@ -52,7 +44,7 @@
   /** @note Chartが描画されているか判別する変数 */
   let myChart = undefined;
   function renderPointDetailChart() {
-    let ctx = <HTMLCanvasElement>document.getElementById("point-detail-chart");
+    let ctx = <HTMLCanvasElement>document.getElementById("detail-chart");
     if (myChart) {
       myChart.clear();
       myChart.destroy();
@@ -110,13 +102,13 @@
 </script>
 
 {#if show}
-  <section id="execution-point-result-modal" transition:fade>
-    <div class="modal-overlay"></div>
-    <div class="decision-point-container">
-      <div class="decision-point-container__header">
-        <h2 class="decision-point-container__title">決定点</h2>
+  <section class='modal' transition:fade>
+    <div class='container'>
+      <div class='header'>
+        <h2 class='title'>決定点</h2>
         <button
-          class="point-a-detail__pull-down-button"
+          class='detail-pull-down-button'
+          type='button'
           on:click={switchShowPointADetail}>{pointDetailButtonTitle}</button
         >
       </div>
@@ -129,150 +121,145 @@
         transition={{ duration: 0.5 }}
         let:motion
       >
-        <div id="point-detail-pull-down" use:motion>
-          <div class="point-detail-chart-area">
-            <canvas id="point-detail-chart" width="500" height="400"></canvas>
+        <div class='pull-down' use:motion>
+          <div class='chart'>
+            <canvas id='detail-chart'
+                    height='400'
+                    width='500' />
           </div>
-          <ul class="point-a-detail">
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">美しい姿勢</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.beautifulPose
-                ).toFixed(3)}</span
+          <ul class='detail'>
+            <li class='detail-item'>
+              <span class='detail-title'>美しい姿勢</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.beautifulPose
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">柔軟性</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.flexibility
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>柔軟性</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.flexibility
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">動きの技術（自然・幅）</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.naturalMovement
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>動きの技術（自然・幅）</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.naturalMovement
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">動きの技術（膝の踏込み）</span
-              >
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bendingWeight
-                ).toFixed(3)}</span
-              >
-            </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">跳躍の高さ</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.jumpingHeight
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>動きの技術（膝の踏込み）</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.bendingWeight
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">四肢の制御</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.bodyControl
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>跳躍の高さ</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.jumpingHeight
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">かかとの引き上げ</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.heelRaise
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>四肢の制御</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.bodyControl
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title"
-                >張り, 活気, 間, アクセント</span
-              >
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.weaknessAndStrength
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>かかとの引き上げ</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.heelRaise
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">運動のつなぎの技術</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.connectMovement
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>張り, 活気, 間, アクセント</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.weaknessAndStrength
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">自然な手具操作</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.apparatusControl
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>運動のつなぎの技術</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.connectMovement
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">音楽のイメージ</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfPointA(
-                  $executionDeduct.pointA.musicImage
-                ).toFixed(3)}</span
+            <li class='detail-item'>
+              <span class='detail-title'>自然な手具操作</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.apparatusControl
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title">手具を落とした減点</span>
-              <span class="point-a-detail__value"
-                >{getDeductionOfDroppedApparatus($executionDeduct).toFixed(
-                  3
-                )}</span
+            <li class='detail-item'>
+              <span class='detail-title'>音楽のイメージ</span>
+              <span
+              >{getDeductionOfPointA(
+                $executionDeduct.pointA.musicImage
+              ).toFixed(3)}</span
               >
             </li>
-            <li class="point-a-detail__item">
-              <span class="point-a-detail__title"> その他ミスによる減点 </span>
-              <span class="point-a-detail__value">
+            <li class='detail-item'>
+              <span class='detail-title'>手具を落とした減点</span>
+              <span
+              >{getDeductionOfDroppedApparatus($executionDeduct).toFixed(
+                3
+              )}</span
+              >
+            </li>
+            <li class='detail-item'>
+              <span class='detail-title'> その他ミスによる減点 </span>
+              <span>
                 {$executionDeduct.pointB.miss.toFixed(3)}
               </span>
             </li>
           </ul>
         </div>
       </Motion>
-      <div class="decision-point-container__format">
+      <div class='format'>
         10.00　-　( {pointA.toFixed(3)} + {pointB.toFixed(3)} )
       </div>
-      <div class="decision-point-container__result">
+      <div class='result'>
         {decisionPoints.toFixed(3)}
       </div>
-      <div class="decision-point-container__reset-button-container">
-        <button
-          class="decision-point-container__reset-button"
-          on:click={oneMoreJudge}>もう一度採点する</button
+      <div class='footer'>
+        <button class='footer-button'
+                type='button'
+                on:click={oneMoreJudge}
+        >もう一度採点する</button
         >
       </div>
     </div>
   </section>
 {/if}
 
-<style lang="scss">
-  .point-detail-chart-area {
-    display: inline-block;
-    margin-right: 32px;
-    vertical-align: middle;
-  }
-
-  #execution-point-result-modal {
+<style lang='scss'>
+  .modal {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 
-    .modal-overlay {
+    &:before {
+      content: "";
       position: fixed;
       top: 0;
       left: 0;
@@ -281,113 +268,119 @@
       background-color: #333333;
       opacity: 0.7;
     }
+  }
 
-    .decision-point-container {
-      position: relative;
-      top: 50%;
-      left: 50%;
-      width: 800px;
-      padding: 100px 50px 50px;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      border-radius: 8px;
+  .container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    padding: 100px 50px 50px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+  }
 
-      &__header {
-        position: absolute;
-        top: 50px;
-        z-index: 100;
-      }
+  .header {
+    position: absolute;
+    top: 50px;
+    z-index: 100;
+  }
 
-      &__title {
-        display: inline-block;
-        padding: 0 24px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        margin: 0 0 16px;
-        border-radius: 8px;
-        background: #32538d;
-      }
+  .title {
+    display: inline-block;
+    padding: 0 24px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin: 0 0 16px;
+    border-radius: 8px;
+    background: #32538d;
+  }
 
-      &__format {
-        font-size: 24px;
-        margin-bottom: 16px;
-      }
+  .chart {
+    display: inline-block;
+    margin-right: 32px;
+    vertical-align: middle;
+  }
 
-      &__result {
-        padding-left: 40px;
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
+  .format {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
 
-      &__result:after {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 200px;
-        height: 4px;
-        left: 50px;
-        background: #aaaaaa;
-      }
+  .result {
+    padding-left: 40px;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
 
-      &__reset-button-container {
-        text-align: center;
-      }
-
-      &__reset-button {
-        position: relative;
-        width: 200px;
-        height: 48px;
-        font-size: 16px;
-        font-weight: bold;
-        color: white;
-        background: #32538d;
-        border: none;
-        border-radius: 8px;
-        z-index: 100;
-        cursor: pointer;
-      }
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 200px;
+      height: 4px;
+      left: 50px;
+      background: #aaaaaa;
     }
+  }
 
-    /** ポイント詳細 プルダウン ------------------------- */
-    #point-detail-pull-down {
-      opacity: 0;
-      height: 0;
-      margin: 0;
+  .footer {
+    text-align: center;
+  }
+
+  .footer-button {
+    position: relative;
+    width: 200px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #32538d;
+    border: none;
+    border-radius: 8px;
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  /** ポイント詳細 プルダウン ------------------------- */
+  .pull-down {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+  }
+
+  /** ポイントA 詳細 ------------------------------- */
+  .detail {
+    display: inline-block;
+    width: 220px;
+    margin: 0 0 16px;
+    padding: 0;
+    vertical-align: middle;
+  }
+
+  .detail-pull-down-button {
+    margin-bottom: 8px;
+    background: white;
+    border-radius: 4px;
+    font-family: YuGothic, sans-serif;
+
+    &:hover {
+      cursor: pointer;
     }
+  }
 
-    /** ポイントA 詳細 ------------------------------- */
-    .point-a-detail {
-      display: inline-block;
-      width: 220px;
-      margin: 0 0 16px;
-      padding: 0;
-      vertical-align: middle;
+  .detail-item {
+    margin-bottom: 8px;
+    font-size: 12px;
+    list-style: none;
+    border-bottom: 1px solid #aaaaaa;
+  }
 
-      &__pull-down-button {
-        margin-bottom: 8px;
-        background: white;
-        border-radius: 4px;
-        font-family: YuGothic, sans-serif;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      &__item {
-        margin-bottom: 8px;
-        font-size: 12px;
-        list-style: none;
-        border-bottom: 1px solid #aaaaaa;
-      }
-
-      &__title {
-        display: inline-block;
-        width: 180px;
-        font-size: 12px;
-      }
-    }
+  .detail-title {
+    display: inline-block;
+    width: 180px;
+    font-size: 12px;
   }
 </style>

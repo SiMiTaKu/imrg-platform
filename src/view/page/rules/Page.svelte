@@ -1,14 +1,14 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import Image from "../../atomic/image/Image.svelte";
   import { vvRuleBook, calculateIndexOfArticle } from "./data/data";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../../atomic/device-store/store";
 </script>
 
 <article
-  class="rule-book"
+  class='rule-book'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
@@ -18,17 +18,17 @@
     ※見やすいサイト作りを心がけております。
   </p>
   <h1>{vvRuleBook.title}</h1>
-  {#each vvRuleBook.chapter as chapter, chapterIndex}
+  {#each vvRuleBook.chapter as chapter, chapterIndex (chapterIndex)}
     <h2>第{chapterIndex + 1}章 {chapter.title}</h2>
 
-    {#each chapter.article as article, articleIndex}
+    {#each chapter.article as article, articleIndex (articleIndex)}
       <h3>{articleIndex + 1} {article.title}</h3>
 
-      {#each article.section as section, sectionIndex}
+      {#each article.section as section, sectionIndex (sectionIndex)}
         {#if section.block.length}
           <h4>{sectionIndex + 1} {section.title}</h4>
-          {#each section.block as block, blockIndex}
-            <div class="rule-book__record">
+          {#each section.block as block, blockIndex (blockIndex)}
+            <div>
               <h5>
                 第{calculateIndexOfArticle(
                   chapterIndex,
@@ -37,30 +37,34 @@
                   blockIndex
                 )}条 {block.title}
               </h5>
-              <p class="rule-book__record-text">{block.element}</p>
+              <p>{block.element}</p>
               {#if block.image}
-                {#each block.image as image}
+                {#each block.image as image, blockImageIndex (blockImageIndex)}
                   <div>
-                    <Image {image} width="100%" isLazy={true} />
+                    <Image {image}
+                           isLazy={true}
+                           width='100%' />
                   </div>
                 {/each}
               {/if}
             </div>
           {/each}
         {:else}
-          <div class="rule-book__record">
-            <h4 class="rule-book__record-title">
+          <div>
+            <h4>
               第{calculateIndexOfArticle(
                 chapterIndex,
                 articleIndex,
                 sectionIndex
               )}条 {section.title}
             </h4>
-            <p class="rule-book__record-text">{section.content}</p>
+            <p>{section.content}</p>
             {#if section.image}
-              {#each section.image as image}
+              {#each section.image as image, sectionImageIndex (sectionImageIndex)}
                 <div>
-                  <Image {image} width="100%" isLazy={true} />
+                  <Image {image}
+                         isLazy={true}
+                         width='100%' />
                 </div>
               {/each}
             {/if}
@@ -69,12 +73,12 @@
       {/each}
     {/each}
   {/each}
-  <div class="top">
-    <p><a href="/static">TOPに戻る</a></p>
+  <div>
+    <p><a href='/static'>TOPに戻る</a></p>
   </div>
 </article>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
   }
@@ -86,14 +90,5 @@
   .rule-book {
     width: var(--width);
     margin: 0 auto;
-
-    &__record {
-      margin-bottom: 48px;
-    }
-
-    &__record-text {
-      margin: 0;
-      white-space: pre-wrap;
-    }
   }
 </style>

@@ -1,32 +1,32 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import { SNS } from "./_data/contents-footer-data";
   import ImageAssets from "../atomic/image/ImageAssets.svelte";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../atomic/device-store/store";
 </script>
 
 <section
-  class="contents-footer"
+  class='contents-footer'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class="container">
-    <div class="sns">
-      {#each SNS as sns}
+  <div class='container'>
+    <div class='sns'>
+      {#each SNS as sns, index (index)}
         <a
-          class="item"
+          class='item'
           href={sns.href}
-          target="_blank"
-          rel="noopener noreferrer"
+          rel='noopener noreferrer'
+          target='_blank'
         >
-          <div class="icon">
+          <div class='icon'>
             <ImageAssets
-              srcMeta={sns.icon.srcMeta}
-              height="auto"
               alt={sns.icon.alt}
+              height='auto'
               lazy={true}
+              srcMeta={sns.icon.srcMeta}
             />
           </div>
           {sns.name}
@@ -36,7 +36,7 @@
   </div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --icon-size: 64px;

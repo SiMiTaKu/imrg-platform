@@ -1,35 +1,35 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import ImageAssets from "../atomic/image/ImageAssets.svelte";
   import MainImage from "../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../atomic/device-store/store";
 </script>
 
 <div class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <header class="header-main">
-    <div class="content">
-      <a class="header-link" href="/">
-        <div class="image">
+  <header class='header-main'>
+    <div class='content'>
+      <a class='header-link' href='/'>
+        <div class='image'>
           <ImageAssets
-            srcMeta={MainImage}
-            width="100%"
-            height="100%"
+            alt='男子新体操国際化プロジェクトロゴ'
+            height='100%'
             lazy={false}
-            alt="男子新体操国際化プロジェクトロゴ"
+            srcMeta={MainImage}
+            width='100%'
           />
         </div>
-        <div class="title">
-          <span class="main">男子新体操国際化プロジェクト</span>
-          <span class="sub">Internationalize Men's Rhythmic Gymnastics</span>
+        <div class='title'>
+          <span class='main'>男子新体操国際化プロジェクト</span>
+          <span class='sub'>Internationalize Men's Rhythmic Gymnastics</span>
         </div>
       </a>
     </div>
   </header>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --height: 80px;
     --image-size: 128px;

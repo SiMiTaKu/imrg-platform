@@ -1,11 +1,11 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import PointA from "./_components/PointA.svelte";
   import PointB from "./_components/PointB.svelte";
   import ExecutionPointResultModalPC from "./_components/ExecutionPointResultModalPC.svelte";
   import ExecutionPointResultModalSP from "./_components/ExecutionPointResultModalSP.svelte";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { executionDeduct } from "./_store/store";
   import { pageData } from "../../atomic/device-store/store";
 
@@ -16,11 +16,11 @@
 </script>
 
 <section
-  class="judgement-form"
+  class='judgement-form'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class="form-container">
+  <div class='form-container'>
     <!-- Aの最後の回答がされるまで表示 -->
     {#if !$executionDeduct.pointA.beautifulPose || !$executionDeduct.pointA.flexibility || !$executionDeduct.pointA.naturalMovement || !$executionDeduct.pointA.bendingWeight || !$executionDeduct.pointA.jumpingHeight || !$executionDeduct.pointA.bodyControl || !$executionDeduct.pointA.heelRaise || !$executionDeduct.pointA.weaknessAndStrength || !$executionDeduct.pointA.connectMovement || !$executionDeduct.pointA.apparatusControl || !$executionDeduct.pointA.musicImage}
       <PointA />
@@ -36,7 +36,7 @@
   </div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --padding: 64px 0;
     --container-width: #{calc(1024px - 160px)};

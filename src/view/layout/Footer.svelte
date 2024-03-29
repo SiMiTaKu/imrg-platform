@@ -1,18 +1,18 @@
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../atomic/device-store/store";
 </script>
 
 <footer
-  class="footer"
+  class='footer'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class="content">
+  <div class='content'>
     ©︎ Internationalize Men's Rhythmic Gymnastics Project 2020-2023
   </div>
 </footer>
 
-<style>
+<style lang='scss'>
   .pc {
     --font-size: 12px;
   }
