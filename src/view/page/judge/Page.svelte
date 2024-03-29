@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
-  import PointA from "./_component/PointA.svelte";
-  import PointB from "./_component/PointB.svelte";
-  import ExecutionPointResultModalPC from "./_component/ExecutionPointResultModalPC.svelte";
-  import ExecutionPointResultModalSP from "./_component/ExecutionPointResultModalSP.svelte";
+  import PointA from "./_components/PointA.svelte";
+  import PointB from "./_components/PointB.svelte";
+  import ExecutionPointResultModalPC from "./_components/ExecutionPointResultModalPC.svelte";
+  import ExecutionPointResultModalSP from "./_components/ExecutionPointResultModalSP.svelte";
 </script>
 
 <script lang="ts">
