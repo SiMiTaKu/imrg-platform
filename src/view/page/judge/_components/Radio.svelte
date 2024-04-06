@@ -1,21 +1,13 @@
 <script context='module' lang='ts'>
-  const OPTIONS = [1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10];
+  import type { PointAEnum } from "../_model/point-a";
+  import { PointAEnumArray } from "../_model/point-a";
 </script>
 
 <script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
 
   export let title: string;
-  export let userSelected: number;
+  export let userSelected: PointAEnum;
   export let annotation: string;
   export let uniqueId: string;
 </script>
@@ -35,15 +27,15 @@
     aria-labelledby='label-${uniqueId}'
     role='radio'
   >
-    {#each OPTIONS as option, index (index)}
+    {#each PointAEnumArray as option, index (index)}
       <input
-        id={`${uniqueId}_${option}`}
+        id={`${uniqueId}_${option.label}`}
         aria-checked='false'
         type='radio'
         value={option}
         bind:group={userSelected}
       />
-      <label for={`${uniqueId}_${option}`}>{option}</label>
+      <label for={`${uniqueId}_${option.label}`}>{option.label}</label>
     {/each}
   </div>
 </div>
