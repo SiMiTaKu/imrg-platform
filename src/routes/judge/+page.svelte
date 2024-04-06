@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import Page from "../../view/page/judge/Page.svelte";
 </script>
 

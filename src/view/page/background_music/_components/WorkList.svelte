@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import YoutubeIcon from "./_image/youtube-icon.png?w=120;240&format=webp;jpg&as=meta";
   import TapIcon from "./_image/tap-icon.png?w=60;120&format=webp;jpg&as=meta";
   import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
@@ -6,39 +6,42 @@
   import { WORK_LIST } from "./_data/work-list";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
 
   let tapped = false;
 </script>
 
 <section
-  class="work-list"
+  class='work-list'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <WithEnglishHeading title="過去の実績" englishTitle="Work List" />
-  <ul class="cards">
-    {#each WORK_LIST as work}
-      <li class="card">
+  <WithEnglishHeading englishTitle='Work List' title='過去の実績' />
+  <ul class='cards'>
+    {#each WORK_LIST as work, index (index)}
+      <li class='card'>
         <a
-          class="link"
+          class='link'
           href={work.youtube}
-          target="_blank"
+          rel='noopener noreferrer'
+          target='_blank'
           on:click={() => (tapped = true)}
         >
-          <span class="name">{work.customerName}</span>
-          <span class="apparatus">{work.apparatus}</span>
-          <div class="youtube">
+          <span class='name'>{work.customerName}</span>
+          <span class='apparatus'>{work.apparatus}</span>
+          <div class='youtube'>
             <ImageAssets
-              srcMeta={YoutubeIcon}
-              alt="Youtubeアイコン"
+              alt='Youtubeアイコン'
               lazy={true}
+              srcMeta={YoutubeIcon}
             />
           </div>
           {#if !tapped}
-            <div class="tap-icon">
-              <ImageAssets srcMeta={TapIcon} alt="タップアイコン" lazy={true} />
+            <div class='tap-icon'>
+              <ImageAssets alt='タップアイコン'
+                           lazy={true}
+                           srcMeta={TapIcon} />
             </div>
           {/if}
         </a>
@@ -47,7 +50,7 @@
   </ul>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --card-width: calc((100% - 16px * 4) / 5);

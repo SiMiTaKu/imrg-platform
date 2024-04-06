@@ -1,6 +1,5 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
-
   const FLOW = [
     {
       title: "問い合わせ",
@@ -11,45 +10,41 @@
       description: "お問い合わせ内容について、打ち合わせをします。",
     },
     {
-      title: "デザイン",
-      description: "打ち合わせの内容から、デザインを作成します。",
-    },
-    {
-      title: "装飾",
-      description: "デザインを元に、装飾を製作します。",
+      title: "編曲",
+      description: "打ち合わせの内容から、編曲をします。",
     },
     {
       title: "納品",
-      description: "製作した装飾をお渡しします。",
+      description: "編集した曲をデータでお渡しします。",
     },
   ];
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
 </script>
 
 <section
-  class="flow-section"
+  class='flow-section'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class="message">
-    あなたの要望に合わせた<br />世界に一つだけの装飾をいたします!!
+  <div class='message'>
+    あらゆる曲を演技に<br />合わせて編曲します!!
   </div>
-  <WithEnglishHeading title="装飾の流れ" englishTitle="Decorating Flow" />
-  <ul class="flow">
-    {#each FLOW as flow, index}
-      <li class="item">
-        <div class="item-index">{index + 1}</div>
-        <h3 class="item-label">{flow.title}</h3>
-        <p class="item-description">{flow.description}</p>
+  <WithEnglishHeading englishTitle='Editing Flow' title='編曲の流れ' />
+  <ul class='flow'>
+    {#each FLOW as flow, index (index)}
+      <li class='item'>
+        <div class='item-index'>{index + 1}</div>
+        <h3 class='item-label'>{flow.title}</h3>
+        <p class='item-description'>{flow.description}</p>
       </li>
     {/each}
   </ul>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --message-font-size: 36px;
@@ -57,7 +52,7 @@
     --flow-flex-direction: row;
     --item-flex-direction: column;
     --item-gap: 20px;
-    --item-width: calc(((100% - 20px * 4) / 5) - 16px);
+    --item-width: calc(((100% - 20px * 3) / 4) - 16px);
     --item-padding: 16px;
     --item-label-width: 100%;
     --item-label-height: 40px;

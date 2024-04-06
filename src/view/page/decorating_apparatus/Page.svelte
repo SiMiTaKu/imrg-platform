@@ -1,7 +1,7 @@
-<script lang="ts" context="module">
-  import MainVisual from "./_component/MainVisual.svelte";
-  import WorkList from "./_component/WorkList.svelte";
-  import Summary from "./_component/Summary.svelte";
+<script context='module' lang='ts'>
+  import MainVisual from "./_components/MainVisual.svelte";
+  import WorkList from "./_components/WorkList.svelte";
+  import Summary from "./_components/Summary.svelte";
   import Contact from "../../common/contact/Contact.svelte";
 </script>
 

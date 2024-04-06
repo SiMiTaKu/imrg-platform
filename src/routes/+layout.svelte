@@ -1,11 +1,11 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import Header from "../view/layout/Header.svelte";
   import Footer from "../view/layout/Footer.svelte";
   import ContentsFooter from "../view/layout/ContentsFooter.svelte";
   import "./styles.css";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../view/atomic/device-store/store";
 
   let screenWidth = 0;
@@ -17,9 +17,9 @@
 
 <svelte:head>
   {#if $pageData.isMobile}
-    <meta name="viewport" content="width=375, user-scalable=no" />
+    <meta name='viewport' content='width=375, user-scalable=no' />
   {:else}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   {/if}
 </svelte:head>
 
@@ -30,7 +30,7 @@
 <ContentsFooter />
 <Footer />
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --header-padding: 80px;
   }
