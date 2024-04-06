@@ -83,12 +83,16 @@
 
   .image {
     position: absolute;
-    top: -25%;
+    top: 0;
     width: var(--image-size);
-    height: var(--image-size);
+    height: var(--height);
     opacity: 0.1;
-    object-fit: cover;
+
+    :global(img) {
+      object-fit: cover;
+    }
   }
+
   .title {
     display: flex;
     flex-direction: column;
