@@ -1,17 +1,17 @@
-<script context="module" lang="ts">
+<script context='module' lang='ts'>
   const OPTIONS = [1,
-2,
-3,
-4,
-5,
-6,
-7,
-8,
-9,
-10];
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10];
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
 
   export let title: string;
@@ -21,26 +21,26 @@
 </script>
 
 <div
-  class="radio-question"
+  class='radio-question'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class="header">
-    <span class="title"><span class="icon">Q</span>{title}</span>
-    <span class="annotation">※{annotation}</span>
+  <div class='header'>
+    <span class='title'><span class='icon'>Q</span>{title}</span>
+    <span class='annotation'>※{annotation}</span>
   </div>
   <div
-    role="radio"
-    class="radio-group"
-    aria-checked="false"
-    aria-labelledby="label-${uniqueId}"
+    class='radio-group'
+    aria-checked='false'
+    aria-labelledby='label-${uniqueId}'
+    role='radio'
   >
-    {#each OPTIONS as option}
+    {#each OPTIONS as option, index (index)}
       <input
         id={`${uniqueId}_${option}`}
-        type="radio"
+        aria-checked='false'
+        type='radio'
         value={option}
-        aria-checked="false"
         bind:group={userSelected}
       />
       <label for={`${uniqueId}_${option}`}>{option}</label>
@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --header-flex-direction: row;
     --radio-group-gap: 12px;

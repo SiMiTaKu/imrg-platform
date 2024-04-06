@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import MainVisual from "./_components/MainVisual.svelte";
   import WorkList from "./_components/WorkList.svelte";
   import Summary from "./_components/Summary.svelte";

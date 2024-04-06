@@ -1,9 +1,9 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
   import type { SrcMeta } from "./type";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   export let srcMeta: SrcMeta[];
   export let lazy: boolean;
   export let width: string = "100%";
@@ -12,8 +12,8 @@
 
   /** formatのデフォルト値 */
   const imgFormats = ["webp",
-"jpg",
-"png"];
+    "jpg",
+    "png"];
 
   function getSrc(): string {
     const filterByJpg = srcMeta.filter((meta) => meta.format === "jpg");
@@ -35,10 +35,11 @@
 </script>
 
 <img
+  style:width
+  style:height
   {alt}
   loading={lazy ? "lazy" : "eager"}
   src={getSrc()}
   srcset={getSrcSet()}
-  style="width: {width}; height: {height};"
   use:fadeInImage
 />

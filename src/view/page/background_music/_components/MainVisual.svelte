@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
   import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp;jpg&as=meta";
   const MAIN_VISUALS = [
@@ -10,7 +10,7 @@
   ];
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import { pageData } from "../../../atomic/device-store/store";
@@ -44,21 +44,23 @@
 </script>
 
 <section
-  class="main-visual"
+  class='main-visual'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class="image">
-    <ImageAssets srcMeta={MainVisual} lazy={false} alt="メインビジュアル" />
+  <div class='image'>
+    <ImageAssets alt='メインビジュアル'
+                 lazy={false}
+                 srcMeta={MainVisual} />
   </div>
-  <div class="content-wrapper">
-    <div class="content">
+  <div class='content-wrapper'>
+    <div class='content'>
       {#if initialized}
-        <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>
+        <h1 class='title' in:fly={{ duration: 1000, delay: 100, x: 50 }}>
           曲編集
         </h1>
         <div
-          class="english-title"
+          class='english-title'
           in:fly={{ duration: 1000, delay: 600, y: 50 }}
         >
           Background Music Editing
@@ -66,7 +68,7 @@
       {/if}
       {#if isShow}
         <div
-          class="description"
+          class='description'
           in:fly={$pageData.isMobile
             ? { duration: 1000, y: 50 }
             : { duration: 1000, x: 100 }}
@@ -81,7 +83,7 @@
   </div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --min-height: 550px;

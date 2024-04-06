@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
   const FLOW = [
     {
@@ -20,31 +20,31 @@
   ];
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
 </script>
 
 <section
-  class="flow-section"
+  class='flow-section'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class="message">
+  <div class='message'>
     あらゆる曲を演技に<br />合わせて編曲します!!
   </div>
-  <WithEnglishHeading title="編曲の流れ" englishTitle="Editing Flow" />
-  <ul class="flow">
-    {#each FLOW as flow, index}
-      <li class="item">
-        <div class="item-index">{index + 1}</div>
-        <h3 class="item-label">{flow.title}</h3>
-        <p class="item-description">{flow.description}</p>
+  <WithEnglishHeading englishTitle='Editing Flow' title='編曲の流れ' />
+  <ul class='flow'>
+    {#each FLOW as flow, index (index)}
+      <li class='item'>
+        <div class='item-index'>{index + 1}</div>
+        <h3 class='item-label'>{flow.title}</h3>
+        <p class='item-description'>{flow.description}</p>
       </li>
     {/each}
   </ul>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --message-font-size: 36px;

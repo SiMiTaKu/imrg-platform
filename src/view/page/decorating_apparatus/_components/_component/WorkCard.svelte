@@ -1,10 +1,10 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import ImageAssets from "../../../../atomic/image/ImageAssets.svelte";
   import type { SrcMeta } from "../../../../atomic/image/type";
   import TapIcon from "../_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { fade } from "svelte/transition";
 
   export let images: SrcMeta[] = [];
@@ -27,32 +27,41 @@
   };
 </script>
 
-<button class="card" class:flipped on:click={flip}>
+<button class='card'
+        class:flipped
+        type='button'
+        on:click={flip}>
   {#if !flipped}
-    <div class="front" out:fade in:fade={{ delay: 250, duration: 200 }}>
+    <div class='front'
+         in:fade={{ delay: 250, duration: 200 }}
+         out:fade>
       <ImageAssets
-        srcMeta={images[frontImageIndex]}
-        lazy={true}
         alt={`過去の作品${workIndex + 1}_${frontImageIndex + 1}画像`}
+        lazy={true}
+        srcMeta={images[frontImageIndex]}
       />
     </div>
   {:else}
-    <div class="back" out:fade in:fade={{ delay: 250, duration: 200 }}>
+    <div class='back'
+         in:fade={{ delay: 250, duration: 200 }}
+         out:fade>
       <ImageAssets
-        srcMeta={images[backImageIndex]}
-        lazy={true}
         alt={`過去の作品${workIndex}_${frontImageIndex + 2}画像`}
+        lazy={true}
+        srcMeta={images[backImageIndex]}
       />
     </div>
   {/if}
   {#if !tapped}
-    <div class="tap-icon">
-      <ImageAssets srcMeta={TapIcon} lazy={true} alt="タップアイコン" />
+    <div class='tap-icon'>
+      <ImageAssets alt='タップアイコン'
+                   lazy={true}
+                   srcMeta={TapIcon} />
     </div>
   {/if}
 </button>
 
-<style lang="scss">
+<style lang='scss'>
   .card {
     position: relative;
     width: 100%;

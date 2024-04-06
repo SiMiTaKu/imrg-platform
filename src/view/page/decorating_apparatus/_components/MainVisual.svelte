@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
   import Image1 from "./_image/main-visual-1.jpg?w=1024;2048&format=webp;jpg&as=meta";
   import Image2 from "./_image/main-visual-3.jpg?w=1024;2048&format=webp;jpg&as=meta";
@@ -31,7 +31,7 @@
   ];
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { pageData } from "../../../atomic/device-store/store";
@@ -65,27 +65,27 @@
 </script>
 
 <section
-  class="main-visual"
+  class='main-visual'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
   {#if isShow}
-    <div class="image" transition:fade={{ duration: 1000 }}>
+    <div class='image' transition:fade={{ duration: 1000 }}>
       <ImageAssets
-        srcMeta={currentVisual.image}
+        alt='メインビジュアル'
         lazy={false}
-        alt="メインビジュアル"
+        srcMeta={currentVisual.image}
       />
     </div>
   {/if}
-  <div class="content-wrapper">
-    <div class="content">
+  <div class='content-wrapper'>
+    <div class='content'>
       {#if initialized}
-        <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>
+        <h1 class='title' in:fly={{ duration: 1000, delay: 100, x: 50 }}>
           手具装飾
         </h1>
         <div
-          class="english-title"
+          class='english-title'
           in:fly={{ duration: 1000, delay: 600, y: 50 }}
         >
           Decorating Apparatus
@@ -93,7 +93,7 @@
       {/if}
       {#if isShow}
         <div
-          class="description"
+          class='description'
           in:fly={$pageData.isMobile
             ? { duration: 1000, y: 50 }
             : { duration: 1000, x: 100 }}
@@ -108,7 +108,7 @@
   </div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --min-height: 550px;

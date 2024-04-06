@@ -1,105 +1,103 @@
-<script context="module" lang="ts">
+<script context='module' lang='ts'>
   import Radio from "./Radio.svelte";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { executionDeduct } from "../_store/store";
   import { fly } from "svelte/transition";
   import { pageData } from "../../../atomic/device-store/store";
 </script>
 
 <div
-  class="point-a"
+  class='point-a'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
   in:fly={$pageData.isMobile ? { y: 50 } : { x: 200 }}
 >
-  <header class="header">
-    <h2 class="header-title">Aの減点項目</h2>
-    <div class="header-annotation">
-      ※あなたが感じた直感を信じて1〜10点満点で選択してください。
-    </div>
+  <header class='header'>
+    <h2>Aの減点項目</h2>
+    <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
   </header>
-  <div class="section">
-    <h3 class="section-title">徒手の技術</h3>
-    <div class="question-list">
+  <div class='section'>
+    <h3 class='section-title'>徒手の技術</h3>
+    <div class='question-list'>
       <Radio
-        title="美しい姿勢"
+        annotation='単純にどのくらい綺麗だと感じたか'
+        title='美しい姿勢'
+        uniqueId='beautifulPose'
         bind:userSelected={$executionDeduct.pointA.beautifulPose}
-        annotation="単純にどのくらい綺麗だと感じたか"
-        uniqueId="beautifulPose"
       />
       <Radio
-        title="柔軟性"
+        annotation='どのくらい身体の柔らかさを感じたか'
+        title='柔軟性'
+        uniqueId='flexibility'
         bind:userSelected={$executionDeduct.pointA.flexibility}
-        annotation="どのくらい身体の柔らかさを感じたか"
-        uniqueId="flexibility"
       />
       <Radio
-        title="動きの技術（自然・幅）"
+        annotation='どのくらい大きく、自然な動きで演技していたか'
+        title='動きの技術（自然・幅）'
+        uniqueId='naturalMovement'
         bind:userSelected={$executionDeduct.pointA.naturalMovement}
-        annotation="どのくらい大きく、自然な動きで演技していたか"
-        uniqueId="naturalMovement"
       />
       <Radio
-        title="動きの技術（膝の踏込み）"
+        annotation='どのくらい屈伸運動に強さを感じたか'
+        title='動きの技術（膝の踏込み）'
+        uniqueId='bendingWeight'
         bind:userSelected={$executionDeduct.pointA.bendingWeight}
-        annotation="どのくらい屈伸運動に強さを感じたか"
-        uniqueId="bendingWeight"
       />
       <Radio
-        title="跳躍の高さ"
+        annotation='どのくらい高く跳躍していたか（タンブリングの高さではありません）'
+        title='跳躍の高さ'
+        uniqueId='jumpingHeight'
         bind:userSelected={$executionDeduct.pointA.jumpingHeight}
-        annotation="どのくらい高く跳躍していたか（タンブリングの高さではありません）"
-        uniqueId="jumpingHeight"
       />
       <Radio
-        title="四肢の制御"
+        annotation='どのくらい身体を自在に操っていたか'
+        title='四肢の制御'
+        uniqueId='bodyControl'
         bind:userSelected={$executionDeduct.pointA.bodyControl}
-        annotation="どのくらい身体を自在に操っていたか"
-        uniqueId="bodyControl"
       />
       <Radio
-        title="かかとの引き上げ"
+        annotation='どのくらい踵（かかと）を高い位置で演技できていたか'
+        title='かかとの引き上げ'
+        uniqueId='heelRaise'
         bind:userSelected={$executionDeduct.pointA.heelRaise}
-        annotation="どのくらい踵（かかと）を高い位置で演技できていたか"
-        uniqueId="heelRaise"
       />
       <Radio
-        title="張り, 活気, 間, アクセント"
+        annotation='どのくらい緩急や強弱を感じたか'
+        title='張り, 活気, 間, アクセント'
+        uniqueId='weaknessAndStrength'
         bind:userSelected={$executionDeduct.pointA.weaknessAndStrength}
-        annotation="どのくらい緩急や強弱を感じたか"
-        uniqueId="weaknessAndStrength"
       />
       <Radio
-        title="運動のつなぎの技術"
+        annotation='どのくらい動きと動きの間が途切れることなく演技できていたか'
+        title='運動のつなぎの技術'
+        uniqueId='connectMovement'
         bind:userSelected={$executionDeduct.pointA.connectMovement}
-        annotation="どのくらい動きと動きの間が途切れることなく演技できていたか"
-        uniqueId="connectMovement"
       />
     </div>
   </div>
-  <div class="section">
-    <h3 class="section-title">手具の技術</h3>
+  <div class='section'>
+    <h3 class='section-title'>手具の技術</h3>
     <Radio
-      title="自然な手具操作"
+      annotation='どのくらい自然に手具を操作していたか'
+      title='自然な手具操作'
+      uniqueId='apparatusControl'
       bind:userSelected={$executionDeduct.pointA.apparatusControl}
-      annotation="どのくらい自然に手具を操作していたか"
-      uniqueId="apparatusControl"
     />
   </div>
-  <div class="section">
-    <h3 class="section-title">音楽</h3>
+  <div class='section'>
+    <h3 class='section-title'>音楽</h3>
     <Radio
-      title="音楽のイメージ"
+      annotation='どのくらい音楽にあった演技をしていたか'
+      title='音楽のイメージ'
+      uniqueId='musicImage'
       bind:userSelected={$executionDeduct.pointA.musicImage}
-      annotation="どのくらい音楽にあった演技をしていたか"
-      uniqueId="musicImage"
     />
   </div>
 </div>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --header-flex-direction: row;
     --gap: 16px;

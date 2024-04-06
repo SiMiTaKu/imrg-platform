@@ -1,22 +1,22 @@
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
 </script>
 
 <section
-  class="introduction"
+  class='introduction'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <h1 class="title">男子新体操国際化プロジェクト</h1>
-  <div class="body">
-    は<span class="important">男子新体操</span>を<span class="important"
-      >オリンピックスポーツ</span
-    >にするため、その魅力を<span class="important">全世界</span
+  <h1 class='title'>男子新体操国際化プロジェクト</h1>
+  <div class='body'>
+    は<span class='important'>男子新体操</span>を<span class='important'
+    >オリンピックスポーツ</span
+    >にするため、その魅力を<span class='important'>全世界</span
     >へ発信するための活動です。
   </div>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 534px;
     --gap: 24px;

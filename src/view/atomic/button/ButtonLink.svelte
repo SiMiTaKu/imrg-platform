@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang='ts'>
   import { pageData } from "../device-store/store";
 
   export let width: string;
@@ -8,17 +8,17 @@
 </script>
 
 <a
-  class="button-link"
+  style:width
+  style:height
+  class='button-link'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
   {href}
-  style:width
-  style:height
 >
   {text}
 </a>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --item-font-size: 24px;
   }

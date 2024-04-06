@@ -1,9 +1,9 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
   import MainImage from "../../../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { onMount } from "svelte";
   import { fly, fade } from "svelte/transition";
   import { pageData } from "../../../atomic/device-store/store";
@@ -16,20 +16,20 @@
 </script>
 
 <section
-  class="main-visual"
+  class='main-visual'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
   {#if isShowMainVisual}
-    <div class="image" in:fade={{ duration: 1000 }}>
+    <div class='image' in:fade={{ duration: 1000 }}>
       <ImageAssets
-        srcMeta={MainImage}
+        alt='男子新体操国際化プロジェクトのロゴ'
         lazy={false}
-        alt="男子新体操国際化プロジェクトのロゴ"
+        srcMeta={MainImage}
       />
     </div>
     <div
-      class="title"
+      class='title'
       in:fly={{ y: $pageData.isMobile ? 32 : 50, delay: 500, duration: 1000 }}
     >
       {"日本の文化を\n世界のスポーツへ"}
@@ -37,7 +37,7 @@
   {/if}
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --height: 536px;
@@ -92,6 +92,6 @@
     font-weight: bold;
     background-color: #777777dd;
     color: white;
-    white-space: pre-wrap;
+    white-space: pre-line;
   }
 </style>

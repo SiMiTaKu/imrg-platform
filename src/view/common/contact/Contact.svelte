@@ -1,10 +1,10 @@
-<script lang="ts" context="module">
+<script context='module' lang='ts'>
   import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte";
   import ImageAssets from "../../atomic/image/ImageAssets.svelte";
   import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta";
 </script>
 
-<script lang="ts">
+<script lang='ts'>
   import { onMount } from "svelte";
   import { pageData } from "../../atomic/device-store/store";
 
@@ -18,31 +18,34 @@
 </script>
 
 <section
-  class="contact"
+  class='contact'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <WithEnglishHeading title="問合わせ先" englishTitle="Contact" />
+  <WithEnglishHeading englishTitle='Contact' title='問合わせ先' />
   <a
-    href="https://www.instagram.com/takumi.rg/"
-    class="content"
-    target="_blank"
+    class='content'
+    href='https://www.instagram.com/takumi.rg/'
+    rel='noopener noreferrer'
+    target='_blank'
   >
-    <div class="description">
+    <div class='description'>
       お問い合わせはインスタグラムのダイレクトメッセージにて、<br />
       いつでも受け付けております。<br />
       お気軽にお問い合わせください。
-      <div class="button">
+      <div class='button'>
         問い合わせる
-        <div class="tap-icon" class:big-icon={bigIcon}>
-          <ImageAssets srcMeta={TapIcon} alt="タップアイコン" lazy={true} />
+        <div class='tap-icon' class:big-icon={bigIcon}>
+          <ImageAssets alt='タップアイコン'
+                       lazy={true}
+                       srcMeta={TapIcon} />
         </div>
       </div>
     </div>
   </a>
 </section>
 
-<style lang="scss">
+<style lang='scss'>
   .pc {
     --width: 1024px;
     --title-font-size: 40px;
