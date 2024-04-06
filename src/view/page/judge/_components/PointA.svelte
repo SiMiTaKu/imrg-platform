@@ -1,11 +1,14 @@
 <script context='module' lang='ts'>
   import Radio from "./Radio.svelte";
+  import { createEventDispatcher } from "svelte";
 </script>
 
 <script lang='ts'>
   import { executionDeduct } from "../_store/store";
   import { fly } from "svelte/transition";
   import { pageData } from "../../../atomic/device-store/store";
+
+  const dispatch = createEventDispatcher<{ submit: void }>();
 </script>
 
 <div
@@ -95,6 +98,15 @@
       bind:userSelected={$executionDeduct.pointA.musicImage}
     />
   </div>
+  <div class='submit'>
+    <button
+      class='submit-button'
+      type='submit'
+      on:click={() => dispatch("submit")}
+    >
+      決定
+    </button>
+  </div>
 </div>
 
 <style lang='scss'>
@@ -137,5 +149,26 @@
 
   .section-title {
     font-size: var(--section-font-size);
+  }
+
+  .submit {
+    text-align: center;
+  }
+
+  .submit-button {
+    width: 200px;
+    height: 56px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    border: unset;
+    border-radius: 8px;
+    background: #32538d;
+    transition: 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
   }
 </style>

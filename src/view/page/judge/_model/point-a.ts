@@ -33,32 +33,32 @@ export const PointAEnumArray = Object.values(POINT_A_ENUM);
  * @param musicImage          音楽のイメージ
  */
 export type PointA = {
-  beautifulPose: PointAEnum | undefined;
-  flexibility: PointAEnum | undefined;
-  naturalMovement: PointAEnum | undefined;
-  bendingWeight: PointAEnum | undefined;
-  jumpingHeight: PointAEnum | undefined;
-  bodyControl: PointAEnum | undefined;
-  heelRaise: PointAEnum | undefined;
-  weaknessAndStrength: PointAEnum | undefined;
-  connectMovement: PointAEnum | undefined;
-  apparatusControl: PointAEnum | undefined;
-  musicImage: PointAEnum | undefined;
+  beautifulPose: PointAEnum;
+  flexibility: PointAEnum;
+  naturalMovement: PointAEnum;
+  bendingWeight: PointAEnum;
+  jumpingHeight: PointAEnum;
+  bodyControl: PointAEnum;
+  heelRaise: PointAEnum;
+  weaknessAndStrength: PointAEnum;
+  connectMovement: PointAEnum;
+  apparatusControl: PointAEnum;
+  musicImage: PointAEnum;
 };
 export const PointA = {
   init(): PointA {
     return {
-      beautifulPose: undefined,
-      flexibility: undefined,
-      naturalMovement: undefined,
-      bendingWeight: undefined,
-      jumpingHeight: undefined,
-      bodyControl: undefined,
-      heelRaise: undefined,
-      weaknessAndStrength: undefined,
-      connectMovement: undefined,
-      apparatusControl: undefined,
-      musicImage: undefined,
+      beautifulPose: POINT_A_ENUM.OPTION_1,
+      flexibility: POINT_A_ENUM.OPTION_1,
+      naturalMovement: POINT_A_ENUM.OPTION_1,
+      bendingWeight: POINT_A_ENUM.OPTION_1,
+      jumpingHeight: POINT_A_ENUM.OPTION_1,
+      bodyControl: POINT_A_ENUM.OPTION_1,
+      heelRaise: POINT_A_ENUM.OPTION_1,
+      weaknessAndStrength: POINT_A_ENUM.OPTION_1,
+      connectMovement: POINT_A_ENUM.OPTION_1,
+      apparatusControl: POINT_A_ENUM.OPTION_1,
+      musicImage: POINT_A_ENUM.OPTION_1,
     };
   },
 };

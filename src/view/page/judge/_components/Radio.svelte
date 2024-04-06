@@ -29,13 +29,13 @@
   >
     {#each PointAEnumArray as option, index (index)}
       <input
-        id={`${uniqueId}_${option.label}`}
+        id={`${uniqueId}-${option.label}`}
         aria-checked='false'
         type='radio'
         value={option}
         bind:group={userSelected}
       />
-      <label for={`${uniqueId}_${option.label}`}>{option.label}</label>
+      <label for={`${uniqueId}-${option.label}`} />
     {/each}
   </div>
 </div>
@@ -43,14 +43,12 @@
 <style lang='scss'>
   .pc {
     --header-flex-direction: row;
-    --radio-group-gap: 12px;
-    --radio-button-size: 72px;
+    --radio-button-size: 30px;
   }
 
   .sp {
     --header-flex-direction: column;
-    --radio-group-gap: 8px;
-    --radio-button-size: 56px;
+    --radio-button-size: 25px;
   }
 
   .radio-question {
@@ -92,10 +90,22 @@
   }
 
   .radio-group {
+    position: relative;
     display: flex;
-    justify-content: center;
-    gap: var(--radio-group-gap);
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--radio-button-size);
+
+    &:before {
+      position: absolute;
+      content: "";
+      background: #4d9cff;
+      height: 5px;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 1em;
+    }
   }
 
   input[type="radio"] {
@@ -103,32 +113,29 @@
   }
 
   input[type="radio"]:checked + label {
-    background: #2c567e;
     color: white;
     opacity: 1;
+    width: var(--radio-button-size);
+    height: var(--radio-button-size);
+    background: white;
+    border: 5px solid #4d9cff;
   }
 
   label {
-    display: flex;
+    position: relative;
+    display: grid;
     align-items: center;
     justify-content: center;
-    width: var(--radio-button-size);
-    height: var(--radio-button-size);
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 8px;
-    background: #e1e1e1;
-    color: #333333;
+    width: calc(var(--radio-button-size) / 2);
+    height: calc(var(--radio-button-size) / 2);
+    border-radius: 2em;
+    box-sizing: border-box;
+    background: #4d9cff;
     transition: 0.3s;
 
     &:hover {
       cursor: pointer;
       opacity: 0.5;
-    }
-
-    &:focus {
-      transition: 0.2s;
-      opacity: 1;
     }
   }
 </style>
