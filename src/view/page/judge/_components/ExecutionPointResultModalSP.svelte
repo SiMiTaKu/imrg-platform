@@ -106,7 +106,9 @@
             <div class='chart'>
               <canvas id='detail-chart'
                       height='256'
-                      width='256' />
+                      width='256'>
+                <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
+              </canvas>
             </div>
             <ul class='detail'>
               {#each Object.values($executionDeduct.pointA) as point, index (index)}

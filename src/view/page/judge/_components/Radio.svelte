@@ -35,7 +35,9 @@
         value={option}
         bind:group={userSelected}
       />
-      <label for={`${uniqueId}-${option.label}`} />
+      <label for={`${uniqueId}-${option.label}`}>
+        <!-- HTML5の仕様上labelタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
+      </label>
     {/each}
   </div>
 </div>
