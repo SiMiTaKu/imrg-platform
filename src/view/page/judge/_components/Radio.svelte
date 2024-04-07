@@ -40,17 +40,24 @@
       </label>
     {/each}
   </div>
+  <p class='level-meter'>
+    <span>低</span>
+    <span>中</span>
+    <span>高</span>
+  </p>
 </div>
 
 <style lang='scss'>
   .pc {
     --header-flex-direction: row;
     --radio-button-size: 48px;
+    --level-meter-font-size: 18px;
   }
 
   .sp {
     --header-flex-direction: column;
     --radio-button-size: 32px;
+    --level-meter-font-size: 16px;
   }
 
   .radio-question {
@@ -156,5 +163,13 @@
       border: 5px solid #4d9cff;
       opacity: 0.3;
     }
+  }
+
+  .level-meter {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--level-meter-font-size);
+    font-weight: bold;
+    color: #aaaaaa;
   }
 </style>
