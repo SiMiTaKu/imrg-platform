@@ -50,7 +50,7 @@
 
   .sp {
     --header-flex-direction: column;
-    --radio-button-size: 25px;
+    --radio-button-size: 32px;
   }
 
   .radio-question {
@@ -95,7 +95,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    //justify-content: space-between;
     height: var(--radio-button-size);
 
     &:before {
@@ -114,7 +114,7 @@
     display: none;
   }
 
-  input[type="radio"]:checked + label {
+  input[type="radio"]:checked + label:before {
     color: white;
     opacity: 1;
     width: var(--radio-button-size);
@@ -124,18 +124,26 @@
   }
 
   label {
-    position: relative;
-    display: grid;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(var(--radio-button-size) / 2);
-    height: calc(var(--radio-button-size) / 2);
-    border-radius: 2em;
-    box-sizing: border-box;
-    background: #4d9cff;
-    transition: 0.3s;
+    width: 100%;
 
-    &:hover {
+    &:before {
+      content: "";
+      position: relative;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      width: calc(var(--radio-button-size) / 2);
+      height: calc(var(--radio-button-size) / 2);
+      border-radius: 2em;
+      box-sizing: border-box;
+      background: #4d9cff;
+      transition: 0.3s;
+    }
+
+    &:hover:before {
       cursor: pointer;
       color: white;
       width: var(--radio-button-size);
