@@ -1,5 +1,4 @@
 import type { ExecutionDeduct } from "../_model/execution-deduct";
-import type { PointAValue } from "../_model/point-a";
 
 /**
  * @param data 実施の採点項目
@@ -7,37 +6,37 @@ import type { PointAValue } from "../_model/point-a";
  */
 export function getAmountOfPointA(data: ExecutionDeduct): number {
   const beautifulPoseValue = data.pointA.beautifulPose
-    ? getDeductionOfPointA(data.pointA.beautifulPose)
+    ? data.pointA.beautifulPose.option.value
     : 0;
   const flexibilityValue = data.pointA.flexibility
-    ? getDeductionOfPointA(data.pointA.flexibility)
+    ? data.pointA.flexibility.option.value
     : 0;
   const naturalMovementValue = data.pointA.naturalMovement
-    ? getDeductionOfPointA(data.pointA.naturalMovement)
+    ? data.pointA.naturalMovement.option.value
     : 0;
   const bendingWeightValue = data.pointA.bendingWeight
-    ? getDeductionOfPointA(data.pointA.bendingWeight)
+    ? data.pointA.bendingWeight.option.value
     : 0;
   const jumpingHeightValue = data.pointA.jumpingHeight
-    ? getDeductionOfPointA(data.pointA.jumpingHeight)
+    ? data.pointA.jumpingHeight.option.value
     : 0;
   const bodyControlValue = data.pointA.bodyControl
-    ? getDeductionOfPointA(data.pointA.bodyControl)
+    ? data.pointA.bodyControl.option.value
     : 0;
   const heelRaiseValue = data.pointA.heelRaise
-    ? getDeductionOfPointA(data.pointA.heelRaise)
+    ? data.pointA.heelRaise.option.value
     : 0;
   const weaknessAndStrengthValue = data.pointA.weaknessAndStrength
-    ? getDeductionOfPointA(data.pointA.weaknessAndStrength)
+    ? data.pointA.weaknessAndStrength.option.value
     : 0;
   const connectMovementValue = data.pointA.connectMovement
-    ? getDeductionOfPointA(data.pointA.connectMovement)
+    ? data.pointA.connectMovement.option.value
     : 0;
   const apparatusControlValue = data.pointA.apparatusControl
-    ? getDeductionOfPointA(data.pointA.apparatusControl)
+    ? data.pointA.apparatusControl.option.value
     : 0;
   const musicImageValue = data.pointA.musicImage
-    ? getDeductionOfPointA(data.pointA.musicImage)
+    ? data.pointA.musicImage.option.value
     : 0;
 
   /** @note 小数点の誤差をなくすため整数で計算してから元に戻している */
@@ -55,38 +54,6 @@ export function getAmountOfPointA(data: ExecutionDeduct): number {
       musicImageValue * 100) /
     100
   );
-}
-
-const deductionOfPointA = new Map<number, number>([
-  [1,
-0.5],
-  [2,
-0.45],
-  [3,
-0.4],
-  [4,
-0.35],
-  [5,
-0.3],
-  [6,
-0.25],
-  [7,
-0.2],
-  [8,
-0.15],
-  [9,
-0.1],
-  [10,
-0.05],
-]);
-
-/**
- * @param value radioボタンで選択された値
- * @return 選択された評価から減点を返す
- */
-export function getDeductionOfPointA(value: PointAValue): number {
-  const result = deductionOfPointA.get(value);
-  return result!;
 }
 
 /** @note Bの減点項目の合計を返す。減点のMaxを超えた場合はMaxの値を返す。 */

@@ -7,7 +7,6 @@
     getAmountOfPointA,
     getAmountOfPointB,
     getDecisionPoints,
-    getDeductionOfPointA,
     getDeductionOfDroppedApparatus,
   } from "../_service/culculator";
 
@@ -52,34 +51,14 @@
     myChart = new Chart(ctx, {
       type: "radar",
       data: {
-        labels: [
-          "美しい姿勢",
-          "柔軟性",
-          "動きの技術（自然・幅）",
-          "動きの技術（膝の踏込み）",
-          "跳躍の高さ",
-          "四肢の制御",
-          "かかとの引き上げ",
-          "張り, 活気, 間, アクセント",
-          "運動のつなぎの技術",
-          "自然な手具操作",
-          "音楽のイメージ",
-        ],
+        labels: Object.values($executionDeduct.pointA).map(
+          (point) => point.info.title
+        ),
         datasets: [
           {
-            data: [
-              $executionDeduct.pointA.beautifulPose,
-              $executionDeduct.pointA.flexibility,
-              $executionDeduct.pointA.naturalMovement,
-              $executionDeduct.pointA.bendingWeight,
-              $executionDeduct.pointA.jumpingHeight,
-              $executionDeduct.pointA.bodyControl,
-              $executionDeduct.pointA.heelRaise,
-              $executionDeduct.pointA.weaknessAndStrength,
-              $executionDeduct.pointA.connectMovement,
-              $executionDeduct.pointA.apparatusControl,
-              $executionDeduct.pointA.musicImage,
-            ],
+            data: Object.values($executionDeduct.pointA).map(
+              (point) => point.option.code
+            ),
           },
         ],
       },
@@ -125,97 +104,17 @@
           <div class='chart'>
             <canvas id='detail-chart'
                     height='400'
-                    width='500' />
+                    width='500'>
+              <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
+            </canvas>
           </div>
           <ul class='detail'>
-            <li class='detail-item'>
-              <span class='detail-title'>美しい姿勢</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.beautifulPose
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>柔軟性</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.flexibility
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>動きの技術（自然・幅）</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.naturalMovement
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>動きの技術（膝の踏込み）</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.bendingWeight
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>跳躍の高さ</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.jumpingHeight
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>四肢の制御</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.bodyControl
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>かかとの引き上げ</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.heelRaise
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>張り, 活気, 間, アクセント</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.weaknessAndStrength
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>運動のつなぎの技術</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.connectMovement
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>自然な手具操作</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.apparatusControl
-              ).toFixed(3)}</span
-              >
-            </li>
-            <li class='detail-item'>
-              <span class='detail-title'>音楽のイメージ</span>
-              <span
-              >{getDeductionOfPointA(
-                $executionDeduct.pointA.musicImage
-              ).toFixed(3)}</span
-              >
-            </li>
+            {#each Object.values($executionDeduct.pointA) as point, index (index)}
+              <li class='detail-item'>
+                <span class='detail-title'>{point.info.title}</span>
+                <span>{point.option.value.toFixed(3)}</span>
+              </li>
+            {/each}
             <li class='detail-item'>
               <span class='detail-title'>手具を落とした減点</span>
               <span

@@ -6,12 +6,17 @@
 </script>
 
 <script lang='ts'>
-  import { executionDeduct } from "./_store/store";
   import { pageData } from "../../atomic/device-store/store";
 
-  let submitted: boolean = false;
-  function submit() {
-    submitted = true;
+  let submittedPointA: boolean = false;
+  let submittedPointB: boolean = false;
+
+  function submitPointA() {
+    submittedPointA = true;
+  }
+
+  function submitPointB() {
+    submittedPointB = true;
   }
 </script>
 
@@ -21,17 +26,16 @@
   class:sp={$pageData.isMobile}
 >
   <div class='form-container'>
-    <!-- Aの最後の回答がされるまで表示 -->
-    {#if !$executionDeduct.pointA.beautifulPose || !$executionDeduct.pointA.flexibility || !$executionDeduct.pointA.naturalMovement || !$executionDeduct.pointA.bendingWeight || !$executionDeduct.pointA.jumpingHeight || !$executionDeduct.pointA.bodyControl || !$executionDeduct.pointA.heelRaise || !$executionDeduct.pointA.weaknessAndStrength || !$executionDeduct.pointA.connectMovement || !$executionDeduct.pointA.apparatusControl || !$executionDeduct.pointA.musicImage}
-      <PointA />
+    {#if !submittedPointA}
+      <PointA on:submit={() => submitPointA()} />
     {/if}
-    {#if $executionDeduct.pointA.beautifulPose && $executionDeduct.pointA.flexibility && $executionDeduct.pointA.naturalMovement && $executionDeduct.pointA.bendingWeight && $executionDeduct.pointA.jumpingHeight && $executionDeduct.pointA.bodyControl && $executionDeduct.pointA.heelRaise && $executionDeduct.pointA.weaknessAndStrength && $executionDeduct.pointA.connectMovement && $executionDeduct.pointA.apparatusControl && $executionDeduct.pointA.musicImage}
-      <PointB on:submit={() => submit()} />
+    {#if submittedPointA}
+      <PointB on:submit={() => submitPointB()} />
     {/if}
     {#if $pageData.isMobile}
-      <ExecutionPointResultModalSP show={submitted} />
+      <ExecutionPointResultModalSP show={submittedPointB} />
     {:else}
-      <ExecutionPointResultModalPC show={submitted} />
+      <ExecutionPointResultModalPC show={submittedPointB} />
     {/if}
   </div>
 </section>

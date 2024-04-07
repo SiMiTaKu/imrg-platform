@@ -23,3 +23,20 @@ npm run build
 
 > [!NOTE]
 > Amplifyのビルドが失敗してしまうためNodeのバージョンは16系を使用しています。
+
+
+## Lint
+### Check
+```bash
+npm run lint
+```
+
+### Fix
+```bash
+npm run lint:fix
+```
+
+### format
+```bash
+npm run format
+```
