@@ -45,7 +45,7 @@
 <style lang='scss'>
   .pc {
     --header-flex-direction: row;
-    --radio-button-size: 30px;
+    --radio-button-size: 48px;
   }
 
   .sp {
@@ -141,6 +141,10 @@
       box-sizing: border-box;
       background: #4d9cff;
       transition: 0.3s;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
 
     &:hover:before {
