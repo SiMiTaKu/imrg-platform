@@ -6,37 +6,37 @@ import type { ExecutionDeduct } from "../_model/execution-deduct";
  */
 export function getAmountOfPointA(data: ExecutionDeduct): number {
   const beautifulPoseValue = data.pointA.beautifulPose
-    ? data.pointA.beautifulPose.value
+    ? data.pointA.beautifulPose.option.value
     : 0;
   const flexibilityValue = data.pointA.flexibility
-    ? data.pointA.flexibility.value
+    ? data.pointA.flexibility.option.value
     : 0;
   const naturalMovementValue = data.pointA.naturalMovement
-    ? data.pointA.naturalMovement.value
+    ? data.pointA.naturalMovement.option.value
     : 0;
   const bendingWeightValue = data.pointA.bendingWeight
-    ? data.pointA.bendingWeight.value
+    ? data.pointA.bendingWeight.option.value
     : 0;
   const jumpingHeightValue = data.pointA.jumpingHeight
-    ? data.pointA.jumpingHeight.value
+    ? data.pointA.jumpingHeight.option.value
     : 0;
   const bodyControlValue = data.pointA.bodyControl
-    ? data.pointA.bodyControl.value
+    ? data.pointA.bodyControl.option.value
     : 0;
   const heelRaiseValue = data.pointA.heelRaise
-    ? data.pointA.heelRaise.value
+    ? data.pointA.heelRaise.option.value
     : 0;
   const weaknessAndStrengthValue = data.pointA.weaknessAndStrength
-    ? data.pointA.weaknessAndStrength.value
+    ? data.pointA.weaknessAndStrength.option.value
     : 0;
   const connectMovementValue = data.pointA.connectMovement
-    ? data.pointA.connectMovement.value
+    ? data.pointA.connectMovement.option.value
     : 0;
   const apparatusControlValue = data.pointA.apparatusControl
-    ? data.pointA.apparatusControl.value
+    ? data.pointA.apparatusControl.option.value
     : 0;
   const musicImageValue = data.pointA.musicImage
-    ? data.pointA.musicImage.value
+    ? data.pointA.musicImage.option.value
     : 0;
 
   /** @note 小数点の誤差をなくすため整数で計算してから元に戻している */

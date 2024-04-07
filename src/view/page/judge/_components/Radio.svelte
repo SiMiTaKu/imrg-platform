@@ -1,13 +1,13 @@
 <script context='module' lang='ts'>
-  import type { PointAEnum } from "../_model/point-a";
-  import { PointAEnumArray } from "../_model/point-a";
+  import type { PointAOption } from "../_model/point-a";
+  import { PointAOptions } from "../_model/point-a";
 </script>
 
 <script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store";
 
   export let title: string;
-  export let userSelected: PointAEnum;
+  export let userSelected: PointAOption;
   export let annotation: string;
   export let uniqueId: string;
 </script>
@@ -27,7 +27,7 @@
     aria-labelledby='label-${uniqueId}'
     role='radio'
   >
-    {#each PointAEnumArray as option, index (index)}
+    {#each PointAOptions as option, index (index)}
       <input
         id={`${uniqueId}-${option.label}`}
         aria-checked='false'
@@ -135,7 +135,12 @@
 
     &:hover {
       cursor: pointer;
-      opacity: 0.5;
+      color: white;
+      width: var(--radio-button-size);
+      height: var(--radio-button-size);
+      background: white;
+      border: 5px solid #4d9cff;
+      opacity: 0.3;
     }
   }
 </style>

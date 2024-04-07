@@ -4,7 +4,7 @@
  * label: 評価項目のラベル 1 ~ 10
  * value: 減点値 0.5 ~ 0.05
  */
-const POINT_A_ENUM = {
+const POINT_A_OPTION = {
   OPTION_1: { code: 1, label: "1", value: 0.5 },
   OPTION_2: { code: 2, label: "2", value: 0.45 },
   OPTION_3: { code: 3, label: "3", value: 0.4 },
@@ -17,8 +17,58 @@ const POINT_A_ENUM = {
   OPTION_10: { code: 10, label: "10", value: 0.05 },
 } as const;
 
-export type PointAEnum = (typeof POINT_A_ENUM)[keyof typeof POINT_A_ENUM];
-export const PointAEnumArray = Object.values(POINT_A_ENUM);
+export type PointAOption = (typeof POINT_A_OPTION)[keyof typeof POINT_A_OPTION];
+export const PointAOptions = Object.values(POINT_A_OPTION);
+
+const POINT_A_INFO = {
+  beautifulPose: {
+    title: "美しい姿勢",
+    annotation: "単純にどのくらい綺麗だと感じたか",
+  },
+  flexibility: {
+    title: "柔軟性",
+    annotation: "どのくらい身体の柔らかさを感じたか",
+  },
+  naturalMovement: {
+    title: "動きの技術（自然・幅）",
+    annotation: "どのくらい大きく、自然な動きで演技していたか",
+  },
+  bendingWeight: {
+    title: "動きの技術（膝の踏込み）",
+    annotation: "どのくらい屈伸運動に強さを感じたか",
+  },
+  jumpingHeight: {
+    title: "跳躍の高さ",
+    annotation:
+      "どのくらい高く跳躍していたか（タンブリングの高さではありません）",
+  },
+  bodyControl: {
+    title: "四肢の制御",
+    annotation: "どのくらい身体を自在に操っていたか",
+  },
+  heelRaise: {
+    title: "かかとの引き上げ",
+    annotation: "どのくらい踵（かかと）を高い位置で演技できていたか",
+  },
+  weaknessAndStrength: {
+    title: "張り, 活気, 間, アクセント",
+    annotation: "どのくらい緩急や強弱を感じたか",
+  },
+  connectMovement: {
+    title: "運動のつなぎの技術",
+    annotation: "どのくらい動きと動きの間が途切れることなく演技できていたか",
+  },
+  apparatusControl: {
+    title: "自然な手具操作",
+    annotation: "どのくらい自然に手具を操作していたか",
+  },
+  musicImage: {
+    title: "音楽のイメージ",
+    annotation: "どのくらい音楽にあった演技をしていたか",
+  },
+};
+
+type PointAInfo = typeof POINT_A_INFO;
 /**
  * @param beautifulPose       美しい姿勢
  * @param flexibility         柔軟性
@@ -33,32 +83,98 @@ export const PointAEnumArray = Object.values(POINT_A_ENUM);
  * @param musicImage          音楽のイメージ
  */
 export type PointA = {
-  beautifulPose: PointAEnum;
-  flexibility: PointAEnum;
-  naturalMovement: PointAEnum;
-  bendingWeight: PointAEnum;
-  jumpingHeight: PointAEnum;
-  bodyControl: PointAEnum;
-  heelRaise: PointAEnum;
-  weaknessAndStrength: PointAEnum;
-  connectMovement: PointAEnum;
-  apparatusControl: PointAEnum;
-  musicImage: PointAEnum;
+  beautifulPose: {
+    option: PointAOption;
+    info: PointAInfo["beautifulPose"];
+  };
+  flexibility: {
+    option: PointAOption;
+    info: PointAInfo["flexibility"];
+  };
+  naturalMovement: {
+    option: PointAOption;
+    info: PointAInfo["naturalMovement"];
+  };
+  bendingWeight: {
+    option: PointAOption;
+    info: PointAInfo["bendingWeight"];
+  };
+  jumpingHeight: {
+    option: PointAOption;
+    info: PointAInfo["jumpingHeight"];
+  };
+  bodyControl: {
+    option: PointAOption;
+    info: PointAInfo["bodyControl"];
+  };
+  heelRaise: {
+    option: PointAOption;
+    info: PointAInfo["heelRaise"];
+  };
+  weaknessAndStrength: {
+    option: PointAOption;
+    info: PointAInfo["weaknessAndStrength"];
+  };
+  connectMovement: {
+    option: PointAOption;
+    info: PointAInfo["connectMovement"];
+  };
+  apparatusControl: {
+    option: PointAOption;
+    info: PointAInfo["apparatusControl"];
+  };
+  musicImage: {
+    option: PointAOption;
+    info: PointAInfo["musicImage"];
+  };
 };
 export const PointA = {
   init(): PointA {
     return {
-      beautifulPose: POINT_A_ENUM.OPTION_1,
-      flexibility: POINT_A_ENUM.OPTION_1,
-      naturalMovement: POINT_A_ENUM.OPTION_1,
-      bendingWeight: POINT_A_ENUM.OPTION_1,
-      jumpingHeight: POINT_A_ENUM.OPTION_1,
-      bodyControl: POINT_A_ENUM.OPTION_1,
-      heelRaise: POINT_A_ENUM.OPTION_1,
-      weaknessAndStrength: POINT_A_ENUM.OPTION_1,
-      connectMovement: POINT_A_ENUM.OPTION_1,
-      apparatusControl: POINT_A_ENUM.OPTION_1,
-      musicImage: POINT_A_ENUM.OPTION_1,
+      beautifulPose: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.beautifulPose,
+      },
+      flexibility: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.flexibility,
+      },
+      naturalMovement: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.naturalMovement,
+      },
+      bendingWeight: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.bendingWeight,
+      },
+      jumpingHeight: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.jumpingHeight,
+      },
+      bodyControl: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.bodyControl,
+      },
+      heelRaise: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.heelRaise,
+      },
+      weaknessAndStrength: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.weaknessAndStrength,
+      },
+      connectMovement: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.connectMovement,
+      },
+      apparatusControl: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.apparatusControl,
+      },
+      musicImage: {
+        option: POINT_A_OPTION.OPTION_1,
+        info: POINT_A_INFO.musicImage,
+      },
     };
   },
 };
