@@ -57,7 +57,7 @@
     --header-flex-direction: column;
     --header-gap: 8px;
     --section-font-size: 24px;
-    --question-list-gap: 24px;
+    --question-list-gap: 32px;
   }
 
   .point-a {
