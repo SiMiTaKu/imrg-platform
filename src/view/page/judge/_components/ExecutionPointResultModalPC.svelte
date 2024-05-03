@@ -10,7 +10,7 @@
     getDeductionOfDroppedApparatus,
   } from "../_service/culculator";
 
-  export let show;
+  export let show: boolean;
 
   $: pointA = getAmountOfPointA($executionDeduct);
   $: pointB = getAmountOfPointB($executionDeduct);
@@ -41,7 +41,7 @@
   }
 
   /** @note Chartが描画されているか判別する変数 */
-  let myChart = undefined;
+  let myChart: Chart | undefined = undefined;
   function renderPointDetailChart() {
     let ctx = <HTMLCanvasElement>document.getElementById("detail-chart");
     if (myChart) {

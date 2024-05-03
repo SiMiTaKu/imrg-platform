@@ -7,7 +7,7 @@
 <script lang='ts'>
   import { fade } from "svelte/transition";
 
-  export let images: SrcMeta[] = [];
+  export let images: SrcMeta[][] = [];
   export let workIndex: number;
 
   let frontImageIndex = 0;

@@ -13,7 +13,7 @@
   $: pointB = getAmountOfPointB($executionDeduct);
   $: decisionPoints = getDecisionPoints($executionDeduct);
 
-  export let show;
+  export let show: boolean;
 
   let pointDetailButtonTitle: string = "内訳を見る";
   let pointDetailOpacity: number = 0;
@@ -40,7 +40,7 @@
   }
 
   /** @note Chartが描画されているか判別する変数 */
-  let myChart = undefined;
+  let myChart: Chart | undefined = undefined;
   function renderPointDetailChart() {
     let ctx = <HTMLCanvasElement>document.getElementById("detail-chart");
     if (myChart) {
@@ -67,7 +67,7 @@
             max: 10, //グラフの最大値
             min: 0, //グラフの最小値
             ticks: { stepSize: 1 }, //目盛間隔
-            pointLabels: false,
+            pointLabels: { display: false },
           },
         },
         plugins: { legend: { display: false } },

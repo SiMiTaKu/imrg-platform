@@ -1,3 +1,4 @@
+import type { SrcMeta } from "../../../../atomic/image/type";
 import Image1_1 from "../_image/work-list-image-1-1.jpg?w=256;512&format=webp;jpg&as=meta";
 import Image1_2 from "../_image/work-list-image-1-2.jpg?w=256;512&format=webp;jpg&as=meta";
 import Image1_3 from "../_image/work-list-image-1-3.jpg?w=256;512&format=webp;jpg&as=meta";
@@ -26,7 +27,7 @@ import Image9_1 from "../_image/work-list-image-9-1.jpg?w=256;512&format=webp;jp
 import Image9_2 from "../_image/work-list-image-9-2.jpg?w=256;512&format=webp;jpg&as=meta";
 import Image9_3 from "../_image/work-list-image-9-3.jpg?w=256;512&format=webp;jpg&as=meta";
 
-export const WORK_LIST = [
+export const WORK_LIST: { images: SrcMeta[][] }[] = [
   {
 images: [Image1_1,
 Image1_2,

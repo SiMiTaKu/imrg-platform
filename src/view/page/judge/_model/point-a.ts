@@ -128,6 +128,12 @@ export type PointA = {
     info: PointAInfo["musicImage"];
   };
 };
+
+/**
+ * PointAの評価項目のキー
+ */
+export type PointAKey = keyof PointA;
+
 export const PointA = {
   init(): PointA {
     return {

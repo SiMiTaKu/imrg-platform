@@ -1,6 +1,7 @@
 <script context='module' lang='ts'>
   import Radio from "./Radio.svelte";
   import { createEventDispatcher } from "svelte";
+  import type { PointAKey } from "../_model/point-a";
 </script>
 
 <script lang='ts'>
@@ -9,6 +10,11 @@
   import { pageData } from "../../../atomic/device-store/store";
 
   const dispatch = createEventDispatcher<{ submit: void }>();
+
+  /** 型判定がうまくいかないのでここで型アサーションを行う */
+  let pointAKeys: PointAKey[] = Object.keys(
+    $executionDeduct.pointA
+  ) as PointAKey[];
 </script>
 
 <div
@@ -24,7 +30,7 @@
   <div class='section'>
     <h3 class='section-title'>徒手の技術</h3>
     <div class='question-list'>
-      {#each Object.keys($executionDeduct.pointA) as key (key)}
+      {#each pointAKeys as key (key)}
         <Radio
           annotation={$executionDeduct.pointA[key].info.annotation}
           title={$executionDeduct.pointA[key].info.title}
