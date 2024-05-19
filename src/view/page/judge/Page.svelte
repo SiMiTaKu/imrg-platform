@@ -7,6 +7,7 @@
 
 <script lang='ts'>
   import { pageData } from "../../atomic/device-store/store";
+  import SelectApparatus from "./_components/SelectApparatus.svelte";
 
   let submittedPointA: boolean = false;
   let submittedPointB: boolean = false;
@@ -26,9 +27,8 @@
   class:sp={$pageData.isMobile}
 >
   <div class='form-container'>
-    {#if !submittedPointA}
-      <PointA on:submit={() => submitPointA()} />
-    {/if}
+    <SelectApparatus />
+    <PointA on:submit={() => submitPointA()} />
     {#if submittedPointA}
       <PointB on:submit={() => submitPointB()} />
     {/if}
