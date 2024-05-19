@@ -11,9 +11,7 @@
   export let alt: string;
 
   /** formatのデフォルト値 */
-  const imgFormats = ["webp",
-    "jpg",
-    "png"];
+  const imgFormats = [ "webp", "jpg", "png" ];
 
   function getSrc(): string {
     const filterByJpg = srcMeta.filter((meta) => meta.format === "jpg");
