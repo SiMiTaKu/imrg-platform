@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import Page from "../../view/page/background_music/Page.svelte";
+  import Page from "../../view/page/background_music/Page.svelte"
 </script>
 
 <svelte:head>

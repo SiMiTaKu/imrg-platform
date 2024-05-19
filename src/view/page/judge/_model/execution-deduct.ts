@@ -1,6 +1,6 @@
-import { PointA } from "./point-a";
-import { PointB } from "./point-b";
-import type { Apparatus } from "./apparatus";
+import { PointA } from "./point-a"
+import { PointB } from "./point-b"
+import type { Apparatus } from "./apparatus"
 
 export type ExecutionDeduct = {
   apparatus: Apparatus | undefined;
@@ -14,6 +14,6 @@ export const ExecutionDeduct = {
       apparatus: undefined,
       pointA: PointA.init(),
       pointB: PointB.init(),
-    };
+    }
   },
-};
+}

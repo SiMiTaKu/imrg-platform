@@ -1,45 +1,45 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
-  import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp;jpg&as=meta";
+  import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
+  import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp;jpg&as=meta"
   const MAIN_VISUALS = [
     { description: "大好きな曲を、自然な演技時間に短縮！" },
     { description: "最適な編曲で、最高の演技体験を！" },
     { description: "音楽の魔法で、あなたの演技を引き立てます！" },
     { description: "No Music, No Life. \nあなたの演技に音楽を添えて！" },
     { description: "豊かな音色があなたの演技の魅力を加速させる！" },
-  ];
+  ]
 </script>
 
 <script lang='ts'>
-  import { onMount } from "svelte";
-  import { fly } from "svelte/transition";
-  import { pageData } from "../../../atomic/device-store/store";
+  import { onMount } from "svelte"
+  import { fly } from "svelte/transition"
+  import { pageData } from "../../../atomic/device-store/store"
 
-  let currentIndex = Math.floor(Math.random() * 5);
-  let currentVisual = MAIN_VISUALS[currentIndex];
-  let isShow = false;
-  let initialized = false;
+  let currentIndex = Math.floor(Math.random() * 5)
+  let currentVisual = MAIN_VISUALS[currentIndex]
+  let isShow = false
+  let initialized = false
 
   onMount(() => {
-    isShow = true;
-    initialized = true;
+    isShow = true
+    initialized = true
     setInterval(() => {
-      changeVisuals();
-    }, 5000);
-  });
+      changeVisuals()
+    }, 5000)
+  })
 
   function changeVisuals() {
-    isShow = false;
+    isShow = false
     setTimeout(() => {
-      isShow = true;
-    }, 1250);
+      isShow = true
+    }, 1250)
 
     if (currentIndex === MAIN_VISUALS.length - 1) {
-      currentIndex = 0;
+      currentIndex = 0
     } else {
-      currentIndex++;
+      currentIndex++
     }
-    currentVisual = MAIN_VISUALS[currentIndex];
+    currentVisual = MAIN_VISUALS[currentIndex]
   }
 </script>
 

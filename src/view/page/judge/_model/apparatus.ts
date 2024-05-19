@@ -20,7 +20,7 @@ const APPARATUS = {
     code: 4,
     name: "クラブ",
   },
-} as const;
+} as const
 
 export type Apparatus = (typeof APPARATUS)[keyof typeof APPARATUS];
-export const Apparatuses = Object.values(APPARATUS);
+export const Apparatuses = Object.values(APPARATUS)

@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import { Apparatuses } from "../_model/apparatus";
+  import { Apparatuses } from "../_model/apparatus"
 </script>
 
 <div>採点する手具を選択してください。</div>

@@ -80,6 +80,7 @@
         "ArrayExpression": 1
       }
     ],
+    "semi": ["error", "never"],
     //#endregion
 
     //#region Svelte Rules -----------------------------------------------------

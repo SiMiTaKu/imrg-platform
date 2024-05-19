@@ -1,16 +1,16 @@
 <script context='module' lang='ts'>
-  import Header from "../view/layout/Header.svelte";
-  import Footer from "../view/layout/Footer.svelte";
-  import ContentsFooter from "../view/layout/ContentsFooter.svelte";
-  import "./styles.css";
+  import Header from "../view/layout/Header.svelte"
+  import Footer from "../view/layout/Footer.svelte"
+  import ContentsFooter from "../view/layout/ContentsFooter.svelte"
+  import "./styles.css"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../view/atomic/device-store/store";
+  import { pageData } from "../view/atomic/device-store/store"
 
-  let screenWidth = 0;
+  let screenWidth = 0
 
-  $: pageData.update(screenWidth);
+  $: pageData.update(screenWidth)
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />

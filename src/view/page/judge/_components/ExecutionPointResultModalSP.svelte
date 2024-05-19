@@ -1,51 +1,51 @@
 <script lang='ts'>
-  import { fade } from "svelte/transition";
-  import { executionDeduct } from "../_store/store";
-  import { Motion } from "svelte-motion";
-  import { Chart } from "chart.js/auto";
+  import { fade } from "svelte/transition"
+  import { executionDeduct } from "../_store/store"
+  import { Motion } from "svelte-motion"
+  import { Chart } from "chart.js/auto"
   import {
     getAmountOfPointA,
     getAmountOfPointB,
     getDecisionPoints,
-  } from "../_service/culculator";
+  } from "../_service/culculator"
 
-  $: pointA = getAmountOfPointA($executionDeduct);
-  $: pointB = getAmountOfPointB($executionDeduct);
-  $: decisionPoints = getDecisionPoints($executionDeduct);
+  $: pointA = getAmountOfPointA($executionDeduct)
+  $: pointB = getAmountOfPointB($executionDeduct)
+  $: decisionPoints = getDecisionPoints($executionDeduct)
 
-  export let show: boolean;
+  export let show: boolean
 
-  let pointDetailButtonTitle: string = "内訳を見る";
-  let pointDetailOpacity: number = 0;
-  let pointDetailHeight: number = 0;
-  let pointDetailMarginTop: string = "0px";
-  let isPointDetailShown: boolean = false;
+  let pointDetailButtonTitle: string = "内訳を見る"
+  let pointDetailOpacity: number = 0
+  let pointDetailHeight: number = 0
+  let pointDetailMarginTop: string = "0px"
+  let isPointDetailShown: boolean = false
 
   function switchShowPointADetail(): void {
-    isPointDetailShown = !isPointDetailShown;
+    isPointDetailShown = !isPointDetailShown
     if (isPointDetailShown) {
-      renderPointDetailChart();
-      pointDetailButtonTitle = "内訳を閉じる";
-      pointDetailHeight = 300;
+      renderPointDetailChart()
+      pointDetailButtonTitle = "内訳を閉じる"
+      pointDetailHeight = 300
       setTimeout(() => {
-        pointDetailOpacity = 1;
-      }, 100);
+        pointDetailOpacity = 1
+      }, 100)
     } else {
-      pointDetailButtonTitle = "内訳を見る";
-      pointDetailOpacity = 0;
+      pointDetailButtonTitle = "内訳を見る"
+      pointDetailOpacity = 0
       setTimeout(() => {
-        pointDetailHeight = 0;
-      }, 100);
+        pointDetailHeight = 0
+      }, 100)
     }
   }
 
   /** @note Chartが描画されているか判別する変数 */
-  let myChart: Chart | undefined = undefined;
+  let myChart: Chart | undefined = undefined
   function renderPointDetailChart() {
-    let ctx = <HTMLCanvasElement>document.getElementById("detail-chart");
+    let ctx = <HTMLCanvasElement>document.getElementById("detail-chart")
     if (myChart) {
-      myChart.clear();
-      myChart.destroy();
+      myChart.clear()
+      myChart.destroy()
     }
     myChart = new Chart(ctx, {
       type: "radar",
@@ -72,11 +72,11 @@
         },
         plugins: { legend: { display: false } },
       },
-    });
+    })
   }
 
   function oneMoreJudge(): void {
-    location.reload();
+    location.reload()
   }
 </script>
 

@@ -1,15 +1,15 @@
 <script context='module' lang='ts'>
-  import YoutubeIcon from "./_image/youtube-icon.png?w=120;240&format=webp;jpg&as=meta";
-  import TapIcon from "./_image/tap-icon.png?w=60;120&format=webp;jpg&as=meta";
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
-  import { WORK_LIST } from "./_data/work-list";
+  import YoutubeIcon from "./_image/youtube-icon.png?w=120;240&format=webp;jpg&as=meta"
+  import TapIcon from "./_image/tap-icon.png?w=60;120&format=webp;jpg&as=meta"
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte"
+  import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
+  import { WORK_LIST } from "./_data/work-list"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../../atomic/device-store/store";
+  import { pageData } from "../../../atomic/device-store/store"
 
-  let tapped = false;
+  let tapped = false
 </script>
 
 <section

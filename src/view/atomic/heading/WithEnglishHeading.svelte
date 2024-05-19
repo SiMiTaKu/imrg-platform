@@ -1,8 +1,8 @@
 <script lang='ts'>
-  import { pageData } from "../device-store/store";
+  import { pageData } from "../device-store/store"
 
-  export let title: string;
-  export let englishTitle: string;
+  export let title: string
+  export let englishTitle: string
 </script>
 
 <h2 class='title'

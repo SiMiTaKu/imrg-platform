@@ -1,23 +1,23 @@
 <script context='module' lang='ts'>
-  import PointA from "./_components/PointA.svelte";
-  import PointB from "./_components/PointB.svelte";
-  import ExecutionPointResultModalPC from "./_components/ExecutionPointResultModalPC.svelte";
-  import ExecutionPointResultModalSP from "./_components/ExecutionPointResultModalSP.svelte";
+  import PointA from "./_components/PointA.svelte"
+  import PointB from "./_components/PointB.svelte"
+  import ExecutionPointResultModalPC from "./_components/ExecutionPointResultModalPC.svelte"
+  import ExecutionPointResultModalSP from "./_components/ExecutionPointResultModalSP.svelte"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../atomic/device-store/store";
-  import SelectApparatus from "./_components/SelectApparatus.svelte";
+  import { pageData } from "../../atomic/device-store/store"
+  import SelectApparatus from "./_components/SelectApparatus.svelte"
 
-  let submittedPointA: boolean = false;
-  let submittedPointB: boolean = false;
+  let submittedPointA: boolean = false
+  let submittedPointB: boolean = false
 
   function submitPointA() {
-    submittedPointA = true;
+    submittedPointA = true
   }
 
   function submitPointB() {
-    submittedPointB = true;
+    submittedPointB = true
   }
 </script>
 

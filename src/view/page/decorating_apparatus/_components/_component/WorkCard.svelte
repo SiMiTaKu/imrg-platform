@@ -1,30 +1,30 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../../../../atomic/image/ImageAssets.svelte";
-  import type { SrcMeta } from "../../../../atomic/image/type";
-  import TapIcon from "../_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta";
+  import ImageAssets from "../../../../atomic/image/ImageAssets.svelte"
+  import type { SrcMeta } from "../../../../atomic/image/type"
+  import TapIcon from "../_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta"
 </script>
 
 <script lang='ts'>
-  import { fade } from "svelte/transition";
+  import { fade } from "svelte/transition"
 
-  export let images: SrcMeta[][] = [];
-  export let workIndex: number;
+  export let images: SrcMeta[][] = []
+  export let workIndex: number
 
-  let frontImageIndex = 0;
-  let backImageIndex = (frontImageIndex + 1) % images.length;
-  let flipped = false;
-  let tapped = false;
+  let frontImageIndex = 0
+  let backImageIndex = (frontImageIndex + 1) % images.length
+  let flipped = false
+  let tapped = false
 
   const flip = () => {
-    flipped = !flipped;
+    flipped = !flipped
 
     if (flipped) {
-      frontImageIndex = (backImageIndex + 1) % images.length;
-      tapped = true;
+      frontImageIndex = (backImageIndex + 1) % images.length
+      tapped = true
     } else {
-      backImageIndex = (frontImageIndex + 1) % images.length;
+      backImageIndex = (frontImageIndex + 1) % images.length
     }
-  };
+  }
 </script>
 
 <button class='card'

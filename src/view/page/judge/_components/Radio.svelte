@@ -1,15 +1,15 @@
 <script context='module' lang='ts'>
-  import type { PointAOption } from "../_model/point-a";
-  import { PointAOptions } from "../_model/point-a";
+  import type { PointAOption } from "../_model/point-a"
+  import { PointAOptions } from "../_model/point-a"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../../atomic/device-store/store";
+  import { pageData } from "../../../atomic/device-store/store"
 
-  export let title: string;
-  export let userSelected: PointAOption;
-  export let annotation: string;
-  export let uniqueId: string;
+  export let title: string
+  export let userSelected: PointAOption
+  export let annotation: string
+  export let uniqueId: string
 </script>
 
 <div

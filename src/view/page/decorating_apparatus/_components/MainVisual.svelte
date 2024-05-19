@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
-  import Image1 from "./_image/main-visual-1.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image2 from "./_image/main-visual-3.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image3 from "./_image/main-visual-5.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image4 from "./_image/main-visual-2.jpg?w=1024;2048&format=webp;jpg&as=meta";
-  import Image5 from "./_image/main-visual-4.jpg?w=1024;2048&format=webp;jpg&as=meta";
+  import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
+  import Image1 from "./_image/main-visual-1.jpg?w=1024;2048&format=webp;jpg&as=meta"
+  import Image2 from "./_image/main-visual-3.jpg?w=1024;2048&format=webp;jpg&as=meta"
+  import Image3 from "./_image/main-visual-5.jpg?w=1024;2048&format=webp;jpg&as=meta"
+  import Image4 from "./_image/main-visual-2.jpg?w=1024;2048&format=webp;jpg&as=meta"
+  import Image5 from "./_image/main-visual-4.jpg?w=1024;2048&format=webp;jpg&as=meta"
 
   const MAIN_VISUALS = [
     {
@@ -28,39 +28,39 @@
       image: Image5,
       description: "豊かな彩が君の表現の進化を加速させる。",
     },
-  ];
+  ]
 </script>
 
 <script lang='ts'>
-  import { onMount } from "svelte";
-  import { fade, fly } from "svelte/transition";
-  import { pageData } from "../../../atomic/device-store/store";
+  import { onMount } from "svelte"
+  import { fade, fly } from "svelte/transition"
+  import { pageData } from "../../../atomic/device-store/store"
 
-  let currentIndex = Math.floor(Math.random() * 5);
-  let currentVisual = MAIN_VISUALS[currentIndex];
-  let isShow = false;
-  let initialized = false;
+  let currentIndex = Math.floor(Math.random() * 5)
+  let currentVisual = MAIN_VISUALS[currentIndex]
+  let isShow = false
+  let initialized = false
 
   onMount(() => {
-    isShow = true;
-    initialized = true;
+    isShow = true
+    initialized = true
     setInterval(() => {
-      changeVisuals();
-    }, 5000);
-  });
+      changeVisuals()
+    }, 5000)
+  })
 
   function changeVisuals() {
-    isShow = false;
+    isShow = false
     setTimeout(() => {
-      isShow = true;
-    }, 1250);
+      isShow = true
+    }, 1250)
 
     if (currentIndex === MAIN_VISUALS.length - 1) {
-      currentIndex = 0;
+      currentIndex = 0
     } else {
-      currentIndex++;
+      currentIndex++
     }
-    currentVisual = MAIN_VISUALS[currentIndex];
+    currentVisual = MAIN_VISUALS[currentIndex]
   }
 </script>
 

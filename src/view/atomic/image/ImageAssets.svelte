@@ -1,35 +1,35 @@
 <script context='module' lang='ts'>
-  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
-  import type { SrcMeta } from "./type";
+  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image"
+  import type { SrcMeta } from "./type"
 </script>
 
 <script lang='ts'>
-  export let srcMeta: SrcMeta[];
-  export let lazy: boolean;
-  export let width: string = "100%";
-  export let height: string = "100%";
-  export let alt: string;
+  export let srcMeta: SrcMeta[]
+  export let lazy: boolean
+  export let width: string = "100%"
+  export let height: string = "100%"
+  export let alt: string
 
   /** formatのデフォルト値 */
-  const imgFormats = [ "webp", "jpg", "png" ];
+  const imgFormats = [ "webp", "jpg", "png" ]
 
   function getSrc(): string {
-    const filterByJpg = srcMeta.filter((meta) => meta.format === "jpg");
-    return filterByJpg.sort((a, b) => a.width - b.width)[0].src;
+    const filterByJpg = srcMeta.filter((meta) => meta.format === "jpg")
+    return filterByJpg.sort((a, b) => a.width - b.width)[0].src
   }
 
   function getSrcSet(): string | undefined {
     const groupedSrcByFormat = imgFormats.map((format) => {
-      return srcMeta.filter((m) => m.format === format);
-    });
+      return srcMeta.filter((m) => m.format === format)
+    })
     return groupedSrcByFormat
       .flatMap((groupedSrc) =>
         groupedSrc.map((src, j) => `${src?.src} ${j + 1}x`)
       )
-      .join(", ");
+      .join(", ")
   }
 
-  const fadeInImage = lazy ? toggleImageOpacityOnInterSection : () => {};
+  const fadeInImage = lazy ? toggleImageOpacityOnInterSection : () => {}
 </script>
 
 <img

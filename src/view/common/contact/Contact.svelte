@@ -1,20 +1,20 @@
 <script context='module' lang='ts'>
-  import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte";
-  import ImageAssets from "../../atomic/image/ImageAssets.svelte";
-  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta";
+  import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte"
+  import ImageAssets from "../../atomic/image/ImageAssets.svelte"
+  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta"
 </script>
 
 <script lang='ts'>
-  import { onMount } from "svelte";
-  import { pageData } from "../../atomic/device-store/store";
+  import { onMount } from "svelte"
+  import { pageData } from "../../atomic/device-store/store"
 
-  let bigIcon = false;
+  let bigIcon = false
 
   onMount(() => {
     setInterval(() => {
-      bigIcon = !bigIcon;
-    }, 1000);
-  });
+      bigIcon = !bigIcon
+    }, 1000)
+  })
 </script>
 
 <section

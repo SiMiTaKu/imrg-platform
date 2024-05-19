@@ -1,20 +1,20 @@
 <script context='module' lang='ts'>
-  import Radio from "./Radio.svelte";
-  import { createEventDispatcher } from "svelte";
-  import type { PointAKey } from "../_model/point-a";
+  import Radio from "./Radio.svelte"
+  import { createEventDispatcher } from "svelte"
+  import type { PointAKey } from "../_model/point-a"
 </script>
 
 <script lang='ts'>
-  import { executionDeduct } from "../_store/store";
-  import { fly } from "svelte/transition";
-  import { pageData } from "../../../atomic/device-store/store";
+  import { executionDeduct } from "../_store/store"
+  import { fly } from "svelte/transition"
+  import { pageData } from "../../../atomic/device-store/store"
 
-  const dispatch = createEventDispatcher<{ submit: void }>();
+  const dispatch = createEventDispatcher<{ submit: void }>()
 
   /** 型判定がうまくいかないのでここで型アサーションを行う */
   let pointAKeys: PointAKey[] = Object.keys(
     $executionDeduct.pointA
-  ) as PointAKey[];
+  ) as PointAKey[]
 </script>
 
 <div

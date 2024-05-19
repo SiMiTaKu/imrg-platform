@@ -1,13 +1,13 @@
 <script context='module' lang='ts'>
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from "svelte"
 </script>
 
 <script lang='ts'>
-  import { executionDeduct } from "../_store/store";
-  import { fly } from "svelte/transition";
-  import { pageData } from "../../../atomic/device-store/store";
+  import { executionDeduct } from "../_store/store"
+  import { fly } from "svelte/transition"
+  import { pageData } from "../../../atomic/device-store/store"
 
-  const dispatch = createEventDispatcher<{ submit: void }>();
+  const dispatch = createEventDispatcher<{ submit: void }>()
 </script>
 
 <div
