@@ -1,6 +1,6 @@
 import { PointA } from "./point-a"
 import { PointB } from "./point-b"
-import type { Apparatus } from "./apparatus"
+import { Apparatus } from "./apparatus"
 
 export type ExecutionDeduct = {
   apparatus: Apparatus | undefined;
@@ -15,5 +15,8 @@ export const ExecutionDeduct = {
       pointA: PointA.init(),
       pointB: PointB.init(),
     }
+  },
+  toggleApparatus(executionDeduct: ExecutionDeduct, code: string): void {
+    executionDeduct.apparatus = Apparatus.fromCode(code)
   },
 }

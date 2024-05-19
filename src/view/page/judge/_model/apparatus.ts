@@ -24,3 +24,10 @@ const APPARATUS = {
 
 export type Apparatus = (typeof APPARATUS)[keyof typeof APPARATUS];
 export const Apparatuses = Object.values(APPARATUS)
+
+export const Apparatus = {
+  fromCode(code: number | string): Apparatus | undefined {
+    const intCode = typeof code === "string" ? parseInt(code) : code
+    return Apparatuses.find((apparatus) => apparatus.code === intCode)
+  },
+}
