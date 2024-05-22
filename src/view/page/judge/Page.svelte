@@ -8,6 +8,7 @@
 <script lang='ts'>
   import { pageData } from "../../atomic/device-store/store"
   import SelectApparatus from "./_components/SelectApparatus.svelte"
+  import { executionDeduct } from "./_store/store"
 
   let submittedPointA: boolean = false
   let submittedPointB: boolean = false
@@ -28,14 +29,16 @@
 >
   <div class='form-container'>
     <SelectApparatus />
-    <PointA on:submit={() => submitPointA()} />
-    {#if submittedPointA}
-      <PointB on:submit={() => submitPointB()} />
-    {/if}
-    {#if $pageData.isMobile}
-      <ExecutionPointResultModalSP show={submittedPointB} />
-    {:else}
-      <ExecutionPointResultModalPC show={submittedPointB} />
+    {#if $executionDeduct.apparatus}
+      <PointA on:submit={() => submitPointA()} />
+      {#if submittedPointA}
+        <PointB on:submit={() => submitPointB()} />
+      {/if}
+      {#if $pageData.isMobile}
+        <ExecutionPointResultModalSP show={submittedPointB} />
+      {:else}
+        <ExecutionPointResultModalPC show={submittedPointB} />
+      {/if}
     {/if}
   </div>
 </section>
@@ -61,6 +64,8 @@
   }
 
   .form-container {
+    display: grid;
+    gap: 24px;
     width: var(--container-width);
     padding: var(--container-padding);
     background: white;
