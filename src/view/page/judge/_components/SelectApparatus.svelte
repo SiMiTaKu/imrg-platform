@@ -1,21 +1,65 @@
 <script context='module' lang='ts'>
   import { Apparatuses } from "../_model/apparatus"
+  const OPTIONS = Apparatuses.map((apparatus) => ({
+    code: apparatus.code,
+    value: apparatus.name,
+  }))
 </script>
 
 <script lang='ts'>
   import { ExecutionDeduct } from "../_model/execution-deduct"
-  import { executionDeduct } from "../_store/store.js"
+  import SingleSelect from "../../../common/form/SingleSelect.svelte"
 
-  function handleApparatusChange(event: Event) {
-    const target = event.currentTarget as HTMLSelectElement
-    ExecutionDeduct.toggleApparatus($executionDeduct, target.value)
+  function handleApparatusChange(value: string) {
+    ExecutionDeduct.toggleApparatus(value)
   }
 </script>
 
-<div>採点する手具を選択してください。</div>
-<select name='select-apparatus' on:change={handleApparatusChange}>
-  <option value="">採点する手具を選択してください</option>
-  {#each Apparatuses as apparatus (apparatus.code)}
-    <option value={apparatus.code}>{apparatus.name}</option>
-  {/each}
-</select>
+<!-- TODO: SELECTボックスをコンポーネントにする -->
+
+<div class='select-apparatuses'>
+  <div class='header'>
+    <span class='title'><span class='icon'>Q</span>手具選択</span>
+  </div>
+  <SingleSelect
+    id='select-apparatus'
+    options={OPTIONS}
+    placeholder='採点する手具を選択してください'
+    on:change={(event) => handleApparatusChange(event.detail.value)}
+  />
+</div>
+
+<style lang='scss'>
+  .select-apparatuses {
+    display: grid;
+    gap: 16px;
+  }
+
+  .header {
+    display: grid;
+    align-items: baseline;
+    flex-direction: var(--header-flex-direction);
+    gap: 8px;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background: #3e7cb7;
+    border-radius: 1em;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+</style>
