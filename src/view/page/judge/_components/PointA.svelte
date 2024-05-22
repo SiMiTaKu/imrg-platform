@@ -25,7 +25,7 @@
 >
   <header class='header'>
     <h2>Aの減点項目</h2>
-    <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
+    <div>※あなたの直感を信じて選択してください</div>
   </header>
   <div class='section'>
     <h3 class='section-title'>徒手の技術</h3>
