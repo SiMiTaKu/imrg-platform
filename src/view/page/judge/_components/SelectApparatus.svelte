@@ -7,15 +7,13 @@
 </script>
 
 <script lang='ts'>
-  import { ExecutionDeduct } from "../_model/execution-deduct"
   import SingleSelect from "../../../common/form/SingleSelect.svelte"
+  import { judgementApparatus } from "../_store/apparatus"
 
   function handleApparatusChange(value: string) {
-    ExecutionDeduct.toggleApparatus(value)
+    judgementApparatus.toggle(value)
   }
 </script>
-
-<!-- TODO: SELECTボックスをコンポーネントにする -->
 
 <div class='select-apparatuses'>
   <div class='header'>

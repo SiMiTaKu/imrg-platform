@@ -8,7 +8,7 @@
 <script lang='ts'>
   import { pageData } from "../../atomic/device-store/store"
   import SelectApparatus from "./_components/SelectApparatus.svelte"
-  import { executionDeduct } from "./_store/store"
+  import { judgementApparatus } from "./_store/apparatus"
 
   let submittedPointA: boolean = false
   let submittedPointB: boolean = false
@@ -29,7 +29,7 @@
 >
   <div class='form-container'>
     <SelectApparatus />
-    {#if $executionDeduct.apparatus}
+    {#if $judgementApparatus}
       <PointA on:submit={() => submitPointA()} />
       {#if submittedPointA}
         <PointB on:submit={() => submitPointB()} />
