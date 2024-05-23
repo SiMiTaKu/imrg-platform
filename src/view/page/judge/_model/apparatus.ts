@@ -30,4 +30,14 @@ export const Apparatus = {
     const intCode = typeof code === "string" ? parseInt(code) : code
     return Apparatuses.find((apparatus) => apparatus.code === intCode)
   },
+
+  /**
+   * 2つで一つの手具かを判別するメソッド
+   * @param apparatus
+   */
+  isDoubleApparatus(apparatus: Apparatus | undefined): boolean {
+    if (apparatus === APPARATUS.RING || apparatus === APPARATUS.CLUB)
+      return true
+    return false
+  },
 }

@@ -3,8 +3,10 @@
 </script>
 
 <script lang='ts'>
-  import { executionDeduct } from "../_store/store"
   import { fly } from "svelte/transition"
+  import { Apparatus } from "../_model/apparatus"
+  import { executionDeduct } from "../_store/store"
+  import { judgementApparatus } from "../_store/apparatus"
   import { pageData } from "../../../atomic/device-store/store"
 
   const dispatch = createEventDispatcher<{ submit: void }>()
@@ -33,16 +35,18 @@
           bind:value={$executionDeduct.pointB.droppedApparatus.single}
         />
       </div>
-      <div class='dropped-apparatus'>
-        <h4>2つの手具を同時に落とした回数</h4>
-        <input
-          class='miss-point'
-          min='0'
-          step='1'
-          type='number'
-          bind:value={$executionDeduct.pointB.droppedApparatus.double}
-        />
-      </div>
+      {#if Apparatus.isDoubleApparatus($judgementApparatus)}
+        <div class='dropped-apparatus'>
+          <h4>2つの手具を同時に落とした回数</h4>
+          <input
+            class='miss-point'
+            min='0'
+            step='1'
+            type='number'
+            bind:value={$executionDeduct.pointB.droppedApparatus.double}
+          />
+        </div>
+      {/if}
     </div>
   </div>
   <div class='section'>
