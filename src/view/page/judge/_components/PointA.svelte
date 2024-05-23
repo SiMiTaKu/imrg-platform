@@ -11,6 +11,8 @@
 
   const dispatch = createEventDispatcher<{ submit: void }>()
 
+  let submitted = false
+
   /** 型判定がうまくいかないのでここで型アサーションを行う */
   let pointAKeys: PointAKey[] = Object.keys(
     $executionDeduct.pointA
@@ -40,15 +42,20 @@
       {/each}
     </div>
   </div>
-  <div class='submit'>
-    <button
-      class='submit-button'
-      type='submit'
-      on:click={() => dispatch("submit")}
-    >
-      決定
-    </button>
-  </div>
+  {#if !submitted}
+    <div class='submit'>
+      <button
+        class='submit-button'
+        type='submit'
+        on:click={() => {
+          dispatch("submit")
+          submitted = true
+        }}
+      >
+        決定
+      </button>
+    </div>
+  {/if}
 </div>
 
 <style lang='scss'>
