@@ -15,10 +15,10 @@ const POINT_A_OPTION = {
   OPTION_8: { code: 8, label: "8", value: 0.15 },
   OPTION_9: { code: 9, label: "9", value: 0.1 },
   OPTION_10: { code: 10, label: "10", value: 0.05 },
-} as const;
+} as const
 
 export type PointAOption = (typeof POINT_A_OPTION)[keyof typeof POINT_A_OPTION];
-export const PointAOptions = Object.values(POINT_A_OPTION);
+export const PointAOptions = Object.values(POINT_A_OPTION)
 
 const POINT_A_INFO = {
   beautifulPose: {
@@ -66,7 +66,7 @@ const POINT_A_INFO = {
     title: "音楽のイメージ",
     annotation: "どのくらい音楽にあった演技をしていたか",
   },
-};
+}
 
 type PointAInfo = typeof POINT_A_INFO;
 /**
@@ -181,6 +181,6 @@ export const PointA = {
         option: POINT_A_OPTION.OPTION_1,
         info: POINT_A_INFO.musicImage,
       },
-    };
+    }
   },
-};
+}

@@ -55,4 +55,4 @@ export const WORK_LIST: Work[] = [
     apparatus: "ロープ",
     youtube: "https://youtu.be/LdnPg1o5Xmo",
   },
-];
+]

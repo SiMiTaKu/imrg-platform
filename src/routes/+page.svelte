@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import Page from "../view/page/top/Page.svelte";
+  import Page from "../view/page/top/Page.svelte"
 </script>
 
 <svelte:head>

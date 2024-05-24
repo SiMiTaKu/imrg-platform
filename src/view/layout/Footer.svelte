@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { pageData } from "../atomic/device-store/store";
+  import { pageData } from "../atomic/device-store/store"
 </script>
 
 <footer

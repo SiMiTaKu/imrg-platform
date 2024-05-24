@@ -24,9 +24,9 @@ declare global {
       width: number;
       height: number;
       format: string;
-    }[];
-    export default images;
+    }[]
+    export default images
   }
 }
 
-export {};
+export {}

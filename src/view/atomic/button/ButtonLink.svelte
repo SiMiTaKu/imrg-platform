@@ -1,10 +1,10 @@
 <script lang='ts'>
-  import { pageData } from "../device-store/store";
+  import { pageData } from "../device-store/store"
 
-  export let width: string;
-  export let height: string;
-  export let text: string;
-  export let href: string;
+  export let width: string
+  export let height: string
+  export let text: string
+  export let href: string
 </script>
 
 <a

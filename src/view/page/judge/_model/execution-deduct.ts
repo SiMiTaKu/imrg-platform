@@ -1,5 +1,5 @@
-import { PointA } from "./point-a";
-import { PointB } from "./point-b";
+import { PointA } from "./point-a"
+import { PointB } from "./point-b"
 
 export type ExecutionDeduct = {
   pointA: PointA;
@@ -11,6 +11,6 @@ export const ExecutionDeduct = {
     return {
       pointA: PointA.init(),
       pointB: PointB.init(),
-    };
+    }
   },
-};
+}

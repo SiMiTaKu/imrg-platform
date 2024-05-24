@@ -1,4 +1,4 @@
-import type { RuleBook, Chapter, Article, Section, Block } from "./model";
+import type { RuleBook, Chapter, Article, Section, Block } from "./model"
 
 export const vvRuleBook: RuleBook = {
   title: "新体操男子規則",
@@ -2499,7 +2499,7 @@ e. チーム全体が元気よく楽しく演技できたか。
       article: [],
     } as Chapter,
   ],
-} as RuleBook;
+} as RuleBook
 
 /**
  * 条項(section)のインデックスを計算する
@@ -2515,7 +2515,7 @@ export function calculateIndexOfArticle(
   sectionIndex: number,
   blockIndex: number = undefined
 ): number {
-  let index = 0;
+  let index = 0
   // 現在のchapterIndexの持つarticleの数分ループさせる。
   for (let i = 0; i < vvRuleBook.chapter[chapterIndex].article.length; i++) {
     // 現在のarticleIndex以下かどうか判別
@@ -2533,10 +2533,10 @@ export function calculateIndexOfArticle(
         ) {
           // ブロックを持つ場合 + ブロックリストの長さ分
           index +=
-            vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length;
+            vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length
         } else {
           // ブロックを持たない場合 + 1
-          index++;
+          index++
         }
       }
     } else if (i === articleIndex) {
@@ -2554,14 +2554,14 @@ export function calculateIndexOfArticle(
         ) {
           // ブロックを持つ場合 + ブロックリストの長さ分
           index +=
-            vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length;
+            vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length
         } else if (j <= sectionIndex) {
           // ブロックを持たない場合 + 1
-          index++;
+          index++
         }
       }
     }
   }
-  blockIndex !== undefined ? (index += blockIndex) : "";
-  return index;
+  blockIndex !== undefined ? (index += blockIndex) : ""
+  return index
 }

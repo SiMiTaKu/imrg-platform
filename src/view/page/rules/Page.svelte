@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
-  import Image from "../../atomic/image/Image.svelte";
-  import { vvRuleBook, calculateIndexOfArticle } from "./data/data";
+  import Image from "../../atomic/image/Image.svelte"
+  import { vvRuleBook, calculateIndexOfArticle } from "./data/data"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../atomic/device-store/store";
+  import { pageData } from "../../atomic/device-store/store"
 </script>
 
 <article

@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte"
 
   const FLOW = [
     {
@@ -22,11 +22,11 @@
       title: "納品",
       description: "製作した装飾をお渡しします。",
     },
-  ];
+  ]
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../../atomic/device-store/store";
+  import { pageData } from "../../../atomic/device-store/store"
 </script>
 
 <section

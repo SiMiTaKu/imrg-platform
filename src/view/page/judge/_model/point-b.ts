@@ -14,6 +14,6 @@ export const PointB = {
         double: 0,
       },
       miss: 0,
-    };
+    }
   },
-};
+}

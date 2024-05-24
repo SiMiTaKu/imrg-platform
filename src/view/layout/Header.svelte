@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../atomic/image/ImageAssets.svelte";
-  import MainImage from "../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
+  import ImageAssets from "../atomic/image/ImageAssets.svelte"
+  import MainImage from "../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../atomic/device-store/store";
+  import { pageData } from "../atomic/device-store/store"
 </script>
 
 <div class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
