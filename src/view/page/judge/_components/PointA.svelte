@@ -1,14 +1,23 @@
 <script context='module' lang='ts'>
-  import Radio from "./Radio.svelte";
-  import { createEventDispatcher } from "svelte";
+  import Radio from "./Radio.svelte"
+  import { createEventDispatcher } from "svelte"
+  import type { PointAKey } from "../_model/point-a"
 </script>
 
 <script lang='ts'>
-  import { executionDeduct } from "../_store/store";
-  import { fly } from "svelte/transition";
-  import { pageData } from "../../../atomic/device-store/store";
+  import { executionDeduct } from "../_store/store"
+  import { fly } from "svelte/transition"
+  import { pageData } from "../../../atomic/device-store/store"
+  import { judgementApparatus } from "../_store/apparatus"
 
-  const dispatch = createEventDispatcher<{ submit: void }>();
+  const dispatch = createEventDispatcher<{ submit: void }>()
+
+  let submitted = false
+
+  /** 型判定がうまくいかないのでここで型アサーションを行う */
+  let pointAKeys: PointAKey[] = Object.keys(
+    $executionDeduct.pointA
+  ) as PointAKey[]
 </script>
 
 <div
@@ -19,12 +28,12 @@
 >
   <header class='header'>
     <h2>Aの減点項目</h2>
-    <div>※あなたが感じた直感を信じて1〜10点満点で選択してください。</div>
+    <div>※あなたの直感を信じて選択してください</div>
   </header>
   <div class='section'>
     <h3 class='section-title'>徒手の技術</h3>
     <div class='question-list'>
-      {#each Object.keys($executionDeduct.pointA) as key (key)}
+      {#each pointAKeys as key (key)}
         <Radio
           annotation={$executionDeduct.pointA[key].info.annotation}
           title={$executionDeduct.pointA[key].info.title}
@@ -34,15 +43,24 @@
       {/each}
     </div>
   </div>
-  <div class='submit'>
-    <button
-      class='submit-button'
-      type='submit'
-      on:click={() => dispatch("submit")}
+  {#if !submitted}
+    <div
+      class="submit {$judgementApparatus
+        ? $judgementApparatus.imageColor
+        : 'gray'}"
     >
-      決定
-    </button>
-  </div>
+      <button
+        class='submit-button'
+        type='submit'
+        on:click={() => {
+          dispatch("submit")
+          submitted = true
+        }}
+      >
+        決定
+      </button>
+    </div>
+  {/if}
 </div>
 
 <style lang='scss'>
@@ -58,6 +76,26 @@
     --header-gap: 8px;
     --section-font-size: 24px;
     --question-list-gap: 32px;
+  }
+
+  .gray {
+    --submit-button-background: #707070;
+  }
+
+  .blue {
+    --submit-button-background: #0088d9;
+  }
+
+  .red {
+    --submit-button-background: #d30101;
+  }
+
+  .yellow {
+    --submit-button-background: #cead00;
+  }
+
+  .green {
+    --submit-button-background: #30cb00;
   }
 
   .point-a {
@@ -101,7 +139,7 @@
     color: white;
     border: unset;
     border-radius: 8px;
-    background: #32538d;
+    background: var(--submit-button-background);
     transition: 0.3s;
 
     &:hover {

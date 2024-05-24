@@ -1,16 +1,16 @@
 <script context='module' lang='ts'>
-  import type { Image } from "../../../ts/common/image";
-  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image";
+  import type { Image } from "../../../ts/common/image"
+  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image"
 </script>
 
 <script lang='ts'>
-  export let image: Image;
-  export let width: string = "auto";
-  export let height: string = "auto";
-  export let isLazy: boolean = true;
-  export let fadeIn: boolean = false;
+  export let image: Image
+  export let width: string = "auto"
+  export let height: string = "auto"
+  export let isLazy: boolean = true
+  export let fadeIn: boolean = false
 
-  const fadeInImage = fadeIn ? toggleImageOpacityOnInterSection : () => {};
+  const fadeInImage = fadeIn ? toggleImageOpacityOnInterSection : () => {}
 </script>
 
 <img

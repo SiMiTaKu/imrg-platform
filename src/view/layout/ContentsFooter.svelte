@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
-  import { SNS } from "./_data/contents-footer-data";
-  import ImageAssets from "../atomic/image/ImageAssets.svelte";
+  import { SNS } from "./_data/contents-footer-data"
+  import ImageAssets from "../atomic/image/ImageAssets.svelte"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../atomic/device-store/store";
+  import { pageData } from "../atomic/device-store/store"
 </script>
 
 <section

@@ -1,41 +1,46 @@
 <script context='module' lang='ts'>
-  import PointA from "./_components/PointA.svelte";
-  import PointB from "./_components/PointB.svelte";
-  import ExecutionPointResultModalPC from "./_components/ExecutionPointResultModalPC.svelte";
-  import ExecutionPointResultModalSP from "./_components/ExecutionPointResultModalSP.svelte";
+  import PointA from "./_components/PointA.svelte"
+  import PointB from "./_components/PointB.svelte"
+  import ExecutionPointResultModalPC from "./_components/ExecutionPointResultModalPC.svelte"
+  import ExecutionPointResultModalSP from "./_components/ExecutionPointResultModalSP.svelte"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../atomic/device-store/store";
+  import { pageData } from "../../atomic/device-store/store"
+  import SelectApparatus from "./_components/SelectApparatus.svelte"
+  import { judgementApparatus } from "./_store/apparatus"
 
-  let submittedPointA: boolean = false;
-  let submittedPointB: boolean = false;
+  let submittedPointA: boolean = false
+  let submittedPointB: boolean = false
 
   function submitPointA() {
-    submittedPointA = true;
+    submittedPointA = true
   }
 
   function submitPointB() {
-    submittedPointB = true;
+    submittedPointB = true
   }
 </script>
 
 <section
-  class='judgement-form'
+  class="judgement-form {$judgementApparatus
+    ? $judgementApparatus.imageColor
+    : 'gray'}"
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
   <div class='form-container'>
-    {#if !submittedPointA}
+    <SelectApparatus />
+    {#if $judgementApparatus}
       <PointA on:submit={() => submitPointA()} />
-    {/if}
-    {#if submittedPointA}
-      <PointB on:submit={() => submitPointB()} />
-    {/if}
-    {#if $pageData.isMobile}
-      <ExecutionPointResultModalSP show={submittedPointB} />
-    {:else}
-      <ExecutionPointResultModalPC show={submittedPointB} />
+      {#if submittedPointA}
+        <PointB on:submit={() => submitPointB()} />
+      {/if}
+      {#if $pageData.isMobile}
+        <ExecutionPointResultModalSP show={submittedPointB} />
+      {:else}
+        <ExecutionPointResultModalPC show={submittedPointB} />
+      {/if}
     {/if}
   </div>
 </section>
@@ -53,14 +58,37 @@
     --container-padding: 32px 12px;
   }
 
+  .gray {
+    --background: #f1f1f1;
+  }
+
+  .blue {
+    --background: #e6f6ff;
+  }
+
+  .red {
+    --background: #ffe6e6;
+  }
+
+  .yellow {
+    --background: #fffbe6;
+  }
+
+  .green {
+    --background: #ecffe6;
+  }
+
   .judgement-form {
     display: flex;
     padding: var(--padding);
     justify-content: center;
-    background: #e6f6ff;
+    background: var(--background);
+    transition: 0.5s;
   }
 
   .form-container {
+    display: grid;
+    gap: 24px;
     width: var(--container-width);
     padding: var(--container-padding);
     background: white;

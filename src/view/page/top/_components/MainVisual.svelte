@@ -1,18 +1,18 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte";
-  import MainImage from "../../../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta";
+  import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
+  import MainImage from "../../../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta"
 </script>
 
 <script lang='ts'>
-  import { onMount } from "svelte";
-  import { fly, fade } from "svelte/transition";
-  import { pageData } from "../../../atomic/device-store/store";
+  import { onMount } from "svelte"
+  import { fly, fade } from "svelte/transition"
+  import { pageData } from "../../../atomic/device-store/store"
 
-  let isShowMainVisual = false;
+  let isShowMainVisual = false
 
   onMount(() => {
-    isShowMainVisual = true;
-  });
+    isShowMainVisual = true
+  })
 </script>
 
 <section

@@ -1,12 +1,12 @@
 <script lang='ts'>
-  import { pageData } from "../../../atomic/device-store/store";
-  import ButtonLink from "../../../atomic/button/ButtonLink.svelte";
+  import { pageData } from "../../../atomic/device-store/store"
+  import ButtonLink from "../../../atomic/button/ButtonLink.svelte"
   const LINKS = [
     { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
     { href: "/background_music", text: "曲編集を依頼する" },
     { href: "/judge", text: "審判を体験する" },
     { href: "/rules", text: "ルールを知る" },
-  ];
+  ]
 </script>
 
 <section

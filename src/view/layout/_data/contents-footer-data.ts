@@ -1,8 +1,8 @@
-import type { SrcMeta } from "../../atomic/image/type";
-import YoutubeIcon from "../_image/youtube-icon.png?w=512;1024&format=webp;png;jpg&as=meta";
-import InstagramIcon from "../_image/instagram-icon.png?w=512;1024&format=webp;png;jpg&as=meta";
-import XIcon from "../_image/x-icon.png?w=512;1024&format=webp;png;jpg&as=meta";
-import TiktokIcon from "../_image/tiktok-icon.png?w=512;1024&format=webp;png;jpg&as=meta";
+import type { SrcMeta } from "../../atomic/image/type"
+import YoutubeIcon from "../_image/youtube-icon.png?w=512;1024&format=webp;png;jpg&as=meta"
+import InstagramIcon from "../_image/instagram-icon.png?w=512;1024&format=webp;png;jpg&as=meta"
+import XIcon from "../_image/x-icon.png?w=512;1024&format=webp;png;jpg&as=meta"
+import TiktokIcon from "../_image/tiktok-icon.png?w=512;1024&format=webp;png;jpg&as=meta"
 
 export type SnsImage = {
   srcMeta: SrcMeta;
@@ -48,4 +48,4 @@ export const SNS: Sns[] = [
       alt: "TikTokアイコン",
     },
   },
-];
+]

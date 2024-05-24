@@ -1,11 +1,11 @@
 <script context='module' lang='ts'>
-  import WorkCard from "./_component/WorkCard.svelte";
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte";
-  import { WORK_LIST } from "./_data/work-list";
+  import WorkCard from "./_component/WorkCard.svelte"
+  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte"
+  import { WORK_LIST } from "./_data/work-list"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../../atomic/device-store/store";
+  import { pageData } from "../../../atomic/device-store/store"
 </script>
 
 <section
