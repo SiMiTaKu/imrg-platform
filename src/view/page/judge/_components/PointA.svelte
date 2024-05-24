@@ -8,6 +8,7 @@
   import { executionDeduct } from "../_store/store"
   import { fly } from "svelte/transition"
   import { pageData } from "../../../atomic/device-store/store"
+  import { judgementApparatus } from "../_store/apparatus"
 
   const dispatch = createEventDispatcher<{ submit: void }>()
 
@@ -43,7 +44,11 @@
     </div>
   </div>
   {#if !submitted}
-    <div class='submit'>
+    <div
+      class="submit {$judgementApparatus
+        ? $judgementApparatus.imageColor
+        : 'gray'}"
+    >
       <button
         class='submit-button'
         type='submit'
@@ -71,6 +76,26 @@
     --header-gap: 8px;
     --section-font-size: 24px;
     --question-list-gap: 32px;
+  }
+
+  .gray {
+    --submit-button-background: #707070;
+  }
+
+  .blue {
+    --submit-button-background: #0088d9;
+  }
+
+  .red {
+    --submit-button-background: #d30101;
+  }
+
+  .yellow {
+    --submit-button-background: #cead00;
+  }
+
+  .green {
+    --submit-button-background: #30cb00;
   }
 
   .point-a {
@@ -114,7 +139,7 @@
     color: white;
     border: unset;
     border-radius: 8px;
-    background: #32538d;
+    background: var(--submit-button-background);
     transition: 0.3s;
 
     &:hover {

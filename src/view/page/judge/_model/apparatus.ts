@@ -4,21 +4,25 @@ const APPARATUS = {
   STICK: {
     code: 1,
     name: "スティック",
+    imageColor: "blue",
   },
   /** リング */
   RING: {
     code: 2,
     name: "リング",
+    imageColor: "red",
   },
   /** ロープ */
   ROPE: {
     code: 3,
     name: "ロープ",
+    imageColor: "yellow",
   },
   /** クラブ　*/
   CLUB: {
     code: 4,
     name: "クラブ",
+    imageColor: "green",
   },
 } as const
 

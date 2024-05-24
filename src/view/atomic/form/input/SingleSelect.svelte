@@ -1,5 +1,6 @@
 <script lang='ts'>
   import { createEventDispatcher } from "svelte"
+  import { judgementApparatus } from "../../../page/judge/_store/apparatus"
 
   const dispatch = createEventDispatcher<{ change: { value: string } }>()
 
@@ -16,10 +17,14 @@
   }
 </script>
 
-<select name={id}
-        class='select-box'
-        class:hasChanged
-        on:change={onchange}>
+<select
+  name={id}
+  class="select-box {$judgementApparatus
+    ? $judgementApparatus.imageColor
+    : 'gray'}"
+  class:hasChanged
+  on:change={onchange}
+>
   <option class='no-option' value="">{placeholder}</option>
   {#each options as option (option.code)}
     <option value={option.code}>{option.value}</option>
@@ -27,19 +32,39 @@
 </select>
 
 <style lang='scss'>
+  .gray {
+    --forcus-border-color: #707070;
+  }
+
+  .blue {
+    --forcus-border-color: #00a2ff;
+  }
+
+  .red {
+    --forcus-border-color: #ff0000;
+  }
+
+  .yellow {
+    --forcus-border-color: #f6ce00;
+  }
+
+  .green {
+    --forcus-border-color: #37ec00;
+  }
+
   .select-box {
     width: 100%;
     height: 48px;
     padding-left: 8px;
     font-size: 16px;
-    color: #aaaaaa;
-    border: 4px solid #aaaaaa;
+    color: #cccccc;
+    border: 4px solid #cccccc;
     border-radius: 8px;
     outline: none;
     transition: 0.3s;
 
     &:focus {
-      border-color: #4d9cff;
+      border-color: var(--forcus-border-color);
     }
   }
 

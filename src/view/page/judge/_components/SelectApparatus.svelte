@@ -7,8 +7,9 @@
 </script>
 
 <script lang='ts'>
-  import SingleSelect from "../../../common/form/SingleSelect.svelte"
+  import SingleSelect from "../../../atomic/form/input/SingleSelect.svelte"
   import { judgementApparatus } from "../_store/apparatus"
+  import QuestionLabel from "../../../atomic/form/label/QuestionLabel.svelte"
 
   function handleApparatusChange(value: string) {
     judgementApparatus.toggle(value)
@@ -16,9 +17,7 @@
 </script>
 
 <div class='select-apparatuses'>
-  <div class='header'>
-    <span class='title'><span class='icon'>Q</span>手具選択</span>
-  </div>
+  <QuestionLabel caption='手具の選択' />
   <SingleSelect
     id='select-apparatus'
     options={OPTIONS}
@@ -31,33 +30,5 @@
   .select-apparatuses {
     display: grid;
     gap: 16px;
-  }
-
-  .header {
-    display: grid;
-    align-items: baseline;
-    flex-direction: var(--header-flex-direction);
-    gap: 8px;
-  }
-
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    background: #3e7cb7;
-    border-radius: 1em;
-  }
-
-  .title {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    font-size: 22px;
-    font-weight: bold;
   }
 </style>

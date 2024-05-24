@@ -5,6 +5,8 @@
 
 <script lang='ts'>
   import { pageData } from "../../../atomic/device-store/store"
+  import QuestionLabel from "../../../atomic/form/label/QuestionLabel.svelte"
+  import { judgementApparatus } from "../_store/apparatus"
 
   export let title: string
   export let userSelected: PointAOption
@@ -17,12 +19,11 @@
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class='header'>
-    <span class='title'><span class='icon'>Q</span>{title}</span>
-    <span class='annotation'>※{annotation}</span>
-  </div>
+  <QuestionLabel {annotation} caption={title} />
   <div
-    class='radio-group'
+    class="radio-group {$judgementApparatus
+      ? $judgementApparatus.imageColor
+      : 'gray'}"
     aria-checked='false'
     aria-labelledby='label-${uniqueId}'
     role='radio'
@@ -66,36 +67,24 @@
     gap: 8px;
   }
 
-  .header {
-    display: flex;
-    align-items: baseline;
-    flex-direction: var(--header-flex-direction);
-    gap: 8px;
+  .gray {
+    --radio-color: #707070;
   }
 
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    background: #3e7cb7;
-    border-radius: 1em;
+  .blue {
+    --radio-color: #00a2ff;
   }
 
-  .title {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    font-size: 22px;
-    font-weight: bold;
+  .red {
+    --radio-color: #ff0000;
   }
 
-  .annotation {
-    font-size: 16px;
+  .yellow {
+    --radio-color: #f6ce00;
+  }
+
+  .green {
+    --radio-color: #37ec00;
   }
 
   .radio-group {
@@ -108,7 +97,7 @@
     &:before {
       position: absolute;
       content: "";
-      background: #4d9cff;
+      background: var(--radio-color);
       height: 5px;
       width: 100%;
       top: 50%;
@@ -127,7 +116,7 @@
     width: var(--radio-button-size);
     height: var(--radio-button-size);
     background: white;
-    border: 5px solid #4d9cff;
+    border: 5px solid var(--radio-color);
   }
 
   label {
@@ -146,7 +135,7 @@
       height: calc(var(--radio-button-size) / 2);
       border-radius: 2em;
       box-sizing: border-box;
-      background: #4d9cff;
+      background: var(--radio-color);
       transition: 0.3s;
     }
 
@@ -160,7 +149,7 @@
       width: var(--radio-button-size);
       height: var(--radio-button-size);
       background: white;
-      border: 5px solid #4d9cff;
+      border: 5px solid var(--radio-color);
       opacity: 0.3;
     }
   }
