@@ -9,6 +9,7 @@
     getDecisionPoints,
     getDeductionOfDroppedApparatus,
   } from "../_service/culculator"
+  import { judgementApparatus } from "../_store/apparatus"
 
   export let show: boolean
 
@@ -40,6 +41,14 @@
     }
   }
 
+  const borderColor = {
+    gray: "#707070",
+    blue: "#0065a4",
+    red: "#d30000",
+    yellow: "#ecc200",
+    green: "#219300",
+  }
+
   /** @note Chartが描画されているか判別する変数 */
   let myChart: Chart | undefined = undefined
   function renderPointDetailChart() {
@@ -59,6 +68,10 @@
             data: Object.values($executionDeduct.pointA).map(
               (point) => point.option.code
             ),
+            borderColor:
+              borderColor[
+                $judgementApparatus ? $judgementApparatus.imageColor : "gray"
+              ],
           },
         ],
       },
@@ -84,7 +97,13 @@
   <section class='modal' transition:fade>
     <div class='container'>
       <div class='header'>
-        <h2 class='title'>決定点</h2>
+        <h2
+          class="title {$judgementApparatus
+            ? $judgementApparatus.imageColor
+            : 'gray'}"
+        >
+          決定点
+        </h2>
         <button
           class='detail-pull-down-button'
           type='button'
@@ -139,10 +158,12 @@
         {decisionPoints.toFixed(3)}
       </div>
       <div class='footer'>
-        <button class='footer-button'
-                type='button'
-                on:click={oneMoreJudge}
-        >もう一度採点する</button
+        <button
+          class="footer-button {$judgementApparatus
+            ? $judgementApparatus.imageColor
+            : 'gray'}"
+          type='button'
+          on:click={oneMoreJudge}>もう一度採点する</button
         >
       </div>
     </div>
@@ -150,6 +171,31 @@
 {/if}
 
 <style lang='scss'>
+  .gray {
+    --title-background-color: #707070;
+    --footer-button-background-color: #707070;
+  }
+
+  .blue {
+    --title-background-color: #0065a4;
+    --footer-button-background-color: #0065a4;
+  }
+
+  .red {
+    --title-background-color: #d30000;
+    --footer-button-background-color: #d30000;
+  }
+
+  .yellow {
+    --title-background-color: #ecc200;
+    --footer-button-background-color: #ecc200;
+  }
+
+  .green {
+    --title-background-color: #219300;
+    --footer-button-background-color: #219300;
+  }
+
   .modal {
     position: fixed;
     top: 0;
@@ -194,7 +240,7 @@
     color: white;
     margin: 0 0 16px;
     border-radius: 8px;
-    background: #32538d;
+    background: var(--title-background-color);
   }
 
   .chart {
@@ -236,7 +282,7 @@
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background: #32538d;
+    background: var(--footer-button-background-color);
     border: none;
     border-radius: 8px;
     z-index: 100;
