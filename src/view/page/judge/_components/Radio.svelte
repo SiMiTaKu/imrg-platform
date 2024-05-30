@@ -72,19 +72,19 @@
   }
 
   .blue {
-    --radio-color: #00a2ff;
+    --radio-color: #0065a4;
   }
 
   .red {
-    --radio-color: #ff0000;
+    --radio-color: #d30000;
   }
 
   .yellow {
-    --radio-color: #f6ce00;
+    --radio-color: #ecc200;
   }
 
   .green {
-    --radio-color: #37ec00;
+    --radio-color: #219300;
   }
 
   .radio-group {

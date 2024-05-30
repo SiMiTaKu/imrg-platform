@@ -37,19 +37,19 @@
   }
 
   .blue {
-    --forcus-border-color: #00a2ff;
+    --forcus-border-color: #0065a4;
   }
 
   .red {
-    --forcus-border-color: #ff0000;
+    --forcus-border-color: #d30000;
   }
 
   .yellow {
-    --forcus-border-color: #f6ce00;
+    --forcus-border-color: #ecc200;
   }
 
   .green {
-    --forcus-border-color: #37ec00;
+    --forcus-border-color: #219300;
   }
 
   .select-box {

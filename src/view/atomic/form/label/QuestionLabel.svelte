@@ -20,19 +20,19 @@
   }
 
   .blue {
-    --icon-background: #00a2ff;
+    --icon-background: #0065a4;
   }
 
   .red {
-    --icon-background: #ff0000;
+    --icon-background: #d30000;
   }
 
   .yellow {
-    --icon-background: #f6ce00;
+    --icon-background: #ecc200;
   }
 
   .green {
-    --icon-background: #37ec00;
+    --icon-background: #219300;
   }
 
   .header {
