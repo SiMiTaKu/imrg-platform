@@ -93,5 +93,6 @@
     padding: var(--container-padding);
     background: white;
     border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
   }
 </style>

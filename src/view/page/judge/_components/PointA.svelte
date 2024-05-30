@@ -82,20 +82,24 @@
     --submit-button-background: #707070;
   }
 
+  .gray {
+    --submit-button-background: #707070;
+  }
+
   .blue {
-    --submit-button-background: #0088d9;
+    --submit-button-background: #0065a4;
   }
 
   .red {
-    --submit-button-background: #d30101;
+    --submit-button-background: #d30000;
   }
 
   .yellow {
-    --submit-button-background: #cead00;
+    --submit-button-background: #ecc200;
   }
 
   .green {
-    --submit-button-background: #30cb00;
+    --submit-button-background: #219300;
   }
 
   .point-a {

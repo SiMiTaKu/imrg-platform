@@ -103,23 +103,22 @@
   }
 
   .blue {
-    --submit-button-background: #0088d9;
-    --forcus-border-color: #00a2ff;
+    --submit-button-background: #0065a4;
+    --forcus-border-color: #0065a4;
   }
 
   .red {
-    --submit-button-background: #d30101;
-    --forcus-border-color: #ff0000;
+    --submit-button-background: #d30000;
+    --forcus-border-color: #d30000;
   }
 
   .yellow {
-    --submit-button-background: #cead00;
-    --forcus-border-color: #f6ce00;
+    --submit-button-background: #ecc200;
+    --forcus-border-color: #ecc200;
   }
-
   .green {
-    --submit-button-background: #30cb00;
-    --forcus-border-color: #37ec00;
+    --submit-button-background: #219300;
+    --forcus-border-color: #219300;
   }
 
   .point-b {
