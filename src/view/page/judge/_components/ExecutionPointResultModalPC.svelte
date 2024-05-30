@@ -41,6 +41,14 @@
     }
   }
 
+  const borderColor = {
+    gray: "#707070",
+    blue: "#0065a4",
+    red: "#d30000",
+    yellow: "#ecc200",
+    green: "#219300",
+  }
+
   /** @note Chartが描画されているか判別する変数 */
   let myChart: Chart | undefined = undefined
   function renderPointDetailChart() {
@@ -60,6 +68,10 @@
             data: Object.values($executionDeduct.pointA).map(
               (point) => point.option.code
             ),
+            borderColor:
+              borderColor[
+                $judgementApparatus ? $judgementApparatus.imageColor : "gray"
+              ],
           },
         ],
       },
