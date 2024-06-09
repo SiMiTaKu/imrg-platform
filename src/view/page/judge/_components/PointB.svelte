@@ -8,6 +8,7 @@
   import { executionDeduct } from "../_store/store"
   import { judgementApparatus } from "../_store/apparatus"
   import { pageData } from "../../../atomic/device-store/store"
+  import TimesCounter from "./TimesCounter.svelte"
 
   const dispatch = createEventDispatcher<{ submit: void }>()
 </script>
@@ -31,23 +32,15 @@
     <div class='section-container'>
       <div class='dropped-apparatus'>
         <h4>1つの手具を落とした回数</h4>
-        <input
-          class='miss-point'
-          min='0'
-          step='1'
-          type='number'
-          bind:value={$executionDeduct.pointB.droppedApparatus.single}
+        <TimesCounter
+          bind:count={$executionDeduct.pointB.droppedApparatus.single}
         />
       </div>
       {#if Apparatus.isDoubleApparatus($judgementApparatus)}
         <div class='dropped-apparatus'>
           <h4>2つの手具を同時に落とした回数</h4>
-          <input
-            class='miss-point'
-            min='0'
-            step='1'
-            type='number'
-            bind:value={$executionDeduct.pointB.droppedApparatus.double}
+          <TimesCounter
+            bind:count={$executionDeduct.pointB.droppedApparatus.double}
           />
         </div>
       {/if}
@@ -150,7 +143,7 @@
   .dropped-apparatus {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     width: 100%;
   }
 
