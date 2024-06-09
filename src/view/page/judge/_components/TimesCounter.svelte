@@ -66,7 +66,6 @@
     transition: 0.5s;
 
     &:hover {
-      cursor: pointer;
       filter: brightness(1.2);
     }
 
