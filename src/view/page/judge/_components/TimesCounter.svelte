@@ -1,6 +1,5 @@
 <script lang='ts'>
   import { judgementApparatus } from "../_store/apparatus"
-  import { pageData } from "../../../atomic/device-store/store"
 
   export let count: number
 </script>
@@ -9,8 +8,6 @@
   class="counter {$judgementApparatus
     ? $judgementApparatus.imageColor
     : 'gray'}"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
 >
   <button
     class='minus'
@@ -25,16 +22,6 @@
 </div>
 
 <style lang='scss'>
-  .pc {
-    --button-size: 40px;
-    --count-font-size: 28px;
-  }
-
-  .sp {
-    --button-size: 32px;
-    --count-font-size: 22px;
-  }
-
   .gray {
     --button-color: #707070;
   }
@@ -68,8 +55,8 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    width: var(--button-size);
-    height: var(--button-size);
+    width: 40px;
+    height: 40px;
     font-size: 24px;
     font-weight: bold;
     color: white;
@@ -101,9 +88,9 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    width: var(--button-size);
-    height: var(--button-size);
-    font-size: var(--count-font-size);
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
     font-weight: bold;
   }
 </style>
