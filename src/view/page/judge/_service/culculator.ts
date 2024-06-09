@@ -38,7 +38,7 @@ export function getDeductionOfDroppedApparatus(data: ExecutionDeduct): number {
     ? data.pointB.droppedApparatus.single * 0.3
     : 0
   const deductionDoubleApparatus = data.pointB.droppedApparatus.double
-    ? data.pointB.droppedApparatus.double * 0.5
+    ? data.pointB.droppedApparatus.double * 0.4
     : 0
   return deductionSingleApparatus + deductionDoubleApparatus
 }
