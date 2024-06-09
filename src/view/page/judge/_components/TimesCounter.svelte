@@ -59,14 +59,11 @@
     height: 40px;
     font-size: 24px;
     font-weight: bold;
-    margin: 0;
-    padding: 0;
     color: white;
     border: none;
     border-radius: 4px;
     background-color: var(--button-color);
     transition: 0.5s;
-    box-sizing: border-box;
 
     &:hover {
       cursor: pointer;
