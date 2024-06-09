@@ -27,10 +27,12 @@
 <style lang='scss'>
   .pc {
     --button-size: 40px;
+    --count-font-size: 28px;
   }
 
   .sp {
     --button-size: 32px;
+    --count-font-size: 22px;
   }
 
   .gray {
@@ -100,7 +102,8 @@
     justify-content: center;
     align-items: center;
     width: var(--button-size);
-    font-size: 28px;
+    height: var(--button-size);
+    font-size: var(--count-font-size);
     font-weight: bold;
   }
 </style>
