@@ -42,6 +42,7 @@
       <div class='hamburger'>
         <button
           class='hamburger-icon'
+          class:open={show}
           type='button'
           on:click={() => (show = !show)}
         />
@@ -191,7 +192,7 @@
       transform: rotate(45deg);
       background: #555;
       border-radius: 2em;
-      transition: 0.3s;
+      transition: 0.25s;
     }
 
     &:after {
@@ -204,7 +205,17 @@
       height: 4px;
       background: #555;
       border-radius: 2em;
-      transition: 0.3s;
+      transition: 0.25s;
+    }
+  }
+
+  .hamburger-icon.open {
+    &:before {
+      transform: rotate(-45deg);
+    }
+
+    &:after {
+      transform: rotate(45deg);
     }
   }
 
