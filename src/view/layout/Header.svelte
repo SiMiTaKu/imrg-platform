@@ -20,7 +20,9 @@
 <div class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <header class='header-main'>
     <div class='content'>
-      <a class='header-link' href='/'>
+      <a class='header-link'
+         href='/'
+         on:click={() => show ?? (show = false)}>
         <div class='image'>
           <ImageAssets
             alt='男子新体操国際化プロジェクトロゴ'
