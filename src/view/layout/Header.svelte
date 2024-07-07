@@ -20,9 +20,11 @@
 <div class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <header class='header-main'>
     <div class='content'>
-      <a class='header-link'
-         href='/'
-         on:click={() => show ?? (show = false)}>
+      <a
+        class='header-link'
+        href='/'
+        on:click={() => (show ? (show = !show) : undefined)}
+      >
         <div class='image'>
           <ImageAssets
             alt='男子新体操国際化プロジェクトロゴ'
@@ -128,6 +130,7 @@
     width: var(--image-size);
     height: var(--height);
     opacity: 0.1;
+    pointer-events: none;
 
     :global(img) {
       object-fit: cover;
@@ -139,6 +142,7 @@
     margin-top: var(--title-margin-top);
     font-weight: bold;
     color: #555;
+    pointer-events: none;
   }
 
   .main {
