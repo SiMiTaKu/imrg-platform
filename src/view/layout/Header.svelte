@@ -35,22 +35,28 @@
           <span class='sub'>Internationalize Men's Rhythmic Gymnastics</span>
         </div>
       </a>
-      <details class='hamburger'>
-        <summary class='hamburger-button' on:click={() => (show = !show)}>
-          <div class='hamburger-icon' />
-        </summary>
+      <div class='hamburger'>
+        <button
+          class='hamburger-icon'
+          type='button'
+          on:click={() => (show = !show)}
+        />
         {#if show}
-          <div class='hamburger-wrapper' in:slide={{ duration: 500 }}>
+          <div class='hamburger-wrapper' transition:slide={{ duration: 500 }}>
             <ul class='links'>
               {#each LINKS as { href, text }, index (index)}
                 <li>
-                  <a class='link' {href}>{text}</a>
+                  <a class='link'
+                     {href}
+                     on:click={() => (show = !show)}
+                  >{text}</a
+                  >
                 </li>
               {/each}
             </ul>
           </div>
         {/if}
-      </details>
+      </div>
     </div>
   </header>
 </div>
@@ -147,16 +153,10 @@
 
   //#region hamburger
   .hamburger {
-    grid-column: 2 / 4;
-    grid-row: 1 / 3;
-  }
-
-  .hamburger-button {
-    position: relative;
     display: grid;
     justify-items: right;
-    cursor: pointer;
-    list-style: none;
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
   }
 
   .hamburger-icon {
@@ -164,6 +164,12 @@
     width: var(--hamberger-icon-size);
     height: var(--height);
     transition: 0.3s;
+    border: none;
+    background: white;
+
+    &:active {
+      background-color: #f0f0f0;
+    }
 
     &:hover {
       background-color: #f0f0f0;
@@ -199,8 +205,8 @@
   .hamburger-wrapper {
     display: grid;
     overflow: hidden;
-    border-radius: 8px;
-    background-color: #aaa;
+    border-radius: 0 0 8px 8px;
+    background-color: #ddd;
     height: 191px;
   }
 
@@ -209,12 +215,15 @@
     height: min-content;
     list-style: none;
     font-size: 18px;
+    font-weight: bold;
     padding: 8px 16px;
   }
 
   .links > li {
+    transition: 0.3s;
+
     &:not(:last-child) {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #999;
     }
 
     &:hover {
@@ -225,15 +234,6 @@
   .link {
     display: grid;
     padding: 8px 16px;
-  }
-
-  .hamburger[open] > .hamburger-button > .hamburger-icon {
-    &:before {
-      transform: rotate(-45deg);
-    }
-    &:after {
-      transform: rotate(45deg);
-    }
   }
   //#endregion
 </style>

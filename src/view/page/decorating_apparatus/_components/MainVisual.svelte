@@ -70,7 +70,11 @@
   class:sp={$pageData.isMobile}
 >
   {#if isShow}
-    <div class='image' transition:fade={{ duration: 1000 }}>
+    <div
+      class='image'
+      in:fade={{ duration: 1000 }}
+      out:fade={{ duration: 300 }}
+    >
       <ImageAssets
         alt='メインビジュアル'
         lazy={false}
@@ -98,8 +102,8 @@
             ? { duration: 1000, y: 50 }
             : { duration: 1000, x: 100 }}
           out:fly={$pageData.isMobile
-            ? { duration: 1000, y: -50 }
-            : { duration: 1000, x: -100 }}
+            ? { duration: 300, y: -50 }
+            : { duration: 300, x: -100 }}
         >
           {currentVisual.description}
         </div>
