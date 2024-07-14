@@ -46,6 +46,7 @@
           on:click={() => (show = !show)}
         >
           <div class='hamburger-icon' class:open={show} />
+          <span class='hamburger-text'>{show ? "close" : "open"}</span>
         </button>
         {#if show}
           <div class='hamburger-wrapper' transition:slide={{ duration: 500 }}>
@@ -178,6 +179,9 @@
   .hamburger-button {
     display: grid;
     justify-items: center;
+    align-items: center;
+    grid-template-rows: 1fr var(--button-icon-size) 1fr 1fr 1fr 1fr;
+    gap: 4px;
     width: 48px;
     height: var(--height);
     transition: 0.3s;
@@ -194,16 +198,23 @@
   }
 
   .hamburger-icon {
+    display: grid;
     position: relative;
+    grid-row: 2 / 5;
+    grid-column: 1 / 2;
+    width: var(--button-icon-size);
+    height: 3px;
+    border-radius: 2em;
+    background: #555;
+    transition: 0.25s;
 
     &:before {
       content: "";
       position: absolute;
-      top: calc(var(--height) / 2);
-      right: var(--button-icon-position-fix);
+      top: calc(var(--button-icon-size) / -4);
+      right: 0;
       width: var(--button-icon-size);
-      height: 4px;
-      transform: rotate(45deg);
+      height: 3px;
       background: #555;
       border-radius: 2em;
       transition: 0.25s;
@@ -212,11 +223,10 @@
     &:after {
       content: "";
       position: absolute;
-      top: calc(var(--height) / 2);
-      left: var(--button-icon-position-fix);
-      transform: rotate(-45deg);
+      top: calc(var(--button-icon-size) / 4);
+      left: 0;
       width: var(--button-icon-size);
-      height: 4px;
+      height: 3px;
       background: #555;
       border-radius: 2em;
       transition: 0.25s;
@@ -224,13 +234,23 @@
   }
 
   .hamburger-icon.open {
+    transform: rotate(90deg);
+    height: 0;
+
     &:before {
-      transform: rotate(-45deg);
+      transform: rotate(45deg);
+      top: 50%;
     }
 
     &:after {
-      transform: rotate(45deg);
+      transform: rotate(135deg);
+      top: 50%;
     }
+  }
+
+  .hamburger-text {
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
   }
 
   .hamburger-wrapper {
