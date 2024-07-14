@@ -41,11 +41,12 @@
       </a>
       <div class='hamburger'>
         <button
-          class='hamburger-icon'
-          class:open={show}
+          class='hamburger-button'
           type='button'
           on:click={() => (show = !show)}
-        />
+        >
+          <div class='hamburger-icon' class:open={show} />
+        </button>
         {#if show}
           <div class='hamburger-wrapper' transition:slide={{ duration: 500 }}>
             <ul class='links'>
@@ -71,20 +72,28 @@
     --height: 80px;
     --image-size: 128px;
     --content-width: 1024px;
+    --content-grid-template-columns: 1fr auto 40px;
+    --header-link-grid-column: 1 / 3;
+    --humbarger-grid-column: 2 / 4;
     --title-margin-top: 8px;
     --main-font-size: 30px;
     --sub-font-size: 12px;
-    --hamberger-icon-size: 40px;
+    --button-icon-size: 32px;
+    --button-icon-position-fix: -6px;
   }
 
   .sp {
     --height: 64px;
     --image-size: 102px;
-    --content-width: 90%;
+    --content-width: 100%;
+    --content-grid-template-columns: 8px 1fr auto 48px;
+    --header-link-grid-column: 2 / 4;
+    --humbarger-grid-column: 3 / 5;
     --title-margin-top: 10px;
     --main-font-size: 22px;
     --sub-font-size: 11px;
-    --hamberger-icon-size: 24px;
+    --button-icon-size: 24px;
+    --button-icon-position-fix: -5px;
   }
 
   .header-main {
@@ -111,7 +120,7 @@
   .content {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr auto var(--hamberger-icon-size);
+    grid-template-columns: var(--content-grid-template-columns);
     grid-template-rows: auto auto;
     width: var(--content-width);
     height: 100%;
@@ -119,7 +128,7 @@
   }
 
   .header-link {
-    grid-column: 1 / 3;
+    grid-column: var(--header-link-grid-column);
     grid-row: 1 / 2;
     text-decoration: none;
     overflow: hidden;
@@ -162,32 +171,37 @@
   .hamburger {
     display: grid;
     justify-items: right;
-    grid-column: 2 / 4;
+    grid-column: var(--humbarger-grid-column);
     grid-row: 1 / 3;
+  }
+
+  .hamburger-button {
+    display: grid;
+    justify-items: center;
+    width: 48px;
+    height: var(--height);
+    transition: 0.3s;
+    border: none;
+    background: transparent;
+
+    &:active {
+      background-color: #f0f0f0aa;
+    }
+
+    &:hover {
+      background-color: #f0f0f0aa;
+    }
   }
 
   .hamburger-icon {
     position: relative;
-    width: var(--hamberger-icon-size);
-    height: var(--height);
-    transition: 0.3s;
-    border: none;
-    background: white;
-
-    &:active {
-      background-color: #f0f0f0;
-    }
-
-    &:hover {
-      background-color: #f0f0f0;
-    }
 
     &:before {
       content: "";
       position: absolute;
-      top: 50%;
-      left: 0;
-      width: 62%;
+      top: calc(var(--height) / 2);
+      right: var(--button-icon-position-fix);
+      width: var(--button-icon-size);
       height: 4px;
       transform: rotate(45deg);
       background: #555;
@@ -198,10 +212,10 @@
     &:after {
       content: "";
       position: absolute;
-      top: 50%;
-      right: 0;
+      top: calc(var(--height) / 2);
+      left: var(--button-icon-position-fix);
       transform: rotate(-45deg);
-      width: 62%;
+      width: var(--button-icon-size);
       height: 4px;
       background: #555;
       border-radius: 2em;
@@ -223,7 +237,7 @@
     display: grid;
     overflow: hidden;
     border-radius: 0 0 8px 8px;
-    background-color: #ddd;
+    background-color: #eee;
     height: 191px;
   }
 
