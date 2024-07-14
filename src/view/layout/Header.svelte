@@ -76,6 +76,7 @@
     --content-grid-template-columns: 1fr auto 40px;
     --header-link-grid-column: 1 / 3;
     --humbarger-grid-column: 2 / 4;
+    --hamburger-text-font-size: 20px;
     --title-margin-top: 8px;
     --main-font-size: 30px;
     --sub-font-size: 12px;
@@ -90,6 +91,7 @@
     --content-grid-template-columns: 8px 1fr auto 48px;
     --header-link-grid-column: 2 / 4;
     --humbarger-grid-column: 3 / 5;
+    --hamburger-text-font-size: 16px;
     --title-margin-top: 10px;
     --main-font-size: 22px;
     --sub-font-size: 11px;
@@ -180,7 +182,7 @@
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-rows: 1fr var(--button-icon-size) 1fr 1fr 1fr 1fr;
+    grid-template-rows: var(--button-icon-size) 1fr 1fr 1fr 1fr 1fr;
     gap: 4px;
     width: 48px;
     height: var(--height);
@@ -200,7 +202,7 @@
   .hamburger-icon {
     display: grid;
     position: relative;
-    grid-row: 2 / 5;
+    grid-row: 1 / 5;
     grid-column: 1 / 2;
     width: var(--button-icon-size);
     height: 3px;
@@ -251,6 +253,8 @@
   .hamburger-text {
     grid-row: 4 / 5;
     grid-column: 1 / 2;
+    color: #555;
+    font-size: var(--hamburger-text-font-size);
   }
 
   .hamburger-wrapper {
