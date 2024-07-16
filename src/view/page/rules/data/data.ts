@@ -2513,7 +2513,7 @@ export function calculateIndexOfArticle(
   chapterIndex: number,
   articleIndex: number,
   sectionIndex: number,
-  blockIndex: number = undefined
+  blockIndex: number | undefined = undefined
 ): number {
   let index = 0
   // 現在のchapterIndexの持つarticleの数分ループさせる。
@@ -2528,12 +2528,14 @@ export function calculateIndexOfArticle(
       ) {
         // sectionがブロックを持つか判別
         if (
-          vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length >
-          0
+          vvRuleBook.chapter[chapterIndex].article[i].section[j].block
+            ?.length ??
+          0 > 0
         ) {
           // ブロックを持つ場合 + ブロックリストの長さ分
           index +=
-            vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length
+            vvRuleBook.chapter[chapterIndex].article[i].section[j].block!
+              .length
         } else {
           // ブロックを持たない場合 + 1
           index++
@@ -2549,12 +2551,13 @@ export function calculateIndexOfArticle(
         // sectionがブロックを持つか判別
         if (
           j < sectionIndex &&
-          vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length >
-            0
+          (vvRuleBook.chapter[chapterIndex].article[i].section[j].block
+            ?.length ?? 0) > 0
         ) {
           // ブロックを持つ場合 + ブロックリストの長さ分
           index +=
-            vvRuleBook.chapter[chapterIndex].article[i].section[j].block.length
+            vvRuleBook.chapter[chapterIndex].article[i].section[j].block!
+              .length
         } else if (j <= sectionIndex) {
           // ブロックを持たない場合 + 1
           index++
