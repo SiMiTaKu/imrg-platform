@@ -81,6 +81,7 @@
 | id               | number    | ID                  | 1                                           |
 | name             | string    | 姓名                  | "推しミツ太郎"                                    |
 | nameKana         | string    | ふりがな              | "おしみつたろう"                                   |
+| birthdday        | date      | 誕生日                | "2000-01-01"                                |
 | images           | string    | 画像                  | "https://example.com/oshimitsu/player/1.jpg" |
 | performance_type | number    | 個人か団体か      | 1                                           |
 | good at          | string    | 得意なこと            | "推しミツ"                                      |
@@ -88,7 +89,8 @@
 | updated date     | date      | 更新日                | "2022-01-01"                                |
 | created date     | date      | 作成日                | "2022-01-01"                                |
 
-> memo: performance_type 1: individual, 2: group 
+>[!NOTE]
+> performance_type 1: individual, 2: group 
 > that will be enum.
 
 ### Team
@@ -97,7 +99,6 @@
 | id          | number    | ID          | 1        |
 | name        | string    | チーム名      | "推しミツチーム" |
 | nameKana    | string    | ふりがな      | "おしみつちーむ" |
-| images      | string    | 画像          | "https://example.com/oshimitsu/team/1.jpg" |
 | good at     | string    | 得意なこと      | "推しミツ" |
 | comment     | string    | コメント      | "推しミツチームです。よろしくお願いします。" |
 | updated date| date      | 更新日        | "2022-01-01" |
@@ -113,31 +114,83 @@
 | updated date| date              | 更新日        | "2022-01-01" |
 | created date| date              | 作成日        | "2022-01-01" |
 
-### History
+### PlayerHistory
+| column name | data type | description | example                  |
+|-----------|-----------|-------------|--------------------------|
+| id        | number    | ID          | 1                        |
+| playerId  | number    | 選手ID        | 1                        |
+| date     | Date      | 年月日         | "2022-01-01"             |  
+| description | string    | 説明          | "推しミツ太郎は2022年にデビューしました。" |
+| updated date | date      | 更新日         | "2022-01-01"             |
+| created date | date      | 作成日         | "2022-01-01"             |
+
+### TeamHistory
 | column name | data type | description | example                  |
 |-------------|-----------|-------------|--------------------------|
 | id          | number    | ID          | 1                        |
-| playerId    | number    | 選手ID       | 1                        |
-| teamId      | number    | チームID     | 1                        |
-|entity_type | number    | エンティティタイプ | 1 |
-| year        | number    | 年度         | 2022                     |
-| description | string    | 説明         | "推しミツ太郎は2022年にデビューしました。" |
-| updated date| date      | 更新日       | "2022-01-01"             |
-| created date| date      | 作成日       | "2022-01-01"             |
+| teamId      | number    | チームID        | 1                        |
+| year        | Date      | 年月日         | "2022-01-01"             |
+| description | string    | 説明          | "推しミツチームは2022年にデビューしました。" |
+| updated date| date      | 更新日         | "2022-01-01"             |
+| created date| date      | 作成日         | "2022-01-01"             |
 
-> memo: entity_type 1: player, 2: team
-
-### SNS
+### PlayerSns
 | column name | data type | description | example  |
 |-------------|-----------|-------------|----------|
 | id          | number    | ID          | 1        |
 | playerId    | number    | 選手ID       | 1        |
-| teamId      | number    | チームID     | 1        |
 | sns_type    | number    | SNSタイプ    | 1        |
-| entity_type | number    | エンティティタイプ | 1 |
 | url         | string    | URL         | "https://example.com/oshimitsu/player/1" |
 | updated date| date      | 更新日       | "2022-01-01" |
 | created date| date      | 作成日       | "2022-01-01" |
 
-> memo: entity_type 1: player, 2: team
-> memo: sns_type 1: Twitter, 2: instagram, 3: facebook, 4: tiktok, 5: youtube
+>[!NOTE]
+> sns_type 1: Twitter, 2: instagram, 3: facebook, 4: tiktok, 5: youtube
+
+### TeamSns
+| column name | data type | description | example  |
+|-------------|-----------|-------------|----------|
+| id          | number    | ID          | 1        |
+| teamId      | number    | チームID       | 1        |
+| sns_type    | number    | SNSタイプ    | 1        |
+| url         | string    | URL         | "https://example.com/oshimitsu/team/1" |
+| updated date| date      | 更新日       | "2022-01-01" |
+| created date| date      | 作成日       | "2022-01-01" |
+
+### PlayerVideo
+| column name | data type | description | example  |
+|-------------|-----------|-------------|----------|
+| id          | number    | ID          | 1        |
+| playerId    | number    | 選手ID       | 1        |
+| url         | string    | URL         | "https://example.com/oshimitsu/player/1" |
+| updated date| date      | 更新日       | "2022-01-01" |
+| created date| date      | 作成日       | "2022-01-01" |
+
+### TeamVideo
+| column name | data type | description | example  |
+|-------------|-----------|-------------|----------|
+| id          | number    | ID          | 1        |
+| teamId      | number    | チームID       | 1        |
+| url         | string    | URL         | "https://example.com/oshimitsu/team/1" |
+| updated date| date      | 更新日       | "2022-01-01" |
+| created date| date      | 作成日       | "2022-01-01" |
+
+### PlayerImage
+| column name | data type | description | example  |
+|-------------|-----------|-------------|----------|
+| id          | number    | ID          | 1        |
+| playerId    | number    | 選手ID       | 1        |
+| url         | string    | URL         | "https://example.com/oshimitsu/player/1" |
+| order       | number    | 並び順       | 1        |
+| updated date| date      | 更新日       | "2022-01-01" |
+| created date| date      | 作成日       | "2022-01-01" |
+
+### TeamImage
+| column name | data type | description | example  |
+|-------------|-----------|-------------|----------|
+| id          | number    | ID          | 1        |
+| teamId      | number    | チームID       | 1        |
+| url         | string    | URL         | "https://example.com/oshimitsu/team/1" |
+| order       | number    | 並び順       | 1        |
+| updated date| date      | 更新日       | "2022-01-01" |
+| created date| date      | 作成日       | "2022-01-01" |
