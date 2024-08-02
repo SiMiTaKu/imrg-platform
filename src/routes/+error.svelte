@@ -1,8 +1,16 @@
+<script lang='ts'>
+  import { pageData } from "../view/atomic/device-store/store"
+</script>
+
 <svelte:head>
   <title>エラーページ|男子新体操国際化プロジェクト</title>
 </svelte:head>
 
-<article class='wrapper'>
+<article
+  class='wrapper'
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
+>
   <h1 class='title'>エラーが発生しました</h1>
   <div class='content'>
     <div class='text'>※リクエストされたページは存在しません。</div>
@@ -11,6 +19,14 @@
 </article>
 
 <style lang='scss'>
+  .pc {
+    --title-font-size: 40px;
+  }
+
+  .sp {
+    --title-font-size: 24px;
+  }
+
   .wrapper {
     display: grid;
     grid-template-rows: 1fr auto auto 1fr;
@@ -22,7 +38,7 @@
 
   .title {
     grid-row: 2 / 3;
-    font-size: 40px;
+    font-size: var(--title-font-size);
     color: #555555;
   }
 
