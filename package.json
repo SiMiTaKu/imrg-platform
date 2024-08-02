@@ -9,6 +9,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "npx eslint \"src/**/*.{ts,svelte}\"",
 		"lint:fix": "npx eslint --fix \"src/**/*.{ts,svelte}\"",
+		"textlint": "npx textlint *.md",
 		"format": "npx prettier --write \"src/**/*.{ts,svelte}\"",
 		"test": "jest"
 	},
@@ -22,6 +23,9 @@
 			"npm run format",
 			"npm run lint:fix",
 			"npm run lint"
+		],
+		"*.md": [
+			"npm run textlint"
 		]
 	},
 	"devDependencies": {
@@ -54,12 +58,22 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.3.3",
 		"vite": "^4.3.0",
-		"vite-imagetools": "^6.2.3"
+		"vite-imagetools": "^6.2.3",
+		"textlint": "^v13.4.1",
+		"textlint-rule-no-todo": "^2.0.1"
 	},
 	"type": "module",
 	"dependencies": {
 		"chart.js": "^4.3.0",
 		"felte": "^1.2.14",
-		"svelte-chartjs": "^3.1.2"
+		"svelte-chartjs": "^3.1.2",
+		"textlint-rule-ja-hiragana-fukushi": "^1.3.0",
+		"textlint-rule-ja-hiragana-hojodoushi": "^1.1.0",
+		"textlint-rule-ja-hiragana-keishikimeishi": "^1.1.0",
+		"textlint-rule-ja-no-redundant-expression": "^4.0.1",
+		"textlint-rule-ja-no-weak-phrase": "^2.0.0",
+		"textlint-rule-no-doubled-joshi": "^5.1.0",
+		"textlint-rule-preset-jtf-style": "^2.3.14",
+		"textlint-rule-prh": "^6.0.0"
 	}
 }
