@@ -24,7 +24,7 @@
   }
 
   .sp {
-    --title-font-size: 24px;
+    --title-font-size: 30px;
   }
 
   .wrapper {
