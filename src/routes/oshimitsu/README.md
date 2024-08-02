@@ -219,7 +219,7 @@
 - fetching data is started when after page loading.　ページ表示後にデータ取得を開始します。
 - So, we don't load data in server side rendering.　そのため、サーバーサイドレンダリングでデータをロードしません。
 - We have to prepare the loading view for each page.　各ページのローディングビューを準備する必要があります。
-- If the fetching data is failed, we have to show fetching again button and message that is 'Failed to fetch data. Please try again later.'　データ取得に失敗した場合、再度取得ボタンと「データの取得に失敗しました。後で再試行してください。」というメッセージを表示する必要があります。
+- If the fetching data is failed, we have to show fetching again button and message that is 'Failed to fetch data. Please try again later.'　データ取得に失敗した場合、再度取得ボタンと「データの取得に失敗しました。後で再試行してください」というメッセージを表示する必要があります。
 
 ## Future Plan
 - Adding some search functions.（検索機能を追加します）

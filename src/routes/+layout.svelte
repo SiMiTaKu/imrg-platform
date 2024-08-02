@@ -21,6 +21,9 @@
   {:else}
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   {/if}
+  <!-- Google Adsense -->
+  <!-- Google Adsense -->
+  <meta name='google-adsense-account' content='ca-pub-8732446757854279' />
 </svelte:head>
 
 <Header />
