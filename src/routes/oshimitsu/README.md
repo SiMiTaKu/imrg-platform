@@ -74,35 +74,42 @@
     - created date（作成日）
 - Footer
 
+>[!NOTE]
+> We have to prepare the loading view for each page.　各ページのローディングビューを準備する必要があります。
+> because fetching data is started after page loading.　データ取得はページ表示後に開始されるためです。
+
 ## Data
 ### Player
-| column name      | data type | description         | example                                     |
-|------------------|-----------|---------------------|---------------------------------------------|
-| id               | number    | ID                  | 1                                           |
-| name             | string    | 姓名                  | "推しミツ太郎"                                    |
-| nameKana         | string    | ふりがな              | "おしみつたろう"                                   |
-| birthdday        | date      | 誕生日                | "2000-01-01"                                |
-| images           | string    | 画像                  | "https://example.com/oshimitsu/player/1.jpg" |
+| column name     | data type | description | example                                     |
+|-----------------|-----------|-------------|---------------------------------------------|
+| id              | number    | ID          | 1                                           |
+| name            | string    | 姓名          | "推しミツ太郎"                                    |
+| nameKana        | string    | ふりがな        | "おしみつたろう"                                   |
+| birthday        | date      | 誕生日         | "2000-01-01"                                |
 | performance_type | number    | 個人か団体か      | 1                                           |
-| good at          | string    | 得意なこと            | "推しミツ"                                      |
-| comment          | string    | コメント              | "推しミツ太郎です。よろしくお願いします。"                      |
-| updated date     | date      | 更新日                | "2022-01-01"                                |
-| created date     | date      | 作成日                | "2022-01-01"                                |
+| good at         | string    | 得意なこと       | "推しミツ"                                      |
+| comment         | string    | コメント        | "推しミツ太郎です。よろしくお願いします。"                      |
+| state           | boolean   | 公開状態        | true                                        |
+| updated date    | date      | 更新日         | "2022-01-01"                                |
+| created date    | date      | 作成日         | "2022-01-01"                                |
 
->[!NOTE]
-> performance_type 1: individual, 2: group 
-> that will be enum.
+#### performance_type
+| code | name    |
+|------|---------|
+| 1    | individual |
+| 2    | group      |
 
 ### Team
 | column name | data type | description | example  |
 |-------------|-----------|-------------|----------|
 | id          | number    | ID          | 1        |
-| name        | string    | チーム名      | "推しミツチーム" |
-| nameKana    | string    | ふりがな      | "おしみつちーむ" |
-| good at     | string    | 得意なこと      | "推しミツ" |
-| comment     | string    | コメント      | "推しミツチームです。よろしくお願いします。" |
-| updated date| date      | 更新日        | "2022-01-01" |
-| created date| date      | 作成日        | "2022-01-01" |
+| name        | string    | チーム名        | "推しミツチーム" |
+| nameKana    | string    | ふりがな        | "おしみつちーむ" |
+| good at     | string    | 得意なこと       | "推しミツ" |
+| comment     | string    | コメント        | "推しミツチームです。よろしくお願いします。" |
+| state | boolean | 公開状態        | true |
+| updated date| date      | 更新日         | "2022-01-01" |
+| created date| date      | 作成日         | "2022-01-01" |
 
 ### PlayerTeam
 | column name | data type         | description | example  |
@@ -135,17 +142,23 @@
 | created date| date      | 作成日         | "2022-01-01"             |
 
 ### PlayerSns
-| column name | data type | description | example  |
-|-------------|-----------|-------------|----------|
-| id          | number    | ID          | 1        |
-| playerId    | number    | 選手ID       | 1        |
-| sns_type    | number    | SNSタイプ    | 1        |
+| column name | data type | description | example                                  |
+|-------------|-----------|-------------|------------------------------------------|
+| id          | number    | ID          | 1                                        |
+| playerId    | number    | 選手ID       | 1                                        |
+| sns_type    | number    | SNSタイプ    | 1    　                                   |
 | url         | string    | URL         | "https://example.com/oshimitsu/player/1" |
-| updated date| date      | 更新日       | "2022-01-01" |
-| created date| date      | 作成日       | "2022-01-01" |
+| updated date| date      | 更新日       | "2022-01-01"                             |
+| created date| date      | 作成日       | "2022-01-01"                             |
 
->[!NOTE]
-> sns_type 1: Twitter, 2: instagram, 3: facebook, 4: tiktok, 5: youtube
+#### sns_type
+| code | name       |
+|------|------------|
+| 1    | Twitter    |
+| 2    | Instagram  |
+| 3    | Facebook   |
+| 4    | Tiktok     |
+| 5    | Youtube    |
 
 ### TeamSns
 | column name | data type | description | example  |
@@ -175,22 +188,43 @@
 | updated date| date      | 更新日       | "2022-01-01" |
 | created date| date      | 作成日       | "2022-01-01" |
 
+> Store the image in the S3 bucket.
+> 画像はS3バケットに保存します。
+> url: xxxx/oshimitsu/player/[id].jpg
+
 ### PlayerImage
 | column name | data type | description | example  |
 |-------------|-----------|-------------|----------|
 | id          | number    | ID          | 1        |
 | playerId    | number    | 選手ID       | 1        |
-| url         | string    | URL         | "https://example.com/oshimitsu/player/1" |
 | order       | number    | 並び順       | 1        |
 | updated date| date      | 更新日       | "2022-01-01" |
 | created date| date      | 作成日       | "2022-01-01" |
+
+> Store the image in the S3 bucket.
+> 画像はS3バケットに保存します。
+> url: xxxx/oshimitsu/team/[id].jpg
 
 ### TeamImage
 | column name | data type | description | example  |
 |-------------|-----------|-------------|----------|
 | id          | number    | ID          | 1        |
 | teamId      | number    | チームID       | 1        |
-| url         | string    | URL         | "https://example.com/oshimitsu/team/1" |
 | order       | number    | 並び順       | 1        |
 | updated date| date      | 更新日       | "2022-01-01" |
 | created date| date      | 作成日       | "2022-01-01" |
+
+## Page Loading Way and Data Fetching each page
+
+- fetching data is started when after page loading.　ページ表示後にデータ取得を開始します。
+- So, we don't load data in server side rendering.　そのため、サーバーサイドレンダリングでデータをロードしません。
+- We have to prepare the loading view for each page.　各ページのローディングビューを準備する必要があります。
+- If the fetching data is failed, we have to show fetching again button and message that is 'Failed to fetch data. Please try again later.'　データ取得に失敗した場合、再度取得ボタンと「データの取得に失敗しました。後で再試行してください。」というメッセージを表示する必要があります。
+
+## Future Plan
+- Adding some search functions.（検索機能を追加します）
+- Adding some filter functions.（フィルター機能を追加します）
+- Adding some sort functions.（ソート機能を追加します）
+- Adding some pagination functions.（ページネーション機能を追加します）
+
+
