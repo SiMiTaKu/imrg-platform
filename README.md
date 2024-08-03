@@ -22,7 +22,7 @@ npm run build
 ```
 
 > [!NOTE]
-> Amplifyのビルドが失敗してしまうためNodeのバージョンは18系を使用しています。
+> Amplifyのビルドが失敗してしまうためNodeのバージョンは16系を使用しています。
 
 
 ## Lint

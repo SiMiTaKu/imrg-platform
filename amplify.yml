@@ -3,6 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm install $(cat .node-version)
         - npm ci
     build:
       commands:
