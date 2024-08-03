@@ -1,9 +1,12 @@
-<script lang='ts'>
-  import Page from "../../view/page/rules/Page.svelte"
+<script context='module' lang='ts'>
+  import Page from "../../view/page/decorating_apparatus/Page.svelte"
+  import Layout from "../../view/layout/Layout.svelte"
 </script>
 
-<svelte:head>
-  <title>ルールページ｜男子新体操国際化プロジェクト</title>
-</svelte:head>
+<script lang='ts'>
+  import { page } from "$app/stores"
+</script>
 
-<Page />
+<Layout layout={$page.data.layout} origin={$page.data.origin}>
+  <Page slot='main' />
+</Layout>
