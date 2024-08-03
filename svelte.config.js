@@ -10,11 +10,21 @@ const config = {
       assets: 'build',
       fallback: 'index.html',
       precompress: false,
-      strict: true
+      strict: true,
     }),
     files: {
       hooks: {
         server: 'src/lib/hooks/hooks.server',
+      }
+    },
+    prerender: {
+      handleHttpError: ({ path, referrer, message }) => {
+        // ignore deliberate link to shiny 404 page
+        if (path.startsWith('/static')) {
+          // 静的ファイルの404エラーを無視
+          return;
+        }
+        throw new Error(message);
       }
     }
   },
