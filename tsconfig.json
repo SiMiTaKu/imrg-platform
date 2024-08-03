@@ -12,6 +12,7 @@
 		"baseUrl": ".", // Add this line
 		"paths": { // Add this section
 			"@model/*": ["src/model/*"],
+			"@images/*": ["src/images/*"],
 		}
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
