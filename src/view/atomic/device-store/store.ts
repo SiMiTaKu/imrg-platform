@@ -1,7 +1,4 @@
-import {
-  designOfSP,
-  getResponsiveDesign,
-} from "../../../ts/common/responsive-design"
+import { designOfSP, getResponsiveDesign } from "@lib/common/responsive-design"
 import { writable } from "svelte/store"
 
 type PageData = {
@@ -9,7 +6,7 @@ type PageData = {
 };
 
 function createStore() {
-  const defaultPageData: PageData = { isMobile: false }
+  const defaultPageData: PageData = { isMobile: true }
 
   const { subscribe, update } = writable<PageData>(defaultPageData)
 

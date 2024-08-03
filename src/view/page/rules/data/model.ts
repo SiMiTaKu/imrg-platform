@@ -1,4 +1,4 @@
-import type { Image } from "../../../../ts/common/image"
+import type { Image } from "@lib/common/image"
 
 export interface RuleBook {
   title: string;

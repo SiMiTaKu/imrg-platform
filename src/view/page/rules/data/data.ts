@@ -554,7 +554,7 @@ export const vvRuleBook: RuleBook = {
               block: [],
               image: [
                 {
-                  src: "/image/rules/syugukikakuhyou.png",
+                  src: "/images/rules/syugukikakuhyou.png",
                   alt: "手具規格" + "",
                 },
               ],
@@ -744,11 +744,11 @@ export const vvRuleBook: RuleBook = {
               block: [],
               image: [
                 {
-                  src: "/image/rules/yuukouten.png",
+                  src: "/images/rules/yuukouten.png",
                   alt: "有効点の開き" + "",
                 },
                 {
-                  src: "/image/rules/tennsuu.png",
+                  src: "/images/rules/tennsuu.png",
                   alt: "全審判員の点数の開き" + "",
                 },
               ],
@@ -868,11 +868,11 @@ export const vvRuleBook: RuleBook = {
                   element: "自由演技の配点と採点項目は以下の通りとする。",
                   image: [
                     {
-                      src: "/image/rules/SK(D)group.png",
+                      src: "/images/rules/SK(D)group.png",
                       alt: "採点項目（Ｄ）",
                     },
                     {
-                      src: "/image/rules/SK(E)group.png",
+                      src: "/images/rules/SK(E)group.png",
                       alt: "採点項目（Ｅ）",
                     },
                   ],
@@ -911,7 +911,7 @@ export const vvRuleBook: RuleBook = {
 ※要求された数以上の難度は、ランク下の難度として数えることができる。`,
                   image: [
                     {
-                      src: "/image/rules/(D)requirement.png",
+                      src: "/images/rules/(D)requirement.png",
                       alt: "難度の要求要素表",
                     },
                   ],
@@ -927,7 +927,7 @@ export const vvRuleBook: RuleBook = {
 ※不十分とは実施しない競技者がいた場合を示し、静止時間不足や柔軟性不足は実施減点とする。`,
                   image: [
                     {
-                      src: "/image/rules/(BM)requirement.png",
+                      src: "/images/rules/(BM)requirement.png",
                       alt: "徒手系の要求要素表",
                     },
                   ],
@@ -972,7 +972,7 @@ export const vvRuleBook: RuleBook = {
 ※組・組立運動または接触でのスタートは３群扱いとする。`,
                   image: [
                     {
-                      src: "/image/rules/(AM)requirement.png",
+                      src: "/images/rules/(AM)requirement.png",
                       alt: "転回系の要求要素表",
                     },
                   ],
@@ -1065,7 +1065,7 @@ export const vvRuleBook: RuleBook = {
 構成欠点表`,
                   image: [
                     {
-                      src: "/image/rules/(D)kettenhyou.png",
+                      src: "/images/rules/(D)kettenhyou.png",
                       alt: "構成欠点表",
                     },
                   ],
@@ -1143,15 +1143,15 @@ export const vvRuleBook: RuleBook = {
 倒立、バランス、柔軟の実施減点`,
                   image: [
                     {
-                      src: "/image/rules/(E)kettenhyou1.png",
+                      src: "/images/rules/(E)kettenhyou1.png",
                       alt: "実施欠点表（D）１",
                     },
                     {
-                      src: "/image/rules/(E)kettenhyou2.png",
+                      src: "/images/rules/(E)kettenhyou2.png",
                       alt: "実施欠点表（D）２",
                     },
                     {
-                      src: "/image/rules/(E)kettenhyou3.png",
+                      src: "/images/rules/(E)kettenhyou3.png",
                       alt: "実施欠点表（D）３",
                     },
                   ],
@@ -1172,11 +1172,11 @@ export const vvRuleBook: RuleBook = {
                   element: "個人競技の配点と採点項目は以下の通りとする。",
                   image: [
                     {
-                      src: "/image/rules/SK(D)single.png",
+                      src: "/images/rules/SK(D)single.png",
                       alt: "採点項目（Ｄ）",
                     },
                     {
-                      src: "/image/rules/SK(E)single.png",
+                      src: "/images/rules/SK(E)single.png",
                       alt: "採点項目（Ｅ）",
                     },
                   ],
@@ -1205,7 +1205,7 @@ export const vvRuleBook: RuleBook = {
                   `,
                   image: [
                     {
-                      src: "/image/rules/(D)requirement.png",
+                      src: "/images/rules/(D)requirement.png",
                       alt: "難度の要求要素表",
                     },
                   ],
@@ -1385,7 +1385,7 @@ export const vvRuleBook: RuleBook = {
 構成欠点表`,
                   image: [
                     {
-                      src: "/image/rules/(D)kettenhyou(S).png",
+                      src: "/images/rules/(D)kettenhyou(S).png",
                       alt: "構成欠点表",
                     },
                   ],
@@ -1453,7 +1453,7 @@ export const vvRuleBook: RuleBook = {
 実施欠点表`,
                   image: [
                     {
-                      src: "/image/rules/(E)kettenhyou(S).png",
+                      src: "/images/rules/(E)kettenhyou(S).png",
                       alt: "実施欠点表",
                     },
                   ],
@@ -1483,19 +1483,19 @@ export const vvRuleBook: RuleBook = {
 跳躍・バランス・倒立（静止2秒）・柔軟A〜静的柔軟〜を以下に示す`,
                   image: [
                     {
-                      src: "/image/rules/jumpdifficulties.png",
+                      src: "/images/rules/jumpdifficulties.png",
                       alt: "徒手系難度（跳躍）",
                     },
                     {
-                      src: "/image/rules/balansedifficulties.png",
+                      src: "/images/rules/balansedifficulties.png",
                       alt: "徒手系難度（バランス）",
                     },
                     {
-                      src: "/image/rules/handstanddifficulties.png",
+                      src: "/images/rules/handstanddifficulties.png",
                       alt: "倒立（静止２秒",
                     },
                     {
-                      src: "/image/rules/stretchdifficulties.png",
+                      src: "/images/rules/stretchdifficulties.png",
                       alt: "柔軟Ａ　〜静的柔軟〜",
                     },
                   ],
@@ -1519,23 +1519,23 @@ export const vvRuleBook: RuleBook = {
 後方伸身宙返りにひねりが加わった場合も同等の扱いとする。`,
                   image: [
                     {
-                      src: "/image/rules/jumpturndifficulties.png",
+                      src: "/images/rules/jumpturndifficulties.png",
                       alt: "とびひねり技の難度表",
                     },
                     {
-                      src: "/image/rules/forwardjumpdifficulties.png",
+                      src: "/images/rules/forwardjumpdifficulties.png",
                       alt: "前方系跳躍技の難度表",
                     },
                     {
-                      src: "/image/rules/backwardjumpdifficulties.png",
+                      src: "/images/rules/backwardjumpdifficulties.png",
                       alt: "後方系の跳躍技の難度表",
                     },
                     {
-                      src: "/image/rules/combinationdifficulties.png",
+                      src: "/images/rules/combinationdifficulties.png",
                       alt: "宙返りの連続の難度表",
                     },
                     {
-                      src: "/image/rules/combinationdifficulties2.png",
+                      src: "/images/rules/combinationdifficulties2.png",
                       alt: "転回系の連続の難度表",
                     },
                   ],
@@ -1628,7 +1628,7 @@ export const vvRuleBook: RuleBook = {
 ※ここでの徒手系は、縦軸または横軸で、360°回転したもののみを１つとして数える。`,
                   image: [
                     {
-                      src: "/image/rules/tossdifficulties.png",
+                      src: "/images/rules/tossdifficulties.png",
                       alt: "投げ受けの難度表",
                     },
                   ],
@@ -1696,7 +1696,7 @@ export const vvRuleBook: RuleBook = {
 体格差が大きいため、（公財）日本体操協会指定業者が販売する手具が使用できない場合は、規格通りであれば自作でも可とする。`,
               image: [
                 {
-                  src: "/image/rules/syugukikaku(J).png",
+                  src: "/images/rules/syugukikaku(J).png",
                   alt: "ジュニア手具規格表",
                 },
               ],
@@ -1733,7 +1733,7 @@ e. チーム全体が元気よく楽しく演技できたか。
 次の観点から、演技の採点を行う。`,
               image: [
                 {
-                  src: "/image/rules/junior(PCS).png",
+                  src: "/images/rules/junior(PCS).png",
                   alt: "新体操小学校適用規則採点用紙",
                 },
               ],
@@ -1838,7 +1838,7 @@ e. チーム全体が元気よく楽しく演技できたか。
   （例：中間にステップを入れずに連続ジャンプを行うなど）`,
               image: [
                 {
-                  src: "/image/rules/tosyukettenhyou.png",
+                  src: "/images/rules/tosyukettenhyou.png",
                   alt: "徒手欠点表",
                 },
               ],
@@ -1850,35 +1850,35 @@ e. チーム全体が元気よく楽しく演技できたか。
 ※徒手の難度は、団体競技の場合、全員が実施すれば１ランクあがる。`,
               image: [
                 {
-                  src: "/image/rules/jump(D).png",
+                  src: "/images/rules/jump(D).png",
                   alt: "徒手の難度表（跳躍）",
                 },
                 {
-                  src: "/image/rules/handstand(D).png",
+                  src: "/images/rules/handstand(D).png",
                   alt: "徒手の難度表（倒立）",
                 },
                 {
-                  src: "/image/rules/sijikaiten(D).png",
+                  src: "/images/rules/sijikaiten(D).png",
                   alt: "徒手の難度表（支持回転表）",
                 },
                 {
-                  src: "/image/rules/kaisen(D).png",
+                  src: "/images/rules/kaisen(D).png",
                   alt: "徒手の難度表（旋回・ 回旋)",
                 },
                 {
-                  src: "/image/rules/turn(D).png",
+                  src: "/images/rules/turn(D).png",
                   alt: "徒手の難度表（転向（ターン））",
                 },
                 {
-                  src: "/image/rules/balance(D).png",
+                  src: "/images/rules/balance(D).png",
                   alt: "徒手の難度表（平均）",
                 },
                 {
-                  src: "/image/rules/stretchA(D).png",
+                  src: "/images/rules/stretchA(D).png",
                   alt: "徒手の難度表（静的柔軟）",
                 },
                 {
-                  src: "/image/rules/stretchB(D).png",
+                  src: "/images/rules/stretchB(D).png",
                   alt: "徒手の難度表（動的柔軟）",
                 },
               ],
