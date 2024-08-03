@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import type { Image } from "../../../ts/common/image"
+  import type { Image } from "$lib/common/image"
   import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image"
 </script>
 
