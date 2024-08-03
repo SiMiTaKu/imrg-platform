@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import Page from "../../view/page/decorating_apparatus/Page.svelte"
+  import Page from "../../view/page/judge/Page.svelte"
   import Layout from "../../view/layout/Layout.svelte"
 </script>
 
