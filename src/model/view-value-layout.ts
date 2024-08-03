@@ -30,6 +30,15 @@ export interface ViewValueLayout {
   ogp: OGP;
 }
 
+export const ViewValueLayout = {
+  isMobile(headers: Headers): boolean {
+    return (
+      !!headers.get("user-agent")?.match(/iPhone|Android.+Mobile/) ||
+      headers.get("src-ch-ua-mobile") == "?1"
+    )
+  },
+}
+
 interface OGP {
   title: string;
   description: string;

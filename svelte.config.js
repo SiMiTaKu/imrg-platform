@@ -12,12 +12,6 @@ const config = {
       precompress: false,
       strict: true
     }),
-    trailingSlash: 'always',
-    files: {
-      hooks: {
-        server: 'src/lib/hooks/hooks.server',
-      }
-    }
   },
 };
 
