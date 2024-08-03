@@ -2,8 +2,11 @@
   import Page from "../view/page/top/Page.svelte"
 </script>
 
-<svelte:head>
-  <title>男子新体操国際化プロジェクト</title>
-</svelte:head>
+<script lang='ts'>
+  import Layout from "../view/layout/Layout.svelte"
+  import { page } from "$app/stores"
+</script>
 
-<Page />
+<Layout layout={$page.data.layout} origin={$page.data.origin}>
+  <Page slot='main' />
+</Layout>
