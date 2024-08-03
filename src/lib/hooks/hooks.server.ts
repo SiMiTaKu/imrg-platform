@@ -2,6 +2,7 @@ import type { Handle } from "@sveltejs/kit"
 
 export const handle: Handle = async ({ event, resolve }) => {
   event.locals.isMobile = isMobile(event.request.headers as Headers)
+  console.log("hooks内のログ")
   return await resolve(event)
 }
 

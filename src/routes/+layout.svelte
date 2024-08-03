@@ -7,8 +7,14 @@
 
 <script lang='ts'>
   import { pageData } from "../view/atomic/device-store/store"
+  import { page } from "$app/stores"
+  import { onMount } from "svelte"
 
   let screenWidth = 0
+
+  onMount(() => {
+    console.log("+layout.svelte内のログ", $page.data)
+  })
 
   $: pageData.update(screenWidth)
 </script>
