@@ -9,7 +9,7 @@ type PageData = {
 };
 
 function createStore() {
-  const defaultPageData: PageData = { isMobile: false }
+  const defaultPageData: PageData = { isMobile: true }
 
   const { subscribe, update } = writable<PageData>(defaultPageData)
 
