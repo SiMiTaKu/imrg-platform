@@ -18,6 +18,9 @@ const config = {
       precompress: false,
       strict:      true
     }),
+  },
+  hooks: {
+    server: 'src/lib/hooks/hooks.server.ts',
   }
 };
 
