@@ -1,13 +1,19 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
+import type { ViewValueLayout } from "@model/view-value-layout"
+
 declare global {
   namespace App {
     interface Locals {
       isMobile: boolean;
+      origin: string;
+      layout: ViewValueLayout;
     }
 
     interface PageData {
       isMobile: boolean;
+      origin: string;
+      layout: ViewValueLayout;
     }
     // interface Error {}
     // interface Platform {}
