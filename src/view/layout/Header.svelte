@@ -1,6 +1,6 @@
 <script context='module' lang='ts'>
   import ImageAssets from "../atomic/image/ImageAssets.svelte"
-  import MainImage from "../../../static/image/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta"
+  import MainImage from "@images/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta"
 
   const LINKS = [
     { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
