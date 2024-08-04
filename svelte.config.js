@@ -1,4 +1,4 @@
-import adapter            from '@sveltejs/adapter-static';
+import adapter            from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type.ts {import('@sveltejs/kit').Config} */
@@ -18,7 +18,7 @@ const config = {
       }
     },
     prerender: {
-      handleHttpError: ({ path, referrer, message }) => {
+      handleHttpError: ({ path, message }) => {
         // ignore deliberate link to shiny 404 page
         if (path.startsWith('/static')) {
           // 静的ファイルの404エラーを無視
@@ -27,10 +27,6 @@ const config = {
         throw new Error(message);
       }
     },
-    paths: {
-      assets: `https://${process.env.PUBLIC_BASE_PATH}`,
-      base: `/${process.env.PUBLIC_BASE_PATH}`
-    }
   },
 };
 
