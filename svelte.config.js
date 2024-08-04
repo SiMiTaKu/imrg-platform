@@ -18,7 +18,9 @@ const config = {
       }
     },
     prerender: {
-      handleHttpError: ({ path, referrer, message }) => {
+      crawl: true,
+      entries: ['/imrg.work'],
+      handleHttpError: ({ path, message }) => {
         // ignore deliberate link to shiny 404 page
         if (path.startsWith('/static')) {
           // 静的ファイルの404エラーを無視
