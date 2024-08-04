@@ -8,6 +8,7 @@ type OutputData = {
   isMobile: boolean;
   origin: string;
   layout: ViewValueLayout;
+  url: URL;
 };
 
 export const load: PageServerLoad<OutputData> = async ({ url, locals }) => {
@@ -18,6 +19,7 @@ export const load: PageServerLoad<OutputData> = async ({ url, locals }) => {
   return {
     isMobile: locals.isMobile,
     origin: url.origin,
+    url: url,
     layout: {
       title,
       description,
