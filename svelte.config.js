@@ -18,7 +18,7 @@ const config = {
       }
     },
     prerender: {
-      handleHttpError: ({ path, referrer, message }) => {
+      handleHttpError: ({ path, message }) => {
         // ignore deliberate link to shiny 404 page
         if (path.startsWith('/static')) {
           // 静的ファイルの404エラーを無視
@@ -26,7 +26,7 @@ const config = {
         }
         throw new Error(message);
       }
-    }
+    },
   },
 };
 

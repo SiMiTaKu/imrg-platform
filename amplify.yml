@@ -6,6 +6,8 @@ frontend:
         - nvm install $(cat .node-version)
         - npm ci
     build:
+      env:
+        PUBLIC_BASE_PATH: 'https//imrg.work'
       commands:
         - npm run build
   artifacts:
