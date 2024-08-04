@@ -5,9 +5,10 @@
  * @interface ViewValueLayout
  * @property {string} title ページタイトル
  * @property {string} description ページの説明
- * @property {boolean} noindex noindexの設定
- * @property {boolean} nofollow nofollowの設定
- * @property {string} canonical canonicalの設定
+ * @property {boolean} noindex noindexを設定するか
+ * @property {boolean} nofollow nofollowを設定するか
+ * @property {string} canonical canonicalを設定するか
+ * @property {string} path ページのパス
  * @property {object} ogp OGPの設定
  * @property {string} ogp.title OGPのタイトル
  * @property {string} ogp.description OGPの説明
@@ -26,14 +27,14 @@ export interface ViewValueLayout {
   description: string;
   noindex: boolean;
   nofollow: boolean;
-  canonical: string | undefined;
+  canonical: boolean;
+  path: string;
   ogp: OGP;
 }
 
 interface OGP {
   title: string;
   description: string;
-  url: string;
   type: OGPType;
 }
 

@@ -7,6 +7,6 @@
   import { page } from "$app/stores"
 </script>
 
-<Layout layout={$page.data.layout} origin={$page.data.origin}>
+<Layout layout={$page.data.layout}>
   <Page slot='main' />
 </Layout>

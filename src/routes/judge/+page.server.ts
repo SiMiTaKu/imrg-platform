@@ -6,11 +6,10 @@ import type { PageServerLoad } from "./$types"
 
 type OutputData = {
   isMobile: boolean;
-  origin: string;
   layout: ViewValueLayout;
 };
 
-export const load: PageServerLoad<OutputData> = async ({ url, locals }) => {
+export const load: PageServerLoad<OutputData> = async ({ locals }) => {
   const title =
     "採点アプリ（実施） | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~"
   const description =
@@ -18,17 +17,16 @@ export const load: PageServerLoad<OutputData> = async ({ url, locals }) => {
 
   return {
     isMobile: locals.isMobile,
-    origin: url.origin,
     layout: {
       title,
       description,
       noindex: false,
       nofollow: false,
-      canonical: url.href,
+      canonical: true,
+      path: "/judge",
       ogp: {
         title,
         description,
-        url: url.href,
         type: "website",
       },
     },
