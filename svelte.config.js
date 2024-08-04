@@ -26,6 +26,9 @@ const config = {
         }
         throw new Error(message);
       }
+    },
+    paths: {
+      base: process.env.BASE_PATH
     }
   },
 };
