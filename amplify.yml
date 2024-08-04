@@ -7,7 +7,7 @@ frontend:
         - npm ci
     build:
       env:
-        BASE_PATH: 'https//imrg.work'
+        PUBLIC_BASE_PATH: 'https//imrg.work'
       commands:
         - npm run build
   artifacts:
