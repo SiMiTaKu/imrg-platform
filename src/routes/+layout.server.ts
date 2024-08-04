@@ -12,3 +12,8 @@ export const prerender = true
 export const load: LayoutServerLoad = () => {
   return undefined
 }
+
+/**
+ * @see https://kit.svelte.jp/docs/adapter-static#:~:text=SvelteKit%20%E3%81%AE%20trailingSlash,%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82
+ */
+export const trailingSlash = "always"
