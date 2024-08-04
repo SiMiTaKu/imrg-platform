@@ -5,6 +5,8 @@
 <script lang='ts'>
   import Layout from "../view/layout/Layout.svelte"
   import { page } from "$app/stores"
+
+  console.log($page.data.url)
 </script>
 
 <Layout layout={$page.data.layout} origin={$page.data.origin}>
