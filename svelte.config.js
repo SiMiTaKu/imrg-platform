@@ -28,7 +28,7 @@ const config = {
       }
     },
     paths: {
-      assets: `https://${process.env.PUBLIC_BASE_PATH}/`,
+      assets: `https://${process.env.PUBLIC_BASE_PATH}`,
       base: `/${process.env.PUBLIC_BASE_PATH}`
     }
   },
