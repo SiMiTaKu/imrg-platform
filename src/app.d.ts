@@ -7,9 +7,7 @@ declare global {
       isMobile: boolean;
     }
 
-    interface PageData {
-      isMobile: boolean;
-    }
+    // interface PageData {}
     // interface Error {}
     // interface Platform {}
   }

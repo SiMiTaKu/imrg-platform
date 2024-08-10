@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import type { ViewValueLayout } from "@model/view-value-layout"
+  import type { ViewValueLayout } from "$model/view-value-layout"
   import ImrgLogo from "@images/common/imrg-logo.jpg"
   import { PUBLIC_BASE_URL } from "$env/static/public"
 </script>
