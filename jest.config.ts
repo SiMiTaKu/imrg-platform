@@ -4,6 +4,7 @@ module.exports = {
   moduleNameMapper: {
     '^\\$model/(.*)$': '<rootDir>/src/model/$1',
     '^\\$images/(.*)$': '<rootDir>/src/images/$1',
-    '^\\$lib/(.*)$': '<rootDir>/src/lib/$1'
+    '^\\$lib/(.*)$': '<rootDir>/src/lib/$1',
+    '^\\$views/(.*)$': '<rootDir>/src/views/$1'
   }
 };

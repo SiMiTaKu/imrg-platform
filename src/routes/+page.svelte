@@ -1,9 +1,9 @@
 <script context='module' lang='ts'>
-  import Page from "../view/page/top/Page.svelte"
+  import Page from "$views/page/top/Page.svelte"
 </script>
 
 <script lang='ts'>
-  import Layout from "../view/layout/Layout.svelte"
+  import Layout from "$views/layout/Layout.svelte"
   import { page } from "$app/stores"
 </script>
 

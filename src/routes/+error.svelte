@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { pageData } from "../view/atomic/device-store/store"
+  import { pageData } from "$views/atomic/device-store/store"
 </script>
 
 <svelte:head>
