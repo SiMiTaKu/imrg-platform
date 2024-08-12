@@ -1,7 +1,7 @@
 // since there's no dynamic data here, we can prerender
 // it so that it gets served as a static asset in production
 
-import type { ViewValueLayout } from "@model/view-value-layout"
+import type { ViewValueLayout } from "$model/view-value-layout"
 import type { PageServerLoad } from "./$types"
 
 type OutputData = {
