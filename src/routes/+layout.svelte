@@ -21,6 +21,13 @@
   {:else}
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   {/if}
+  <!-- Google Adsense -->
+  <meta name='google-adsense-account' content='ca-pub-8732446757854279' />
+
+  <meta
+    name='keywords'
+    content='男子新体操,ストレッチ,トレーニング,体操競技,柔軟性'
+  />
 </svelte:head>
 
 <Header />

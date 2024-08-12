@@ -10,9 +10,10 @@ type OutputData = {
 };
 
 export const load: PageServerLoad<OutputData> = async ({ locals }) => {
-  const title = "男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~"
+  const title =
+    "手具装飾 | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~"
   const description =
-    "男子新体操国際化プロジェクトのトップページです。男子新体操は日本発祥のスポーツで70年以上の歴史があるスポーツです。ただ日本で進化し続けてきたため海外での競技者が少なくオリンピックスポーツになっていない現状です。この魅力ある日本の文化スポーツを世界のスポーツ（オリンピックスポーツ）にするために活動しております。"
+    "男子新体操の曲について知ることができるページです。曲を使って演技をする男子新体操は、音楽との相性が重要です。ルール変更により歌詞の有無が問われなくなったため、そのジャンルは多岐に渡るようになりました。"
 
   return {
     isMobile: locals.isMobile,
@@ -22,7 +23,7 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
       noindex: false,
       nofollow: false,
       canonical: true,
-      path: "/",
+      path: "/decorating_apparatus",
       ogp: {
         title,
         description,

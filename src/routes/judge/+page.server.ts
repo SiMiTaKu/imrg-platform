@@ -10,9 +10,10 @@ type OutputData = {
 };
 
 export const load: PageServerLoad<OutputData> = async ({ locals }) => {
-  const title = "男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~"
+  const title =
+    "採点アプリ（実施） | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~"
   const description =
-    "男子新体操国際化プロジェクトのトップページです。男子新体操は日本発祥のスポーツで70年以上の歴史があるスポーツです。ただ日本で進化し続けてきたため海外での競技者が少なくオリンピックスポーツになっていない現状です。この魅力ある日本の文化スポーツを世界のスポーツ（オリンピックスポーツ）にするために活動しております。"
+    "男子新体操の演技を簡単に採点できるアプリページです。初心者の方でも直感的に演技を採点し審判の体験が行えます。新体操のルールは細かく不明確な点も多いため初心者には難しいですが、このアプリであれば誰でも簡単に正しく演技を評価することができます。"
 
   return {
     isMobile: locals.isMobile,
@@ -22,7 +23,7 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
       noindex: false,
       nofollow: false,
       canonical: true,
-      path: "/",
+      path: "/judge",
       ogp: {
         title,
         description,
