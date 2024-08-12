@@ -3,7 +3,7 @@ import {
   designOfPC,
   designOfSP,
   getResponsiveDesign
-} from "@lib/common/responsive-design";
+} from "$lib/common/responsive-design";
 
 describe('test getResponsiveDesign', () => {
   test.each([

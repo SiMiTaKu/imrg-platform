@@ -1,4 +1,4 @@
-import { designOfSP, getResponsiveDesign } from "@lib/common/responsive-design"
+import { designOfSP, getResponsiveDesign } from "$lib/common/responsive-design"
 import { writable } from "svelte/store"
 
 type PageData = {
