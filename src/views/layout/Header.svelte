@@ -263,7 +263,7 @@
     overflow: hidden;
     border-radius: 0 0 8px 8px;
     background-color: #eee;
-    height: 191px;
+    height: 240px;
   }
 
   .links {
