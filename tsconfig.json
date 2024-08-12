@@ -11,9 +11,10 @@
 		"strict": true,
 		"baseUrl": ".", // Add this line
 		"paths": { // Add this section
-			"@model/*": ["src/model/*"],
-			"@images/*": ["src/images/*"],
-			"@lib/*": ["src/lib/*"],
+			"$model/*": ["src/model/*"],
+			"$images/*": ["src/images/*"],
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"]
 		}
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
