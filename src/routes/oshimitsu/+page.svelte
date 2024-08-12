@@ -1,11 +1,12 @@
 <script context='module' lang='ts'>
   import Page from "../../view/page/oshimitsu/Page.svelte"
+  import Layout from "../../view/layout/Layout.svelte"
 </script>
 
-<svelte:head>
-  <title
-  >オシミツ！あなたの推しを見つけよう〜｜男子新体操国際化プロジェクト</title
-  >
-</svelte:head>
+<script lang='ts'>
+  import { page } from "$app/stores"
+</script>
 
-<Page />
+<Layout layout={$page.data.layout}>
+  <Page slot='main' />
+</Layout>
