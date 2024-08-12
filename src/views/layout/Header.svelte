@@ -3,6 +3,7 @@
   import MainImage from "$images/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta"
 
   const LINKS = [
+    { href: "/", text: "トップページ" },
     { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
     { href: "/background_music", text: "曲編集を依頼する" },
     { href: "/judge", text: "審判を体験する" },

@@ -1,6 +1,6 @@
 <script context='module' lang='ts'>
-  import Page from "../../view/page/judge/Page.svelte"
-  import Layout from "../../view/layout/Layout.svelte"
+  import Page from "$views/page/judge/Page.svelte"
+  import Layout from "$views/layout/Layout.svelte"
 </script>
 
 <script lang='ts'>
