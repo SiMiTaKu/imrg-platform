@@ -13,6 +13,7 @@ export default defineConfig({
       '$model': path.resolve(__dirname, 'src/model'),
       '$images': path.resolve(__dirname, 'src/images'),
       '$lib': path.resolve(__dirname, 'src/lib'),
+      '$views': path.resolve(__dirname, 'src/views'),
     }
   }
 })

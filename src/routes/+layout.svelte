@@ -1,12 +1,12 @@
 <script context='module' lang='ts'>
-  import Header from "../view/layout/Header.svelte"
-  import Footer from "../view/layout/Footer.svelte"
-  import ContentsFooter from "../view/layout/ContentsFooter.svelte"
+  import Header from "$views/layout/Header.svelte"
+  import Footer from "$views/layout/Footer.svelte"
+  import ContentsFooter from "$views/layout/ContentsFooter.svelte"
   import "./styles.css"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../view/atomic/device-store/store"
+  import { pageData } from "$views/atomic/device-store/store"
 
   let screenWidth = 0
 
