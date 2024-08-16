@@ -7,7 +7,7 @@ import type { LayoutServerLoad } from "./$types"
  * そのため、サーバー側でのデータ取得が必要な場合は、この設定を行う必要がある。
  * @see https://kit.svelte.jp/docs/page-options#ssr
  */
-export const prerender = true
+export const prerender = "auto"
 
 export const load: LayoutServerLoad = () => {
   return undefined
