@@ -132,14 +132,14 @@
 | created date | date      | 作成日         | "2022-01-01"             |
 
 ### TeamHistory
-| column name | data type | description | example                  |
-|-------------|-----------|-------------|--------------------------|
-| id          | number    | ID          | 1                        |
-| teamId      | number    | チームID        | 1                        |
-| year        | Date      | 年月日         | "2022-01-01"             |
-| description | string    | 説明          | "推しミツチームは2022年にデビューしました。" |
-| updated date| date      | 更新日         | "2022-01-01"             |
-| created date| date      | 作成日         | "2022-01-01"             |
+| column name  | data type | description | example                  |
+|--------------|-----------|-------------|--------------------------|
+| id           | number    | ID          | 1                        |
+| teamId       | number    | チームID        | 1                        |
+| date         | Date      | 年月日         | "2022-01-01"             |
+| description  | string    | 説明          | "推しミツチームは2022年にデビューしました。" |
+| updated date | date      | 更新日         | "2022-01-01"             |
+| created date | date      | 作成日         | "2022-01-01"             |
 
 ### PlayerSns
 | column name | data type | description | example                                  |
