@@ -1,11 +1,11 @@
 import { a } from "@aws-amplify/backend"
-import { SnsTypeCodes } from "$shared/constants"
+import { SnsTypes } from "../../shared/constants"
 
 export const PlayerSns = a
   .model({
     id: a.integer().required(),
     playerId: a.integer().required(),
-    snsType: a.enum(SnsTypeCodes.map((code) => `${code}`)),
+    snsType: a.enum(SnsTypes.map((type) => type.slug)),
     url: a.string().required(),
   })
   .identifier([ "id" ])

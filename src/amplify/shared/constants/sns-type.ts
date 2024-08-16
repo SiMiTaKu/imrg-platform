@@ -1,26 +1,25 @@
 const SNS_TYPE = {
   TWITTER: {
-    code: 1,
+    slug: "twitter",
     name: "X(旧Twitter)",
   },
   INSTAGRAM: {
-    code: 2,
+    slug: "instagram",
     name: "Instagram",
   },
   FACEBOOK: {
-    code: 3,
+    slug: "facebook",
     name: "Facebook",
   },
   TIKTOK: {
-    code: 4,
+    slug: "tiktok",
     name: "TikTok",
   },
   YOUTUBE: {
-    code: 5,
+    slug: "youtube",
     name: "YouTube",
   },
 } as const
 
 export type SnsType = (typeof SNS_TYPE)[keyof typeof SNS_TYPE];
 export const SnsTypes = Object.values(SNS_TYPE)
-export const SnsTypeCodes = SnsTypes.map((snsType) => snsType.code)
