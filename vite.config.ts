@@ -15,7 +15,7 @@ export default defineConfig({
       '$lib': path.resolve(__dirname, 'src/lib'),
       '$views': path.resolve(__dirname, 'src/views'),
       '$amplify': path.resolve(__dirname, 'src/amplify'),
-      '$shared': path.resolve(__dirname, 'src/shared'),
+      '$shared': path.resolve(__dirname, 'src/amplify/shared'),
     }
   }
 })
