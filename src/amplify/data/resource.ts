@@ -1,10 +1,11 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend"
 import { Player } from "./models/player"
-import { Team } from "./models/team"
 import { PlayerHistory } from "./models/player-history"
 import { PlayerImage } from "./models/player-image"
 import { PlayerSns } from "./models/player-sns"
+import { PlayerTeam } from "./models/player-team"
 import { PlayerVideo } from "./models/player-video"
+import { Team } from "./models/team"
 import { TeamHistory } from "./models/team-history"
 import { TeamImage } from "./models/team-image"
 import { TeamSns } from "./models/team-sns"
@@ -21,6 +22,7 @@ const schema = a.schema({
   PlayerHistory: PlayerHistory,
   PlayerImage: PlayerImage,
   PlayerSns: PlayerSns,
+  PlayerTeam: PlayerTeam,
   PlayerVideo: PlayerVideo,
   Team: Team,
   TeamHistory: TeamHistory,
