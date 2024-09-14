@@ -4,10 +4,7 @@ import { imagetools } from 'vite-imagetools'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [
-    sveltekit(),
-    imagetools(),
-  ],
+  plugins: [ sveltekit(), imagetools() ],
   resolve: {
     alias: {
       '$model': path.resolve(__dirname, 'src/model'),
@@ -17,6 +14,6 @@ export default defineConfig({
       '$amplify': path.resolve(__dirname, 'src/amplify'),
       '$shared': path.resolve(__dirname, 'src/amplify/shared'),
     }
-  }
+  },
 })
 
