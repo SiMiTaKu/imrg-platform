@@ -1,5 +1,5 @@
 import { a } from "@aws-amplify/backend"
-import { Image } from "$shared/constants"
+import { Image } from "../../shared/constants"
 
 export const PlayerImage = a
   .model({

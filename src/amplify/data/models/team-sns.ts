@@ -1,5 +1,5 @@
 import { a } from "@aws-amplify/backend"
-import { Sns } from "$shared/constants"
+import { Sns } from "../../shared/constants"
 
 export const TeamSns = a
   .model({
