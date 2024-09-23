@@ -142,33 +142,43 @@
 | created date | date      | 作成日         | "2022-01-01"             |
 
 ### PlayerSns
-| column name | data type | description | example                                  |
-|-------------|-----------|-------------|------------------------------------------|
-| id          | number    | ID          | 1                                        |
-| playerId    | number    | 選手ID       | 1                                        |
-| sns_type    | number    | SNSタイプ    | 1    　                                   |
+| column name | data type | description | example                                 |
+|-------------|-----------|-------------|-----------------------------------------|
+| id          | number    | ID          | 1                                       |
+| playerId    | number    | 選手ID       | 1                                       |
+| sns_type    | number    | SNSタイプ    | twitter                                 |
 | url         | string    | URL         | "https://example.com/oshimitsu/player/1" |
-| updated date| date      | 更新日       | "2022-01-01"                             |
-| created date| date      | 作成日       | "2022-01-01"                             |
+| updated date| date      | 更新日       | "2022-01-01"                            |
+| created date| date      | 作成日       | "2022-01-01"                            |
 
 #### sns_type
-| code | name       |
-|------|------------|
-| 1    | Twitter    |
-| 2    | Instagram  |
-| 3    | Facebook   |
-| 4    | Tiktok     |
-| 5    | Youtube    |
+| slug      | name       |
+|-----------|------------|
+| twitter   | Twitter    |
+| instagram | Instagram  |
+| facebook  | Facebook   |
+| tiktok    | Tiktok     |
+| youtube   | Youtube    |
+
 
 ### TeamSns
 | column name | data type | description | example  |
 |-------------|-----------|-------------|----------|
 | id          | number    | ID          | 1        |
 | teamId      | number    | チームID       | 1        |
-| sns_type    | number    | SNSタイプ    | 1        |
+| sns_type    | number    | SNSタイプ    | twitter  |
 | url         | string    | URL         | "https://example.com/oshimitsu/team/1" |
 | updated date| date      | 更新日       | "2022-01-01" |
 | created date| date      | 作成日       | "2022-01-01" |
+
+#### sns_type
+| slug      | name       |
+|-----------|------------|
+| twitter   | Twitter    |
+| instagram | Instagram  |
+| facebook  | Facebook   |
+| tiktok    | Tiktok     |
+| youtube   | Youtube    |
 
 ### PlayerVideo
 | column name | data type | description | example  |
@@ -190,7 +200,7 @@
 
 > Store the image in the S3 bucket.
 > 画像はS3バケットに保存します。
-> url: xxxx/oshimitsu/player/[id].jpg
+> url: xxxx/oshimitsu/player/[teamId]/[id].jpg
 
 ### PlayerImage
 | column name | data type | description | example  |
@@ -203,7 +213,7 @@
 
 > Store the image in the S3 bucket.
 > 画像はS3バケットに保存します。
-> url: xxxx/oshimitsu/team/[id].jpg
+> url: xxxx/oshimitsu/team/[playerId]/[id].jpg
 
 ### TeamImage
 | column name | data type | description | example  |
@@ -211,8 +221,12 @@
 | id          | number    | ID          | 1        |
 | teamId      | number    | チームID       | 1        |
 | order       | number    | 並び順       | 1        |
+| type | enum | 画像タイプ | 'main' |
 | updated date| date      | 更新日       | "2022-01-01" |
 | created date| date      | 作成日       | "2022-01-01" |
+
+#### type
+'main' | 'sub'
 
 ## Page Loading Way and Data Fetching each page
 
