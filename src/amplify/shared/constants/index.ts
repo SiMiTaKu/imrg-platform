@@ -1,1 +1,2 @@
-export * from "./sns-type"
+export * from "./sns"
+export * from "./image"

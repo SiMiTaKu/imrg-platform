@@ -81,6 +81,7 @@
       }
     ],
     "semi": ["error", "never"],
+    "@typescript-eslint/no-namespace": "off",
     //#endregion
 
     //#region Svelte Rules -----------------------------------------------------
