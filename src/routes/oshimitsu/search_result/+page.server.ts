@@ -11,9 +11,9 @@ type OutputData = {
 
 export const load: PageServerLoad<OutputData> = async ({ locals }) => {
   const title =
-    "オシミツ！あなたの推しを見つけよう〜 | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~"
+    "推しミツ！あなたの推しを見つけよう〜 | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~"
   const description =
-    "あなたの推しを見つけるための「オシミツ」アプリのページです。男子新体操をもっとよく楽しむためにあなただけの推しを見つけよう！"
+    "あなたの推しを見つけるための「推しミツ」アプリのページです。男子新体操をもっとよく楽しむためにあなただけの推しを見つけよう！"
 
   return {
     isMobile: locals.isMobile,
