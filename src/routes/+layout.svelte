@@ -3,14 +3,6 @@
   import Footer from "$views/layout/Footer.svelte"
   import ContentsFooter from "$views/layout/ContentsFooter.svelte"
   import "./styles.css"
-
-  /**
-   * Amplifyの設定
-   * @see https://docs.amplify.aws/nextjs/build-a-backend/data/set-up-data/
-   */
-  import { Amplify } from "aws-amplify"
-  import outputs from "../amplify_outputs.json"
-  Amplify.configure(outputs)
 </script>
 
 <script lang='ts'>
