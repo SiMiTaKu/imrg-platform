@@ -55,7 +55,7 @@
 | name        | string    | チーム名        | "推しミツチーム" |
 | nameKana    | string    | ふりがな        | "おしみつちーむ" |
 
-### PlayerVideo
+### Video
 | column name | data type | description | example  |
 |-------------|-----------|-------------|----------|
 | id          | number    | ID          | 1        |

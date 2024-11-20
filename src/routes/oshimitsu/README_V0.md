@@ -180,7 +180,7 @@
 | tiktok    | Tiktok     |
 | youtube   | Youtube    |
 
-### PlayerVideo
+### Video
 | column name | data type | description | example  |
 |-------------|-----------|-------------|----------|
 | id          | number    | ID          | 1        |
