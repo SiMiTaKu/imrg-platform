@@ -1,7 +1,7 @@
 import type { VideoInformation } from "./video-information"
 
 /** 選手の動画を表すオブジェクト */
-export interface Team {
+export interface PlayerVideo {
   /** ID */
   id: number;
   /** チームID */

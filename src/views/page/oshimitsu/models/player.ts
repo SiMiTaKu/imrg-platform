@@ -6,6 +6,6 @@ export interface Player {
   name: string;
   /** 名前(かな） */
   nameKana: string;
-  /** チームID */
-  teamId: number;
+  /** 所属したチーム */
+  belongTeam: number[];
 }
