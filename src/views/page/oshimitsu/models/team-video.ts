@@ -11,5 +11,5 @@ export interface TeamVideo {
   /** 内容 */
   contentType: VideoInformation.ContentType;
   /** 撮影日 */
-  filmedAt: string;
+  filmedAt: Date;
 }

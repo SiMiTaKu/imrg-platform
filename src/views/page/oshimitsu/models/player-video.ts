@@ -4,12 +4,12 @@ import type { VideoInformation } from "./video-information"
 export interface PlayerVideo {
   /** ID */
   id: number;
-  /** チームID */
+  /** 選手ID */
   playerId: number;
   /** url */
   url: string;
   /** 内容 */
   contentType: VideoInformation.ContentType;
   /** 撮影日 */
-  filmedAt: string;
+  filmedAt: Date;
 }
