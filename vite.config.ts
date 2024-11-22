@@ -5,8 +5,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [
-    sveltekit(),
-    imagetools(),
+    sveltekit(), imagetools(),
   ],
   resolve: {
     alias: {
@@ -17,6 +16,7 @@ export default defineConfig({
       '$amplify': path.resolve(__dirname, 'src/amplify'),
       '$shared': path.resolve(__dirname, 'src/amplify/shared'),
     }
-  }
+  },
+  css: {   preprocessorOptions: {   scss: { api: "modern-compiler" } } }
 })
 
