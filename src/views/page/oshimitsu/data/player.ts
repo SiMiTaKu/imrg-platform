@@ -1,10 +1,5 @@
-import type { Player } from "../models"
+import { PlayerResource } from "../models"
 
-export const PLAYERS: Player[] = [
-  {
-    id: 1,
-    name: "清水琢巳",
-    nameKana: "しみずたくみ",
-    belongTeam: [ 1 ],
-  },
+export const PLAYERS: PlayerResource[] = [
+  new PlayerResource(1, "清水琢巳", "しみずたくみ", [ 1 ]),
 ]
