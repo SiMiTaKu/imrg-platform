@@ -4,27 +4,20 @@
 </script>
 
 <script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
-
   export let video: IndividualVideoResource
 </script>
 
-<a
-  class='card'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
-  href={video.src}
->
+<a class='card' href={video.src}>
   <iframe
     class='video'
     allow='accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
     allowfullscreen
     frameborder='0'
-    height={$pageData.isMobile ? 194 : 140}
+    height={194}
     referrerpolicy='strict-origin-when-cross-origin'
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
     title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
-    width={$pageData.isMobile ? 343 : 140}
+    width={343}
   />
   <div class='info'>
     <div class='name'>{video.player.name}</div>
@@ -35,12 +28,6 @@
 </a>
 
 <style lang='scss'>
-  .pc {
-  }
-
-  .sp {
-  }
-
   .card {
     display: grid;
     width: 343px;
