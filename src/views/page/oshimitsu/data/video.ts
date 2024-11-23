@@ -68,7 +68,7 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     ],
     contentType: ContentType.GROUP,
     src: "https://www.youtube.com/embed/ZsqQKFm6CSc",
-    filmedAt: new Date("2021-08-01T00:00:00+09:00"),
+    filmedAt: new Date("2015-08-01T00:00:00+09:00"),
   },
 ]
 
