@@ -4,7 +4,8 @@
 </script>
 
 <script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+  import IndividualVideoCard from "$views/page/oshimitsu/_components/IndividualVideoCard.svelte"
+  import GroupVideoCard from "$views/page/oshimitsu/_components/GroupVideoCard.svelte"
 </script>
 
 <article class='article'>
@@ -12,32 +13,9 @@
   <div class='cards'>
     {#each VIDEOS as video (video.id)}
       {#if isIndividualVideoResource(video)}
-        <div>
-          <div class='label'>{video.contentType.label}</div>
-          <div>{video.player.name}</div>
-          <div>{video.filmedAt}</div>
-          <iframe
-            allow='accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-            allowfullscreen
-            frameborder='0'
-            height={$pageData.isMobile ? 315 : 140}
-            referrerpolicy='strict-origin-when-cross-origin'
-            src={video.src}
-            title='YouTube video player'
-            width={$pageData.isMobile ? 315 : 140}
-          />
-        </div>
+        <IndividualVideoCard {video} />
       {:else}
-        <iframe
-          allow='accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-          allowfullscreen
-          frameborder='0'
-          height={$pageData.isMobile ? 315 : 140}
-          referrerpolicy='strict-origin-when-cross-origin'
-          src={video.src}
-          title='YouTube video player'
-          width={$pageData.isMobile ? 315 : 140}
-        />
+        <GroupVideoCard {video} />
       {/if}
     {/each}
   </div>
@@ -55,17 +33,5 @@
     display: grid;
     gap: 16px;
     place-items: center;
-  }
-
-  .label {
-    display: grid;
-    place-items: center;
-    font-size: 16px;
-    padding: 0 12px;
-    height: 28px;
-    font-weight: bold;
-    color: white;
-    background: #015ccf;
-    border-radius: 8px;
   }
 </style>

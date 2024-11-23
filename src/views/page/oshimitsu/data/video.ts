@@ -4,7 +4,15 @@ import type {
   VideoResource,
 } from "../models"
 import { Apparatus, ContentType } from "../lib"
-import { AOMORI_YAMADA, TAKUMI_SHIMIZU } from "../data"
+import {
+  AOMORI_YAMADA,
+  KAZUMA_YOSHIDA,
+  KOUJI_HAMAYA,
+  RYO_AKIYAMA,
+  SHINYA_MANJU,
+  TAKUMI_SHIMIZU,
+  YUTA_ODAGIRI,
+} from "../data"
 
 const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   /** 清水琢巳 スティック */
@@ -50,7 +58,14 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
   {
     id: 5,
     team: AOMORI_YAMADA,
-    players: [ TAKUMI_SHIMIZU ],
+    players: [
+      TAKUMI_SHIMIZU,
+      KAZUMA_YOSHIDA,
+      KOUJI_HAMAYA,
+      YUTA_ODAGIRI,
+      RYO_AKIYAMA,
+      SHINYA_MANJU,
+    ],
     contentType: ContentType.GROUP,
     src: "https://www.youtube.com/embed/ZsqQKFm6CSc",
     filmedAt: new Date("2021-08-01T00:00:00+09:00"),
