@@ -1,32 +1,37 @@
-<script lang='ts'>
-  import type { Schema } from "$amplify/data/resource"
-  import { generateClient } from "aws-amplify/data"
-  import { onMount } from "svelte"
-
-  const client = generateClient<Schema>()
-
-  let players
-
-  onMount(async () => {
-    players = await client.models.Player.list()
-  })
+<script context='module' lang='ts'>
+  import { VIDEOS } from "$views/page/oshimitsu/data"
+  import { isIndividualVideoResource } from "$views/page/oshimitsu/models"
 </script>
 
-<div class='padding'>
-  おしみつ
-  {#if players}
-    <ul>
-      {#each players.data as player (player.id)}
-        <li>{player.name}</li>
-      {/each}
-    </ul>
-  {:else}
-    <p>loading...</p>
-  {/if}
-</div>
+<script lang='ts'>
+  import IndividualVideoCard from "$views/page/oshimitsu/_components/IndividualVideoCard.svelte"
+  import GroupVideoCard from "$views/page/oshimitsu/_components/GroupVideoCard.svelte"
+</script>
+
+<article class='article'>
+  <h1>推しミツ！</h1>
+  <div class='cards'>
+    {#each VIDEOS as video (video.id)}
+      {#if isIndividualVideoResource(video)}
+        <IndividualVideoCard {video} />
+      {:else}
+        <GroupVideoCard {video} />
+      {/if}
+    {/each}
+  </div>
+</article>
 
 <style lang='scss'>
-  .padding {
-    padding: 500px 0 0;
+  .article {
+    display: grid;
+    gap: 16px;
+    place-items: center;
+    padding: 40px 12px;
+  }
+
+  .cards {
+    display: grid;
+    gap: 16px;
+    place-items: center;
   }
 </style>
