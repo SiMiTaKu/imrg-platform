@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
-  import type { GroupVideoResource } from "../models"
+  import type { IndividualVideoResource } from "../../models"
   import { format } from "date-fns"
 </script>
 
 <script lang='ts'>
-  export let video: GroupVideoResource
+  export let video: IndividualVideoResource
 </script>
 
 <a class='card' href={video.src}>
@@ -16,14 +16,13 @@
     height={194}
     referrerpolicy='strict-origin-when-cross-origin'
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
-    title={`${video.team.name} ${format(video.filmedAt, "yyyy年")}`}
+    title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
     width={343}
   />
   <div class='info'>
-    <div class='name'>{video.team.name}</div>
-    <div class='date'>{format(video.filmedAt, "yyyy年")}</div>
+    <div class='name'>{video.player.name}</div>
     <div class='detail'>
-      {video.players.map((player) => player.name).join(", ")}
+      {`${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
     </div>
   </div>
 </a>
@@ -72,12 +71,6 @@
     font-size: 34px;
     line-height: 34px;
     font-weight: bold;
-  }
-
-  .date {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333333;
   }
 
   .detail {

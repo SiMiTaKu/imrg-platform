@@ -1,24 +1,10 @@
-<script context='module' lang='ts'>
-  import { VIDEOS } from "$views/page/oshimitsu/data"
-  import { isIndividualVideoResource } from "$views/page/oshimitsu/models"
-</script>
-
-<script lang='ts'>
-  import IndividualVideoCard from "$views/page/oshimitsu/_components/IndividualVideoCard.svelte"
-  import GroupVideoCard from "$views/page/oshimitsu/_components/GroupVideoCard.svelte"
-</script>
-
 <article class='article'>
   <h1>推しミツ！</h1>
-  <div class='cards'>
-    {#each VIDEOS as video (video.id)}
-      {#if isIndividualVideoResource(video)}
-        <IndividualVideoCard {video} />
-      {:else}
-        <GroupVideoCard {video} />
-      {/if}
-    {/each}
-  </div>
+  <p>
+    推しミツは、男子新体操に関する動画専用の検索機能です。<br />
+    あなたがまだ知らない男子新体操の世界や魅力を見つけに行こう！
+  </p>
+  <a class='link' href='/oshimitsu/search_result'> 検索結果へ進む </a>
 </article>
 
 <style lang='scss'>
@@ -26,12 +12,18 @@
     display: grid;
     gap: 16px;
     place-items: center;
-    padding: 40px 12px;
+    padding: 40px 16px;
   }
 
-  .cards {
+  .link {
     display: grid;
-    gap: 16px;
     place-items: center;
+    width: 343px;
+    height: 48px;
+    border-radius: 8px;
+    background: #003c87;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
   }
 </style>
