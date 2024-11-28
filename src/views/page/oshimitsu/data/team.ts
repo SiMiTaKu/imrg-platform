@@ -1,4 +1,4 @@
-import { TeamResource } from "../models"
+import type { TeamResource } from "../models"
 
 export const AOMORI_UNIVERSITY: TeamResource = {
   name: "青森大学",
