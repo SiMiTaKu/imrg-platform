@@ -5,12 +5,18 @@ import type {
 } from "../models"
 import { Apparatus, ContentType } from "../lib"
 import {
+  AOMORI_UNIVERSITY,
   AOMORI_YAMADA,
+  KAI_TAGUCHI,
   KAZUMA_YOSHIDA,
   KOUJI_HAMAYA,
   RYO_AKIYAMA,
   SHINYA_MANJU,
+  SOICHIRO_NAKAYAMA,
+  TAISEI_URAYAMA,
+  TAKUMI_ASADA,
   TAKUMI_SHIMIZU,
+  TOMOYA_ISHIBASHI,
   YUTA_ODAGIRI,
 } from "../data"
 
@@ -69,6 +75,21 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     contentType: ContentType.GROUP,
     src: "https://www.youtube.com/embed/ZsqQKFm6CSc",
     filmedAt: new Date("2015-08-01T00:00:00+09:00"),
+  },
+  /** 青森大学 2024年 */
+  {
+    id: 5,
+    team: AOMORI_UNIVERSITY,
+    players: [
+      KAI_TAGUCHI,
+      TOMOYA_ISHIBASHI,
+      SOICHIRO_NAKAYAMA,
+      TAISEI_URAYAMA,
+      TAKUMI_ASADA,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/cT-BIAKWf48",
+    filmedAt: new Date("2024-11-10T00:00:00+09:00"),
   },
 ]
 
