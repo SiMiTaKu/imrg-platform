@@ -1,6 +1,16 @@
 <script context='module' lang='ts'>
   import { VIDEOS } from "$views/page/oshimitsu/data"
   import { isIndividualVideoResource } from "$views/page/oshimitsu/models"
+
+  const shuffleArray = <T,>(array: T[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ array[i], array[j] ] = [ array[j], array[i] ]
+    }
+    return array
+  }
+
+  const RANDOM_SORT_VIDEOS = shuffleArray([ ...VIDEOS ])
 </script>
 
 <script lang='ts'>
@@ -11,7 +21,7 @@
 <article class='article'>
   <h1>推しミツ！</h1>
   <div class='cards'>
-    {#each VIDEOS as video, index (index)}
+    {#each RANDOM_SORT_VIDEOS as video, index (index)}
       {#if isIndividualVideoResource(video)}
         <IndividualVideoCard {video} />
       {:else}
