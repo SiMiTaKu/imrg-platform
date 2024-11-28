@@ -11,7 +11,7 @@
 <article class='article'>
   <h1>推しミツ！</h1>
   <div class='cards'>
-    {#each VIDEOS as video (video.id)}
+    {#each VIDEOS as video, index (index)}
       {#if isIndividualVideoResource(video)}
         <IndividualVideoCard {video} />
       {:else}
