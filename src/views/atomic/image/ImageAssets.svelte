@@ -14,7 +14,7 @@
   const imgFormats = [ "webp", "jpg", "png" ]
 
   function getSrc(): string {
-    const filterByJpg = srcMeta.filter((meta) => meta.format === "jpg")
+    const filterByJpg = srcMeta.filter((meta) => meta.format === "png")
     return filterByJpg.sort((a, b) => a.width - b.width)[0].src
   }
 
