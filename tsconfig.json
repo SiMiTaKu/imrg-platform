@@ -18,7 +18,8 @@
 			"$views/*": ["src/views/*"],
 			"amplify": ["src/amplify/*"],
 			"shared": ["src/shared/*"]
-		}
+		},
+		"verbatimModuleSyntax": false
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
