@@ -1,9 +1,9 @@
 import adapter            from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type.ts {import('@sveltejs/kit').Config} */
 const config = {
-  preprocess: vitePreprocess(),
+  preprocess: vitePreprocess(undefined),
   kit: {
     adapter: adapter({
       pages: 'build',
@@ -17,6 +17,7 @@ const config = {
         server: 'src/lib/hooks/hooks.server',
       }
     },
+    alias: {},
     prerender: {
       handleHttpError: ({ path, message }) => {
         // ignore deliberate link to shiny 404 page

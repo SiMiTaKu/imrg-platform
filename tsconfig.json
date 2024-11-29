@@ -9,7 +9,6 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"baseUrl": ".", // Add this line
 		"paths": { // Add this section
 			"$model/*": ["src/model/*"],
 			"$images/*": ["src/images/*"],
