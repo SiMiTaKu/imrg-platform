@@ -6,12 +6,14 @@
 <script lang='ts'>
   import { onMount } from "svelte"
   import { fly, fade } from "svelte/transition"
-  import { pageData } from "../../../atomic/device-store/store"
+  import { pageData } from "$views/atomic/device-store/store"
 
   let isShowMainVisual = false
 
   onMount(() => {
     isShowMainVisual = true
+
+    console.log("MainVisual", JSON.stringify(MainImage))
   })
 </script>
 

@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
   import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
-  import Image1 from "./_image/main-visual-1.jpg?w=1024;2048&format=webp;jpg&as=meta"
-  import Image2 from "./_image/main-visual-3.jpg?w=1024;2048&format=webp;jpg&as=meta"
-  import Image3 from "./_image/main-visual-5.jpg?w=1024;2048&format=webp;jpg&as=meta"
-  import Image4 from "./_image/main-visual-2.jpg?w=1024;2048&format=webp;jpg&as=meta"
-  import Image5 from "./_image/main-visual-4.jpg?w=1024;2048&format=webp;jpg&as=meta"
+  import Image1 from "./_image/main-visual-1.jpg?w=1024;2048&format=webp&as=meta"
+  import Image2 from "./_image/main-visual-3.jpg?w=1024;2048&format=webp&as=meta"
+  import Image3 from "./_image/main-visual-5.jpg?w=1024;2048&format=webp&as=meta"
+  import Image4 from "./_image/main-visual-2.jpg?w=1024;2048&format=webp&as=meta"
+  import Image5 from "./_image/main-visual-4.jpg?w=1024;2048&format=webp&as=meta"
 
   const MAIN_VISUALS = [
     {

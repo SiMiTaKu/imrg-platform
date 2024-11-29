@@ -9,7 +9,7 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"baseUrl": ".", // Add this line
+		"baseUrl": ".",
 		"paths": { // Add this section
 			"$model/*": ["src/model/*"],
 			"$images/*": ["src/images/*"],
@@ -18,7 +18,8 @@
 			"$views/*": ["src/views/*"],
 			"amplify": ["src/amplify/*"],
 			"shared": ["src/shared/*"]
-		}
+		},
+		"verbatimModuleSyntax": false
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
