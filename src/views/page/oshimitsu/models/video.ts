@@ -3,7 +3,6 @@ import type { PlayerResource, TeamResource } from "../models"
 
 /** 動画のベースクラス */
 interface BaseVideo {
-  id: number;
   src: string;
   filmedAt: Date;
 }
