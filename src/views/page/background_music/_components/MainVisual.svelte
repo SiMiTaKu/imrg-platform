@@ -1,6 +1,6 @@
 <script context='module' lang='ts'>
   import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
-  import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp;jpg&as=meta"
+  import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp&as=meta"
   const MAIN_VISUALS = [
     { description: "大好きな曲を、自然な演技時間に短縮！" },
     { description: "最適な編曲で、最高の演技体験を！" },
@@ -13,7 +13,7 @@
 <script lang='ts'>
   import { onMount } from "svelte"
   import { fly } from "svelte/transition"
-  import { pageData } from "../../../atomic/device-store/store"
+  import { pageData } from "$views/atomic/device-store/store"
 
   let currentIndex = Math.floor(Math.random() * 5)
   let currentVisual = MAIN_VISUALS[currentIndex]
