@@ -11,10 +11,10 @@
   export let alt: string
 
   /** formatのデフォルト値 */
-  const imgFormats = [ "webp", "jpg", "png" ]
+  const imgFormats = [ "webp", "png" ]
 
   function getSrc(): string {
-    const filterByJpg = srcMeta.filter((meta) => meta.format === "png")
+    const filterByJpg = srcMeta.filter((meta) => meta.format === "webp")
     return filterByJpg.sort((a, b) => a.width - b.width)[0].src
   }
 
