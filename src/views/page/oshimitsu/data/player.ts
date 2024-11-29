@@ -1,7 +1,21 @@
 import type { PlayerResource } from "../models"
 import { Team } from "./team"
 
-export const Player: { [key: string]: PlayerResource } = {
+type PlayerKey =
+  | "TAKUMI_SHIMIZU"
+  | "KAZUMA_YOSHIDA"
+  | "KOUJI_HAMAYA"
+  | "YUTA_ODAGIRI"
+  | "RYO_AKIYAMA"
+  | "SHINYA_MANJU"
+  | "KAI_TAGUCHI"
+  | "TOMOYA_ISHIBASHI"
+  | "SOICHIRO_NAKAYAMA"
+  | "TAISEI_URAYAMA"
+  | "TAKUMI_ASADA"
+  | "ASAHI_IWASAKI";
+
+export const Player: { [key in PlayerKey]: PlayerResource } = {
   TAKUMI_SHIMIZU: {
     name: "清水琢巳",
     nameKana: "しみずたくみ",

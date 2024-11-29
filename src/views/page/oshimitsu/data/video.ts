@@ -7,9 +7,9 @@ import { Apparatus, ContentType } from "../lib"
 import { Player, Team } from "../data"
 
 const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
+  //#region 清水琢巳
   /** 清水琢巳 スティック */
   {
-    id: 1,
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -18,7 +18,6 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   },
   /** 清水琢巳 リング */
   {
-    id: 2,
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -27,7 +26,6 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   },
   /** 清水琢巳 ロープ */
   {
-    id: 3,
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -36,19 +34,52 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   },
   /** 清水琢巳 クラブ */
   {
-    id: 4,
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
     src: "https://www.youtube.com/embed/4r6JlP3m2Uc",
     filmedAt: new Date("2021-08-01T00:00:00+09:00"),
   },
+  //#endregion
+  //#region 岩崎あさひ
+  /** 岩崎あさひ スティック 2024年 */
+  {
+    player: Player.ASAHI_IWASAKI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/AwarNsKJLnM",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 岩崎あさひ リング 2024年 */
+  {
+    player: Player.ASAHI_IWASAKI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/GwQJbeSIILw",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 岩崎あさひ ロープ 2024年 */
+  {
+    player: Player.ASAHI_IWASAKI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/8PR08XHqUqE",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 岩崎あさひ クラブ 2024年 */
+  {
+    player: Player.ASAHI_IWASAKI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/HDCK2oFZyvs",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
 ]
 
 const GROUP_VIDEOS: GroupVideoResource[] = [
   /** 青森山田高等学校 2015年 高校総体 */
   {
-    id: 5,
     team: Team.AOMORI_YAMADA,
     players: [
       Player.TAKUMI_SHIMIZU,
@@ -64,7 +95,6 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
   },
   /** 青森大学 2024年 */
   {
-    id: 5,
     team: Team.AOMORI_UNIVERSITY,
     players: [
       Player.KAI_TAGUCHI,
