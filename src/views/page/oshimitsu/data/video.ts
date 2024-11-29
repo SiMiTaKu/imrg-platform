@@ -75,6 +75,40 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion
+  //#region 桒原碧都
+  /** 桒原碧都 スティック 2024年 */
+  {
+    player: Player.AOTO_KUWABARA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/KKjHVrr2gxI",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 桒原碧都 リング 2024年 */
+  {
+    player: Player.AOTO_KUWABARA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/j7pLUz17zrw",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 桒原碧都 ロープ 2024年 */
+  {
+    player: Player.AOTO_KUWABARA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/C7bOe9H3-fE",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 桒原碧都 クラブ 2024年 */
+  {
+    player: Player.AOTO_KUWABARA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/nAlJ6pMTS5E",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
 ]
 
 const GROUP_VIDEOS: GroupVideoResource[] = [
