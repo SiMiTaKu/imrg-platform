@@ -7,7 +7,8 @@ type TeamKey =
   | "KANZAKI_SEIMEI"
   | "SEIFU"
   | "AMAGASAKI_NISHI"
-  | "SEIBI";
+  | "SEIBI"
+  | "MURASAKINO";
 
 export const Team: { [key in TeamKey]: TeamResource } = {
   AOMORI_UNIVERSITY: {
@@ -37,6 +38,10 @@ export const Team: { [key in TeamKey]: TeamResource } = {
   SEIBI: {
     name: "済美高等学校",
     nameKana: "せいびこうとうがっこう",
+  },
+  MURASAKINO: {
+    name: "紫野高等学校",
+    nameKana: "むらさきのこうとうがっこう",
   },
 } as const
 

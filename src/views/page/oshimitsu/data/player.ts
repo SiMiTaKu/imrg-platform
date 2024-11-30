@@ -14,7 +14,10 @@ type PlayerKey =
   | "TAISEI_URAYAMA"
   | "TAKUMI_ASADA"
   | "ASAHI_IWASAKI"
-  | "AOTO_KUWABARA";
+  | "AOTO_KUWABARA"
+  | "RENON_KASAI"
+  | "JOSHIN_KIKUCHI"
+  | "TAIYO_FUJIMOTO";
 
 export const Player: { [key in PlayerKey]: PlayerResource } = {
   TAKUMI_SHIMIZU: {
@@ -81,6 +84,21 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
     name: "桒原碧都",
     nameKana: "くわばらあおと",
     belongedTeams: [ Team.SEIBI, Team.AOMORI_UNIVERSITY ],
+  },
+  RENON_KASAI: {
+    name: "葛西麗音",
+    nameKana: "かさいれのん",
+    belongedTeams: [ Team.AOMORI_YAMADA, Team.AOMORI_UNIVERSITY ],
+  },
+  JOSHIN_KIKUCHI: {
+    name: "釋氏乗真",
+    nameKana: "きくちじょうしん",
+    belongedTeams: [ Team.AMAGASAKI_NISHI, Team.AOMORI_UNIVERSITY ],
+  },
+  TAIYO_FUJIMOTO: {
+    name: "藤本太陽",
+    nameKana: "ふじもとたいよう",
+    belongedTeams: [ Team.MURASAKINO, Team.AOMORI_UNIVERSITY ],
   },
 } as const
 
