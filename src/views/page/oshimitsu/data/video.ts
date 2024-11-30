@@ -109,6 +109,108 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion
+  //#region 葛西麗音
+  /** 葛西麗音 スティック 2024年 */
+  {
+    player: Player.RENON_KASAI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/fwhDMPr8Sp0",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 葛西麗音 リング 2024年 */
+  {
+    player: Player.RENON_KASAI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/c1xU6FQvGyo",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 葛西麗音 ロープ 2024年 */
+  {
+    player: Player.RENON_KASAI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/NIPLdOyi65w",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 葛西麗音 クラブ 2024年 */
+  {
+    player: Player.RENON_KASAI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/W9_2WTQgqRU",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region 釋氏乗真
+  /** 釋氏乗真 スティック 2024年 */
+  {
+    player: Player.JOSHIN_KIKUCHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/mjuuYQvIUec",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 釋氏乗真 リング 2024年 */
+  {
+    player: Player.JOSHIN_KIKUCHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/zqtrPxqm7Fo",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 釋氏乗真 ロープ 2024年 */
+  {
+    player: Player.JOSHIN_KIKUCHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/Ad8apf0VWpE",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 釋氏乗真 クラブ 2024年 */
+  {
+    player: Player.JOSHIN_KIKUCHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/82LKwlLhP5E",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region 藤本太陽
+  /** 藤本太陽 スティック 2024年 */
+  {
+    player: Player.TAIYO_FUJIMOTO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/D2MaWwhPoLI",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 藤本太陽 リング 2024年 */
+  {
+    player: Player.TAIYO_FUJIMOTO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/CSayfq90zxk",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 藤本太陽 ロープ 2024年 */
+  {
+    player: Player.TAIYO_FUJIMOTO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/OveljCpDDjY",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 藤本太陽 クラブ 2024年 */
+  {
+    player: Player.TAIYO_FUJIMOTO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/qcU2ly2IRV8",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
 ]
 
 const GROUP_VIDEOS: GroupVideoResource[] = [
