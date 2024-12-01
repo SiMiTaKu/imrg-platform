@@ -211,6 +211,74 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion
+  //#region 譽士太陽向
+  /** 譽士太陽向 スティック 2024年 */
+  {
+    player: Player.HINATA_YOSHIDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/r6YebPPdOMU",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 譽士太陽向 リング 2024年 */
+  {
+    player: Player.HINATA_YOSHIDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/PqxQ_cg8u2Y",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 譽士太陽向 ロープ 2024年 */
+  {
+    player: Player.HINATA_YOSHIDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/AfRpp0-QkI8",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 譽士太陽向 クラブ 2024年 */
+  {
+    player: Player.HINATA_YOSHIDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/6fOVmqW26HU",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region 森園滉貴
+  /** 森園滉貴 スティック 2024年 */
+  {
+    player: Player.KOKI_MORIZONO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/w6aT7s_7QNc",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 森園滉貴 リング 2024年 */
+  {
+    player: Player.KOKI_MORIZONO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/zv8GJ7jheWQ",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 森園滉貴 ロープ 2024年 */
+  {
+    player: Player.KOKI_MORIZONO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/CwMombwkCUM",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 森園滉貴 クラブ 2024年 */
+  {
+    player: Player.KOKI_MORIZONO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/X3AfeqlQDdc",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
 ]
 
 const GROUP_VIDEOS: GroupVideoResource[] = [
