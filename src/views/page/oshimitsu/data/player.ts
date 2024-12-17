@@ -19,7 +19,9 @@ type PlayerKey =
   | "JOSHIN_KIKUCHI"
   | "TAIYO_FUJIMOTO"
   | "HINATA_YOSHIDA"
-  | "KOKI_MORIZONO";
+  | "KOKI_MORIZONO"
+  | "KOICHI_MURASATO"
+  | "YUSUKE_OTA";
 
 export const Player: { [key in PlayerKey]: PlayerResource } = {
   TAKUMI_SHIMIZU: {
@@ -111,6 +113,16 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
     name: "森園滉貴",
     nameKana: "もりぞのこうき",
     belongedTeams: [ Team.ASHIKITA_HIGH, Team.AOMORI_UNIVERSITY ],
+  },
+  KOICHI_MURASATO: {
+    name: "村里剛一",
+    nameKana: "むらさとこういち",
+    belongedTeams: [ Team.KANZAKI_SEIMEI, Team.AOMORI_UNIVERSITY ],
+  },
+  YUSUKE_OTA: {
+    name: "太田悠介",
+    nameKana: "おおたゆうすけ",
+    belongedTeams: [ Team.KANZAKI_SEIMEI, Team.AOMORI_UNIVERSITY ],
   },
 } as const
 
