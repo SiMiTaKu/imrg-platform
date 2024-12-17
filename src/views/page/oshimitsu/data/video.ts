@@ -301,6 +301,20 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
   {
     team: Team.AOMORI_UNIVERSITY,
     players: [
+      Player.YUSUKE_OTA,
+      Player.KAI_TAGUCHI,
+      Player.TOMOYA_ISHIBASHI,
+      Player.SOICHIRO_NAKAYAMA,
+      Player.TAISEI_URAYAMA,
+      Player.KOICHI_MURASATO,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/48Esk9QxCy0",
+    filmedAt: new Date("2023-10-29T00:00:00+09:00"),
+  },
+  {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
       Player.KAI_TAGUCHI,
       Player.TOMOYA_ISHIBASHI,
       Player.SOICHIRO_NAKAYAMA,
