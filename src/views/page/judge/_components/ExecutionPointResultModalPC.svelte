@@ -122,8 +122,8 @@
         <div class='pull-down' use:motion>
           <div class='chart'>
             <canvas id='detail-chart'
-                    height='400'
-                    width='500'>
+                    width='500'
+                    height='400'>
               <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
             </canvas>
           </div>

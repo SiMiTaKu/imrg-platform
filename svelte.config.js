@@ -12,6 +12,7 @@ const config = {
       strict: true,
     }),
     prerender: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       handleHttpError: ({ path, message }) => {
         if (path === '/static') {
           // Ignore 404 errors for /static path

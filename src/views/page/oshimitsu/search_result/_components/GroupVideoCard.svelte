@@ -13,11 +13,11 @@
     allow='accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
     allowfullscreen
     frameborder='0'
+    width={343}
     height={194}
     referrerpolicy='strict-origin-when-cross-origin'
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
     title={`${video.team.name} ${format(video.filmedAt, "yyyy年")}`}
-    width={343}
   />
   <div class='info'>
     <div class='name'>{video.team.name}</div>

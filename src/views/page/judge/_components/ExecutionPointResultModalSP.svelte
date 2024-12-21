@@ -124,8 +124,8 @@
           <div class='wrapper'>
             <div class='chart'>
               <canvas id='detail-chart'
-                      height='256'
-                      width='256'>
+                      width='256'
+                      height='256'>
                 <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
               </canvas>
             </div>

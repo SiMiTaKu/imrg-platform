@@ -17,10 +17,10 @@
 >
   {#each LINKS as { href, text }, index (index)}
     <div class='item'>
-      <ButtonLink height='100%'
+      <ButtonLink width='100%'
+                  height='100%'
                   {href}
-                  {text}
-                  width='100%' />
+                  {text} />
     </div>
   {/each}
 </section>

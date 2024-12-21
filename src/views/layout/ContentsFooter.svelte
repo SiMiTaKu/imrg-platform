@@ -23,8 +23,8 @@
         >
           <div class='icon'>
             <ImageAssets
-              alt={sns.icon.alt}
               height='auto'
+              alt={sns.icon.alt}
               lazy={true}
               srcMeta={sns.icon.srcMeta}
             />
