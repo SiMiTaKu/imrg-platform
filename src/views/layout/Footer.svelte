@@ -136,7 +136,7 @@
   }
 
   .contents-footer {
-    padding: 40px 0;
+    padding: $space-size-40 0 $space-size-120;
     background-color: #eeeeee;
   }
 
