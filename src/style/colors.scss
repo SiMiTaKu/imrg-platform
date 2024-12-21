@@ -1,28 +1,25 @@
 $white: #ffffff;
 
 $sky-blue: (
-  background: #e0edff, // 背景 - indigo: 50
-  radio-background: #c5dfff, // ラジオボタン背景 - indigo: 100
+  50: #e0edff, // 背景
+  100: #c5dfff,
   200: #acd2ff,
   300: #98c9ff,
-  link: #80baff, // リンク - indigo: 400
-  border: #66adff, // ボーダー - indigo: 500
-  label: #66adff, // ラベル - indigo: 500
+  400: #80baff, // リンク
+  500: #66adff, // ボーダー, ラベル
   600: #479eff,
-  text: #2e91ff, // 文字 - indigo: 700
-  button: #1986ff, // ボタン - indigo: 800
+  700: #2e91ff, // 文字
+  800: #1986ff, // ボタン
   900: #0079ff,
 );
 
-$orange: (
-  background: #ffffee, // 背景 - orange: 50
-  radio-background: #ffffd5, // ラジオボタン背景 - orange: 100
+$yellow: (
+  50: #ffffee, // 背景
+  100: #ffffd5,
   200: #ffffbf,
   300: #ffffaa,
   400: #ffff8f,
-  border: #ffff74, // ボーダー - orange: 500
-  text: #ffff74, // 文字 - orange: 500
-  label: #ffff74, // ラベル - orange: 500
+  500: #ffff74, // ボーダー, 文字, ラベル
   600: #ffff59,
   700: #fdfd3a,
   800: #ffff22,
@@ -30,14 +27,14 @@ $orange: (
 );
 
 $gray: (
-  background: #f3f3f3, // 背景 - gray: 100
+  50: #f3f3f3, // 背景
   100: #eeeeee,
   200: #e0e0e0,
   300: #bdbdbd,
   400: #9e9e9e,
-  border: #757575, // ボーダー - gray: 500
+  500: #757575, // ボーダー
   600: #616161,
-  text: #424242, // 文字 - gray: 800
+  700: #424242, // 文字
   800: #212121,
   900: #000000,
 );
