@@ -71,12 +71,13 @@
 
   .name {
     font-size: $font-size-30;
-    line-height: 34px;
+    line-height: $font-size-30;
     font-weight: bold;
+    color: map.get($gray, text);
   }
 
   .detail {
-    font-size: 14px;
+    font-size: $font-size-14;
     font-weight: bold;
     color: map.get($gray, light-text);
   }

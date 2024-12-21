@@ -71,20 +71,22 @@
   }
 
   .name {
-    font-size: 34px;
-    line-height: 34px;
+    font-size: $font-size-30;
+    line-height: $font-size-30;
     font-weight: bold;
+    color: map.get($gray, text);
   }
 
   .date {
-    font-size: 20px;
+    font-size: $font-size-20;
+    line-height: $font-size-20;
     font-weight: bold;
-    color: #333333;
+    color: map.get($gray, light-text);
   }
 
   .detail {
-    font-size: 14px;
+    font-size: $font-size-14;
     font-weight: bold;
-    color: #666666;
+    color: map.get($gray, light-text);
   }
 </style>
