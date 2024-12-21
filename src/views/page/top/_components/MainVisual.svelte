@@ -14,8 +14,8 @@
 >
   <div class='image'>
     <ImageAssets
-      width={$pageData.isMobile ? 325 : 650}
-      height={$pageData.isMobile ? 210 : 430}
+      width={$pageData.isMobile ? 325 : 500}
+      height={$pageData.isMobile ? 210 : 330}
       alt='男子新体操国際化プロジェクトのロゴ'
       lazy={false}
       srcMeta={MainImage}
@@ -29,7 +29,7 @@
   .pc {
     --width: 1024px;
     --height: calc(100vh - 80px);
-    --title-font-size: #{$font-size-56};
+    --title-font-size: #{$font-size-48};
   }
 
   .sp {

@@ -1,6 +1,7 @@
 <script context='module' lang='ts'>
   import Header from "$views/layout/Header.svelte"
   import Footer from "$views/layout/Footer.svelte"
+  import StickyFooter from "$views/layout/StickyFooter.svelte"
   import "./styles.css"
 </script>
 
@@ -30,10 +31,14 @@
 </svelte:head>
 
 <Header />
+
 <main class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <slot />
 </main>
+
 <Footer />
+
+<StickyFooter />
 
 <style lang='scss'>
   .pc {
