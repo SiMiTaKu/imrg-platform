@@ -1,7 +1,6 @@
 <script context='module' lang='ts'>
   import Header from "$views/layout/Header.svelte"
   import Footer from "$views/layout/Footer.svelte"
-  import StickyFooter from "$views/layout/StickyFooter.svelte"
   import "./styles.css"
 </script>
 
@@ -37,8 +36,6 @@
 </main>
 
 <Footer />
-
-<StickyFooter />
 
 <style lang='scss'>
   .pc {
