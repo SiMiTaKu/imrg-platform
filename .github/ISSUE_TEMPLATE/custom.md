@@ -8,14 +8,10 @@ assignees: ''
 ---
 
 # Issue
-## Overview
-<!-- Provide a brief description of the issue. -->
+## やりたいこと
 
-## Current Situation
-<!-- Describe the current state or conditions related to the issue. -->
+## 現状
 
-## Expected Behavior
-<!-- Clearly state what behavior you expect or what the desired outcome should be. -->
+## 期待する状態
 
-## Implementation Approach
-<!-- If you have any ideas or suggestions on how to implement this, please share them. -->
+## 備考
