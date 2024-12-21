@@ -7,6 +7,7 @@
     { href: "/background_music", text: "曲編集を依頼する" },
     { href: "/judge", text: "審判を体験する" },
     { href: "/rules", text: "ルールを知る" },
+    { href: "/oshimitsu", text: "推しミツ" },
   ]
 </script>
 
@@ -58,7 +59,7 @@
   }
 
   .open {
-    height: 240px;
+    height: 280px;
   }
 
   .links {
