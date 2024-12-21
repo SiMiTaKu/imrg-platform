@@ -198,7 +198,6 @@
     align-items: center;
     padding: var(--top-link-padding);
     box-sizing: border-box;
-    pointer-events: none;
     height: 100%;
     width: 100%;
   }

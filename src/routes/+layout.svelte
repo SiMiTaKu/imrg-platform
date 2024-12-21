@@ -1,6 +1,7 @@
 <script context='module' lang='ts'>
   import Header from "$views/layout/Header.svelte"
   import Footer from "$views/layout/Footer.svelte"
+  import ScrollToTopButton from "$views/layout/ScrollToTopButton.svelte"
   import "./styles.css"
 </script>
 
@@ -36,6 +37,7 @@
 </main>
 
 <Footer />
+<ScrollToTopButton />
 
 <style lang='scss'>
   .pc {
