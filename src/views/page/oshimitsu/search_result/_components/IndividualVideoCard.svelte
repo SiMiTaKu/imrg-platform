@@ -5,12 +5,16 @@
 
 <script lang='ts'>
   export let video: IndividualVideoResource
-  export let isLazy: boolean = true
+
+  const onVideoLoad = (event: Event) => {
+    const video = event.target as HTMLIFrameElement
+    video.classList.remove("placeholder")
+  }
 </script>
 
 <a class='card' href={video.src}>
   <iframe
-    class='video'
+    class='video placeholder'
     allow='accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
     allowfullscreen
     frameborder='0'
@@ -19,7 +23,8 @@
     referrerpolicy='strict-origin-when-cross-origin'
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
     title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
-    loading={isLazy ? "lazy" : "eager"}
+    loading='lazy'
+    on:load={onVideoLoad}
   />
   <div class='info'>
     <div class='name'>{video.player.name}</div>
@@ -38,7 +43,12 @@
     place-items: center;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    box-shadow: $black-box-shadow;
+    transition: 0.3s;
+
+    &:has(.placeholder) {
+      background: url("../_images/spin.gif") 50% 56px / 20% no-repeat;
+    }
   }
 
   .video {
@@ -46,6 +56,12 @@
     grid-column: 1;
     pointer-events: none;
     user-select: none;
+    transition: 0.3s;
+    opacity: 1;
+
+    &.placeholder {
+      opacity: 0;
+    }
   }
 
   .info {
