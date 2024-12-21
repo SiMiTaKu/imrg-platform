@@ -28,13 +28,13 @@
 <style lang='scss'>
   .pc {
     --width: 1024px;
-    --height: calc(100vh - 80px);
+    --height: calc(100dvh - 80px);
     --title-font-size: #{$font-size-48};
   }
 
   .sp {
     --width: 100vw;
-    --height: calc(100vh - 60px);
+    --height: calc(100dvh - 60px);
     --title-font-size: #{$font-size-24};
   }
 
