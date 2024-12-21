@@ -23,10 +23,12 @@
         >
           <div class='icon'>
             <ImageAssets
-              height='auto'
+              width={64}
+              height={64}
               alt={sns.icon.alt}
               lazy={true}
               srcMeta={sns.icon.srcMeta}
+              objectFit='cover'
             />
           </div>
           {sns.name}

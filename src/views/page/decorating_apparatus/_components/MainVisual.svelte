@@ -76,9 +76,12 @@
       out:fade={{ duration: 300 }}
     >
       <ImageAssets
+        width={1024}
+        height={800}
         alt='メインビジュアル'
         lazy={false}
         srcMeta={currentVisual.image}
+        objectFit='cover'
       />
     </div>
   {/if}
@@ -156,11 +159,6 @@
   .image {
     width: 100%;
     height: 100%;
-
-    :global(img) {
-      object-fit: cover;
-      opacity: 0.8;
-    }
   }
 
   .content-wrapper {

@@ -32,16 +32,24 @@
           <span class='apparatus'>{work.apparatus}</span>
           <div class='youtube'>
             <ImageAssets
+              width={40}
+              height={40}
               alt='Youtubeアイコン'
               lazy={true}
               srcMeta={YoutubeIcon}
+              objectFit='cover'
             />
           </div>
           {#if !tapped}
             <div class='tap-icon'>
-              <ImageAssets alt='タップアイコン'
-                           lazy={true}
-                           srcMeta={TapIcon} />
+              <ImageAssets
+                width={48}
+                height={48}
+                alt='タップアイコン'
+                lazy={true}
+                srcMeta={TapIcon}
+                objectFit='cover'
+              />
             </div>
           {/if}
         </a>
@@ -122,10 +130,6 @@
     border: none;
     background: transparent;
     animation: tap-icon-animation 2s infinite;
-
-    :global(img) {
-      object-fit: cover;
-    }
   }
 
   @keyframes tap-icon-animation {

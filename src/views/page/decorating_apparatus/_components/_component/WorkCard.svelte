@@ -1,6 +1,6 @@
 <script context='module' lang='ts'>
   import ImageAssets from "../../../../atomic/image/ImageAssets.svelte"
-  import type { SrcMeta } from "../../../../atomic/image/type"
+  import type { SrcMeta } from "$views/atomic/image/ImageAssets.svelte"
   import TapIcon from "../_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta"
 </script>
 
@@ -36,9 +36,12 @@
          in:fade={{ delay: 250, duration: 200 }}
          out:fade>
       <ImageAssets
+        width={200}
+        height={200}
         alt={`過去の作品${workIndex + 1}_${frontImageIndex + 1}画像`}
         lazy={true}
         srcMeta={images[frontImageIndex]}
+        objectFit='cover'
       />
     </div>
   {:else}
@@ -46,17 +49,25 @@
          in:fade={{ delay: 250, duration: 200 }}
          out:fade>
       <ImageAssets
+        width={200}
+        height={200}
         alt={`過去の作品${workIndex}_${frontImageIndex + 2}画像`}
         lazy={true}
         srcMeta={images[backImageIndex]}
+        objectFit='cover'
       />
     </div>
   {/if}
   {#if !tapped}
     <div class='tap-icon'>
-      <ImageAssets alt='タップアイコン'
-                   lazy={true}
-                   srcMeta={TapIcon} />
+      <ImageAssets
+        width={64}
+        height={64}
+        alt='タップアイコン'
+        lazy={true}
+        srcMeta={TapIcon}
+        objectFit='cover'
+      />
     </div>
   {/if}
 </button>
@@ -76,10 +87,6 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-
-    :global(img) {
-      object-fit: cover;
-    }
   }
 
   .front {
@@ -119,10 +126,6 @@
     background: transparent;
     animation: tap-icon-animation 2s infinite;
     z-index: 2;
-
-    :global(img) {
-      object-fit: cover;
-    }
   }
 
   @keyframes tap-icon-animation {

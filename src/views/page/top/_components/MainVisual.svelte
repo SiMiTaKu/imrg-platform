@@ -25,9 +25,12 @@
   {#if isShowMainVisual}
     <div class='image' in:fade={{ duration: 1000 }}>
       <ImageAssets
+        width={681}
+        height={681}
         alt='男子新体操国際化プロジェクトのロゴ'
         lazy={false}
         srcMeta={MainImage}
+        objectFit='cover'
       />
     </div>
     <div
@@ -77,7 +80,6 @@
     width: var(--image-width);
     left: var(--image-left);
     top: var(--image-top);
-    object-fit: cover;
     z-index: 0;
   }
 

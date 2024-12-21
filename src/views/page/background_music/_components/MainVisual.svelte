@@ -49,9 +49,14 @@
   class:sp={$pageData.isMobile}
 >
   <div class='image'>
-    <ImageAssets alt='メインビジュアル'
-                 lazy={false}
-                 srcMeta={MainVisual} />
+    <ImageAssets
+      width={1024}
+      height={800}
+      alt='メインビジュアル'
+      lazy={false}
+      srcMeta={MainVisual}
+      objectFit='cover'
+    />
   </div>
   <div class='content-wrapper'>
     <div class='content'>
@@ -127,11 +132,6 @@
   .image {
     width: 100%;
     height: 100%;
-
-    :global(img) {
-      object-fit: cover;
-      opacity: 0.8;
-    }
   }
 
   .content-wrapper {

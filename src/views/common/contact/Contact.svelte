@@ -36,9 +36,14 @@
       <div class='button'>
         問い合わせる
         <div class='tap-icon' class:big-icon={bigIcon}>
-          <ImageAssets alt='タップアイコン'
-                       lazy={true}
-                       srcMeta={TapIcon} />
+          <ImageAssets
+            width={80}
+            height={80}
+            alt='タップアイコン'
+            lazy={true}
+            srcMeta={TapIcon}
+            objectFit='cover'
+          />
         </div>
       </div>
     </div>
@@ -112,10 +117,6 @@
     width: 80px;
     height: 80px;
     transition: 1s;
-
-    :global(img) {
-      object-fit: cover;
-    }
   }
 
   .big-icon {

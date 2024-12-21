@@ -28,11 +28,12 @@
       >
         <div class='image'>
           <ImageAssets
-            width='100%'
-            height='100%'
+            width={80}
+            height={80}
             alt='男子新体操国際化プロジェクトロゴ'
             lazy={false}
             srcMeta={MainImage}
+            objectFit='cover'
           />
         </div>
         <div class='title'>
@@ -145,10 +146,6 @@
     height: var(--height);
     opacity: 0.1;
     pointer-events: none;
-
-    :global(img) {
-      object-fit: cover;
-    }
   }
 
   .title {
