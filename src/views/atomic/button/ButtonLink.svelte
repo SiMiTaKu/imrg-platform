@@ -5,6 +5,7 @@
   export let height: number
   export let text: string
   export let href: string
+  export let target: "_blank" | "_self" = "_self"
 </script>
 
 <a
@@ -14,6 +15,8 @@
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
   {href}
+  {target}
+  rel={target === "_blank" ? "noopener noreferrer" : ""}
 >
   {text}
 </a>

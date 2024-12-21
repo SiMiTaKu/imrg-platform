@@ -1,6 +1,5 @@
 <script context='module' lang='ts'>
   import YoutubeIcon from "./_image/youtube-icon.png?w=120;240&format=webp&as=meta"
-  import TapIcon from "./_image/tap-icon.png?w=60;120&format=webp&as=meta"
   import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte"
   import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
   import { WORK_LIST } from "./_data/work-list"
@@ -8,8 +7,6 @@
 
 <script lang='ts'>
   import { pageData } from "$views/atomic/device-store/store"
-
-  let tapped = false
 </script>
 
 <section
@@ -26,32 +23,19 @@
           href={work.youtube}
           rel='noopener noreferrer'
           target='_blank'
-          on:click={() => (tapped = true)}
         >
           <span class='name'>{work.customerName}</span>
           <span class='apparatus'>{work.apparatus}</span>
           <div class='youtube'>
             <ImageAssets
               width={40}
-              height={40}
+              height={28}
               alt='Youtubeアイコン'
               lazy={true}
               srcMeta={YoutubeIcon}
               objectFit='cover'
             />
           </div>
-          {#if !tapped}
-            <div class='tap-icon'>
-              <ImageAssets
-                width={48}
-                height={48}
-                alt='タップアイコン'
-                lazy={true}
-                srcMeta={TapIcon}
-                objectFit='cover'
-              />
-            </div>
-          {/if}
         </a>
       </li>
     {/each}
@@ -123,32 +107,5 @@
   .youtube {
     display: block;
     width: 40px;
-  }
-
-  .tap-icon {
-    position: absolute;
-    border: none;
-    background: transparent;
-    animation: tap-icon-animation 2s infinite;
-  }
-
-  @keyframes tap-icon-animation {
-    0% {
-      width: 48px;
-      bottom: -4px;
-      right: 0;
-    }
-
-    50% {
-      width: 30px;
-      bottom: 0;
-      right: 4px;
-    }
-
-    100% {
-      width: 48px;
-      bottom: -4px;
-      right: 0;
-    }
   }
 </style>

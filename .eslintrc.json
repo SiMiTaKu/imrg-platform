@@ -89,7 +89,6 @@
     "svelte/no-reactive-reassign": "error",
     "svelte/no-store-async": "error",
     "svelte/require-store-reactive-access": "error",
-    "svelte/no-target-blank": "error",
     "svelte/block-lang": [
       "error", {
         "script": "ts",

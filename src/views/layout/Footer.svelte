@@ -15,10 +15,10 @@
         size: {
           pc: {
             width: 80,
-            height: 60,
+            height: 56,
           },
           sp: {
-            width: 40,
+            width: 42,
             height: 30,
           },
         },
@@ -32,8 +32,8 @@
         alt: "Instagramアイコン",
         size: {
           pc: {
-            width: 72,
-            height: 72,
+            width: 68,
+            height: 68,
           },
           sp: {
             width: 36,
@@ -50,8 +50,8 @@
         alt: "X（Twitter）アイコン",
         size: {
           pc: {
-            width: 60,
-            height: 60,
+            width: 55,
+            height: 55,
           },
           sp: {
             width: 30,
@@ -68,8 +68,8 @@
         alt: "TikTokアイコン",
         size: {
           pc: {
-            width: 72,
-            height: 72,
+            width: 68,
+            height: 68,
           },
           sp: {
             width: 36,
