@@ -1,31 +1,11 @@
 <script context='module' lang='ts'>
   import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
-  import type { SrcMeta } from "$views/atomic/image/ImageAssets.svelte"
   import YoutubeIcon from "$views/layout/_images/youtube-icon.png?w=256;512&format=webp&as=meta"
   import InstagramIcon from "$views/layout/_images/instagram-icon.png?w=256;512&format=webp&as=meta"
   import XIcon from "$views/layout/_images/x-icon.png?w=256;512&format=webp&as=meta"
   import TiktokIcon from "$views/layout/_images/tiktok-icon.png?w=256;512&format=webp&as=meta"
 
-  type Sns = {
-    name: string;
-    href: string;
-    icon: {
-      srcMeta: SrcMeta[];
-      alt: string;
-      size: {
-        pc: {
-          width: number;
-          height: number;
-        };
-        sp: {
-          width: number;
-          height: number;
-        };
-      };
-    };
-  };
-
-  export const SNS: Sns[] = [
+  export const SNS = [
     {
       name: "YouTube",
       href: "https://www.youtube.com/channel/UCK-OUvWo6IQz2W6Z-fH27BQ?sub_confirmation=1",

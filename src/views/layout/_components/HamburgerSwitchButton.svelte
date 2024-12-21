@@ -24,7 +24,6 @@
 <style lang='scss'>
   .pc {
     --height: 80px;
-    --humbarger-button-padding: 0;
     --hamburger-text-font-size: #{$font-size-18};
     --hamburger-wrapper-width: 400px;
     --button-icon-size: #{$font-size-28};
@@ -32,7 +31,6 @@
 
   .sp {
     --height: 64px;
-    --humbarger-button-padding: 0 #{$space-size-8} 0 0;
     --hamburger-text-font-size: #{$font-size-16};
     --hamburger-wrapper-width: 100vw;
     --button-icon-size: #{$font-size-24};
@@ -44,10 +42,9 @@
     grid-template-rows: 1fr var(--button-icon-size) 1fr 1fr;
     width: var(--height);
     height: var(--height);
-    padding: var(--humbarger-button-padding);
+    padding: 0;
     transition: 0.25s;
     border: none;
-    box-sizing: content-box;
     background: transparent;
 
     &:has(.open) {
