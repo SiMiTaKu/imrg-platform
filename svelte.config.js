@@ -27,6 +27,13 @@ const config = {
         throw new Error(message);
       }
     },
+    alias: {
+      $model: './src/model',
+      $images: './src/images',
+      $lib: './src/lib',
+      $views: './src/views',
+      $style: './src/style',
+    }
   },
 };
 
