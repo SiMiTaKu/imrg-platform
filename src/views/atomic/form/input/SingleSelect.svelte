@@ -18,10 +18,10 @@
 </script>
 
 <select
-  name={id}
   class="select-box {$judgementApparatus
     ? $judgementApparatus.imageColor
     : 'gray'}"
+  name={id}
   class:hasChanged
   on:change={onchange}
 >

@@ -28,11 +28,11 @@
       >
         <div class='image'>
           <ImageAssets
-            alt='男子新体操国際化プロジェクトロゴ'
+            width='100%'
             height='100%'
+            alt='男子新体操国際化プロジェクトロゴ'
             lazy={false}
             srcMeta={MainImage}
-            width='100%'
           />
         </div>
         <div class='title'>

@@ -16,10 +16,10 @@
 <img
   style:transition={fadeIn ? "1s" : "none"}
   style:opacity={fadeIn ? 0 : 1}
-  alt={image.alt}
-  {height}
-  loading={isLazy ? "lazy" : "eager"}
-  src={image.src}
   {width}
+  {height}
+  src={image.src}
+  alt={image.alt}
+  loading={isLazy ? "lazy" : "eager"}
   use:fadeInImage
 />

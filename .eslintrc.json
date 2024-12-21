@@ -143,7 +143,27 @@
     "svelte/prefer-class-directive": "error",
     "svelte/prefer-style-directive": "error",
     "svelte/shorthand-attribute": "error",
-    "svelte/sort-attributes": "error",
+    "svelte/sort-attributes": [
+      "error",
+      {
+        "order": [
+          "bind",
+          "id",
+          "class",
+          "style",
+          "name",
+          "slot",
+          "type",
+          "value",
+          "width",
+          "height",
+          "src",
+          "alt",
+          "title",
+          "on:*"
+        ]
+      }
+    ],
     "svelte/spaced-html-comment": "error",
     "svelte/no-inner-declarations": "error",
     "svelte/no-trailing-spaces": "error"

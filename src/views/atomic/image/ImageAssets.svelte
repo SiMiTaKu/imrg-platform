@@ -35,9 +35,10 @@
 <img
   style:width
   style:height
+  style:object-fit='cover'
+  src={getSrc()}
   {alt}
   loading={lazy ? "lazy" : "eager"}
-  src={getSrc()}
   srcset={getSrcSet()}
   use:fadeInImage
 />
