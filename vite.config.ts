@@ -1,22 +1,21 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vite'
 import { imagetools } from 'vite-imagetools'
-import path from 'path'
+
+/** 使用している SCSS モジュール */
+const SCSS_USES = [ '"$style/index.scss" as *', '"sass:map"', '"sass:math"' ]
 
 export default defineConfig({
   plugins: [
     sveltekit(), imagetools(),
   ],
-  resolve: {
-    alias: {
-      '$model': path.resolve(__dirname, 'src/model'),
-      '$images': path.resolve(__dirname, 'src/images'),
-      '$lib': path.resolve(__dirname, 'src/lib'),
-      '$views': path.resolve(__dirname, 'src/views'),
-      '$amplify': path.resolve(__dirname, 'src/amplify'),
-      '$shared': path.resolve(__dirname, 'src/amplify/shared'),
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+        additionalData: SCSS_USES.map((use) => `@use ${use};`).join("\n"),
+      }
     }
-  },
-  css: {   preprocessorOptions: {   scss: { api: "modern-compiler" } } }
+  }
 })
 
