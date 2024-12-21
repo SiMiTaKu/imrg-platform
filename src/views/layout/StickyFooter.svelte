@@ -6,25 +6,32 @@
   import { pageData } from "$views/atomic/device-store/store"
 </script>
 
-<article class='article'>
-  <h1>推しミツ！</h1>
-  <p>
-    推しミツは、男子新体操に関する動画専用の検索機能です。<br />
-    あなたがまだ知らない男子新体操の世界や魅力を見つけに行こう！
-  </p>
+<footer class='sticky-footer'>
   <ButtonLink
     width={$pageData.isMobile ? 320 : 400}
     height={56}
     text='推しを見つける！'
-    href='/oshimitsu/search_result'
+    href='/oshimitsu'
   />
-</article>
+</footer>
 
 <style lang='scss'>
-  .article {
+  .sticky-footer {
+    position: fixed;
     display: grid;
-    gap: $space-size-16;
     place-items: center;
-    padding: $space-size-40 $space-size-16;
+    width: 100%;
+    height: 80px;
+    bottom: -80px;
+    animation: stickyFooterAnimation 0.5s 1.5s forwards;
+  }
+
+  @keyframes stickyFooterAnimation {
+    0% {
+      bottom: -80px;
+    }
+    100% {
+      bottom: 0;
+    }
   }
 </style>

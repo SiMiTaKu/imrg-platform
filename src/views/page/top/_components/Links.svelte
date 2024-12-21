@@ -6,7 +6,7 @@
     { href: "/background_music", text: "曲編集を依頼する" },
     { href: "/judge", text: "審判を体験する" },
     { href: "/rules", text: "ルールを知る" },
-    { href: "/oshimitsu", text: "推しミツ！ベータ版" },
+    { href: "/oshimitsu", text: "推しミツ！" },
   ]
 </script>
 
@@ -16,12 +16,12 @@
   class:sp={$pageData.isMobile}
 >
   {#each LINKS as { href, text }, index (index)}
-    <div class='item'>
-      <ButtonLink width='100%'
-                  height='100%'
-                  {href}
-                  {text} />
-    </div>
+    <ButtonLink
+      width={$pageData.isMobile ? 320 : 400}
+      height={56}
+      {href}
+      {text}
+    />
   {/each}
 </section>
 
@@ -37,7 +37,6 @@
     --width: #{calc(100% - 32px)};
     --flex-direction: column;
     --item-width: 100%;
-    --item-height: 48px;
   }
 
   .links {
@@ -46,13 +45,8 @@
     justify-content: center;
     flex-direction: var(--flex-direction);
     flex-wrap: wrap;
-    gap: 16px;
+    gap: $space-size-24;
     width: var(--width);
-    padding: 24px 0 80px;
-  }
-
-  .item {
-    width: var(--item-width);
-    height: var(--item-height);
+    padding: $space-size-24 0 $space-size-80;
   }
 </style>

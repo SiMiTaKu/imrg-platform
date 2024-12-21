@@ -1,14 +1,19 @@
 <script context='module' lang='ts'>
-  import { toggleImageOpacityOnInterSection } from "./_service/fade-in-image"
-  import type { SrcMeta } from "./type"
+  export type SrcMeta = {
+    src: string;
+    width: number;
+    height: number;
+    format: string;
+  };
 </script>
 
 <script lang='ts'>
   export let srcMeta: SrcMeta[]
-  export let lazy: boolean
-  export let width: string = "100%"
-  export let height: string = "100%"
+  export let lazy: boolean = true
+  export let width: number | "100%"
+  export let height: number | "100%"
   export let alt: string
+  export let objectFit: "cover" | "fill" = "cover"
 
   /** formatのデフォルト値 */
   const imgFormats = [ "webp", "png" ]
@@ -28,17 +33,15 @@
       )
       .join(", ")
   }
-
-  const fadeInImage = lazy ? toggleImageOpacityOnInterSection : () => {}
 </script>
 
 <img
-  style:width
-  style:height
-  style:object-fit='cover'
+  {width}
+  {height}
   src={getSrc()}
   {alt}
   loading={lazy ? "lazy" : "eager"}
   srcset={getSrcSet()}
-  use:fadeInImage
+  style:object-fit={objectFit}
+  style:vertical-align='top'
 />
