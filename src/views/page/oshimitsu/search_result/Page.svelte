@@ -1,4 +1,6 @@
 <script context='module' lang='ts'>
+  import IndividualVideoCard from "$views/page/oshimitsu/search_result/_components/IndividualVideoCard.svelte"
+  import GroupVideoCard from "$views/page/oshimitsu/search_result/_components/GroupVideoCard.svelte"
   import { VIDEOS } from "$views/page/oshimitsu/data"
   import { isIndividualVideoResource } from "$views/page/oshimitsu/models"
 
@@ -14,18 +16,18 @@
 </script>
 
 <script lang='ts'>
-  import IndividualVideoCard from "$views/page/oshimitsu/search_result/_components/IndividualVideoCard.svelte"
-  import GroupVideoCard from "$views/page/oshimitsu/search_result/_components/GroupVideoCard.svelte"
+  import { pageData } from "$views/atomic/device-store/store"
 </script>
 
 <article class='article'>
   <h1>推しミツ！</h1>
   <div class='cards'>
     {#each RANDOM_SORT_VIDEOS as video, index (index)}
+      {@const lazyIndex = $pageData.isMobile ? 2 : 3}
       {#if isIndividualVideoResource(video)}
-        <IndividualVideoCard {video} />
+        <IndividualVideoCard {video} isLazy={index > lazyIndex} />
       {:else}
-        <GroupVideoCard {video} />
+        <GroupVideoCard {video} isLazy={index > lazyIndex} />
       {/if}
     {/each}
   </div>

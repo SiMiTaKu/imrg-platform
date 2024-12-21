@@ -57,12 +57,15 @@
     display: grid;
     place-items: center;
     width: 100%;
+    z-index: 1000;
+    pointer-events: none;
   }
 
   .wrapper {
     position: relative;
     width: var(--wrapper-width);
     height: var(--botton-size);
+    pointer-events: none;
   }
 
   .scroll-to-top-button {
@@ -77,6 +80,6 @@
     color: $white;
     border-radius: $border-radius-64;
     border: none;
-    z-index: 1000;
+    pointer-events: auto;
   }
 </style>

@@ -5,6 +5,7 @@
 
 <script lang='ts'>
   export let video: IndividualVideoResource
+  export let isLazy: boolean = true
 </script>
 
 <a class='card' href={video.src}>
@@ -18,6 +19,7 @@
     referrerpolicy='strict-origin-when-cross-origin'
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
     title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
+    loading={isLazy ? "lazy" : "eager"}
   />
   <div class='info'>
     <div class='name'>{video.player.name}</div>
@@ -64,6 +66,7 @@
     );
     width: 100%;
     box-sizing: border-box;
+    z-index: 1;
   }
 
   .name {
