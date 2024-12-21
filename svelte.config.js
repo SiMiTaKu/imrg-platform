@@ -1,7 +1,6 @@
-import adapter            from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from '@sveltejs/adapter-static'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
-/** @type.ts {import('@sveltejs/kit').Config} */
 const config = {
   preprocess: vitePreprocess(),
   kit: {
@@ -12,22 +11,24 @@ const config = {
       precompress: false,
       strict: true,
     }),
-    files: {
-      hooks: {
-        server: 'src/lib/hooks/hooks.server',
-      }
-    },
     prerender: {
       handleHttpError: ({ path, message }) => {
-        // ignore deliberate link to shiny 404 page
-        if (path.startsWith('/static')) {
-          // 静的ファイルの404エラーを無視
-          return;
+        if (path === '/static') {
+          // Ignore 404 errors for /static path
+          return
         }
-        throw new Error(message);
+        throw new Error(message)
       }
     },
+    files: { hooks: { server: 'src/lib/hooks/hooks.server' } },
+    alias: {
+      $model: './src/model',
+      $images: './src/images',
+      $lib: './src/lib',
+      $views: './src/views',
+      $style: './src/style',
+    }
   },
-};
+}
 
-export default config;
+export default config
