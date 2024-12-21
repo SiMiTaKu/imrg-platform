@@ -70,7 +70,7 @@
   }
 
   .name {
-    font-size: 34px;
+    font-size: $font-size-30;
     line-height: 34px;
     font-weight: bold;
   }
@@ -78,6 +78,6 @@
   .detail {
     font-size: 14px;
     font-weight: bold;
-    color: #666666;
+    color: map.get($gray, light-text);
   }
 </style>
