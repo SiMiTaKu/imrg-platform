@@ -1,112 +1,173 @@
 <script context='module' lang='ts'>
   import ImageAssets from "../atomic/image/ImageAssets.svelte"
-  import MainImage from "$images/common/imrg-logo.jpg?w=681;1363&format=webp;png;jpg&as=meta"
+  import MainImage from "./_images/imrg-logo.jpg?w=650;1300&format=webp&as=meta"
+  import Hamburger from "$views/layout/_components/Hamburger.svelte"
+  import YoutubeIcon from "$views/layout/_images/youtube-icon.png?w=256;512&format=webp&as=meta"
+  import InstagramIcon from "$views/layout/_images/instagram-icon.png?w=256;512&format=webp&as=meta"
+  import XIcon from "$views/layout/_images/x-icon.png?w=256;512&format=webp&as=meta"
+  import TiktokIcon from "$views/layout/_images/tiktok-icon.png?w=256;512&format=webp&as=meta"
 
-  const LINKS = [
-    { href: "/", text: "トップページ" },
-    { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
-    { href: "/background_music", text: "曲編集を依頼する" },
-    { href: "/judge", text: "審判を体験する" },
-    { href: "/rules", text: "ルールを知る" },
+  export const SNS = [
+    {
+      href: "https://www.youtube.com/channel/UCK-OUvWo6IQz2W6Z-fH27BQ?sub_confirmation=1",
+      icon: {
+        srcMeta: YoutubeIcon,
+        alt: "YouTubeアイコン",
+        size: {
+          pc: {
+            width: 41,
+            height: 29,
+          },
+          sp: {
+            width: 34,
+            height: 24,
+          },
+        },
+      },
+    },
+    {
+      href: "https://www.instagram.com/takumi.rg/",
+      icon: {
+        srcMeta: InstagramIcon,
+        alt: "Instagramアイコン",
+        size: {
+          pc: {
+            width: 34,
+            height: 34,
+          },
+          sp: {
+            width: 28,
+            height: 28,
+          },
+        },
+      },
+    },
+    {
+      href: "https://twitter.com/TakumiShimizu43",
+      icon: {
+        srcMeta: XIcon,
+        alt: "X（Twitter）アイコン",
+        size: {
+          pc: {
+            width: 28,
+            height: 28,
+          },
+          sp: {
+            width: 23,
+            height: 23,
+          },
+        },
+      },
+    },
+    {
+      href: "https://www.tiktok.com/@takumishimizu43?lang=ja-JP",
+      icon: {
+        srcMeta: TiktokIcon,
+        alt: "TikTokアイコン",
+        size: {
+          pc: {
+            width: 30,
+            height: 35,
+          },
+          sp: {
+            width: 26,
+            height: 29,
+          },
+        },
+      },
+    },
   ]
 </script>
 
 <script lang='ts'>
   import { pageData } from "../atomic/device-store/store"
-  import { slide } from "svelte/transition"
+  import HamburgerSwitchButton from "$views/layout/_components/HamburgerSwitchButton.svelte"
 
-  let show = false
+  let isHamburgerOpen = false
 </script>
 
-<div class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <header class='header-main'>
-    <div class='content'>
-      <a
-        class='header-link'
-        href='/'
-        on:click={() => (show ? (show = !show) : undefined)}
-      >
-        <div class='image'>
-          <ImageAssets
-            alt='男子新体操国際化プロジェクトロゴ'
-            height='100%'
-            lazy={false}
-            srcMeta={MainImage}
-            width='100%'
-          />
-        </div>
-        <div class='title'>
-          <span class='main'>男子新体操国際化プロジェクト</span>
-          <span class='sub'>Internationalize Men's Rhythmic Gymnastics</span>
-        </div>
-      </a>
-      <div class='hamburger'>
-        <button
-          class='hamburger-button'
-          type='button'
-          on:click={() => (show = !show)}
-        >
-          <div class='hamburger-icon' class:open={show} />
-          <span class='hamburger-text'>{show ? "close" : "open"}</span>
-        </button>
-        {#if show}
-          <div class='hamburger-wrapper' transition:slide={{ duration: 500 }}>
-            <ul class='links'>
-              {#each LINKS as { href, text }, index (index)}
-                <li>
-                  <a class='link'
-                     {href}
-                     on:click={() => (show = !show)}
-                  >{text}</a
-                  >
-                </li>
-              {/each}
-            </ul>
-          </div>
-        {/if}
-      </div>
-    </div>
-  </header>
-</div>
+<header
+  class='header-main'
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
+>
+  <div class='content'>
+    <a
+      class='top-link'
+      href='/'
+      on:click={() =>
+        isHamburgerOpen ? (isHamburgerOpen = !isHamburgerOpen) : undefined}
+    >
+      <ImageAssets
+        width={$pageData.isMobile ? 80 : 100}
+        height={$pageData.isMobile ? 56 : 64}
+        alt='男子新体操国際化プロジェクトのロゴ'
+        lazy={false}
+        srcMeta={MainImage}
+        objectFit='cover'
+      />
+    </a>
+    <ul class='sns'>
+      {#each SNS as sns, index (index)}
+        <li class='sns-row'>
+          <a
+            class='sns-link'
+            href={sns.href}
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <ImageAssets
+              width={$pageData.isMobile
+                ? sns.icon.size.sp.width
+                : sns.icon.size.pc.width}
+              height={$pageData.isMobile
+                ? sns.icon.size.sp.height
+                : sns.icon.size.pc.height}
+              alt={sns.icon.alt}
+              lazy={false}
+              srcMeta={sns.icon.srcMeta}
+              objectFit='cover'
+            />
+          </a>
+        </li>
+      {/each}
+    </ul>
+    <HamburgerSwitchButton
+      isOpen={isHamburgerOpen}
+      on:click={() => (isHamburgerOpen = !isHamburgerOpen)}
+    />
+    <Hamburger
+      open={isHamburgerOpen}
+      on:close={() => (isHamburgerOpen = !isHamburgerOpen)}
+    />
+  </div>
+</header>
 
 <style lang='scss'>
   .pc {
     --height: 80px;
-    --image-size: 128px;
     --content-width: 1024px;
-    --content-grid-template-columns: 1fr auto 40px;
-    --header-link-grid-column: 1 / 3;
-    --humbarger-grid-column: 2 / 4;
-    --hamburger-text-font-size: 20px;
-    --title-margin-top: 8px;
-    --main-font-size: 30px;
-    --sub-font-size: 12px;
-    --button-icon-size: 32px;
-    --button-icon-position-fix: -6px;
+    --content-grid-template-columns: 1fr auto 80px;
+    --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-20};
+    --sns-link-padding: 0 #{$space-size-16};
   }
 
   .sp {
     --height: 64px;
-    --image-size: 102px;
     --content-width: 100%;
-    --content-grid-template-columns: 8px 1fr auto 48px;
-    --header-link-grid-column: 2 / 4;
-    --humbarger-grid-column: 3 / 5;
-    --hamburger-text-font-size: 16px;
-    --title-margin-top: 10px;
-    --main-font-size: 22px;
-    --sub-font-size: 11px;
-    --button-icon-size: 24px;
-    --button-icon-position-fix: -5px;
+    --content-grid-template-columns: 1fr auto 64px;
+    --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-12};
+    --sns-link-padding: 0 #{$space-size-8};
   }
 
   .header-main {
     position: fixed;
     display: grid;
-    align-items: center;
+    place-items: center;
     top: 0;
     width: 100vw;
     height: var(--height);
+    background: white;
     z-index: 1000;
 
     &:before {
@@ -115,9 +176,10 @@
       top: 0;
       width: 100vw;
       height: var(--height);
-      background: white;
-      box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
-      opacity: 0.8;
+      background: transparent;
+      box-shadow: $black-box-shadow;
+      pointer-events: none;
+      user-select: none;
     }
   }
 
@@ -125,171 +187,38 @@
     position: relative;
     display: grid;
     grid-template-columns: var(--content-grid-template-columns);
-    grid-template-rows: auto auto;
+    place-items: center;
     width: var(--content-width);
     height: 100%;
-    margin: 0 auto;
+    box-sizing: border-box;
   }
 
-  .header-link {
-    grid-column: var(--header-link-grid-column);
-    grid-row: 1 / 2;
-    text-decoration: none;
-    overflow: hidden;
-  }
-
-  .image {
-    position: absolute;
-    top: 0;
-    width: var(--image-size);
-    height: var(--height);
-    opacity: 0.1;
-    pointer-events: none;
-
-    :global(img) {
-      object-fit: cover;
-    }
-  }
-
-  .title {
+  .top-link {
     display: grid;
-    margin-top: var(--title-margin-top);
-    font-weight: bold;
-    color: #555;
-    pointer-events: none;
-  }
-
-  .main {
-    display: block;
-    font-size: var(--main-font-size);
-    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
-  }
-
-  .sub {
-    display: block;
-    font-size: var(--sub-font-size);
-    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
-  }
-
-  //#region hamburger
-  .hamburger {
-    display: grid;
-    justify-items: right;
-    grid-column: var(--humbarger-grid-column);
-    grid-row: 1 / 3;
-  }
-
-  .hamburger-button {
-    display: grid;
-    justify-items: center;
     align-items: center;
-    grid-template-rows: var(--button-icon-size) 1fr 1fr 1fr 1fr 1fr;
-    gap: 4px;
-    width: 48px;
-    height: var(--height);
-    transition: 0.3s;
-    border: none;
-    background: transparent;
-
-    &:active {
-      background-color: #f0f0f0aa;
-    }
-
-    &:hover {
-      background-color: #f0f0f0aa;
-    }
+    padding: var(--top-link-padding);
+    box-sizing: border-box;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
   }
 
-  .hamburger-icon {
+  .sns {
+    display: flex;
+    box-sizing: border-box;
+    height: 100%;
+  }
+
+  .sns-row {
     display: grid;
-    position: relative;
-    grid-row: 1 / 5;
-    grid-column: 1 / 2;
-    width: var(--button-icon-size);
-    height: 3px;
-    border-radius: 2em;
-    background: #555;
-    transition: 0.25s;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: calc(var(--button-icon-size) / -4);
-      right: 0;
-      width: var(--button-icon-size);
-      height: 3px;
-      background: #555;
-      border-radius: 2em;
-      transition: 0.25s;
-    }
-
-    &:after {
-      content: "";
-      position: absolute;
-      top: calc(var(--button-icon-size) / 4);
-      left: 0;
-      width: var(--button-icon-size);
-      height: 3px;
-      background: #555;
-      border-radius: 2em;
-      transition: 0.25s;
-    }
+    place-items: center;
+    height: 100%;
   }
 
-  .hamburger-icon.open {
-    transform: rotate(90deg);
-    height: 0;
-
-    &:before {
-      transform: rotate(45deg);
-      top: 50%;
-    }
-
-    &:after {
-      transform: rotate(135deg);
-      top: 50%;
-    }
-  }
-
-  .hamburger-text {
-    grid-row: 4 / 5;
-    grid-column: 1 / 2;
-    color: #555;
-    font-size: var(--hamburger-text-font-size);
-  }
-
-  .hamburger-wrapper {
+  .sns-link {
     display: grid;
-    overflow: hidden;
-    border-radius: 0 0 8px 8px;
-    background-color: #eee;
-    height: 240px;
+    place-items: center;
+    padding: var(--sns-link-padding);
+    height: 100%;
   }
-
-  .links {
-    display: grid;
-    height: min-content;
-    list-style: none;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px 16px;
-  }
-
-  .links > li {
-    transition: 0.3s;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid #999;
-    }
-
-    &:hover {
-      background-color: #f0f0f0;
-    }
-  }
-
-  .link {
-    display: grid;
-    padding: 8px 16px;
-  }
-  //#endregion
 </style>

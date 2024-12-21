@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../../../../atomic/image/ImageAssets.svelte"
-  import type { SrcMeta } from "../../../../atomic/image/type"
-  import TapIcon from "../_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta"
+  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
+  import type { SrcMeta } from "$views/atomic/image/ImageAssets.svelte"
 </script>
 
 <script lang='ts'>
+  import { pageData } from "$views/atomic/device-store/store"
   import { fade } from "svelte/transition"
 
   export let images: SrcMeta[][] = []
@@ -13,14 +13,12 @@
   let frontImageIndex = 0
   let backImageIndex = (frontImageIndex + 1) % images.length
   let flipped = false
-  let tapped = false
 
   const flip = () => {
     flipped = !flipped
 
     if (flipped) {
       frontImageIndex = (backImageIndex + 1) % images.length
-      tapped = true
     } else {
       backImageIndex = (frontImageIndex + 1) % images.length
     }
@@ -36,9 +34,12 @@
          in:fade={{ delay: 250, duration: 200 }}
          out:fade>
       <ImageAssets
+        width={$pageData.isMobile ? 338 : 331}
+        height={$pageData.isMobile ? 338 : 331}
         alt={`過去の作品${workIndex + 1}_${frontImageIndex + 1}画像`}
         lazy={true}
         srcMeta={images[frontImageIndex]}
+        objectFit='cover'
       />
     </div>
   {:else}
@@ -46,17 +47,12 @@
          in:fade={{ delay: 250, duration: 200 }}
          out:fade>
       <ImageAssets
+        width={$pageData.isMobile ? 338 : 331}
+        height={$pageData.isMobile ? 338 : 331}
         alt={`過去の作品${workIndex}_${frontImageIndex + 2}画像`}
-        lazy={true}
         srcMeta={images[backImageIndex]}
+        objectFit='cover'
       />
-    </div>
-  {/if}
-  {#if !tapped}
-    <div class='tap-icon'>
-      <ImageAssets alt='タップアイコン'
-                   lazy={true}
-                   srcMeta={TapIcon} />
     </div>
   {/if}
 </button>
@@ -76,10 +72,6 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-
-    :global(img) {
-      object-fit: cover;
-    }
   }
 
   .front {
@@ -110,18 +102,6 @@
 
     .back {
       z-index: 1;
-    }
-  }
-
-  .tap-icon {
-    position: absolute;
-    border: none;
-    background: transparent;
-    animation: tap-icon-animation 2s infinite;
-    z-index: 2;
-
-    :global(img) {
-      object-fit: cover;
     }
   }
 
