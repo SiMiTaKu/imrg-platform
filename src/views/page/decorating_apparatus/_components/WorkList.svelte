@@ -31,7 +31,7 @@
 
   .sp {
     --width: 90%;
-    --item-size: 350px;
+    --item-size: 337px;
   }
 
   .work-list {

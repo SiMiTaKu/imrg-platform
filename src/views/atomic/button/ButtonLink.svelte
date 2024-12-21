@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { pageData } from "../device-store/store"
+  import { pageData } from "$views/atomic/device-store/store"
 
   export let width: number
   export let height: number

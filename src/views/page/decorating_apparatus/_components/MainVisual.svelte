@@ -76,9 +76,9 @@
       out:fade={{ duration: 300 }}
     >
       <ImageAssets
-        width={1024}
-        height={800}
-        alt='メインビジュアル'
+        width='100%'
+        height='100%'
+        alt='手具装飾のメインビジュアル'
         lazy={false}
         srcMeta={currentVisual.image}
         objectFit='cover'
@@ -118,7 +118,7 @@
 <style lang='scss'>
   .pc {
     --width: 1024px;
-    --min-height: 550px;
+    --height: calc(100dvh - 80px);
     --content-margin: 250px auto 0;
     --title-font-size: 64px;
     --english-title-font-size: 24px;
@@ -128,7 +128,7 @@
 
   .sp {
     --width: 90%;
-    --min-height: 450px;
+    --height: calc(100dvh - 64px);
     --content-margin: 180px auto 0;
     --title-font-size: 48px;
     --english-title-font-size: 22px;
@@ -140,15 +140,14 @@
     position: relative;
     padding: 0;
     width: 100%;
-    height: calc(100dvh - 80px);
-    min-height: var(--min-height);
+    height: var(--height);
 
     &:after {
       position: absolute;
       top: 0;
       left: 0;
       content: "";
-      height: calc(100dvh - 80px);
+      height: 100%;
       width: 75%;
       background: linear-gradient(to right, #000, transparent);
       opacity: 0.3;
@@ -157,8 +156,9 @@
   }
 
   .image {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: var(--height);
+    overflow: hidden;
   }
 
   .content-wrapper {
