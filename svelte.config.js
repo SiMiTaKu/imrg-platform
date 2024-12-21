@@ -11,6 +11,15 @@ const config = {
       precompress: false,
       strict: true,
     }),
+    prerender: {
+      handleHttpError: ({ path, message }) => {
+        if (path === '/static') {
+          // Ignore 404 errors for /static path
+          return
+        }
+        throw new Error(message)
+      }
+    },
     files: { hooks: { server: 'src/lib/hooks/hooks.server' } },
     alias: {
       $model: './src/model',
