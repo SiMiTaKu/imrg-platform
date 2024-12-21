@@ -5,7 +5,7 @@ import XIcon from "../_image/x-icon.png?w=512;1024&format=webp;png;jpg&as=meta"
 import TiktokIcon from "../_image/tiktok-icon.png?w=512;1024&format=webp;png;jpg&as=meta"
 
 export type SnsImage = {
-  srcMeta: SrcMeta;
+  srcMeta: SrcMeta[];
   alt: string;
 };
 
