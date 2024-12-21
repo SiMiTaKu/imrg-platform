@@ -15,8 +15,16 @@ export default defineConfig({
       '$views': path.resolve(__dirname, 'src/views'),
       '$amplify': path.resolve(__dirname, 'src/amplify'),
       '$shared': path.resolve(__dirname, 'src/amplify/shared'),
+      '$style': path.resolve(__dirname, 'src/style')
     }
   },
-  css: {   preprocessorOptions: {   scss: { api: "modern-compiler" } } }
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+        additionalData: `@import "$style/index.scss";`
+      }
+    }
+  }
 })
 
