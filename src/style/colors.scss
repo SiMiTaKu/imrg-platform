@@ -1,0 +1,43 @@
+$white: #ffffff;
+
+$sky-blue: (
+  background: #e0edff, // 背景 - indigo: 50
+  radio-background: #c5dfff, // ラジオボタン背景 - indigo: 100
+  200: #acd2ff,
+  300: #98c9ff,
+  link: #80baff, // リンク - indigo: 400
+  border: #66adff, // ボーダー - indigo: 500
+  label: #66adff, // ラベル - indigo: 500
+  600: #479eff,
+  text: #2e91ff, // 文字 - indigo: 700
+  button: #1986ff, // ボタン - indigo: 800
+  900: #0079ff,
+);
+
+$orange: (
+  background: #ffffee, // 背景 - orange: 50
+  radio-background: #ffffd5, // ラジオボタン背景 - orange: 100
+  200: #ffffbf,
+  300: #ffffaa,
+  400: #ffff8f,
+  border: #ffff74, // ボーダー - orange: 500
+  text: #ffff74, // 文字 - orange: 500
+  label: #ffff74, // ラベル - orange: 500
+  600: #ffff59,
+  700: #fdfd3a,
+  800: #ffff22,
+  900: #ffff00,
+);
+
+$gray: (
+  background: #f3f3f3, // 背景 - gray: 100
+  100: #eeeeee,
+  200: #e0e0e0,
+  300: #bdbdbd,
+  400: #9e9e9e,
+  border: #757575, // ボーダー - gray: 500
+  600: #616161,
+  text: #424242, // 文字 - gray: 800
+  800: #212121,
+  900: #000000,
+);
