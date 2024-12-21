@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
+  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
   import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp&as=meta"
   const MAIN_VISUALS = [
     { description: "大好きな曲を、自然な演技時間に短縮！" },

@@ -1,7 +1,7 @@
 <script context='module' lang='ts'>
-  import WithEnglishHeading from "../../atomic/heading/WithEnglishHeading.svelte"
+  import WithEnglishHeading from "$views/atomic/heading/WithEnglishHeading.svelte"
   import ImageAssets from "../../atomic/image/ImageAssets.svelte"
-  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp;png;jpg&as=meta"
+  import TapIcon from "./_image/tap-icon.png?w=256;512&format=webp&as=meta"
 </script>
 
 <script lang='ts'>

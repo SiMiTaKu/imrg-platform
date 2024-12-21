@@ -2,12 +2,12 @@
   import YoutubeIcon from "./_image/youtube-icon.png?w=120;240&format=webp&as=meta"
   import TapIcon from "./_image/tap-icon.png?w=60;120&format=webp&as=meta"
   import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte"
-  import ImageAssets from "../../../atomic/image/ImageAssets.svelte"
+  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
   import { WORK_LIST } from "./_data/work-list"
 </script>
 
 <script lang='ts'>
-  import { pageData } from "../../../atomic/device-store/store"
+  import { pageData } from "$views/atomic/device-store/store"
 
   let tapped = false
 </script>

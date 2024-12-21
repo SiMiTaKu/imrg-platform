@@ -1,7 +1,7 @@
 <script context='module' lang='ts'>
-  import ImageAssets from "../../../../atomic/image/ImageAssets.svelte"
+  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
   import type { SrcMeta } from "$views/atomic/image/ImageAssets.svelte"
-  import TapIcon from "../_image/tap-icon.png?w=200;400&format=webp;png;jpg&as=meta"
+  import TapIcon from "../_image/tap-icon.png?w=200;400&format=webp&as=meta"
 </script>
 
 <script lang='ts'>
