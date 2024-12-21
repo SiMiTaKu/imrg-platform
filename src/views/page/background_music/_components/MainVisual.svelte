@@ -50,8 +50,8 @@
 >
   <div class='image'>
     <ImageAssets
-      width={1024}
-      height={800}
+      width='100%'
+      height='100%'
       alt='メインビジュアル'
       lazy={false}
       srcMeta={MainVisual}
@@ -91,7 +91,7 @@
 <style lang='scss'>
   .pc {
     --width: 1024px;
-    --min-height: 550px;
+    --height: calc(100dvh - 80px);
     --content-margin: 250px auto 0;
     --title-font-size: 64px;
     --english-title-font-size: 24px;
@@ -101,7 +101,7 @@
 
   .sp {
     --width: 90%;
-    --min-height: 450px;
+    --height: calc(100dvh - 64px);
     --content-margin: 180px auto 0;
     --title-font-size: 48px;
     --english-title-font-size: 22px;
@@ -113,15 +113,15 @@
     position: relative;
     padding: 0;
     width: 100%;
-    height: calc(100dvh - 80px);
-    min-height: var(--min-height);
+    height: var(--height);
+    min-height: var(height);
 
     &:after {
       position: absolute;
       top: 0;
       left: 0;
       content: "";
-      height: calc(100dvh - 80px);
+      height: var(--height);
       width: 85%;
       background: linear-gradient(to right, #000, transparent);
       opacity: 0.5;
@@ -130,8 +130,9 @@
   }
 
   .image {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: var(--height);
+    overflow: hidden;
   }
 
   .content-wrapper {

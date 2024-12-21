@@ -10,8 +10,8 @@
 <script lang='ts'>
   export let srcMeta: SrcMeta[]
   export let lazy: boolean = true
-  export let width: number
-  export let height: number
+  export let width: number | "100%"
+  export let height: number | "100%"
   export let alt: string
   export let objectFit: "cover" | "fill" = "cover"
 
