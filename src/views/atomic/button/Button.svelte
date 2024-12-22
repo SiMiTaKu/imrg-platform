@@ -4,22 +4,19 @@
   export let width: number
   export let height: number
   export let text: string
-  export let href: string
-  export let target: "_blank" | "_self" = "_self"
 </script>
 
-<a
+<button
+  class='button'
+  type='button'
   style:width={`${width}px`}
   style:height={`${height}px`}
-  class='button-link'
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
-  {href}
-  {target}
-  rel={target === "_blank" ? "noopener noreferrer" : ""}
+  on:click
 >
   {text}
-</a>
+</button>
 
 <style lang='scss'>
   .pc {
@@ -30,12 +27,13 @@
     --item-font-size: #{$font-size-20};
   }
 
-  .button-link {
+  .button {
     display: grid;
     place-items: center;
     font-size: var(--item-font-size);
     font-weight: bold;
     color: $white;
+    border: none;
     border-radius: $border-radius-64;
     background: map.get($sky-blue, button);
     cursor: pointer;
