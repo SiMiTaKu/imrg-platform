@@ -5,11 +5,16 @@
 
 <script lang='ts'>
   export let video: GroupVideoResource
+
+  const onVideoLoad = (event: Event) => {
+    const video = event.target as HTMLIFrameElement
+    video.classList.remove("placeholder")
+  }
 </script>
 
 <a class='card' href={video.src}>
   <iframe
-    class='video'
+    class='video placeholder'
     allow='accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
     allowfullscreen
     frameborder='0'
@@ -18,6 +23,8 @@
     referrerpolicy='strict-origin-when-cross-origin'
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
     title={`${video.team.name} ${format(video.filmedAt, "yyyy年")}`}
+    loading='lazy'
+    on:load={onVideoLoad}
   />
   <div class='info'>
     <div class='name'>{video.team.name}</div>
@@ -37,7 +44,11 @@
     place-items: center;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    box-shadow: $black-box-shadow;
+
+    &:has(.placeholder) {
+      background: url("../_images/spin.gif") 50% 56px / 20% no-repeat;
+    }
   }
 
   .video {
@@ -45,6 +56,12 @@
     grid-column: 1;
     pointer-events: none;
     user-select: none;
+    transition: 0.3s;
+    opacity: 1;
+
+    &.placeholder {
+      opacity: 0;
+    }
   }
 
   .info {
@@ -65,23 +82,26 @@
     );
     width: 100%;
     box-sizing: border-box;
+    z-index: 1;
   }
 
   .name {
-    font-size: 34px;
-    line-height: 34px;
+    font-size: $font-size-30;
+    line-height: $font-size-30;
     font-weight: bold;
+    color: map.get($gray, text);
   }
 
   .date {
-    font-size: 20px;
+    font-size: $font-size-20;
+    line-height: $font-size-20;
     font-weight: bold;
-    color: #333333;
+    color: map.get($gray, light-text);
   }
 
   .detail {
-    font-size: 14px;
+    font-size: $font-size-14;
     font-weight: bold;
-    color: #666666;
+    color: map.get($gray, light-text);
   }
 </style>
