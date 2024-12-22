@@ -52,15 +52,14 @@
   <h1>推しミツ！</h1>
   <div class='cards'>
     {#each randomSortVideos as video, index (index)}
-      {@const lazyIndex = $pageData.isMobile ? 2 : 3}
       {#if isIndividualVideoResource(video)}
-        <IndividualVideoCard {video} isLazy={index > lazyIndex} />
+        <IndividualVideoCard {video} />
       {:else}
-        <GroupVideoCard {video} isLazy={index > lazyIndex} />
+        <GroupVideoCard {video} />
       {/if}
     {/each}
   </div>
-  {#if VIDEOS.length >= randomSortVideos.length}
+  {#if VIDEOS.length > randomSortVideos.length}
     <Button
       width={$pageData.isMobile ? 280 : 340}
       height={56}
