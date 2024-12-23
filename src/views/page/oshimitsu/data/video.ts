@@ -286,18 +286,34 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
   {
     team: Team.AOMORI_YAMADA,
     players: [
-      Player.TAKUMI_SHIMIZU,
-      Player.KAZUMA_YOSHIDA,
-      Player.KOUJI_HAMAYA,
       Player.YUTA_ODAGIRI,
       Player.RYO_AKIYAMA,
+      Player.KOUJI_HAMAYA,
+      Player.TAKUMI_SHIMIZU,
       Player.SHINYA_MANJU,
+      Player.KAZUMA_YOSHIDA,
     ],
     contentType: ContentType.GROUP,
     src: "https://www.youtube.com/embed/ZsqQKFm6CSc",
     filmedAt: new Date("2015-08-01T00:00:00+09:00"),
   },
-  /** 青森大学 2024年 */
+  //#region 青森大学
+  /** 青森大学 2022年 */
+  {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
+      Player.MASASHI_TAGUCHI,
+      Player.KENTA_MATSUMOTO,
+      Player.HAYATO_NOGUCHI,
+      Player.YUSUKE_OTA,
+      Player.TOMOYA_ISHIBASHI,
+      Player.SOICHIRO_NAKAYAMA,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/rIftdeMi3os",
+    filmedAt: new Date("2022-08-28T00:00:00+09:00"),
+  },
+  /** 青森大学 2023年 */
   {
     team: Team.AOMORI_UNIVERSITY,
     players: [
@@ -312,6 +328,7 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     src: "https://www.youtube.com/embed/48Esk9QxCy0",
     filmedAt: new Date("2023-10-29T00:00:00+09:00"),
   },
+  /** 青森大学 2024年 */
   {
     team: Team.AOMORI_UNIVERSITY,
     players: [
@@ -325,6 +342,7 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     src: "https://www.youtube.com/embed/cT-BIAKWf48",
     filmedAt: new Date("2024-11-10T00:00:00+09:00"),
   },
+  //#endregion
 ]
 
 /** 選手の動画を表すオブジェクト */
