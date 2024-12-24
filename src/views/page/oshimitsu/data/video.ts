@@ -298,6 +298,21 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     filmedAt: new Date("2015-08-01T00:00:00+09:00"),
   },
   //#region 青森大学
+  /** 青森大学 2021年 */
+  {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
+      Player.TSUBASA_MUTO,
+      Player.RYUMA_MURAKAMI,
+      Player.HAYATE_TAMAKI,
+      Player.MASASHI_TAGUCHI,
+      Player.KENTA_MATSUMOTO,
+      Player.HAYATO_NOGUCHI,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/RpHN_kcQTvs",
+    filmedAt: new Date("2021-09-16T00:00:00+09:00"),
+  },
   /** 青森大学 2022年 */
   {
     team: Team.AOMORI_UNIVERSITY,
