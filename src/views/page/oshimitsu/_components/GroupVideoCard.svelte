@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import type { GroupVideoResource } from "../../models"
+  import type { GroupVideoResource } from "../_models"
   import { format } from "date-fns"
 </script>
 
@@ -47,7 +47,8 @@
     box-shadow: $black-box-shadow;
 
     &:has(.placeholder) {
-      background: url("../_images/spin.gif") 50% 56px / 20% no-repeat;
+      background: url("../search_result/_images/spin.gif") 50% 56px / 20%
+        no-repeat;
     }
   }
 

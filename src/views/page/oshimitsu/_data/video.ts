@@ -1,10 +1,11 @@
-import type {
-  GroupVideoResource,
-  IndividualVideoResource,
-  VideoResource,
-} from "../models"
-import { Apparatus, ContentType } from "../lib"
-import { Player, Team } from "../data"
+import {
+  type GroupVideoResource,
+  type IndividualVideoResource,
+  type VideoResource,
+  Apparatus,
+  ContentType,
+} from "../_models"
+import { Player, Team } from "./"
 
 const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#region 清水琢巳

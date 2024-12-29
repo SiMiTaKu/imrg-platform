@@ -1,4 +1,4 @@
-import type { PlayerResource } from "../models"
+import type { PlayerResource } from "../_models"
 import { Team } from "./team"
 
 type PlayerKey =
