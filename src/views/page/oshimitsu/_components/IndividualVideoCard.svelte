@@ -47,8 +47,7 @@
     transition: 0.3s;
 
     &:has(.placeholder) {
-      background: url("../search_result/_images/spin.gif") 50% 56px / 20%
-        no-repeat;
+      background: url("../_images/spin.gif") 50% 56px / 20% no-repeat;
     }
   }
 
