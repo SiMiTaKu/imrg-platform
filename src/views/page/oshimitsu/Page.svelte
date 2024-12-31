@@ -1,15 +1,26 @@
 <script context='module' lang='ts'>
   import IndividualVideoCard from "./_components/IndividualVideoCard.svelte"
   import GroupVideoCard from "./_components/GroupVideoCard.svelte"
-  import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
   import Button from "$views/atomic/button/Button.svelte"
   import { Video } from "./_lib"
+  import { ContentType } from "$views/page/oshimitsu/_models"
+
+  const ContentTypes = Object.values(ContentType)
 </script>
 
 <script lang='ts'>
   import { pageData } from "$views/atomic/device-store/store"
 
   let videos = Video.filterVideos().items
+
+  let criteria: Video.Criteria = { contentType: undefined }
+
+  const clickSearchButton = () => {
+    const href = criteria.contentType
+      ? `/oshimitsu/content_type/${criteria.contentType.slug}`
+      : "/oshimitsu/search_result"
+    window.location.href = href
+  }
 </script>
 
 <article class='article'>
@@ -18,11 +29,27 @@
     推しミツは、男子新体操に関する動画専用の検索機能です。<br />
     あなたがまだ知らない男子新体操の世界や魅力を見つけに行こう！
   </p>
-  <ButtonLink
+  <fieldset>
+    <legend>動画種別</legend>
+    {#each ContentTypes as type, index (index)}
+      <label>
+        <input
+          name='contentType'
+          type='radio'
+          value={type.slug}
+          on:change={() => {
+            criteria.contentType = type
+          }}
+        />
+        {type.label}
+      </label>
+    {/each}
+  </fieldset>
+  <Button
     width={$pageData.isMobile ? 320 : 400}
     height={56}
-    text='推しを見つける！'
-    href='/oshimitsu/search_result'
+    text='この条件で推しを見つける！'
+    on:click={clickSearchButton}
   />
   <div class='cards'>
     {#each videos as video, index (index)}
