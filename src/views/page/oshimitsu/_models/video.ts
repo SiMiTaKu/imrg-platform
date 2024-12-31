@@ -14,6 +14,12 @@ export const ContentType = {
 
 export type ContentType = (typeof ContentType)[keyof typeof ContentType];
 
+export const findContentType = (slug: string) => {
+  return Object.values(ContentType).find(
+    (contentType) => contentType.slug === slug
+  )
+}
+
 export const Apparatus = {
   STICK: {
     slug: "stick",

@@ -1,7 +1,6 @@
 import { VIDEOS } from "../_data"
 import {
   type VideoResource,
-  type GroupVideoResource,
   type IndividualVideoResource,
   ContentType,
 } from "../_models"
@@ -20,28 +19,49 @@ const shuffleArray = <T>(array: T[]) => {
 }
 
 export namespace Video {
+  export type Criteria = {
+    exceptVideos?: VideoResource[];
+    contentType?: ContentType;
+  };
+
   /**
-   * 現在表示していない動画リストを取得する
-   * @param currentItems - 現在の動画リスト
-   * @returns array - 取得した動画リスト
+   * 動画リストを取得する
+   * @param criteria - 検索条件
+   * @returns total - 動画の合計
+   * @returns items - 取得した動画リスト
    * @remarks
    * 10件取得する
    */
-  export const getVideos = (
-    currentItems: (IndividualVideoResource | GroupVideoResource)[]
-  ) => {
+  export const filterVideos = (
+    criteria?: Criteria
+  ): {
+    total: number;
+    items: VideoResource[];
+  } => {
     // 重複削除
-    const newItems = shuffleArray([ ...VIDEOS ]).filter(
-      (video) => !currentItems.includes(video)
-    )
+    const newItems = shuffleArray(VIDEOS).filter((video) => {
+      return (
+        (criteria?.contentType
+          ? video.contentType.slug === criteria.contentType.slug
+          : true) &&
+        (criteria?.exceptVideos
+          ? !criteria.exceptVideos.some(
+            (exceptVideo) => exceptVideo.src === video.src
+          )
+          : true)
+      )
+    })
     const ADDITIONAL_VIDEO_COUNT = 10
-    return newItems.slice(0, ADDITIONAL_VIDEO_COUNT)
+    return {
+      total: newItems.length,
+      items: newItems.slice(0, ADDITIONAL_VIDEO_COUNT),
+    }
   }
 
   /** Type Guards */
   export const isIndividualVideoResource = (
     video: VideoResource
   ): video is IndividualVideoResource => {
-    return video.contentType === ContentType.INDIVIDUAL
+    return video.contentType.slug === ContentType.INDIVIDUAL.slug
   }
 }

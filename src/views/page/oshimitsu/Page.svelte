@@ -3,14 +3,13 @@
   import GroupVideoCard from "./_components/GroupVideoCard.svelte"
   import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
   import Button from "$views/atomic/button/Button.svelte"
-  import { VIDEOS } from "./_data"
   import { Video } from "./_lib"
 </script>
 
 <script lang='ts'>
   import { pageData } from "$views/atomic/device-store/store"
 
-  let videos = Video.getVideos([])
+  let videos = Video.filterVideos().items
 </script>
 
 <article class='article'>
@@ -34,13 +33,15 @@
       {/if}
     {/each}
   </div>
-  {#if VIDEOS.length > videos.length}
+  {#if Video.filterVideos().total > videos.length}
     <Button
       width={$pageData.isMobile ? 280 : 340}
       height={56}
       text='もっと見る'
       on:click={() => {
-        videos = videos.concat(Video.getVideos(videos))
+        videos = videos.concat(
+          Video.filterVideos({ exceptVideos: videos }).items
+        )
       }}
     />
   {:else}
