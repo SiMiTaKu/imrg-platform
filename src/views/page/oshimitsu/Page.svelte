@@ -1,7 +1,7 @@
 <script context='module' lang='ts'>
   import IndividualVideoCard from "./_components/IndividualVideoCard.svelte"
   import GroupVideoCard from "./_components/GroupVideoCard.svelte"
-  import Button from "$views/atomic/button/Button.svelte"
+  import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
   import RadioFieldset from "./_components/RadioFieldset.svelte"
   import { Video } from "./_lib"
   import { ContentType } from "$views/page/oshimitsu/_models"
@@ -18,11 +18,9 @@
 
   let criteria: Video.Criteria = { contentType: undefined }
 
-  const clickSearchButton = () => {
-    window.location.href = criteria.contentType
-      ? `/oshimitsu/content_type/${criteria.contentType.slug}`
-      : "/oshimitsu/search_result"
-  }
+  $: searchHref = criteria.contentType
+    ? `/oshimitsu/content_type/${criteria.contentType.slug}`
+    : "/oshimitsu/search_result"
 </script>
 
 <article class='article'>
@@ -42,11 +40,11 @@
         criteria.contentType = findContentType(event.detail.value)
       }}
     />
-    <Button
+    <ButtonLink
       width={$pageData.isMobile ? 320 : 343}
       height={56}
       text='この条件で推しミツ！'
-      on:click={clickSearchButton}
+      href={searchHref}
     />
   </section>
   <section class='section'>
