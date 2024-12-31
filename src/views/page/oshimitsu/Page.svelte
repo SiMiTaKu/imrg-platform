@@ -16,10 +16,9 @@
   let criteria: Video.Criteria = { contentType: undefined }
 
   const clickSearchButton = () => {
-    const href = criteria.contentType
+    window.location.href = criteria.contentType
       ? `/oshimitsu/content_type/${criteria.contentType.slug}`
       : "/oshimitsu/search_result"
-    window.location.href = href
   }
 </script>
 
