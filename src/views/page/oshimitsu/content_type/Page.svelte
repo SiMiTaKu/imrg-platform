@@ -35,8 +35,6 @@
       {/if}
     {/each}
   </div>
-  {additionalVideos.length}
-  {Video.filterVideos(criteria).total}
   {#if totalVideos > currentVideos.length}
     <Button
       width={$pageData.isMobile ? 280 : 340}
