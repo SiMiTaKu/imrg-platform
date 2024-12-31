@@ -18,3 +18,15 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: 'Cache-Control'
+          value: 'no-cache, no-store, must-revalidate'
+  redirects:
+    - source: </oshimitsu/content_type/<*>>
+      target: /oshimitsu/content_type/index.html
+      status: 200
+    - source: </oshimitsu/content_type/<*>/__data.json>
+      target: /oshimitsu/content_type/__data.json
+      status: 200
