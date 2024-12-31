@@ -1,4 +1,4 @@
-import { VIDEOS } from "../_data"
+import { RECOMMENDED_VIDEOS, VIDEOS } from "../_data"
 import {
   type VideoResource,
   type IndividualVideoResource,
@@ -64,4 +64,6 @@ export namespace Video {
   ): video is IndividualVideoResource => {
     return video.contentType.slug === ContentType.INDIVIDUAL.slug
   }
+
+  export const getRecommendedVideos = () => shuffleArray(RECOMMENDED_VIDEOS)
 }

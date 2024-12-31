@@ -7,10 +7,46 @@ import {
 } from "../_models"
 import { Player, Team } from "./"
 
-const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
+type IndividualVideoKey =
+  | "TAKUMI_SHIMIZU_STICK_2021"
+  | "TAKUMI_SHIMIZU_RING_2021"
+  | "TAKUMI_SHIMIZU_ROPE_2021"
+  | "TAKUMI_SHIMIZU_CLUB_2021"
+  | "ASAHI_IWASAKI_STICK_2024"
+  | "ASAHI_IWASAKI_RING_2024"
+  | "ASAHI_IWASAKI_ROPE_2024"
+  | "ASAHI_IWASAKI_CLUB_2024"
+  | "AOTO_KUWABARA_STICK_2024"
+  | "AOTO_KUWABARA_RING_2024"
+  | "AOTO_KUWABARA_ROPE_2024"
+  | "AOTO_KUWABARA_CLUB_2024"
+  | "RENON_KASAI_STICK_2024"
+  | "RENON_KASAI_RING_2024"
+  | "RENON_KASAI_ROPE_2024"
+  | "RENON_KASAI_CLUB_2024"
+  | "JOSHIN_KIKUCHI_STICK_2024"
+  | "JOSHIN_KIKUCHI_RING_2024"
+  | "JOSHIN_KIKUCHI_ROPE_2024"
+  | "JOSHIN_KIKUCHI_CLUB_2024"
+  | "TAIYO_FUJIMOTO_STICK_2024"
+  | "TAIYO_FUJIMOTO_RING_2024"
+  | "TAIYO_FUJIMOTO_ROPE_2024"
+  | "TAIYO_FUJIMOTO_CLUB_2024"
+  | "HINATA_YOSHIDA_STICK_2024"
+  | "HINATA_YOSHIDA_RING_2024"
+  | "HINATA_YOSHIDA_ROPE_2024"
+  | "HINATA_YOSHIDA_CLUB_2024"
+  | "KOKI_MORIZONO_STICK_2024"
+  | "KOKI_MORIZONO_RING_2024"
+  | "KOKI_MORIZONO_ROPE_2024"
+  | "KOKI_MORIZONO_CLUB_2024";
+
+const INDIVIDUAL_VIDEOS: {
+  [key in IndividualVideoKey]: IndividualVideoResource;
+} = {
   //#region 清水琢巳
   /** 清水琢巳 スティック */
-  {
+  TAKUMI_SHIMIZU_STICK_2021: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -18,7 +54,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2021-08-01T00:00:00+09:00"),
   },
   /** 清水琢巳 リング */
-  {
+  TAKUMI_SHIMIZU_RING_2021: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -26,7 +62,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2021-08-01T00:00:00+09:00"),
   },
   /** 清水琢巳 ロープ */
-  {
+  TAKUMI_SHIMIZU_ROPE_2021: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -34,7 +70,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2021-08-01T00:00:00+09:00"),
   },
   /** 清水琢巳 クラブ */
-  {
+  TAKUMI_SHIMIZU_CLUB_2021: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -44,7 +80,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#endregion
   //#region 岩崎あさひ
   /** 岩崎あさひ スティック 2024年 */
-  {
+  ASAHI_IWASAKI_STICK_2024: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -52,7 +88,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 岩崎あさひ リング 2024年 */
-  {
+  ASAHI_IWASAKI_RING_2024: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -60,7 +96,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 岩崎あさひ ロープ 2024年 */
-  {
+  ASAHI_IWASAKI_ROPE_2024: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -68,7 +104,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   /** 岩崎あさひ クラブ 2024年 */
-  {
+  ASAHI_IWASAKI_CLUB_2024: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -78,7 +114,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#endregion
   //#region 桒原碧都
   /** 桒原碧都 スティック 2024年 */
-  {
+  AOTO_KUWABARA_STICK_2024: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -86,7 +122,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 桒原碧都 リング 2024年 */
-  {
+  AOTO_KUWABARA_RING_2024: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -94,7 +130,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 桒原碧都 ロープ 2024年 */
-  {
+  AOTO_KUWABARA_ROPE_2024: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -102,7 +138,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   /** 桒原碧都 クラブ 2024年 */
-  {
+  AOTO_KUWABARA_CLUB_2024: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -112,7 +148,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#endregion
   //#region 葛西麗音
   /** 葛西麗音 スティック 2024年 */
-  {
+  RENON_KASAI_STICK_2024: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -120,7 +156,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 葛西麗音 リング 2024年 */
-  {
+  RENON_KASAI_RING_2024: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -128,7 +164,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 葛西麗音 ロープ 2024年 */
-  {
+  RENON_KASAI_ROPE_2024: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -136,7 +172,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   /** 葛西麗音 クラブ 2024年 */
-  {
+  RENON_KASAI_CLUB_2024: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -146,7 +182,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#endregion
   //#region 釋氏乗真
   /** 釋氏乗真 スティック 2024年 */
-  {
+  JOSHIN_KIKUCHI_STICK_2024: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -154,7 +190,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 釋氏乗真 リング 2024年 */
-  {
+  JOSHIN_KIKUCHI_RING_2024: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -162,7 +198,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 釋氏乗真 ロープ 2024年 */
-  {
+  JOSHIN_KIKUCHI_ROPE_2024: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -170,7 +206,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   /** 釋氏乗真 クラブ 2024年 */
-  {
+  JOSHIN_KIKUCHI_CLUB_2024: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -180,7 +216,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#endregion
   //#region 藤本太陽
   /** 藤本太陽 スティック 2024年 */
-  {
+  TAIYO_FUJIMOTO_STICK_2024: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -188,7 +224,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 藤本太陽 リング 2024年 */
-  {
+  TAIYO_FUJIMOTO_RING_2024: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -196,7 +232,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 藤本太陽 ロープ 2024年 */
-  {
+  TAIYO_FUJIMOTO_ROPE_2024: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -204,7 +240,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   /** 藤本太陽 クラブ 2024年 */
-  {
+  TAIYO_FUJIMOTO_CLUB_2024: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -214,7 +250,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#endregion
   //#region 譽士太陽向
   /** 譽士太陽向 スティック 2024年 */
-  {
+  HINATA_YOSHIDA_STICK_2024: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -222,7 +258,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 譽士太陽向 リング 2024年 */
-  {
+  HINATA_YOSHIDA_RING_2024: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -230,7 +266,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 譽士太陽向 ロープ 2024年 */
-  {
+  HINATA_YOSHIDA_ROPE_2024: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -238,7 +274,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   /** 譽士太陽向 クラブ 2024年 */
-  {
+  HINATA_YOSHIDA_CLUB_2024: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -248,7 +284,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
   //#endregion
   //#region 森園滉貴
   /** 森園滉貴 スティック 2024年 */
-  {
+  KOKI_MORIZONO_STICK_2024: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
@@ -256,7 +292,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 森園滉貴 リング 2024年 */
-  {
+  KOKI_MORIZONO_RING_2024: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
@@ -264,7 +300,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   },
   /** 森園滉貴 ロープ 2024年 */
-  {
+  KOKI_MORIZONO_ROPE_2024: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
@@ -272,7 +308,7 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   /** 森園滉貴 クラブ 2024年 */
-  {
+  KOKI_MORIZONO_CLUB_2024: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
@@ -280,11 +316,18 @@ const INDIVIDUAL_VIDEOS: IndividualVideoResource[] = [
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion
-]
+}
 
-const GROUP_VIDEOS: GroupVideoResource[] = [
+type GroupVideoKey =
+  | "AOMORI_YAMADA_2015"
+  | "AOMORI_UNIVERSITY_2021"
+  | "AOMORI_UNIVERSITY_2022"
+  | "AOMORI_UNIVERSITY_2023"
+  | "AOMORI_UNIVERSITY_2024";
+
+const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
   /** 青森山田高等学校 2015年 高校総体 */
-  {
+  AOMORI_YAMADA_2015: {
     team: Team.AOMORI_YAMADA,
     players: [
       Player.YUTA_ODAGIRI,
@@ -300,7 +343,7 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
   },
   //#region 青森大学
   /** 青森大学 2021年 */
-  {
+  AOMORI_UNIVERSITY_2021: {
     team: Team.AOMORI_UNIVERSITY,
     players: [
       Player.TSUBASA_MUTO,
@@ -315,7 +358,7 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     filmedAt: new Date("2021-09-16T00:00:00+09:00"),
   },
   /** 青森大学 2022年 */
-  {
+  AOMORI_UNIVERSITY_2022: {
     team: Team.AOMORI_UNIVERSITY,
     players: [
       Player.MASASHI_TAGUCHI,
@@ -330,7 +373,7 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     filmedAt: new Date("2022-08-28T00:00:00+09:00"),
   },
   /** 青森大学 2023年 */
-  {
+  AOMORI_UNIVERSITY_2023: {
     team: Team.AOMORI_UNIVERSITY,
     players: [
       Player.YUSUKE_OTA,
@@ -345,7 +388,7 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     filmedAt: new Date("2023-10-29T00:00:00+09:00"),
   },
   /** 青森大学 2024年 */
-  {
+  AOMORI_UNIVERSITY_2024: {
     team: Team.AOMORI_UNIVERSITY,
     players: [
       Player.KAI_TAGUCHI,
@@ -359,7 +402,17 @@ const GROUP_VIDEOS: GroupVideoResource[] = [
     filmedAt: new Date("2024-11-10T00:00:00+09:00"),
   },
   //#endregion
-]
+}
 
 /** 選手の動画を表すオブジェクト */
-export const VIDEOS: VideoResource[] = [ ...INDIVIDUAL_VIDEOS, ...GROUP_VIDEOS ]
+export const VIDEOS: VideoResource[] = [
+  ...Object.values(INDIVIDUAL_VIDEOS), ...Object.values(GROUP_VIDEOS),
+]
+
+/** おすすめ動画 */
+export const RECOMMENDED_VIDEOS = [
+  GROUP_VIDEOS.AOMORI_UNIVERSITY_2024,
+  GROUP_VIDEOS.AOMORI_YAMADA_2015,
+  INDIVIDUAL_VIDEOS.RENON_KASAI_STICK_2024,
+  INDIVIDUAL_VIDEOS.TAKUMI_SHIMIZU_ROPE_2021,
+]
