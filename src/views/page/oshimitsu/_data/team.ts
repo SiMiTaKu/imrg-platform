@@ -1,4 +1,4 @@
-import type { TeamResource } from "../models"
+import type { TeamResource } from "../_models"
 
 type TeamKey =
   | "AOMORI_UNIVERSITY"
