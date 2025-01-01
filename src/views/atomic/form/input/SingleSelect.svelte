@@ -1,6 +1,6 @@
 <script lang='ts'>
   import { createEventDispatcher } from "svelte"
-  import { judgementApparatus } from "../../../page/judge/_store/apparatus"
+  import { judgementApparatus } from "$views/page/judge/_store/apparatus"
 
   const dispatch = createEventDispatcher<{ change: { value: string } }>()
 

@@ -1,10 +1,10 @@
 <script context='module' lang='ts'>
-  import type { IndividualVideoResource } from "../../models"
+  import type { GroupVideoResource } from "../_models"
   import { format } from "date-fns"
 </script>
 
 <script lang='ts'>
-  export let video: IndividualVideoResource
+  export let video: GroupVideoResource
 
   const onVideoLoad = (event: Event) => {
     const video = event.target as HTMLIFrameElement
@@ -22,14 +22,15 @@
     height={194}
     referrerpolicy='strict-origin-when-cross-origin'
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
-    title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
+    title={`${video.team.name} ${format(video.filmedAt, "yyyy年")}`}
     loading='lazy'
     on:load={onVideoLoad}
   />
   <div class='info'>
-    <div class='name'>{video.player.name}</div>
+    <div class='name'>{video.team.name}</div>
+    <div class='date'>{format(video.filmedAt, "yyyy年")}</div>
     <div class='detail'>
-      {`${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
+      {video.players.map((player) => player.name).join(", ")}
     </div>
   </div>
 </a>
@@ -44,7 +45,6 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: $black-box-shadow;
-    transition: 0.3s;
 
     &:has(.placeholder) {
       background: url("../_images/spin.gif") 50% 56px / 20% no-repeat;
@@ -90,6 +90,13 @@
     line-height: $font-size-30;
     font-weight: bold;
     color: map.get($gray, text);
+  }
+
+  .date {
+    font-size: $font-size-20;
+    line-height: $font-size-20;
+    font-weight: bold;
+    color: map.get($gray, light-text);
   }
 
   .detail {
