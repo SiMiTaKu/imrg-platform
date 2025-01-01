@@ -3,8 +3,7 @@
 
 import type { PageServerLoad } from "./$types"
 import { ViewValueLayout } from "$model/view-value-layout"
-import { findContentType, VideoResource } from "$views/page/oshimitsu/_models"
-import { error } from "@sveltejs/kit"
+import { ContentType, VideoResource } from "$views/page/oshimitsu/_models"
 import { Video } from "$views/page/oshimitsu/_lib"
 
 type OutputData = {
@@ -14,18 +13,12 @@ type OutputData = {
   criteria: Video.Criteria;
 };
 
-export const load: PageServerLoad<OutputData> = async ({ locals, params }) => {
-  const contentType = findContentType(params.slug)
-
-  if (!contentType) {
-    error(404, { message: "Not Found. There are Nothing Content Type You Request" })
-  }
-
-  const title = `推しミツ！（${contentType?.label}） | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~`
+export const load: PageServerLoad<OutputData> = async ({ locals }) => {
+  const title = `推しミツ！（${ContentType.INDIVIDUAL.label}） | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~`
   const description =
     "あなたの推しを見つけるための「推しミツ！」アプリのページです。男子新体操をもっとよく楽しむためにあなただけの推しを見つけよう！"
 
-  const criteria = { contentType }
+  const criteria = { contentType: ContentType.INDIVIDUAL }
 
   return {
     isMobile: locals.isMobile,
@@ -35,7 +28,7 @@ export const load: PageServerLoad<OutputData> = async ({ locals, params }) => {
       noindex: false,
       nofollow: false,
       canonical: true,
-      path: `/oshimitsu/content_type/${params.slug}`,
+      path: `/oshimitsu/content_type/${ContentType.INDIVIDUAL.slug}`,
       ogp: {
         title,
         description,
