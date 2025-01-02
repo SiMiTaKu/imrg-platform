@@ -320,6 +320,9 @@ const INDIVIDUAL_VIDEOS: {
 
 type GroupVideoKey =
   | "AOMORI_YAMADA_2015"
+  | "AOMORI_UNIVERSITY_2019_INTER_COLLEGE"
+  | "AOMORI_UNIVERSITY_2019_JAPAN"
+  | "AOMORI_UNIVERSITY_2020"
   | "AOMORI_UNIVERSITY_2021"
   | "AOMORI_UNIVERSITY_2022"
   | "AOMORI_UNIVERSITY_2023"
@@ -342,6 +345,51 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
     filmedAt: new Date("2015-08-01T00:00:00+09:00"),
   },
   //#region 青森大学
+  /** 青森大学 2019年 全日本インカレ */
+  AOMORI_UNIVERSITY_2019_INTER_COLLEGE: {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
+      Player.RYOSUKE_IGARASHI,
+      Player.SHUNSUKE_EGAMI,
+      Player.TSUBASA_MUTO,
+      Player.RYUMA_MURAKAMI,
+      Player.HAYATE_TAMAKI,
+      Player.KENTA_MATSUMOTO,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/BfnRFZG2r5w",
+    filmedAt: new Date("2019-08-27T00:00:00+09:00"),
+  },
+  /** 青森大学 2019年 全日本新体操選手権 */
+  AOMORI_UNIVERSITY_2019_JAPAN: {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
+      Player.RYOSUKE_IGARASHI,
+      Player.SHUNSUKE_EGAMI,
+      Player.TSUBASA_MUTO,
+      Player.RYUMA_MURAKAMI,
+      Player.HAYATE_TAMAKI,
+      Player.KENTA_MATSUMOTO,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/N654qFg2HSg",
+    filmedAt: new Date("2019-10-20T00:00:00+09:00"),
+  },
+  /** 青森大学 2020年 */
+  AOMORI_UNIVERSITY_2020: {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
+      Player.RYOSUKE_IGARASHI,
+      Player.SHUNSUKE_EGAMI,
+      Player.TSUBASA_MUTO,
+      Player.RYUMA_MURAKAMI,
+      Player.HAYATE_TAMAKI,
+      Player.KENTA_MATSUMOTO,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/AFkudLu7ogg",
+    filmedAt: new Date("2020-11-22T00:00:00+09:00"),
+  },
   /** 青森大学 2021年 */
   AOMORI_UNIVERSITY_2021: {
     team: Team.AOMORI_UNIVERSITY,
