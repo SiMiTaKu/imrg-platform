@@ -27,7 +27,9 @@ type PlayerKey =
   | "KENTA_MATSUMOTO"
   | "TSUBASA_MUTO"
   | "RYUMA_MURAKAMI"
-  | "HAYATE_TAMAKI";
+  | "HAYATE_TAMAKI"
+  | "RYOSUKE_IGARASHI"
+  | "SHUNSUKE_EGAMI";
 
 export const Player: { [key in PlayerKey]: PlayerResource } = {
   TAKUMI_SHIMIZU: {
@@ -151,7 +153,7 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
     belongedTeams: [ Team.MAEBASHI_KOGYO, Team.AOMORI_UNIVERSITY ],
   },
   RYUMA_MURAKAMI: {
-    name: "村上龍馬",
+    name: "村上隆真",
     nameKana: "むらかみりゅうま",
     belongedTeams: [ Team.MAEBASHI_KOGYO, Team.AOMORI_UNIVERSITY ],
   },
@@ -159,6 +161,16 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
     name: "玉置颯",
     nameKana: "たまきはやて",
     belongedTeams: [ Team.AMAGASAKI_NISHI, Team.AOMORI_UNIVERSITY ],
+  },
+  RYOSUKE_IGARASHI: {
+    name: "五十嵐涼介",
+    nameKana: "いがらしりょうすけ",
+    belongedTeams: [ Team.ENIWA_MINAMI_HIGH, Team.AOMORI_UNIVERSITY ],
+  },
+  SHUNSUKE_EGAMI: {
+    name: "江上駿祐",
+    nameKana: "えがみしゅんすけ",
+    belongedTeams: [ Team.KANZAKI_SEIMEI, Team.AOMORI_UNIVERSITY ],
   },
 } as const
 
