@@ -10,7 +10,11 @@ type TeamKey =
   | "SEIBI"
   | "MURASAKINO"
   | "ASHIKITA_HIGH"
-  | "MAEBASHI_KOGYO";
+  | "MAEBASHI_KOGYO"
+  | "SAITAMA_SAKAE"
+  | "SHIMADA_KOGYO"
+  | "KAGOSHIMA_JITSUGYO"
+  | "KOBAYASHI_SHUHO";
 
 export const Team: { [key in TeamKey]: TeamResource } = {
   AOMORI_UNIVERSITY: {
@@ -52,6 +56,22 @@ export const Team: { [key in TeamKey]: TeamResource } = {
   MAEBASHI_KOGYO: {
     name: "前橋工業高等学校",
     nameKana: "まえばしこうぎょうこうとうがっこう",
+  },
+  SAITAMA_SAKAE: {
+    name: "埼玉栄高等学校",
+    nameKana: "さいたまさかえこうとうがっこう",
+  },
+  SHIMADA_KOGYO: {
+    name: "島田工業高等学校",
+    nameKana: "しまだこうぎょうこうとうがっこう",
+  },
+  KAGOSHIMA_JITSUGYO: {
+    name: "鹿児島実業高等学校",
+    nameKana: "かごしまじつぎょうこうとうがっこう",
+  },
+  KOBAYASHI_SHUHO: {
+    name: "小林秀峰高等学校",
+    nameKana: "こばやししゅうほうこうとうがっこう",
   },
 } as const
 
