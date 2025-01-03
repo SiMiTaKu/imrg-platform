@@ -320,6 +320,8 @@ const INDIVIDUAL_VIDEOS: {
 
 type GroupVideoKey =
   | "AOMORI_YAMADA_2015"
+  | "AOMORI_UNIVERSITY_2017_INTER_COLLEGE"
+  | "AOMORI_UNIVERSITY_2017_JAPAN"
   | "AOMORI_UNIVERSITY_2018_INTER_COLLEGE"
   | "AOMORI_UNIVERSITY_2018_JAPAN"
   | "AOMORI_UNIVERSITY_2019_INTER_COLLEGE"
@@ -347,6 +349,36 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
     filmedAt: new Date("2015-08-01T00:00:00+09:00"),
   },
   //#region 青森大学
+  /** 青森大学 2017年 全日本インカレ */
+  AOMORI_UNIVERSITY_2017_INTER_COLLEGE: {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
+      Player.SHUN_UENO,
+      Player.KENSHIRO_WATANABE,
+      Player.YUTAKA_MAEDA,
+      Player.HARUKI_MAEDA,
+      Player.WATARU_ITO,
+      Player.RYOSUKE_IGARASHI,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/uCKLgRFv19c",
+    filmedAt: new Date("2017-09-10T00:00:00+09:00"),
+  },
+  /** 青森大学 2017年 JAPAN */
+  AOMORI_UNIVERSITY_2017_JAPAN: {
+    team: Team.AOMORI_UNIVERSITY,
+    players: [
+      Player.SHUN_UENO,
+      Player.KENSHIRO_WATANABE,
+      Player.YUTAKA_MAEDA,
+      Player.HARUKI_MAEDA,
+      Player.WATARU_ITO,
+      Player.RYOSUKE_IGARASHI,
+    ],
+    contentType: ContentType.GROUP,
+    src: "https://www.youtube.com/embed/cuq-1dEpXy0",
+    filmedAt: new Date("2017-10-29T00:00:00+09:00"),
+  },
   /** 青森大学 2018年 全日本インカレ */
   AOMORI_UNIVERSITY_2018_INTER_COLLEGE: {
     team: Team.AOMORI_UNIVERSITY,
@@ -360,7 +392,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
     ],
     contentType: ContentType.GROUP,
     src: "https://www.youtube.com/embed/zMvX6Tlzql0",
-    filmedAt: new Date("2018-10-20T00:00:00+09:00"),
+    filmedAt: new Date("2018-09-09T00:00:00+09:00"),
   },
   /** 青森大学 2018年 JAPAN */
   AOMORI_UNIVERSITY_2018_JAPAN: {
