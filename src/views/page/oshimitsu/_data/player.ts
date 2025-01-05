@@ -141,7 +141,7 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
     belongedTeams: [ Team.KANZAKI_SEIMEI, Team.AOMORI_UNIVERSITY ],
   },
   MASASHI_TAGUCHI: {
-    name: "田口雅史",
+    name: "田口将",
     nameKana: "たぐちまさし",
     belongedTeams: [ Team.ENIWA_MINAMI_HIGH, Team.AOMORI_UNIVERSITY ],
   },
