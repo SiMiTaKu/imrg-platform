@@ -39,7 +39,11 @@ type IndividualVideoKey =
   | "KOKI_MORIZONO_STICK_2024"
   | "KOKI_MORIZONO_RING_2024"
   | "KOKI_MORIZONO_ROPE_2024"
-  | "KOKI_MORIZONO_CLUB_2024";
+  | "KOKI_MORIZONO_CLUB_2024"
+  | "RIKU_NAKAZAWA_STICK_2024"
+  | "RIKU_NAKAZAWA_RING_2024"
+  | "RIKU_NAKAZAWA_ROPE_2024"
+  | "RIKU_NAKAZAWA_CLUB_2024";
 
 const INDIVIDUAL_VIDEOS: {
   [key in IndividualVideoKey]: IndividualVideoResource;
@@ -313,6 +317,40 @@ const INDIVIDUAL_VIDEOS: {
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
     src: "https://www.youtube.com/embed/X3AfeqlQDdc",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region 中澤陸
+  /** 中澤陸 スティック 2024年 */
+  RIKU_NAKAZAWA_STICK_2024: {
+    player: Player.RIKU_NAKAZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/p6DMok6loRM",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 中澤陸 リング 2024年 */
+  RIKU_NAKAZAWA_RING_2024: {
+    player: Player.RIKU_NAKAZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/nX3WtHelA1c",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 中澤陸 ロープ 2024年 */
+  RIKU_NAKAZAWA_ROPE_2024: {
+    player: Player.RIKU_NAKAZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/d-btTNyKYUA",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 中澤陸 クラブ 2024年 */
+  RIKU_NAKAZAWA_CLUB_2024: {
+    player: Player.RIKU_NAKAZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/pY76pLZ5tcs",
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion

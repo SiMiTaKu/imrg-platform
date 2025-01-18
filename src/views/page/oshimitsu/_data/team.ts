@@ -14,7 +14,8 @@ type TeamKey =
   | "SAITAMA_SAKAE"
   | "SHIMADA_KOGYO"
   | "KAGOSHIMA_JITSUGYO"
-  | "KOBAYASHI_SHUHO";
+  | "KOBAYASHI_SHUHO"
+  | "SINBAD_RG";
 
 export const Team: { [key in TeamKey]: TeamResource } = {
   AOMORI_UNIVERSITY: {
@@ -72,6 +73,10 @@ export const Team: { [key in TeamKey]: TeamResource } = {
   KOBAYASHI_SHUHO: {
     name: "小林秀峰高等学校",
     nameKana: "こばやししゅうほうこうとうがっこう",
+  },
+  SINBAD_RG: {
+    name: "シンドバッド新体操クラブ",
+    nameKana: "しんばっどしんたいそうくらぶ",
   },
 } as const
 
