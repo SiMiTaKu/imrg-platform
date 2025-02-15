@@ -7,6 +7,7 @@ import {
 } from "../_models"
 import { Player, Team } from "./"
 
+//#region 個人動画のキー
 type IndividualVideoKey =
   | "TAKUMI_SHIMIZU_STICK_2021"
   | "TAKUMI_SHIMIZU_RING_2021"
@@ -43,7 +44,20 @@ type IndividualVideoKey =
   | "RIKU_NAKAZAWA_STICK_2024"
   | "RIKU_NAKAZAWA_RING_2024"
   | "RIKU_NAKAZAWA_ROPE_2024"
-  | "RIKU_NAKAZAWA_CLUB_2024";
+  | "RIKU_NAKAZAWA_CLUB_2024"
+  | "GINJI_SEKIDO_STICK_2024"
+  // | "GINJI_SEKIDO_RING_2024"
+  // | "GINJI_SEKIDO_ROPE_2024"
+  // | "GINJI_SEKIDO_CLUB_2024"
+  // | "KYOSHIRO_YAMAMOTO_STICK_2024"
+  | "KYOSHIRO_YAMAMOTO_RING_2024"
+  // | "KYOSHIRO_YAMAMOTO_ROPE_2024"
+  // | "KYOSHIRO_YAMAMOTO_CLUB_2024"
+  // | "KOUSUKE_HORI_STICK_2024"
+  // | "KOUSUKE_HORI_RING_2024"
+  // | "KOUSUKE_HORI_ROPE_2024"
+  | "KOUSUKE_HORI_CLUB_2024";
+//#endregion
 
 const INDIVIDUAL_VIDEOS: {
   [key in IndividualVideoKey]: IndividualVideoResource;
@@ -351,6 +365,108 @@ const INDIVIDUAL_VIDEOS: {
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
     src: "https://www.youtube.com/embed/pY76pLZ5tcs",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region 関戸銀児
+  /** 関戸銀児 スティック 2024年 */
+  GINJI_SEKIDO_STICK_2024: {
+    player: Player.GINJI_SEKIDO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/t-tg5eKWDCc",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  // /** 関戸銀児 リング 2024年 */
+  // GINJI_SEKIDO_RING_2024: {
+  //   player: Player.GINJI_SEKIDO,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.RING,
+  //   src: "https://www.youtube.com/embed/nX3WtHelA1c",
+  //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  // },
+  // /** 関戸銀児 ロープ 2024年 */
+  // GINJI_SEKIDO_ROPE_2024: {
+  //   player: Player.GINJI_SEKIDO,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.ROPE,
+  //   src: "https://www.youtube.com/embed/d-btTNyKYUA",
+  //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  // },
+  // /** 関戸銀児 クラブ 2024年 */
+  // GINJI_SEKIDO_CLUB_2024: {
+  //   player: Player.GINJI_SEKIDO,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.CLUB,
+  //   src: "https://www.youtube.com/embed/pY76pLZ5tcs",
+  //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  // },
+  //#endregion
+  //#region 山本響士朗
+  // /** 山本響士朗 スティック 2024年 */
+  // KYOSHIRO_YAMAMOTO_STICK_2024: {
+  //   player: Player.KYOSHIRO_YAMAMOTO,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.STICK,
+  //   src: "https://www.youtube.com/embed/p6DMok6loRM",
+  //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  // },
+  /** 山本響士朗 リング 2024年 */
+  KYOSHIRO_YAMAMOTO_RING_2024: {
+    player: Player.KYOSHIRO_YAMAMOTO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/WBaBl0bayMc",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  // /** 山本響士朗 ロープ 2024年 */
+  // KYOSHIRO_YAMAMOTO_ROPE_2024: {
+  //   player: Player.KYOSHIRO_YAMAMOTO,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.ROPE,
+  //   src: "https://www.youtube.com/embed/d-btTNyKYUA",
+  //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  // },
+  // /** 山本響士朗 クラブ 2024年 */
+  // KYOSHIRO_YAMAMOTO_CLUB_2024: {
+  //   player: Player.KYOSHIRO_YAMAMOTO,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.CLUB,
+  //   src: "https://www.youtube.com/embed/pY76pLZ5tcs",
+  //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  // },
+  //#endregion
+  //#region 堀孝輔
+  // /** 堀孝輔 スティック 2024年 */
+  // KOUSUKE_HORI_STICK_2024: {
+  //   player: Player.KOSUKE_HORI,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.STICK,
+  //   src: "https://www.youtube.com/embed/p6DMok6loRM",
+  //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  // },
+  // /** 堀孝輔 リング 2024年 */
+  // KOUSUKE_HORI_RING_2024: {
+  //   player: Player.KOSUKE_HORI,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.RING,
+  //   src: "https://www.youtube.com/embed/nX3WtHelA1c",
+  //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  // },
+  // /** 堀孝輔 ロープ 2024年 */
+  // KOUSUKE_HORI_ROPE_2024: {
+  //   player: Player.KOSUKE_HORI,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.ROPE,
+  //   src: "https://www.youtube.com/embed/d-btTNyKYUA",
+  //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  // },
+  /** 堀孝輔 クラブ 2024年 */
+  KOUSUKE_HORI_CLUB_2024: {
+    player: Player.KOSUKE_HORI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/4HL3p2fSGL4",
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion
