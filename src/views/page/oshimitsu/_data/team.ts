@@ -1,7 +1,8 @@
 import type { TeamResource } from "../_models"
 
-type TeamKey =
-  | "AOMORI_UNIVERSITY"
+type UniversityKey = "AOMORI_UNIVERSITY" | "DOSHISHA_UNIVERSITY";
+
+type HighSchoolKey =
   | "AOMORI_YAMADA"
   | "ENIWA_MINAMI_HIGH"
   | "KANZAKI_SEIMEI"
@@ -15,13 +16,22 @@ type TeamKey =
   | "SHIMADA_KOGYO"
   | "KAGOSHIMA_JITSUGYO"
   | "KOBAYASHI_SHUHO"
-  | "SINBAD_RG";
+  | "TAKADA_HIGH";
 
-export const Team: { [key in TeamKey]: TeamResource } = {
+type TeamKey = UniversityKey | HighSchoolKey | "SINBAD_RG" | "LEO_RG";
+
+const UNIVERSITY: { [key in UniversityKey]: TeamResource } = {
   AOMORI_UNIVERSITY: {
     name: "青森大学",
     nameKana: "あおもりだいがく",
   },
+  DOSHISHA_UNIVERSITY: {
+    name: "同志社大学",
+    nameKana: "どうししゃだいがく",
+  },
+}
+
+const HIGH_SCHOOL: { [key in HighSchoolKey]: TeamResource } = {
   AOMORI_YAMADA: {
     name: "青森山田高等学校",
     nameKana: "あおもりやまだこうとうがっこう",
@@ -74,9 +84,22 @@ export const Team: { [key in TeamKey]: TeamResource } = {
     name: "小林秀峰高等学校",
     nameKana: "こばやししゅうほうこうとうがっこう",
   },
+  TAKADA_HIGH: {
+    name: "高田高等学校",
+    nameKana: "たかだこうとうがっこう",
+  },
+}
+
+export const Team: { [key in TeamKey]: TeamResource } = {
+  ...UNIVERSITY,
+  ...HIGH_SCHOOL,
   SINBAD_RG: {
     name: "シンドバッド新体操クラブ",
     nameKana: "しんばっどしんたいそうくらぶ",
+  },
+  LEO_RG: {
+    name: "Leo RG",
+    nameKana: "れおあーるじー",
   },
 } as const
 

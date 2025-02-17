@@ -38,7 +38,10 @@ type PlayerKey =
   | "KENSHIRO_WATANABE"
   | "YUTAKA_MAEDA"
   | "HARUKI_MAEDA"
-  | "RIKU_NAKAZAWA";
+  | "RIKU_NAKAZAWA"
+  | "GINJI_SEKIDO"
+  | "KYOSHIRO_YAMAMOTO"
+  | "KOSUKE_HORI";
 
 export const Player: { [key in PlayerKey]: PlayerResource } = {
   TAKUMI_SHIMIZU: {
@@ -225,6 +228,21 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
     name: "中澤陸",
     nameKana: "なかざわりく",
     belongedTeams: [ Team.SINBAD_RG ],
+  },
+  GINJI_SEKIDO: {
+    name: "関戸銀児",
+    nameKana: "せきどぎんじ",
+    belongedTeams: [ Team.LEO_RG, Team.TAKADA_HIGH ],
+  },
+  KYOSHIRO_YAMAMOTO: {
+    name: "山本響士朗",
+    nameKana: "やまもときょうしろう",
+    belongedTeams: [ Team.LEO_RG, Team.TAKADA_HIGH ],
+  },
+  KOSUKE_HORI: {
+    name: "堀孝輔",
+    nameKana: "ほりこうすけ",
+    belongedTeams: [ Team.LEO_RG, Team.TAKADA_HIGH, Team.DOSHISHA_UNIVERSITY ],
   },
 } as const
 
