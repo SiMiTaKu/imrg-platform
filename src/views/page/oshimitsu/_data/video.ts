@@ -53,10 +53,18 @@ type IndividualVideoKey =
   | "KYOSHIRO_YAMAMOTO_RING_2024"
   // | "KYOSHIRO_YAMAMOTO_ROPE_2024"
   // | "KYOSHIRO_YAMAMOTO_CLUB_2024"
-  // | "KOUSUKE_HORI_STICK_2024"
-  // | "KOUSUKE_HORI_RING_2024"
-  // | "KOUSUKE_HORI_ROPE_2024"
-  | "KOUSUKE_HORI_CLUB_2024";
+  | "KOUSUKE_HORI_STICK_2024"
+  | "KOUSUKE_HORI_RING_2024"
+  | "KOUSUKE_HORI_ROPE_2024"
+  | "KOUSUKE_HORI_CLUB_2024"
+  | "TOMOKI_HARADA_STICK_2023"
+  | "TOMOKI_HARADA_RING_2023"
+  | "TOMOKI_HARADA_ROPE_2023"
+  | "TOMOKI_HARADA_CLUB_2023"
+  // | "NAOTO_ENDO_STICK_2023"
+  | "NAOTO_ENDO_RING_2023"
+  | "NAOTO_ENDO_ROPE_2023"
+  | "NAOTO_ENDO_CLUB_2023";
 //#endregion
 
 const INDIVIDUAL_VIDEOS: {
@@ -437,30 +445,30 @@ const INDIVIDUAL_VIDEOS: {
   // },
   //#endregion
   //#region 堀孝輔
-  // /** 堀孝輔 スティック 2024年 */
-  // KOUSUKE_HORI_STICK_2024: {
-  //   player: Player.KOSUKE_HORI,
-  //   contentType: ContentType.INDIVIDUAL,
-  //   apparatus: Apparatus.STICK,
-  //   src: "https://www.youtube.com/embed/p6DMok6loRM",
-  //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
-  // },
-  // /** 堀孝輔 リング 2024年 */
-  // KOUSUKE_HORI_RING_2024: {
-  //   player: Player.KOSUKE_HORI,
-  //   contentType: ContentType.INDIVIDUAL,
-  //   apparatus: Apparatus.RING,
-  //   src: "https://www.youtube.com/embed/nX3WtHelA1c",
-  //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
-  // },
-  // /** 堀孝輔 ロープ 2024年 */
-  // KOUSUKE_HORI_ROPE_2024: {
-  //   player: Player.KOSUKE_HORI,
-  //   contentType: ContentType.INDIVIDUAL,
-  //   apparatus: Apparatus.ROPE,
-  //   src: "https://www.youtube.com/embed/d-btTNyKYUA",
-  //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
-  // },
+  /** 堀孝輔 スティック 2024年 */
+  KOUSUKE_HORI_STICK_2024: {
+    player: Player.KOSUKE_HORI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/19WtqD5p5Dc",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 堀孝輔 リング 2024年 */
+  KOUSUKE_HORI_RING_2024: {
+    player: Player.KOSUKE_HORI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/zyY-0cza3OI",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 堀孝輔 ロープ 2024年 */
+  KOUSUKE_HORI_ROPE_2024: {
+    player: Player.KOSUKE_HORI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/E53-AsAagH0",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
   /** 堀孝輔 クラブ 2024年 */
   KOUSUKE_HORI_CLUB_2024: {
     player: Player.KOSUKE_HORI,
@@ -468,6 +476,74 @@ const INDIVIDUAL_VIDEOS: {
     apparatus: Apparatus.CLUB,
     src: "https://www.youtube.com/embed/4HL3p2fSGL4",
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region 原田知輝
+  /** 原田知輝 スティック 2023年 */
+  TOMOKI_HARADA_STICK_2023: {
+    player: Player.TOMOKI_HARADA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/3WsqmNfrMb8",
+    filmedAt: new Date("2023-11-08T00:00:00+09:00"),
+  },
+  /** 原田知輝 リング 2023年 */
+  TOMOKI_HARADA_RING_2023: {
+    player: Player.TOMOKI_HARADA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/CGoEZHUo1js",
+    filmedAt: new Date("2023-11-08T00:00:00+09:00"),
+  },
+  /** 原田知輝 ロープ 2023年 */
+  TOMOKI_HARADA_ROPE_2023: {
+    player: Player.TOMOKI_HARADA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/n56DKEHduC0",
+    filmedAt: new Date("2023-11-09T00:00:00+09:00"),
+  },
+  /** 原田知輝 クラブ 2023年 */
+  TOMOKI_HARADA_CLUB_2023: {
+    player: Player.TOMOKI_HARADA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/HQfanfMbd7g",
+    filmedAt: new Date("2023-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region 遠藤那央斗
+  /** 遠藤那央斗 スティック 2023年 */
+  // NAOTO_ENDO_STICK_2023: {
+  //   player: Player.NAOTO_ENDO,
+  //   contentType: ContentType.INDIVIDUAL,
+  //   apparatus: Apparatus.STICK,
+  //   src: "https://www.youtube.com/embed/19WtqD5p5Dc",
+  //   filmedAt: new Date("2023-11-08T00:00:00+09:00"),
+  // },
+  /** 遠藤那央斗 リング 2023年 */
+  NAOTO_ENDO_RING_2023: {
+    player: Player.NAOTO_ENDO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/2y78wX286sA",
+    filmedAt: new Date("2023-11-08T00:00:00+09:00"),
+  },
+  /** 遠藤那央斗 ロープ 2023年 */
+  NAOTO_ENDO_ROPE_2023: {
+    player: Player.NAOTO_ENDO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/wotD4RxYRV8",
+    filmedAt: new Date("2023-11-09T00:00:00+09:00"),
+  },
+  /** 遠藤那央斗 クラブ 2023年 */
+  NAOTO_ENDO_CLUB_2023: {
+    player: Player.NAOTO_ENDO,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/1gbXJZTv3FQ",
+    filmedAt: new Date("2023-11-09T00:00:00+09:00"),
   },
   //#endregion
 }

@@ -16,9 +16,17 @@ type HighSchoolKey =
   | "SHIMADA_KOGYO"
   | "KAGOSHIMA_JITSUGYO"
   | "KOBAYASHI_SHUHO"
-  | "TAKADA_HIGH";
+  | "TAKADA_HIGH"
+  | "IBARA_HIGH"
+  | "NATORI_HIGH";
 
-type TeamKey = UniversityKey | HighSchoolKey | "SINBAD_RG" | "LEO_RG";
+type TeamKey =
+  | UniversityKey
+  | HighSchoolKey
+  | "SINBAD_RG"
+  | "LEO_RG"
+  | "IBARA_JUNIOR"
+  | "CUBE_RG";
 
 const UNIVERSITY: { [key in UniversityKey]: TeamResource } = {
   AOMORI_UNIVERSITY: {
@@ -88,6 +96,14 @@ const HIGH_SCHOOL: { [key in HighSchoolKey]: TeamResource } = {
     name: "高田高等学校",
     nameKana: "たかだこうとうがっこう",
   },
+  IBARA_HIGH: {
+    name: "井原高等学校",
+    nameKana: "いばらこうとうがっこう",
+  },
+  NATORI_HIGH: {
+    name: "名取高等学校",
+    nameKana: "なとりこうとうがっこう",
+  },
 }
 
 export const Team: { [key in TeamKey]: TeamResource } = {
@@ -100,6 +116,14 @@ export const Team: { [key in TeamKey]: TeamResource } = {
   LEO_RG: {
     name: "Leo RG",
     nameKana: "れおあーるじー",
+  },
+  IBARA_JUNIOR: {
+    name: "井原ジュニア",
+    nameKana: "いばらじゅにあ",
+  },
+  CUBE_RG: {
+    name: "キューブRG",
+    nameKana: "きゅーぶあーるじー",
   },
 } as const
 
