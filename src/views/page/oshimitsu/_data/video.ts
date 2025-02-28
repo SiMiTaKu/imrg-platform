@@ -64,7 +64,11 @@ type IndividualVideoKey =
   // | "NAOTO_ENDO_STICK_2023"
   | "NAOTO_ENDO_RING_2023"
   | "NAOTO_ENDO_ROPE_2023"
-  | "NAOTO_ENDO_CLUB_2023";
+  | "NAOTO_ENDO_CLUB_2023"
+  | "KUGA_HIGASHI_STICK_2024"
+  | "KUGA_HIGASHI_RING_2024"
+  | "KUGA_HIGASHI_ROPE_2024"
+  | "KUGA_HIGASHI_CLUB_2024";
 //#endregion
 
 const INDIVIDUAL_VIDEOS: {
@@ -544,6 +548,40 @@ const INDIVIDUAL_VIDEOS: {
     apparatus: Apparatus.CLUB,
     src: "https://www.youtube.com/embed/1gbXJZTv3FQ",
     filmedAt: new Date("2023-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region東凰雅
+  /** 東凰雅 スティック 2024年 */
+  KUGA_HIGASHI_STICK_2024: {
+    player: Player.KUGA_HIGASHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/KPF5oDqYT58",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 東凰雅 リング 2024年 */
+  KUGA_HIGASHI_RING_2024: {
+    player: Player.KUGA_HIGASHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/ttMyifr1TeA",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 東凰雅 ロープ 2024年 */
+  KUGA_HIGASHI_ROPE_2024: {
+    player: Player.KUGA_HIGASHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/Prl7zTIf7Ck",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 東凰雅 クラブ 2024年 */
+  KUGA_HIGASHI_CLUB_2024: {
+    player: Player.KUGA_HIGASHI,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/YCTcjNl8wUQ",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion
 }
