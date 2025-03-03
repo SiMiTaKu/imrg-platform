@@ -254,7 +254,7 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
     belongedTeams: [ Team.IBARA_JUNIOR, Team.IBARA_HIGH, Team.AOMORI_UNIVERSITY ],
   },
   NAOTO_ENDO: {
-    name: "遠藤直人",
+    name: "遠藤那央斗",
     nameKana: "えんどうなおと",
     belongedTeams: [ Team.CUBE_RG, Team.NATORI_HIGH, Team.AOMORI_UNIVERSITY ],
   },
