@@ -68,7 +68,11 @@ type IndividualVideoKey =
   | "KUGA_HIGASHI_STICK_2024"
   | "KUGA_HIGASHI_RING_2024"
   | "KUGA_HIGASHI_ROPE_2024"
-  | "KUGA_HIGASHI_CLUB_2024";
+  | "KUGA_HIGASHI_CLUB_2024"
+  | "SHOTA_YONEZAWA_STICK_2024"
+  | "SHOTA_YONEZAWA_RING_2024"
+  | "SHOTA_YONEZAWA_ROPE_2024"
+  | "SHOTA_YONEZAWA_CLUB_2024";
 //#endregion
 
 const INDIVIDUAL_VIDEOS: {
@@ -581,6 +585,40 @@ const INDIVIDUAL_VIDEOS: {
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
     src: "https://www.youtube.com/embed/YCTcjNl8wUQ",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region米澤翔太
+  /** 米澤翔太 スティック 2024年 */
+  SHOTA_YONEZAWA_STICK_2024: {
+    player: Player.SHOTA_YONEZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/kK5YD_Ssmn0",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 米澤翔太 リング 2024年 */
+  SHOTA_YONEZAWA_RING_2024: {
+    player: Player.SHOTA_YONEZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/3ykb4zmZfjI",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 米澤翔太 ロープ 2024年 */
+  SHOTA_YONEZAWA_ROPE_2024: {
+    player: Player.SHOTA_YONEZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/ceFsoAFRhVE",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 米澤翔太 クラブ 2024年 */
+  SHOTA_YONEZAWA_CLUB_2024: {
+    player: Player.SHOTA_YONEZAWA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/5rd6Db-jYGw",
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion

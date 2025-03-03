@@ -44,7 +44,8 @@ type PlayerKey =
   | "KOSUKE_HORI"
   | "TOMOKI_HARADA"
   | "NAOTO_ENDO"
-  | "KUGA_HIGASHI";
+  | "KUGA_HIGASHI"
+  | "SHOTA_YONEZAWA";
 
 export const Player: { [key in PlayerKey]: PlayerResource } = {
   TAKUMI_SHIMIZU: {
@@ -260,6 +261,11 @@ export const Player: { [key in PlayerKey]: PlayerResource } = {
   KUGA_HIGASHI: {
     name: "東凰雅",
     nameKana: "ひがしくうが",
+    belongedTeams: [ Team.KAGOSHIMA_JITSUGYO ],
+  },
+  SHOTA_YONEZAWA: {
+    name: "米澤翔太",
+    nameKana: "よねざわしょうた",
     belongedTeams: [ Team.KAGOSHIMA_JITSUGYO ],
   },
 } as const
