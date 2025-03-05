@@ -13,7 +13,10 @@ import { Video } from "$views/page/oshimitsu/_lib"
 type OutputData = {
   isMobile: boolean;
   layout: ViewValueLayout;
-  videos: VideoResource[];
+  searchResult: {
+    items: VideoResource[];
+    total: number;
+  };
   criteria: Video.Criteria;
 };
 
@@ -42,7 +45,7 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
         type: "website",
       },
     },
-    videos: Video.filterVideos(criteria).items,
+    searchResult: Video.filterVideos(criteria),
     criteria,
   }
 }

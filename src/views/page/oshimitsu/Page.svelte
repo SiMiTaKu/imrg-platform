@@ -4,23 +4,37 @@
   import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
   import RadioFieldset from "./_components/RadioFieldset.svelte"
   import { Video } from "./_lib"
-  import { ContentType } from "$views/page/oshimitsu/_models"
+  import { ContentType, Apparatus } from "$views/page/oshimitsu/_models"
 
-  const contentTypeOptions = Object.values(ContentType).map((type) => ({
+  const CONTENT_TYPE_OPTIONS = Object.values(ContentType).map((type) => ({
     label: type.label,
     value: type.slug,
+  }))
+
+  const APPARATUS_OPTIONS = Object.values(Apparatus).map((apparatus) => ({
+    label: apparatus.label,
+    value: apparatus.slug,
   }))
 </script>
 
 <script lang='ts'>
   import { pageData } from "$views/atomic/device-store/store"
-  import { findContentType } from "$views/page/oshimitsu/_models/index.js"
+  import {
+    findApparatus,
+    findContentType,
+  } from "$views/page/oshimitsu/_models/index.js"
 
-  let criteria: Video.Criteria = { contentType: undefined }
+  let criteria: Video.Criteria = {
+    contentType: undefined,
+    apparatus: undefined,
+  }
 
-  $: searchHref = criteria.contentType
-    ? `/oshimitsu/content_type/${criteria.contentType.slug}`
-    : "/oshimitsu/search_result"
+  $: searchHref =
+    criteria.contentType === ContentType.INDIVIDUAL
+      ? criteria.apparatus
+        ? `/oshimitsu/content_type/${criteria.contentType.slug}/apparatus/${criteria.apparatus.slug}`
+        : `/oshimitsu/content_type/${criteria.contentType.slug}`
+      : "/oshimitsu/search_result"
 </script>
 
 <article class='article'>
@@ -35,9 +49,17 @@
     <RadioFieldset
       legendText='動画種別'
       name='contentType'
-      options={contentTypeOptions}
+      options={CONTENT_TYPE_OPTIONS}
       on:change={(event) => {
         criteria.contentType = findContentType(event.detail.value)
+      }}
+    />
+    <RadioFieldset
+      legendText='手具'
+      name='apparatus'
+      options={APPARATUS_OPTIONS}
+      on:change={(event) => {
+        criteria.apparatus = findApparatus(event.detail.value)
       }}
     />
     <ButtonLink

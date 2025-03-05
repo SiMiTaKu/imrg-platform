@@ -3,6 +3,7 @@ import {
   type VideoResource,
   type IndividualVideoResource,
   ContentType,
+  Apparatus,
 } from "../_models"
 
 /**
@@ -19,9 +20,18 @@ const shuffleArray = <T>(array: T[]) => {
 }
 
 export namespace Video {
+  /**
+   * @typedef Criteria
+   * @property {VideoResource[]} [exceptVideos] - 除外する動画リスト
+   * @property {ContentType} [contentType] - コンテンツタイプ
+   * @property {Apparatus} [apparatus] - 手具
+   * @remarks
+   * 手具はコンテンツタイプが個人の場合のみ有効です
+   */
   export type Criteria = {
     exceptVideos?: VideoResource[];
     contentType?: ContentType;
+    apparatus?: Apparatus;
   };
 
   /**
@@ -39,10 +49,17 @@ export namespace Video {
     items: VideoResource[];
   } => {
     // 重複削除
-    const newItems = shuffleArray(VIDEOS).filter((video) => {
+    console.log(criteria)
+
+    const newItems = shuffleArray([ ...VIDEOS ]).filter((video) => {
       return (
         (criteria?.contentType
-          ? video.contentType.slug === criteria.contentType.slug
+          ? criteria.contentType === ContentType.GROUP
+            ? video.contentType.slug === ContentType.GROUP.slug
+            : criteria.apparatus
+              ? isIndividualVideoResource(video) &&
+                video.apparatus === criteria.apparatus
+              : isIndividualVideoResource(video)
           : true) &&
         (criteria?.exceptVideos
           ? !criteria.exceptVideos.some(
@@ -52,6 +69,9 @@ export namespace Video {
       )
     })
     const ADDITIONAL_VIDEO_COUNT = 10
+
+    console.log({ total: newItems.length })
+
     return {
       total: newItems.length,
       items: newItems.slice(0, ADDITIONAL_VIDEO_COUNT),

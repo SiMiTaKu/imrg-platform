@@ -8,5 +8,7 @@
 </script>
 
 <Layout layout={$page.data.layout}>
-  <Page slot='main' />
+  <Page slot='main'
+        searchResult={$page.data.searchResult}
+        criteria={{}} />
 </Layout>
