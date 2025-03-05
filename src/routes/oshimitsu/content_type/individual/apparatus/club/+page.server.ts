@@ -24,7 +24,7 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
 
   const criteria = {
     contentType: ContentType.INDIVIDUAL,
-    Apparatus: Apparatus.CLUB,
+    apparatus: Apparatus.CLUB,
   }
 
   return {
