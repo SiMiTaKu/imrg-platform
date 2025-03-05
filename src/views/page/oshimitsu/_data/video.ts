@@ -76,7 +76,11 @@ type IndividualVideoKey =
   // | "ICHIGO_KAJIKI_STICK_2024"
   | "ICHIGO_KAJIKI_RING_2024"
   | "ICHIGO_KAJIKI_ROPE_2024"
-  | "ICHIGO_KAJIKI_CLUB_2024";
+  | "ICHIGO_KAJIKI_CLUB_2024"
+  | "AYUMU_HONDA_STICK_2024"
+  | "AYUMU_HONDA_RING_2024"
+  | "AYUMU_HONDA_ROPE_2024"
+  | "AYUMU_HONDA_CLUB_2024";
 //#endregion
 
 const INDIVIDUAL_VIDEOS: {
@@ -657,6 +661,40 @@ const INDIVIDUAL_VIDEOS: {
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
     src: "https://www.youtube.com/embed/LNH9QonlEx0",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  //#endregion
+  //#region本田歩夢
+  /** 本田歩夢 スティック 2024年 */
+  AYUMU_HONDA_STICK_2024: {
+    player: Player.AYUMU_HONDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.STICK,
+    src: "https://www.youtube.com/embed/YvxFHFknk5c",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 本田歩夢 リング 2024年 */
+  AYUMU_HONDA_RING_2024: {
+    player: Player.AYUMU_HONDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.RING,
+    src: "https://www.youtube.com/embed/REtdu79h8HM",
+    filmedAt: new Date("2024-11-08T00:00:00+09:00"),
+  },
+  /** 本田歩夢 ロープ 2024年 */
+  AYUMU_HONDA_ROPE_2024: {
+    player: Player.AYUMU_HONDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.ROPE,
+    src: "https://www.youtube.com/embed/irSIP9laFOE",
+    filmedAt: new Date("2024-11-09T00:00:00+09:00"),
+  },
+  /** 本田歩夢 クラブ 2024年 */
+  AYUMU_HONDA_CLUB_2024: {
+    player: Player.AYUMU_HONDA,
+    contentType: ContentType.INDIVIDUAL,
+    apparatus: Apparatus.CLUB,
+    src: "https://www.youtube.com/embed/68IesOf6uwg",
     filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   },
   //#endregion

@@ -18,7 +18,8 @@ type HighSchoolKey =
   | "KOBAYASHI_SHUHO"
   | "TAKADA_HIGH"
   | "IBARA_HIGH"
-  | "NATORI_HIGH";
+  | "NATORI_HIGH"
+  | "MORIOKA_SHIRITSU";
 
 type TeamKey =
   | UniversityKey
@@ -103,6 +104,10 @@ const HIGH_SCHOOL: { [key in HighSchoolKey]: TeamResource } = {
   NATORI_HIGH: {
     name: "名取高等学校",
     nameKana: "なとりこうとうがっこう",
+  },
+  MORIOKA_SHIRITSU: {
+    name: "盛岡市立高等学校",
+    nameKana: "もりおかしりつこうとうがっこう",
   },
 }
 
