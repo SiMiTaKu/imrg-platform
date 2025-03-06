@@ -38,20 +38,22 @@ export namespace Video {
     total: number;
     items: VideoResource[];
   } => {
-    // 重複削除
-    const newItems = shuffleArray(VIDEOS).filter((video) => {
-      return (
-        (criteria?.contentType
-          ? video.contentType.slug === criteria.contentType.slug
-          : true) &&
-        (criteria?.exceptVideos
-          ? !criteria.exceptVideos.some(
-            (exceptVideo) => exceptVideo.src === video.src
-          )
-          : true)
-      )
+    const ALL_VIDEOS = [ ...VIDEOS ]
+    const shuffledVideos = shuffleArray(ALL_VIDEOS)
+
+    const newItems = shuffledVideos.filter((video) => {
+      if (!criteria) return true
+      const matchesContentType =
+        !criteria.contentType ||
+        criteria.contentType.slug === video.contentType.slug
+      const notInExceptVideos =
+        !criteria.exceptVideos ||
+        !criteria.exceptVideos.some((exceptVideo) => exceptVideo === video)
+      return matchesContentType && notInExceptVideos
     })
+
     const ADDITIONAL_VIDEO_COUNT = 10
+
     return {
       total: newItems.length,
       items: newItems.slice(0, ADDITIONAL_VIDEO_COUNT),
