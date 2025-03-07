@@ -83,6 +83,7 @@
   }
 
   .label {
+    position: relative;
     display: grid;
     place-items: center;
     width: 100%;
@@ -90,16 +91,36 @@
     font-size: var(--label-font-size);
     font-weight: bold;
     color: map.get($gray, light-text);
-    background: map.get($gray, background);
+    background: var(--background, $white);
     border-radius: $border-radius-8;
-    border: $border-size-2 solid map.get($gray, border);
+    border: $border-size-1 solid var(--border-color, map.get($gray, border));
     box-sizing: border-box;
-    transition: 0.5s;
+    transition: 0.2s;
+
+    &:before {
+      left: $space-size-8;
+      position: absolute;
+      content: "";
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: $border-size-2 solid var(--border-color, map.get($gray, border));
+    }
 
     &:has(.input:checked) {
-      background: map.get($sky-blue, background);
+      --border-color: #{map.get($sky-blue, border)};
+      --background: #{map.get($sky-blue, background)};
       color: map.get($sky-blue, text);
-      border: $border-size-2 solid map.get($sky-blue, border);
+
+      &:after {
+        left: 13px;
+        position: absolute;
+        content: "";
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: map.get($sky-blue, button);
+      }
     }
 
     &:hover {
