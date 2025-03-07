@@ -22,8 +22,8 @@ const shuffleArray = <T>(array: T[]) => {
 export namespace Video {
   export type Criteria = {
     contentType?: ContentType;
-    exceptVideos?: VideoResource[];
-    apparatuses?: Apparatus[];
+    exceptVideos: VideoResource[];
+    apparatuses: Apparatus[];
   };
 
   /**

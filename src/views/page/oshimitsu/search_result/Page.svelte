@@ -30,6 +30,11 @@
 
   const getTitle = () => {
     const oshimitsu = "推しミツ！"
+    if (criteria.apparatuses.length === 1) {
+      return `${oshimitsu}（${criteria.apparatuses[0].label}）`
+    } else if (criteria.apparatuses.length > 1) {
+      return oshimitsu
+    }
     return `${oshimitsu}${criteria.contentType ? `（${criteria.contentType.label}）` : ""}`
   }
 </script>
