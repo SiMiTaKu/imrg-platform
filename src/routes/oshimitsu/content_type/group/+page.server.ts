@@ -3,13 +3,12 @@
 
 import type { PageServerLoad } from "./$types"
 import { ViewValueLayout } from "$model/view-value-layout"
-import { ContentType, VideoResource } from "$views/page/oshimitsu/_models"
+import { ContentType } from "$views/page/oshimitsu/_models"
 import { Video } from "$views/page/oshimitsu/_lib"
 
 type OutputData = {
   isMobile: boolean;
   layout: ViewValueLayout;
-  videos: VideoResource[];
   criteria: Video.Criteria;
 };
 
@@ -35,7 +34,6 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
         type: "website",
       },
     },
-    videos: Video.filterVideos(criteria).items,
     criteria,
   }
 }

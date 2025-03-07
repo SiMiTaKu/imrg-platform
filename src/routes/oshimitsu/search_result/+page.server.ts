@@ -7,6 +7,7 @@ import type { PageServerLoad } from "./$types"
 type OutputData = {
   isMobile: boolean;
   layout: ViewValueLayout;
+  criteria: Video.Criteria;
 };
 
 export const load: PageServerLoad<OutputData> = async ({ locals }) => {
@@ -30,5 +31,6 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
         type: "website",
       },
     },
+    criteria: {},
   }
 }
