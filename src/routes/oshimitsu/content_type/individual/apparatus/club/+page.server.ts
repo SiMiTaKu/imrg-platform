@@ -3,7 +3,7 @@
 
 import type { PageServerLoad } from "./$types"
 import { ViewValueLayout } from "$model/view-value-layout"
-import { ContentType } from "$views/page/oshimitsu/_models"
+import { Apparatus, ContentType } from "$views/page/oshimitsu/_models"
 import { Video } from "$views/page/oshimitsu/_lib"
 
 type OutputData = {
@@ -13,7 +13,7 @@ type OutputData = {
 };
 
 export const load: PageServerLoad<OutputData> = async ({ locals }) => {
-  const title = `推しミツ！（${ContentType.GROUP.label}） | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~`
+  const title = `推しミツ！（${ContentType.INDIVIDUAL.label} × ${Apparatus.CLUB.label}） | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~`
   const description =
     "あなたの推しを見つけるための「推しミツ！」アプリのページです。男子新体操をもっとよく楽しむためにあなただけの推しを見つけよう！"
 
@@ -25,7 +25,7 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
       noindex: false,
       nofollow: false,
       canonical: true,
-      path: `/oshimitsu/content_type/${ContentType.GROUP.slug}`,
+      path: `/oshimitsu/content_type/${ContentType.INDIVIDUAL.slug}/apparatus/${Apparatus.CLUB.slug}`,
       ogp: {
         title,
         description,
@@ -33,9 +33,8 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
       },
     },
     criteria: {
-      contentType: ContentType.GROUP,
-      apparatuses: [],
-      exceptVideos: [],
+      contentType: ContentType.INDIVIDUAL,
+      apparatuses: [ Apparatus.CLUB ],
     },
   }
 }

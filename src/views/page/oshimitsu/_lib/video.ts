@@ -3,6 +3,7 @@ import {
   type VideoResource,
   type IndividualVideoResource,
   ContentType,
+  Apparatus,
 } from "../_models"
 
 /**
@@ -20,8 +21,9 @@ const shuffleArray = <T>(array: T[]) => {
 
 export namespace Video {
   export type Criteria = {
-    exceptVideos?: VideoResource[];
     contentType?: ContentType;
+    exceptVideos: VideoResource[];
+    apparatuses: Apparatus[];
   };
 
   /**
@@ -38,20 +40,36 @@ export namespace Video {
     total: number;
     items: VideoResource[];
   } => {
-    // 重複削除
-    const newItems = shuffleArray(VIDEOS).filter((video) => {
-      return (
-        (criteria?.contentType
-          ? video.contentType.slug === criteria.contentType.slug
-          : true) &&
-        (criteria?.exceptVideos
-          ? !criteria.exceptVideos.some(
-            (exceptVideo) => exceptVideo.src === video.src
-          )
-          : true)
-      )
+    const ALL_VIDEOS = [ ...VIDEOS ]
+    const shuffledVideos = shuffleArray(ALL_VIDEOS)
+
+    const newItems = shuffledVideos.filter((video) => {
+      if (!criteria) return true
+
+      const matchesContentType =
+        !criteria.contentType ||
+        criteria.contentType.slug === video.contentType.slug
+
+      const notInExceptVideos =
+        !criteria.exceptVideos ||
+        !criteria.exceptVideos.some((exceptVideo) => exceptVideo === video)
+
+      // 絞り込み条件の動画タイプ指定が個人動画且つ、手具が指定されている場合
+      // 動画タイプが個人且つ、動画の手具タイプが、絞り込み条件の手具タイプに含まれているか
+      const matchesApparatuses =
+        criteria.contentType?.slug === ContentType.INDIVIDUAL.slug &&
+        criteria.apparatuses
+          ? isIndividualVideoResource(video) &&
+            criteria.apparatuses.some(
+              (apparatus) => apparatus.slug === video.apparatus.slug
+            )
+          : true
+
+      return matchesContentType && notInExceptVideos && matchesApparatuses
     })
+
     const ADDITIONAL_VIDEO_COUNT = 10
+
     return {
       total: newItems.length,
       items: newItems.slice(0, ADDITIONAL_VIDEO_COUNT),
