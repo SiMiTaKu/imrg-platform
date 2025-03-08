@@ -56,14 +56,13 @@ export namespace Video {
 
       // 絞り込み条件の動画タイプ指定が個人動画且つ、手具が指定されている場合
       // 動画タイプが個人且つ、動画の手具タイプが、絞り込み条件の手具タイプに含まれているか
-      const matchesApparatuses =
-        criteria.contentType?.slug === ContentType.INDIVIDUAL.slug &&
-        criteria.apparatuses
-          ? isIndividualVideoResource(video) &&
-            criteria.apparatuses.some(
-              (apparatus) => apparatus.slug === video.apparatus.slug
-            )
-          : true
+      const matchesApparatuses = criteria.apparatuses.length
+        ? criteria.contentType?.slug === ContentType.INDIVIDUAL.slug &&
+          isIndividualVideoResource(video) &&
+          criteria.apparatuses.some(
+            (apparatus) => apparatus.slug === video.apparatus.slug
+          )
+        : true
 
       return matchesContentType && notInExceptVideos && matchesApparatuses
     })

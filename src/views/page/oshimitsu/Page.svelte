@@ -40,8 +40,9 @@
       if ($criteria.apparatuses) {
         if ($criteria.apparatuses.length === 1) {
           return `/oshimitsu/content_type/${$criteria.contentType.slug}/apparatus/${$criteria.apparatuses[0].slug}`
+        } else if ($criteria.apparatuses.length > 1) {
+          return `/oshimitsu/search_result?ct=${$criteria.contentType.slug}&app=${$criteria.apparatuses.map((apparatus) => apparatus.slug).join(",")}`
         }
-        return `/oshimitsu/search_result?ct=${$criteria.contentType.slug}&app=${$criteria.apparatuses.map((apparatus) => apparatus.slug).join(",")}`
       }
       return `/oshimitsu/content_type/${$criteria.contentType.slug}`
     } else if ($criteria.contentType === ContentType.GROUP) {
