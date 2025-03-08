@@ -35,6 +35,7 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
     criteria: {
       contentType: ContentType.INDIVIDUAL,
       apparatuses: [ Apparatus.CLUB ],
+      exceptVideos: [],
     },
   }
 }

@@ -9,33 +9,106 @@
 
 <script lang='ts'>
   import { pageData } from "$views/atomic/device-store/store"
-
-  export let criteria: Video.Criteria
+  import { criteria } from "../_store/criteria"
+  import {
+    ContentType,
+    findApparatus,
+    findContentType,
+  } from "$views/page/oshimitsu/_models"
 
   let isLaunched = false
   let videos: VideoResource[] = []
   let totalVideos: number | undefined
 
+  export let initCriteria: Video.Criteria | undefined
+
   onMount(() => {
+    if (initCriteria) {
+      criteria.set(initCriteria)
+    } else {
+      criteria.set(getCriteria(new URL(location.href)))
+    }
+    const redirectUrl = getRedirectUrl($criteria, new URL(location.href))
+    if (redirectUrl) {
+      location.href = redirectUrl.href
+    }
     isLaunched = true
-    videos = Video.filterVideos(criteria).items
-    totalVideos = Video.filterVideos(criteria).total
+    videos = Video.filterVideos($criteria).items
+    totalVideos = Video.filterVideos($criteria).total
   })
 
+  /**
+   * リダイレクト先URL取得
+   * @param criteria 検索条件
+   * @param url URL
+   * @return リダイレクト先のURL | undefined
+   * @remarks
+   * URLから取得した検索条件が以下の条件を満たす場合、リダイレクト先のurlを返します。
+   * 1. 手具が1つのみ選択されている
+   *   - /oshimitsu/content_type/individual/apparatus/${apparatus.slug} にリダイレクト
+   */
+  const getRedirectUrl = (
+    criteria: Video.Criteria,
+    url: URL
+  ): URL | undefined => {
+    if (criteria.apparatuses.length === 1) {
+      return new URL(
+        `/oshimitsu/content_type/individual/apparatus/${criteria.apparatuses[0].slug}`,
+        url.origin
+      )
+    }
+    return undefined
+  }
+
+  /**
+   * URLから検索条件を取得します。
+   * @param url URL
+   * @return 検索条件
+   */
+  const getCriteria = (url: URL): Video.Criteria => {
+    const queryParams = {
+      contentTypeSlug: url.searchParams.get("ct"), // ct = content type
+      apparatusSlugs: url.searchParams.get("app")?.split(","), // app = apparatus
+    }
+
+    if (
+      queryParams.apparatusSlugs &&
+      queryParams.apparatusSlugs.some((slug) => findApparatus(slug))
+    ) {
+      return {
+        contentType: ContentType.INDIVIDUAL,
+        apparatuses: queryParams.apparatusSlugs.flatMap(
+          (slug) => findApparatus(slug) ?? []
+        ),
+        exceptVideos: [],
+      }
+    }
+
+    return {
+      contentType: queryParams.contentTypeSlug
+        ? findContentType(queryParams.contentTypeSlug)
+        : undefined,
+      apparatuses: [],
+      exceptVideos: [],
+    }
+  }
+
   const getMoreVideos = () => {
-    videos = videos.concat(
-      Video.filterVideos({ ...criteria, exceptVideos: videos }).items
-    )
+    criteria.update({
+      ...$criteria,
+      exceptVideos: videos,
+    })
+    videos = videos.concat(Video.filterVideos($criteria).items)
   }
 
   const getTitle = () => {
     const oshimitsu = "推しミツ！"
-    if (criteria.apparatuses.length === 1) {
-      return `${oshimitsu}（${criteria.apparatuses[0].label}）`
-    } else if (criteria.apparatuses.length > 1) {
+    if ($criteria.apparatuses.length === 1) {
+      return `${oshimitsu}（${$criteria.apparatuses[0].label}）`
+    } else if ($criteria.apparatuses.length > 1) {
       return oshimitsu
     }
-    return `${oshimitsu}${criteria.contentType ? `（${criteria.contentType.label}）` : ""}`
+    return `${oshimitsu}${$criteria.contentType ? `（${$criteria.contentType.label}）` : ""}`
   }
 </script>
 

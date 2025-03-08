@@ -3,6 +3,11 @@
   import GroupVideoCard from "./_components/GroupVideoCard.svelte"
   import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
   import RadioFieldset from "./_components/RadioFieldset.svelte"
+  import {
+    findApparatus,
+    findContentType,
+  } from "$views/page/oshimitsu/_models/index.js"
+  import CheckBoxFieldset from "$views/page/oshimitsu/_components/CheckBoxFieldset.svelte"
   import { Video } from "./_lib"
   import { Apparatus, ContentType } from "$views/page/oshimitsu/_models"
 
@@ -19,36 +24,43 @@
 
 <script lang='ts'>
   import { pageData } from "$views/atomic/device-store/store"
-  import {
-    findApparatus,
-    // findApparatus,
-    findContentType,
-  } from "$views/page/oshimitsu/_models/index.js"
-  import CheckBoxFieldset from "$views/page/oshimitsu/_components/CheckBoxFieldset.svelte"
+  import { criteria } from "./_store/criteria"
+  import { onMount } from "svelte"
 
-  let criteria: Video.Criteria = {
-    contentType: undefined,
-    apparatuses: [],
-    exceptVideos: [],
-  }
+  onMount(() => {
+    criteria.set({
+      contentType: undefined,
+      exceptVideos: [],
+      apparatuses: [],
+    })
+  })
 
-  $: searchHref =
-    criteria.contentType === ContentType.INDIVIDUAL
-      ? criteria.apparatuses
-        ? criteria.apparatuses.length === 1
-          ? `/oshimitsu/content_type/${criteria.contentType.slug}/apparatus/${criteria.apparatuses[0].slug}`
-          : `/oshimitsu/search_result?ct=${criteria.contentType.slug}&app=${criteria.apparatuses.map((apparatus) => apparatus.slug).join(",")}`
-        : `/oshimitsu/content_type/${criteria.contentType.slug}`
-      : "/oshimitsu/search_result"
+  $: searchHref = (() => {
+    if ($criteria.contentType === ContentType.INDIVIDUAL) {
+      if ($criteria.apparatuses) {
+        if ($criteria.apparatuses.length === 1) {
+          return `/oshimitsu/content_type/${$criteria.contentType.slug}/apparatus/${$criteria.apparatuses[0].slug}`
+        }
+        return `/oshimitsu/search_result?ct=${$criteria.contentType.slug}&app=${$criteria.apparatuses.map((apparatus) => apparatus.slug).join(",")}`
+      }
+      return `/oshimitsu/content_type/${$criteria.contentType.slug}`
+    } else if ($criteria.contentType === ContentType.GROUP) {
+      return `/oshimitsu/content_type/${$criteria.contentType.slug}`
+    }
+    return "/oshimitsu/search_result"
+  })()
 
   const onChangeApparatus = (
     event: CustomEvent<{ value: string; checked: boolean }>
   ) => {
-    criteria.apparatuses = event.detail.checked
-      ? [ ...criteria.apparatuses, findApparatus(event.detail.value)! ]
-      : criteria.apparatuses.filter(
-        (apparatus) => apparatus.slug !== event.detail.value
-      )
+    criteria.update({
+      ...$criteria,
+      apparatuses: event.detail.checked
+        ? [ ...$criteria.apparatuses, findApparatus(event.detail.value)! ]
+        : $criteria.apparatuses.filter(
+          (apparatus) => apparatus.slug !== event.detail.value
+        ),
+    })
   }
 </script>
 
@@ -66,10 +78,13 @@
       name='contentType'
       options={CONTENT_TYPE_OPTIONS}
       on:change={(event) => {
-        criteria.contentType = findContentType(event.detail.value)
+        criteria.update({
+          ...$criteria,
+          contentType: findContentType(event.detail.value),
+        })
       }}
     />
-    {#if criteria.contentType === ContentType.INDIVIDUAL}
+    {#if $criteria.contentType === ContentType.INDIVIDUAL}
       <CheckBoxFieldset
         legendText='手具'
         name='apparatus'
