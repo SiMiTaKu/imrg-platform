@@ -5,7 +5,9 @@
 <script lang='ts'>
   import { pageData } from "$views/atomic/device-store/store"
 
-  const dispatch = createEventDispatcher<{ change: { value: string } }>()
+  const dispatch = createEventDispatcher<{
+    change: { value: string; checked: boolean };
+  }>()
 
   export let legendText: string
   export let name: string
@@ -13,6 +15,11 @@
     value: string;
     label: string;
   }[]
+
+  const onChange = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    dispatch("change", { value: target.value, checked: target.checked })
+  }
 </script>
 
 <fieldset class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
@@ -25,11 +32,9 @@
             <input
               class='input'
               {name}
-              type='radio'
+              type='checkbox'
               value={item.value}
-              on:change={() => {
-                dispatch("change", { value: item.value })
-              }}
+              on:change={onChange}
             />
             {item.label}
           </label>
@@ -104,25 +109,28 @@
       content: "";
       width: 20px;
       height: 20px;
-      border-radius: $border-radius-64;
-      border: $border-size-2 solid var(--border-color, map.get($gray, border));
-      background: var(--background, $white);
+      border-radius: $border-size-4;
+      border: var(--border, $border-size-2 solid map.get($gray, border));
+      background: var(--checkbox-background, $white);
       box-sizing: border-box;
     }
 
     &:has(.input:checked) {
-      --border-color: #{map.get($sky-blue, border)};
+      --border: none;
       --background: #{map.get($sky-blue, background)};
+      --checkbox-background: #{map.get($sky-blue, button)};
       color: map.get($sky-blue, text);
 
       &:after {
-        left: $space-size-12;
+        top: 14px;
+        left: 13px;
         position: absolute;
         content: "";
-        width: 12px;
-        height: 12px;
-        border-radius: $border-radius-64;
-        background: map.get($sky-blue, button);
+        width: 6px;
+        height: 11px;
+        transform: rotate(45deg);
+        border-right: 3px solid $white;
+        border-bottom: 3px solid $white;
       }
     }
 

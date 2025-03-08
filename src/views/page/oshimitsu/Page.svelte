@@ -4,7 +4,7 @@
   import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
   import RadioFieldset from "./_components/RadioFieldset.svelte"
   import { Video } from "./_lib"
-  import { ContentType, Apparatus } from "$views/page/oshimitsu/_models"
+  import { Apparatus, ContentType } from "$views/page/oshimitsu/_models"
 
   const CONTENT_TYPE_OPTIONS = Object.values(ContentType).map((type) => ({
     label: type.label,
@@ -21,20 +21,35 @@
   import { pageData } from "$views/atomic/device-store/store"
   import {
     findApparatus,
+    // findApparatus,
     findContentType,
   } from "$views/page/oshimitsu/_models/index.js"
+  import CheckBoxFieldset from "$views/page/oshimitsu/_components/CheckBoxFieldset.svelte"
 
   let criteria: Video.Criteria = {
     contentType: undefined,
-    apparatus: undefined,
+    apparatuses: [],
+    exceptVideos: [],
   }
 
   $: searchHref =
     criteria.contentType === ContentType.INDIVIDUAL
-      ? criteria.apparatus
-        ? `/oshimitsu/content_type/${criteria.contentType.slug}/apparatus/${criteria.apparatus.slug}`
+      ? criteria.apparatuses
+        ? criteria.apparatuses.length === 1
+          ? `/oshimitsu/content_type/${criteria.contentType.slug}/apparatus/${criteria.apparatuses[0].slug}`
+          : `/oshimitsu/search_result?ct=${criteria.contentType.slug}&app=${criteria.apparatuses.map((apparatus) => apparatus.slug).join(",")}`
         : `/oshimitsu/content_type/${criteria.contentType.slug}`
       : "/oshimitsu/search_result"
+
+  const onChangeApparatus = (
+    event: CustomEvent<{ value: string; checked: boolean }>
+  ) => {
+    criteria.apparatuses = event.detail.checked
+      ? [ ...criteria.apparatuses, findApparatus(event.detail.value)! ]
+      : criteria.apparatuses.filter(
+        (apparatus) => apparatus.slug !== event.detail.value
+      )
+  }
 </script>
 
 <article class='article'>
@@ -54,14 +69,14 @@
         criteria.contentType = findContentType(event.detail.value)
       }}
     />
-    <RadioFieldset
-      legendText='手具'
-      name='apparatus'
-      options={APPARATUS_OPTIONS}
-      on:change={(event) => {
-        criteria.apparatus = findApparatus(event.detail.value)
-      }}
-    />
+    {#if criteria.contentType === ContentType.INDIVIDUAL}
+      <CheckBoxFieldset
+        legendText='手具'
+        name='apparatus'
+        options={APPARATUS_OPTIONS}
+        on:change={onChangeApparatus}
+      />
+    {/if}
     <ButtonLink
       width={$pageData.isMobile ? 320 : 343}
       height={56}

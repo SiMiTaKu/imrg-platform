@@ -17,8 +17,6 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
   const description =
     "あなたの推しを見つけるための「推しミツ！」アプリのページです。男子新体操をもっとよく楽しむためにあなただけの推しを見つけよう！"
 
-  const criteria = { contentType: ContentType.INDIVIDUAL }
-
   return {
     isMobile: locals.isMobile,
     layout: {
@@ -34,6 +32,10 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
         type: "website",
       },
     },
-    criteria,
+    criteria: {
+      contentType: ContentType.INDIVIDUAL,
+      apparatuses: [],
+      exceptVideos: [],
+    },
   }
 }

@@ -4,7 +4,11 @@
 import type { ViewValueLayout } from "$model/view-value-layout"
 import type { PageServerLoad } from "./$types"
 import { Video } from "$views/page/oshimitsu/_lib"
-import { ContentType, findApparatus } from "$views/page/oshimitsu/_models"
+import {
+  ContentType,
+  findApparatus,
+  findContentType,
+} from "$views/page/oshimitsu/_models"
 import { redirect } from "@sveltejs/kit"
 
 type OutputData = {
@@ -92,7 +96,9 @@ const getCriteria = (url: URL): Video.Criteria => {
   }
 
   return {
-    contentType: ContentType.INDIVIDUAL,
+    contentType: queryParams.contentTypeSlug
+      ? findContentType(queryParams.contentTypeSlug)
+      : undefined,
     apparatuses: [],
     exceptVideos: [],
   }
