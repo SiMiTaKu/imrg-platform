@@ -27,10 +27,10 @@
       criteria.set(initCriteria)
     } else {
       criteria.set(getCriteria(new URL(location.href)))
-    }
-    const redirectUrl = getRedirectUrl($criteria, new URL(location.href))
-    if (redirectUrl) {
-      location.href = redirectUrl.href
+      const redirectUrl = getRedirectUrl($criteria, new URL(location.href))
+      if (redirectUrl) {
+        location.href = redirectUrl.href
+      }
     }
     isLaunched = true
     videos = Video.filterVideos($criteria).items
