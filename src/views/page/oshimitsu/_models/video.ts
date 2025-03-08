@@ -41,6 +41,10 @@ export const Apparatus = {
 
 export type Apparatus = (typeof Apparatus)[keyof typeof Apparatus];
 
+export const findApparatus = (slug: string): Apparatus | undefined => {
+  return Object.values(Apparatus).find((apparatus) => apparatus.slug === slug)
+}
+
 /** 動画のベースクラス */
 interface BaseVideo {
   src: string;

@@ -1,5 +1,5 @@
 <script context='module' lang='ts'>
-  import Page from "$views/page/oshimitsu/content_type/Page.svelte"
+  import Page from "$views/page/oshimitsu/search_result/Page.svelte"
   import Layout from "$views/layout/Layout.svelte"
 </script>
 
@@ -8,7 +8,5 @@
 </script>
 
 <Layout layout={$page.data.layout}>
-  <Page slot='main'
-        videos={$page.data.videos}
-        criteria={$page.data.criteria} />
+  <Page slot='main' initCriteria={$page.data.criteria} />
 </Layout>
