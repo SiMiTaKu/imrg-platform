@@ -8,5 +8,5 @@
 </script>
 
 <Layout layout={$page.data.layout}>
-  <Page slot='main' criteria={$page.data.criteria} />
+  <Page slot='main' initCriteria={$page.data.criteria} />
 </Layout>
