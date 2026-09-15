@@ -96,7 +96,7 @@ describe("test filterEvents", () => {
     makeEvent({ titleJa: "B", category: "national", startDate: "2026-10-30" }),
     makeEvent({ titleJa: "Z", category: "national", startDate: "2025-05-01" }),
   ]
-  const base = { category: "all" as const, keyword: "", today: "2026-09-16" }
+  const base = { categories: [], keyword: "", today: "2026-09-16" }
 
   test("これから：終わっていないものを古い順に並べる", () => {
     expect(titles(filterEvents(events, { ...base, period: "upcoming" }))).toEqual([ "B", "C" ])
@@ -115,8 +115,9 @@ describe("test filterEvents", () => {
     ])
   })
 
-  test("種類で絞り込む", () => {
-    expect(titles(filterEvents(events, { ...base, category: "workshop", period: "all" }))).toEqual([ "C" ])
+  test("種類で絞り込む（複数指定できる）", () => {
+    const result = filterEvents(events, { ...base, categories: [ "workshop", "international" ], period: "all" })
+    expect(titles(result)).toEqual([ "C" ])
   })
 })
 
@@ -234,9 +235,15 @@ describe("test parseState / serializeState", () => {
   })
 
   test("書き出した状態を読み戻すと同じになる", () => {
-    const state = { ...defaultState("2026-09"), view: "list" as const, keyword: "全日本", category: "national" as const, period: "past" as const, page: 3 }
+    const state = { ...defaultState("2026-09"), view: "list" as const, keyword: "全日本", categories: [ "national" as const ], period: "past" as const, page: 3 }
     const query = serializeState(state, "2026-09")
     expect(parseState(query, "2026-09")).toEqual(state)
+  })
+
+  test("種類は複数まとめて読み書きできる", () => {
+    const state = { ...defaultState("2026-09"), categories: [ "national" as const, "regional" as const ] }
+    expect(serializeState(state, "2026-09")).toBe("?category=national%2Cregional")
+    expect(parseState(serializeState(state, "2026-09"), "2026-09")).toEqual(state)
   })
 
   test("カレンダーの月と日を読み戻せる", () => {

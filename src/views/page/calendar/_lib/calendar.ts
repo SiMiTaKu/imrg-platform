@@ -50,7 +50,8 @@ type DateParts = { year: number; month: number; day?: number };
 export type EventPeriod = "upcoming" | "past" | "all";
 
 export type EventFilter = {
-  category: EventCategory | "all";
+  /** 空のときはすべての種類 */
+  categories: EventCategory[];
   period: EventPeriod;
   today: string;
   keyword: string;
@@ -70,7 +71,7 @@ export type CalendarView = "calendar" | "list";
 export type CalendarState = {
   view: CalendarView;
   keyword: string;
-  category: EventCategory | "all";
+  categories: EventCategory[];
   period: EventPeriod;
   page: number;
   month: string;
@@ -146,7 +147,7 @@ export function matchesKeyword(event: CalendarEvent, keyword: string): boolean {
 /** 種類・キーワード・時期で絞り込んで並べる。終わったイベントだけのときは新しい順 */
 export function filterEvents(events: CalendarEvent[], filter: EventFilter): CalendarEvent[] {
   const sorted = events
-    .filter((event) => filter.category === "all" || event.category === filter.category)
+    .filter((event) => filter.categories.length === 0 || filter.categories.includes(event.category))
     .filter((event) => matchesKeyword(event, filter.keyword))
     .filter((event) => filter.period === "all" || isUpcoming(event, filter.today) === (filter.period === "upcoming"))
     .sort(compareEvents)
@@ -301,14 +302,16 @@ export function hostnameOf(url: string): string {
 
 /** 何も指定されていないときの画面の状態 */
 export function defaultState(month: string): CalendarState {
-  return { view: "calendar", keyword: "", category: "all", period: "upcoming", page: 1, month, day: null }
+  return { view: "calendar", keyword: "", categories: [], period: "upcoming", page: 1, month, day: null }
 }
 
 /** URL のクエリから画面の状態を読む。おかしな値は初期値にする */
 export function parseState(search: string, month: string): CalendarState {
   const params = new URLSearchParams(search)
   const defaults = defaultState(month)
-  const category = params.get("category") as EventCategory | null
+  const categories = (params.get("category") ?? "")
+    .split(",")
+    .filter((value): value is EventCategory => CATEGORY_ORDER.includes(value as EventCategory))
   const period = params.get("period")
   const monthParam = params.get("month")
   const dayParam = params.get("day")
@@ -317,7 +320,7 @@ export function parseState(search: string, month: string): CalendarState {
   return {
     view: params.get("view") === "list" ? "list" : defaults.view,
     keyword: params.get("q") ?? "",
-    category: category && CATEGORY_ORDER.includes(category) ? category : "all",
+    categories: [ ...new Set(categories) ],
     period: period === "past" || period === "all" ? period : defaults.period,
     page: Math.max(1, Number.parseInt(params.get("page") ?? "1", 10) || 1),
     month: resolvedMonth,
@@ -331,7 +334,7 @@ export function serializeState(state: CalendarState, month: string): string {
   const params = new URLSearchParams()
   if (state.view !== defaults.view) params.set("view", state.view)
   if (state.keyword) params.set("q", state.keyword)
-  if (state.category !== "all") params.set("category", state.category)
+  if (state.categories.length) params.set("category", state.categories.join(","))
   if (state.view === "list" && state.period !== defaults.period) params.set("period", state.period)
   if (state.view === "list" && state.page > 1) params.set("page", String(state.page))
   if (state.view === "calendar" && state.month !== defaults.month) params.set("month", state.month)

@@ -5,6 +5,7 @@
   import Pagination from "./_components/Pagination.svelte"
   import { CATEGORY_LABELS, CATEGORY_ORDER } from "./_data/category"
   import { EVENTS, UPDATED_AT } from "./_data/events"
+  import type { EventCategory } from "./_data/model"
   import {
     type CalendarState,
     type EventPeriod,
@@ -81,7 +82,7 @@
   }
 
   $: matched = filterEvents(EVENTS, {
-    category: state.category,
+    categories: state.categories,
     keyword: state.keyword,
     today,
     period: state.view === "list" ? state.period : "all",
@@ -93,6 +94,14 @@
   /** 条件を変える。ページ送り以外の変更では1ページ目に戻す */
   function update(patch: Partial<CalendarState>) {
     state = { ...state, page: 1, ...patch }
+  }
+
+  /** 種類の絞り込みは複数選べる。押すたびに入り切りする */
+  function toggleCategory(key: EventCategory) {
+    const categories = state.categories.includes(key)
+      ? state.categories.filter((category) => category !== key)
+      : [ ...state.categories, key ]
+    update({ categories })
   }
 
   async function goToPage(page: number) {
@@ -138,19 +147,19 @@
          aria-label='種類で絞り込む / Filter by type'
          role='group'>
       <button class='chip'
-              class:active={state.category === "all"}
+              class:active={state.categories.length === 0}
               type='button'
-              aria-pressed={state.category === "all"}
-              on:click={() => update({ category: "all" })}>
+              aria-pressed={state.categories.length === 0}
+              on:click={() => update({ categories: [] })}>
         すべて<span lang='en'>All</span>
       </button>
       {#each CATEGORY_ORDER as key (key)}
         <button style:--color={CATEGORY_LABELS[key].color}
                 class='chip'
-                class:active={state.category === key}
+                class:active={state.categories.includes(key)}
                 type='button'
-                aria-pressed={state.category === key}
-                on:click={() => update({ category: key })}>
+                aria-pressed={state.categories.includes(key)}
+                on:click={() => toggleCategory(key)}>
           <span class='chip-dot' />{CATEGORY_LABELS[key].ja}<span lang='en'>{CATEGORY_LABELS[key].en}</span>
         </button>
       {/each}
