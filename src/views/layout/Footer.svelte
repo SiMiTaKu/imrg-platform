@@ -117,6 +117,10 @@
         </a>
       {/each}
     </div>
+    <nav class='policy-links'>
+      <a href='/privacy/'>プライバシーポリシー</a>
+      <a href='/terms/'>利用規約</a>
+    </nav>
   </div>
 </section>
 
@@ -161,6 +165,18 @@
     font-size: var(--item-font-size);
     font-weight: bold;
     color: #777777;
+  }
+
+  .policy-links {
+    display: flex;
+    justify-content: center;
+    gap: $space-size-24;
+    margin-top: $space-size-40;
+    font-size: 14px;
+
+    a {
+      color: #777777;
+    }
   }
 
   .icon {
