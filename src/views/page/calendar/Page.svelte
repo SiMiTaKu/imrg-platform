@@ -23,8 +23,9 @@
 
   let category: EventCategory | "all" = "all"
   let showPast = false
-  // 書き出した日で絞り込むと公開後に古くなるので、今日の日付は閲覧したときに決める
-  let today: string | null = null
+  // 書き出すHTMLは最終更新日の時点で絞り込んでおき（全件を一度に描かないため）、
+  // 閲覧したときに今日の日付で絞り直す
+  let today = UPDATED_AT
 
   onMount(() => {
     today = toDateKey(new Date())
