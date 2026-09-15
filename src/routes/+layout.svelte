@@ -6,11 +6,24 @@
 </script>
 
 <script lang='ts'>
+  import { onMount } from "svelte"
+  import { PUBLIC_CF_BEACON_TOKEN } from "$env/static/public"
   import { pageData } from "$views/atomic/device-store/store"
 
   let screenWidth = 0
 
   $: pageData.update(screenWidth)
+
+  // アクセス解析（Cloudflare Web Analytics）。Cookie を使わない。
+  // トークンが空のとき（ローカル開発など）は読み込まない
+  onMount(() => {
+    if (!PUBLIC_CF_BEACON_TOKEN) return
+    const beacon = document.createElement("script")
+    beacon.defer = true
+    beacon.src = "https://static.cloudflareinsights.com/beacon.min.js"
+    beacon.dataset.cfBeacon = JSON.stringify({ token: PUBLIC_CF_BEACON_TOKEN, spa: true })
+    document.head.appendChild(beacon)
+  })
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />

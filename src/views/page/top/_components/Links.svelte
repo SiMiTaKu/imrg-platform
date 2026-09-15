@@ -2,6 +2,7 @@
   import { pageData } from "../../../atomic/device-store/store"
   import ButtonLink from "../../../atomic/button/ButtonLink.svelte"
   const LINKS = [
+    { href: "/calendar", text: "大会・イベントを探す" },
     { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
     { href: "/background_music", text: "曲編集を依頼する" },
     { href: "/judge", text: "審判を体験する" },
