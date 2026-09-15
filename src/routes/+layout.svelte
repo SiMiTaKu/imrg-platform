@@ -14,10 +14,15 @@
 
   $: pageData.update(screenWidth)
 
+  /** 手元の開発サーバー。Cloudflare 側で弾かれ、コンソールにエラーが出るだけなので読み込まない */
+  const LOCAL_HOSTS = [
+    "localhost", "127.0.0.1",
+  ]
+
   // アクセス解析（Cloudflare Web Analytics）。Cookie を使わない。
-  // トークンが空のとき（ローカル開発など）は読み込まない
+  // トークンが空のときは読み込まない
   onMount(() => {
-    if (!PUBLIC_CF_BEACON_TOKEN) return
+    if (!PUBLIC_CF_BEACON_TOKEN || LOCAL_HOSTS.includes(location.hostname)) return
     const beacon = document.createElement("script")
     beacon.defer = true
     beacon.src = "https://static.cloudflareinsights.com/beacon.min.js"

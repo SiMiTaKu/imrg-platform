@@ -38,8 +38,11 @@
 
 <script lang='ts'>
   import { tick } from "svelte"
-  import { afterNavigate, replaceState } from "$app/navigation"
+  import { afterNavigate } from "$app/navigation"
   import { pageData } from "$views/atomic/device-store/store"
+
+  /** 絞り込みの条件を覚えておくキー（同じタブの中だけ） */
+  const STATE_KEY = "imrg-calendar-state"
 
   // 書き出すHTMLは最終更新日の時点で作り、閲覧したときに今日の日付とURLの条件で描き直す
   let today = UPDATED_AT
@@ -47,17 +50,35 @@
   let ready = false
   let resultsTop: HTMLElement | undefined
 
-  // onMount ではルーターの準備前に replaceState が走ってエラーになるため、
-  // 画面遷移が終わってから（ルーターの準備ができてから）URL の条件を読む
-  afterNavigate(() => {
+  // 条件は URL に書き戻さない。書き戻すと、アクセス解析が絞り込みのたびに
+  // 1回の閲覧として数えてしまうため。代わりにタブの中に覚えておく
+  afterNavigate(({ type }) => {
     if (ready) return
     today = toDateKey(new Date())
-    state = parseState(window.location.search, toMonthKey(today))
+    // 詳細ページから戻ったときは直前の条件に戻し、それ以外は URL の指定を読む
+    const saved = type === "popstate" ? loadState() : null
+    state = parseState(saved ?? window.location.search, toMonthKey(today))
     ready = true
   })
 
-  // 条件を URL に残して、詳細ページから戻っても同じ表示にする
-  $: if (ready) replaceState(`${window.location.pathname}${serializeState(state, toMonthKey(today))}`, {})
+  $: if (ready) saveState(state)
+
+  function loadState(): string | null {
+    try {
+      return sessionStorage.getItem(STATE_KEY)
+    } catch {
+      // 保存を止めている設定のブラウザでは覚えないだけにする
+      return null
+    }
+  }
+
+  function saveState(value: CalendarState) {
+    try {
+      sessionStorage.setItem(STATE_KEY, serializeState(value, toMonthKey(today)))
+    } catch {
+    // 同上
+    }
+  }
 
   $: matched = filterEvents(EVENTS, {
     category: state.category,
