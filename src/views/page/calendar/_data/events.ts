@@ -10,6 +10,7 @@ export const UPDATED_AT = "2026-09-16"
  */
 export const EVENTS: CalendarEvent[] = [
   {
+    id: "2023-04-22-4c372f",
     titleJa: "令和5年度 静岡県【中部地区】高校総体（体操競技・新体操男子）",
     titleEn: "2023 Shizuoka Central District High School Meet (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -20,6 +21,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11876.html",
   },
   {
+    id: "2023-04-22-19b8c4",
     titleJa: "第65回関西学生体操選手権大会（新体操の部・男子）",
     titleEn: "The 65th Kansai Student Gymnastics Championships (Men's Rhythmic Gymnastics)",
     category: "regional",
@@ -31,6 +33,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://kansaigymgakuren.sakura.ne.jp/pg123.html",
   },
   {
+    id: "2023-04-23-c7030a",
     titleJa: "令和5年度 静岡県【東部地区】高校総体（男子新体操）",
     titleEn: "2023 Shizuoka Eastern District High School Meet (Men's Rhythmic)",
     category: "prefectural",
@@ -41,6 +44,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11878.html",
   },
   {
+    id: "2023-04-29-b68236",
     titleJa: "令和5年度 富山県高等学校春季大会（新体操）",
     titleEn: "2023 Toyama Prefectural High School Spring Championships (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -52,6 +56,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://toyama-koutairen.jp/gymnastics/event/schedule/entry-8783.html",
   },
   {
+    id: "2023-04-29-e8a1cc",
     titleJa: "富山グラウジーズ ハーフタイムショー（BLUE TOKYO出演）",
     titleEn: "Toyama Grouses Halftime Show featuring BLUE TOKYO",
     category: "performance",
@@ -61,6 +66,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/works/",
   },
   {
+    id: "2023-04-30-9877cd",
     titleJa: "令和5年度 三重県高等学校春季大会〔体操競技男女・新体操男子〕",
     titleEn: "2023 Mie Prefectural High School Spring Championships (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -71,6 +77,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2713.html",
   },
   {
+    id: "2023-05-02-598864",
     titleJa: "令和5年度 埼玉県 関東大会県予選 新体操（男子）",
     titleEn: "2023 Saitama Prefectural Qualifier for the Kanto High School Championships - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -83,6 +90,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file216.pdf",
   },
   {
+    id: "2023-05-04-1abf42",
     titleJa: "HIROSHIMA ミライバトン（BLUE TOKYO出演）",
     titleEn: "HIROSHIMA Mirai Baton featuring BLUE TOKYO",
     category: "performance",
@@ -92,6 +100,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/works/",
   },
   {
+    id: "2023-05-12-6ba41e",
     titleJa: "第56回東日本学生新体操選手権大会",
     titleEn: "The 56th East Japan Student Rhythmic Gymnastics Championships",
     category: "regional",
@@ -104,6 +113,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-rg.com/topix/2023/05/index.html#entry-003124",
   },
   {
+    id: "2023-05-14-316f68",
     titleJa: "第71回静岡県高等学校総合体育大会（新体操）",
     titleEn: "The 71st Shizuoka Prefectural High School Athletic Meet (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -116,6 +126,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://shizuoka-gym.com/kekka/report2023/RGMShizuokaSoutai.pdf",
   },
   {
+    id: "2023-05-19-833edc",
     titleJa: "令和5年度 鹿児島県高等学校総合体育大会 新体操（男子）",
     titleEn: "2023 Kagoshima Prefectural High School Athletic Meet - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -127,6 +138,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2023/05/22/2-24/",
   },
   {
+    id: "2023-05-26-15a00c",
     titleJa: "SASAKI CUP 第21回全日本新体操ユースチャンピオンシップ・第14回男子新体操団体選手権大会",
     titleEn: "SASAKI CUP The 21st All Japan Rhythmic Gymnastics Youth Championships / The 14th Men's Rhythmic Gymnastics Team Championships",
     category: "national",
@@ -140,6 +152,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2023/05/31/post-774/",
   },
   {
+    id: "2023-05-30-e553c4",
     titleJa: "第73回西日本学生体操選手権大会（新体操の部）",
     titleEn: "The 73rd West Japan Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -152,6 +165,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://kansaigymgakuren.sakura.ne.jp/pg123.html",
   },
   {
+    id: "2023-06-03-61a092",
     titleJa: "令和5年度 富山県高等学校総合体育大会（新体操）",
     titleEn: "2023 Toyama Prefectural High School Athletic Meet (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -163,6 +177,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://toyama-koutairen.jp/gymnastics/event/schedule/entry-8785.html",
   },
   {
+    id: "2023-06-07-94cf7a",
     titleJa: "第76回北海道高等学校新体操選手権大会",
     titleEn: "The 76th Hokkaido High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -175,6 +190,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-kou/23zen-kou-rg.html",
   },
   {
+    id: "2023-06-10-48ba33",
     titleJa: "令和5年度 中国高等学校新体操選手権大会（中国ブロック大会）",
     titleEn: "2023 Chugoku High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -187,6 +203,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_chugoku_rg_result.pdf",
   },
   {
+    id: "2023-06-10-647274",
     titleJa: "令和5年度 近畿高等学校新体操大会（近畿ブロック大会）",
     titleEn: "2023 Kinki High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -199,6 +216,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kinki_rg_result.pdf",
   },
   {
+    id: "2023-06-10-dd3c89",
     titleJa: "令和5年度 関東高等学校新体操大会（関東ブロック大会）",
     titleEn: "2023 Kanto High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -211,6 +229,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kanto_rg_result.pdf",
   },
   {
+    id: "2023-06-16-9cd906",
     titleJa: "令和5年度 九州高等学校新体操競技大会（九州ブロック大会）",
     titleEn: "2023 Kyushu High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -223,6 +242,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/gallery/2023/06/17/",
   },
   {
+    id: "2023-06-16-26b8bd",
     titleJa: "令和5年度 埼玉県 インターハイ予選 新体操（男子）",
     titleEn: "2023 Saitama Prefectural Inter-High Qualifier - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -235,6 +255,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file233.pdf",
   },
   {
+    id: "2023-06-16-8a8fb0",
     titleJa: "第58回北信越高等学校新体操・体操競技選手権大会（新体操）",
     titleEn: "The 58th Hokushinetsu High School Rhythmic and Artistic Gymnastics Championships (Rhythmic)",
     category: "regional",
@@ -248,6 +269,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_hokushinetsu_rg_result-1.pdf",
   },
   {
+    id: "2023-06-17-544d23",
     titleJa: "令和5年度 東海高等学校総合体育大会（新体操競技）",
     titleEn: "2023 Tokai High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -261,6 +283,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tokai_rg_result_new.pdf",
   },
   {
+    id: "2023-06-23-b24ef6",
     titleJa: "令和5年度 東北ブロック高等学校新体操大会",
     titleEn: "2023 Tohoku Block High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -273,6 +296,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tohoku_rg_result_new.pdf",
   },
   {
+    id: "2023-06-24-463204",
     titleJa: "令和5年度 四国高等学校新体操大会（四国ブロック大会）",
     titleEn: "2023 Shikoku High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -285,6 +309,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_shikoku_rg_result.pdf",
   },
   {
+    id: "2023-07-573187",
     titleJa: "Festival del Sole 2023（国士舘大学男子新体操部 イタリア遠征）",
     titleEn: "Festival del Sole 2023 (Kokushikan University Men's Rhythmic Gymnastics, Italy)",
     category: "international",
@@ -297,6 +322,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2023/07/index.html#entry-003182",
   },
   {
+    id: "2023-07-13-440a98",
     titleJa: "2023 九州ブロック国体（新体操）",
     titleEn: "2023 Kyushu Block Qualifier for the National Sports Festival (Rhythmic Gymnastics)",
     category: "regional",
@@ -308,6 +334,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2023/07/17/post-783/",
   },
   {
+    id: "2023-07-17-fd6680",
     titleJa: "2023 東海ブロック国体（新体操）",
     titleEn: "2023 Tokai Block Qualifier for the National Sports Festival (Rhythmic Gymnastics)",
     category: "regional",
@@ -319,6 +346,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2023/07/18/post-784/",
   },
   {
+    id: "2023-07-21-4a2d3a",
     titleJa: "第30回北海道新体操大会 兼 特別国体北海道予選会",
     titleEn: "The 30th Hokkaido Rhythmic Gymnastics Competition / Hokkaido Qualifier for the Special National Sports Festival",
     category: "prefectural",
@@ -331,6 +359,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-rg/23zen-rg.html",
   },
   {
+    id: "2023-07-23-ac7609",
     titleJa: "バク転パーソナル教室大阪 アクロバットショー＆体験イベント",
     titleEn: "BAKUTEN Personal School Osaka Acrobatic Show & Trial Event",
     category: "workshop",
@@ -341,6 +370,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/07/23/post-785/",
   },
   {
+    id: "2023-07-29-9ecacd",
     titleJa: "井原高校 男子新体操 新フロアマット披露会・令和5年度インターハイ壮行会",
     titleEn: "Ibara High School Men's Rhythmic Gymnastics New Floor Unveiling and Inter-High Send-off 2023",
     category: "performance",
@@ -352,6 +382,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/07/28/post-787/",
   },
   {
+    id: "2023-07-30-a1c96d",
     titleJa: "トップクラブに学べ～インターハイシミュレーション演技会 2023",
     titleEn: "Learn from Top Clubs: Inter-High Simulation Performance 2023",
     category: "performance",
@@ -361,6 +392,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/07/28/post-787/",
   },
   {
+    id: "2023-08-11-70cb7d",
     titleJa: "令和5年度全国高等学校総合体育大会 新体操大会（北海道総体2023）",
     titleEn: "2023 All Japan High School Inter-High Rhythmic Gymnastics Championships (Hokkaido)",
     category: "national",
@@ -374,6 +406,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/2023/08/12/%e5%8c%97%e6%b5%b7%e9%81%93%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%83%8f%e3%82%a4%e3%80%80%e6%96%b0%e4%bd%93%e6%93%8d%e3%80%80%e3%83%81%e3%83%bc%e3%83%a0%e3%83%bb%e5%80%8b%e4%ba%ba%e3%80%80%e5%85%a5/",
   },
   {
+    id: "2023-08-17-44b1f2",
     titleJa: "花園大学 新体操部 学内演技会 2023",
     titleEn: "Hanazono University Rhythmic Gymnastics On-Campus Performance 2023",
     category: "performance",
@@ -384,6 +417,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/08/14/week/",
   },
   {
+    id: "2023-08-19-fce16a",
     titleJa: "井原カップ 2023（男子新体操競技大会）",
     titleEn: "Ibara Cup 2023 Men's Rhythmic Gymnastics Competition",
     category: "regional",
@@ -396,6 +430,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shintaisou.ibara.info/archives/news/ibaracup2023",
   },
   {
+    id: "2023-08-20-1f5717",
     titleJa: "福大フェスティバル 2023",
     titleEn: "Fukuoka University Rhythmic Gymnastics Festival 2023",
     category: "performance",
@@ -406,6 +441,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/08/14/week/",
   },
   {
+    id: "2023-08-24-6379e3",
     titleJa: "第75回全日本学生新体操選手権大会",
     titleEn: "The 75th All Japan Student Rhythmic Gymnastics Championships (All Japan Intercollegiate)",
     category: "national",
@@ -419,6 +455,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymgakurenn.noor.jp/taikaikekka/",
   },
   {
+    id: "2023-09-02-6aeaa9",
     titleJa: "第21回関東ジュニア男子新体操大会",
     titleEn: "The 21st Kanto Junior Men's Rhythmic Gymnastics Championships",
     category: "regional",
@@ -431,6 +468,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-jr-rg.com/blog/2023/09/2023.html",
   },
   {
+    id: "2023-09-16-26f80c",
     titleJa: "令和5年度 静岡県【東部地区】新人大会（新体操男子）",
     titleEn: "2023 Shizuoka Eastern District Freshman Meet (Men's Rhythmic)",
     category: "prefectural",
@@ -441,6 +479,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11889.html",
   },
   {
+    id: "2023-09-23-2fe74a",
     titleJa: "令和5年度 静岡県【中部地区】新人大会（体操競技・新体操男子）",
     titleEn: "2023 Shizuoka Central District Freshman Meet (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -451,6 +490,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11890.html",
   },
   {
+    id: "2023-09-25-4bc9f2",
     titleJa: "2023全国ブロック代表新体操男子団体選手権大会",
     titleEn: "2023 National Block Representative Men's Rhythmic Gymnastics Team Championships",
     category: "national",
@@ -462,6 +502,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.ibara.okayama-c.ed.jp/wp/?p=30236",
   },
   {
+    id: "2023-09-30-2aa8c7",
     titleJa: "2023新体操フェスタ岐阜（第8回全日本男子新体操クラブ選手権大会・第31回全日本男子新体操社会人選手権大会）",
     titleEn: "Rhythmic Gymnastics Festa Gifu 2023 (The 8th All Japan Men's Rhythmic Gymnastics Club Championships / The 31st All Japan Men's Rhythmic Gymnastics Adult Championships)",
     category: "national",
@@ -475,6 +516,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/game?game_id=9&game_type=2",
   },
   {
+    id: "2023-09-30-b03a98",
     titleJa: "第62回北海道新体操選手権大会 兼 第41回全日本ジュニア大会予選会",
     titleEn: "The 62nd Hokkaido Rhythmic Gymnastics Championships / Qualifier for the 41st All Japan Junior Championships",
     category: "prefectural",
@@ -487,6 +529,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23senshuken-rg/23senshuken-rg.html",
   },
   {
+    id: "2023-10-01-4be4ef",
     titleJa: "2023 かささぎ杯 男子団体競技（全日本ジュニア九州予選）",
     titleEn: "2023 Kasasagi Cup Men's Team Competition (Kyushu Qualifier for All Japan Junior)",
     category: "regional",
@@ -497,6 +540,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/report/2023/10/01/post-796/",
   },
   {
+    id: "2023-10-01-b942f3",
     titleJa: "青森山田高校 男子新体操部×吹奏楽部 文化祭コラボ演技",
     titleEn: "Aomori Yamada High School Men's Rhythmic Gymnastics x Brass Band at School Festival",
     category: "performance",
@@ -508,6 +552,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/09/30/post-795/",
   },
   {
+    id: "2023-10-09-dd69b8",
     titleJa: "BLUEフェスティバル 2023",
     titleEn: "BLUE Festival 2023",
     category: "performance",
@@ -517,6 +562,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/09/06/109go/",
   },
   {
+    id: "2023-10-27-2fc2fc",
     titleJa: "第76回全日本新体操選手権大会",
     titleEn: "The 76th All Japan Rhythmic Gymnastics Championships",
     category: "national",
@@ -529,6 +575,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-rg.com/topix/2023/10/index.html#entry-003321",
   },
   {
+    id: "2023-11-03-a5b613",
     titleJa: "令和5年度 富山県高等学校新人大会（新体操）",
     titleEn: "2023 Toyama Prefectural High School Freshman Championships (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -540,6 +587,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://toyama-koutairen.jp/gymnastics/event/schedule/entry-8786.html",
   },
   {
+    id: "2023-11-04-cf564f",
     titleJa: "ONE GYMNASTICS FESTA 2023 feat. 東北キッチンカーフェス",
     titleEn: "ONE GYMNASTICS FESTA 2023 feat. Tohoku Kitchen Car Fes",
     category: "performance",
@@ -551,6 +599,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://peatix.com/us/event/3706983",
   },
   {
+    id: "2023-11-05-0ca79b",
     titleJa: "令和5年度 静岡県高等学校新人大会（新体操）",
     titleEn: "2023 Shizuoka Prefectural High School Freshman Championships (Rhythmic)",
     category: "prefectural",
@@ -561,6 +610,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11896.html",
   },
   {
+    id: "2023-11-10-7c789e",
     titleJa: "令和5年度 埼玉県高等学校新人大会 新体操（男子）",
     titleEn: "2023 Saitama Prefectural High School Freshman Championships - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -572,6 +622,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file240.pdf",
   },
   {
+    id: "2023-11-10-4a94f7",
     titleJa: "第46回北海道ジュニア新体操選手権大会",
     titleEn: "The 46th Hokkaido Junior Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -584,6 +635,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-jr-rg/23zen-jr-rg.html",
   },
   {
+    id: "2023-11-11-b0f84c",
     titleJa: "2023年 静岡県体操祭 男子新体操の部",
     titleEn: "2023 Shizuoka Prefectural Gymnastics Festival - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -596,6 +648,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://shizuoka-gym.com/kekka/report2023/RGMFestival.pdf",
   },
   {
+    id: "2023-11-11-74ff4b",
     titleJa: "国士舘大学新体操部 多摩祭演技会 2023",
     titleEn: "Kokushikan University Rhythmic Gymnastics Performance at Tama Festival 2023",
     category: "performance",
@@ -606,6 +659,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2023/11/index.html#entry-003336",
   },
   {
+    id: "2023-11-11-abf578",
     titleJa: "小林市新体操演技会 2023",
     titleEn: "Kobayashi City Rhythmic Gymnastics Performance 2023",
     category: "performance",
@@ -616,6 +670,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/gallery/2023/11/13/3-in/",
   },
   {
+    id: "2023-11-17-0da7e1",
     titleJa: "ChacottCHAMPIONSHIPS 第41回全日本ジュニア新体操選手権大会",
     titleEn: "Chacott CHAMPIONSHIPS The 41st All Japan Junior Rhythmic Gymnastics Championships",
     category: "national",
@@ -628,6 +683,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.jpn-gym.or.jp/rhythmic/event/35005/",
   },
   {
+    id: "2023-12-01-80ab46",
     titleJa: "第38回北海道高校新人大会・全国高校選抜大会予選会（新体操）",
     titleEn: "The 38th Hokkaido High School Freshman Championships / Qualifier for the All Japan High School Selection (Rhythmic)",
     category: "prefectural",
@@ -640,6 +696,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23sinjinsen/23sinjinsen.html",
   },
   {
+    id: "2023-12-03-95642e",
     titleJa: "第19回 井原新体操フェスティバル",
     titleEn: "The 19th IBARA Rhythmic Gymnastics Festival",
     category: "performance",
@@ -651,6 +708,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2023/11/29/12-7/",
   },
   {
+    id: "2023-12-09-3f9a44",
     titleJa: "令和5年度 男子新体操1種審判員認定講習会",
     titleEn: "2023 Men's Rhythmic Gymnastics Class 1 Judge Certification Course",
     category: "workshop",
@@ -663,6 +721,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.jpn-gym.or.jp/rhythmic/course/31936/",
   },
   {
+    id: "2023-12-09-db4f51",
     titleJa: "青森県立美術館 キャンドルナイト（BLUE TOKYO出演）",
     titleEn: "Aomori Museum of Art Candle Night featuring BLUE TOKYO",
     category: "performance",
@@ -673,6 +732,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/works/",
   },
   {
+    id: "2023-12-17-dcfc1e",
     titleJa: "花園大学 新体操発表会 2023",
     titleEn: "Hanazono University Rhythmic Gymnastics Recital 2023",
     category: "performance",
@@ -683,6 +743,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/gallery/2023/12/30/post-813/",
   },
   {
+    id: "2023-12-23-12b441",
     titleJa: "Rhythmic Gymnastics Festival 2023（坂出工業高校新体操部 公開演技会）",
     titleEn: "Rhythmic Gymnastics Festival 2023 (Sakaide Technical High School Open Performance)",
     category: "performance",
@@ -693,6 +754,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/gallery/2023/12/26/post-811/",
   },
   {
+    id: "2023-12-24-09ceec",
     titleJa: "KOKUSHIKAN CUP 2023",
     titleEn: "KOKUSHIKAN CUP 2023",
     category: "national",
@@ -705,6 +767,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-rg.com/topix/2023/12/index.html#entry-003358",
   },
   {
+    id: "2023-12-27-e98933",
     titleJa: "鹿児島実業高校 年末演技会 2023",
     titleEn: "Kagoshima Jitsugyo High School Year-End Performance 2023",
     category: "performance",
@@ -715,6 +778,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/gallery/2023/12/27/post-812/",
   },
   {
+    id: "2024-01-20-40cc16",
     titleJa: "テレビ信州杯 2024（新体操）",
     titleEn: "TV Shinshu Cup 2024 (Rhythmic Gymnastics)",
     category: "national",
@@ -727,6 +791,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/gallery/2024/01/27/",
   },
   {
+    id: "2024-01-28-bae9cc",
     titleJa: "BLUE KIDS「青森の四季を舞う」",
     titleEn: "BLUE KIDS: Dancing the Four Seasons of Aomori",
     category: "performance",
@@ -737,6 +802,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/gallery/2024/01/30/blue-kids/",
   },
   {
+    id: "2024-02-6bd901",
     titleJa: "新体操公演2024（NPO総合体操クラブ）",
     titleEn: "Rhythmic Gymnastics Show 2024 (NPO Sogo Taiso Club, Gifu)",
     category: "performance",
@@ -748,6 +814,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/02/22/okb-7/",
   },
   {
+    id: "2024-02-23-74ebed",
     titleJa: "FLOWER GYM FESTIVAL 2024",
     titleEn: "FLOWER GYM FESTIVAL 2024",
     category: "performance",
@@ -758,6 +825,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/02/17/post-826/",
   },
   {
+    id: "2024-02-24-7e939a",
     titleJa: "SANIX CUP 男子新体操競演会2024",
     titleEn: "SANIX CUP Men's Rhythmic Gymnastics Competition 2024",
     category: "regional",
@@ -769,6 +837,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/report/2024/02/24/22425sanix-cup2024/",
   },
   {
+    id: "2024-03-02-a7d59d",
     titleJa: "KANZAKI art GYMNASTICS Festa 2024（KAGF2024）",
     titleEn: "KANZAKI art GYMNASTICS Festa 2024 (KAGF2024)",
     category: "performance",
@@ -780,6 +849,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2024/03/17/jkkagf2024/",
   },
   {
+    id: "2024-03-19-122b06",
     titleJa: "第39回全国高等学校新体操選抜大会",
     titleEn: "The 39th All Japan High School Rhythmic Gymnastics Selection Championships",
     category: "national",
@@ -792,6 +862,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/2024/03/20/%e7%ac%ac%ef%bc%93%ef%bc%99%e5%9b%9e%e5%85%a8%e5%9b%bd%e9%ab%98%e7%ad%89%e5%ad%a6%e6%a0%a1%e6%96%b0%e4%bd%93%e6%93%8d%e9%81%b8%e6%8a%9c%e5%a4%a7%e4%bc%9a%ef%bd%9e%e5%9f%bc%e7%8e%89%ef%bd%9e%e3%80%80/",
   },
   {
+    id: "2024-03-23-cda588",
     titleJa: "国士舘大学男子新体操部 演技発表会（新潟）2024",
     titleEn: "Kokushikan University Men's Rhythmic Gymnastics Performance in Niigata 2024",
     category: "performance",
@@ -802,6 +873,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/03/index.html#entry-003404",
   },
   {
+    id: "2024-03-31-5277ca",
     titleJa: "華舞翔新体操倶楽部発表会 2024（田中涼介『復活』応援プロジェクト）",
     titleEn: "Kabusho Rhythmic Gymnastics Club Recital 2024 (Ryosuke Tanaka Comeback Support Project)",
     category: "performance",
@@ -811,6 +883,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/03/29/post-833/",
   },
   {
+    id: "2024-04-20-f2f27f",
     titleJa: "令和6年度 静岡県【中部地区】高校総体（体操競技・新体操男子）",
     titleEn: "2024 Shizuoka Central District High School Meet (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -821,6 +894,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11905.html",
   },
   {
+    id: "2024-04-20-507e99",
     titleJa: "令和6年度 静岡県【東部地区】高校総体（男子新体操）",
     titleEn: "2024 Shizuoka Eastern District High School Meet (Men's Rhythmic)",
     category: "prefectural",
@@ -831,6 +905,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11908.html",
   },
   {
+    id: "2024-04-20-fb45bc",
     titleJa: "第66回関西学生体操選手権大会（新体操の部）",
     titleEn: "The 66th Kansai Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -843,6 +918,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://kansaigymgakuren.sakura.ne.jp/pg123.html",
   },
   {
+    id: "2024-04-22-297563",
     titleJa: "令和6年度 埼玉県 関東大会県予選 新体操（男子）",
     titleEn: "2024 Saitama Prefectural Qualifier for the Kanto High School Championships - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -854,6 +930,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2024/05/R60422-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E9%96%A2%E6%9D%B1%E7%9C%8C%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C%E3%80%80%E5%80%8B%E4%BA%BA%E7%B7%8F%E5%90%88%E3%83%BB%E5%9B%A3%E4%BD%93%E7%B7%8F%E5%90%88.pdf",
   },
   {
+    id: "2024-04-29-3597e7",
     titleJa: "令和6年度 三重県高等学校春季大会「体操競技・男子新体操」",
     titleEn: "2024 Mie Prefectural High School Spring Championships (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -865,6 +942,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2725.html",
   },
   {
+    id: "2024-04-29-569a12",
     titleJa: "令和6年度 富山県高等学校春季大会 新体操",
     titleEn: "2024 Toyama Prefectural High School Spring Championships (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -876,6 +954,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://toyama-koutairen.jp/gymnastics/event/schedule/entry-8796.html",
   },
   {
+    id: "2024-05-06-3a5e1e",
     titleJa: "令和6年度 関東高等学校新体操大会 神奈川県予選会",
     titleEn: "2024 Kanagawa Prefectural Qualifier for the Kanto High School Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -886,6 +965,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://kanagawa-kotairen.asfweb.jp/gymnastics/event/schedule/entry-19884.html",
   },
   {
+    id: "2024-05-08-42b4ec",
     titleJa: "第57回東日本学生新体操選手権大会",
     titleEn: "The 57th East Japan Student Rhythmic Gymnastics Championships",
     category: "regional",
@@ -898,6 +978,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.aomori-u.ac.jp/20240529-2/",
   },
   {
+    id: "2024-05-09-1006a4",
     titleJa: "令和6年度 山梨県高等学校総合体育大会 兼 関東大会県予選（新体操）",
     titleEn: "2024 Yamanashi Prefectural High School Athletic Meet / Kanto Qualifier (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -909,6 +990,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4893.html",
   },
   {
+    id: "2024-05-12-372426",
     titleJa: "神埼ジュニア新体操クラブ オンライン演技会 2024",
     titleEn: "Kanzaki Junior Rhythmic Gymnastics Club Online Performance 2024",
     category: "performance",
@@ -920,6 +1002,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/05/12/51215/",
   },
   {
+    id: "2024-05-12-c2f543",
     titleJa: "福岡舞鶴高校 男子新体操演技会 2024",
     titleEn: "Fukuoka Maizuru High School Men's Rhythmic Gymnastics Performance 2024",
     category: "performance",
@@ -930,6 +1013,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/05/07/post-840/",
   },
   {
+    id: "2024-05-17-3378cd",
     titleJa: "令和6年度鹿児島県高等学校総合体育大会・第75回鹿児島県高等学校新体操選手権大会",
     titleEn: "2024 Kagoshima Prefectural High School Athletic Meet / The 75th Kagoshima Prefectural High School Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -942,6 +1026,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.kajitsu.ac.jp/clubreport/%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8D%E9%83%A8%E3%80%80%E4%BB%A4%E5%92%8C6%E5%B9%B4%E5%BA%A6%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%E7%B7%8F%E5%90%88%E4%BD%93/",
   },
   {
+    id: "2024-05-21-cf3845",
     titleJa: "第74回西日本学生体操選手権大会（新体操の部）",
     titleEn: "The 74th West Japan Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -954,6 +1039,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://kansaigymgakuren.sakura.ne.jp/pg123.html",
   },
   {
+    id: "2024-05-24-d3ce30",
     titleJa: "SASAKI CUP 第22回全日本新体操ユースチャンピオンシップ・第15回男子新体操団体選手権大会",
     titleEn: "SASAKI CUP The 22nd All Japan Rhythmic Gymnastics Youth Championships / The 15th Men's Rhythmic Gymnastics Team Championships",
     category: "national",
@@ -966,6 +1052,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.jpn-gym.or.jp/rhythmic/report/37394/",
   },
   {
+    id: "2024-05-26-89f8d7",
     titleJa: "令和6年度 全国高校総合体育大会神奈川県予選会 兼 県高校総合体育大会新体操大会",
     titleEn: "2024 Kanagawa Prefectural Inter-High Qualifier / Prefectural High School Athletic Meet (Rhythmic)",
     category: "prefectural",
@@ -976,6 +1063,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://kanagawa-kotairen.asfweb.jp/gymnastics/event/schedule/entry-19958.html",
   },
   {
+    id: "2024-05-31-c85ecd",
     titleJa: "令和6年度 三重県高等学校総合体育大会 兼 全国・東海総体予選〔新体操〕",
     titleEn: "2024 Mie Prefectural High School Athletic Meet / Inter-High and Tokai Qualifier (Rhythmic)",
     category: "prefectural",
@@ -987,6 +1075,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2722.html",
   },
   {
+    id: "2024-05-31-343824",
     titleJa: "令和6年度 関東高等学校体操競技・新体操大会（新体操）",
     titleEn: "2024 Kanto High School Artistic and Rhythmic Gymnastics Championships (Rhythmic)",
     category: "regional",
@@ -999,6 +1088,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/ccb68a0b2bec28676dfca9b45b177c52.pdf",
   },
   {
+    id: "2024-06-01-e96afc",
     titleJa: "令和6年度 富山県高等学校総合体育大会 新体操",
     titleEn: "2024 Toyama Prefectural High School Athletic Meet (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -1010,6 +1100,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://toyama-koutairen.jp/gymnastics/event/schedule/entry-8797.html",
   },
   {
+    id: "2024-06-01-ca71f5",
     titleJa: "第72回静岡県高等学校総合体育大会（新体操）",
     titleEn: "The 72nd Shizuoka Prefectural High School Athletic Meet (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -1020,6 +1111,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11913.html",
   },
   {
+    id: "2024-06-01-539f9d",
     titleJa: "第77回広島県高等学校総合体育大会（体操競技・新体操男子）",
     titleEn: "The 77th Hiroshima Prefectural High School Athletic Meet (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -1030,6 +1122,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://hiroshima-koutairen.jp/gymnastics/event/schedule/entry-13897.html",
   },
   {
+    id: "2024-06-02-7f9672",
     titleJa: "令和6年度 熊本県高等学校総合体育大会 新体操（インターハイ予選）",
     titleEn: "2024 Kumamoto Prefectural High School Athletic Meet - Rhythmic Gymnastics (Inter-High Qualifier)",
     category: "prefectural",
@@ -1040,6 +1133,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2024/06/03/post-844/",
   },
   {
+    id: "2024-06-08-c2f9a2",
     titleJa: "第78回近畿高等学校体操競技・新体操選手権大会（新体操）",
     titleEn: "The 78th Kinki High School Artistic and Rhythmic Gymnastics Championships (Rhythmic)",
     category: "regional",
@@ -1053,6 +1147,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/11/aab0a463b3c90ed3adb5743ff186b130.pdf",
   },
   {
+    id: "2024-06-14-251dd3",
     titleJa: "令和6年度 北信越高等学校新体操大会（北信越ブロック大会）",
     titleEn: "2024 Hokushinetsu High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1065,6 +1160,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/354c1f72b46f4f821f5413772f9f85cf.pdf",
   },
   {
+    id: "2024-06-14-c9e97b",
     titleJa: "令和6年度 埼玉県 インターハイ予選 新体操（男子）",
     titleEn: "2024 Saitama Prefectural Inter-High Qualifier - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -1076,6 +1172,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2024/06/R60614-16-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E7%B7%8F%E4%BD%93%E7%9C%8C%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C%E3%80%80%E5%80%8B%E4%BA%BA%E7%B7%8F%E5%90%88%E3%83%BB%E5%9B%A3%E4%BD%93%E7%B7%8F%E5%90%88.pdf",
   },
   {
+    id: "2024-06-14-b31ba8",
     titleJa: "第75回全九州高等学校新体操大会",
     titleEn: "The 75th All Kyushu High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1089,6 +1186,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/09/8be73506f879ac60534c8e801c1b0915.pdf",
   },
   {
+    id: "2024-06-15-f53376",
     titleJa: "令和6年度 四国高等学校新体操大会（四国ブロック大会・男子）",
     titleEn: "2024 Shikoku High School Rhythmic Gymnastics Championships (Men)",
     category: "regional",
@@ -1101,6 +1199,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/7253c0646f49209f79c2fc4b742717bb.pdf",
   },
   {
+    id: "2024-06-15-728534",
     titleJa: "第77回北海道高等学校体操競技新体操選手権大会（新体操）",
     titleEn: "The 77th Hokkaido High School Artistic and Rhythmic Gymnastics Championships (Rhythmic)",
     category: "regional",
@@ -1113,6 +1212,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-kou/24zen-kou.html",
   },
   {
+    id: "2024-06-22-443b22",
     titleJa: "令和6年度 広島県高等学校体操競技・新体操選手権大会（新体操男子）",
     titleEn: "2024 Hiroshima Prefectural High School Gymnastics Championships (Men's Rhythmic)",
     category: "prefectural",
@@ -1122,6 +1222,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://hiroshima-koutairen.jp/gymnastics/event/schedule/entry-17144.html",
   },
   {
+    id: "2024-06-22-28d650",
     titleJa: "令和6年度 第71回東海高等学校総合体育大会（新体操競技）",
     titleEn: "2024 Tokai High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1135,6 +1236,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/67d13a93b00eb7113244a5be35b2603c.pdf",
   },
   {
+    id: "2024-06-22-bb3f73",
     titleJa: "第53回東北高等学校体操競技・新体操選手権大会（新体操）",
     titleEn: "The 53rd Tohoku High School Artistic and Rhythmic Gymnastics Championships (Rhythmic)",
     category: "regional",
@@ -1147,6 +1249,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/07/bfe4446e81d43ec89493c594d7dfdd52.pdf",
   },
   {
+    id: "2024-06-23-bcddd3",
     titleJa: "令和6年度 全国高等学校新体操選手権大会 神奈川県最終予選会",
     titleEn: "2024 Kanagawa Final Qualifier for the All Japan High School Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -1157,6 +1260,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://kanagawa-kotairen.asfweb.jp/gymnastics/event/schedule/entry-19892.html",
   },
   {
+    id: "2024-06-23-48d7a2",
     titleJa: "令和6年度 山梨県新体操選手権大会",
     titleEn: "2024 Yamanashi Prefectural Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -1168,6 +1272,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4898.html",
   },
   {
+    id: "2024-06-29-421192",
     titleJa: "日本ウェルネススポーツ大学「ウェル祭」男子新体操演技会",
     titleEn: "Japan Wellness Sports University 'Well Festival' Men's Rhythmic Gymnastics Performance",
     category: "performance",
@@ -1178,6 +1283,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/06/22/-1-2-3-4/",
   },
   {
+    id: "2024-06-30-a969fc",
     titleJa: "Festival del Sole 2024（国士舘大学男子新体操部 イタリア遠征）",
     titleEn: "Festival del Sole 2024 (Kokushikan University Men's Rhythmic Gymnastics, Italy)",
     category: "international",
@@ -1189,6 +1295,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/07/index.html#entry-003510",
   },
   {
+    id: "2024-07-12-e217cf",
     titleJa: "第78回国民スポーツ大会関東ブロック大会 体操競技（新体操）",
     titleEn: "The 78th National Sports Festival Kanto Block Qualifier - Gymnastics (Rhythmic)",
     category: "regional",
@@ -1200,6 +1307,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://yamanashi-koutairen.jp/gymnastics/event/schedule/entry-3163.html",
   },
   {
+    id: "2024-07-13-44b7f8",
     titleJa: "2024 九州ブロック国民スポーツ大会（新体操）",
     titleEn: "2024 Kyushu Block Qualifier for the National Sports Festival (Rhythmic Gymnastics)",
     category: "regional",
@@ -1211,6 +1319,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2024/07/15/2024-1/",
   },
   {
+    id: "2024-07-19-a2b2fe",
     titleJa: "第31回北海道新体操大会 兼 国民スポーツ大会 新体操 北海道選手選考会",
     titleEn: "The 31st Hokkaido Rhythmic Gymnastics Competition / Hokkaido Selection for the National Sports Festival",
     category: "prefectural",
@@ -1223,6 +1332,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-rg/24zen-rg.html",
   },
   {
+    id: "2024-07-28-716542",
     titleJa: "トップクラブに学べ～インターハイシミュレーション演技会 2024",
     titleEn: "Learn from Top Clubs: Inter-High Simulation Performance 2024",
     category: "performance",
@@ -1232,6 +1342,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/07/27/post-851/",
   },
   {
+    id: "2024-07-28-1b91e7",
     titleJa: "第13回東京ジュニア男子新体操選手権大会",
     titleEn: "The 13th Tokyo Junior Men's Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -1244,6 +1355,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://totaikyou.jimdoweb.com/",
   },
   {
+    id: "2024-08-05-f21e5d",
     titleJa: "令和6年度全国高等学校総合体育大会 新体操大会（北部九州総体2024）",
     titleEn: "2024 All Japan High School Inter-High Rhythmic Gymnastics Championships (Northern Kyushu)",
     category: "national",
@@ -1257,6 +1369,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/2024/08/04/%e7%a6%8f%e5%b2%a1%e7%b7%8f%e4%bd%93%e3%80%80%e6%96%b0%e4%bd%93%e6%93%8d%e3%80%80%e3%83%81%e3%83%bc%e3%83%a01%ef%bd%9e3%e4%bd%8d%e3%83%bb%e5%80%8b%e4%ba%ba%e9%81%b8%e6%89%8b%e6%a8%a91%ef%bd%9e6/",
   },
   {
+    id: "2024-08-10-084d24",
     titleJa: "JA弘前 夏祭り（BLUE TOKYO出演）",
     titleEn: "JA Hirosaki Summer Festival featuring BLUE TOKYO",
     category: "performance",
@@ -1266,6 +1379,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/works/",
   },
   {
+    id: "2024-08-17-0a5916",
     titleJa: "井原カップ 2024（男子新体操競技大会）",
     titleEn: "Ibara Cup 2024 Men's Rhythmic Gymnastics Competition",
     category: "regional",
@@ -1278,6 +1392,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shintaisou.ibara.info/archives/news/%e4%ba%95%e5%8e%9f%e3%82%ab%e3%83%83%e3%83%97%e9%96%8b%e5%82%ac%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b-2",
   },
   {
+    id: "2024-08-27-7c8077",
     titleJa: "第76回全日本学生新体操選手権大会",
     titleEn: "The 76th All Japan Student Rhythmic Gymnastics Championships (All Japan Intercollegiate)",
     category: "national",
@@ -1290,6 +1405,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/gallery/2024/09/22/2024top3-1/",
   },
   {
+    id: "2024-09-07-630d2b",
     titleJa: "第9回全日本男子新体操クラブ選手権大会・第32回全日本男子新体操社会人選手権大会",
     titleEn: "The 9th All Japan Men's Rhythmic Gymnastics Club Championships / The 32nd All Japan Men's Rhythmic Gymnastics Adult Championships",
     category: "national",
@@ -1302,6 +1418,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/game?game_id=25&game_type=2",
   },
   {
+    id: "2024-09-14-2348e1",
     titleJa: "令和6年度 静岡県【東部地区】新人大会（新体操男子）",
     titleEn: "2024 Shizuoka Eastern District Freshman Meet (Men's Rhythmic)",
     category: "prefectural",
@@ -1312,6 +1429,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11919.html",
   },
   {
+    id: "2024-09-15-2d5adf",
     titleJa: "GYM Dream Festival 2024",
     titleEn: "GYM Dream Festival 2024",
     category: "performance",
@@ -1323,6 +1441,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/08/index.html#entry-003559",
   },
   {
+    id: "2024-09-23-1ad4b4",
     titleJa: "SAGA2024国民スポーツ大会 体操競技（新体操）少年男子",
     titleEn: "SAGA2024 National Sports Festival Rhythmic Gymnastics (Boys)",
     category: "national",
@@ -1336,6 +1455,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/game?game_id=30&game_type=2",
   },
   {
+    id: "2024-10-05-e4e1a3",
     titleJa: "第22回関東ジュニア男子新体操選手権大会",
     titleEn: "The 22nd Kanto Junior Men's Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1348,6 +1468,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-jr-rg.com/blog/2024/10/post-150.html",
   },
   {
+    id: "2024-10-05-6c98ec",
     titleJa: "第63回北海道新体操選手権大会 兼 第42回全日本ジュニア大会予選会",
     titleEn: "The 63rd Hokkaido Rhythmic Gymnastics Championships / Qualifier for the 42nd All Japan Junior Championships",
     category: "prefectural",
@@ -1360,6 +1481,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24senshuken-rg/24senshuken-rg.html",
   },
   {
+    id: "2024-10-13-301434",
     titleJa: "2024 かささぎ杯（男子）",
     titleEn: "2024 Kasasagi Cup (Men)",
     category: "regional",
@@ -1372,6 +1494,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2024/10/15/20241/",
   },
   {
+    id: "2024-10-13-3bc188",
     titleJa: "デンマーク体操チーム招待 合同演技会（国士舘大学）",
     titleEn: "Joint Performance with Danish Gymnastics Team at Kokushikan University",
     category: "international",
@@ -1382,6 +1505,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/11/index.html#entry-003624",
   },
   {
+    id: "2024-10-14-c176f7",
     titleJa: "令和6年度 静岡県【中部地区】新人大会（体操競技・新体操男子）",
     titleEn: "2024 Shizuoka Central District Freshman Meet (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -1392,6 +1516,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11922.html",
   },
   {
+    id: "2024-10-19-25f9ad",
     titleJa: "AOMORI DANCE PARTY（BLUE TOKYO出演）",
     titleEn: "AOMORI DANCE PARTY featuring BLUE TOKYO",
     category: "performance",
@@ -1401,6 +1526,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/works/",
   },
   {
+    id: "2024-10-20-7e9f89",
     titleJa: "2024体操ニッポンGALA ながのGALA",
     titleEn: "2024 Gymnastics Nippon GALA in Nagano",
     category: "performance",
@@ -1411,6 +1537,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/11/index.html#entry-003626",
   },
   {
+    id: "2024-10-20-847c66",
     titleJa: "ONE GYMNASTICS FESTA 2024 in AOMORI",
     titleEn: "ONE GYMNASTICS FESTA 2024 in AOMORI",
     category: "performance",
@@ -1422,6 +1549,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://ak-company.jp/2024/08/29/one-gymnastics-festa-2024-in-aomori/",
   },
   {
+    id: "2024-10-25-e9051c",
     titleJa: "令和6年度 埼玉県高等学校新人大会 新体操（男子）",
     titleEn: "2024 Saitama Prefectural High School Freshman Championships - Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -1433,6 +1561,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2024/10/R61025-27-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E6%96%B0%E4%BA%BA%E5%A4%A7%E4%BC%9A%E7%B5%90%E6%9E%9C.pdf",
   },
   {
+    id: "2024-10-27-cb2c4c",
     titleJa: "BLUEフェスティバル 2024",
     titleEn: "BLUE Festival 2024",
     category: "performance",
@@ -1442,6 +1571,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/10/22/blue1027/",
   },
   {
+    id: "2024-11-919f68",
     titleJa: "国士舘大学新体操部 多摩祭演技会 2024",
     titleEn: "Kokushikan University Rhythmic Gymnastics Performance at Tama Festival 2024",
     category: "performance",
@@ -1454,6 +1584,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/11/index.html#entry-003638",
   },
   {
+    id: "2024-11-02-2508b0",
     titleJa: "令和6年度 山梨県高等学校新体操新人大会 兼 1年生大会",
     titleEn: "2024 Yamanashi Prefectural High School Rhythmic Gymnastics Freshman Championships",
     category: "prefectural",
@@ -1465,6 +1596,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4894.html",
   },
   {
+    id: "2024-11-02-5a00c5",
     titleJa: "令和6年度 広島県高等学校体操競技・新体操新人大会（新体操男子）",
     titleEn: "2024 Hiroshima Prefectural High School Gymnastics Freshman Championships (Men's Rhythmic)",
     category: "prefectural",
@@ -1475,6 +1607,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://hiroshima-koutairen.jp/gymnastics/event/schedule/entry-17145.html",
   },
   {
+    id: "2024-11-03-e93aba",
     titleJa: "令和6年度 富山県高等学校新人大会 新体操",
     titleEn: "2024 Toyama Prefectural High School Freshman Championships (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -1486,6 +1619,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://toyama-koutairen.jp/gymnastics/event/schedule/entry-8798.html",
   },
   {
+    id: "2024-11-08-9366af",
     titleJa: "第39回北海道高校新人大会・全国高校選抜大会予選会（新体操）",
     titleEn: "The 39th Hokkaido High School Freshman Championships / Qualifier for the All Japan High School Selection (Rhythmic)",
     category: "prefectural",
@@ -1498,6 +1632,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24sinjinsen/24sinjinsen.html",
   },
   {
+    id: "2024-11-08-cbdef6",
     titleJa: "第77回全日本新体操選手権大会",
     titleEn: "The 77th All Japan Rhythmic Gymnastics Championships",
     category: "national",
@@ -1510,6 +1645,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-rg.com/topix/2024/11/index.html#entry-003637",
   },
   {
+    id: "2024-11-09-46b4c9",
     titleJa: "令和6年度 静岡県高等学校新人大会（男子新体操）",
     titleEn: "2024 Shizuoka Prefectural High School Freshman Championships (Men's Rhythmic)",
     category: "prefectural",
@@ -1520,6 +1656,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11927.html",
   },
   {
+    id: "2024-11-16-efaa7d",
     titleJa: "令和6年度 三重県高等学校新人大会（体操競技・男子新体操）",
     titleEn: "2024 Mie Prefectural High School Freshman Championships (Artistic / Men's Rhythmic)",
     category: "prefectural",
@@ -1532,6 +1669,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-3147.html",
   },
   {
+    id: "2024-11-16-694142",
     titleJa: "第47回北海道ジュニア新体操選手権大会",
     titleEn: "The 47th Hokkaido Junior Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -1544,6 +1682,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-jr-rg/24zen-jr-rg.html",
   },
   {
+    id: "2024-11-17-a62f08",
     titleJa: "2024 関西学生体操新人戦（新体操）",
     titleEn: "2024 Kansai Student Gymnastics Freshman Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -1554,6 +1693,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/report/2024/11/17/post-875/",
   },
   {
+    id: "2024-11-23-06bf4f",
     titleJa: "ONE GYMNASTICS FESTA 2024 in SHIROISHI",
     titleEn: "ONE GYMNASTICS FESTA 2024 in SHIROISHI",
     category: "performance",
@@ -1566,6 +1706,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/11/17/1112-1/",
   },
   {
+    id: "2024-11-24-7403e5",
     titleJa: "令和6年度 神奈川県高等学校新体操新人大会 兼 全国高等学校新体操選抜大会県予選会",
     titleEn: "2024 Kanagawa Prefectural High School Rhythmic Gymnastics Freshman Championships / Selection Qualifier",
     category: "prefectural",
@@ -1576,6 +1717,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://kanagawa-kotairen.asfweb.jp/gymnastics/event/schedule/entry-19894.html",
   },
   {
+    id: "2024-11-30-f18dfe",
     titleJa: "ONE GYMNASTICS FESTA 2024 in IBARA",
     titleEn: "ONE GYMNASTICS FESTA 2024 in IBARA",
     category: "performance",
@@ -1587,6 +1729,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/11/17/1112-1/",
   },
   {
+    id: "2024-12-01-8c0ea0",
     titleJa: "第20回 井原新体操フェスティバル",
     titleEn: "The 20th IBARA Rhythmic Gymnastics Festival",
     category: "performance",
@@ -1597,6 +1740,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/11/17/1112-1/",
   },
   {
+    id: "2024-12-03-b577d7",
     titleJa: "Gymmotion ドイツツアー（国士舘大学男子新体操部 ドイツ遠征）",
     titleEn: "Gymmotion Tour in Germany (Kokushikan University Men's Rhythmic Gymnastics)",
     category: "international",
@@ -1608,6 +1752,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/12/index.html#entry-003658",
   },
   {
+    id: "2024-12-06-254d17",
     titleJa: "ChacottCHAMPIONSHIPS 第42回全日本ジュニア新体操選手権大会",
     titleEn: "Chacott CHAMPIONSHIPS The 42nd All Japan Junior Rhythmic Gymnastics Championships",
     category: "national",
@@ -1619,6 +1764,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/11/17/1112-1/",
   },
   {
+    id: "2024-12-14-b605d1",
     titleJa: "坂出フェスティバル 2024（Rhythmic Gymnastics Festival 2024 坂出工業高校新体操部公開演技会）",
     titleEn: "Sakaide Rhythmic Gymnastics Festival 2024 (Sakaide Technical High School Open Performance)",
     category: "performance",
@@ -1629,6 +1775,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/11/17/1112-1/",
   },
   {
+    id: "2024-12-21-a665da",
     titleJa: "令和6年度 新体操男子審判技術研修会（義務）",
     titleEn: "2024 Men's Rhythmic Gymnastics Judges' Technical Seminar (Mandatory)",
     category: "workshop",
@@ -1640,6 +1787,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.jpn-gym.or.jp/rhythmic/notice/37715/",
   },
   {
+    id: "2024-12-21-f3fbc9",
     titleJa: "花園大学 新体操発表会 2024",
     titleEn: "Hanazono University Rhythmic Gymnastics Recital 2024",
     category: "performance",
@@ -1650,6 +1798,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/11/19/post-876/",
   },
   {
+    id: "2024-12-26-a02c3a",
     titleJa: "KOKUSHIKAN CUP 2024",
     titleEn: "KOKUSHIKAN CUP 2024",
     category: "national",
@@ -1661,6 +1810,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-rg.com/topix/2024/12/index.html#entry-003677",
   },
   {
+    id: "2024-12-29-64f43f",
     titleJa: "FEUERWERK DER TURNKUNST - GAIA TOURNEE 2025（BLUE TOKYO出演・ドイツ国内ツアー）",
     titleEn: "FEUERWERK DER TURNKUNST - GAIA Tour 2025 featuring BLUE TOKYO (Germany)",
     category: "international",
@@ -1672,6 +1822,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/works/",
   },
   {
+    id: "2025-02-08-54876e",
     titleJa: "KANZAKI art GYMNASTICS Festa 2025（KAGF2025）",
     titleEn: "KANZAKI art GYMNASTICS Festa 2025 (KAGF2025)",
     category: "performance",
@@ -1683,6 +1834,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/report/2025/02/09/kagf12/",
   },
   {
+    id: "2025-02-15-a79e90",
     titleJa: "テレビ信州杯 2025（新体操）",
     titleEn: "TV Shinshu Cup 2025 (Rhythmic Gymnastics)",
     category: "national",
@@ -1695,6 +1847,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymlove.net/rgl/topics/gallery/2025/03/",
   },
   {
+    id: "2025-02-23-4e7708",
     titleJa: "SANIX CUP 男子新体操競演会2025",
     titleEn: "SANIX CUP Men's Rhythmic Gymnastics Competition 2025",
     category: "regional",
@@ -1707,6 +1860,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2025/01/27/sanix-cup-1/",
   },
   {
+    id: "2025-02-24-ca6e76",
     titleJa: "阿久比高校新体操部 演技発表会 2025",
     titleEn: "Agui High School Rhythmic Gymnastics Recital 2025",
     category: "performance",
@@ -1716,6 +1870,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2025/02/24/3-7/",
   },
   {
+    id: "2025-03-02-9fcce5",
     titleJa: "Bリーグ 宇都宮ブレックス ハーフタイムショー（国士舘大学男子新体操部）",
     titleEn: "B.League Utsunomiya Brex Halftime Show (Kokushikan University Men's Rhythmic Gymnastics)",
     category: "performance",
@@ -1726,6 +1881,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2025/03/index.html#entry-003719",
   },
   {
+    id: "2025-03-21-19e65a",
     titleJa: "第40回全国高等学校新体操選抜大会",
     titleEn: "The 40th All Japan High School Rhythmic Gymnastics Selection Championships",
     category: "national",
@@ -1738,6 +1894,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/2025/03/24/%e7%ac%ac40%e5%9b%9e%e5%85%a8%e5%9b%bd%e9%ab%98%e7%ad%89%e5%ad%a6%e6%a0%a1%e6%96%b0%e4%bd%93%e6%93%8d%e9%81%b8%e6%8a%9c%e5%a4%a7%e4%bc%9a%e3%80%80%e9%a6%99%e5%b7%9d%e3%80%80%e7%94%b7%e5%ad%90%e5%85%a5/",
   },
   {
+    id: "2025-03-23-fd91a6",
     titleJa: "国士舘大学男子新体操部 演技発表会（新潟）2025",
     titleEn: "Kokushikan University Men's Rhythmic Gymnastics Performance in Niigata 2025",
     category: "performance",
@@ -1749,6 +1906,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-rg.com/topix/2025/03/index.html#entry-003743",
   },
   {
+    id: "2025-04-08-f852a3",
     titleJa: "スペイン 全国ベース個人選手権 男子新体操 2025（Nacional Base Individual Masculino GR）",
     titleEn: "Nacional Base Individual Masculino GR 2025 (Spain)",
     category: "international",
@@ -1761,6 +1919,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.fbgimnasia.eus/wp-content/uploads/2025/04/2025-RFEG-Calendario-provisional.pdf",
   },
   {
+    id: "2025-04-19-804897",
     titleJa: "第67回関西学生体操選手権大会（新体操の部）",
     titleEn: "The 67th Kansai Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -1774,6 +1933,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/923/RG-67th-kansai-seisekihyou.pdf",
   },
   {
+    id: "2025-04-19-6fe4e7",
     titleJa: "第72回東海北信越学生体操選手権大会（新体操の部）",
     titleEn: "The 72nd Tokai-Hokushinetsu Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -1787,6 +1947,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.toukaihokusinetu-gymren.com/%E6%88%90%E7%B8%BE%E8%A1%A8/",
   },
   {
+    id: "2025-04-23-7fa5e8",
     titleJa: "令和7年度 関東大会埼玉県予選（新体操男子）",
     titleEn: "Saitama Prefectural Qualifier for Kanto High School Championships 2025 (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -1798,6 +1959,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/06/R7-男子新体操C3関東県予選結果　個人総合・団体総合.pdf",
   },
   {
+    id: "2025-05-01-7f3358",
     titleJa: "スペイン 男子新体操カップ 2025（Copa de España Masculina GR）",
     titleEn: "Copa de España Masculina GR 2025 (Spain)",
     category: "international",
@@ -1810,6 +1972,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://fgcyl.com/events/copabase-2025-876-868-115/",
   },
   {
+    id: "2025-05-02-25ffdd",
     titleJa: "第45回九州学生新体操選手権大会",
     titleEn: "The 45th Kyushu Student Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1823,6 +1986,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://kyusyugakuren.net/_src/89168098/obj20250503161944972097.pdf",
   },
   {
+    id: "2025-05-03-192a89",
     titleJa: "第58回東日本学生新体操選手権大会",
     titleEn: "The 58th East Japan Student Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1834,6 +1998,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://r4.quicca.com/~kawai/mrgcal/kako.html",
   },
   {
+    id: "2025-05-06-6e8b4b",
     titleJa: "関東高校県予選会 兼 国体予選（千葉県・男子新体操）2025",
     titleEn: "Chiba Prefectural Qualifier for Kanto High School / National Sports Festival 2025 (Men's Rhythmic)",
     category: "prefectural",
@@ -1846,6 +2011,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2025/03/79e5c55bb68f243fc51860235508d974.pdf",
   },
   {
+    id: "2025-05-09-139e97",
     titleJa: "第60回群馬県高等学校総合体育大会 群馬県体操大会（新体操男子）兼 国民スポーツ大会予選会",
     titleEn: "The 60th Gunma Prefectural High School Athletic Meet – Rhythmic Gymnastics (Men) / National Sports Festival Qualifier",
     category: "prefectural",
@@ -1856,6 +2022,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://gunma-sports.or.jp/about/eventlist/2025/12_gymnastics.pdf",
   },
   {
+    id: "2025-05-16-f4ddcc",
     titleJa: "令和7年度 京都府高等学校総合体育大会 体操競技・新体操の部 兼 全国高校総体 南部ブロック予選会",
     titleEn: "2025 Kyoto Prefectural High School Athletic Meet – Gymnastics & Rhythmic Gymnastics",
     category: "prefectural",
@@ -1868,6 +2035,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kyotogym.jp/content/files/2025/Result/koukousoutai/RG_m.pdf",
   },
   {
+    id: "2025-05-23-cd726f",
     titleJa: "第23回全日本新体操ユースチャンピオンシップ・第16回男子新体操団体選手権大会",
     titleEn: "The 23rd All Japan Rhythmic Gymnastics Youth Championships / The 16th Men's Rhythmic Gymnastics Group Championships",
     category: "national",
@@ -1879,6 +2047,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://r4.quicca.com/~kawai/mrgcal/kako.html",
   },
   {
+    id: "2025-05-27-e9b106",
     titleJa: "第75回西日本学生体操選手権大会（新体操の部）",
     titleEn: "The 75th West Japan Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -1891,6 +2060,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://drive.google.com/file/d/1VkOneACAWgwW7tQbmZcib5YZezOM6fO4/view",
   },
   {
+    id: "2025-05-30-49ca03",
     titleJa: "令和7年度 京都府高等学校体操競技・新体操春季選手権大会 兼 全国高校総体京都府予選会・国スポ選考会／第9回京都ジュニア男子新体操選手権大会",
     titleEn: "2025 Kyoto High School Spring Championships / The 9th Kyoto Junior Men's Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -1903,6 +2073,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kyotogym.jp/content/files/2025/Result/IHyosen/rg_3.pdf",
   },
   {
+    id: "2025-05-30-3c44a9",
     titleJa: "令和7年度 第63回佐賀県高等学校総合体育大会 新体操競技",
     titleEn: "The 63rd Saga Prefectural High School Athletic Meet – Rhythmic Gymnastics",
     category: "prefectural",
@@ -1914,6 +2085,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.kachispo-saga.com/sbb2l-vt29",
   },
   {
+    id: "2025-06-07-03d6b1",
     titleJa: "第79回近畿高等学校新体操選手権大会",
     titleEn: "The 79th Kinki High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1927,6 +2099,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://nara-koutairen.asfweb.jp/archives/452/202506/R7近畿高校男子団体総合結果.pdf",
   },
   {
+    id: "2025-06-07-f29ac9",
     titleJa: "関東高等学校体操競技・新体操大会（第74回・茨城大会）新体操",
     titleEn: "The 74th Kanto High School Gymnastics & Rhythmic Gymnastics Championships (Ibaraki)",
     category: "regional",
@@ -1939,6 +2112,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/3-2_RG_kanto_block_result.pdf",
   },
   {
+    id: "2025-06-08-ea2ddb",
     titleJa: "令和7年度 愛知県新体操選手権大会（男子）",
     titleEn: "2025 Aichi Prefectural Rhythmic Gymnastics Championships (Men)",
     category: "prefectural",
@@ -1951,6 +2125,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://drive.google.com/file/d/1_u144xZBBAqPM_GHfyb2QnFevpF5o5SC/view",
   },
   {
+    id: "2025-06-11-6647f1",
     titleJa: "千葉県高等学校総合体育大会（インハイ予選）男子新体操 2025",
     titleEn: "Chiba Prefectural High School Athletic Meet (Inter-High Qualifier) – Men's Rhythmic 2025",
     category: "prefectural",
@@ -1963,6 +2138,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2025/03/79e5c55bb68f243fc51860235508d974.pdf",
   },
   {
+    id: "2025-06-13-e2cc72",
     titleJa: "2025年度 四国高等学校選手権大会 新体操",
     titleEn: "2025 Shikoku High School Championships – Rhythmic Gymnastics",
     category: "regional",
@@ -1976,6 +2152,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/0353bb3793df6c053a8c19f439af9b5d.pdf",
   },
   {
+    id: "2025-06-13-a25971",
     titleJa: "第66回中国高等学校体操競技・新体操選手権大会（新体操）",
     titleEn: "The 66th Chugoku High School Gymnastics & Rhythmic Gymnastics Championships",
     category: "regional",
@@ -1988,6 +2165,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/7-2_RG_chugoku_block_result.pdf",
   },
   {
+    id: "2025-06-13-a74266",
     titleJa: "第78回北海道高等学校体操競技・新体操選手権大会（全道高体連大会）",
     titleEn: "The 78th Hokkaido High School Gymnastics & Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2000,6 +2178,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-kou/25zen-kou.html",
   },
   {
+    id: "2025-06-14-5f5223",
     titleJa: "群馬県高等学校選手権大会 兼 全国高校総体県予選会（新体操男子）",
     titleEn: "Gunma Prefectural High School Championships / Inter-High Qualifier (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2010,6 +2189,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://gunma-sports.or.jp/about/eventlist/2025/12_gymnastics.pdf",
   },
   {
+    id: "2025-06-18-544868",
     titleJa: "スペイン 男子新体操個人選手権 2025（Campeonato de España Individual Masculino GR）",
     titleEn: "Campeonato de España Masculino Divina Seguros GR 2025 (Spain)",
     category: "international",
@@ -2024,6 +2204,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://rfegonline.com/grmas/S%C3%A9nior/ARO/393",
   },
   {
+    id: "2025-06-18-839ba9",
     titleJa: "令和7年度 全九州高等学校体育大会 新体操競技",
     titleEn: "2025 All Kyushu High School Athletic Meet – Rhythmic Gymnastics",
     category: "regional",
@@ -2037,6 +2218,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/8-2_RG_kyushu_block_result.pdf",
   },
   {
+    id: "2025-06-20-2f4536",
     titleJa: "北信越高等学校体育大会 新体操（2025）",
     titleEn: "Hokushinetsu High School Athletic Meet – Rhythmic Gymnastics 2025",
     category: "regional",
@@ -2049,6 +2231,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/4-2_RG_hokushinetsu_block_result.pdf",
   },
   {
+    id: "2025-06-21-e5e6ba",
     titleJa: "第54回東北高等学校体操競技・新体操選手権大会（新体操）",
     titleEn: "The 54th Tohoku High School Gymnastics & Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2061,6 +2244,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/abd697a4ccf6cc0c51b1fa0ce4483338.pdf",
   },
   {
+    id: "2025-06-21-c032ee",
     titleJa: "群馬県男子新体操大会 兼 関東ジュニア男子新体操予選会",
     titleEn: "Gunma Prefectural Men's Rhythmic Gymnastics Meet / Kanto Junior Qualifier",
     category: "prefectural",
@@ -2071,6 +2255,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://gunma-sports.or.jp/about/eventlist/2025/12_gymnastics.pdf",
   },
   {
+    id: "2025-06-22-43e4ec",
     titleJa: "令和7年度 東海高等学校総合体育大会 新体操",
     titleEn: "2025 Tokai High School Athletic Meet – Rhythmic Gymnastics",
     category: "regional",
@@ -2083,6 +2268,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/5-2_RG_tokai_block_result.pdf",
   },
   {
+    id: "2025-07-06-200660",
     titleJa: "国スポ2025 四国ブロック予選会（新体操 少年男子）",
     titleEn: "National Sports Festival 2025 Shikoku Block Qualifier (Rhythmic Gymnastics, Boys)",
     category: "regional",
@@ -2093,6 +2279,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://tks-p-gym.org/2025/07/%E5%9B%BD%E3%82%B9%E3%83%9D%EF%BC%92%EF%BC%90%EF%BC%92%EF%BC%95%E5%9B%9B%E5%9B%BD%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E4%BA%88%E9%81%B8%E4%BC%9A/",
   },
   {
+    id: "2025-07-11-74868d",
     titleJa: "第79回国民スポーツ大会 中国ブロック大会（新体操 少年男子）",
     titleEn: "The 79th National Sports Festival Chugoku Block Qualifier (Rhythmic Gymnastics, Boys)",
     category: "regional",
@@ -2104,6 +2291,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.sports-tottori.com/wordpress/wp-content/uploads/2025/05/f4acf0042174238b0cf8f41622a04e8b.pdf",
   },
   {
+    id: "2025-07-11-47ab83",
     titleJa: "第79回国民スポーツ大会関東ブロック大会（新体操）",
     titleEn: "The 79th National Sports Festival Kanto Block Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -2116,6 +2304,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://gunma-sports.or.jp/about/eventlist/2025/12_gymnastics.pdf",
   },
   {
+    id: "2025-07-12-4986fb",
     titleJa: "令和7年度東北総合スポーツ大会（国民スポーツ大会東北ブロック）体操競技・新体操・トランポリン大会",
     titleEn: "2025 Tohoku General Sports Festival (National Sports Festival Tohoku Block) – Gymnastics, Rhythmic Gymnastics & Trampoline",
     category: "regional",
@@ -2127,6 +2316,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www7a.biglobe.ne.jp/~iwategym/",
   },
   {
+    id: "2025-07-12-5e6e89",
     titleJa: "第46回北信越国民スポーツ大会（新体操）",
     titleEn: "The 46th Hokushinetsu National Sports Festival Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -2139,6 +2329,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.toyama-sports.or.jp/pdf/hokushinetu/46th/kekka/08_shin_syoudandantai_fin.pdf",
   },
   {
+    id: "2025-07-13-fc1b60",
     titleJa: "令和7年度 愛知県ジュニア新体操選手権大会（男子）",
     titleEn: "2025 Aichi Prefectural Junior Rhythmic Gymnastics Championships (Men)",
     category: "prefectural",
@@ -2151,6 +2342,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://drive.google.com/file/d/1FhqnrZukyMv26bpf-01zTQhKaJnpEkDg/view",
   },
   {
+    id: "2025-07-19-4f3c77",
     titleJa: "第32回北海道新体操大会 兼 国民スポーツ大会 新体操 北海道選手選考会",
     titleEn: "The 32nd Hokkaido Rhythmic Gymnastics Meet / National Sports Festival Hokkaido Selection",
     category: "prefectural",
@@ -2163,6 +2355,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-rg/25zen-rg.html",
   },
   {
+    id: "2025-07-19-c89b37",
     titleJa: "第38回県民総合スポーツ大会 兼 第33回埼玉県高等学校新体操選手権大会（学年別・男子）",
     titleEn: "The 33rd Saitama Prefectural High School Rhythmic Gymnastics Championships (by grade, Men)",
     category: "prefectural",
@@ -2173,6 +2366,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/07/R7-県新体操選手権大会-男子結果.pdf",
   },
   {
+    id: "2025-07-21-391ff3",
     titleJa: "国民スポーツ大会 第46回東海ブロック大会（新体操）",
     titleEn: "The 46th National Sports Festival Tokai Block Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -2182,6 +2376,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.aichi-sports.or.jp/kokutai/toukai_data/46tokaiplan.pdf",
   },
   {
+    id: "2025-08-02-eeb2c1",
     titleJa: "第48回京都府民総合体育大会 体操競技・新体操選手権大会（新体操）",
     titleEn: "The 48th Kyoto Prefectural Citizens' Sports Festival – Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -2194,6 +2389,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kyotogym.jp/content/files/2025/Result/fumin/rg_m_dantai.pdf",
   },
   {
+    id: "2025-08-03-cc8451",
     titleJa: "第14回東京ジュニア男子新体操大会",
     titleEn: "The 14th Tokyo Junior Men's Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -2204,6 +2400,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-jr-rg.com/blog/2025/08/2025.html",
   },
   {
+    id: "2025-08-08-914431",
     titleJa: "令和7年度全国高等学校総合体育大会「開け未来の扉 中国総体 2025」新体操大会",
     titleEn: "2025 All Japan Inter-High School Championships (Inter-High) Rhythmic Gymnastics",
     category: "national",
@@ -2217,6 +2414,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/game?game_id=32&game_type=2",
   },
   {
+    id: "2025-08-17-5d94e5",
     titleJa: "第55回東海ジュニア体操競技・新体操選手権大会",
     titleEn: "The 55th Tokai Junior Gymnastics & Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2227,6 +2425,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.city.fuji.shizuoka.jp/1015400000/p007717.html",
   },
   {
+    id: "2025-08-23-56de02",
     titleJa: "第17回 井原カップ 男子新体操競技大会",
     titleEn: "The 17th Ibara Cup Men's Rhythmic Gymnastics Competition",
     category: "regional",
@@ -2239,6 +2438,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shintaisou.ibara.info/archives/221",
   },
   {
+    id: "2025-08-25-a88467",
     titleJa: "第77回全日本学生新体操選手権大会（インカレ）",
     titleEn: "The 77th All Japan Student Rhythmic Gymnastics Championships (All Japan Intercollegiate)",
     category: "national",
@@ -2252,6 +2452,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymgakurenn.noor.jp/wp-content/uploads/2025/08/2025　新体操　成績表.pdf",
   },
   {
+    id: "2025-09-06-515d2e",
     titleJa: "わたSHIGA輝く国スポ2025 第79回国民スポーツ大会 新体操競技",
     titleEn: "The 79th National Sports Festival (Shiga 2025) Rhythmic Gymnastics",
     category: "national",
@@ -2265,6 +2466,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/result/37/2/2/114/1",
   },
   {
+    id: "2025-09-13-b65923",
     titleJa: "第64回北海道新体操選手権大会 兼 全日本ジュニア新体操選手権大会 北海道予選会",
     titleEn: "The 64th Hokkaido Rhythmic Gymnastics Championships / Hokkaido Qualifier for All Japan Junior Championships",
     category: "prefectural",
@@ -2277,6 +2479,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25senshuken-rg/25senshuken-rg.html",
   },
   {
+    id: "2025-09-19-8a4f9e",
     titleJa: "第10回全日本男子新体操クラブ選手権大会・第33回全日本男子新体操社会人選手権大会",
     titleEn: "The 10th All Japan Men's Rhythmic Gymnastics Club Championships / The 33rd All Japan Men's Rhythmic Gymnastics Senior (Adult) Championships",
     category: "national",
@@ -2289,6 +2492,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/game?game_id=40&game_type=2",
   },
   {
+    id: "2025-09-28-85110f",
     titleJa: "第43回全日本ジュニア新体操選手権大会 東北予選会",
     titleEn: "Tohoku Qualifier for the 43rd All Japan Junior Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2297,6 +2501,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www7a.biglobe.ne.jp/~iwategym/",
   },
   {
+    id: "2025-10-04-2f328e",
     titleJa: "令和7年度 近畿ジュニア新体操選手権大会（男子の部）",
     titleEn: "2025 Kinki Junior Rhythmic Gymnastics Championships (Men)",
     category: "regional",
@@ -2309,6 +2514,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kyotogym.jp/content/files/2025/Result/kinnkijr_RG_m/kiroku.pdf",
   },
   {
+    id: "2025-10-04-ff2950",
     titleJa: "第23回北信越ジュニア新体操男子選手権大会",
     titleEn: "The 23rd Hokushinetsu Junior Men's Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2321,6 +2527,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.niigata-gym.jp/main/files/2025_hokushinetsuJr_rg_m.pdf",
   },
   {
+    id: "2025-10-04-e1c43b",
     titleJa: "第23回関東ジュニア男子新体操選手権大会",
     titleEn: "The 23rd Kanto Junior Men's Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2332,6 +2539,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-jr-rg.com/blog/2025/10/post-151.html",
   },
   {
+    id: "2025-10-18-179649",
     titleJa: "BLUE TOKYO 出演「青森県立七戸高校創立100周年記念式典アトラクション」",
     titleEn: "BLUE TOKYO at Shichinohe High School 100th Anniversary Ceremony",
     category: "performance",
@@ -2343,6 +2551,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/%e3%80%90%e5%87%ba%e6%bc%94%e6%83%85%e5%a0%b1%e3%80%91%e9%9d%92%e6%a3%ae%e7%9c%8c%e7%ab%8b%e4%b8%83%e6%88%b8%e9%ab%98%e6%a0%a1%e5%89%b5%e7%ab%8b100%e5%91%a8%e5%b9%b4%e8%a8%98%e5%bf%b5%e5%bc%8f/",
   },
   {
+    id: "2025-10-18-869517",
     titleJa: "YOUR FES 2025（国士舘大学男子新体操部 出演）",
     titleEn: "YOUR FES 2025 (featuring Kokushikan University Men's Rhythmic Gymnastics Club)",
     category: "performance",
@@ -2353,6 +2562,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2025/10/your-fes.html",
   },
   {
+    id: "2025-10-18-a3064e",
     titleJa: "山形県高等学校新人大会（新体操）",
     titleEn: "Yamagata Prefectural High School Freshman Meet (Rhythmic Gymnastics) 2025",
     category: "prefectural",
@@ -2363,6 +2573,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.sakataminami-h.ed.jp/club1/rhythmicgymnastics/",
   },
   {
+    id: "2025-10-18-d4ee33",
     titleJa: "第48回北海道ジュニア新体操選手権大会",
     titleEn: "The 48th Hokkaido Junior Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -2375,6 +2586,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-jr-rg/25zen-jr-rg.html",
   },
   {
+    id: "2025-10-26-9052d4",
     titleJa: "BLUE TOKYO 出演「六ヶ所村50周年イベント」",
     titleEn: "BLUE TOKYO at Rokkasho Village 50th Anniversary Event",
     category: "performance",
@@ -2386,6 +2598,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://bluetokyo.jp/%e3%80%90%e5%87%ba%e6%bc%94%e6%83%85%e5%a0%b1%e3%80%91%e5%85%ad%e3%83%b6%e6%89%80%e6%9d%9150%e5%91%a8%e5%b9%b4%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88/",
   },
   {
+    id: "2025-10-31-cf5e7a",
     titleJa: "令和7年度 京都府高等学校体操競技・新体操新人選手権大会 兼 全国高校選抜大会京都府予選会",
     titleEn: "2025 Kyoto High School Freshman Championships / National Selection Qualifier",
     category: "prefectural",
@@ -2398,6 +2611,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kyotogym.jp/content/files/2025/Result/koukousinzin/dantai.pdf",
   },
   {
+    id: "2025-10-31-c19b15",
     titleJa: "令和7年度 埼玉県高等学校新体操新人大会（男子）",
     titleEn: "2025 Saitama Prefectural High School Rhythmic Gymnastics Freshman Meet (Men)",
     category: "prefectural",
@@ -2410,6 +2624,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/11/R7-男子新体操C3新人大会.pdf",
   },
   {
+    id: "2025-11-01-331702",
     titleJa: "第40回北海道高校新人大会・全国高校選抜大会予選会（新体操）",
     titleEn: "The 40th Hokkaido High School Freshman Meet / National Selection Qualifier (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2422,6 +2637,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25sinjinsen/25sinjinsen.html",
   },
   {
+    id: "2025-11-03-1b07c7",
     titleJa: "千葉県高等学校新人体育大会 男子新体操 2025",
     titleEn: "Chiba Prefectural High School Freshman Meet – Men's Rhythmic 2025",
     category: "prefectural",
@@ -2434,6 +2650,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2025/03/79e5c55bb68f243fc51860235508d974.pdf",
   },
   {
+    id: "2025-11-07-e25cce",
     titleJa: "第78回全日本新体操選手権大会",
     titleEn: "The 78th All Japan Rhythmic Gymnastics Championships",
     category: "national",
@@ -2447,6 +2664,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://jpn-gym.jp/wp-content/uploads/2025/11/1a4d1ba69541aee1a7ac0a90cf3397fe.pdf",
   },
   {
+    id: "2025-11-16-7b4bdf",
     titleJa: "国士舘大学 多摩祭 男子新体操部演技会（2025）",
     titleEn: "Kokushikan University Tama Festival – Men's Rhythmic Gymnastics Club Performance 2025",
     category: "performance",
@@ -2458,6 +2676,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://r4.quicca.com/~kawai/mrgcal/kako.html",
   },
   {
+    id: "2025-11-21-7d5146",
     titleJa: "第33回東北高等学校新体操選抜大会",
     titleEn: "The 33rd Tohoku High School Rhythmic Gymnastics Selection Championships",
     category: "regional",
@@ -2469,6 +2688,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.sakataminami-h.ed.jp/club1/rhythmicgymnastics/",
   },
   {
+    id: "2025-11-22-c94854",
     titleJa: "第57回関西学生体操新人選手権大会・2025年度関西学生体操交流大会（新体操の部）",
     titleEn: "The 57th Kansai Student Gymnastics Freshman Championships / 2025 Kansai Student Gymnastics Exchange Meet (Rhythmic Gymnastics)",
     category: "regional",
@@ -2482,6 +2702,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/966/RG%2057th%20shinnjinnkouryuu%20result.pdf",
   },
   {
+    id: "2025-11-28-f69965",
     titleJa: "Chacott CHAMPIONSHIPS 第43回全日本ジュニア新体操選手権大会",
     titleEn: "Chacott Championships The 43rd All Japan Junior Rhythmic Gymnastics Championships",
     category: "national",
@@ -2495,6 +2716,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://jpn-gym.jp/wp-content/uploads/2025/11/2025rgjr_result.pdf",
   },
   {
+    id: "2025-11-28-b9fe6e",
     titleJa: "スペイン 男子新体操ベース個人カップ 2025（Copa Base Individual Masculina GR）",
     titleEn: "Copa Base Individual Masculina GR 2025 (Spain)",
     category: "international",
@@ -2509,6 +2731,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.fbgimnasia.eus/wp-content/uploads/2025/04/2025-RFEG-Calendario-provisional.pdf",
   },
   {
+    id: "2025-12-07-a4ae57",
     titleJa: "井原新体操フェスティバル2025（第20回）",
     titleEn: "Ibara Rhythmic Gymnastics Festival 2025 (20th)",
     category: "performance",
@@ -2520,6 +2743,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://ibara.info/2025/12/02/%E3%80%9012-7%E6%97%A5%E3%80%91%E4%BA%95%E5%8E%9F%E6%96%B0%E4%BD%93%E6%93%8D%E3%83%95%E3%82%A7%E3%82%B9%E3%83%86%E3%82%A3%E3%83%90%E3%83%AB2025/",
   },
   {
+    id: "2025-12-07-edab65",
     titleJa: "群馬県男子新体操選手権大会",
     titleEn: "Gunma Prefectural Men's Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -2530,6 +2754,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://gunma-sports.or.jp/about/eventlist/2025/12_gymnastics.pdf",
   },
   {
+    id: "2025-12-07-22545e",
     titleJa: "群馬県高等学校新人大会（新体操男子）",
     titleEn: "Gunma Prefectural High School Freshman Meet (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2540,6 +2765,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://gunma-sports.or.jp/about/eventlist/2025/12_gymnastics.pdf",
   },
   {
+    id: "2026-02-b5a613",
     titleJa: "KANZAKI ART GYMNASTICS FESTA 2026（KAGF2026）",
     titleEn: "Kanzaki Art Gymnastics Festa 2026 (KAGF2026)",
     category: "performance",
@@ -2551,6 +2777,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://x.com/megu_sakuranbo/status/2022857871277555741",
   },
   {
+    id: "2026-02-22-f3c864",
     titleJa: "SANIX CUP 男子新体操競演会2026",
     titleEn: "SANIX CUP Men's Rhythmic Gymnastics Showcase 2026",
     category: "national",
@@ -2563,6 +2790,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://prtimes.jp/main/html/rd/p/000000137.000025581.html",
   },
   {
+    id: "2026-02-23-a11b5c",
     titleJa: "千葉県 2種・3種審判認定講習会（男子新体操）",
     titleEn: "Chiba Men's Rhythmic Gymnastics Judge Certification Course (Class 2 & 3)",
     category: "workshop",
@@ -2575,6 +2803,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2025/03/79e5c55bb68f243fc51860235508d974.pdf",
   },
   {
+    id: "2026-03-01-2b08a0",
     titleJa: "OKB体操クラブ新体操公演2026",
     titleEn: "OKB Gymnastics Club Rhythmic Gymnastics Performance 2026",
     category: "performance",
@@ -2585,6 +2814,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-03-08-9106ab",
     titleJa: "国士舘大学男子新体操部 演技発表会（新潟 2026）",
     titleEn: "Kokushikan University Men's Rhythmic Gymnastics Club Performance in Niigata 2026",
     category: "performance",
@@ -2596,6 +2826,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-rg.com/topix/2026/01/post-527.html",
   },
   {
+    id: "2026-03-20-32adc3",
     titleJa: "第41回全国高等学校新体操選抜大会",
     titleEn: "The 41st All Japan High School Rhythmic Gymnastics Selection Championships",
     category: "national",
@@ -2609,6 +2840,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://jpn-gym.or.jp/wp-content/uploads/2026/03/R_20260321_0322_HS_Senbatsu.pdf",
   },
   {
+    id: "2026-03-20-5b41e4",
     titleJa: "阿久比高校・阿久比新体操クラブ 第7回演技発表会",
     titleEn: "Agui High School & Agui Rhythmic Gymnastics Club 7th Performance",
     category: "performance",
@@ -2619,6 +2851,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-03-22-9ef5f4",
     titleJa: "UGB vol.3",
     titleEn: "UGB vol.3",
     category: "performance",
@@ -2629,6 +2862,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-03-29-11a6f2",
     titleJa: "第22回 華舞翔新体操倶楽部 発表会",
     titleEn: "The 22nd Kabuto Rhythmic Gymnastics Club Recital",
     category: "performance",
@@ -2639,6 +2873,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-04-04-d9c7cf",
     titleJa: "飯山総合運動公園体育館 こけら落とし記念イベント",
     titleEn: "Iiyama Sports Park Gymnasium Opening Commemorative Event",
     category: "performance",
@@ -2649,6 +2884,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-04-14-317f62",
     titleJa: "スペイン 全国ベース個人選手権 男子新体操 2026（Nacional Base Individual Masculino GR）",
     titleEn: "Nacional Base Individual Masculino GR 2026 (Spain)",
     category: "international",
@@ -2662,6 +2898,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.fexgimnasia.es/wp-content/uploads/2025/12/Calendario-Nacional-provisional-2026.pdf",
   },
   {
+    id: "2026-04-18-ec555c",
     titleJa: "第73回東海北信越学生体操選手権大会（新体操の部）",
     titleEn: "The 73rd Tokai-Hokushinetsu Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -2674,6 +2911,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-04-25-60e260",
     titleJa: "第46回九州学生新体操選手権大会",
     titleEn: "The 46th Kyushu Student Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2687,6 +2925,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.spo.fukuoka-u.ac.jp/match-results/6713",
   },
   {
+    id: "2026-04-25-2e6ae6",
     titleJa: "第68回関西学生体操選手権大会（新体操の部）",
     titleEn: "The 68th Kansai Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -2700,6 +2939,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/997/RG%2068th%20kannsai%20seisekihyou.pdf",
   },
   {
+    id: "2026-05-01-94f01a",
     titleJa: "CLARO 2026",
     titleEn: "CLARO 2026",
     category: "performance",
@@ -2710,6 +2950,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-05-01-364948",
     titleJa: "令和8年度 県民総合スポーツ大会 兼 第80回国民スポーツ大会埼玉県予選・関東高校新体操大会埼玉県予選（男子）",
     titleEn: "2026 Saitama Qualifier for National Sports Festival & Kanto High School Championships (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2722,6 +2963,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/05/R8-C3埼玉県新体操関東予選-男子.pdf",
   },
   {
+    id: "2026-05-04-2bf92e",
     titleJa: "関東高等学校体操競技・新体操大会 千葉県予選会 兼 国民スポーツ大会予選（男子新体操）",
     titleEn: "Chiba Prefectural Qualifier for Kanto High School Championships / National Sports Festival (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2734,6 +2976,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2026/03/b845e8869636afdd74d62321e2ece9ef.pdf",
   },
   {
+    id: "2026-05-06-7b9e99",
     titleJa: "新体操男子 2・3種公認審判員認定講習会（大阪）",
     titleEn: "Osaka Men's Rhythmic Gymnastics Judge Certification Course (Class 2 & 3)",
     category: "workshop",
@@ -2743,6 +2986,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://osaka-gym.jp/oga_magazine/oga.html",
   },
   {
+    id: "2026-05-07-82e99b",
     titleJa: "スペイン 男子新体操カップ 2026（Copa de España Masculina GR）",
     titleEn: "Copa de España Masculina GR 2026 (Spain)",
     category: "international",
@@ -2755,6 +2999,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.fexgimnasia.es/wp-content/uploads/2025/12/Calendario-Nacional-provisional-2026.pdf",
   },
   {
+    id: "2026-05-08-d481b0",
     titleJa: "第59回東日本学生新体操選手権大会",
     titleEn: "The 59th East Japan Student Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2767,6 +3012,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.kokushikan-rg.com/topix/2026/05/59-2.html",
   },
   {
+    id: "2026-05-17-e7e023",
     titleJa: "令和8年度 第80回国民スポーツ大会 近畿ブロック大会予選（大阪府新体操男子 代表選考会）",
     titleEn: "2026 Osaka Selection for National Sports Festival Kinki Block (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2776,6 +3022,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://osaka-gym.jp/oga_magazine/oga.html",
   },
   {
+    id: "2026-05-17-17ff53",
     titleJa: "大阪ジュニア新体操選手権大会（男子）兼 第33回近畿ジュニア新体操選手権大会 大阪府予選（男子の部）",
     titleEn: "Osaka Junior Rhythmic Gymnastics Championships (Men) / Osaka Qualifier for the 33rd Kinki Junior Championships",
     category: "prefectural",
@@ -2785,6 +3032,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://osaka-gym.jp/oga_magazine/oga.html",
   },
   {
+    id: "2026-05-21-3dff2c",
     titleJa: "2026年度 男子新体操 第1回審判研修会",
     titleEn: "2026 Men's Rhythmic Gymnastics Judges' Seminar No.1",
     category: "workshop",
@@ -2796,6 +3044,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://jpn-gym.or.jp/news/news-7700/",
   },
   {
+    id: "2026-05-22-d53a95",
     titleJa: "SASAKI CUP 第24回全日本新体操ユースチャンピオンシップ・第17回男子新体操団体選手権大会",
     titleEn: "SASAKI CUP The 24th All Japan Rhythmic Gymnastics Youth Championships / The 17th Men's Rhythmic Gymnastics Group Championships",
     category: "national",
@@ -2808,6 +3057,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://jpn-gym.or.jp/event/event-871/",
   },
   {
+    id: "2026-05-31-833828",
     titleJa: "令和8年度 愛知県新体操選手権大会（男子）",
     titleEn: "2026 Aichi Prefectural Rhythmic Gymnastics Championships (Men)",
     category: "prefectural",
@@ -2820,6 +3070,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://drive.google.com/file/d/1BtrWOE60jweVMxqe7WzmmQW0ni_aDWUU/view",
   },
   {
+    id: "2026-06-02-0ba6f0",
     titleJa: "第76回西日本学生体操選手権大会（新体操の部）",
     titleEn: "The 76th West Japan Student Gymnastics Championships (Rhythmic Gymnastics)",
     category: "regional",
@@ -2831,6 +3082,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2026-06-06-bb46a9",
     titleJa: "第79回広島県高等学校総合体育大会 体操競技・新体操男子",
     titleEn: "The 79th Hiroshima Prefectural High School Athletic Meet – Gymnastics & Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -2844,6 +3096,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://h-gym.jp/pdf/2026/2026_zigyoukeikaku.pdf",
   },
   {
+    id: "2026-06-12-878a59",
     titleJa: "第79回北海道高等学校体操競技・新体操選手権大会（全道高体連大会）",
     titleEn: "The 79th Hokkaido High School Gymnastics & Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2856,6 +3109,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-kou/26zen-kou.html",
   },
   {
+    id: "2026-06-13-cfaf14",
     titleJa: "第75回関東高等学校体操競技・新体操大会（群馬大会）新体操",
     titleEn: "The 75th Kanto High School Gymnastics & Rhythmic Gymnastics Championships (Gunma)",
     category: "regional",
@@ -2868,6 +3122,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/e2f1ff3de0ac4864291418c68586d2f2.pdf",
   },
   {
+    id: "2026-06-13-f9115f",
     titleJa: "第80回近畿高等学校新体操選手権大会",
     titleEn: "The 80th Kinki High School Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2880,6 +3135,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/052ecfaee3eb032141ae905d45375bed.pdf",
   },
   {
+    id: "2026-06-17-fb1667",
     titleJa: "スペイン 男子新体操個人選手権 2026（Campeonato de España Individual Masculino GR）",
     titleEn: "Campeonato de España Individual Masculino GR 2026 (Spain)",
     category: "international",
@@ -2892,6 +3148,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.fexgimnasia.es/wp-content/uploads/2025/12/Calendario-Nacional-provisional-2026.pdf",
   },
   {
+    id: "2026-06-19-4b6611",
     titleJa: "令和8年度 全九州高等学校体育大会 新体操競技",
     titleEn: "2026 All Kyushu High School Athletic Meet – Rhythmic Gymnastics",
     category: "regional",
@@ -2904,6 +3161,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/189139cb1f92a38beab9be1387e3d050.pdf",
   },
   {
+    id: "2026-06-19-c15d8c",
     titleJa: "令和8年度 北信越高等学校体育大会 新体操",
     titleEn: "2026 Hokushinetsu High School Athletic Meet – Rhythmic Gymnastics",
     category: "regional",
@@ -2916,6 +3174,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/ca387a682a0e340b7d6085f912933eeb.pdf",
   },
   {
+    id: "2026-06-19-fae523",
     titleJa: "令和8年度 四国高等学校選手権大会 新体操",
     titleEn: "2026 Shikoku High School Championships – Rhythmic Gymnastics",
     category: "regional",
@@ -2928,6 +3187,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/e9f5d15afbf67226efdb6d6e89e5df43-1.pdf",
   },
   {
+    id: "2026-06-19-2ad87e",
     titleJa: "第67回中国高等学校体操競技・新体操選手権大会（新体操男子）兼 全国高校総体男子新体操中国地区予選会",
     titleEn: "The 67th Chugoku High School Gymnastics & Rhythmic Gymnastics Championships (Men's Rhythmic) / Inter-High Chugoku Qualifier",
     category: "regional",
@@ -2940,6 +3200,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/351368fe86044ff64885429f577139ba-1.pdf",
   },
   {
+    id: "2026-06-20-f43fcb",
     titleJa: "2026年度 静岡県ジュニア（新体操男子）・静岡県選手権（新体操）",
     titleEn: "2026 Shizuoka Prefectural Junior (Men's Rhythmic) & Prefectural Championships (Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2953,6 +3214,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shizuoka-gym.com/yotei/yotei.html",
   },
   {
+    id: "2026-06-20-3c205c",
     titleJa: "第55回東北高等学校体操競技・新体操選手権大会（新体操）",
     titleEn: "The 55th Tohoku High School Gymnastics & Rhythmic Gymnastics Championships",
     category: "regional",
@@ -2964,6 +3226,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/718f7d3bc953af25c8e8279803dc99d3.pdf",
   },
   {
+    id: "2026-06-21-2bb82e",
     titleJa: "千葉県高等学校総合体育大会（インターハイ予選）男子新体操",
     titleEn: "Chiba Prefectural High School Athletic Meet (Inter-High Qualifier) – Men's Rhythmic Gymnastics",
     category: "prefectural",
@@ -2976,6 +3239,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2026/03/b845e8869636afdd74d62321e2ece9ef.pdf",
   },
   {
+    id: "2026-06-22-6df5a7",
     titleJa: "令和8年度 埼玉県高等学校新体操インターハイ予選（男子）",
     titleEn: "2026 Saitama Prefectural Inter-High Qualifier (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -2988,6 +3252,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/06/R8-男子新体操C３インハイ予選結果（個人団体）.pdf",
   },
   {
+    id: "2026-06-28-8063d4",
     titleJa: "令和8年度 東海高等学校総合体育大会 新体操",
     titleEn: "2026 Tokai High School Athletic Meet – Rhythmic Gymnastics",
     category: "regional",
@@ -2999,6 +3264,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/d1dd8ebf73686bd3c940b877502f3ab8.pdf",
   },
   {
+    id: "2026-07-90443e",
     titleJa: "令和8年度国民スポーツ大会 第46回九州ブロック大会（新体操）",
     titleEn: "The 46th National Sports Festival Kyushu Block Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -3011,6 +3277,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://kyushu-kokuspo.net/wp-content/uploads/2026/01/schedule.pdf",
   },
   {
+    id: "2026-07-d0d054",
     titleJa: "国民スポーツ大会 第47回東海ブロック大会（新体操）",
     titleEn: "The 47th National Sports Festival Tokai Block Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -3022,6 +3289,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://gifu-gym.com/",
   },
   {
+    id: "2026-07-10-449e02",
     titleJa: "令和8年度 国民スポーツ大会東北ブロック大会 兼 第53回東北総合スポーツ大会（体操競技・新体操）",
     titleEn: "2026 National Sports Festival Tohoku Block Qualifier / The 53rd Tohoku General Sports Festival (Gymnastics & Rhythmic Gymnastics)",
     category: "regional",
@@ -3033,6 +3301,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.sakataminami-h.ed.jp/club1/rhythmicgymnastics/%E5%9B%BD%E6%B0%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E5%A4%A7%E4%BC%9A%E6%9D%B1%E5%8C%97%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%A4%A7%E4%BC%9A%EF%BC%88%E6%96%B0%E4%BD%93%E6%93%8D%EF%BC%89/",
   },
   {
+    id: "2026-07-11-7f8717",
     titleJa: "国民スポーツ大会 第47回四国ブロック大会（新体操男子）兼 四国選手権",
     titleEn: "The 47th National Sports Festival Shikoku Block Qualifier (Men's Rhythmic Gymnastics)",
     category: "regional",
@@ -3044,6 +3313,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://kochi-sports.or.jp/wp/wp-content/uploads/2026/04/07%E4%BD%93%E6%93%8D-%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%A4%A7%E4%BC%9A%E8%A6%81%E9%A0%85.pdf",
   },
   {
+    id: "2026-07-11-ee0a6b",
     titleJa: "第80回国民スポーツ大会 近畿ブロック大会（新体操）",
     titleEn: "The 80th National Sports Festival Kinki Block Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -3055,6 +3325,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.bsn.or.jp/kinki-block/wp-content/uploads/2026/08/新体操（少男）.pdf",
   },
   {
+    id: "2026-07-17-b34e4c",
     titleJa: "第80回国民スポーツ大会関東ブロック大会（新体操）",
     titleEn: "The 80th National Sports Festival Kanto Block Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -3067,6 +3338,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://kanntou.jimdofree.com/%E7%AB%B6%E6%8A%80%E7%B5%90%E6%9E%9C/",
   },
   {
+    id: "2026-07-18-67305e",
     titleJa: "第33回北海道新体操大会 兼 国民スポーツ大会 新体操 北海道選手選考会",
     titleEn: "The 33rd Hokkaido Rhythmic Gymnastics Meet / National Sports Festival Hokkaido Selection",
     category: "prefectural",
@@ -3080,6 +3352,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-rg/26zen-rg.html",
   },
   {
+    id: "2026-07-18-f101ff",
     titleJa: "第47回北信越国民スポーツ大会（新体操）",
     titleEn: "The 47th Hokushinetsu National Sports Festival Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -3092,6 +3365,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://www.pref.nagano.lg.jp/kokusupo/47hokushinnetsu/documents/sintaiso_finalresult.pdf",
   },
   {
+    id: "2026-07-18-92afe7",
     titleJa: "第80回国民スポーツ大会 中国ブロック予選会（新体操男女）",
     titleEn: "The 80th National Sports Festival Chugoku Block Qualifier (Rhythmic Gymnastics)",
     category: "regional",
@@ -3105,6 +3379,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://h-gym.jp/pdf/2026/2026_zigyoukeikaku.pdf",
   },
   {
+    id: "2026-07-19-ab8a48",
     titleJa: "令和8年度 愛知県ジュニア新体操選手権大会（男子）",
     titleEn: "2026 Aichi Prefectural Junior Rhythmic Gymnastics Championships (Men)",
     category: "prefectural",
@@ -3117,6 +3392,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://drive.google.com/file/d/1FUIfo4FQHvogcMzziL2fMkO5iG9KrVwb/view",
   },
   {
+    id: "2026-07-20-e0ce39",
     titleJa: "第39回県民総合スポーツ大会 兼 第34回埼玉県高等学校新体操選手権大会（学年別・男子）",
     titleEn: "The 34th Saitama Prefectural High School Rhythmic Gymnastics Championships (by grade, Men)",
     category: "prefectural",
@@ -3127,6 +3403,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/07/R8-男子新体操C3高校選手権（学年別）結果.pdf",
   },
   {
+    id: "2026-07-25-1d5dda",
     titleJa: "第15回東京ジュニア男子新体操選手権大会",
     titleEn: "The 15th Tokyo Junior Men's Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -3138,6 +3415,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "http://www.kokushikan-jr-rg.com/blog/2026/07/post-153.html",
   },
   {
+    id: "2026-08-05-da4d8a",
     titleJa: "令和8年度全国高等学校総合体育大会「夢へ躍進 青春の夏 近畿総体 2026」新体操大会",
     titleEn: "2026 All Japan Inter-High School Championships (Inter-High) Rhythmic Gymnastics",
     category: "national",
@@ -3151,6 +3429,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/game?game_id=43&game_type=2",
   },
   {
+    id: "2026-08-14-eb0865",
     titleJa: "第18回 井原カップ 男子新体操競技大会",
     titleEn: "The 18th Ibara Cup Men's Rhythmic Gymnastics Competition",
     category: "regional",
@@ -3163,6 +3442,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://shintaisou.ibara.info/archives/288",
   },
   {
+    id: "2026-08-19-592671",
     titleJa: "第78回全日本学生新体操選手権大会（インカレ）",
     titleEn: "The 78th All Japan Student Rhythmic Gymnastics Championships (All Japan Intercollegiate)",
     category: "national",
@@ -3176,6 +3456,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "http://gymgakurenn.noor.jp/wp-content/uploads/2026/08/第７８回全日本学生新体操選手権大会　成績表.pdf",
   },
   {
+    id: "2026-09-12-7a136e",
     titleJa: "青の煌めきあおもり国スポ2026 第80回国民スポーツ大会 新体操競技",
     titleEn: "The 80th National Sports Festival (Aomori 2026) Rhythmic Gymnastics",
     category: "national",
@@ -3189,6 +3470,7 @@ export const EVENTS: CalendarEvent[] = [
     resultUrl: "https://aca-ws.jp/live/game?game_id=47&game_type=2",
   },
   {
+    id: "2026-09-19-8373f3",
     titleJa: "ONE GYMNASTICS LIVE 2026",
     titleEn: "ONE GYMNASTICS LIVE 2026",
     category: "performance",
@@ -3201,6 +3483,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://one-gymlive.com/",
   },
   {
+    id: "2026-10-09-d49e21",
     titleJa: "第11回全日本男子新体操クラブ選手権・第34回全日本男子新体操社会人大会",
     titleEn: "The 11th All Japan Men's Rhythmic Gymnastics Club Championships / The 34th All Japan Men's Rhythmic Gymnastics Adult Championships",
     category: "national",
@@ -3213,6 +3496,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://jpn-gym.or.jp/event/event-0-7/",
   },
   {
+    id: "2026-10-30-733ecd",
     titleJa: "第79回全日本新体操選手権大会",
     titleEn: "79th All Japan Rhythmic Gymnastics Championships",
     category: "national",
@@ -3225,6 +3509,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://jpn-gym.or.jp/event/event-8002/",
   },
   {
+    id: "2026-11-b3c94e",
     titleJa: "北海道高等学校新人体操競技・新体操大会（全国高校選抜大会予選）",
     titleEn: "Hokkaido High School Rookie Gymnastics & Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -3236,6 +3521,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://zutto-sports.com/hokkaido-koukou-shinjinsen",
   },
   {
+    id: "2026-11-20-4dc9ec",
     titleJa: "第34回東北高等学校新体操選抜大会",
     titleEn: "The 34th Tohoku High School Rhythmic Gymnastics Selection Championships",
     category: "regional",
@@ -3247,6 +3533,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.kotairen.asn.ed.jp/taikai/2026/R8_touhoku.pdf",
   },
   {
+    id: "2026-11-22-edab65",
     titleJa: "群馬県男子新体操選手権大会",
     titleEn: "Gunma Prefecture Men's Rhythmic Gymnastics Championships",
     category: "prefectural",
@@ -3257,6 +3544,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.gunma-sports.or.jp/about/eventlist/2026/12_taisou.pdf",
   },
   {
+    id: "2026-11-22-22545e",
     titleJa: "群馬県高等学校新人大会（新体操男子）",
     titleEn: "Gunma Prefecture High School Rookie Championships (Men's Rhythmic Gymnastics)",
     category: "prefectural",
@@ -3267,6 +3555,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.gunma-sports.or.jp/about/eventlist/2026/12_taisou.pdf",
   },
   {
+    id: "2026-11-26-6df3b8",
     titleJa: "2026全日本ジュニア新体操チャレンジカップ",
     titleEn: "2026 All Japan Junior Rhythmic Gymnastics Challenge Cup",
     category: "national",
@@ -3278,6 +3567,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://jpn-gym.or.jp/event/event-8004/",
   },
   {
+    id: "2026-11-27-e2427f",
     titleJa: "Chacott CHAMPIONSHIPS 第44回全日本ジュニア新体操選手権大会",
     titleEn: "Chacott CHAMPIONSHIPS The 44th All Japan Junior Rhythmic Gymnastics Championships",
     category: "national",
@@ -3290,6 +3580,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://jpn-gym.or.jp/event/event-8006/",
   },
   {
+    id: "2026-12-95e094",
     titleJa: "花園大学新体操部発表会",
     titleEn: "Hanazono University Rhythmic Gymnastics Club Performance",
     category: "performance",
@@ -3302,6 +3593,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.hanazono.ac.jp/topics/31_1.html",
   },
   {
+    id: "2026-12-09-ed35ba",
     titleJa: "コパ・ベース個人男子（スペイン体操連盟 全国大会）",
     titleEn: "Copa Base Individual Masculina GR (Spanish Base Individual Men's Rhythmic Gymnastics Cup)",
     category: "international",
@@ -3314,6 +3606,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.fexgimnasia.es/wp-content/uploads/2025/12/Calendario-Nacional-provisional-2026.pdf",
   },
   {
+    id: "2027-02-0fff8f",
     titleJa: "SANIX CUP 男子新体操競演会2027",
     titleEn: "SANIX CUP Boys' Rhythmic Gymnastics Showcase 2027",
     category: "performance",
@@ -3326,6 +3619,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://prtimes.jp/main/html/rd/p/000000137.000025581.html",
   },
   {
+    id: "2027-03-f8c898",
     titleJa: "国士舘大学男子新体操部演技発表会（新潟）",
     titleEn: "Kokushikan University Men's Rhythmic Gymnastics Team Performance in Niigata",
     category: "performance",
@@ -3338,6 +3632,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2027-03-9c051f",
     titleJa: "華舞翔新体操倶楽部発表会",
     titleEn: "Kabusho Rhythmic Gymnastics Club Performance",
     category: "performance",
@@ -3349,6 +3644,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2027-03-eff22d",
     titleJa: "阿久比高校・阿久比新体操クラブ 演技発表会",
     titleEn: "Agui High School & Agui Rhythmic Gymnastics Club Performance",
     category: "performance",
@@ -3360,6 +3656,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2027-03-24-2b95c1",
     titleJa: "第42回全国高等学校新体操選抜大会",
     titleEn: "The 42nd All Japan High School Rhythmic Gymnastics Selection Championships",
     category: "national",
@@ -3371,6 +3668,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.hinata-miyazaki-sports2027.jp/kokusupo/test-events/",
   },
   {
+    id: "2027-04-01daa9",
     titleJa: "九州学生新体操選手権大会（2027年）",
     titleEn: "Kyushu Student Rhythmic Gymnastics Championships 2027",
     category: "regional",
@@ -3382,6 +3680,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.spo.fukuoka-u.ac.jp/match-results/6713",
   },
   {
+    id: "2027-05-a21bae",
     titleJa: "SASAKICUP 全日本新体操ユースチャンピオンシップ・男子新体操団体選手権（2027年）",
     titleEn: "SASAKI CUP All Japan Rhythmic Gymnastics Youth Championships / Men's Rhythmic Gymnastics Team Championships 2027",
     category: "national",
@@ -3392,6 +3691,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://jpn-gym.or.jp/event/event-871/",
   },
   {
+    id: "2027-05-6091e3",
     titleJa: "東日本学生新体操選手権大会（2027年）",
     titleEn: "East Japan Student Rhythmic Gymnastics Championships 2027",
     category: "regional",
@@ -3403,6 +3703,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://note.com/kdb_ganymede/n/n001dd867b1bc",
   },
   {
+    id: "2027-07-23-733905",
     titleJa: "令和9年度全国高等学校総合体育大会 新体操競技（南関東総体2027）",
     titleEn: "2027 All Japan Inter-High School Championships (Rhythmic Gymnastics) - Minami Kanto",
     category: "national",
@@ -3415,6 +3716,7 @@ export const EVENTS: CalendarEvent[] = [
     sourceUrl: "https://www.koukousoutai.com/2027soutai/event-all",
   },
   {
+    id: "2027-08-db1824",
     titleJa: "全日本学生新体操選手権大会（2027年・インカレ）",
     titleEn: "All Japan Student Rhythmic Gymnastics Championships 2027 (All Japan Intercollegiate)",
     category: "national",
