@@ -144,6 +144,11 @@ export function matchesKeyword(event: CalendarEvent, keyword: string): boolean {
   return terms.every((term) => haystack.includes(term))
 }
 
+/** 「すべて」と同じ状態か。何も選んでいないときと、全部選んだときは結果が同じになる */
+export function isEveryCategory(categories: EventCategory[]): boolean {
+  return categories.length === 0 || CATEGORY_ORDER.every((key) => categories.includes(key))
+}
+
 /** 種類・キーワード・時期で絞り込んで並べる。終わったイベントだけのときは新しい順 */
 export function filterEvents(events: CalendarEvent[], filter: EventFilter): CalendarEvent[] {
   const sorted = events

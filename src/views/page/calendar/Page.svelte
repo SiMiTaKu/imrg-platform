@@ -18,6 +18,7 @@
     formatMonthEn,
     formatMonthJa,
     groupByMonth,
+    isEveryCategory,
     paginate,
     parseState,
     serializeState,
@@ -90,6 +91,8 @@
   $: slice = paginate(matched, state.page)
   $: pageGroups = groupByMonth(slice.items)
   $: calendarEvents = state.day ? eventsOnDay(matched, state.day) : eventsInMonth(matched, state.month)
+  // 全部選んだときは「すべて」と同じ結果なので、「すべて」も選択状態にする
+  $: allCategories = isEveryCategory(state.categories)
 
   /** 条件を変える。ページ送り以外の変更では1ページ目に戻す */
   function update(patch: Partial<CalendarState>) {
@@ -147,9 +150,9 @@
          aria-label='種類で絞り込む / Filter by type'
          role='group'>
       <button class='chip'
-              class:active={state.categories.length === 0}
+              class:active={allCategories}
               type='button'
-              aria-pressed={state.categories.length === 0}
+              aria-pressed={allCategories}
               on:click={() => update({ categories: [] })}>
         すべて<span lang='en'>All</span>
       </button>

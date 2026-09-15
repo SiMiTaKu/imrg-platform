@@ -9,6 +9,7 @@ import {
   formatDateRangeEn,
   formatDateRangeJa,
   groupByMonth,
+  isEveryCategory,
   isUpcoming,
   matchesKeyword,
   pageNumbers,
@@ -86,6 +87,23 @@ describe("test matchesKeyword", () => {
     [ "種類名でも探せる", "全国大会", true ],
   ])("%s", (_, keyword, expected) => {
     expect(matchesKeyword(event, keyword)).toBe(expected)
+  })
+})
+
+describe("test isEveryCategory", () => {
+  test.each([
+    [ "何も選んでいない", [], true ],
+    [ "全部選んだ",
+      [ "national",
+        "regional",
+        "prefectural",
+        "performance",
+        "workshop",
+        "international" ],
+      true ],
+    [ "一部だけ選んだ", [ "national", "regional" ], false ],
+  ])("%s", (_, categories, expected) => {
+    expect(isEveryCategory(categories as never)).toBe(expected)
   })
 })
 
