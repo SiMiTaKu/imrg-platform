@@ -88,7 +88,9 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 ## Phase 1: 依存関係の更新と土台の整理
 
 - [ ] **1-1. 使っていない依存を削除する**
-  - `aws-amplify` `chart.js` `svelte-chartjs` `felte` `date-fns` `cookie` `@neoconfetti/svelte` `svelte-motion` `@fontsource/fira-mono`、そして `latest`（中身のない事故パッケージ）
+  - `aws-amplify` `svelte-chartjs` `felte` `cookie` `@types/cookie` `@neoconfetti/svelte` `@fontsource/fira-mono`、そして `latest`（中身のない事故パッケージ）
+  - `chart.js`（採点ページのレーダーチャート）と `date-fns`（推しミツ！の日付表示）は使っているので残す
+  - `svelte-motion`（採点ページの開閉アニメーション）はSvelte 5で動かないため、1-3でCSSのtransitionに置き換えて削除する
   - textlint系は `dependencies` にあるので `devDependencies` へ移す
 - [ ] **1-2. Node を上げる**（`.node-version` 18.18.0 → 22系）。Amplifyのビルドも追随する
 - [ ] **1-3. Svelte 4 → 5**（runesへの移行は段階的に。まず動かし、後からコンポーネントごとに書き換え）
@@ -109,6 +111,15 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 ## Phase 3: モノレポ化・FSD・デザインシステム
 
+- [ ] **3-0. リポジトリー名を変える**（`imrg-web-main` → 新しい名前。候補は `imrg-web`。3-1の直前に行う）
+  - モノレポにすると `web` 以外のパッケージも入るため、`-main` の付いた今の名前が中身と合わなくなる
+  - GitHubの名前変更は元に戻せる。旧URLからの転送（`git push` `git clone` とブラウザー）も効くので、手元の作業はすぐには止まらない
+  - 影響と対応
+    - **Amplify**：旧方式（OAuthとwebhook）でつながっている。webhookは2本（アプリID `d1d0cu0fwxm76y` と `d1o1ui2gd5pshh`）。変更後に `develop` へpushしてビルドが走るか確かめる。走らなければコンソールでリポジトリーを再接続し、あわせてGitHub App方式へ移す。使っていない方のアプリはこのとき整理する
+    - **手元のclone**：`git remote set-url origin git@github.com:SiMiTaKu/<新しい名前>.git`。フォルダー名 `~/imrg/imrg-web-main` も合わせて変える（imrg-hubのメモやdocs内のパスも直す）
+    - **README・docs・`package.json` の `name`** を新しい名前に揃える
+    - 旧名で新しいリポジトリーを作ると転送が切れる。旧名は使わない
+  - Phase 4（Terraform）より前に済ませる。先にTerraformへ取り込むと、Amplifyアプリのリポジトリー URLの差分が出るため
 - [ ] **3-1. pnpm workspace へ移行**（`web` と `design-system` の2パッケージから始める）
 - [ ] **3-2. FSD へ再配置**：`src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
   - カレンダーはすでに近い形（`_components` `_data` `_lib`）なので、ここから着手すると移行しやすい
