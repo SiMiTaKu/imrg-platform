@@ -1,10 +1,10 @@
-<script context='module' lang='ts'>
-  import { CATEGORY_LABELS } from "../_data/category"
-  import type { CalendarEvent } from "../_data/model"
-  import { formatDateRangeJa, toDateBadge } from "../_lib/calendar"
+<script context="module" lang="ts">
+  import { CATEGORY_LABELS } from '../_data/category'
+  import type { CalendarEvent } from '../_data/model'
+  import { formatDateRangeJa, toDateBadge } from '../_lib/calendar'
 </script>
 
-<script lang='ts'>
+<script lang="ts">
   export let event: CalendarEvent
 
   $: label = CATEGORY_LABELS[event.category]
@@ -12,57 +12,53 @@
 </script>
 
 <!-- 一覧の1行。押すと詳細ページへ移る -->
-<a style:--color={label.color}
-   class='event-row'
-   href={`/calendar/${event.id}/`}>
-  <span class='date'
-        aria-hidden='true'>
-    <span class='date-month'>{badge.month}月</span>
+<a style:--color={label.color} class="event-row" href={`/calendar/${event.id}/`}>
+  <span class="date" aria-hidden="true">
+    <span class="date-month">{badge.month}月</span>
     {#if badge.day}
-      <span class='date-day'>{badge.day}</span>
-      <span class='date-weekday'>{badge.weekdayJa}</span>
+      <span class="date-day">{badge.day}</span>
+      <span class="date-weekday">{badge.weekdayJa}</span>
     {:else}
-      <span class='date-undecided'>日付<br />未定</span>
+      <span class="date-undecided">日付<br />未定</span>
     {/if}
   </span>
 
-  <span class='body'>
-    <span class='meta'>
-      <span class='category'>{label.ja}<span lang='en'>{label.en}</span></span>
-      {#if event.status === "tentative"}
-        <span class='tag'>日程は予定</span>
+  <span class="body">
+    <span class="meta">
+      <span class="category">{label.ja}<span lang="en">{label.en}</span></span>
+      {#if event.status === 'tentative'}
+        <span class="tag">日程は予定</span>
       {/if}
       {#if event.resultUrl}
-        <span class='tag result'>結果あり</span>
+        <span class="tag result">結果あり</span>
       {/if}
     </span>
-    <span class='title'>{event.titleJa}</span>
+    <span class="title">{event.titleJa}</span>
     {#if event.titleEn !== event.titleJa}
-      <span class='title-en'
-            lang='en'>{event.titleEn}</span>
+      <span class="title-en" lang="en">{event.titleEn}</span>
     {/if}
-    <span class='sub'>
-      {formatDateRangeJa(event)}{#if event.venueJa}<span class='separator'>・</span>{event.venueJa}{/if}
+    <span class="sub">
+      {formatDateRangeJa(event)}{#if event.venueJa}<span class="separator">・</span
+        >{event.venueJa}{/if}
     </span>
   </span>
 
-  <span class='arrow'
-        aria-hidden='true'>›</span>
+  <span class="arrow" aria-hidden="true">›</span>
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   .event-row {
     display: grid;
-    grid-template-columns: 52px 1fr 12px;
-    align-items: center;
     gap: $space-size-12;
+    grid-template-columns: 52px 1fr 12px;
     padding: $space-size-12 $space-size-16 $space-size-12 $space-size-12;
+    color: map.get($gray, text);
     border: $border-size-1 solid map.get($gray, 100);
-    border-left: $border-size-4 solid var(--color);
     border-radius: $border-radius-8;
     background: $white;
-    color: map.get($gray, text);
     transition: background-color 0.2s;
+    align-items: center;
+    border-left: $border-size-4 solid var(--color);
 
     &:hover {
       background: map.get($sky-blue, background);
@@ -115,7 +111,7 @@
     color: map.get($gray, 600);
   }
 
-  .category span[lang="en"] {
+  .category span[lang='en'] {
     margin-left: $space-size-4;
     font-weight: normal;
     color: map.get($gray, light-text);
@@ -123,21 +119,21 @@
 
   .tag {
     padding: 0 $space-size-4;
+    color: map.get($gray, light-text);
     border-radius: $border-radius-4;
     background: map.get($gray, background);
-    color: map.get($gray, light-text);
   }
 
   .result {
-    background: map.get($sky-blue, background);
     color: map.get($sky-blue, text);
+    background: map.get($sky-blue, background);
   }
 
   .title {
     font-size: $font-size-16;
     font-weight: bold;
     line-height: 1.45;
-    font-feature-settings: "palt";
+    font-feature-settings: 'palt';
   }
 
   .title-en {

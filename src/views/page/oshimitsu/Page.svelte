@@ -1,15 +1,12 @@
-<script context='module' lang='ts'>
-  import IndividualVideoCard from "./_components/IndividualVideoCard.svelte"
-  import GroupVideoCard from "./_components/GroupVideoCard.svelte"
-  import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
-  import RadioFieldset from "./_components/RadioFieldset.svelte"
-  import {
-    findApparatus,
-    findContentType,
-  } from "$views/page/oshimitsu/_models/index.js"
-  import CheckBoxFieldset from "$views/page/oshimitsu/_components/CheckBoxFieldset.svelte"
-  import { Video } from "./_lib"
-  import { Apparatus, ContentType } from "$views/page/oshimitsu/_models"
+<script context="module" lang="ts">
+  import IndividualVideoCard from './_components/IndividualVideoCard.svelte'
+  import GroupVideoCard from './_components/GroupVideoCard.svelte'
+  import ButtonLink from '$views/atomic/button/ButtonLink.svelte'
+  import RadioFieldset from './_components/RadioFieldset.svelte'
+  import { findApparatus, findContentType } from '$views/page/oshimitsu/_models/index.js'
+  import CheckBoxFieldset from '$views/page/oshimitsu/_components/CheckBoxFieldset.svelte'
+  import { Video } from './_lib'
+  import { Apparatus, ContentType } from '$views/page/oshimitsu/_models'
 
   const CONTENT_TYPE_OPTIONS = Object.values(ContentType).map((type) => ({
     label: type.label,
@@ -22,10 +19,10 @@
   }))
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
-  import { criteria } from "./_store/criteria"
-  import { onMount } from "svelte"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
+  import { criteria } from './_store/criteria'
+  import { onMount } from 'svelte'
 
   onMount(() => {
     criteria.set({
@@ -41,42 +38,38 @@
         if ($criteria.apparatuses.length === 1) {
           return `/oshimitsu/content_type/${$criteria.contentType.slug}/apparatus/${$criteria.apparatuses[0].slug}`
         } else if ($criteria.apparatuses.length > 1) {
-          return `/oshimitsu/search_result?ct=${$criteria.contentType.slug}&app=${$criteria.apparatuses.map((apparatus) => apparatus.slug).join(",")}`
+          return `/oshimitsu/search_result?ct=${$criteria.contentType.slug}&app=${$criteria.apparatuses.map((apparatus) => apparatus.slug).join(',')}`
         }
       }
       return `/oshimitsu/content_type/${$criteria.contentType.slug}`
     } else if ($criteria.contentType === ContentType.GROUP) {
       return `/oshimitsu/content_type/${$criteria.contentType.slug}`
     }
-    return "/oshimitsu/search_result"
+    return '/oshimitsu/search_result'
   })()
 
-  const onChangeApparatus = (
-    event: CustomEvent<{ value: string; checked: boolean }>
-  ) => {
+  const onChangeApparatus = (event: CustomEvent<{ value: string; checked: boolean }>) => {
     criteria.update({
       ...$criteria,
       apparatuses: event.detail.checked
-        ? [ ...$criteria.apparatuses, findApparatus(event.detail.value)! ]
-        : $criteria.apparatuses.filter(
-          (apparatus) => apparatus.slug !== event.detail.value
-        ),
+        ? [...$criteria.apparatuses, findApparatus(event.detail.value)!]
+        : $criteria.apparatuses.filter((apparatus) => apparatus.slug !== event.detail.value),
     })
   }
 </script>
 
-<article class='article'>
-  <section class='section'>
+<article class="article">
+  <section class="section">
     <h1>推しミツ！</h1>
     <p>
       推しミツは、男子新体操に関する動画専用の検索機能です。<br />
       あなたがまだ知らない男子新体操の世界や魅力を見つけに行こう！
     </p>
   </section>
-  <section class='section'>
+  <section class="section">
     <RadioFieldset
-      legendText='動画種別'
-      name='contentType'
+      legendText="動画種別"
+      name="contentType"
       options={CONTENT_TYPE_OPTIONS}
       on:change={(event) => {
         criteria.update({
@@ -87,8 +80,8 @@
     />
     {#if $criteria.contentType === ContentType.INDIVIDUAL}
       <CheckBoxFieldset
-        legendText='手具'
-        name='apparatus'
+        legendText="手具"
+        name="apparatus"
         options={APPARATUS_OPTIONS}
         on:change={onChangeApparatus}
       />
@@ -96,12 +89,12 @@
     <ButtonLink
       width={$pageData.isMobile ? 320 : 343}
       height={56}
-      text='この条件で推しミツ！'
+      text="この条件で推しミツ！"
       href={searchHref}
     />
   </section>
-  <section class='section'>
-    <h2 class='h2'>おすすめ動画</h2>
+  <section class="section">
+    <h2 class="h2">おすすめ動画</h2>
     {#each Video.getRecommendedVideos() as video, index (index)}
       {#if Video.isIndividualVideoResource(video)}
         <IndividualVideoCard {video} />
@@ -112,7 +105,7 @@
   </section>
 </article>
 
-<style lang='scss'>
+<style lang="scss">
   .article {
     display: grid;
     gap: $space-size-40;

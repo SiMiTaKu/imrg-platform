@@ -1,9 +1,9 @@
-<script context='module' lang='ts'>
-  import { createEventDispatcher } from "svelte"
+<script context="module" lang="ts">
+  import { createEventDispatcher } from 'svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   const dispatch = createEventDispatcher<{ click: void }>()
 
@@ -11,17 +11,17 @@
 </script>
 
 <button
-  class='button'
-  type='button'
+  class="button"
+  type="button"
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
-  on:click={() => dispatch("click")}
+  on:click={() => dispatch('click')}
 >
-  <div class='icon' class:open={isOpen} />
-  <span class='text'>{isOpen ? "close" : "open"}</span>
+  <div class="icon" class:open={isOpen}></div>
+  <span class="text">{isOpen ? 'close' : 'open'}</span>
 </button>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --height: 80px;
     --hamburger-text-font-size: #{$font-size-18};
@@ -38,14 +38,14 @@
 
   .button {
     display: grid;
-    place-items: center;
     grid-template-rows: 1fr var(--button-icon-size) 1fr 1fr;
     width: var(--height);
     height: var(--height);
     padding: 0;
-    transition: 0.25s;
     border: none;
     background: transparent;
+    transition: 0.25s;
+    place-items: center;
 
     &:has(.open) {
       background: map.get($sky-blue, background);
@@ -57,31 +57,31 @@
   }
 
   .icon {
-    display: grid;
     position: relative;
-    grid-row: 2;
+    display: grid;
     grid-column: 1;
+    grid-row: 2;
     width: var(--button-icon-size);
     height: 3px;
     background: map.get($gray, text);
     transition: 0.25s;
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       position: absolute;
-      content: "";
+      content: '';
       width: var(--button-icon-size);
       height: 3px;
       background: map.get($gray, text);
       transition: 0.25s;
     }
 
-    &:before {
+    &::before {
       top: calc(var(--button-icon-size) / -4);
       right: 0;
     }
 
-    &:after {
+    &::after {
       top: calc(var(--button-icon-size) / 4);
       left: 0;
     }
@@ -91,21 +91,21 @@
     transform: rotate(90deg);
     height: 0;
 
-    &:before {
+    &::before {
       transform: rotate(45deg);
       top: 50%;
     }
 
-    &:after {
+    &::after {
       transform: rotate(135deg);
       top: 50%;
     }
   }
 
   .text {
-    grid-row: 3;
     grid-column: 1;
-    color: map.get($gray, text);
+    grid-row: 3;
     font-size: var(--hamburger-text-font-size);
+    color: map.get($gray, text);
   }
 </style>

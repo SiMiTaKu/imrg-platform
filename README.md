@@ -24,21 +24,29 @@ npm run build
 ```
 
 > [!NOTE]
-> Amplifyのビルドが失敗してしまうためNodeのバージョンは18系を使用しています。
-
+> Nodeのバージョンは `.node-version` で指定しています（24系）。Amplifyもビルドの最初に `nvm install $(cat .node-version)` で同じバージョンを入れます。
+> 以前はAmplifyのビルドが失敗するため18系に留めていました。Amplifyのビルドイメージが古い（Amazon Linux 2）と新しいNodeが動かないため、上げたあとにビルドが失敗したら、コンソールでビルドイメージがAmazon Linux 2023になっているかを確かめてください。
 
 ## Lint
+
 ### Check
+
 ```bash
 npm run lint
 ```
 
 ### Fix
+
 ```bash
 npm run lint:fix
 ```
 
-### format
+### Format
+
+整形はPrettierに任せています（設定はoshiageと同じ `.prettierrc.json`）。
+コミット時にlint-stagedが変更したファイルだけを整形・lintします。
+
 ```bash
-npm run format
+npm run format        # 整形する
+npm run format:check  # 整形済みか確かめる
 ```

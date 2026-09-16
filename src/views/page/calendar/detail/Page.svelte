@@ -1,20 +1,20 @@
-<script context='module' lang='ts'>
-  import { PUBLIC_BASE_URL } from "$env/static/public"
-  import { CATEGORY_LABELS } from "../_data/category"
-  import type { CalendarEvent } from "../_data/model"
-  import { formatDateRangeEn, formatDateRangeJa, hostnameOf } from "../_lib/calendar"
+<script context="module" lang="ts">
+  import { PUBLIC_BASE_URL } from '$env/static/public'
+  import { CATEGORY_LABELS } from '../_data/category'
+  import type { CalendarEvent } from '../_data/model'
+  import { formatDateRangeEn, formatDateRangeJa, hostnameOf } from '../_lib/calendar'
 </script>
 
-<script lang='ts'>
-  import { afterNavigate } from "$app/navigation"
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { afterNavigate } from '$app/navigation'
+  import { pageData } from '$views/atomic/device-store/store'
 
   export let event: CalendarEvent
 
   let fromCalendar = false
 
   afterNavigate(({ from }) => {
-    fromCalendar = from?.url.pathname === "/calendar/"
+    fromCalendar = from?.url.pathname === '/calendar/'
   })
 
   // カレンダーの一覧から来たときは、検索条件やページを保ったまま戻る
@@ -29,18 +29,18 @@
 
   // 検索結果に日程と会場を出すための構造化データ（schema.org の SportsEvent）
   $: jsonLd = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "SportsEvent",
+    '@context': 'https://schema.org',
+    '@type': 'SportsEvent',
     name: event.titleJa,
     alternateName: event.titleEn !== event.titleJa ? event.titleEn : undefined,
     startDate: event.startDate,
     endDate: event.endDate ?? event.startDate,
     url: `${PUBLIC_BASE_URL}/calendar/${event.id}/`,
     sport: "Men's Rhythmic Gymnastics",
-    location: event.venueJa ? { "@type": "Place", name: event.venueJa } : undefined,
+    location: event.venueJa ? { '@type': 'Place', name: event.venueJa } : undefined,
   })
   // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる
-  $: jsonLdTag = `<script type="application/ld+json">${jsonLd}<` + "/script>"
+  $: jsonLdTag = `<script type="application/ld+json">${jsonLd}<` + '/script>'
 </script>
 
 <svelte:head>
@@ -48,72 +48,70 @@
   {@html jsonLdTag}
 </svelte:head>
 
-<article style:--color={label.color}
-         class='event-detail'
-         class:pc={!$pageData.isMobile}
-         class:sp={$pageData.isMobile}>
-  <p class='breadcrumb'>
-    <a href='/calendar/'
-       on:click={back}>‹ カレンダーに戻る<span lang='en'>Back to calendar</span></a>
+<article
+  style:--color={label.color}
+  class="event-detail"
+  class:pc={!$pageData.isMobile}
+  class:sp={$pageData.isMobile}
+>
+  <p class="breadcrumb">
+    <a href="/calendar/" on:click={back}
+      >‹ カレンダーに戻る<span lang="en">Back to calendar</span></a
+    >
   </p>
 
-  <p class='badges'>
-    <span class='category'>{label.ja} / {label.en}</span>
-    {#if event.status === "tentative"}
-      <span class='tentative'>日程は予定 / Tentative</span>
+  <p class="badges">
+    <span class="category">{label.ja} / {label.en}</span>
+    {#if event.status === 'tentative'}
+      <span class="tentative">日程は予定 / Tentative</span>
     {/if}
   </p>
 
-  <h1 class='title'>{event.titleJa}</h1>
+  <h1 class="title">{event.titleJa}</h1>
   {#if event.titleEn !== event.titleJa}
-    <p class='title-en'
-       lang='en'>{event.titleEn}</p>
+    <p class="title-en" lang="en">{event.titleEn}</p>
   {/if}
 
-  <dl class='facts'>
-    <div class='fact'>
-      <dt>日程<span lang='en'>Date</span></dt>
+  <dl class="facts">
+    <div class="fact">
+      <dt>日程<span lang="en">Date</span></dt>
       <dd>
-        <span class='fact-main'>{formatDateRangeJa(event)}</span>
-        <span class='fact-en'
-              lang='en'>{formatDateRangeEn(event)}</span>
+        <span class="fact-main">{formatDateRangeJa(event)}</span>
+        <span class="fact-en" lang="en">{formatDateRangeEn(event)}</span>
       </dd>
     </div>
 
     {#if event.venueJa}
-      <div class='fact'>
-        <dt>会場<span lang='en'>Venue</span></dt>
+      <div class="fact">
+        <dt>会場<span lang="en">Venue</span></dt>
         <dd>
-          <span class='fact-main'>{event.venueJa}</span>
+          <span class="fact-main">{event.venueJa}</span>
           {#if event.venueEn}
-            <span class='fact-en'
-                  lang='en'>{event.venueEn}</span>
+            <span class="fact-en" lang="en">{event.venueEn}</span>
           {/if}
         </dd>
       </div>
     {/if}
 
     {#if event.streamingJa}
-      <div class='fact'>
-        <dt>配信<span lang='en'>Live stream</span></dt>
+      <div class="fact">
+        <dt>配信<span lang="en">Live stream</span></dt>
         <dd>
-          <span class='fact-text'>{event.streamingJa}</span>
+          <span class="fact-text">{event.streamingJa}</span>
           {#if event.streamingEn}
-            <span class='fact-en'
-                  lang='en'>{event.streamingEn}</span>
+            <span class="fact-en" lang="en">{event.streamingEn}</span>
           {/if}
         </dd>
       </div>
     {/if}
 
     {#if event.noteJa}
-      <div class='fact'>
-        <dt>補足<span lang='en'>Note</span></dt>
+      <div class="fact">
+        <dt>補足<span lang="en">Note</span></dt>
         <dd>
-          <span class='fact-text'>{event.noteJa}</span>
+          <span class="fact-text">{event.noteJa}</span>
           {#if event.noteEn}
-            <span class='fact-en'
-                  lang='en'>{event.noteEn}</span>
+            <span class="fact-en" lang="en">{event.noteEn}</span>
           {/if}
         </dd>
       </div>
@@ -121,38 +119,38 @@
   </dl>
 
   {#if event.officialUrl || event.resultUrl}
-    <p class='actions'>
+    <p class="actions">
       {#if event.officialUrl}
-        <a class='action primary'
-           href={event.officialUrl}
-           rel='noopener noreferrer'
-           target='_blank'>公式サイト<span lang='en'>Official site</span></a>
+        <a class="action primary" href={event.officialUrl} rel="noopener noreferrer" target="_blank"
+          >公式サイト<span lang="en">Official site</span></a
+        >
       {/if}
       {#if event.resultUrl}
-        <a class='action'
-           href={event.resultUrl}
-           rel='noopener noreferrer'
-           target='_blank'>結果を見る<span lang='en'>Results</span></a>
+        <a class="action" href={event.resultUrl} rel="noopener noreferrer" target="_blank"
+          >結果を見る<span lang="en">Results</span></a
+        >
       {/if}
     </p>
   {/if}
 
   {#if showSource}
-    <p class='source'>
+    <p class="source">
       出典 / Source:
-      <a href={event.sourceUrl}
-         rel='noopener noreferrer'
-         target='_blank'>{hostnameOf(event.sourceUrl)}</a>
+      <a href={event.sourceUrl} rel="noopener noreferrer" target="_blank"
+        >{hostnameOf(event.sourceUrl)}</a
+      >
     </p>
   {/if}
 
-  <p class='caution'>
+  <p class="caution">
     日程や会場は変更されることがあります。お出かけ前に、必ず主催者の公式情報をご確認ください。
-    <span lang='en'>Dates and venues may change. Please check the organizer's official information before you go.</span>
+    <span lang="en"
+      >Dates and venues may change. Please check the organizer's official information before you go.</span
+    >
   </p>
 </article>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 720px;
     --title-size: 30px;
@@ -169,8 +167,9 @@
     width: var(--width);
     margin: 0 auto;
     padding: $space-size-32 0 $space-size-80;
+    font-family:
+      'Hiragino Sans', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Meiryo, sans-serif;
     color: map.get($gray, text);
-    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", YuGothic, "Yu Gothic", Meiryo, sans-serif;
     line-height: 1.7;
     letter-spacing: 0.02em;
     overflow-wrap: anywhere;
@@ -184,7 +183,7 @@
     color: rgb(50, 150, 255);
   }
 
-  .breadcrumb span[lang="en"] {
+  .breadcrumb span[lang='en'] {
     margin-left: $space-size-8;
     font-size: $font-size-12;
     color: map.get($gray, light-text);
@@ -201,25 +200,25 @@
   .category,
   .tentative {
     padding: $space-size-2 $space-size-12;
-    border-radius: $border-radius-64;
     font-weight: bold;
+    border-radius: $border-radius-64;
   }
 
   .category {
-    background: color-mix(in srgb, var(--color) 14%, white);
     color: map.get($gray, 800);
+    background: color-mix(in srgb, var(--color) 14%, white);
   }
 
   .tentative {
-    background: map.get($gray, background);
     color: map.get($gray, light-text);
+    background: map.get($gray, background);
   }
 
   .title {
     margin-top: $space-size-12;
     font-size: var(--title-size);
     line-height: 1.4;
-    font-feature-settings: "palt";
+    font-feature-settings: 'palt';
   }
 
   .title-en {
@@ -236,8 +235,8 @@
 
   .fact {
     display: grid;
-    grid-template-columns: var(--fact-columns);
     gap: $space-size-4 $space-size-16;
+    grid-template-columns: var(--fact-columns);
     padding: $space-size-16 0;
     border-bottom: $border-size-1 solid map.get($gray, 200);
   }
@@ -248,7 +247,7 @@
     color: map.get($gray, light-text);
   }
 
-  dt span[lang="en"] {
+  dt span[lang='en'] {
     margin-left: $space-size-8;
     font-weight: normal;
   }
@@ -284,25 +283,25 @@
 
   .action {
     display: grid;
-    place-items: center;
     min-width: 180px;
     padding: $space-size-8 $space-size-24;
-    border: $border-size-1 solid map.get($sky-blue, button);
-    border-radius: $border-radius-64;
-    color: map.get($sky-blue, text);
     font-size: $font-size-16;
     font-weight: bold;
+    color: map.get($sky-blue, text);
+    border: $border-size-1 solid map.get($sky-blue, button);
+    border-radius: $border-radius-64;
+    place-items: center;
     line-height: 1.3;
   }
 
-  .action span[lang="en"] {
+  .action span[lang='en'] {
     font-size: $font-size-11;
     font-weight: normal;
   }
 
   .primary {
-    background: map.get($sky-blue, button);
     color: $white;
+    background: map.get($sky-blue, button);
   }
 
   .source {
@@ -321,7 +320,7 @@
     color: map.get($gray, light-text);
   }
 
-  .caution span[lang="en"] {
+  .caution span[lang='en'] {
     display: block;
   }
 </style>

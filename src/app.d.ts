@@ -4,7 +4,7 @@
 declare global {
   namespace App {
     interface Locals {
-      isMobile: boolean;
+      isMobile: boolean
     }
 
     // interface PageData {}
@@ -17,12 +17,12 @@ declare global {
    * import の path の末尾に &as=meta を付与することで image 型として import 可能
    * @see https://github.com/JonasKruckenberg/imagetools/issues/160#issuecomment-1633763778
    */
-  declare module "*&as=meta" {
+  declare module '*&as=meta' {
     const images: {
-      src: string;
-      width: number;
-      height: number;
-      format: string;
+      src: string
+      width: number
+      height: number
+      format: string
     }[]
     export default images
   }

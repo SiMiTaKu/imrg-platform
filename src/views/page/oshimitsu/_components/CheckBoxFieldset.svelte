@@ -1,41 +1,35 @@
-<script context='module' lang='ts'>
-  import { createEventDispatcher } from "svelte"
+<script context="module" lang="ts">
+  import { createEventDispatcher } from 'svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   const dispatch = createEventDispatcher<{
-    change: { value: string; checked: boolean };
+    change: { value: string; checked: boolean }
   }>()
 
   export let legendText: string
   export let name: string
   export let options: {
-    value: string;
-    label: string;
+    value: string
+    label: string
   }[]
 
   const onChange = (event: Event) => {
     const target = event.target as HTMLInputElement
-    dispatch("change", { value: target.value, checked: target.checked })
+    dispatch('change', { value: target.value, checked: target.checked })
   }
 </script>
 
 <fieldset class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <div class='wrapper'>
-    <legend class='legend'>{legendText}</legend>
-    <ul class='ul'>
+  <div class="wrapper">
+    <legend class="legend">{legendText}</legend>
+    <ul class="ul">
       {#each options as item, index (index)}
         <li>
-          <label class='label'>
-            <input
-              class='input'
-              {name}
-              type='checkbox'
-              value={item.value}
-              on:change={onChange}
-            />
+          <label class="label">
+            <input class="input" {name} type="checkbox" value={item.value} on:change={onChange} />
             {item.label}
           </label>
         </li>
@@ -44,7 +38,7 @@
   </div>
 </fieldset>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 343px;
     --legend-font-size: #{$font-size-24};
@@ -65,24 +59,24 @@
 
   .legend {
     display: flex;
+    gap: $space-size-8;
     font-size: var(--legend-font-size);
     font-weight: bold;
     align-items: center;
-    gap: $space-size-8;
 
-    &:before {
-      content: "";
+    &::before {
+      display: grid;
       width: 4px;
       height: var(--legend-font-size);
       background: map.get($sky-blue, border);
-      display: grid;
+      content: '';
     }
   }
 
   .ul {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: $space-size-8 $space-size-16;
+    grid-template-columns: 1fr 1fr;
     flex-wrap: wrap;
     list-style: none;
   }
@@ -90,28 +84,28 @@
   .label {
     position: relative;
     display: grid;
-    place-items: center start;
     width: 100%;
     height: 48px;
     padding: 0 0 0 $space-size-40;
     font-size: var(--label-font-size);
     font-weight: bold;
     color: map.get($gray, light-text);
-    background: var(--background, $white);
-    border-radius: $border-radius-8;
     border: $border-size-1 solid var(--border-color, map.get($gray, border));
-    box-sizing: border-box;
+    border-radius: $border-radius-8;
+    background: var(--background, $white);
     transition: 0.2s;
+    place-items: center start;
+    box-sizing: border-box;
 
-    &:before {
-      left: $space-size-8;
+    &::before {
       position: absolute;
-      content: "";
       width: 20px;
       height: 20px;
-      border-radius: $border-size-4;
       border: var(--border, $border-size-2 solid map.get($gray, border));
+      border-radius: $border-size-4;
       background: var(--checkbox-background, $white);
+      left: $space-size-8;
+      content: '';
       box-sizing: border-box;
     }
 
@@ -119,13 +113,14 @@
       --border: none;
       --background: #{map.get($sky-blue, background)};
       --checkbox-background: #{map.get($sky-blue, button)};
+
       color: map.get($sky-blue, text);
 
-      &:after {
+      &::after {
         top: 14px;
         left: 13px;
         position: absolute;
-        content: "";
+        content: '';
         width: 6px;
         height: 11px;
         transform: rotate(45deg);

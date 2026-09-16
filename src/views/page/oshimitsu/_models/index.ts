@@ -1,3 +1,3 @@
-export * from "./team"
-export * from "./player"
-export * from "./video"
+export * from './team'
+export * from './player'
+export * from './video'

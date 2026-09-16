@@ -1,27 +1,16 @@
-<script lang='ts'>
-  import { judgementApparatus } from "../_store/apparatus"
+<script lang="ts">
+  import { judgementApparatus } from '../_store/apparatus'
 
   export let count: number
 </script>
 
-<div
-  class="counter {$judgementApparatus
-    ? $judgementApparatus.imageColor
-    : 'gray'}"
->
-  <button
-    class='minus'
-    disabled={count <= 0}
-    type='button'
-    on:click={() => count--}>−</button
-  >
-  <span class='count'>{count}</span>
-  <button class='plus'
-          type='button'
-          on:click={() => count++}>+</button>
+<div class="counter {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}">
+  <button class="minus" disabled={count <= 0} type="button" on:click={() => count--}>−</button>
+  <span class="count">{count}</span>
+  <button class="plus" type="button" on:click={() => count++}>+</button>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .gray {
     --button-color: #707070;
   }
@@ -44,10 +33,10 @@
 
   .counter {
     display: grid;
+    gap: 12px;
+    grid-template-columns: auto auto auto 1fr;
     align-items: center;
     justify-content: center;
-    grid-template-columns: auto auto auto 1fr;
-    gap: 12px;
   }
 
   .plus,
@@ -70,14 +59,14 @@
     }
 
     &:active {
-      transition: 0.1s;
-      background: white;
       color: var(--button-color);
+      background: white;
+      transition: 0.1s;
     }
 
     &:disabled {
-      background-color: #aaaaaa;
       color: white;
+      background-color: #aaa;
       pointer-events: none;
       user-select: none;
     }
