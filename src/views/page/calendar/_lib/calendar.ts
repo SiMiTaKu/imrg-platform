@@ -1,37 +1,21 @@
-import { CATEGORY_LABELS, CATEGORY_ORDER } from "../_data/category"
-import type { CalendarEvent, EventCategory } from "../_data/model"
+import { CATEGORY_LABELS, CATEGORY_ORDER } from '../_data/category'
+import type { CalendarEvent, EventCategory } from '../_data/model'
 
-export const WEEKDAYS_JA = [
-  "日",
-  "月",
-  "火",
-  "水",
-  "木",
-  "金",
-  "土",
-]
-export const WEEKDAYS_EN = [
-  "Sun",
-  "Mon",
-  "Tue",
-  "Wed",
-  "Thu",
-  "Fri",
-  "Sat",
-]
+export const WEEKDAYS_JA = ['日', '月', '火', '水', '木', '金', '土']
+export const WEEKDAYS_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const MONTHS_EN = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ]
 
 /** リスト表示で1ページに出す件数 */
@@ -39,7 +23,7 @@ export const PER_PAGE = 20
 
 const DAY_MS = 24 * 60 * 60 * 1000
 
-type DateParts = { year: number; month: number; day?: number };
+type DateParts = { year: number; month: number; day?: number }
 
 /**
  * いつのイベントを出すか
@@ -47,40 +31,40 @@ type DateParts = { year: number; month: number; day?: number };
  * - past: 終わった（新しい順）
  * - all: すべて
  */
-export type EventPeriod = "upcoming" | "past" | "all";
+export type EventPeriod = 'upcoming' | 'past' | 'all'
 
 export type EventFilter = {
   /** 空のときはすべての種類 */
-  categories: EventCategory[];
-  period: EventPeriod;
-  today: string;
-  keyword: string;
-};
+  categories: EventCategory[]
+  period: EventPeriod
+  today: string
+  keyword: string
+}
 
-export type MonthGroup = { monthKey: string; events: CalendarEvent[] };
+export type MonthGroup = { monthKey: string; events: CalendarEvent[] }
 
-export type PageSlice<T> = { items: T[]; page: number; totalPages: number };
+export type PageSlice<T> = { items: T[]; page: number; totalPages: number }
 
-export type DayCell = { dateKey: string; day: number; weekday: number; inMonth: boolean };
+export type DayCell = { dateKey: string; day: number; weekday: number; inMonth: boolean }
 
-export type DateBadge = { month: number; day?: number; weekdayJa?: string };
+export type DateBadge = { month: number; day?: number; weekdayJa?: string }
 
-export type CalendarView = "calendar" | "list";
+export type CalendarView = 'calendar' | 'list'
 
 /** 画面の状態。URL のクエリに保存して、詳細ページから戻っても同じ表示に戻れるようにする */
 export type CalendarState = {
-  view: CalendarView;
-  keyword: string;
-  categories: EventCategory[];
-  period: EventPeriod;
-  page: number;
-  month: string;
-  day: string | null;
-};
+  view: CalendarView
+  keyword: string
+  categories: EventCategory[]
+  period: EventPeriod
+  page: number
+  month: string
+  day: string | null
+}
 
 /** "2026-10-30" / "2027-03" を年・月・日に分ける */
 function parseDate(value: string): DateParts {
-  const [ year, month, day ] = value.split("-").map(Number)
+  const [year, month, day] = value.split('-').map(Number)
   return day ? { year, month, day } : { year, month }
 }
 
@@ -100,7 +84,7 @@ function weekdayOf(parts: DateParts): number {
 }
 
 function pad(value: number): string {
-  return String(value).padStart(2, "0")
+  return String(value).padStart(2, '0')
 }
 
 /** 閲覧者の端末の日付を "YYYY-MM-DD" にする */
@@ -129,7 +113,7 @@ export function isUpcoming(event: CalendarEvent, today: string): boolean {
 
 /** 検索のために、全角半角と大文字小文字の違いをなくす */
 export function normalizeText(value: string): string {
-  return value.normalize("NFKC").toLowerCase()
+  return value.normalize('NFKC').toLowerCase()
 }
 
 /** キーワードを空白で区切り、すべてを含むか。大会名・会場（日英）と種類名から探す */
@@ -139,7 +123,7 @@ export function matchesKeyword(event: CalendarEvent, keyword: string): boolean {
 
   const label = CATEGORY_LABELS[event.category]
   const haystack = normalizeText(
-    `${event.titleJa} ${event.titleEn} ${event.venueJa ?? ""} ${event.venueEn ?? ""} ${label.ja} ${label.en}`
+    `${event.titleJa} ${event.titleEn} ${event.venueJa ?? ''} ${event.venueEn ?? ''} ${label.ja} ${label.en}`,
   )
   return terms.every((term) => haystack.includes(term))
 }
@@ -154,9 +138,13 @@ export function filterEvents(events: CalendarEvent[], filter: EventFilter): Cale
   const sorted = events
     .filter((event) => filter.categories.length === 0 || filter.categories.includes(event.category))
     .filter((event) => matchesKeyword(event, filter.keyword))
-    .filter((event) => filter.period === "all" || isUpcoming(event, filter.today) === (filter.period === "upcoming"))
+    .filter(
+      (event) =>
+        filter.period === 'all' ||
+        isUpcoming(event, filter.today) === (filter.period === 'upcoming'),
+    )
     .sort(compareEvents)
-  return filter.period === "past" ? sorted.reverse() : sorted
+  return filter.period === 'past' ? sorted.reverse() : sorted
 }
 
 /** 並んだイベントを、開始月が続くかたまりごとにまとめる */
@@ -166,7 +154,7 @@ export function groupByMonth(events: CalendarEvent[]): MonthGroup[] {
     const monthKey = toMonthKey(event.startDate)
     const last = groups[groups.length - 1]
     if (last?.monthKey === monthKey) last.events.push(event)
-    else groups.push({ monthKey, events: [ event ] })
+    else groups.push({ monthKey, events: [event] })
   }
   return groups
 }
@@ -180,22 +168,18 @@ export function paginate<T>(items: T[], page: number, perPage = PER_PAGE): PageS
 }
 
 /** ページ番号の並び。例: 5ページ目/全20ページ → [1, "…", 4, 5, 6, "…", 20] */
-export function pageNumbers(current: number, total: number): (number | "…")[] {
-  const candidates = [
-    1,
-    current - 1,
-    current,
-    current + 1,
-    total,
-  ]
-  const pages = [ ...new Set(candidates.filter((page) => page >= 1 && page <= total)) ].sort((a, b) => a - b)
+export function pageNumbers(current: number, total: number): (number | '…')[] {
+  const candidates = [1, current - 1, current, current + 1, total]
+  const pages = [...new Set(candidates.filter((page) => page >= 1 && page <= total))].sort(
+    (a, b) => a - b,
+  )
 
-  const result: (number | "…")[] = []
+  const result: (number | '…')[] = []
   pages.forEach((page, index) => {
     const previous = pages[index - 1]
     // 1ページだけ飛ぶなら「…」にせず、その番号を出す
     if (previous !== undefined && page - previous === 2) result.push(previous + 1)
-    else if (previous !== undefined && page - previous > 2) result.push("…")
+    else if (previous !== undefined && page - previous > 2) result.push('…')
     result.push(page)
   })
   return result
@@ -218,21 +202,26 @@ export function buildMonthGrid(monthKey: string): DayCell[][] {
         weekday,
         inMonth: date.getUTCMonth() === month - 1,
       }
-    })
+    }),
   )
 }
 
 /** その日に開かれているイベント。年月しか分からないイベントは含めない */
 export function eventsOnDay(events: CalendarEvent[], dateKey: string): CalendarEvent[] {
   return events.filter(
-    (event) => event.startDate.length === 10 && event.startDate <= dateKey && (event.endDate ?? event.startDate) >= dateKey
+    (event) =>
+      event.startDate.length === 10 &&
+      event.startDate <= dateKey &&
+      (event.endDate ?? event.startDate) >= dateKey,
   )
 }
 
 /** その月に少しでもかかっているイベント。年月しか分からないイベントも含める */
 export function eventsInMonth(events: CalendarEvent[], monthKey: string): CalendarEvent[] {
   return events.filter(
-    (event) => toMonthKey(event.startDate) <= monthKey && toMonthKey(event.endDate ?? event.startDate) >= monthKey
+    (event) =>
+      toMonthKey(event.startDate) <= monthKey &&
+      toMonthKey(event.endDate ?? event.startDate) >= monthKey,
   )
 }
 
@@ -276,7 +265,7 @@ export function formatDateRangeJa(event: CalendarEvent): string {
   if (!event.endDate || event.endDate === event.startDate) return startText
 
   const end = parseDate(event.endDate)
-  const endYear = end.year === start.year ? "" : `${end.year}年`
+  const endYear = end.year === start.year ? '' : `${end.year}年`
   if (end.day === undefined) return `${startText}〜${endYear}${end.month}月`
   return `${startText}〜${endYear}${end.month}月${end.day}日（${WEEKDAYS_JA[weekdayOf(end)]}）`
 }
@@ -291,7 +280,8 @@ export function formatDateRangeEn(event: CalendarEvent): string {
   if (!event.endDate || event.endDate === event.startDate) return `${dayText(start)}, ${start.year}`
 
   const end = parseDate(event.endDate)
-  if (end.day === undefined) return `${dayText(start)}, ${start.year} – ${formatMonthEn(event.endDate)}`
+  if (end.day === undefined)
+    return `${dayText(start)}, ${start.year} – ${formatMonthEn(event.endDate)}`
   if (end.year === start.year) return `${dayText(start)} – ${dayText(end)}, ${end.year}`
   return `${dayText(start)}, ${start.year} – ${dayText(end)}, ${end.year}`
 }
@@ -299,7 +289,7 @@ export function formatDateRangeEn(event: CalendarEvent): string {
 /** "https://www.example.com/a" → "example.com"。出典の表示に使う */
 export function hostnameOf(url: string): string {
   try {
-    return new URL(url).hostname.replace(/^www\./, "")
+    return new URL(url).hostname.replace(/^www\./, '')
   } catch {
     return url
   }
@@ -307,29 +297,40 @@ export function hostnameOf(url: string): string {
 
 /** 何も指定されていないときの画面の状態 */
 export function defaultState(month: string): CalendarState {
-  return { view: "calendar", keyword: "", categories: [], period: "upcoming", page: 1, month, day: null }
+  return {
+    view: 'calendar',
+    keyword: '',
+    categories: [],
+    period: 'upcoming',
+    page: 1,
+    month,
+    day: null,
+  }
 }
 
 /** URL のクエリから画面の状態を読む。おかしな値は初期値にする */
 export function parseState(search: string, month: string): CalendarState {
   const params = new URLSearchParams(search)
   const defaults = defaultState(month)
-  const categories = (params.get("category") ?? "")
-    .split(",")
+  const categories = (params.get('category') ?? '')
+    .split(',')
     .filter((value): value is EventCategory => CATEGORY_ORDER.includes(value as EventCategory))
-  const period = params.get("period")
-  const monthParam = params.get("month")
-  const dayParam = params.get("day")
+  const period = params.get('period')
+  const monthParam = params.get('month')
+  const dayParam = params.get('day')
   const resolvedMonth = monthParam && /^\d{4}-\d{2}$/.test(monthParam) ? monthParam : defaults.month
 
   return {
-    view: params.get("view") === "list" ? "list" : defaults.view,
-    keyword: params.get("q") ?? "",
-    categories: [ ...new Set(categories) ],
-    period: period === "past" || period === "all" ? period : defaults.period,
-    page: Math.max(1, Number.parseInt(params.get("page") ?? "1", 10) || 1),
+    view: params.get('view') === 'list' ? 'list' : defaults.view,
+    keyword: params.get('q') ?? '',
+    categories: [...new Set(categories)],
+    period: period === 'past' || period === 'all' ? period : defaults.period,
+    page: Math.max(1, Number.parseInt(params.get('page') ?? '1', 10) || 1),
     month: resolvedMonth,
-    day: dayParam && /^\d{4}-\d{2}-\d{2}$/.test(dayParam) && toMonthKey(dayParam) === resolvedMonth ? dayParam : null,
+    day:
+      dayParam && /^\d{4}-\d{2}-\d{2}$/.test(dayParam) && toMonthKey(dayParam) === resolvedMonth
+        ? dayParam
+        : null,
   }
 }
 
@@ -337,14 +338,14 @@ export function parseState(search: string, month: string): CalendarState {
 export function serializeState(state: CalendarState, month: string): string {
   const defaults = defaultState(month)
   const params = new URLSearchParams()
-  if (state.view !== defaults.view) params.set("view", state.view)
-  if (state.keyword) params.set("q", state.keyword)
-  if (state.categories.length) params.set("category", state.categories.join(","))
-  if (state.view === "list" && state.period !== defaults.period) params.set("period", state.period)
-  if (state.view === "list" && state.page > 1) params.set("page", String(state.page))
-  if (state.view === "calendar" && state.month !== defaults.month) params.set("month", state.month)
-  if (state.view === "calendar" && state.day) params.set("day", state.day)
+  if (state.view !== defaults.view) params.set('view', state.view)
+  if (state.keyword) params.set('q', state.keyword)
+  if (state.categories.length) params.set('category', state.categories.join(','))
+  if (state.view === 'list' && state.period !== defaults.period) params.set('period', state.period)
+  if (state.view === 'list' && state.page > 1) params.set('page', String(state.page))
+  if (state.view === 'calendar' && state.month !== defaults.month) params.set('month', state.month)
+  if (state.view === 'calendar' && state.day) params.set('day', state.day)
 
   const query = params.toString()
-  return query ? `?${query}` : ""
+  return query ? `?${query}` : ''
 }

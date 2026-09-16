@@ -7,7 +7,7 @@ export function getResponsiveDesign(screenWidth: number): ResponsiveDesign {
   else return designOfSP
 }
 
-export const designOfPC = Symbol("pc design")
-export const designOfSP = Symbol("sp design")
+export const designOfPC = Symbol('pc design')
+export const designOfSP = Symbol('sp design')
 
-export type ResponsiveDesign = typeof designOfPC | typeof designOfSP;
+export type ResponsiveDesign = typeof designOfPC | typeof designOfSP

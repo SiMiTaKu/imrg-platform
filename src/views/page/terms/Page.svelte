@@ -1,14 +1,14 @@
-<script context='module' lang='ts'>
-  import PolicyLayout from "$views/common/policy/PolicyLayout.svelte"
+<script context="module" lang="ts">
+  import PolicyLayout from '$views/common/policy/PolicyLayout.svelte'
 
-  const INSTAGRAM = "https://www.instagram.com/takumi.rg/"
-  const YOUTUBE_TERMS = "https://www.youtube.com/t/terms"
+  const INSTAGRAM = 'https://www.instagram.com/takumi.rg/'
+  const YOUTUBE_TERMS = 'https://www.youtube.com/t/terms'
 </script>
 
 <PolicyLayout
-  enactedAt='制定日: 2026年9月15日 / Effective: September 15, 2026'
-  englishTitle='Terms of Service'
-  title='利用規約'
+  enactedAt="制定日: 2026年9月15日 / Effective: September 15, 2026"
+  englishTitle="Terms of Service"
+  title="利用規約"
 >
   <p>
     この利用規約（以下「本規約」）は、男子新体操国際化プロジェクト（以下「当プロジェクト」）が運営するウェブサイト「imrg.work」（以下「本サイト」）と、YouTube
@@ -19,9 +19,8 @@
   <p>
     本規約は、本サイトと本ツールの利用に関わるすべての場面に適用されます。本ツールは YouTube API
     サービスを利用しており、本ツールを利用する場合は
-    <a href={YOUTUBE_TERMS}
-       rel='noopener noreferrer'
-       target='_blank'>YouTube 利用規約</a>にも同意したものとみなします。
+    <a href={YOUTUBE_TERMS} rel="noopener noreferrer" target="_blank">YouTube 利用規約</a
+    >にも同意したものとみなします。
   </p>
 
   <h3>2. 著作権</h3>
@@ -52,30 +51,31 @@
 
   <h3>8. お問い合わせ</h3>
   <p>
-    本規約に関するお問い合わせは、<a href={INSTAGRAM}
-                      rel='noopener noreferrer'
-                      target='_blank'>Instagram のダイレクトメッセージ</a>で受け付けています。
+    本規約に関するお問い合わせは、<a href={INSTAGRAM} rel="noopener noreferrer" target="_blank"
+      >Instagram のダイレクトメッセージ</a
+    >で受け付けています。
   </p>
 
-  <section lang='en'>
+  <section lang="en">
     <p>
-      These Terms of Service (the "Terms") set out the conditions for using imrg.work (the "Site") and IMRG Video
-      Tools (the "Tool"), operated by the Men's Rhythmic Gymnastics Internationalization Project ("we").
+      These Terms of Service (the "Terms") set out the conditions for using imrg.work (the "Site")
+      and IMRG Video Tools (the "Tool"), operated by the Men's Rhythmic Gymnastics
+      Internationalization Project ("we").
     </p>
 
     <h3>1. Scope</h3>
     <p>
-      These Terms apply to all use of the Site and the Tool. The Tool uses YouTube API Services; by using the
-      Tool, you agree to be bound by the
-      <a href={YOUTUBE_TERMS}
-         rel='noopener noreferrer'
-         target='_blank'>YouTube Terms of Service</a>.
+      These Terms apply to all use of the Site and the Tool. The Tool uses YouTube API Services; by
+      using the Tool, you agree to be bound by the
+      <a href={YOUTUBE_TERMS} rel="noopener noreferrer" target="_blank">YouTube Terms of Service</a
+      >.
     </p>
 
     <h3>2. Copyright</h3>
     <p>
-      Copyright in the text, images and videos on the Site belongs to us or to their rightful owners.
-      Reproduction, redistribution or modification beyond personal use without permission is not allowed.
+      Copyright in the text, images and videos on the Site belongs to us or to their rightful
+      owners. Reproduction, redistribution or modification beyond personal use without permission is
+      not allowed.
     </p>
 
     <h3>3. Prohibited conduct</h3>
@@ -87,9 +87,10 @@
 
     <h3>4. Disclaimer</h3>
     <p>
-      We strive to keep the information on the Site accurate but do not guarantee its accuracy or completeness.
-      For competition rules, the official rules of the governing bodies prevail. Except in cases of our willful
-      misconduct or gross negligence, we are not liable for any damage arising from use of the Site or the Tool.
+      We strive to keep the information on the Site accurate but do not guarantee its accuracy or
+      completeness. For competition rules, the official rules of the governing bodies prevail.
+      Except in cases of our willful misconduct or gross negligence, we are not liable for any
+      damage arising from use of the Site or the Tool.
     </p>
 
     <h3>5. External links</h3>
@@ -103,9 +104,9 @@
 
     <h3>8. Contact</h3>
     <p>
-      Please contact us via <a href={INSTAGRAM}
-                               rel='noopener noreferrer'
-                               target='_blank'>Instagram direct message</a>.
+      Please contact us via <a href={INSTAGRAM} rel="noopener noreferrer" target="_blank"
+        >Instagram direct message</a
+      >.
     </p>
   </section>
 </PolicyLayout>

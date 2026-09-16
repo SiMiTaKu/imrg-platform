@@ -1,9 +1,9 @@
-<script context='module' lang='ts'>
-  import { createEventDispatcher } from "svelte"
-  import { pageNumbers } from "../_lib/calendar"
+<script context="module" lang="ts">
+  import { createEventDispatcher } from 'svelte'
+  import { pageNumbers } from '../_lib/calendar'
 </script>
 
-<script lang='ts'>
+<script lang="ts">
   export let page: number
   export let totalPages: number
 
@@ -12,40 +12,45 @@
   $: numbers = pageNumbers(page, totalPages)
 </script>
 
-<nav class='pagination'
-     aria-label='ページ / Pages'>
-  <button class='step'
-          type='button'
-          disabled={page <= 1}
-          on:click={() => dispatch("change", page - 1)}>
-    ‹ 前へ<span lang='en'>Prev</span>
+<nav class="pagination" aria-label="ページ / Pages">
+  <button
+    class="step"
+    type="button"
+    disabled={page <= 1}
+    on:click={() => dispatch('change', page - 1)}
+  >
+    ‹ 前へ<span lang="en">Prev</span>
   </button>
 
-  <ul class='numbers'>
+  <ul class="numbers">
     {#each numbers as item, index (`${item}-${index}`)}
       <li>
-        {#if item === "…"}
-          <span class='ellipsis'>…</span>
+        {#if item === '…'}
+          <span class="ellipsis">…</span>
         {:else}
-          <button class='number'
-                  class:current={item === page}
-                  type='button'
-                  aria-current={item === page ? "page" : undefined}
-                  on:click={() => dispatch("change", Number(item))}>{item}</button>
+          <button
+            class="number"
+            class:current={item === page}
+            type="button"
+            aria-current={item === page ? 'page' : undefined}
+            on:click={() => dispatch('change', Number(item))}>{item}</button
+          >
         {/if}
       </li>
     {/each}
   </ul>
 
-  <button class='step'
-          type='button'
-          disabled={page >= totalPages}
-          on:click={() => dispatch("change", page + 1)}>
-    次へ<span lang='en'>Next</span> ›
+  <button
+    class="step"
+    type="button"
+    disabled={page >= totalPages}
+    on:click={() => dispatch('change', page + 1)}
+  >
+    次へ<span lang="en">Next</span> ›
   </button>
 </nav>
 
-<style lang='scss'>
+<style lang="scss">
   .pagination {
     display: flex;
     flex-wrap: wrap;
@@ -81,7 +86,7 @@
     }
   }
 
-  .step span[lang="en"] {
+  .step span[lang='en'] {
     margin: 0 $space-size-4;
     font-size: $font-size-11;
     font-weight: normal;

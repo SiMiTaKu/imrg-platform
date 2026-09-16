@@ -32,5 +32,5 @@ const createIntersectionObserver = (action: () => void) => {
  * @param elm 切り替える対象の画像要素
  */
 function toggleImageOpacity(elm: HTMLImageElement) {
-  elm.style.opacity = "1"
+  elm.style.opacity = '1'
 }

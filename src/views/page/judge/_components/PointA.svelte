@@ -1,38 +1,36 @@
-<script context='module' lang='ts'>
-  import Radio from "./Radio.svelte"
-  import { createEventDispatcher } from "svelte"
-  import type { PointAKey } from "../_model/point-a"
+<script context="module" lang="ts">
+  import Radio from './Radio.svelte'
+  import { createEventDispatcher } from 'svelte'
+  import type { PointAKey } from '../_model/point-a'
 </script>
 
-<script lang='ts'>
-  import { executionDeduct } from "../_store/store"
-  import { fly } from "svelte/transition"
-  import { pageData } from "../../../atomic/device-store/store"
-  import { judgementApparatus } from "../_store/apparatus"
+<script lang="ts">
+  import { executionDeduct } from '../_store/store'
+  import { fly } from 'svelte/transition'
+  import { pageData } from '../../../atomic/device-store/store'
+  import { judgementApparatus } from '../_store/apparatus'
 
   const dispatch = createEventDispatcher<{ submit: void }>()
 
   let submitted = false
 
   /** 型判定がうまくいかないのでここで型アサーションを行う */
-  let pointAKeys: PointAKey[] = Object.keys(
-    $executionDeduct.pointA
-  ) as PointAKey[]
+  let pointAKeys: PointAKey[] = Object.keys($executionDeduct.pointA) as PointAKey[]
 </script>
 
 <div
-  class='point-a'
+  class="point-a"
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
   in:fly={$pageData.isMobile ? { y: 50 } : { x: 200 }}
 >
-  <header class='header'>
+  <header class="header">
     <h2>Aの減点項目</h2>
     <div>※あなたの直感を信じて選択してください</div>
   </header>
-  <div class='section'>
-    <h3 class='section-title'>徒手の技術</h3>
-    <div class='question-list'>
+  <div class="section">
+    <h3 class="section-title">徒手の技術</h3>
+    <div class="question-list">
       {#each pointAKeys as key (key)}
         <Radio
           annotation={$executionDeduct.pointA[key].info.annotation}
@@ -44,16 +42,12 @@
     </div>
   </div>
   {#if !submitted}
-    <div
-      class="submit {$judgementApparatus
-        ? $judgementApparatus.imageColor
-        : 'gray'}"
-    >
+    <div class="submit {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}">
       <button
-        class='submit-button'
-        type='submit'
+        class="submit-button"
+        type="submit"
         on:click={() => {
-          dispatch("submit")
+          dispatch('submit')
           submitted = true
         }}
       >
@@ -63,7 +57,7 @@
   {/if}
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --header-flex-direction: row;
     --header-gap: 16px;

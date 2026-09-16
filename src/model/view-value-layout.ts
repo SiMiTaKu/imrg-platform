@@ -23,19 +23,19 @@
  * - video: 動画, 動画プレイヤーがメインのページ
  */
 export interface ViewValueLayout {
-  title: string;
-  description: string;
-  noindex: boolean;
-  nofollow: boolean;
-  canonical: boolean;
-  path: string;
-  ogp: OGP;
+  title: string
+  description: string
+  noindex: boolean
+  nofollow: boolean
+  canonical: boolean
+  path: string
+  ogp: OGP
 }
 
 interface OGP {
-  title: string;
-  description: string;
-  type: OGPType;
+  title: string
+  description: string
+  type: OGPType
 }
 
-type OGPType = "website" | "article" | "profile" | "book" | "music" | "video";
+type OGPType = 'website' | 'article' | 'profile' | 'book' | 'music' | 'video'

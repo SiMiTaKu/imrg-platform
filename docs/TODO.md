@@ -13,18 +13,18 @@ SEO・SNS・セキュリティー・CIを整えるための作業一覧。**Phas
 
 作業を始める人が同じ調査を繰り返さないための記録。
 
-| 項目 | 現状 |
-|---|---|
-| フレームワーク | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
-| ホスティング | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0** |
-| 配信 | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1） |
-| CI | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行 |
-| ブランチ保護 | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化） |
-| セキュリティヘッダ | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定 |
-| sitemap | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ） |
-| アクセス解析 | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN` |
-| テスト | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest |
-| 構成 | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし |
+| 項目               | 現状                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| フレームワーク     | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
+| ホスティング       | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0**        |
+| 配信               | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1）              |
+| CI                 | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行                     |
+| ブランチ保護       | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化）    |
+| セキュリティヘッダ | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定                   |
+| sitemap            | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ）            |
+| アクセス解析       | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN`       |
+| テスト             | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest                              |
+| 構成               | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし             |
 
 反映の確認方法（全ページが同じHTMLを返すため、文字列検索では判定できない）:
 
@@ -106,7 +106,8 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 現在の `.eslintrc.json` は配列を1要素ずつ改行させるなど癖が強い。移行時に見直す
   - `eslint.config.mjs` へ移し、typescript-eslint 8・eslint-plugin-svelte 3にした。使っていなかった `eslint-config-standard-with-typescript` などは削除
   - 対象を `src` だけから、設定ファイルを含むリポジトリー全体に広げた
-- [ ] **1-5b. 整形をPrettierに任せる**（oshiageの `.prettierrc.json` に合わせ、ESLintの見た目のルールを外す。全ファイルを一度だけ整形する）
+- [x] **1-5b. 整形をPrettierに任せる**（oshiageの `.prettierrc.json` に合わせ、ESLintの見た目のルールを外す。全ファイルを一度だけ整形する）
+  - あわせてhusky 9・lint-staged 17へ上げた。`npm install` でコミット時のフックが有効になる
 - [ ] **1-6. Jest → Vitest**（oshiageと揃える。既存47件のテストを移植）
 - [ ] **1-7. 型チェックのエラーを解消する**（現在11件。`$env/static/public` の解決と `rules` ページの型）
 

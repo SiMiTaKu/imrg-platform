@@ -1,4 +1,4 @@
-import type { Handle } from "@sveltejs/kit"
+import type { Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
   event.locals.isMobile = isMobile(event.request.headers as Headers)
@@ -7,7 +7,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 function isMobile(headers: Headers) {
   return (
-    !!headers.get("user-agent")?.match(/iPhone|Android.+Mobile/) ||
-    headers.get("src-ch-ua-mobile") == "?1"
+    !!headers.get('user-agent')?.match(/iPhone|Android.+Mobile/) ||
+    headers.get('src-ch-ua-mobile') == '?1'
   )
 }

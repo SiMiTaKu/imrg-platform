@@ -1,11 +1,11 @@
-<script context='module' lang='ts'>
-  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
-  import type { SrcMeta } from "$views/atomic/image/ImageAssets.svelte"
+<script context="module" lang="ts">
+  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import type { SrcMeta } from '$views/atomic/image/ImageAssets.svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
-  import { fade } from "svelte/transition"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
+  import { fade } from 'svelte/transition'
 
   export let images: SrcMeta[][] = []
   export let workIndex: number
@@ -25,39 +25,32 @@
   }
 </script>
 
-<button class='card'
-        class:flipped
-        type='button'
-        on:click={flip}>
+<button class="card" class:flipped type="button" on:click={flip}>
   {#if !flipped}
-    <div class='front'
-         in:fade={{ delay: 250, duration: 200 }}
-         out:fade>
+    <div class="front" in:fade={{ delay: 250, duration: 200 }} out:fade>
       <ImageAssets
         width={$pageData.isMobile ? 338 : 331}
         height={$pageData.isMobile ? 338 : 331}
         alt={`過去の作品${workIndex + 1}_${frontImageIndex + 1}画像`}
         lazy={true}
         srcMeta={images[frontImageIndex]}
-        objectFit='cover'
+        objectFit="cover"
       />
     </div>
   {:else}
-    <div class='back'
-         in:fade={{ delay: 250, duration: 200 }}
-         out:fade>
+    <div class="back" in:fade={{ delay: 250, duration: 200 }} out:fade>
       <ImageAssets
         width={$pageData.isMobile ? 338 : 331}
         height={$pageData.isMobile ? 338 : 331}
         alt={`過去の作品${workIndex}_${frontImageIndex + 2}画像`}
         srcMeta={images[backImageIndex]}
-        objectFit='cover'
+        objectFit="cover"
       />
     </div>
   {/if}
 </button>
 
-<style lang='scss'>
+<style lang="scss">
   .card {
     position: relative;
     width: 100%;

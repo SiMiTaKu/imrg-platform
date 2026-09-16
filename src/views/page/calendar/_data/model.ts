@@ -8,19 +8,14 @@
  * - international: 海外・国際的な催し
  */
 export type EventCategory =
-  | "national"
-  | "regional"
-  | "prefectural"
-  | "performance"
-  | "workshop"
-  | "international";
+  'national' | 'regional' | 'prefectural' | 'performance' | 'workshop' | 'international'
 
 /**
  * 日程が確定しているか
  * - confirmed: 主催者が日程を発表している
  * - tentative: 例年の時期しか分からない、または仮の日程
  */
-export type EventStatus = "confirmed" | "tentative";
+export type EventStatus = 'confirmed' | 'tentative'
 
 /**
  * CalendarEvent
@@ -31,20 +26,20 @@ export type EventStatus = "confirmed" | "tentative";
  * @property {string} sourceUrl 日程を確認できたページ。出典のないイベントは載せない
  */
 export interface CalendarEvent {
-  id: string;
-  titleJa: string;
-  titleEn: string;
-  category: EventCategory;
-  startDate: string;
-  endDate?: string;
-  status: EventStatus;
-  venueJa?: string;
-  venueEn?: string;
-  streamingJa?: string;
-  streamingEn?: string;
-  noteJa?: string;
-  noteEn?: string;
-  officialUrl?: string;
-  sourceUrl: string;
-  resultUrl?: string;
+  id: string
+  titleJa: string
+  titleEn: string
+  category: EventCategory
+  startDate: string
+  endDate?: string
+  status: EventStatus
+  venueJa?: string
+  venueEn?: string
+  streamingJa?: string
+  streamingEn?: string
+  noteJa?: string
+  noteEn?: string
+  officialUrl?: string
+  sourceUrl: string
+  resultUrl?: string
 }

@@ -1,4 +1,4 @@
-import type { ExecutionDeduct } from "../_model/execution-deduct"
+import type { ExecutionDeduct } from '../_model/execution-deduct'
 
 /**
  * @param data 実施の採点項目
@@ -16,7 +16,7 @@ export function getAmountOfPointA(data: ExecutionDeduct): number {
 
 /** @note Bの減点項目の合計を返す。減点のMaxを超えた場合はMaxの値を返す。 */
 export function getAmountOfPointB(data: ExecutionDeduct): number {
-  if (data.pointB.miss! < 0) throw new Error("missが0未満です。")
+  if (data.pointB.miss! < 0) throw new Error('missが0未満です。')
   const maxPointB = getMaxPointB(data)
   const droppedApparatus = getDeductionOfDroppedApparatus(data)
   const missPoint = data.pointB.miss ? data.pointB.miss : 0

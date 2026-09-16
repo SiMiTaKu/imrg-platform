@@ -1,9 +1,9 @@
-import { designOfSP, getResponsiveDesign } from "$lib/common/responsive-design"
-import { writable } from "svelte/store"
+import { designOfSP, getResponsiveDesign } from '$lib/common/responsive-design'
+import { writable } from 'svelte/store'
 
 type PageData = {
-  isMobile: boolean;
-};
+  isMobile: boolean
+}
 
 function createStore() {
   const defaultPageData: PageData = { isMobile: true }

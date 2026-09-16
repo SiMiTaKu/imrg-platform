@@ -1,20 +1,18 @@
-<script lang='ts'>
-  import { judgementApparatus } from "../../../page/judge/_store/apparatus"
+<script lang="ts">
+  import { judgementApparatus } from '../../../page/judge/_store/apparatus'
 
   export let caption: string
   export let annotation: string | undefined = undefined
 </script>
 
-<div
-  class="header {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}"
->
-  <span class='title'><span class='icon'>Q</span>{caption}</span>
+<div class="header {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}">
+  <span class="title"><span class="icon">Q</span>{caption}</span>
   {#if annotation}
-    <span class='annotation'>※{annotation}</span>
+    <span class="annotation">※{annotation}</span>
   {/if}
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .gray {
     --icon-background: #707070;
   }

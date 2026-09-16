@@ -1,18 +1,18 @@
-<script context='module' lang='ts'>
-  import ImageAssets from "../atomic/image/ImageAssets.svelte"
-  import MainImage from "./_images/imrg-logo.jpg?w=650;1300&format=webp&as=meta"
-  import Hamburger from "$views/layout/_components/Hamburger.svelte"
-  import YoutubeIcon from "$views/layout/_images/youtube-icon.png?w=256;512&format=webp&as=meta"
-  import InstagramIcon from "$views/layout/_images/instagram-icon.png?w=256;512&format=webp&as=meta"
-  import XIcon from "$views/layout/_images/x-icon.png?w=256;512&format=webp&as=meta"
-  import TiktokIcon from "$views/layout/_images/tiktok-icon.png?w=256;512&format=webp&as=meta"
+<script context="module" lang="ts">
+  import ImageAssets from '../atomic/image/ImageAssets.svelte'
+  import MainImage from './_images/imrg-logo.jpg?w=650;1300&format=webp&as=meta'
+  import Hamburger from '$views/layout/_components/Hamburger.svelte'
+  import YoutubeIcon from '$views/layout/_images/youtube-icon.png?w=256;512&format=webp&as=meta'
+  import InstagramIcon from '$views/layout/_images/instagram-icon.png?w=256;512&format=webp&as=meta'
+  import XIcon from '$views/layout/_images/x-icon.png?w=256;512&format=webp&as=meta'
+  import TiktokIcon from '$views/layout/_images/tiktok-icon.png?w=256;512&format=webp&as=meta'
 
   export const SNS = [
     {
-      href: "https://www.youtube.com/channel/UCK-OUvWo6IQz2W6Z-fH27BQ?sub_confirmation=1",
+      href: 'https://www.youtube.com/channel/UCK-OUvWo6IQz2W6Z-fH27BQ?sub_confirmation=1',
       icon: {
         srcMeta: YoutubeIcon,
-        alt: "YouTubeアイコン",
+        alt: 'YouTubeアイコン',
         size: {
           pc: {
             width: 41,
@@ -26,10 +26,10 @@
       },
     },
     {
-      href: "https://www.instagram.com/takumi.rg/",
+      href: 'https://www.instagram.com/takumi.rg/',
       icon: {
         srcMeta: InstagramIcon,
-        alt: "Instagramアイコン",
+        alt: 'Instagramアイコン',
         size: {
           pc: {
             width: 34,
@@ -43,10 +43,10 @@
       },
     },
     {
-      href: "https://twitter.com/TakumiShimizu43",
+      href: 'https://twitter.com/TakumiShimizu43',
       icon: {
         srcMeta: XIcon,
-        alt: "X（Twitter）アイコン",
+        alt: 'X（Twitter）アイコン',
         size: {
           pc: {
             width: 28,
@@ -60,10 +60,10 @@
       },
     },
     {
-      href: "https://www.tiktok.com/@takumishimizu43?lang=ja-JP",
+      href: 'https://www.tiktok.com/@takumishimizu43?lang=ja-JP',
       icon: {
         srcMeta: TiktokIcon,
-        alt: "TikTokアイコン",
+        alt: 'TikTokアイコン',
         size: {
           pc: {
             width: 30,
@@ -79,54 +79,40 @@
   ]
 </script>
 
-<script lang='ts'>
-  import { pageData } from "../atomic/device-store/store"
-  import HamburgerSwitchButton from "$views/layout/_components/HamburgerSwitchButton.svelte"
+<script lang="ts">
+  import { pageData } from '../atomic/device-store/store'
+  import HamburgerSwitchButton from '$views/layout/_components/HamburgerSwitchButton.svelte'
 
   let isHamburgerOpen = false
 </script>
 
-<header
-  class='header-main'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
-  <div class='content'>
+<header class="header-main" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+  <div class="content">
     <a
-      class='top-link'
-      href='/'
-      on:click={() =>
-        isHamburgerOpen ? (isHamburgerOpen = !isHamburgerOpen) : undefined}
+      class="top-link"
+      href="/"
+      on:click={() => (isHamburgerOpen ? (isHamburgerOpen = !isHamburgerOpen) : undefined)}
     >
       <ImageAssets
         width={$pageData.isMobile ? 80 : 100}
         height={$pageData.isMobile ? 56 : 64}
-        alt='男子新体操国際化プロジェクトのロゴ'
+        alt="男子新体操国際化プロジェクトのロゴ"
         lazy={false}
         srcMeta={MainImage}
-        objectFit='cover'
+        objectFit="cover"
       />
     </a>
-    <ul class='sns'>
+    <ul class="sns">
       {#each SNS as sns, index (index)}
-        <li class='sns-row'>
-          <a
-            class='sns-link'
-            href={sns.href}
-            rel='noopener noreferrer'
-            target='_blank'
-          >
+        <li class="sns-row">
+          <a class="sns-link" href={sns.href} rel="noopener noreferrer" target="_blank">
             <ImageAssets
-              width={$pageData.isMobile
-                ? sns.icon.size.sp.width
-                : sns.icon.size.pc.width}
-              height={$pageData.isMobile
-                ? sns.icon.size.sp.height
-                : sns.icon.size.pc.height}
+              width={$pageData.isMobile ? sns.icon.size.sp.width : sns.icon.size.pc.width}
+              height={$pageData.isMobile ? sns.icon.size.sp.height : sns.icon.size.pc.height}
               alt={sns.icon.alt}
               lazy={false}
               srcMeta={sns.icon.srcMeta}
-              objectFit='cover'
+              objectFit="cover"
             />
           </a>
         </li>
@@ -136,14 +122,11 @@
       isOpen={isHamburgerOpen}
       on:click={() => (isHamburgerOpen = !isHamburgerOpen)}
     />
-    <Hamburger
-      open={isHamburgerOpen}
-      on:close={() => (isHamburgerOpen = !isHamburgerOpen)}
-    />
+    <Hamburger open={isHamburgerOpen} on:close={() => (isHamburgerOpen = !isHamburgerOpen)} />
   </div>
 </header>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --height: 80px;
     --content-width: 1024px;
@@ -171,7 +154,7 @@
     z-index: 1000;
 
     &:before {
-      content: "";
+      content: '';
       position: fixed;
       top: 0;
       width: 100vw;

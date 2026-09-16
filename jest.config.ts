@@ -7,6 +7,6 @@ module.exports = {
     '^\\$lib/(.*)$': '<rootDir>/src/lib/$1',
     '^\\$views/(.*)$': '<rootDir>/src/views/$1',
     '^\\$amplify/(.*)$': '<rootDir>/src/amplify/$1',
-    '^\\$shared/(.*)$': '<rootDir>/src/amplify/shared/$1'
-  }
+    '^\\$shared/(.*)$': '<rootDir>/src/amplify/shared/$1',
+  },
 }

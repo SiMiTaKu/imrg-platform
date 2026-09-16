@@ -1,9 +1,9 @@
-<script context='module' lang='ts'>
-  import { createEventDispatcher } from "svelte"
+<script context="module" lang="ts">
+  import { createEventDispatcher } from 'svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   const dispatch = createEventDispatcher<{ click: void }>()
 
@@ -11,17 +11,17 @@
 </script>
 
 <button
-  class='button'
-  type='button'
+  class="button"
+  type="button"
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
-  on:click={() => dispatch("click")}
+  on:click={() => dispatch('click')}
 >
-  <div class='icon' class:open={isOpen}></div>
-  <span class='text'>{isOpen ? "close" : "open"}</span>
+  <div class="icon" class:open={isOpen}></div>
+  <span class="text">{isOpen ? 'close' : 'open'}</span>
 </button>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --height: 80px;
     --hamburger-text-font-size: #{$font-size-18};
@@ -69,7 +69,7 @@
     &:before,
     &:after {
       position: absolute;
-      content: "";
+      content: '';
       width: var(--button-icon-size);
       height: 3px;
       background: map.get($gray, text);

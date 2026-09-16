@@ -1,12 +1,12 @@
-<script context='module' lang='ts'>
-  import type { PointAOption } from "../_model/point-a"
-  import { PointAOptions } from "../_model/point-a"
+<script context="module" lang="ts">
+  import type { PointAOption } from '../_model/point-a'
+  import { PointAOptions } from '../_model/point-a'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "../../../atomic/device-store/store"
-  import QuestionLabel from "../../../atomic/form/label/QuestionLabel.svelte"
-  import { judgementApparatus } from "../_store/apparatus"
+<script lang="ts">
+  import { pageData } from '../../../atomic/device-store/store'
+  import QuestionLabel from '../../../atomic/form/label/QuestionLabel.svelte'
+  import { judgementApparatus } from '../_store/apparatus'
 
   export let title: string
   export let userSelected: PointAOption
@@ -14,25 +14,19 @@
   export let uniqueId: string
 </script>
 
-<div
-  class='radio-question'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
+<div class="radio-question" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <QuestionLabel {annotation} caption={title} />
   <div
-    class="radio-group {$judgementApparatus
-      ? $judgementApparatus.imageColor
-      : 'gray'}"
-    aria-checked='false'
-    aria-labelledby='label-${uniqueId}'
-    role='radio'
+    class="radio-group {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}"
+    aria-checked="false"
+    aria-labelledby="label-${uniqueId}"
+    role="radio"
   >
     {#each PointAOptions as option, index (index)}
       <input
         id={`${uniqueId}-${option.label}`}
-        aria-checked='false'
-        type='radio'
+        aria-checked="false"
+        type="radio"
         value={option}
         bind:group={userSelected}
       />
@@ -41,14 +35,14 @@
       </label>
     {/each}
   </div>
-  <p class='level-meter'>
+  <p class="level-meter">
     <span>低</span>
     <span>中</span>
     <span>高</span>
   </p>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --header-flex-direction: row;
     --radio-button-size: 48px;
@@ -96,7 +90,7 @@
 
     &:before {
       position: absolute;
-      content: "";
+      content: '';
       background: var(--radio-color);
       height: 5px;
       width: 100%;
@@ -106,11 +100,11 @@
     }
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     display: none;
   }
 
-  input[type="radio"]:checked + label:before {
+  input[type='radio']:checked + label:before {
     color: white;
     opacity: 1;
     width: var(--radio-button-size);
@@ -126,7 +120,7 @@
     width: 100%;
 
     &:before {
-      content: "";
+      content: '';
       position: relative;
       display: grid;
       align-items: center;

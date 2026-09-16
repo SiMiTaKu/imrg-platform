@@ -1,13 +1,9 @@
-<script lang='ts'>
-  import { fade } from "svelte/transition"
-  import { executionDeduct } from "../_store/store"
-  import { Chart } from "chart.js/auto"
-  import {
-    getAmountOfPointA,
-    getAmountOfPointB,
-    getDecisionPoints,
-  } from "../_service/culculator"
-  import { judgementApparatus } from "../_store/apparatus"
+<script lang="ts">
+  import { fade } from 'svelte/transition'
+  import { executionDeduct } from '../_store/store'
+  import { Chart } from 'chart.js/auto'
+  import { getAmountOfPointA, getAmountOfPointB, getDecisionPoints } from '../_service/culculator'
+  import { judgementApparatus } from '../_store/apparatus'
 
   $: pointA = getAmountOfPointA($executionDeduct)
   $: pointB = getAmountOfPointB($executionDeduct)
@@ -15,23 +11,23 @@
 
   export let show: boolean
 
-  let pointDetailButtonTitle: string = "内訳を見る"
+  let pointDetailButtonTitle: string = '内訳を見る'
   let pointDetailOpacity: number = 0
   let pointDetailHeight: number = 0
-  let pointDetailMarginTop: string = "0px"
+  let pointDetailMarginTop: string = '0px'
   let isPointDetailShown: boolean = false
 
   function switchShowPointADetail(): void {
     isPointDetailShown = !isPointDetailShown
     if (isPointDetailShown) {
       renderPointDetailChart()
-      pointDetailButtonTitle = "内訳を閉じる"
+      pointDetailButtonTitle = '内訳を閉じる'
       pointDetailHeight = 300
       setTimeout(() => {
         pointDetailOpacity = 1
       }, 100)
     } else {
-      pointDetailButtonTitle = "内訳を見る"
+      pointDetailButtonTitle = '内訳を見る'
       pointDetailOpacity = 0
       setTimeout(() => {
         pointDetailHeight = 0
@@ -40,36 +36,29 @@
   }
 
   const borderColor = {
-    gray: "#707070",
-    blue: "#0065a4",
-    red: "#d30000",
-    yellow: "#ecc200",
-    green: "#219300",
+    gray: '#707070',
+    blue: '#0065a4',
+    red: '#d30000',
+    yellow: '#ecc200',
+    green: '#219300',
   }
 
   /** @note Chartが描画されているか判別する変数 */
   let myChart: Chart | undefined = undefined
   function renderPointDetailChart() {
-    let ctx = <HTMLCanvasElement>document.getElementById("detail-chart")
+    let ctx = <HTMLCanvasElement>document.getElementById('detail-chart')
     if (myChart) {
       myChart.clear()
       myChart.destroy()
     }
     myChart = new Chart(ctx, {
-      type: "radar",
+      type: 'radar',
       data: {
-        labels: Object.values($executionDeduct.pointA).map(
-          (point) => point.info.title
-        ),
+        labels: Object.values($executionDeduct.pointA).map((point) => point.info.title),
         datasets: [
           {
-            data: Object.values($executionDeduct.pointA).map(
-              (point) => point.option.code
-            ),
-            borderColor:
-              borderColor[
-                $judgementApparatus ? $judgementApparatus.imageColor : "gray"
-              ],
+            data: Object.values($executionDeduct.pointA).map((point) => point.option.code),
+            borderColor: borderColor[$judgementApparatus ? $judgementApparatus.imageColor : 'gray'],
           },
         ],
       },
@@ -93,61 +82,52 @@
 </script>
 
 {#if show}
-  <section class='modal' transition:fade>
-    <div class='container'>
-      <div class='header'>
-        <h2
-          class="title {$judgementApparatus
-            ? $judgementApparatus.imageColor
-            : 'gray'}"
-        >
+  <section class="modal" transition:fade>
+    <div class="container">
+      <div class="header">
+        <h2 class="title {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}">
           決定点
         </h2>
-        <button
-          class='pull-down-button'
-          type='button'
-          on:touchstart={switchShowPointADetail}
-        >{pointDetailButtonTitle}</button
+        <button class="pull-down-button" type="button" on:touchstart={switchShowPointADetail}
+          >{pointDetailButtonTitle}</button
         >
       </div>
-      <div style:opacity={pointDetailOpacity}
-           style:height={`${pointDetailHeight}px`}
-           style:margin-top={pointDetailMarginTop}
-           class='pull-down'>
-        <div class='wrapper'>
-          <div class='chart'>
-            <canvas id='detail-chart'
-                    width='256'
-                    height='256'>
+      <div
+        style:opacity={pointDetailOpacity}
+        style:height={`${pointDetailHeight}px`}
+        style:margin-top={pointDetailMarginTop}
+        class="pull-down"
+      >
+        <div class="wrapper">
+          <div class="chart">
+            <canvas id="detail-chart" width="256" height="256">
               <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
             </canvas>
           </div>
-          <ul class='detail'>
+          <ul class="detail">
             {#each Object.values($executionDeduct.pointA) as point, index (index)}
-              <li class='detail-item'>
-                <span class='detail-title'>{point.info.title}</span>
+              <li class="detail-item">
+                <span class="detail-title">{point.info.title}</span>
                 <span>{point.option.value.toFixed(3)}</span>
               </li>
             {/each}
-            <li class='detail-item'>
-              <span class='detail-title'> その他ミスによる減点 </span>
+            <li class="detail-item">
+              <span class="detail-title"> その他ミスによる減点 </span>
               <span>{$executionDeduct.pointB.miss.toFixed(3)}</span>
             </li>
           </ul>
         </div>
       </div>
-      <div class='format'>
+      <div class="format">
         10.00　-　( {pointA.toFixed(3)} + {pointB.toFixed(3)} )
       </div>
-      <div class='result'>
+      <div class="result">
         {decisionPoints.toFixed(3)}
       </div>
-      <div class='footer'>
+      <div class="footer">
         <button
-          class="footer-button {$judgementApparatus
-            ? $judgementApparatus.imageColor
-            : 'gray'}"
-          type='button'
+          class="footer-button {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}"
+          type="button"
           on:click={oneMoreJudge}>もう一度採点する</button
         >
       </div>
@@ -155,7 +135,7 @@
   </section>
 {/if}
 
-<style lang='scss'>
+<style lang="scss">
   .gray {
     --title-background-color: #707070;
     --footer-button-background-color: #707070;
@@ -189,7 +169,7 @@
     bottom: 0;
 
     &:before {
-      content: "";
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
@@ -241,7 +221,7 @@
     margin-bottom: 24px;
 
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       display: block;
       width: 200px;
@@ -271,7 +251,10 @@
     opacity: 0;
     height: 0;
     margin: 0;
-    transition: opacity 0.5s ease-out, height 0.5s ease-out, margin-top 0.5s ease-out;
+    transition:
+      opacity 0.5s ease-out,
+      height 0.5s ease-out,
+      margin-top 0.5s ease-out;
     overflow: scroll;
   }
 

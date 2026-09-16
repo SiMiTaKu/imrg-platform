@@ -1,11 +1,11 @@
-<script context='module' lang='ts'>
-  import WithEnglishHeading from "$views/atomic/heading/WithEnglishHeading.svelte"
-  import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
+<script context="module" lang="ts">
+  import WithEnglishHeading from '$views/atomic/heading/WithEnglishHeading.svelte'
+  import ButtonLink from '$views/atomic/button/ButtonLink.svelte'
 </script>
 
-<script lang='ts'>
-  import { onMount } from "svelte"
-  import { pageData } from "../../atomic/device-store/store"
+<script lang="ts">
+  import { onMount } from 'svelte'
+  import { pageData } from '../../atomic/device-store/store'
 
   let bigIcon = false
 
@@ -16,27 +16,23 @@
   })
 </script>
 
-<section
-  class='contact'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
-  <WithEnglishHeading englishTitle='Contact' title='問合わせ先' />
-  <div class='content'>
+<section class="contact" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+  <WithEnglishHeading englishTitle="Contact" title="問合わせ先" />
+  <div class="content">
     お問い合わせはインスタグラムのダイレクトメッセージにて、<br />
     いつでも受け付けております。<br />
     お気軽にお問い合わせください。
     <ButtonLink
       width={$pageData.isMobile ? 320 : 400}
       height={56}
-      text='問い合わせる'
-      href='https://www.instagram.com/takumi.rg/'
-      target='_blank'
+      text="問い合わせる"
+      href="https://www.instagram.com/takumi.rg/"
+      target="_blank"
     />
   </div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 1024px;
     --content-font-size: #{$font-size-24};

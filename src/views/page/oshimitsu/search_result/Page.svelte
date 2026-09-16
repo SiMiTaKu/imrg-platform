@@ -1,20 +1,16 @@
-<script context='module' lang='ts'>
-  import IndividualVideoCard from "../_components/IndividualVideoCard.svelte"
-  import GroupVideoCard from "../_components/GroupVideoCard.svelte"
-  import Button from "$views/atomic/button/Button.svelte"
-  import { type VideoResource } from "$views/page/oshimitsu/_models"
-  import { onMount } from "svelte"
-  import { Video } from "../_lib"
+<script context="module" lang="ts">
+  import IndividualVideoCard from '../_components/IndividualVideoCard.svelte'
+  import GroupVideoCard from '../_components/GroupVideoCard.svelte'
+  import Button from '$views/atomic/button/Button.svelte'
+  import { type VideoResource } from '$views/page/oshimitsu/_models'
+  import { onMount } from 'svelte'
+  import { Video } from '../_lib'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
-  import { criteria } from "../_store/criteria"
-  import {
-    ContentType,
-    findApparatus,
-    findContentType,
-  } from "$views/page/oshimitsu/_models"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
+  import { criteria } from '../_store/criteria'
+  import { ContentType, findApparatus, findContentType } from '$views/page/oshimitsu/_models'
 
   let isLaunched = false
   let videos: VideoResource[] = []
@@ -47,14 +43,11 @@
    * 1. 手具が1つのみ選択されている
    *   - /oshimitsu/content_type/individual/apparatus/${apparatus.slug} にリダイレクト
    */
-  const getRedirectUrl = (
-    current: Video.Criteria,
-    url: URL
-  ): URL | undefined => {
+  const getRedirectUrl = (current: Video.Criteria, url: URL): URL | undefined => {
     if (current.apparatuses.length === 1) {
       return new URL(
         `/oshimitsu/content_type/individual/apparatus/${current.apparatuses[0].slug}`,
-        url.origin
+        url.origin,
       )
     }
     return undefined
@@ -67,8 +60,8 @@
    */
   const getCriteria = (url: URL): Video.Criteria => {
     const queryParams = {
-      contentTypeSlug: url.searchParams.get("ct"), // ct = content type
-      apparatusSlugs: url.searchParams.get("app")?.split(","), // app = apparatus
+      contentTypeSlug: url.searchParams.get('ct'), // ct = content type
+      apparatusSlugs: url.searchParams.get('app')?.split(','), // app = apparatus
     }
 
     if (
@@ -77,9 +70,7 @@
     ) {
       return {
         contentType: ContentType.INDIVIDUAL,
-        apparatuses: queryParams.apparatusSlugs.flatMap(
-          (slug) => findApparatus(slug) ?? []
-        ),
+        apparatuses: queryParams.apparatusSlugs.flatMap((slug) => findApparatus(slug) ?? []),
         exceptVideos: [],
       }
     }
@@ -102,20 +93,20 @@
   }
 
   const getTitle = () => {
-    const oshimitsu = "推しミツ！"
+    const oshimitsu = '推しミツ！'
     if ($criteria.apparatuses.length === 1) {
       return `${oshimitsu}（${$criteria.apparatuses[0].label}）`
     } else if ($criteria.apparatuses.length > 1) {
       return oshimitsu
     }
-    return `${oshimitsu}${$criteria.contentType ? `（${$criteria.contentType.label}）` : ""}`
+    return `${oshimitsu}${$criteria.contentType ? `（${$criteria.contentType.label}）` : ''}`
   }
 </script>
 
-<article class='article'>
+<article class="article">
   <h1>{getTitle()}</h1>
   {#if isLaunched}
-    <div class='cards'>
+    <div class="cards">
       {#each videos as video, index (index)}
         {#if Video.isIndividualVideoResource(video)}
           <IndividualVideoCard {video} />
@@ -128,7 +119,7 @@
       <Button
         width={$pageData.isMobile ? 280 : 340}
         height={56}
-        text='もっと見る'
+        text="もっと見る"
         on:click={getMoreVideos}
       />
     {:else}
@@ -139,7 +130,7 @@
   {/if}
 </article>
 
-<style lang='scss'>
+<style lang="scss">
   .article {
     display: grid;
     gap: $space-size-16;

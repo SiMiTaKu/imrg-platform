@@ -1,27 +1,16 @@
-<script lang='ts'>
-  import { judgementApparatus } from "../_store/apparatus"
+<script lang="ts">
+  import { judgementApparatus } from '../_store/apparatus'
 
   export let count: number
 </script>
 
-<div
-  class="counter {$judgementApparatus
-    ? $judgementApparatus.imageColor
-    : 'gray'}"
->
-  <button
-    class='minus'
-    disabled={count <= 0}
-    type='button'
-    on:click={() => count--}>−</button
-  >
-  <span class='count'>{count}</span>
-  <button class='plus'
-          type='button'
-          on:click={() => count++}>+</button>
+<div class="counter {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}">
+  <button class="minus" disabled={count <= 0} type="button" on:click={() => count--}>−</button>
+  <span class="count">{count}</span>
+  <button class="plus" type="button" on:click={() => count++}>+</button>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .gray {
     --button-color: #707070;
   }

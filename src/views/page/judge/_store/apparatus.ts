@@ -1,9 +1,8 @@
-import { type Writable, writable } from "svelte/store"
-import { Apparatus } from "../_model/apparatus"
+import { type Writable, writable } from 'svelte/store'
+import { Apparatus } from '../_model/apparatus'
 
 function createApparatusStore() {
-  const { subscribe, set }: Writable<Apparatus | undefined> =
-    writable(undefined)
+  const { subscribe, set }: Writable<Apparatus | undefined> = writable(undefined)
 
   return {
     subscribe: subscribe,

@@ -1,31 +1,27 @@
-<script context='module' lang='ts'>
-  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
-  import MainImage from "../_images/imrg-logo.jpg?w=650;1300&format=webp&as=meta"
+<script context="module" lang="ts">
+  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import MainImage from '../_images/imrg-logo.jpg?w=650;1300&format=webp&as=meta'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 </script>
 
-<section
-  class='main-visual'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
-  <div class='image'>
+<section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+  <div class="image">
     <ImageAssets
       width={$pageData.isMobile ? 325 : 500}
       height={$pageData.isMobile ? 210 : 330}
-      alt='男子新体操国際化プロジェクトのロゴ'
+      alt="男子新体操国際化プロジェクトのロゴ"
       lazy={false}
       srcMeta={MainImage}
-      objectFit='cover'
+      objectFit="cover"
     />
   </div>
-  <p class='title'>日本の文化を世界のスポーツへ</p>
+  <p class="title">日本の文化を世界のスポーツへ</p>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 1024px;
     --height: calc(100dvh - 80px);

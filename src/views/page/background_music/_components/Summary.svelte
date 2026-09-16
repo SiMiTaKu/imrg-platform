@@ -1,50 +1,46 @@
-<script context='module' lang='ts'>
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte"
+<script context="module" lang="ts">
+  import WithEnglishHeading from '../../../atomic/heading/WithEnglishHeading.svelte'
   const FLOW = [
     {
-      title: "問い合わせ",
-      description: "インスタグラムのDMにてご依頼ください。",
+      title: '問い合わせ',
+      description: 'インスタグラムのDMにてご依頼ください。',
     },
     {
-      title: "打ち合わせ",
-      description: "お問い合わせ内容について、打ち合わせをします。",
+      title: '打ち合わせ',
+      description: 'お問い合わせ内容について、打ち合わせをします。',
     },
     {
-      title: "編曲",
-      description: "打ち合わせの内容から、編曲をします。",
+      title: '編曲',
+      description: '打ち合わせの内容から、編曲をします。',
     },
     {
-      title: "納品",
-      description: "編集した曲をデータでお渡しします。",
+      title: '納品',
+      description: '編集した曲をデータでお渡しします。',
     },
   ]
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 </script>
 
-<section
-  class='flow-section'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
-  <div class='message'>
+<section class="flow-section" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+  <div class="message">
     あらゆる曲を演技に<br />合わせて編曲します!!
   </div>
-  <WithEnglishHeading englishTitle='Editing Flow' title='編曲の流れ' />
-  <ul class='flow'>
+  <WithEnglishHeading englishTitle="Editing Flow" title="編曲の流れ" />
+  <ul class="flow">
     {#each FLOW as flow, index (index)}
-      <li class='item'>
-        <div class='item-index'>{index + 1}</div>
-        <h3 class='item-label'>{flow.title}</h3>
-        <p class='item-description'>{flow.description}</p>
+      <li class="item">
+        <div class="item-index">{index + 1}</div>
+        <h3 class="item-label">{flow.title}</h3>
+        <p class="item-description">{flow.description}</p>
       </li>
     {/each}
   </ul>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 1024px;
     --message-font-size: 36px;
@@ -152,7 +148,7 @@
       width: var(--item-label-after-width);
       height: var(--item-label-after-height);
       transform: var(--item-label-after-transform);
-      content: "";
+      content: '';
       display: block;
       background: rgb(50, 150, 255);
     }

@@ -1,4 +1,4 @@
-import type { LayoutServerLoad } from "./$types"
+import type { LayoutServerLoad } from './$types'
 
 /**
  * この設定でSSRを有効にしている。
@@ -7,7 +7,7 @@ import type { LayoutServerLoad } from "./$types"
  * そのため、サーバー側でのデータ取得が必要な場合は、この設定を行う必要がある。
  * @see https://kit.svelte.jp/docs/page-options#ssr
  */
-export const prerender = "auto"
+export const prerender = 'auto'
 
 export const load: LayoutServerLoad = () => {
   return undefined
@@ -16,4 +16,4 @@ export const load: LayoutServerLoad = () => {
 /**
  * @see https://kit.svelte.jp/docs/adapter-static#:~:text=SvelteKit%20%E3%81%AE%20trailingSlash,%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82
  */
-export const trailingSlash = "always"
+export const trailingSlash = 'always'

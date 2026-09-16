@@ -1,34 +1,34 @@
-<script context='module' lang='ts'>
-  import { createEventDispatcher } from "svelte"
+<script context="module" lang="ts">
+  import { createEventDispatcher } from 'svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   const dispatch = createEventDispatcher<{ change: { value: string } }>()
 
   export let legendText: string
   export let name: string
   export let options: {
-    value: string;
-    label: string;
+    value: string
+    label: string
   }[]
 </script>
 
 <fieldset class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <div class='wrapper'>
-    <legend class='legend'>{legendText}</legend>
-    <ul class='ul'>
+  <div class="wrapper">
+    <legend class="legend">{legendText}</legend>
+    <ul class="ul">
       {#each options as item, index (index)}
         <li>
-          <label class='label'>
+          <label class="label">
             <input
-              class='input'
+              class="input"
               {name}
-              type='radio'
+              type="radio"
               value={item.value}
               on:change={() => {
-                dispatch("change", { value: item.value })
+                dispatch('change', { value: item.value })
               }}
             />
             {item.label}
@@ -39,7 +39,7 @@
   </div>
 </fieldset>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 343px;
     --legend-font-size: #{$font-size-24};
@@ -66,7 +66,7 @@
     gap: $space-size-8;
 
     &:before {
-      content: "";
+      content: '';
       width: 4px;
       height: var(--legend-font-size);
       background: map.get($sky-blue, border);
@@ -101,7 +101,7 @@
     &:before {
       left: $space-size-8;
       position: absolute;
-      content: "";
+      content: '';
       width: 20px;
       height: 20px;
       border-radius: $border-radius-64;
@@ -118,7 +118,7 @@
       &:after {
         left: $space-size-12;
         position: absolute;
-        content: "";
+        content: '';
         width: 12px;
         height: 12px;
         border-radius: $border-radius-64;

@@ -1,40 +1,40 @@
-<script context='module' lang='ts'>
-  import type { IndividualVideoResource } from "../_models"
-  import { format } from "date-fns"
+<script context="module" lang="ts">
+  import type { IndividualVideoResource } from '../_models'
+  import { format } from 'date-fns'
 </script>
 
-<script lang='ts'>
+<script lang="ts">
   export let video: IndividualVideoResource
 
   const onVideoLoad = (event: Event) => {
     const iframe = event.target as HTMLIFrameElement
-    iframe.classList.remove("placeholder")
+    iframe.classList.remove('placeholder')
   }
 </script>
 
-<a class='card' href={video.src}>
+<a class="card" href={video.src}>
   <iframe
-    class='video placeholder'
-    allow='accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+    class="video placeholder"
+    allow="accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen
-    frameborder='0'
+    frameborder="0"
     width={343}
     height={194}
-    referrerpolicy='strict-origin-when-cross-origin'
+    referrerpolicy="strict-origin-when-cross-origin"
     src={`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`}
-    title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
-    loading='lazy'
+    title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, 'yyyy年')}`}
+    loading="lazy"
     on:load={onVideoLoad}
   ></iframe>
-  <div class='info'>
-    <div class='name'>{video.player.name}</div>
-    <div class='detail'>
-      {`${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
+  <div class="info">
+    <div class="name">{video.player.name}</div>
+    <div class="detail">
+      {`${video.apparatus.label} ${format(video.filmedAt, 'yyyy年')}`}
     </div>
   </div>
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   .card {
     display: grid;
     width: 343px;
@@ -47,7 +47,7 @@
     transition: 0.3s;
 
     &:has(.placeholder) {
-      background: url("../_images/spin.gif") 50% 56px / 20% no-repeat;
+      background: url('../_images/spin.gif') 50% 56px / 20% no-repeat;
     }
   }
 

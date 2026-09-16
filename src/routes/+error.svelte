@@ -1,24 +1,20 @@
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 </script>
 
 <svelte:head>
   <title>エラーページ|男子新体操国際化プロジェクト</title>
 </svelte:head>
 
-<article
-  class='wrapper'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
-  <h1 class='title'>エラーが発生しました</h1>
-  <div class='content'>
-    <div class='text'>※リクエストされたページは存在しません。</div>
-    <a class='link' href='/'>トップに戻る</a>
+<article class="wrapper" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+  <h1 class="title">エラーが発生しました</h1>
+  <div class="content">
+    <div class="text">※リクエストされたページは存在しません。</div>
+    <a class="link" href="/">トップに戻る</a>
   </div>
 </article>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --title-font-size: 40px;
   }

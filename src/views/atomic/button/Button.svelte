@@ -1,5 +1,5 @@
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   export let width: number
   export let height: number
@@ -7,8 +7,8 @@
 </script>
 
 <button
-  class='button'
-  type='button'
+  class="button"
+  type="button"
   style:width={`${width}px`}
   style:height={`${height}px`}
   class:pc={!$pageData.isMobile}
@@ -18,7 +18,7 @@
   {text}
 </button>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --item-font-size: #{$font-size-24};
   }

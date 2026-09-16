@@ -1,29 +1,29 @@
-import type { Image } from "$lib/common/image"
+import type { Image } from '$lib/common/image'
 
 export interface RuleBook {
-  title: string;
-  chapter: Chapter[];
+  title: string
+  chapter: Chapter[]
 }
 
 export interface Chapter {
-  title: string;
-  article: Article[];
+  title: string
+  article: Article[]
 }
 
 export interface Article {
-  title: string;
-  section: Section[];
+  title: string
+  section: Section[]
 }
 
 export interface Section {
-  title: string;
-  content?: string;
-  block?: Block[];
-  image?: Image[];
+  title: string
+  content?: string
+  block?: Block[]
+  image?: Image[]
 }
 
 export interface Block {
-  title: string;
-  element: string;
-  image?: Image[];
+  title: string
+  element: string
+  image?: Image[]
 }

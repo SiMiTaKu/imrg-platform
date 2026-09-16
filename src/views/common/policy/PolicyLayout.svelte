@@ -1,9 +1,9 @@
-<script context='module' lang='ts'>
-  import WithEnglishHeading from "$views/atomic/heading/WithEnglishHeading.svelte"
+<script context="module" lang="ts">
+  import WithEnglishHeading from '$views/atomic/heading/WithEnglishHeading.svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   export let title: string
   export let englishTitle: string
@@ -11,18 +11,14 @@
 </script>
 
 <!-- プライバシーポリシー・利用規約など、文章だけのページの共通の枠 -->
-<article
-  class='policy'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
+<article class="policy" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <WithEnglishHeading {englishTitle} {title} />
-  <p class='enacted-at'>{enactedAt}</p>
+  <p class="enacted-at">{enactedAt}</p>
   <slot></slot>
-  <p class='back'><a href='/'>TOPに戻る</a></p>
+  <p class="back"><a href="/">TOPに戻る</a></p>
 </article>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 800px;
     --heading-font-size: #{$font-size-24};
@@ -72,7 +68,7 @@
   }
 
   // 英語版は lang='en' の section で渡す（クラスにすると lint が未使用と判定する）
-  .policy :global(section[lang="en"]) {
+  .policy :global(section[lang='en']) {
     margin-top: $space-size-80;
     padding-top: $space-size-40;
     border-top: 1px solid #dddddd;

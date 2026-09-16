@@ -1,5 +1,5 @@
-import { Video } from "../_lib"
-import { writable } from "svelte/store"
+import { Video } from '../_lib'
+import { writable } from 'svelte/store'
 
 function createStore() {
   const { subscribe, update, set } = writable<Video.Criteria>({

@@ -1,25 +1,25 @@
-<script context='module' lang='ts'>
+<script context="module" lang="ts">
   export type SrcMeta = {
-    src: string;
-    width: number;
-    height: number;
-    format: string;
-  };
+    src: string
+    width: number
+    height: number
+    format: string
+  }
 </script>
 
-<script lang='ts'>
+<script lang="ts">
   export let srcMeta: SrcMeta[]
   export let lazy: boolean = true
-  export let width: number | "100%"
-  export let height: number | "100%"
+  export let width: number | '100%'
+  export let height: number | '100%'
   export let alt: string
-  export let objectFit: "cover" | "fill" = "cover"
+  export let objectFit: 'cover' | 'fill' = 'cover'
 
   /** formatのデフォルト値 */
-  const imgFormats = [ "webp", "png" ]
+  const imgFormats = ['webp', 'png']
 
   function getSrc(): string {
-    const filterByJpg = srcMeta.filter((meta) => meta.format === "webp")
+    const filterByJpg = srcMeta.filter((meta) => meta.format === 'webp')
     return filterByJpg.sort((a, b) => a.width - b.width)[0].src
   }
 
@@ -28,10 +28,8 @@
       return srcMeta.filter((m) => m.format === format)
     })
     return groupedSrcByFormat
-      .flatMap((groupedSrc) =>
-        groupedSrc.map((src, j) => `${src?.src} ${j + 1}x`)
-      )
-      .join(", ")
+      .flatMap((groupedSrc) => groupedSrc.map((src, j) => `${src?.src} ${j + 1}x`))
+      .join(', ')
   }
 </script>
 
@@ -40,8 +38,8 @@
   {height}
   src={getSrc()}
   {alt}
-  loading={lazy ? "lazy" : "eager"}
+  loading={lazy ? 'lazy' : 'eager'}
   srcset={getSrcSet()}
   style:object-fit={objectFit}
-  style:vertical-align='top'
+  style:vertical-align="top"
 />

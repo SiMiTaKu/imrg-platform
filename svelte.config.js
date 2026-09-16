@@ -19,7 +19,7 @@ const config = {
           return
         }
         throw new Error(message)
-      }
+      },
     },
     files: { hooks: { server: 'src/lib/hooks/hooks.server' } },
     alias: {
@@ -28,7 +28,7 @@ const config = {
       $lib: './src/lib',
       $views: './src/views',
       $style: './src/style',
-    }
+    },
   },
 }
 
