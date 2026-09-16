@@ -108,7 +108,9 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 対象を `src` だけから、設定ファイルを含むリポジトリー全体に広げた
 - [x] **1-5b. 整形をPrettierに任せる**（oshiageの `.prettierrc.json` に合わせ、ESLintの見た目のルールを外す。全ファイルを一度だけ整形する）
   - あわせてhusky 9・lint-staged 17へ上げた。`npm install` でコミット時のフックが有効になる
-- [ ] **1-6. Jest → Vitest**（oshiageと揃える。既存47件のテストを移植）
+- [x] **1-6. Jest → Vitest**（oshiageと揃える。既存47件のテストを移植）
+  - Vitest 5にした。テストは55件（カレンダーとsitemapの分が増えていた）。置き場所は `src/test/` のまま。FSDへの再配置（3-2）で見直す
+  - Jestを外したので、TypeScriptを6へ上げた
 - [ ] **1-7. 型チェックのエラーを解消する**（現在11件。`$env/static/public` の解決と `rules` ページの型）
 
 ## Phase 2: CI とブランチ運用

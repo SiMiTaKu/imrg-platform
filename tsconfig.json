@@ -2,6 +2,7 @@
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
+    "allowImportingTsExtensions": true,
     "checkJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -11,7 +12,7 @@
     "strict": true,
     "verbatimModuleSyntax": false
   },
-  "include": ["src/**/*", "svelte.config.js", "vite.config.ts"]
+  "include": ["src/**/*", "svelte.config.js", "vite.config.ts", "vitest.config.ts"]
   // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
   //
   // If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes

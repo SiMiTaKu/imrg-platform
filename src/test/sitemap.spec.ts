@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals'
+import { describe, expect, test } from 'vitest'
 import { buildSitemapXml, toAbsoluteUrl, withTrailingSlash } from '$lib/common/sitemap'
 
 describe('test withTrailingSlash', () => {

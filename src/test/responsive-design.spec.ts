@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals'
+import { describe, expect, test } from 'vitest'
 import { designOfPC, designOfSP, getResponsiveDesign } from '$lib/common/responsive-design'
 
 describe('test getResponsiveDesign', () => {

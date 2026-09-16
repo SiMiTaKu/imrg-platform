@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals'
+import { describe, expect, test } from 'vitest'
 import type { CalendarEvent } from '$views/page/calendar/_data/model'
 import {
   buildMonthGrid,
