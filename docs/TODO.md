@@ -95,7 +95,10 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [x] **1-2. Node を上げる**（`.node-version` 18.18.0 → 24.21.0）。Amplifyのビルドも追随する
   - 当初は22系の予定だったが、22系は2027年4月でサポートが終わるため、oshiageと同じ24系にした
   - Amplifyは `nvm install $(cat .node-version)` で入れるので、設定の変更は不要
-- [ ] **1-3. Svelte 4 → 5**（runesへの移行は段階的に。まず動かし、後からコンポーネントごとに書き換え）
+- [x] **1-3. Svelte 4 → 5**（runesへの移行は段階的に。まず動かし、後からコンポーネントごとに書き換え）
+  - 書き方は今のまま（`export let` `$:` `on:click`）。Svelte 5はこの書き方も動かせる
+  - `svelte-motion` はCSSのtransitionに置き換えて削除した
+  - [ ] **1-3b. runesへ書き換える**（`$props` `$state` `$derived` `onclick`）。ページ単位で少しずつ。FSDへの再配置（3-2）と同時に行うと手戻りが少ない
 - [ ] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
 - [ ] **1-5. ESLint 8 → 9（flat config へ移行）**。oshiageの `eslint.config.mjs` に合わせる
   - 現在の `.eslintrc.json` は配列を1要素ずつ改行させるなど癖が強い。移行時に見直す

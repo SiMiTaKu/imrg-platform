@@ -1,7 +1,6 @@
 <script lang='ts'>
   import { fade } from "svelte/transition"
   import { executionDeduct } from "../_store/store"
-  import { Motion } from "svelte-motion"
   import { Chart } from "chart.js/auto"
   import {
     getAmountOfPointA,
@@ -111,39 +110,32 @@
         >{pointDetailButtonTitle}</button
         >
       </div>
-      <Motion
-        animate={{
-          opacity: pointDetailOpacity,
-          height: pointDetailHeight,
-          marginTop: pointDetailMarginTop,
-        }}
-        transition={{ duration: 0.5 }}
-        let:motion
-      >
-        <div class='pull-down' use:motion>
-          <div class='wrapper'>
-            <div class='chart'>
-              <canvas id='detail-chart'
-                      width='256'
-                      height='256'>
-                <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
-              </canvas>
-            </div>
-            <ul class='detail'>
-              {#each Object.values($executionDeduct.pointA) as point, index (index)}
-                <li class='detail-item'>
-                  <span class='detail-title'>{point.info.title}</span>
-                  <span>{point.option.value.toFixed(3)}</span>
-                </li>
-              {/each}
-              <li class='detail-item'>
-                <span class='detail-title'> その他ミスによる減点 </span>
-                <span>{$executionDeduct.pointB.miss.toFixed(3)}</span>
-              </li>
-            </ul>
+      <div style:opacity={pointDetailOpacity}
+           style:height={`${pointDetailHeight}px`}
+           style:margin-top={pointDetailMarginTop}
+           class='pull-down'>
+        <div class='wrapper'>
+          <div class='chart'>
+            <canvas id='detail-chart'
+                    width='256'
+                    height='256'>
+              <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
+            </canvas>
           </div>
+          <ul class='detail'>
+            {#each Object.values($executionDeduct.pointA) as point, index (index)}
+              <li class='detail-item'>
+                <span class='detail-title'>{point.info.title}</span>
+                <span>{point.option.value.toFixed(3)}</span>
+              </li>
+            {/each}
+            <li class='detail-item'>
+              <span class='detail-title'> その他ミスによる減点 </span>
+              <span>{$executionDeduct.pointB.miss.toFixed(3)}</span>
+            </li>
+          </ul>
         </div>
-      </Motion>
+      </div>
       <div class='format'>
         10.00　-　( {pointA.toFixed(3)} + {pointB.toFixed(3)} )
       </div>
@@ -279,6 +271,7 @@
     opacity: 0;
     height: 0;
     margin: 0;
+    transition: opacity 0.5s ease-out, height 0.5s ease-out, margin-top 0.5s ease-out;
     overflow: scroll;
   }
 

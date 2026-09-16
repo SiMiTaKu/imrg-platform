@@ -25,7 +25,7 @@
     title={`${video.player.name} ${video.apparatus.label} ${format(video.filmedAt, "yyyy年")}`}
     loading='lazy'
     on:load={onVideoLoad}
-  />
+  ></iframe>
   <div class='info'>
     <div class='name'>{video.player.name}</div>
     <div class='detail'>

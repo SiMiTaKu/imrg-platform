@@ -17,7 +17,7 @@
   class:sp={$pageData.isMobile}
   on:click={() => dispatch("click")}
 >
-  <div class='icon' class:open={isOpen} />
+  <div class='icon' class:open={isOpen}></div>
   <span class='text'>{isOpen ? "close" : "open"}</span>
 </button>
 

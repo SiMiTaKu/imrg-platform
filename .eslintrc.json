@@ -119,7 +119,18 @@
         "prefer": "single"
       }
     ],
-    "svelte/html-self-closing": "error",
+    // Svelte 5 は <div /> のような通常要素の自己終了を警告する。
+    // このプラグインは <slot /> も通常要素と見なすため、通常要素は判定しない
+    "svelte/html-self-closing": [
+      "error",
+      {
+        "void": "always",
+        "normal": "ignore",
+        "foreign": "always",
+        "component": "always",
+        "svelte": "always"
+      }
+    ],
     "svelte/indent": [
       "error",
       {

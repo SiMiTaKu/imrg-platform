@@ -163,7 +163,7 @@
                 type='button'
                 aria-pressed={state.categories.includes(key)}
                 on:click={() => toggleCategory(key)}>
-          <span class='chip-dot' />{CATEGORY_LABELS[key].ja}<span lang='en'>{CATEGORY_LABELS[key].en}</span>
+          <span class='chip-dot'></span>{CATEGORY_LABELS[key].ja}<span lang='en'>{CATEGORY_LABELS[key].en}</span>
         </button>
       {/each}
     </div>

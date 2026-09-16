@@ -95,7 +95,7 @@
                   <span class='dots'>
                     {#each dayEvents.slice(0, MAX_CHIPS) as event (event.id)}
                       <span style:--color={CATEGORY_LABELS[event.category].color}
-                            class='dot' />
+                            class='dot'></span>
                     {/each}
                   </span>
                 {/if}
@@ -144,7 +144,7 @@
     {#each CATEGORY_ORDER as key (key)}
       <li class='legend-item'>
         <span style:--color={CATEGORY_LABELS[key].color}
-              class='dot' />
+              class='dot'></span>
         {CATEGORY_LABELS[key].ja}
       </li>
     {/each}
