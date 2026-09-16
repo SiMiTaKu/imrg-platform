@@ -149,12 +149,103 @@ imrg.workの登録業者はお名前。com。DNSの管理はRoute 53が行う（
 管理用ユーザーにはAdministratorAccessを付けている。運用が落ち着いたら、使う権限だけに絞る。
 
 1. **IAM** → **ポリシー** → **ポリシーを作成** → JSONタブ
-2. 当面必要になるのは次のあたり
-   - Amplify: `amplify:*`（対象アプリのARNに限定できる）
-   - Route 53: `route53:ChangeResourceRecordSets`、`route53:ListHostedZones`、`route53:GetChange`
-   - 請求の閲覧： `ce:Get*`、`budgets:View*`
+2. 次のJSONを貼る。`<ACCOUNT_ID>` などは自分の値に置き換える
+
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "AmplifyApp",
+         "Effect": "Allow",
+         "Action": "amplify:*",
+         "Resource": [
+           "arn:aws:amplify:ap-northeast-1:<ACCOUNT_ID>:apps/<APP_ID>",
+           "arn:aws:amplify:ap-northeast-1:<ACCOUNT_ID>:apps/<APP_ID>/*"
+         ]
+       },
+       {
+         "Sid": "AmplifyList",
+         "Effect": "Allow",
+         "Action": ["amplify:ListApps"],
+         "Resource": "*"
+       },
+       {
+         "Sid": "Route53Zone",
+         "Effect": "Allow",
+         "Action": [
+           "route53:ChangeResourceRecordSets",
+           "route53:ListResourceRecordSets",
+           "route53:GetHostedZone"
+         ],
+         "Resource": "arn:aws:route53:::hostedzone/<HOSTED_ZONE_ID>"
+       },
+       {
+         "Sid": "Route53Read",
+         "Effect": "Allow",
+         "Action": [
+           "route53:ListHostedZones",
+           "route53:ListHostedZonesByName",
+           "route53:GetChange"
+         ],
+         "Resource": "*"
+       },
+       {
+         "Sid": "CertificateRead",
+         "Effect": "Allow",
+         "Action": ["acm:ListCertificates", "acm:DescribeCertificate"],
+         "Resource": "*"
+       },
+       {
+         "Sid": "BillingRead",
+         "Effect": "Allow",
+         "Action": [
+           "billing:Get*",
+           "billing:List*",
+           "ce:Get*",
+           "ce:Describe*",
+           "ce:List*",
+           "budgets:View*",
+           "budgets:Describe*"
+         ],
+         "Resource": "*"
+       },
+       {
+         "Sid": "CloudTrailRead",
+         "Effect": "Allow",
+         "Action": [
+           "cloudtrail:LookupEvents",
+           "cloudtrail:DescribeTrails",
+           "cloudtrail:GetTrailStatus"
+         ],
+         "Resource": "*"
+       },
+       {
+         "Sid": "ManageOwnCredentials",
+         "Effect": "Allow",
+         "Action": [
+           "iam:ChangePassword",
+           "iam:GetUser",
+           "iam:CreateVirtualMFADevice",
+           "iam:EnableMFADevice",
+           "iam:ListMFADevices",
+           "iam:ResyncMFADevice"
+         ],
+         "Resource": [
+           "arn:aws:iam::<ACCOUNT_ID>:user/${aws:username}",
+           "arn:aws:iam::<ACCOUNT_ID>:mfa/${aws:username}"
+         ]
+       }
+     ]
+   }
+   ```
+
+   - `<ACCOUNT_ID>`： コンソール右上のアカウントメニューに出る12桁
+   - `<APP_ID>`： AmplifyのURLに含まれる `d` で始まる文字列
+   - `<HOSTED_ZONE_ID>`： Route 53のホストゾーン詳細に出る `Z` で始まるID
 3. 作ったポリシーを管理用ユーザーにアタッチし、AdministratorAccessは外す
 4. 外したあとで、Amplifyのデプロイとレコード編集が今までどおりできるか確かめる
+5. 足りない権限があれば、CloudTrailのイベント履歴で拒否されたAPIを調べて足す
 
 > いきなり絞ると作業が止まる。Terraformを入れる前（Phase 4）までに済ませればよい。
 
