@@ -7,7 +7,8 @@ const config = {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: 'index.html',
+      // index.html にすると、書き出したトップページが入れ物ページで上書きされる
+      fallback: '404.html',
       precompress: false,
       strict: true,
     }),
