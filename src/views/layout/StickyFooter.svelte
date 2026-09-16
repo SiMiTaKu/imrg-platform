@@ -1,21 +1,21 @@
-<script context='module' lang='ts'>
-  import ButtonLink from "$views/atomic/button/ButtonLink.svelte"
+<script context="module" lang="ts">
+  import ButtonLink from '$views/atomic/button/ButtonLink.svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 </script>
 
-<footer class='sticky-footer'>
+<footer class="sticky-footer">
   <ButtonLink
     width={$pageData.isMobile ? 320 : 400}
     height={56}
-    text='推しを見つける！'
-    href='/oshimitsu'
+    text="推しを見つける！"
+    href="/oshimitsu"
   />
 </footer>
 
-<style lang='scss'>
+<style lang="scss">
   .sticky-footer {
     position: fixed;
     display: grid;
@@ -30,6 +30,7 @@
     0% {
       bottom: -80px;
     }
+
     100% {
       bottom: 0;
     }

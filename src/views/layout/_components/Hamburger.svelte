@@ -1,43 +1,36 @@
-<script context='module' lang='ts'>
-  import { createEventDispatcher } from "svelte"
+<script context="module" lang="ts">
+  import { createEventDispatcher } from 'svelte'
 
   const LINKS = [
-    { href: "/", text: "トップページ" },
-    { href: "/calendar", text: "大会・イベントを探す" },
-    { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
-    { href: "/background_music", text: "曲編集を依頼する" },
-    { href: "/judge", text: "審判を体験する" },
-    { href: "/rules", text: "ルールを知る" },
-    { href: "/oshimitsu", text: "推しミツ！" },
+    { href: '/', text: 'トップページ' },
+    { href: '/calendar', text: '大会・イベントを探す' },
+    { href: '/decorating_apparatus', text: '手具装飾を依頼する' },
+    { href: '/background_music', text: '曲編集を依頼する' },
+    { href: '/judge', text: '審判を体験する' },
+    { href: '/rules', text: 'ルールを知る' },
+    { href: '/oshimitsu', text: '推しミツ！' },
   ]
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   const dispatch = createEventDispatcher<{ close: void }>()
 
   export let open: boolean
 </script>
 
-<div
-  class='wrapper'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
-  class:open
->
-  <ul class='links'>
+<div class="wrapper" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile} class:open>
+  <ul class="links">
     {#each LINKS as { href, text }, index (index)}
       <li>
-        <a class='link'
-           {href}
-           on:click={() => dispatch("close")}>{text}</a>
+        <a class="link" {href} on:click={() => dispatch('close')}>{text}</a>
       </li>
     {/each}
   </ul>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --wrapper-width: 400px;
   }
@@ -48,15 +41,15 @@
 
   .wrapper {
     position: absolute;
-    top: var(--height);
-    right: 0;
     display: grid;
-    overflow: hidden;
+    width: var(--wrapper-width);
+    height: 0;
     border-radius: 0 0 $border-radius-8 $border-radius-8;
     background-color: map.get($sky-blue, background);
-    height: 0;
-    width: var(--wrapper-width);
     transition: 0.3s;
+    top: var(--height);
+    right: 0;
+    overflow: hidden;
   }
 
   // 1項目あたり約44px。項目を増やしたらここも増やす
@@ -67,10 +60,10 @@
   .links {
     display: grid;
     height: min-content;
-    list-style: none;
+    padding: $space-size-8 $space-size-16;
     font-size: 18px;
     font-weight: bold;
-    padding: $space-size-8 $space-size-16;
+    list-style: none;
   }
 
   .links > li {

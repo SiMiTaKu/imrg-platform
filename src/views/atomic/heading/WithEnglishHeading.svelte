@@ -1,20 +1,18 @@
-<script lang='ts'>
-  import { pageData } from "../device-store/store"
+<script lang="ts">
+  import { pageData } from '../device-store/store'
 
   export let title: string
   export let englishTitle: string
 </script>
 
-<h2 class='title'
-    class:pc={!$pageData.isMobile}
-    class:sp={$pageData.isMobile}>
+<h2 class="title" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   {title}
-  <span class='english-title'>
+  <span class="english-title">
     {englishTitle}
   </span>
 </h2>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --title-font-size: 40px;
     --english-title-font-size: 20px;
@@ -32,8 +30,8 @@
     margin: 0 0 40px;
     font-size: var(--title-font-size);
     line-height: var(--title-font-size);
-    color: #333333;
-    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
+    color: #333;
+    text-shadow: 0 0 10px rgb(50, 150, 255, 0.5);
   }
 
   .english-title {

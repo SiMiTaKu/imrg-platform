@@ -1,19 +1,19 @@
-<script context='module' lang='ts'>
-  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
-  import MainVisual from "./_image/main-visual.png?w=1024;2048&format=webp&as=meta"
+<script context="module" lang="ts">
+  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import MainVisual from './_image/main-visual.png?w=1024;2048&format=webp&as=meta'
   const MAIN_VISUALS = [
-    { description: "大好きな曲を、自然な演技時間に短縮！" },
-    { description: "最適な編曲で、最高の演技体験を！" },
-    { description: "音楽の魔法で、あなたの演技を引き立てます！" },
-    { description: "No Music, No Life. \nあなたの演技に音楽を添えて！" },
-    { description: "豊かな音色があなたの演技の魅力を加速させる！" },
+    { description: '大好きな曲を、自然な演技時間に短縮！' },
+    { description: '最適な編曲で、最高の演技体験を！' },
+    { description: '音楽の魔法で、あなたの演技を引き立てます！' },
+    { description: 'No Music, No Life. \nあなたの演技に音楽を添えて！' },
+    { description: '豊かな音色があなたの演技の魅力を加速させる！' },
   ]
 </script>
 
-<script lang='ts'>
-  import { onMount } from "svelte"
-  import { fly } from "svelte/transition"
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { onMount } from 'svelte'
+  import { fly } from 'svelte/transition'
+  import { pageData } from '$views/atomic/device-store/store'
 
   let currentIndex = Math.floor(Math.random() * 5)
   let currentVisual = MAIN_VISUALS[currentIndex]
@@ -43,43 +43,30 @@
   }
 </script>
 
-<section
-  class='main-visual'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
-  <div class='image'>
+<section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+  <div class="image">
     <ImageAssets
-      width='100%'
-      height='100%'
-      alt='メインビジュアル'
+      width="100%"
+      height="100%"
+      alt="メインビジュアル"
       lazy={false}
       srcMeta={MainVisual}
-      objectFit='cover'
+      objectFit="cover"
     />
   </div>
-  <div class='content-wrapper'>
-    <div class='content'>
+  <div class="content-wrapper">
+    <div class="content">
       {#if initialized}
-        <h1 class='title' in:fly={{ duration: 1000, delay: 100, x: 50 }}>
-          曲編集
-        </h1>
-        <div
-          class='english-title'
-          in:fly={{ duration: 1000, delay: 600, y: 50 }}
-        >
+        <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>曲編集</h1>
+        <div class="english-title" in:fly={{ duration: 1000, delay: 600, y: 50 }}>
           Background Music Editing
         </div>
       {/if}
       {#if isShow}
         <div
-          class='description'
-          in:fly={$pageData.isMobile
-            ? { duration: 1000, y: 50 }
-            : { duration: 1000, x: 100 }}
-          out:fly={$pageData.isMobile
-            ? { duration: 300, y: -50 }
-            : { duration: 300, x: -100 }}
+          class="description"
+          in:fly={$pageData.isMobile ? { duration: 1000, y: 50 } : { duration: 1000, x: 100 }}
+          out:fly={$pageData.isMobile ? { duration: 300, y: -50 } : { duration: 300, x: -100 }}
         >
           {currentVisual.description}
         </div>
@@ -88,7 +75,7 @@
   </div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 1024px;
     --height: calc(100dvh - 80px);
@@ -111,19 +98,18 @@
 
   .main-visual {
     position: relative;
-    padding: 0;
     width: 100%;
     height: var(--height);
-    min-height: var(height);
+    padding: 0;
 
-    &:after {
+    &::after {
       position: absolute;
+      width: 85%;
+      height: var(--height);
+      background: linear-gradient(to right, #000, transparent);
       top: 0;
       left: 0;
-      content: "";
-      height: var(--height);
-      width: 85%;
-      background: linear-gradient(to right, #000, transparent);
+      content: '';
       opacity: 0.5;
       z-index: 0;
     }
@@ -136,8 +122,8 @@
   }
 
   .content-wrapper {
-    width: 100%;
     position: absolute;
+    width: 100%;
     top: 0;
     z-index: 1;
   }
@@ -150,24 +136,24 @@
 
   .title {
     display: inline-block;
+    margin: 0 0 4px;
     font-size: var(--title-font-size);
     font-weight: bold;
     line-height: var(--title-font-size);
-    margin: 0 0 4px;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
   }
 
   .english-title {
-    font-size: var(--english-title-font-size);
     margin-bottom: var(--english-margin-bottom);
+    font-size: var(--english-title-font-size);
     letter-spacing: 0.25em;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
   }
 
   .description {
     font-size: var(--description-font-size);
     font-weight: bold;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
     white-space: pre-line;
   }
 </style>

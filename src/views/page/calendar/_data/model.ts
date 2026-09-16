@@ -8,43 +8,39 @@
  * - international: 海外・国際的な催し
  */
 export type EventCategory =
-  | "national"
-  | "regional"
-  | "prefectural"
-  | "performance"
-  | "workshop"
-  | "international";
+  'national' | 'regional' | 'prefectural' | 'performance' | 'workshop' | 'international'
 
 /**
  * 日程が確定しているか
  * - confirmed: 主催者が日程を発表している
  * - tentative: 例年の時期しか分からない、または仮の日程
  */
-export type EventStatus = "confirmed" | "tentative";
+export type EventStatus = 'confirmed' | 'tentative'
 
 /**
  * CalendarEvent
- * @description カレンダーに載せるイベント1件。日本語と英語を併記する
- * @property {string} id 詳細ページのURLに使う。開始日と名前から作り、一度決めたら変えない
- * @property {string} startDate "2026-10-30"。年月しか分からないときは "2027-03"
- * @property {string} endDate 1日だけのイベントは省略する
- * @property {string} sourceUrl 日程を確認できたページ。出典のないイベントは載せない
+ *
+ * カレンダーに載せるイベント1件。日本語と英語を併記する
  */
 export interface CalendarEvent {
-  id: string;
-  titleJa: string;
-  titleEn: string;
-  category: EventCategory;
-  startDate: string;
-  endDate?: string;
-  status: EventStatus;
-  venueJa?: string;
-  venueEn?: string;
-  streamingJa?: string;
-  streamingEn?: string;
-  noteJa?: string;
-  noteEn?: string;
-  officialUrl?: string;
-  sourceUrl: string;
-  resultUrl?: string;
+  /** 詳細ページのURLに使う。開始日と名前から作り、一度決めたら変えない */
+  id: string
+  titleJa: string
+  titleEn: string
+  category: EventCategory
+  /** "2026-10-30"。年月しか分からないときは "2027-03" */
+  startDate: string
+  /** 1日だけのイベントは省略する */
+  endDate?: string
+  status: EventStatus
+  venueJa?: string
+  venueEn?: string
+  streamingJa?: string
+  streamingEn?: string
+  noteJa?: string
+  noteEn?: string
+  officialUrl?: string
+  /** 日程を確認できたページ。出典のないイベントは載せない */
+  sourceUrl: string
+  resultUrl?: string
 }

@@ -1,9 +1,9 @@
-<script context='module' lang='ts'>
-  import WithEnglishHeading from "$views/atomic/heading/WithEnglishHeading.svelte"
+<script context="module" lang="ts">
+  import WithEnglishHeading from '$views/atomic/heading/WithEnglishHeading.svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   export let title: string
   export let englishTitle: string
@@ -11,18 +11,14 @@
 </script>
 
 <!-- プライバシーポリシー・利用規約など、文章だけのページの共通の枠 -->
-<article
-  class='policy'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
+<article class="policy" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <WithEnglishHeading {englishTitle} {title} />
-  <p class='enacted-at'>{enactedAt}</p>
-  <slot />
-  <p class='back'><a href='/'>TOPに戻る</a></p>
+  <p class="enacted-at">{enactedAt}</p>
+  <slot></slot>
+  <p class="back"><a href="/">TOPに戻る</a></p>
 </article>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 800px;
     --heading-font-size: #{$font-size-24};
@@ -52,7 +48,9 @@
     text-align: center;
   }
 
-  // 本文は各ページのスロットで渡すため、ここから :global で体裁を当てる
+  // 本文は各ページのスロットで渡すため、ここから :global で体裁を当てる。
+  // .policy の中だけに効くので、ほかのページへは漏れない
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
   .policy :global(h3) {
     margin: $space-size-40 0 $space-size-16;
     padding-left: 12px;
@@ -72,9 +70,10 @@
   }
 
   // 英語版は lang='en' の section で渡す（クラスにすると lint が未使用と判定する）
-  .policy :global(section[lang="en"]) {
+  .policy :global(section[lang='en']) {
     margin-top: $space-size-80;
     padding-top: $space-size-40;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #ddd;
   }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 </style>

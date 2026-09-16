@@ -1,6 +1,6 @@
-<script lang='ts'>
-  import { createEventDispatcher } from "svelte"
-  import { judgementApparatus } from "$views/page/judge/_store/apparatus"
+<script lang="ts">
+  import { createEventDispatcher } from 'svelte'
+  import { judgementApparatus } from '$views/page/judge/_store/apparatus'
 
   const dispatch = createEventDispatcher<{ change: { value: string } }>()
 
@@ -12,26 +12,24 @@
 
   function onchange(event: Event) {
     const target = event.target as HTMLSelectElement
-    dispatch("change", { value: target.value })
+    dispatch('change', { value: target.value })
     hasChanged = true
   }
 </script>
 
 <select
-  class="select-box {$judgementApparatus
-    ? $judgementApparatus.imageColor
-    : 'gray'}"
+  class="select-box {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}"
   name={id}
   class:hasChanged
   on:change={onchange}
 >
-  <option class='no-option' value="">{placeholder}</option>
+  <option class="no-option" value="">{placeholder}</option>
   {#each options as option (option.code)}
     <option value={option.code}>{option.value}</option>
   {/each}
 </select>
 
-<style lang='scss'>
+<style lang="scss">
   .gray {
     --forcus-border-color: #707070;
   }
@@ -57,8 +55,8 @@
     height: 48px;
     padding-left: 8px;
     font-size: 16px;
-    color: #cccccc;
-    border: 4px solid #cccccc;
+    color: #ccc;
+    border: 4px solid #ccc;
     border-radius: 8px;
     outline: none;
     transition: 0.3s;
@@ -69,8 +67,8 @@
   }
 
   .hasChanged {
-    color: #555555;
     font-weight: bold;
+    color: #555;
   }
 
   .no-option {

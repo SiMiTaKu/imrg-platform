@@ -1,40 +1,39 @@
-<script context='module' lang='ts'>
-  import ImageAssets from "$views/atomic/image/ImageAssets.svelte"
-  import Image1 from "./_image/main-visual-1.jpg?w=1024;2048&format=webp&as=meta"
-  import Image2 from "./_image/main-visual-3.jpg?w=1024;2048&format=webp&as=meta"
-  import Image3 from "./_image/main-visual-5.jpg?w=1024;2048&format=webp&as=meta"
-  import Image4 from "./_image/main-visual-2.jpg?w=1024;2048&format=webp&as=meta"
-  import Image5 from "./_image/main-visual-4.jpg?w=1024;2048&format=webp&as=meta"
+<script context="module" lang="ts">
+  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import Image1 from './_image/main-visual-1.jpg?w=1024;2048&format=webp&as=meta'
+  import Image2 from './_image/main-visual-3.jpg?w=1024;2048&format=webp&as=meta'
+  import Image3 from './_image/main-visual-5.jpg?w=1024;2048&format=webp&as=meta'
+  import Image4 from './_image/main-visual-2.jpg?w=1024;2048&format=webp&as=meta'
+  import Image5 from './_image/main-visual-4.jpg?w=1024;2048&format=webp&as=meta'
 
   const MAIN_VISUALS = [
     {
       image: Image1,
-      description: "装飾にルールはない！\n自由な発想でユニークな手具を作ろう。",
+      description: '装飾にルールはない！\n自由な発想でユニークな手具を作ろう。',
     },
     {
       image: Image2,
-      description: "個性を輝かせる、あなただけの手具を！",
+      description: '個性を輝かせる、あなただけの手具を！',
     },
     {
       image: Image3,
-      description:
-        "手具装飾のアートで個性を注入し、\n さらなる華やかな演技を。",
+      description: '手具装飾のアートで個性を注入し、\n さらなる華やかな演技を。',
     },
     {
       image: Image4,
-      description: "手具のデコレーションから周りと差をつけろ！",
+      description: '手具のデコレーションから周りと差をつけろ！',
     },
     {
       image: Image5,
-      description: "豊かな彩が君の表現の進化を加速させる。",
+      description: '豊かな彩が君の表現の進化を加速させる。',
     },
   ]
 </script>
 
-<script lang='ts'>
-  import { onMount } from "svelte"
-  import { fade, fly } from "svelte/transition"
-  import { pageData } from "../../../atomic/device-store/store"
+<script lang="ts">
+  import { onMount } from 'svelte'
+  import { fade, fly } from 'svelte/transition'
+  import { pageData } from '../../../atomic/device-store/store'
 
   let currentIndex = Math.floor(Math.random() * 5)
   let currentVisual = MAIN_VISUALS[currentIndex]
@@ -64,49 +63,32 @@
   }
 </script>
 
-<section
-  class='main-visual'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
+<section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   {#if isShow}
-    <div
-      class='image'
-      in:fade={{ duration: 1000 }}
-      out:fade={{ duration: 300 }}
-    >
+    <div class="image" in:fade={{ duration: 1000 }} out:fade={{ duration: 300 }}>
       <ImageAssets
-        width='100%'
-        height='100%'
-        alt='手具装飾のメインビジュアル'
+        width="100%"
+        height="100%"
+        alt="手具装飾のメインビジュアル"
         lazy={false}
         srcMeta={currentVisual.image}
-        objectFit='cover'
+        objectFit="cover"
       />
     </div>
   {/if}
-  <div class='content-wrapper'>
-    <div class='content'>
+  <div class="content-wrapper">
+    <div class="content">
       {#if initialized}
-        <h1 class='title' in:fly={{ duration: 1000, delay: 100, x: 50 }}>
-          手具装飾
-        </h1>
-        <div
-          class='english-title'
-          in:fly={{ duration: 1000, delay: 600, y: 50 }}
-        >
+        <h1 class="title" in:fly={{ duration: 1000, delay: 100, x: 50 }}>手具装飾</h1>
+        <div class="english-title" in:fly={{ duration: 1000, delay: 600, y: 50 }}>
           Decorating Apparatus
         </div>
       {/if}
       {#if isShow}
         <div
-          class='description'
-          in:fly={$pageData.isMobile
-            ? { duration: 1000, y: 50 }
-            : { duration: 1000, x: 100 }}
-          out:fly={$pageData.isMobile
-            ? { duration: 300, y: -50 }
-            : { duration: 300, x: -100 }}
+          class="description"
+          in:fly={$pageData.isMobile ? { duration: 1000, y: 50 } : { duration: 1000, x: 100 }}
+          out:fly={$pageData.isMobile ? { duration: 300, y: -50 } : { duration: 300, x: -100 }}
         >
           {currentVisual.description}
         </div>
@@ -115,7 +97,7 @@
   </div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 1024px;
     --height: calc(100dvh - 80px);
@@ -138,18 +120,18 @@
 
   .main-visual {
     position: relative;
-    padding: 0;
     width: 100%;
     height: var(--height);
+    padding: 0;
 
-    &:after {
+    &::after {
       position: absolute;
+      width: 75%;
+      height: 100%;
+      background: linear-gradient(to right, #000, transparent);
       top: 0;
       left: 0;
-      content: "";
-      height: 100%;
-      width: 75%;
-      background: linear-gradient(to right, #000, transparent);
+      content: '';
       opacity: 0.3;
       z-index: 0;
     }
@@ -162,8 +144,8 @@
   }
 
   .content-wrapper {
-    width: 100%;
     position: absolute;
+    width: 100%;
     top: 0;
     z-index: 1;
   }
@@ -176,24 +158,24 @@
 
   .title {
     display: inline-block;
+    margin: 0 0 4px;
     font-size: var(--title-font-size);
     font-weight: bold;
     line-height: var(--title-font-size);
-    margin: 0 0 4px;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
   }
 
   .english-title {
-    font-size: var(--english-title-font-size);
     margin-bottom: var(--english-margin-bottom);
+    font-size: var(--english-title-font-size);
     letter-spacing: 0.25em;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
   }
 
   .description {
     font-size: var(--description-font-size);
     font-weight: bold;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
     white-space: pre-line;
   }
 </style>

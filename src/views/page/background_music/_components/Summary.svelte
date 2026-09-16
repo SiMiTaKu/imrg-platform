@@ -1,50 +1,46 @@
-<script context='module' lang='ts'>
-  import WithEnglishHeading from "../../../atomic/heading/WithEnglishHeading.svelte"
+<script context="module" lang="ts">
+  import WithEnglishHeading from '../../../atomic/heading/WithEnglishHeading.svelte'
   const FLOW = [
     {
-      title: "問い合わせ",
-      description: "インスタグラムのDMにてご依頼ください。",
+      title: '問い合わせ',
+      description: 'インスタグラムのDMにてご依頼ください。',
     },
     {
-      title: "打ち合わせ",
-      description: "お問い合わせ内容について、打ち合わせをします。",
+      title: '打ち合わせ',
+      description: 'お問い合わせ内容について、打ち合わせをします。',
     },
     {
-      title: "編曲",
-      description: "打ち合わせの内容から、編曲をします。",
+      title: '編曲',
+      description: '打ち合わせの内容から、編曲をします。',
     },
     {
-      title: "納品",
-      description: "編集した曲をデータでお渡しします。",
+      title: '納品',
+      description: '編集した曲をデータでお渡しします。',
     },
   ]
 </script>
 
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 </script>
 
-<section
-  class='flow-section'
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
->
-  <div class='message'>
+<section class="flow-section" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+  <div class="message">
     あらゆる曲を演技に<br />合わせて編曲します!!
   </div>
-  <WithEnglishHeading englishTitle='Editing Flow' title='編曲の流れ' />
-  <ul class='flow'>
+  <WithEnglishHeading englishTitle="Editing Flow" title="編曲の流れ" />
+  <ul class="flow">
     {#each FLOW as flow, index (index)}
-      <li class='item'>
-        <div class='item-index'>{index + 1}</div>
-        <h3 class='item-label'>{flow.title}</h3>
-        <p class='item-description'>{flow.description}</p>
+      <li class="item">
+        <div class="item-index">{index + 1}</div>
+        <h3 class="item-label">{flow.title}</h3>
+        <p class="item-description">{flow.description}</p>
       </li>
     {/each}
   </ul>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --width: 1024px;
     --message-font-size: 36px;
@@ -85,18 +81,18 @@
   }
 
   .flow-section {
-    padding: 0 0 80px;
     width: var(--width);
     margin: 0 auto;
+    padding: 0 0 80px;
     text-align: center;
   }
 
   .message {
     margin-bottom: var(--message-margin-bottom);
     font-size: var(--message-font-size);
-    color: #666666;
     font-weight: bold;
-    text-shadow: 3px 3px #ffffaa;
+    color: #666;
+    text-shadow: 3px 3px #ffa;
   }
 
   .flow {
@@ -111,12 +107,12 @@
   .item {
     position: relative;
     display: flex;
-    flex-direction: var(--item-flex-direction);
     gap: var(--item-gap);
     width: var(--item-width);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     padding: var(--item-padding);
+    border-radius: 8px;
+    flex-direction: var(--item-flex-direction);
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
   }
 
   .item-index {
@@ -143,18 +139,18 @@
     margin: 0;
     font-size: var(--item-label-font-size);
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
+    text-shadow: 0 0 10px rgb(50, 150, 255, 0.5);
 
-    &:after {
+    &::after {
       position: absolute;
-      top: var(--item-label-after-top);
-      left: var(--item-label-after-left);
+      display: block;
       width: var(--item-label-after-width);
       height: var(--item-label-after-height);
-      transform: var(--item-label-after-transform);
-      content: "";
-      display: block;
       background: rgb(50, 150, 255);
+      top: var(--item-label-after-top);
+      left: var(--item-label-after-left);
+      transform: var(--item-label-after-transform);
+      content: '';
     }
   }
 

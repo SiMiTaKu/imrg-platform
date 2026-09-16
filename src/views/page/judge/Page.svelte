@@ -1,14 +1,14 @@
-<script context='module' lang='ts'>
-  import PointA from "./_components/PointA.svelte"
-  import PointB from "./_components/PointB.svelte"
-  import ExecutionPointResultModalPC from "./_components/ExecutionPointResultModalPC.svelte"
-  import ExecutionPointResultModalSP from "./_components/ExecutionPointResultModalSP.svelte"
+<script context="module" lang="ts">
+  import PointA from './_components/PointA.svelte'
+  import PointB from './_components/PointB.svelte'
+  import ExecutionPointResultModalPC from './_components/ExecutionPointResultModalPC.svelte'
+  import ExecutionPointResultModalSP from './_components/ExecutionPointResultModalSP.svelte'
 </script>
 
-<script lang='ts'>
-  import { pageData } from "../../atomic/device-store/store"
-  import SelectApparatus from "./_components/SelectApparatus.svelte"
-  import { judgementApparatus } from "./_store/apparatus"
+<script lang="ts">
+  import { pageData } from '../../atomic/device-store/store'
+  import SelectApparatus from './_components/SelectApparatus.svelte'
+  import { judgementApparatus } from './_store/apparatus'
 
   let submittedPointA: boolean = false
   let submittedPointB: boolean = false
@@ -23,13 +23,11 @@
 </script>
 
 <section
-  class="judgement-form {$judgementApparatus
-    ? $judgementApparatus.imageColor
-    : 'gray'}"
+  class="judgement-form {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}"
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
-  <div class='form-container'>
+  <div class="form-container">
     <SelectApparatus />
     {#if $judgementApparatus}
       <PointA on:submit={() => submitPointA()} />
@@ -45,7 +43,7 @@
   </div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --padding: 64px 0;
     --container-width: #{calc(1024px - 160px)};
@@ -91,8 +89,8 @@
     gap: 24px;
     width: var(--container-width);
     padding: var(--container-padding);
-    background: white;
     border-radius: 8px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+    background: white;
+    box-shadow: 0 0 50px rgb(0, 0, 0, 0.3);
   }
 </style>

@@ -13,18 +13,18 @@ SEO・SNS・セキュリティー・CIを整えるための作業一覧。**Phas
 
 作業を始める人が同じ調査を繰り返さないための記録。
 
-| 項目 | 現状 |
-|---|---|
-| フレームワーク | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
-| ホスティング | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0** |
-| 配信 | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1） |
-| CI | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行 |
-| ブランチ保護 | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化） |
-| セキュリティヘッダ | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定 |
-| sitemap | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ） |
-| アクセス解析 | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN` |
-| テスト | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest |
-| 構成 | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし |
+| 項目               | 現状                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| フレームワーク     | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
+| ホスティング       | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0**        |
+| 配信               | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1）              |
+| CI                 | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行                     |
+| ブランチ保護       | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化）    |
+| セキュリティヘッダ | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定                   |
+| sitemap            | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ）            |
+| アクセス解析       | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN`       |
+| テスト             | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest                              |
+| 構成               | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし             |
 
 反映の確認方法（全ページが同じHTMLを返すため、文字列検索では判定できない）:
 
@@ -87,16 +87,41 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 ## Phase 1: 依存関係の更新と土台の整理
 
-- [ ] **1-1. 使っていない依存を削除する**
-  - `aws-amplify` `chart.js` `svelte-chartjs` `felte` `date-fns` `cookie` `@neoconfetti/svelte` `svelte-motion` `@fontsource/fira-mono`、そして `latest`（中身のない事故パッケージ）
+- [x] **1-1. 使っていない依存を削除する**
+  - `aws-amplify` `svelte-chartjs` `felte` `cookie` `@types/cookie` `@neoconfetti/svelte` `@fontsource/fira-mono`、そして `latest`（中身のない事故パッケージ）
+  - `chart.js`（採点ページのレーダーチャート）と `date-fns`（推しミツ！の日付表示）は使っているので残す
+  - `svelte-motion`（採点ページの開閉アニメーション）はSvelte 5で動かないため、1-3でCSSのtransitionに置き換えて削除する
   - textlint系は `dependencies` にあるので `devDependencies` へ移す
-- [ ] **1-2. Node を上げる**（`.node-version` 18.18.0 → 22系）。Amplifyのビルドも追随する
-- [ ] **1-3. Svelte 4 → 5**（runesへの移行は段階的に。まず動かし、後からコンポーネントごとに書き換え）
-- [ ] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
-- [ ] **1-5. ESLint 8 → 9（flat config へ移行）**。oshiageの `eslint.config.mjs` に合わせる
+- [x] **1-2. Node を上げる**（`.node-version` 18.18.0 → 24.21.0）。Amplifyのビルドも追随する
+  - 当初は22系の予定だったが、22系は2027年4月でサポートが終わるため、oshiageと同じ24系にした
+  - Amplifyは `nvm install $(cat .node-version)` で入れるので、設定の変更は不要
+- [x] **1-3. Svelte 4 → 5**（runesへの移行は段階的に。まず動かし、後からコンポーネントごとに書き換え）
+  - 書き方は今のまま（`export let` `$:` `on:click`）。Svelte 5はこの書き方も動かせる
+  - `svelte-motion` はCSSのtransitionに置き換えて削除した
+  - [ ] **1-3b. runesへ書き換える**（`$props` `$state` `$derived` `onclick`）。ページ単位で少しずつ。FSDへの再配置（3-2）と同時に行うと手戻りが少ない
+- [x] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
+  - Vite 5 → 8、vite-plugin-svelte 7、vite-imagetools 12、SvelteKit 2.70
+  - TypeScriptは5系の最新まで。6はJestの設定ファイルを読めなくなるため、Jestを外す1-6で上げる（7はSvelteKitが未対応）
+- [x] **1-5. ESLint 8 → 9（flat config へ移行）**。oshiageの `eslint.config.mjs` に合わせる
   - 現在の `.eslintrc.json` は配列を1要素ずつ改行させるなど癖が強い。移行時に見直す
-- [ ] **1-6. Jest → Vitest**（oshiageと揃える。既存47件のテストを移植）
-- [ ] **1-7. 型チェックのエラーを解消する**（現在11件。`$env/static/public` の解決と `rules` ページの型）
+  - `eslint.config.mjs` へ移し、typescript-eslint 8・eslint-plugin-svelte 3にした。使っていなかった `eslint-config-standard-with-typescript` などは削除
+  - 対象を `src` だけから、設定ファイルを含むリポジトリー全体に広げた
+- [x] **1-5b. 整形をPrettierに任せる**（oshiageの `.prettierrc.json` に合わせ、ESLintの見た目のルールを外す。全ファイルを一度だけ整形する）
+  - あわせてhusky 9・lint-staged 17へ上げた。`npm install` でコミット時のフックが有効になる
+- [x] **1-6. Jest → Vitest**（oshiageと揃える。既存47件のテストを移植）
+  - Vitest 5にした。テストは55件（カレンダーとsitemapの分が増えていた）。置き場所は `src/test/` のまま。FSDへの再配置（3-2）で見直す
+  - Jestを外したので、TypeScriptを6へ上げた
+- [x] **1-7. 型チェックのエラーを解消する**（現在11件。`$env/static/public` の解決と `rules` ページの型）
+  - 着手時は13件（依存の更新の途中で8件）。0件にした
+  - `$env` が解決できなかったのは、`tsconfig.json` の `include` がSvelteKitの生成する型定義を含んでいなかったため
+  - 推しミツ！の検索結果ページは、ルートが存在しないプロパティ `criteria` を渡していた。ページはURLから条件を読む作りなので、渡すのをやめた（動作は変わらない）
+- [x] **1-8. lintをoshiageと同じ厳しさにする**（1-5のレビューで追加）
+  - `eslint.config.mjs` をoshiageと同じ構成にした。exportする関数・型のJSDoc（TSDoc形式）必須、グローバルの `parseInt` 禁止など
+  - stylelintを入れ、`.stylelintrc.json` もoshiageと同じにした（プロパティの並び順、`rem` と `:global` の禁止など）
+  - 例外が2つある
+    - `margin` の禁止（92か所）は警告にとどめた。レイアウトの組み直しになるので5-5で対応する
+    - 規約ページの本文（スロットで渡す中身）への体裁は `:global` が必要なので、その箇所だけ止めた
+  - typescript-eslintの型情報を使うルール（`strictTypeChecked`）は、oshiageと揃えるため今回は入れていない。入れる場合は両方のリポジトリーで同時に行う
 
 ## Phase 2: CI とブランチ運用
 
@@ -106,9 +131,29 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [ ] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
 - [ ] **2-4. PR テンプレート・CODEOWNERS・`delete_branch_on_merge` を有効化**
 - [ ] **2-5. PR ごとのプレビュー環境**（Amplifyのプレビュー機能）
+- [ ] **2-6. 本番のブランチを `master` から `main` へ変える**
+  - 運用を `feature/*` → `develop` → `main` にする（`main` へのマージで本番へ反映）
+  - 手順
+    1. `master` から `main` を作ってpushする
+    2. Amplifyで `main` ブランチを接続し、本番（`imrg.work`）のドメインの割り当てを `main` へ移す。反映を `https://imrg.work/_app/version.json` で確かめる
+    3. CI（`.github/workflows/`）の対象ブランチ、ブランチ保護（2-2）、README・docs・この表の「ブランチ運用」を `main` に直す
+    4. 開いているPRのマージ先を直してから、Amplifyの `master` の接続と `master` ブランチを消す
+  - ドメインの割り当てを移す間は、切り替わるまで数分かかることがある。アクセスの少ない時間に行う
+  - Terraform（Phase 4）へ取り込む前に済ませる。先に取り込むと、ブランチ名の差分が出るため
 
 ## Phase 3: モノレポ化・FSD・デザインシステム
 
+- [ ] **3-0. リポジトリー名を変える**（`imrg-web-main` → 新しい名前。3-1の直前に行う）
+  - モノレポにすると `web` 以外のパッケージも入るため、`-main` の付いた今の名前が中身と合わなくなる
+  - `imrg-web` のようにWebに限った名前も、デザインシステム・Terraform・ツール類が入ると中身とずれる。特定の用途を表さない名前にする
+  - 候補： `imrg-platform`（サイトと、それを支える部品・インフラ一式）、`imrg-workspace`。動画・資料を置く `imrg-hub` と紛れない名前にする
+  - GitHubの名前変更は元に戻せる。旧URLからの転送（`git push` `git clone` とブラウザー）も効くので、手元の作業はすぐには止まらない
+  - 影響と対応
+    - **Amplify**：旧方式（OAuthとwebhook）でつながっている。webhookは2本（アプリID `d1d0cu0fwxm76y` と `d1o1ui2gd5pshh`）。変更後に `develop` へpushしてビルドが走るか確かめる。走らなければコンソールでリポジトリーを再接続し、あわせてGitHub App方式へ移す。使っていないほうのアプリはこのとき整理する
+    - **手元のclone**：`git remote set-url origin git@github.com:SiMiTaKu/<新しい名前>.git`。フォルダー名 `~/imrg/imrg-web-main` も合わせて変える（imrg-hubのメモやdocs内のパスも直す）
+    - **README・docs・`package.json` の `name`** を新しい名前に揃える
+    - 旧名で新しいリポジトリーを作ると転送が切れる。旧名は使わない
+  - Phase 4（Terraform）より前に済ませる。先にTerraformへ取り込むと、Amplifyアプリのリポジトリー URLの差分が出るため
 - [ ] **3-1. pnpm workspace へ移行**（`web` と `design-system` の2パッケージから始める）
 - [ ] **3-2. FSD へ再配置**：`src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
   - カレンダーはすでに近い形（`_components` `_data` `_lib`）なので、ここから着手すると移行しやすい
@@ -132,6 +177,7 @@ Phase 0の「AWS環境の整備」を先に済ませてから着手する。
 - [ ] **5-2. トップページから刷新**、続いてカレンダー・推しミツ！・ルール
 - [ ] **5-3. ダークモード対応**（`prefers-color-scheme`）
 - [ ] **5-4. 表示速度**（画像の最適化・フォント読み込み・LCP改善）
+- [ ] **5-5. `margin` を使わない書き方へ直す**（1-8で警告にとどめたもの。`gap` と `padding` で余白を作る。直し終えたらstylelintの `property-disallowed-list` をエラーへ戻す）
 
 ## Phase 6: そのほか（提案）
 

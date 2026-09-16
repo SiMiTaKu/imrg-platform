@@ -1,27 +1,27 @@
-<script lang='ts'>
-  import { pageData } from "$views/atomic/device-store/store"
+<script lang="ts">
+  import { pageData } from '$views/atomic/device-store/store'
 
   export let width: number
   export let height: number
   export let text: string
   export let href: string
-  export let target: "_blank" | "_self" = "_self"
+  export let target: '_blank' | '_self' = '_self'
 </script>
 
 <a
   style:width={`${width}px`}
   style:height={`${height}px`}
-  class='button-link'
+  class="button-link"
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
   {href}
   {target}
-  rel={target === "_blank" ? "noopener noreferrer" : ""}
+  rel={target === '_blank' ? 'noopener noreferrer' : ''}
 >
   {text}
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   .pc {
     --item-font-size: #{$font-size-24};
   }
