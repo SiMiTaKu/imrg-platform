@@ -42,29 +42,31 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 ### サイトの不具合
 
-- [ ] **0-1. 書き出した HTML を配信する**
+- [x] **0-1. 書き出した HTML を配信する**
   - 症状： `/privacy/` と `/privacy/index.html` のどちらも1156バイトの入れ物ページを返す。`.txt` `.json` `.js` はそのまま配信される
   - 原因： AmplifyのSPA用書き換えルールが、許可拡張子に `html` を含まないため `.html` を `/index.html` に差し替えている
   - 対応： 書き換えルールを `/<*>` → `/index.html` の `404-200` に置き換える。手順は [aws-setup.md](aws-setup.md) の4
   - 確認： `curl -s https://imrg.work/privacy/ | grep -c "Cloudflare Web"` が1以上になること
   - **これが直るまで、下の SEO・OGP 施策はクローラーに届かない**
-- [ ] **0-2. sitemap.xml を用意する**
+- [x] **0-2. sitemap.xml を用意する**
   - 312件の大会詳細ページを含め、ビルド時に生成（`src/routes/sitemap.xml/+server.ts` で `prerender = true`）
   - `static/robots.txt` に `Sitemap: https://imrg.work/sitemap.xml` を追記
-- [ ] **0-3. セキュリティヘッダーを追加する**（`amplify.yml` の `customHeaders`）
+- [x] **0-3. セキュリティヘッダーを追加する**（`amplify.yml` の `customHeaders`）
   - `Strict-Transport-Security`、`X-Content-Type-Options: nosniff`、`Referrer-Policy`、`Permissions-Policy`、`X-Frame-Options`
   - CSPは段階導入（まずReport-Only。Cloudflareのビーコンと画像を許可する必要あり）
   - 現在の `Cache-Control: no-store` は全ファイル対象。ハッシュ付きの `/_app/immutable/*` は長期キャッシュに変える
-- [ ] **0-4. OGP・構造化データを整える**
+- [x] **0-4. OGP・構造化データを整える**
   - `og:image` を絶対URLの1200×630のカード画像に（現在はロゴ画像の相対パス）
   - `twitter:card`・`og:locale`・`og:type`（詳細ページは `article`）を見直す
   - 大会詳細ページにJSON-LD（`SportsEvent`）を入れる。日程・会場・URLが検索結果に出る
   - `<html lang="en">` を `ja` に直す（`src/app.html`）
 
-- [ ] **0-9. トップページのHTMLが入れ物ページに上書きされる**
+- [x] **0-9. トップページのHTMLが入れ物ページに上書きされる**
   - 症状： `/` だけ1156バイトのまま。ビルドが `build/index.html` を入れ物ページで上書きしている
   - 対応： `svelte.config.js` の `fallback` を `404.html` へ変える。あわせてAmplifyの書き換え先も `/404.html` にする
   - 順番： まずコードを反映する。そのあとコンソール側の書き換え先を変える
+
+2026-09-16に0-1〜0-4と0-9を反映済み。sitemap 321件、構造化データ、セキュリティーヘッダー、トップページのHTMLを本番で確認した。
 
 ### AWS 環境の整備
 
