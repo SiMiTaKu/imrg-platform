@@ -111,7 +111,34 @@ CLIを使うときは、アクセスキーを作らずIAM Identity Center（`aws
 > `amplify.yml` にも `redirects:` の記述があるが、コンソールのルールと一致していない。
 > Amplify はコンソール側の設定を使うため、`amplify.yml` の記述は効いていない。整理は Phase 4 で行う。
 
-## 5. 直したあとにやること
+## 5. Search Console のドメイン所有権を確認する
+
+Search Consoleの「ドメイン」プロパティでは、DNSのTXTレコードで所有権を確かめる。
+
+imrg.workの登録業者はお名前。com。DNSの管理はRoute 53が行う（ネームサーバーが `ns-*.awsdns-*`）。
+**TXTレコードはRoute 53に追加する。お名前.com側のDNS設定に入れても効果が無い。**
+
+1. Search Consoleで「ドメイン」プロパティを選び、`imrg.work` を入力する
+2. 表示された `google-site-verification=...` の文字列をコピーする
+3. AWSのコンソールで **Route 53** → **ホストゾーン** → `imrg.work` を開く
+4. **レコードを作成** を押し、次のとおり入力する
+   - レコード名： 空欄のまま（`imrg.work` そのものを指す）
+   - レコードタイプ： `TXT`
+   - 値： `"google-site-verification=コピーした文字列"`（引用符で囲む）
+   - TTL： 300
+5. 作成したら、手元で反映を確かめる
+
+   ```bash
+   dig +short TXT imrg.work
+   ```
+
+6. 値が返ってきたら、Search Consoleの **確認** を押す
+7. 確認が通ったら、`https://imrg.work/sitemap.xml` をサイトマップとして登録する
+
+> 反映には数分かかる。`dig` で見えるまで待ってから確認を押すと失敗しにくい。
+> 既存のTXTレコードがある場合は、そのレコードに値を足す（レコードを分けない）。
+
+## 6. 直したあとにやること
 
 - Google Search Consoleに `https://imrg.work/sitemap.xml` を登録する
 - X（Twitter）のカード検証ツールとFacebookのシェアデバッガーで、カード画像の表示を確認する
