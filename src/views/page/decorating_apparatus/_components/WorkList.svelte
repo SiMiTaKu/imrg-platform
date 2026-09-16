@@ -38,12 +38,12 @@
 
   .list {
     display: flex;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
-    gap: 16px;
     list-style: none;
   }
 

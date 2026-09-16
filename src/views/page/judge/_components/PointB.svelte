@@ -87,6 +87,7 @@
     --submit-button-background: #ecc200;
     --forcus-border-color: #ecc200;
   }
+
   .green {
     --submit-button-background: #219300;
     --forcus-border-color: #219300;
@@ -126,16 +127,16 @@
   }
 
   .miss-point {
-    height: 56px;
     width: 100%;
+    height: 56px;
     margin: 0;
     padding-left: 24px;
     font-size: 20px;
     font-weight: bold;
-    border: solid 4px #aaaaaa;
+    border: solid 4px #aaa;
     border-radius: 8px;
-    outline: none;
     transition: 0.3s;
+    outline: none;
     box-sizing: border-box;
 
     &:focus {
@@ -150,8 +151,8 @@
   .submit-button {
     width: 200px;
     height: 56px;
-    font-weight: bold;
     font-size: 20px;
+    font-weight: bold;
     color: white;
     border: unset;
     border-radius: 8px;

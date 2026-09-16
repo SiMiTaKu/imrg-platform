@@ -59,24 +59,24 @@
 
   .legend {
     display: flex;
+    gap: $space-size-8;
     font-size: var(--legend-font-size);
     font-weight: bold;
     align-items: center;
-    gap: $space-size-8;
 
-    &:before {
-      content: '';
+    &::before {
+      display: grid;
       width: 4px;
       height: var(--legend-font-size);
       background: map.get($sky-blue, border);
-      display: grid;
+      content: '';
     }
   }
 
   .ul {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: $space-size-8 $space-size-16;
+    grid-template-columns: 1fr 1fr;
     flex-wrap: wrap;
     list-style: none;
   }
@@ -84,28 +84,28 @@
   .label {
     position: relative;
     display: grid;
-    place-items: center start;
     width: 100%;
     height: 48px;
     padding: 0 0 0 $space-size-40;
     font-size: var(--label-font-size);
     font-weight: bold;
     color: map.get($gray, light-text);
-    background: var(--background, $white);
-    border-radius: $border-radius-8;
     border: $border-size-1 solid var(--border-color, map.get($gray, border));
-    box-sizing: border-box;
+    border-radius: $border-radius-8;
+    background: var(--background, $white);
     transition: 0.2s;
+    place-items: center start;
+    box-sizing: border-box;
 
-    &:before {
-      left: $space-size-8;
+    &::before {
       position: absolute;
-      content: '';
       width: 20px;
       height: 20px;
-      border-radius: $border-size-4;
       border: var(--border, $border-size-2 solid map.get($gray, border));
+      border-radius: $border-size-4;
       background: var(--checkbox-background, $white);
+      left: $space-size-8;
+      content: '';
       box-sizing: border-box;
     }
 
@@ -113,9 +113,10 @@
       --border: none;
       --background: #{map.get($sky-blue, background)};
       --checkbox-background: #{map.get($sky-blue, button)};
+
       color: map.get($sky-blue, text);
 
-      &:after {
+      &::after {
         top: 14px;
         left: 13px;
         position: absolute;

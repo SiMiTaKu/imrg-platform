@@ -98,18 +98,18 @@
 
   .main-visual {
     position: relative;
-    padding: 0;
     width: 100%;
     height: var(--height);
+    padding: 0;
 
-    &:after {
+    &::after {
       position: absolute;
+      width: 85%;
+      height: var(--height);
+      background: linear-gradient(to right, #000, transparent);
       top: 0;
       left: 0;
       content: '';
-      height: var(--height);
-      width: 85%;
-      background: linear-gradient(to right, #000, transparent);
       opacity: 0.5;
       z-index: 0;
     }
@@ -122,8 +122,8 @@
   }
 
   .content-wrapper {
-    width: 100%;
     position: absolute;
+    width: 100%;
     top: 0;
     z-index: 1;
   }
@@ -136,24 +136,24 @@
 
   .title {
     display: inline-block;
+    margin: 0 0 4px;
     font-size: var(--title-font-size);
     font-weight: bold;
     line-height: var(--title-font-size);
-    margin: 0 0 4px;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
   }
 
   .english-title {
-    font-size: var(--english-title-font-size);
     margin-bottom: var(--english-margin-bottom);
+    font-size: var(--english-title-font-size);
     letter-spacing: 0.25em;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
   }
 
   .description {
     font-size: var(--description-font-size);
     font-weight: bold;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
     white-space: pre-line;
   }
 </style>

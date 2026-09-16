@@ -25,39 +25,37 @@
 
   .wrapper {
     display: grid;
-    grid-template-rows: 1fr auto auto 1fr;
-    justify-items: center;
-    align-items: center;
-    height: 75dvh;
     gap: 40px;
+    grid-template-rows: 1fr auto auto 1fr;
+    height: 75dvh;
+    place-items: center center;
   }
 
   .title {
     grid-row: 2 / 3;
     font-size: var(--title-font-size);
-    color: #555555;
+    color: #555;
   }
 
   .content {
-    grid-row: 3 / 4;
     display: grid;
     gap: 24px;
+    grid-row: 3 / 4;
     justify-items: center;
   }
 
   .text {
-    color: #555555;
+    color: #555;
   }
 
   .link {
     display: grid;
-    align-items: center;
-    justify-items: center;
     width: 300px;
     height: 48px;
     font-weight: bold;
-    border-radius: 8px;
-    background-color: #555555;
     color: white;
+    border-radius: 8px;
+    background-color: #555;
+    place-items: center center;
   }
 </style>

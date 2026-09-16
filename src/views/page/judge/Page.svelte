@@ -89,8 +89,8 @@
     gap: 24px;
     width: var(--container-width);
     padding: var(--container-padding);
-    background: white;
     border-radius: 8px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+    background: white;
+    box-shadow: 0 0 50px rgb(0, 0, 0, 0.3);
   }
 </style>

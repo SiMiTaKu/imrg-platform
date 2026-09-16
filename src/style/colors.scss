@@ -1,5 +1,4 @@
-$white: #ffffff;
-
+$white: #fff;
 $sky-blue: (
   background: #e7f1ff,
   // 背景 50
@@ -16,23 +15,21 @@ $sky-blue: (
   // ボタン 800
   text: #0079ff, // 文字 900
 );
-
 $yellow: (
-  background: #ffffee,
+  background: #ffe,
   // 背景 50
   100: #ffffd5,
   200: #ffffbf,
-  300: #ffffaa,
+  300: #ffa,
   400: #ffff8f,
   500: #ffff74,
   // ボーダー, ラベル
   600: #ffff59,
   text: #fdfd3a,
   // 文字 700
-  800: #ffff22,
-  900: #ffff00,
+  800: #ff2,
+  900: #ff0,
 );
-
 $gray: (
   background: #f3f3f3,
   // 背景 50
@@ -45,8 +42,8 @@ $gray: (
   light-text: #606060,
   // 明るい文字 500
   600: #454545,
-  text: #333333,
+  text: #333,
   // 文字 700
   800: #212121,
-  900: #000000,
+  900: #000,
 );

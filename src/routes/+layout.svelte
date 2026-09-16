@@ -56,6 +56,7 @@
   .pc {
     --header-padding: 80px;
   }
+
   .sp {
     --header-padding: 64px;
   }

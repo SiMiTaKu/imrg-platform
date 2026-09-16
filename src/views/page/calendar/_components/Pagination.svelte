@@ -71,12 +71,12 @@
     min-width: 40px;
     height: 40px;
     padding: 0 $space-size-12;
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
     border: $border-size-1 solid map.get($sky-blue, border);
     border-radius: $border-radius-8;
     background: $white;
-    color: map.get($sky-blue, text);
-    font-size: $font-size-14;
-    font-weight: bold;
     font-variant-numeric: tabular-nums;
     cursor: pointer;
 
@@ -93,9 +93,9 @@
   }
 
   .current {
+    color: $white;
     border-color: map.get($sky-blue, button);
     background: map.get($sky-blue, button);
-    color: $white;
   }
 
   .ellipsis {

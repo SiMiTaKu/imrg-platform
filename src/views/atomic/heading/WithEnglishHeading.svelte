@@ -30,8 +30,8 @@
     margin: 0 0 40px;
     font-size: var(--title-font-size);
     line-height: var(--title-font-size);
-    color: #333333;
-    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
+    color: #333;
+    text-shadow: 0 0 10px rgb(50, 150, 255, 0.5);
   }
 
   .english-title {

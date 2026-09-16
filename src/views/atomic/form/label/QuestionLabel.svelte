@@ -42,15 +42,15 @@
 
   .icon {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 36px;
     height: 36px;
-    color: white;
     font-size: 20px;
     font-weight: bold;
-    background: var(--icon-background);
+    color: white;
     border-radius: 1em;
+    background: var(--icon-background);
+    align-items: center;
+    justify-content: center;
   }
 
   .title {

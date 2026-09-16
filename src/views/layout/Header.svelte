@@ -153,7 +153,7 @@
     background: white;
     z-index: 1000;
 
-    &:before {
+    &::before {
       content: '';
       position: fixed;
       top: 0;
@@ -178,11 +178,11 @@
 
   .top-link {
     display: grid;
-    align-items: center;
-    padding: var(--top-link-padding);
-    box-sizing: border-box;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    padding: var(--top-link-padding);
+    align-items: center;
+    box-sizing: border-box;
   }
 
   .sns {
@@ -199,8 +199,8 @@
 
   .sns-link {
     display: grid;
-    place-items: center;
-    padding: var(--sns-link-padding);
     height: 100%;
+    padding: var(--sns-link-padding);
+    place-items: center;
   }
 </style>

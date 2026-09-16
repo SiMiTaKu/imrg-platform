@@ -128,7 +128,7 @@
 
   .contents-footer {
     padding: $space-size-40 0 $space-size-120;
-    background-color: #eeeeee;
+    background-color: #eee;
   }
 
   .container {
@@ -151,7 +151,7 @@
     text-decoration: none;
     font-size: var(--item-font-size);
     font-weight: bold;
-    color: #777777;
+    color: #777;
   }
 
   .policy-links {
@@ -162,7 +162,7 @@
     font-size: 14px;
 
     a {
-      color: #777777;
+      color: #777;
     }
   }
 

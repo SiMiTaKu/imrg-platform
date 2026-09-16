@@ -3,6 +3,9 @@
  * 末尾スラッシュはサイトの設定（trailingSlash: "always"）に合わせる。
  */
 
+/**
+ * sitemap.xml に載せる1ページぶんの情報
+ */
 export type SitemapEntry = {
   /** サイト内のパス。"/" から始める */
   path: string
@@ -12,7 +15,11 @@ export type SitemapEntry = {
   priority?: number
 }
 
-/** "/calendar" → "/calendar/"。"/" はそのまま */
+/**
+ * "/calendar" → "/calendar/"。"/" はそのまま
+ * @param path - サイト内のパス
+ * @returns 末尾にスラッシュを付けたパス。"/" で始まらないときは先頭にも付ける
+ */
 export function withTrailingSlash(path: string): string {
   if (!path.startsWith('/')) return `/${path}`.replace(/\/+$/, '/')
   return path.endsWith('/') ? path : `${path}/`
@@ -28,12 +35,22 @@ function escapeXml(value: string): string {
     .replace(/'/g, '&apos;')
 }
 
-/** 絶対 URL にする。baseUrl の末尾スラッシュは無視する */
+/**
+ * 絶対 URL にする。baseUrl の末尾スラッシュは無視する
+ * @param baseUrl - サイトの URL（例: "https://imrg.work"）
+ * @param path - サイト内のパス
+ * @returns 末尾スラッシュ付きの絶対 URL
+ */
 export function toAbsoluteUrl(baseUrl: string, path: string): string {
   return `${baseUrl.replace(/\/+$/, '')}${withTrailingSlash(path)}`
 }
 
-/** sitemap.xml の中身を作る。同じパスが複数あっても1つにまとめる */
+/**
+ * sitemap.xml の中身を作る。同じパスが複数あっても1つにまとめる
+ * @param baseUrl - サイトの URL（例: "https://imrg.work"）
+ * @param entries - 載せるページの一覧
+ * @returns sitemap.xml の文字列（末尾に改行付き）
+ */
 export function buildSitemapXml(baseUrl: string, entries: SitemapEntry[]): string {
   const seen = new Set<string>()
   const urls: string[] = []

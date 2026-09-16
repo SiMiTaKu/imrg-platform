@@ -33,10 +33,10 @@
 
   .counter {
     display: grid;
+    gap: 12px;
+    grid-template-columns: auto auto auto 1fr;
     align-items: center;
     justify-content: center;
-    grid-template-columns: auto auto auto 1fr;
-    gap: 12px;
   }
 
   .plus,
@@ -59,14 +59,14 @@
     }
 
     &:active {
-      transition: 0.1s;
-      background: white;
       color: var(--button-color);
+      background: white;
+      transition: 0.1s;
     }
 
     &:disabled {
-      background-color: #aaaaaa;
       color: white;
+      background-color: #aaa;
       pointer-events: none;
       user-select: none;
     }

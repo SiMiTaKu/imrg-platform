@@ -55,16 +55,16 @@
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 0;
     margin: 0;
+    padding: 0;
     border: none;
+    border-radius: 8px;
     background-color: transparent;
+    transition: 1s;
     cursor: pointer;
     transform: rotateY(0);
-    transition: 1s;
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 8px rgb(0, 0, 0, 0.5);
   }
 
   .front {

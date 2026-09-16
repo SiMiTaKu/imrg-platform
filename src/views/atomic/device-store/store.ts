@@ -5,6 +5,9 @@ type PageData = {
   isMobile: boolean
 }
 
+/**
+ * 表示中の端末がスマホかどうかを持つストアを作る。初期値はスマホ扱い
+ */
 function createStore() {
   const defaultPageData: PageData = { isMobile: true }
 

@@ -41,15 +41,15 @@
 
   .wrapper {
     position: absolute;
-    top: var(--height);
-    right: 0;
     display: grid;
-    overflow: hidden;
+    width: var(--wrapper-width);
+    height: 0;
     border-radius: 0 0 $border-radius-8 $border-radius-8;
     background-color: map.get($sky-blue, background);
-    height: 0;
-    width: var(--wrapper-width);
     transition: 0.3s;
+    top: var(--height);
+    right: 0;
+    overflow: hidden;
   }
 
   // 1項目あたり約44px。項目を増やしたらここも増やす
@@ -60,10 +60,10 @@
   .links {
     display: grid;
     height: min-content;
-    list-style: none;
+    padding: $space-size-8 $space-size-16;
     font-size: 18px;
     font-weight: bold;
-    padding: $space-size-8 $space-size-16;
+    list-style: none;
   }
 
   .links > li {

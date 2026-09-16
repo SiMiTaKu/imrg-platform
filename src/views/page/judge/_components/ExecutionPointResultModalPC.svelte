@@ -171,32 +171,26 @@
 
   .modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
 
-    &:before {
+    &::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #333333;
+      inset: 0;
+      background-color: #333;
       opacity: 0.7;
     }
   }
 
   .container {
     position: relative;
-    top: 50%;
-    left: 50%;
     width: 800px;
     padding: 100px 50px 50px;
-    transform: translate(-50%, -50%);
-    background-color: white;
     border-radius: 8px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .header {
@@ -207,11 +201,11 @@
 
   .title {
     display: inline-block;
+    margin: 0 0 16px;
     padding: 0 24px;
     font-size: 24px;
     font-weight: bold;
     color: white;
-    margin: 0 0 16px;
     border-radius: 8px;
     background: var(--title-background-color);
   }
@@ -223,24 +217,24 @@
   }
 
   .format {
-    font-size: 24px;
     margin-bottom: 16px;
+    font-size: 24px;
   }
 
   .result {
+    margin-bottom: 20px;
     padding-left: 40px;
     font-size: 40px;
     font-weight: bold;
-    margin-bottom: 20px;
 
-    &:after {
+    &::after {
       content: '';
       position: absolute;
       display: block;
       width: 200px;
       height: 4px;
       left: 50px;
-      background: #aaaaaa;
+      background: #aaa;
     }
   }
 
@@ -255,9 +249,9 @@
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background: var(--footer-button-background-color);
     border: none;
     border-radius: 8px;
+    background: var(--footer-button-background-color);
     z-index: 100;
     cursor: pointer;
   }
@@ -284,9 +278,9 @@
 
   .detail-pull-down-button {
     margin-bottom: 8px;
-    background: white;
-    border-radius: 4px;
     font-family: YuGothic, sans-serif;
+    border-radius: 4px;
+    background: white;
 
     &:hover {
       cursor: pointer;
@@ -297,7 +291,7 @@
     margin-bottom: 8px;
     font-size: 12px;
     list-style: none;
-    border-bottom: 1px solid #aaaaaa;
+    border-bottom: 1px solid #aaa;
   }
 
   .detail-title {

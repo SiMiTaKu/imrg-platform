@@ -188,11 +188,11 @@
   .nav-button {
     width: 44px;
     height: 44px;
+    font-size: $font-size-24;
+    color: map.get($sky-blue, text);
     border: $border-size-1 solid map.get($sky-blue, border);
     border-radius: 50%;
     background: $white;
-    color: map.get($sky-blue, text);
-    font-size: $font-size-24;
     line-height: 1;
     cursor: pointer;
 
@@ -217,14 +217,14 @@
   }
 
   .this-month {
-    justify-self: center;
     padding: $space-size-4 $space-size-12;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
     border: $border-size-1 solid map.get($sky-blue, border);
     border-radius: $border-radius-64;
     background: $white;
-    color: map.get($sky-blue, text);
-    font-size: $font-size-12;
-    font-weight: bold;
+    justify-self: center;
     cursor: pointer;
   }
 
@@ -269,15 +269,15 @@
 
   .day-button {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: $space-size-2;
     width: 100%;
     padding: $space-size-2 0;
+    font: inherit;
+    color: inherit;
     border: none;
     background: transparent;
-    color: inherit;
-    font: inherit;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
 
     &:disabled {
@@ -287,12 +287,12 @@
 
   .day-number {
     display: grid;
-    place-items: center;
     width: 24px;
     height: 24px;
-    border-radius: 50%;
     font-size: 13px;
     font-weight: bold;
+    border-radius: 50%;
+    place-items: center;
     font-variant-numeric: tabular-nums;
   }
 
@@ -309,8 +309,8 @@
   }
 
   .today-mark {
-    background: map.get($sky-blue, button);
     color: $white;
+    background: map.get($sky-blue, button);
   }
 
   .dots {
@@ -330,19 +330,19 @@
   // 長い大会名でもマスからはみ出さず「…」で切れるよう、列の最小幅を0にする
   .chips {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
     gap: $space-size-2;
+    grid-template-columns: minmax(0, 1fr);
     list-style: none;
   }
 
   .chip {
     display: block;
     padding: 1px $space-size-4;
-    border-left: 3px solid var(--color);
+    font-size: $font-size-11;
+    color: map.get($gray, text);
     border-radius: 2px;
     background: color-mix(in srgb, var(--color) 12%, white);
-    color: map.get($gray, text);
-    font-size: $font-size-11;
+    border-left: 3px solid var(--color);
     line-height: 1.5;
     white-space: nowrap;
     overflow: hidden;
@@ -355,11 +355,11 @@
 
   .more {
     padding: 0 $space-size-4;
-    border: none;
-    background: none;
-    color: map.get($sky-blue, text);
     font-size: $font-size-11;
     font-weight: bold;
+    color: map.get($sky-blue, text);
+    border: none;
+    background: none;
     cursor: pointer;
   }
 
@@ -385,11 +385,11 @@
 
   .undated-chip {
     padding: $space-size-2 $space-size-8;
-    border-left: 3px solid var(--color);
+    font-size: $font-size-12;
+    color: map.get($gray, text);
     border-radius: 2px;
     background: color-mix(in srgb, var(--color) 12%, white);
-    color: map.get($gray, text);
-    font-size: $font-size-12;
+    border-left: 3px solid var(--color);
   }
 
   .legend {
