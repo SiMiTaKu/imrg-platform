@@ -132,8 +132,8 @@
   .submit-button {
     width: 200px;
     height: 56px;
-    font-weight: bold;
     font-size: 20px;
+    font-weight: bold;
     color: white;
     border: unset;
     border-radius: 8px;

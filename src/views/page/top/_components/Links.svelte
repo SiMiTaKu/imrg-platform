@@ -35,8 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: var(--flex-direction);
-    flex-wrap: wrap;
+    flex-flow: var(--flex-direction) wrap;
     gap: $space-size-24;
     width: var(--width);
     padding: $space-size-24 0 $space-size-80;

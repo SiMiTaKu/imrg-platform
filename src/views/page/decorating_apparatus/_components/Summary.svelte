@@ -86,18 +86,18 @@
   }
 
   .flow-section {
-    padding: 0 0 80px;
     width: var(--width);
     margin: 0 auto;
+    padding: 0 0 80px;
     text-align: center;
   }
 
   .message {
     margin-bottom: var(--message-margin-bottom);
     font-size: var(--message-font-size);
-    color: #666666;
     font-weight: bold;
-    text-shadow: 3px 3px #ffffaa;
+    color: #666;
+    text-shadow: 3px 3px #ffa;
   }
 
   .flow {
@@ -112,12 +112,12 @@
   .item {
     position: relative;
     display: flex;
-    flex-direction: var(--item-flex-direction);
     gap: var(--item-gap);
     width: var(--item-width);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     padding: var(--item-padding);
+    border-radius: 8px;
+    flex-direction: var(--item-flex-direction);
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
   }
 
   .item-index {
@@ -144,18 +144,18 @@
     margin: 0;
     font-size: var(--item-label-font-size);
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(50, 150, 255, 0.5);
+    text-shadow: 0 0 10px rgb(50, 150, 255, 0.5);
 
-    &:after {
+    &::after {
       position: absolute;
-      top: var(--item-label-after-top);
-      left: var(--item-label-after-left);
+      display: block;
       width: var(--item-label-after-width);
       height: var(--item-label-after-height);
+      background: rgb(50, 150, 255);
+      top: var(--item-label-after-top);
+      left: var(--item-label-after-left);
       transform: var(--item-label-after-transform);
       content: '';
-      display: block;
-      background: rgb(50, 150, 255);
     }
   }
 

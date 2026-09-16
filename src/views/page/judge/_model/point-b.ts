@@ -1,3 +1,6 @@
+/**
+ * 実施のBの減点項目（手具の落下とミス）の入力値
+ */
 export type PointB = {
   droppedApparatus: {
     single: number // 1つの手具を落とした回数

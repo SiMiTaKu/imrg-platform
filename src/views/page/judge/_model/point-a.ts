@@ -17,6 +17,9 @@ const POINT_A_OPTION = {
   OPTION_10: { code: 10, label: '10', value: 0.05 },
 } as const
 
+/**
+ * PointAの評価項目の選択肢1つ分（コード・ラベル・減点値）
+ */
 export type PointAOption = (typeof POINT_A_OPTION)[keyof typeof POINT_A_OPTION]
 export const PointAOptions = Object.values(POINT_A_OPTION)
 
@@ -69,59 +72,60 @@ const POINT_A_INFO = {
 
 type PointAInfo = typeof POINT_A_INFO
 /**
- * @param beautifulPose       美しい姿勢
- * @param flexibility         柔軟性
- * @param naturalMovement     動きの技術（自然・幅）
- * @param bendingWeight       動きの技術（膝の踏込み）
- * @param jumpingHeight       跳躍の高さ
- * @param bodyControl         四肢の制御
- * @param heelRaise           かかとの引き上げ
- * @param weaknessAndStrength 張り, 活気, 間, アクセント
- * @param connectMovement     運動のつなぎの技術
- * @param apparatusControl    自然な手具操作
- * @param musicImage          音楽のイメージ
+ * PointAの評価項目ごとの選択値と項目情報
  */
 export type PointA = {
+  /** 美しい姿勢 */
   beautifulPose: {
     option: PointAOption
     info: PointAInfo['beautifulPose']
   }
+  /** 柔軟性 */
   flexibility: {
     option: PointAOption
     info: PointAInfo['flexibility']
   }
+  /** 動きの技術（自然・幅） */
   naturalMovement: {
     option: PointAOption
     info: PointAInfo['naturalMovement']
   }
+  /** 動きの技術（膝の踏込み） */
   bendingWeight: {
     option: PointAOption
     info: PointAInfo['bendingWeight']
   }
+  /** 跳躍の高さ */
   jumpingHeight: {
     option: PointAOption
     info: PointAInfo['jumpingHeight']
   }
+  /** 四肢の制御 */
   bodyControl: {
     option: PointAOption
     info: PointAInfo['bodyControl']
   }
+  /** かかとの引き上げ */
   heelRaise: {
     option: PointAOption
     info: PointAInfo['heelRaise']
   }
+  /** 張り, 活気, 間, アクセント */
   weaknessAndStrength: {
     option: PointAOption
     info: PointAInfo['weaknessAndStrength']
   }
+  /** 運動のつなぎの技術 */
   connectMovement: {
     option: PointAOption
     info: PointAInfo['connectMovement']
   }
+  /** 自然な手具操作 */
   apparatusControl: {
     option: PointAOption
     info: PointAInfo['apparatusControl']
   }
+  /** 音楽のイメージ */
   musicImage: {
     option: PointAOption
     info: PointAInfo['musicImage']

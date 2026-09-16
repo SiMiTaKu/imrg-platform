@@ -55,8 +55,8 @@
     height: 48px;
     padding-left: 8px;
     font-size: 16px;
-    color: #cccccc;
-    border: 4px solid #cccccc;
+    color: #ccc;
+    border: 4px solid #ccc;
     border-radius: 8px;
     outline: none;
     transition: 0.3s;
@@ -67,8 +67,8 @@
   }
 
   .hasChanged {
-    color: #555555;
     font-weight: bold;
+    color: #555;
   }
 
   .no-option {

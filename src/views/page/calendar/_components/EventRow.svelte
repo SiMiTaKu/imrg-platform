@@ -49,16 +49,16 @@
 <style lang="scss">
   .event-row {
     display: grid;
-    grid-template-columns: 52px 1fr 12px;
-    align-items: center;
     gap: $space-size-12;
+    grid-template-columns: 52px 1fr 12px;
     padding: $space-size-12 $space-size-16 $space-size-12 $space-size-12;
+    color: map.get($gray, text);
     border: $border-size-1 solid map.get($gray, 100);
-    border-left: $border-size-4 solid var(--color);
     border-radius: $border-radius-8;
     background: $white;
-    color: map.get($gray, text);
     transition: background-color 0.2s;
+    align-items: center;
+    border-left: $border-size-4 solid var(--color);
 
     &:hover {
       background: map.get($sky-blue, background);
@@ -119,14 +119,14 @@
 
   .tag {
     padding: 0 $space-size-4;
+    color: map.get($gray, light-text);
     border-radius: $border-radius-4;
     background: map.get($gray, background);
-    color: map.get($gray, light-text);
   }
 
   .result {
-    background: map.get($sky-blue, background);
     color: map.get($sky-blue, text);
+    background: map.get($sky-blue, background);
   }
 
   .title {

@@ -167,9 +167,9 @@
     width: var(--width);
     margin: 0 auto;
     padding: $space-size-32 0 $space-size-80;
-    color: map.get($gray, text);
     font-family:
       'Hiragino Sans', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Meiryo, sans-serif;
+    color: map.get($gray, text);
     line-height: 1.7;
     letter-spacing: 0.02em;
     overflow-wrap: anywhere;
@@ -200,18 +200,18 @@
   .category,
   .tentative {
     padding: $space-size-2 $space-size-12;
-    border-radius: $border-radius-64;
     font-weight: bold;
+    border-radius: $border-radius-64;
   }
 
   .category {
-    background: color-mix(in srgb, var(--color) 14%, white);
     color: map.get($gray, 800);
+    background: color-mix(in srgb, var(--color) 14%, white);
   }
 
   .tentative {
-    background: map.get($gray, background);
     color: map.get($gray, light-text);
+    background: map.get($gray, background);
   }
 
   .title {
@@ -235,8 +235,8 @@
 
   .fact {
     display: grid;
-    grid-template-columns: var(--fact-columns);
     gap: $space-size-4 $space-size-16;
+    grid-template-columns: var(--fact-columns);
     padding: $space-size-16 0;
     border-bottom: $border-size-1 solid map.get($gray, 200);
   }
@@ -283,14 +283,14 @@
 
   .action {
     display: grid;
-    place-items: center;
     min-width: 180px;
     padding: $space-size-8 $space-size-24;
-    border: $border-size-1 solid map.get($sky-blue, button);
-    border-radius: $border-radius-64;
-    color: map.get($sky-blue, text);
     font-size: $font-size-16;
     font-weight: bold;
+    color: map.get($sky-blue, text);
+    border: $border-size-1 solid map.get($sky-blue, button);
+    border-radius: $border-radius-64;
+    place-items: center;
     line-height: 1.3;
   }
 
@@ -300,8 +300,8 @@
   }
 
   .primary {
-    background: map.get($sky-blue, button);
     color: $white;
+    background: map.get($sky-blue, button);
   }
 
   .source {

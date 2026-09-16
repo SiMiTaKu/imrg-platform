@@ -38,11 +38,11 @@
 <style lang="scss">
   .card {
     display: grid;
+    grid-template-rows: 97px 97px auto;
     width: 343px;
     min-height: 194px;
-    grid-template-rows: 97px 97px auto;
-    place-items: center;
     border-radius: 8px;
+    place-items: center;
     overflow: hidden;
     box-shadow: $black-box-shadow;
 
@@ -52,11 +52,11 @@
   }
 
   .video {
-    grid-row: 1 / 3;
     grid-column: 1;
+    grid-row: 1 / 3;
+    transition: 0.3s;
     pointer-events: none;
     user-select: none;
-    transition: 0.3s;
     opacity: 1;
 
     &.placeholder {
@@ -65,22 +65,22 @@
   }
 
   .info {
-    grid-row: 2 / 4;
-    grid-column: 1;
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
     gap: 8px;
+    grid-column: 1;
+    grid-row: 2 / 4;
+    width: 100%;
     padding: 64px 8px 12px;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0) 0,
-      rgba(255, 255, 255, 0.1) 22px,
-      rgba(255, 255, 255, 0.9) 55px,
-      rgba(255, 255, 255, 0.95) 60px,
+      rgb(0, 0, 0, 0) 0,
+      rgb(255, 255, 255, 0.1) 22px,
+      rgb(255, 255, 255, 0.9) 55px,
+      rgb(255, 255, 255, 0.95) 60px,
       rgb(255, 255, 255) 65px
     );
-    width: 100%;
+    flex-wrap: wrap;
+    align-items: flex-end;
     box-sizing: border-box;
     z-index: 1;
   }

@@ -26,18 +26,22 @@ const APPARATUS = {
   },
 } as const
 
+/**
+ * 手具1つ分の定義（コード・名前・イメージカラー）
+ */
 export type Apparatus = (typeof APPARATUS)[keyof typeof APPARATUS]
 export const Apparatuses = Object.values(APPARATUS)
 
 export const Apparatus = {
   fromCode(code: number | string): Apparatus | undefined {
-    const intCode = typeof code === 'string' ? parseInt(code) : code
+    const intCode = typeof code === 'string' ? Number.parseInt(code) : code
     return Apparatuses.find((apparatus) => apparatus.code === intCode)
   },
 
   /**
    * 2つで一つの手具かを判別するメソッド
-   * @param apparatus
+   * @param apparatus - 判別する手具
+   * @returns リングかクラブなら true
    */
   isDoubleApparatus(apparatus: Apparatus | undefined): boolean {
     if (apparatus === APPARATUS.RING || apparatus === APPARATUS.CLUB) return true

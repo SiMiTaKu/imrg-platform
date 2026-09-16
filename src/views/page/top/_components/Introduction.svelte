@@ -42,7 +42,7 @@
     justify-content: center;
     align-items: center;
     font-size: var(--title-font-size);
-    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
+    text-shadow: 0 0 4px rgb(50, 150, 255, 0.5);
   }
 
   .body {
@@ -51,8 +51,8 @@
   }
 
   .important {
-    font-weight: bold;
     padding: 0 4px;
-    text-shadow: 0 0 4px rgba(50, 150, 255, 0.5);
+    font-weight: bold;
+    text-shadow: 0 0 4px rgb(50, 150, 255, 0.5);
   }
 </style>

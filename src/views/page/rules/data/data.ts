@@ -2496,10 +2496,10 @@ e. チーム全体が元気よく楽しく演技できたか。
 
 /**
  * 条項(section)のインデックスを計算する
- * @param chapterIndex 章のインデックス
- * @param articleIndex 大項のインデックス
- * @param sectionIndex 条項のインデックス
- * @param blockIndex   小項のインデックス
+ * @param chapterIndex - 章のインデックス
+ * @param articleIndex - 大項のインデックス
+ * @param sectionIndex - 条項のインデックス
+ * @param blockIndex - 小項のインデックス
  * @returns 条項のインデックス
  */
 export function calculateIndexOfArticle(

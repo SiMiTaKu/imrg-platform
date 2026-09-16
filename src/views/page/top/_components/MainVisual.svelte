@@ -56,6 +56,7 @@
     0% {
       opacity: 0;
     }
+
     100% {
       opacity: 1;
     }
@@ -63,14 +64,14 @@
 
   .title {
     display: grid;
-    place-items: center;
+    margin: $space-size-80 0 0;
     font-size: var(--title-font-size);
     font-weight: bold;
-    margin: $space-size-80 0 0;
     color: map.get($gray, 700);
+    animation: title-animation 2.5s 0s forwards;
+    place-items: center;
     text-shadow: $sky-blue-text-shadow;
     opacity: 0;
-    animation: title-animation 2.5s 0s forwards;
   }
 
   @keyframes title-animation {
@@ -78,12 +79,15 @@
       margin: $space-size-80 0 0;
       opacity: 0;
     }
+
     25% {
       margin: $space-size-80 0 0;
     }
+
     65% {
       opacity: 1;
     }
+
     100% {
       margin: 0;
       opacity: 1;

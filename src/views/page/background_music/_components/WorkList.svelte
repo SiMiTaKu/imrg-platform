@@ -68,7 +68,7 @@
   .card {
     width: var(--card-width);
     padding: 24px 0 8px;
-    box-shadow: 0 0 10px #00000055;
+    box-shadow: 0 0 10px #0005;
     border-radius: 8px;
   }
 
@@ -85,14 +85,14 @@
     font-size: var(--name-font-size);
     line-height: var(--name-font-size);
     font-weight: bold;
-    color: #333333;
+    color: #333;
   }
 
   .apparatus {
     font-size: var(--apparatus-font-size);
     line-height: var(--apparatus-font-size);
     font-weight: bold;
-    color: #555555;
+    color: #555;
   }
 
   .youtube {

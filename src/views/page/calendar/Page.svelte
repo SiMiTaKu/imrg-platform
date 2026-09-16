@@ -341,10 +341,10 @@
     width: var(--width);
     margin: 0 auto;
     padding: $space-size-40 0 $space-size-80;
-    color: map.get($gray, text);
     font-family:
       'Hiragino Sans', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Meiryo, sans-serif;
     font-size: 15px;
+    color: map.get($gray, text);
     line-height: 1.7;
     letter-spacing: 0.02em;
     overflow-wrap: anywhere;
@@ -393,15 +393,15 @@
   }
 
   .keyword-input {
-    box-sizing: border-box;
     width: 100%;
     height: 44px;
     padding: 0 $space-size-12;
+    font-size: $font-size-16;
+    color: map.get($gray, text);
     border: $border-size-1 solid map.get($sky-blue, 300);
     border-radius: $border-radius-8;
     background: $white;
-    color: map.get($gray, text);
-    font-size: $font-size-16;
+    box-sizing: border-box;
   }
 
   .chips {
@@ -412,15 +412,15 @@
 
   .chip {
     display: flex;
-    align-items: center;
     gap: $space-size-4;
     padding: $space-size-4 $space-size-12;
+    font-size: 13px;
+    font-weight: bold;
+    color: map.get($gray, text);
     border: $border-size-1 solid map.get($sky-blue, 300);
     border-radius: $border-radius-64;
     background: $white;
-    color: map.get($gray, text);
-    font-size: 13px;
-    font-weight: bold;
+    align-items: center;
     line-height: 1.4;
     cursor: pointer;
   }
@@ -456,11 +456,11 @@
   .segment {
     display: grid;
     padding: $space-size-4 $space-size-16;
-    border: none;
-    background: $white;
-    color: map.get($sky-blue, text);
     font-size: $font-size-14;
     font-weight: bold;
+    color: map.get($sky-blue, text);
+    border: none;
+    background: $white;
     line-height: 1.3;
     cursor: pointer;
 
@@ -476,9 +476,9 @@
 
   .chip.active,
   .segment.active {
+    color: $white;
     border-color: map.get($sky-blue, button);
     background: map.get($sky-blue, button);
-    color: $white;
   }
 
   .chip.active span[lang='en'] {
@@ -509,10 +509,10 @@
 
   .link-button {
     padding: 0;
+    font-size: 13px;
+    color: rgb(50, 150, 255);
     border: none;
     background: none;
-    color: rgb(50, 150, 255);
-    font-size: 13px;
     text-decoration: underline;
     cursor: pointer;
   }
