@@ -51,7 +51,7 @@
 <Header />
 
 <main class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <slot />
+  <slot></slot>
 </main>
 
 <Footer />

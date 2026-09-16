@@ -51,4 +51,4 @@
   <meta name='twitter:image' content={OGP_IMAGE} />
 </svelte:head>
 
-<slot name='main' />
+<slot name='main'></slot>

@@ -9,4 +9,4 @@ module.exports = {
     '^\\$amplify/(.*)$': '<rootDir>/src/amplify/$1',
     '^\\$shared/(.*)$': '<rootDir>/src/amplify/shared/$1'
   }
-};
+}

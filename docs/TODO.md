@@ -101,9 +101,12 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - [ ] **1-3b. runesへ書き換える**（`$props` `$state` `$derived` `onclick`）。ページ単位で少しずつ。FSDへの再配置（3-2）と同時に行うと手戻りが少ない
 - [x] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
   - Vite 5 → 8、vite-plugin-svelte 7、vite-imagetools 12、SvelteKit 2.70
-  - TypeScriptは5系の最新まで。6への更新はtypescript-eslintを上げる1-5で行う（7はSvelteKitが未対応）
-- [ ] **1-5. ESLint 8 → 9（flat config へ移行）**。oshiageの `eslint.config.mjs` に合わせる
+  - TypeScriptは5系の最新まで。6はJestの設定ファイルを読めなくなるため、Jestを外す1-6で上げる（7はSvelteKitが未対応）
+- [x] **1-5. ESLint 8 → 9（flat config へ移行）**。oshiageの `eslint.config.mjs` に合わせる
   - 現在の `.eslintrc.json` は配列を1要素ずつ改行させるなど癖が強い。移行時に見直す
+  - `eslint.config.mjs` へ移し、typescript-eslint 8・eslint-plugin-svelte 3にした。使っていなかった `eslint-config-standard-with-typescript` などは削除
+  - 対象を `src` だけから、設定ファイルを含むリポジトリー全体に広げた
+- [ ] **1-5b. 整形をPrettierに任せる**（oshiageの `.prettierrc.json` に合わせ、ESLintの見た目のルールを外す。全ファイルを一度だけ整形する）
 - [ ] **1-6. Jest → Vitest**（oshiageと揃える。既存47件のテストを移植）
 - [ ] **1-7. 型チェックのエラーを解消する**（現在11件。`$env/static/public` の解決と `rules` ページの型）
 

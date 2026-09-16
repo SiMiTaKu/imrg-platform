@@ -39,7 +39,7 @@
 
   /**
    * リダイレクト先URL取得
-   * @param criteria 検索条件
+   * @param current 検索条件
    * @param url URL
    * @return リダイレクト先のURL | undefined
    * @remarks
@@ -48,12 +48,12 @@
    *   - /oshimitsu/content_type/individual/apparatus/${apparatus.slug} にリダイレクト
    */
   const getRedirectUrl = (
-    criteria: Video.Criteria,
+    current: Video.Criteria,
     url: URL
   ): URL | undefined => {
-    if (criteria.apparatuses.length === 1) {
+    if (current.apparatuses.length === 1) {
       return new URL(
-        `/oshimitsu/content_type/individual/apparatus/${criteria.apparatuses[0].slug}`,
+        `/oshimitsu/content_type/individual/apparatus/${current.apparatuses[0].slug}`,
         url.origin
       )
     }

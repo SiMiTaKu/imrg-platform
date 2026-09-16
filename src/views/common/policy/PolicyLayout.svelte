@@ -18,7 +18,7 @@
 >
   <WithEnglishHeading {englishTitle} {title} />
   <p class='enacted-at'>{enactedAt}</p>
-  <slot />
+  <slot></slot>
   <p class='back'><a href='/'>TOPに戻る</a></p>
 </article>
 

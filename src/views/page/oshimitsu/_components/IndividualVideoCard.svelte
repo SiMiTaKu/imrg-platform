@@ -7,8 +7,8 @@
   export let video: IndividualVideoResource
 
   const onVideoLoad = (event: Event) => {
-    const video = event.target as HTMLIFrameElement
-    video.classList.remove("placeholder")
+    const iframe = event.target as HTMLIFrameElement
+    iframe.classList.remove("placeholder")
   }
 </script>
 

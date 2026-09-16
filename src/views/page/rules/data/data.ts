@@ -2565,6 +2565,8 @@ export function calculateIndexOfArticle(
       }
     }
   }
-  blockIndex !== undefined ? (index += blockIndex) : ""
+  if (blockIndex !== undefined) {
+    index += blockIndex
+  }
   return index
 }
