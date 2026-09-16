@@ -20,7 +20,7 @@
       <h3>{articleIndex + 1} {article.title}</h3>
 
       {#each article.section as section, sectionIndex (sectionIndex)}
-        {#if section.block.length}
+        {#if section.block?.length}
           <h4>{sectionIndex + 1} {section.title}</h4>
           {#each section.block as block, blockIndex (blockIndex)}
             <div>

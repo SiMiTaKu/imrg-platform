@@ -8,5 +8,6 @@
 </script>
 
 <Layout layout={$page.data.layout}>
-  <Page slot="main" criteria={$page.data.criteria} />
+  <!-- 検索条件は URL から読むので、初期条件（initCriteria）は渡さない -->
+  <Page slot="main" />
 </Layout>

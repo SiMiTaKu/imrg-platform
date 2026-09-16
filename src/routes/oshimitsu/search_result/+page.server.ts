@@ -3,14 +3,10 @@
 
 import type { ViewValueLayout } from '$model/view-value-layout'
 import type { PageServerLoad } from './$types'
-import { Video } from '$views/page/oshimitsu/_lib'
-import { criteria } from '$views/page/oshimitsu/_store/criteria'
-import { get } from 'svelte/store'
 
 type OutputData = {
   isMobile: boolean
   layout: ViewValueLayout
-  criteria: Video.Criteria
 }
 
 export const load: PageServerLoad<OutputData> = async ({ locals }) => {
@@ -34,6 +30,5 @@ export const load: PageServerLoad<OutputData> = async ({ locals }) => {
         type: 'website',
       },
     },
-    criteria: get(criteria),
   }
 }

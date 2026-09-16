@@ -16,7 +16,7 @@
   let videos: VideoResource[] = []
   let totalVideos: number | undefined
 
-  export let initCriteria: Video.Criteria | undefined
+  export let initCriteria: Video.Criteria | undefined = undefined
 
   onMount(() => {
     if (initCriteria) {
