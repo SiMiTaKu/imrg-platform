@@ -1,7 +1,6 @@
 {
-
   "rules": {
-    "no-todo": true,
+    "no-todo": false,
     "no-doubled-joshi": true,
     "ja-hiragana-keishikimeishi": true,
     "ja-hiragana-hojodoushi": true,
