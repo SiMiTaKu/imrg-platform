@@ -89,6 +89,23 @@ SEO・SNSカードが機能していない原因を取り除く。小さく効�
   - 共通部品（Button・ButtonLink・Card・Chip・Badge・Heading・Pagination）をStorybook付きで整理
   - a11yチェック（Storybookのa11yアドオン）を入れる
 
+## Phase 4 の前提: AWS アカウントの整備
+
+現在は root ユーザーでログインして運用している。請求事故と権限事故を防ぐため、Terraform を入れる前に整える。
+
+- [ ] **A-1. root ユーザーの常用をやめる**
+  - 管理用の IAM ユーザー（または IAM Identity Center のユーザー）を作り、普段はそちらで作業する
+  - root には MFA を設定する。root のアクセスキーがあれば削除する
+- [ ] **A-2. 請求の保護**
+  - 予算のしきい値を決めてアラートを設定する。コスト異常検知も有効にする
+  - 支払い方法と連絡先のメールアドレスを確認する
+- [ ] **A-3. 権限の整理**
+  - Amplify とドメインの操作に必要な権限だけを持つロールを用意する
+  - Terraform 用のロールには、state 置き場（S3 と DynamoDB）への権限を含める
+- [ ] **A-4. 記録を残す**
+  - CloudTrail を有効にして、ログの保存先を決める
+  - どのリソースがどのアカウントにあるかを docs に書く
+
 ## Phase 4: Terraform 導入
 
 - [ ] **4-1. 現在の AWS 構成を洗い出す**（Amplifyアプリ・独自ドメイン・Route53・証明書）
