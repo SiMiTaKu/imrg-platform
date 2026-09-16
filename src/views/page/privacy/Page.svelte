@@ -8,10 +8,11 @@
     "https://developers.google.com/terms/api-services-user-data-policy"
   const GOOGLE_PERMISSIONS =
     "https://security.google.com/settings/security/permissions"
+  const CLOUDFLARE_PRIVACY = "https://www.cloudflare.com/privacypolicy/"
 </script>
 
 <PolicyLayout
-  enactedAt='制定日: 2026年9月15日 / Effective: September 15, 2026'
+  enactedAt='制定日: 2026年9月15日 / 改定日: 2026年9月16日 / Effective: September 15, 2026 / Revised: September 16, 2026'
   englishTitle='Privacy Policy'
   title='プライバシーポリシー'
 >
@@ -25,7 +26,14 @@
 
   <h3>2. 本サイトで取得する情報</h3>
   <p>
-    本サイトには、お名前やメールアドレスなどの個人情報を入力していただく機能はありません。現在、広告配信やアクセス解析のためのツールも使用していません。導入する場合は、本ポリシーを改定してお知らせします。
+    本サイトには、お名前やメールアドレスなどの個人情報を入力していただく機能はありません。広告配信のためのツールも使用していません。
+  </p>
+  <p>
+    本サイトがどのように見られているかを把握して改善するために、Cloudflare, Inc. のアクセス解析サービス「Cloudflare Web
+    Analytics」を使用しています。このサービスは Cookie を使わず、閲覧者個人を特定したり追跡したりしません。取得するのは、閲覧されたページ、参照元のページ、ブラウザや端末の種類、国・地域、ページの読み込み時間などの集計のための情報です。詳しくは
+    <a href={CLOUDFLARE_PRIVACY}
+       rel='noopener noreferrer'
+       target='_blank'>Cloudflare のプライバシーポリシー</a>をご覧ください。
   </p>
   <p>
     なお、本サイトのホスティング事業者（Amazon Web Services）が、配信のために接続元の IP アドレスなどの技術的な記録を扱う場合があります。
@@ -109,10 +117,21 @@
 
     <h3>2. Information collected on the Site</h3>
     <p>
-      The Site has no forms for entering personal information such as your name or email address. We currently
-      use no advertising or analytics tools. If we introduce any, we will update this policy. Our hosting
-      provider (Amazon Web Services) may process technical records such as IP addresses in order to deliver the
-      Site.
+      The Site has no forms for entering personal information such as your name or email address. We do not use
+      any advertising tools.
+    </p>
+    <p>
+      To understand how the Site is used and to improve it, we use Cloudflare Web Analytics, an analytics service
+      provided by Cloudflare, Inc. It does not use cookies and does not identify or track individual visitors. It
+      collects only information for aggregate statistics, such as the pages viewed, referring pages, browser and
+      device type, country or region, and page load times. For details, see the
+      <a href={CLOUDFLARE_PRIVACY}
+         rel='noopener noreferrer'
+         target='_blank'>Cloudflare Privacy Policy</a>.
+    </p>
+    <p>
+      Our hosting provider (Amazon Web Services) may process technical records such as IP addresses in order to
+      deliver the Site.
     </p>
 
     <h3>3. Information accessed by the Tool</h3>
