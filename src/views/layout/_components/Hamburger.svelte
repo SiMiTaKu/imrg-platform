@@ -3,6 +3,7 @@
 
   const LINKS = [
     { href: "/", text: "トップページ" },
+    { href: "/calendar", text: "大会・イベントを探す" },
     { href: "/decorating_apparatus", text: "手具装飾を依頼する" },
     { href: "/background_music", text: "曲編集を依頼する" },
     { href: "/judge", text: "審判を体験する" },
@@ -58,8 +59,9 @@
     transition: 0.3s;
   }
 
+  // 1項目あたり約44px。項目を増やしたらここも増やす
   .open {
-    height: 280px;
+    height: 328px;
   }
 
   .links {
