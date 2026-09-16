@@ -108,14 +108,25 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [ ] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
 - [ ] **2-4. PR テンプレート・CODEOWNERS・`delete_branch_on_merge` を有効化**
 - [ ] **2-5. PR ごとのプレビュー環境**（Amplifyのプレビュー機能）
+- [ ] **2-6. 本番のブランチを `master` から `main` へ変える**
+  - 運用を `feature/*` → `develop` → `main` にする（`main` へのマージで本番へ反映）
+  - 手順
+    1. `master` から `main` を作ってpushする
+    2. Amplifyで `main` ブランチを接続し、本番（`imrg.work`）のドメインの割り当てを `main` へ移す。反映を `https://imrg.work/_app/version.json` で確かめる
+    3. CI（`.github/workflows/`）の対象ブランチ、ブランチ保護（2-2）、README・docs・この表の「ブランチ運用」を `main` に直す
+    4. 開いているPRのマージ先を直してから、Amplifyの `master` の接続と `master` ブランチを消す
+  - ドメインの割り当てを移す間は、切り替わるまで数分かかることがある。アクセスの少ない時間に行う
+  - Terraform（Phase 4）へ取り込む前に済ませる。先に取り込むと、ブランチ名の差分が出るため
 
 ## Phase 3: モノレポ化・FSD・デザインシステム
 
-- [ ] **3-0. リポジトリー名を変える**（`imrg-web-main` → 新しい名前。候補は `imrg-web`。3-1の直前に行う）
+- [ ] **3-0. リポジトリー名を変える**（`imrg-web-main` → 新しい名前。3-1の直前に行う）
   - モノレポにすると `web` 以外のパッケージも入るため、`-main` の付いた今の名前が中身と合わなくなる
+  - `imrg-web` のようにWebに限った名前も、デザインシステム・Terraform・ツール類が入ると中身とずれる。特定の用途を表さない名前にする
+  - 候補： `imrg-platform`（サイトと、それを支える部品・インフラ一式）、`imrg-workspace`。動画・資料を置く `imrg-hub` と紛れない名前にする
   - GitHubの名前変更は元に戻せる。旧URLからの転送（`git push` `git clone` とブラウザー）も効くので、手元の作業はすぐには止まらない
   - 影響と対応
-    - **Amplify**：旧方式（OAuthとwebhook）でつながっている。webhookは2本（アプリID `d1d0cu0fwxm76y` と `d1o1ui2gd5pshh`）。変更後に `develop` へpushしてビルドが走るか確かめる。走らなければコンソールでリポジトリーを再接続し、あわせてGitHub App方式へ移す。使っていない方のアプリはこのとき整理する
+    - **Amplify**：旧方式（OAuthとwebhook）でつながっている。webhookは2本（アプリID `d1d0cu0fwxm76y` と `d1o1ui2gd5pshh`）。変更後に `develop` へpushしてビルドが走るか確かめる。走らなければコンソールでリポジトリーを再接続し、あわせてGitHub App方式へ移す。使っていないほうのアプリはこのとき整理する
     - **手元のclone**：`git remote set-url origin git@github.com:SiMiTaKu/<新しい名前>.git`。フォルダー名 `~/imrg/imrg-web-main` も合わせて変える（imrg-hubのメモやdocs内のパスも直す）
     - **README・docs・`package.json` の `name`** を新しい名前に揃える
     - 旧名で新しいリポジトリーを作ると転送が切れる。旧名は使わない
