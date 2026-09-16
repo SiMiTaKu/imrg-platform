@@ -1,4 +1,5 @@
 <script context='module' lang='ts'>
+  import { PUBLIC_BASE_URL } from "$env/static/public"
   import { CATEGORY_LABELS } from "../_data/category"
   import type { CalendarEvent } from "../_data/model"
   import { formatDateRangeEn, formatDateRangeJa, hostnameOf } from "../_lib/calendar"
@@ -25,7 +26,27 @@
 
   $: label = CATEGORY_LABELS[event.category]
   $: showSource = event.sourceUrl !== event.officialUrl && event.sourceUrl !== event.resultUrl
+
+  // 検索結果に日程と会場を出すための構造化データ（schema.org の SportsEvent）
+  $: jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    name: event.titleJa,
+    alternateName: event.titleEn !== event.titleJa ? event.titleEn : undefined,
+    startDate: event.startDate,
+    endDate: event.endDate ?? event.startDate,
+    url: `${PUBLIC_BASE_URL}/calendar/${event.id}/`,
+    sport: "Men's Rhythmic Gymnastics",
+    location: event.venueJa ? { "@type": "Place", name: event.venueJa } : undefined,
+  })
+  // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる
+  $: jsonLdTag = `<script type="application/ld+json">${jsonLd}<` + "/script>"
 </script>
+
+<svelte:head>
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -- 埋め込むのは自前のデータを JSON.stringify した文字列だけで、外部からの入力は混ざらない -->
+  {@html jsonLdTag}
+</svelte:head>
 
 <article style:--color={label.color}
          class='event-detail'
