@@ -138,8 +138,11 @@ imrg.workの登録業者はお名前。com。DNSの管理はRoute 53が行う（
 > 反映には数分かかる。`dig` で見えるまで待ってから確認を押すと失敗しにくい。
 > 既存のTXTレコードがある場合は、そのレコードに値を足す（レコードを分けない）。
 
+> 手元の `dig` で見えないときは、権威サーバーへ直接聞く（`dig @ns-108.awsdns-13.com TXT imrg.work +short`）。
+> 追加前に問い合わせていると、リゾルバは「レコード無し」を最大1日覚えている。そのため手元では見えない場合がある。
+
 ## 6. 直したあとにやること
 
-- Google Search Consoleに `https://imrg.work/sitemap.xml` を登録する
+- Google Search Consoleの所有権確認とサイトマップ登録（2026-09-16完了）
 - X（Twitter）のカード検証ツールとFacebookのシェアデバッガーで、カード画像の表示を確認する
 - `docs/TODO.md` の該当項目にチェックを入れる
