@@ -29,12 +29,9 @@
 		]
 	},
 	"devDependencies": {
-		"@fontsource/fira-mono": "^4.5.10",
-		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-static": "^3.0.6",
-		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@sveltejs/kit": "^2.8.5",
-		"@types/cookie": "^1.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/jest": "^29.5.11",
 		"@typescript-eslint/eslint-plugin": "^6.16.0",
 		"@typescript-eslint/parser": "^6.16.0",
@@ -54,7 +51,15 @@
 		"svelte-check": "^3.0.1",
 		"svelte-motion": "^0.12.2",
 		"textlint": "14.0.4",
+		"textlint-rule-ja-hiragana-fukushi": "^1.3.0",
+		"textlint-rule-ja-hiragana-hojodoushi": "^1.1.0",
+		"textlint-rule-ja-hiragana-keishikimeishi": "^1.1.0",
+		"textlint-rule-ja-no-redundant-expression": "^4.0.1",
+		"textlint-rule-ja-no-weak-phrase": "^2.0.0",
+		"textlint-rule-no-doubled-joshi": "^5.1.0",
 		"textlint-rule-no-todo": "^2.0.1",
+		"textlint-rule-preset-jtf-style": "^2.3.14",
+		"textlint-rule-prh": "^6.0.0",
 		"ts-jest": "^29.2.5",
 		"ts-node": "^10.9.2",
 		"tslib": "^2.4.1",
@@ -64,20 +69,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"aws-amplify": "^6.10.0",
 		"chart.js": "^4.3.0",
-		"cookie": "^1.0.2",
-		"date-fns": "^4.1.0",
-		"felte": "^1.2.14",
-		"latest": "^0.2.0",
-		"svelte-chartjs": "^3.1.2",
-		"textlint-rule-ja-hiragana-fukushi": "^1.3.0",
-		"textlint-rule-ja-hiragana-hojodoushi": "^1.1.0",
-		"textlint-rule-ja-hiragana-keishikimeishi": "^1.1.0",
-		"textlint-rule-ja-no-redundant-expression": "^4.0.1",
-		"textlint-rule-ja-no-weak-phrase": "^2.0.0",
-		"textlint-rule-no-doubled-joshi": "^5.1.0",
-		"textlint-rule-preset-jtf-style": "^2.3.14",
-		"textlint-rule-prh": "^6.0.0"
+		"date-fns": "^4.1.0"
 	}
 }

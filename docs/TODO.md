@@ -87,7 +87,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 ## Phase 1: 依存関係の更新と土台の整理
 
-- [ ] **1-1. 使っていない依存を削除する**
+- [x] **1-1. 使っていない依存を削除する**
   - `aws-amplify` `svelte-chartjs` `felte` `cookie` `@types/cookie` `@neoconfetti/svelte` `@fontsource/fira-mono`、そして `latest`（中身のない事故パッケージ）
   - `chart.js`（採点ページのレーダーチャート）と `date-fns`（推しミツ！の日付表示）は使っているので残す
   - `svelte-motion`（採点ページの開閉アニメーション）はSvelte 5で動かないため、1-3でCSSのtransitionに置き換えて削除する
