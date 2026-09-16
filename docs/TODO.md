@@ -92,7 +92,9 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - `chart.js`（採点ページのレーダーチャート）と `date-fns`（推しミツ！の日付表示）は使っているので残す
   - `svelte-motion`（採点ページの開閉アニメーション）はSvelte 5で動かないため、1-3でCSSのtransitionに置き換えて削除する
   - textlint系は `dependencies` にあるので `devDependencies` へ移す
-- [ ] **1-2. Node を上げる**（`.node-version` 18.18.0 → 22系）。Amplifyのビルドも追随する
+- [x] **1-2. Node を上げる**（`.node-version` 18.18.0 → 24.21.0）。Amplifyのビルドも追随する
+  - 当初は22系の予定だったが、22系は2027年4月でサポートが終わるため、oshiageと同じ24系にした
+  - Amplifyは `nvm install $(cat .node-version)` で入れるので、設定の変更は不要
 - [ ] **1-3. Svelte 4 → 5**（runesへの移行は段階的に。まず動かし、後からコンポーネントごとに書き換え）
 - [ ] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
 - [ ] **1-5. ESLint 8 → 9（flat config へ移行）**。oshiageの `eslint.config.mjs` に合わせる
