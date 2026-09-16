@@ -45,7 +45,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [ ] **0-1. 書き出した HTML を配信する**
   - 症状： `/privacy/` と `/privacy/index.html` のどちらも1156バイトの入れ物ページを返す。`.txt` `.json` `.js` はそのまま配信される
   - 原因： AmplifyのSPA用書き換えルールが、許可拡張子に `html` を含まないため `.html` を `/index.html` に差し替えている
-  - 対応： Amplifyコンソールの「書き換えとリダイレクト」を確認し、許可拡張子に `html` を加える（またはSPA用のcatch-allを外し、404のみ `/index.html` に流す）
+  - 対応： 書き換えルールを `/<*>` → `/index.html` の `404-200` に置き換える。手順は [aws-setup.md](aws-setup.md) の4
   - 確認： `curl -s https://imrg.work/privacy/ | grep -c "Cloudflare Web"` が1以上になること
   - **これが直るまで、下の SEO・OGP 施策はクローラーに届かない**
 - [ ] **0-2. sitemap.xml を用意する**

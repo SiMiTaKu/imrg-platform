@@ -52,40 +52,61 @@ CLIを使うときは、アクセスキーを作らずIAM Identity Center（`aws
 
 ## 4. Amplify の書き換えルールを直す（TODO 0-1）
 
-**いま公開中のサイトで、書き出した各ページの HTML が配信されていない。** この1か所を直すと解消する。
+**いま公開中のサイトで、書き出した各ページの HTML が配信されていない。** 原因はSPA用の書き換えルール。
 
 1. <https://console.aws.amazon.com/amplify/> を開き、対象アプリ（imrg-web-main）を選ぶ
-2. 左メニューの **ホスティング** → **書き換えとリダイレクト**
-3. 次のような既定のルールがある（送信元が正規表現、ターゲットが `/index.html`、種類が200リライト）
+2. 左メニューの **ホスティング** → **書き換えとリダイレクト** → **テキストエディターを開く**
+3. 現在は次のルールが入っている
 
-   ```text
-   </^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>
+   ```json
+   [
+     {
+       "source": "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
+       "status": "200",
+       "target": "/index.html"
+     }
+   ]
    ```
 
-4. 拡張子の一覧に **`html` と `xml`** を足して保存する
+   前半の `^[^.]+$` が、ドットを含まないパスをすべて書き換えている。
+   `/privacy/` や `/calendar/` にはドットが無いため、ここに当たって入れ物ページへ差し替えられる。
+   **拡張子の一覧に `html` を足すだけでは直らない**
 
-   ```text
-   </^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|xml|webp|avif|html)$)([^.]+$)/>
+4. 次の内容に置き換えて保存する
+
+   ```json
+   [
+     {
+       "source": "/<*>",
+       "status": "404-200",
+       "target": "/index.html"
+     }
+   ]
    ```
 
-   - `html` がないと、書き出した各ページが入れ物ページに差し替えられる（現在の状態）
-   - `xml` がないと、sitemap.xmlも入れ物ページになり、検索エンジンに読まれない
+   `404-200` は「ファイルが無いときだけ `/index.html` を返す」という指定。
+   書き出したページはそのまま配信され、存在しないパスだけが入れ物ページになる
 
 5. 保存したら、手元で確認する
 
    ```bash
-   # 1 以上になれば成功（プライバシーポリシーの本文が返っている）
+   # 20000 前後になれば成功（入れ物ページなら 1156）
+   curl -sI https://imrg.work/privacy/ | grep -i content-length
+
+   # 本文が返れば成功
    curl -s https://imrg.work/privacy/ | grep -c "Cloudflare Web"
 
-   # XML が返れば成功
+   # XML が返れば成功（PR #253 をマージしたあと）
    curl -s https://imrg.work/sitemap.xml | head -3
 
-   # セキュリティヘッダーの確認（PR #253 をマージしたあと）
-   curl -sI https://imrg.work/ | grep -iE "strict-transport|x-content-type|referrer-policy"
+   # 大会の詳細ページ
+   curl -s https://imrg.work/calendar/2026-10-30-733ecd/ | grep -c "SportsEvent"
    ```
 
-> ルールごと削除しないこと。存在しないパスが素の 404 になる。
-> 現在は入れ物ページが返るため、404 用のルールを別に用意してから消すかどうかを判断する。
+6. うまくいかないときは、元のルールに戻せば現状に復帰できる。設定前のJSONを控えておく
+
+> `amplify.yml` にも `redirects:` の記述があるが、コンソールのルールと一致していない。
+> Amplify はコンソール側の設定を使うため、`amplify.yml` の記述は効いていない。整理は Phase 4 で行う。
 
 ## 5. 直したあとにやること
 
