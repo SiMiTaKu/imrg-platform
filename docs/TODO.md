@@ -99,7 +99,9 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 書き方は今のまま（`export let` `$:` `on:click`）。Svelte 5はこの書き方も動かせる
   - `svelte-motion` はCSSのtransitionに置き換えて削除した
   - [ ] **1-3b. runesへ書き換える**（`$props` `$state` `$derived` `onclick`）。ページ単位で少しずつ。FSDへの再配置（3-2）と同時に行うと手戻りが少ない
-- [ ] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
+- [x] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
+  - Vite 5 → 8、vite-plugin-svelte 7、vite-imagetools 12、SvelteKit 2.70
+  - TypeScriptは5系の最新まで。6への更新はtypescript-eslintを上げる1-5で行う（7はSvelteKitが未対応）
 - [ ] **1-5. ESLint 8 → 9（flat config へ移行）**。oshiageの `eslint.config.mjs` に合わせる
   - 現在の `.eslintrc.json` は配列を1要素ずつ改行させるなど癖が強い。移行時に見直す
 - [ ] **1-6. Jest → Vitest**（oshiageと揃える。既存47件のテストを移植）

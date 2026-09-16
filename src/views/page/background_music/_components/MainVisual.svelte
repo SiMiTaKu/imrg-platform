@@ -114,7 +114,6 @@
     padding: 0;
     width: 100%;
     height: var(--height);
-    min-height: var(height);
 
     &:after {
       position: absolute;

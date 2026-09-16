@@ -12,7 +12,6 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: "modern-compiler",
         additionalData: SCSS_USES.map((use) => `@use ${use};`).join("\n"),
       }
     }
