@@ -88,7 +88,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/tssu0o5sG10',
+    embedUrl: 'https://www.youtube.com/embed/tssu0o5sG10',
     filmedAt: new Date('2021-08-01T00:00:00+09:00'),
   },
   /** 清水琢巳 リング */
@@ -96,7 +96,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/X9_KpzsYl7k',
+    embedUrl: 'https://www.youtube.com/embed/X9_KpzsYl7k',
     filmedAt: new Date('2021-08-01T00:00:00+09:00'),
   },
   /** 清水琢巳 ロープ */
@@ -104,7 +104,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/WcCA_SDdi_o',
+    embedUrl: 'https://www.youtube.com/embed/WcCA_SDdi_o',
     filmedAt: new Date('2021-08-01T00:00:00+09:00'),
   },
   /** 清水琢巳 クラブ */
@@ -112,7 +112,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAKUMI_SHIMIZU,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/4r6JlP3m2Uc',
+    embedUrl: 'https://www.youtube.com/embed/4r6JlP3m2Uc',
     filmedAt: new Date('2021-08-01T00:00:00+09:00'),
   },
   //#endregion
@@ -122,7 +122,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/AwarNsKJLnM',
+    embedUrl: 'https://www.youtube.com/embed/AwarNsKJLnM',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 岩崎あさひ リング 2024年 */
@@ -130,7 +130,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/GwQJbeSIILw',
+    embedUrl: 'https://www.youtube.com/embed/GwQJbeSIILw',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 岩崎あさひ ロープ 2024年 */
@@ -138,7 +138,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/8PR08XHqUqE',
+    embedUrl: 'https://www.youtube.com/embed/8PR08XHqUqE',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 岩崎あさひ クラブ 2024年 */
@@ -146,7 +146,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.ASAHI_IWASAKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/HDCK2oFZyvs',
+    embedUrl: 'https://www.youtube.com/embed/HDCK2oFZyvs',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -156,7 +156,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/KKjHVrr2gxI',
+    embedUrl: 'https://www.youtube.com/embed/KKjHVrr2gxI',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 桒原碧都 リング 2024年 */
@@ -164,7 +164,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/j7pLUz17zrw',
+    embedUrl: 'https://www.youtube.com/embed/j7pLUz17zrw',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 桒原碧都 ロープ 2024年 */
@@ -172,7 +172,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/C7bOe9H3-fE',
+    embedUrl: 'https://www.youtube.com/embed/C7bOe9H3-fE',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 桒原碧都 クラブ 2024年 */
@@ -180,7 +180,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AOTO_KUWABARA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/nAlJ6pMTS5E',
+    embedUrl: 'https://www.youtube.com/embed/nAlJ6pMTS5E',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -190,7 +190,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/fwhDMPr8Sp0',
+    embedUrl: 'https://www.youtube.com/embed/fwhDMPr8Sp0',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 葛西麗音 リング 2024年 */
@@ -198,7 +198,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/c1xU6FQvGyo',
+    embedUrl: 'https://www.youtube.com/embed/c1xU6FQvGyo',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 葛西麗音 ロープ 2024年 */
@@ -206,7 +206,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/NIPLdOyi65w',
+    embedUrl: 'https://www.youtube.com/embed/NIPLdOyi65w',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 葛西麗音 クラブ 2024年 */
@@ -214,7 +214,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RENON_KASAI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/W9_2WTQgqRU',
+    embedUrl: 'https://www.youtube.com/embed/W9_2WTQgqRU',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -224,7 +224,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/mjuuYQvIUec',
+    embedUrl: 'https://www.youtube.com/embed/mjuuYQvIUec',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 釋氏乗真 リング 2024年 */
@@ -232,7 +232,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/zqtrPxqm7Fo',
+    embedUrl: 'https://www.youtube.com/embed/zqtrPxqm7Fo',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 釋氏乗真 ロープ 2024年 */
@@ -240,7 +240,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/Ad8apf0VWpE',
+    embedUrl: 'https://www.youtube.com/embed/Ad8apf0VWpE',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 釋氏乗真 クラブ 2024年 */
@@ -248,7 +248,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.JOSHIN_KIKUCHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/82LKwlLhP5E',
+    embedUrl: 'https://www.youtube.com/embed/82LKwlLhP5E',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -258,7 +258,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/D2MaWwhPoLI',
+    embedUrl: 'https://www.youtube.com/embed/D2MaWwhPoLI',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 藤本太陽 リング 2024年 */
@@ -266,7 +266,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/CSayfq90zxk',
+    embedUrl: 'https://www.youtube.com/embed/CSayfq90zxk',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 藤本太陽 ロープ 2024年 */
@@ -274,7 +274,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/OveljCpDDjY',
+    embedUrl: 'https://www.youtube.com/embed/OveljCpDDjY',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 藤本太陽 クラブ 2024年 */
@@ -282,7 +282,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TAIYO_FUJIMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/qcU2ly2IRV8',
+    embedUrl: 'https://www.youtube.com/embed/qcU2ly2IRV8',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -292,7 +292,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/r6YebPPdOMU',
+    embedUrl: 'https://www.youtube.com/embed/r6YebPPdOMU',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 譽士太陽向 リング 2024年 */
@@ -300,7 +300,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/PqxQ_cg8u2Y',
+    embedUrl: 'https://www.youtube.com/embed/PqxQ_cg8u2Y',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 譽士太陽向 ロープ 2024年 */
@@ -308,7 +308,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/AfRpp0-QkI8',
+    embedUrl: 'https://www.youtube.com/embed/AfRpp0-QkI8',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 譽士太陽向 クラブ 2024年 */
@@ -316,7 +316,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.HINATA_YOSHIDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/6fOVmqW26HU',
+    embedUrl: 'https://www.youtube.com/embed/6fOVmqW26HU',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -326,7 +326,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/w6aT7s_7QNc',
+    embedUrl: 'https://www.youtube.com/embed/w6aT7s_7QNc',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 森園滉貴 リング 2024年 */
@@ -334,7 +334,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/zv8GJ7jheWQ',
+    embedUrl: 'https://www.youtube.com/embed/zv8GJ7jheWQ',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 森園滉貴 ロープ 2024年 */
@@ -342,7 +342,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/CwMombwkCUM',
+    embedUrl: 'https://www.youtube.com/embed/CwMombwkCUM',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 森園滉貴 クラブ 2024年 */
@@ -350,7 +350,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOKI_MORIZONO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/X3AfeqlQDdc',
+    embedUrl: 'https://www.youtube.com/embed/X3AfeqlQDdc',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -360,7 +360,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RIKU_NAKAZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/p6DMok6loRM',
+    embedUrl: 'https://www.youtube.com/embed/p6DMok6loRM',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 中澤陸 リング 2024年 */
@@ -368,7 +368,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RIKU_NAKAZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/nX3WtHelA1c',
+    embedUrl: 'https://www.youtube.com/embed/nX3WtHelA1c',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 中澤陸 ロープ 2024年 */
@@ -376,7 +376,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RIKU_NAKAZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/d-btTNyKYUA',
+    embedUrl: 'https://www.youtube.com/embed/d-btTNyKYUA',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 中澤陸 クラブ 2024年 */
@@ -384,7 +384,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.RIKU_NAKAZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/pY76pLZ5tcs',
+    embedUrl: 'https://www.youtube.com/embed/pY76pLZ5tcs',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -394,7 +394,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.GINJI_SEKIDO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/t-tg5eKWDCc',
+    embedUrl: 'https://www.youtube.com/embed/t-tg5eKWDCc',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   // /** 関戸銀児 リング 2024年 */
@@ -402,7 +402,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.GINJI_SEKIDO,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.RING,
-  //   src: "https://www.youtube.com/embed/nX3WtHelA1c",
+  //   embedUrl: "https://www.youtube.com/embed/nX3WtHelA1c",
   //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   // },
   // /** 関戸銀児 ロープ 2024年 */
@@ -410,7 +410,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.GINJI_SEKIDO,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.ROPE,
-  //   src: "https://www.youtube.com/embed/d-btTNyKYUA",
+  //   embedUrl: "https://www.youtube.com/embed/d-btTNyKYUA",
   //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   // },
   // /** 関戸銀児 クラブ 2024年 */
@@ -418,7 +418,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.GINJI_SEKIDO,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.CLUB,
-  //   src: "https://www.youtube.com/embed/pY76pLZ5tcs",
+  //   embedUrl: "https://www.youtube.com/embed/pY76pLZ5tcs",
   //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   // },
   //#endregion
@@ -428,7 +428,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.KYOSHIRO_YAMAMOTO,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.STICK,
-  //   src: "https://www.youtube.com/embed/p6DMok6loRM",
+  //   embedUrl: "https://www.youtube.com/embed/p6DMok6loRM",
   //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   // },
   /** 山本響士朗 リング 2024年 */
@@ -436,7 +436,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KYOSHIRO_YAMAMOTO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/WBaBl0bayMc',
+    embedUrl: 'https://www.youtube.com/embed/WBaBl0bayMc',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   // /** 山本響士朗 ロープ 2024年 */
@@ -444,7 +444,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.KYOSHIRO_YAMAMOTO,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.ROPE,
-  //   src: "https://www.youtube.com/embed/d-btTNyKYUA",
+  //   embedUrl: "https://www.youtube.com/embed/d-btTNyKYUA",
   //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   // },
   // /** 山本響士朗 クラブ 2024年 */
@@ -452,7 +452,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.KYOSHIRO_YAMAMOTO,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.CLUB,
-  //   src: "https://www.youtube.com/embed/pY76pLZ5tcs",
+  //   embedUrl: "https://www.youtube.com/embed/pY76pLZ5tcs",
   //   filmedAt: new Date("2024-11-09T00:00:00+09:00"),
   // },
   //#endregion
@@ -462,7 +462,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOSUKE_HORI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/19WtqD5p5Dc',
+    embedUrl: 'https://www.youtube.com/embed/19WtqD5p5Dc',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 堀孝輔 リング 2024年 */
@@ -470,7 +470,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOSUKE_HORI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/zyY-0cza3OI',
+    embedUrl: 'https://www.youtube.com/embed/zyY-0cza3OI',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 堀孝輔 ロープ 2024年 */
@@ -478,7 +478,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOSUKE_HORI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/E53-AsAagH0',
+    embedUrl: 'https://www.youtube.com/embed/E53-AsAagH0',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 堀孝輔 クラブ 2024年 */
@@ -486,7 +486,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KOSUKE_HORI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/4HL3p2fSGL4',
+    embedUrl: 'https://www.youtube.com/embed/4HL3p2fSGL4',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -496,7 +496,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TOMOKI_HARADA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/3WsqmNfrMb8',
+    embedUrl: 'https://www.youtube.com/embed/3WsqmNfrMb8',
     filmedAt: new Date('2023-11-08T00:00:00+09:00'),
   },
   /** 原田知輝 リング 2023年 */
@@ -504,7 +504,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TOMOKI_HARADA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/CGoEZHUo1js',
+    embedUrl: 'https://www.youtube.com/embed/CGoEZHUo1js',
     filmedAt: new Date('2023-11-08T00:00:00+09:00'),
   },
   /** 原田知輝 ロープ 2023年 */
@@ -512,7 +512,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TOMOKI_HARADA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/n56DKEHduC0',
+    embedUrl: 'https://www.youtube.com/embed/n56DKEHduC0',
     filmedAt: new Date('2023-11-09T00:00:00+09:00'),
   },
   /** 原田知輝 クラブ 2023年 */
@@ -520,7 +520,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.TOMOKI_HARADA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/HQfanfMbd7g',
+    embedUrl: 'https://www.youtube.com/embed/HQfanfMbd7g',
     filmedAt: new Date('2023-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -530,7 +530,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.NAOTO_ENDO,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.STICK,
-  //   src: "https://www.youtube.com/embed/19WtqD5p5Dc",
+  //   embedUrl: "https://www.youtube.com/embed/19WtqD5p5Dc",
   //   filmedAt: new Date("2023-11-08T00:00:00+09:00"),
   // },
   /** 遠藤那央斗 リング 2023年 */
@@ -538,7 +538,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.NAOTO_ENDO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/2y78wX286sA',
+    embedUrl: 'https://www.youtube.com/embed/2y78wX286sA',
     filmedAt: new Date('2023-11-08T00:00:00+09:00'),
   },
   /** 遠藤那央斗 ロープ 2023年 */
@@ -546,7 +546,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.NAOTO_ENDO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/wotD4RxYRV8',
+    embedUrl: 'https://www.youtube.com/embed/wotD4RxYRV8',
     filmedAt: new Date('2023-11-09T00:00:00+09:00'),
   },
   /** 遠藤那央斗 クラブ 2023年 */
@@ -554,7 +554,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.NAOTO_ENDO,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/1gbXJZTv3FQ',
+    embedUrl: 'https://www.youtube.com/embed/1gbXJZTv3FQ',
     filmedAt: new Date('2023-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -564,7 +564,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KUGA_HIGASHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/KPF5oDqYT58',
+    embedUrl: 'https://www.youtube.com/embed/KPF5oDqYT58',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 東凰雅 リング 2024年 */
@@ -572,7 +572,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KUGA_HIGASHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/ttMyifr1TeA',
+    embedUrl: 'https://www.youtube.com/embed/ttMyifr1TeA',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 東凰雅 ロープ 2024年 */
@@ -580,7 +580,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KUGA_HIGASHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/Prl7zTIf7Ck',
+    embedUrl: 'https://www.youtube.com/embed/Prl7zTIf7Ck',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 東凰雅 クラブ 2024年 */
@@ -588,7 +588,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.KUGA_HIGASHI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/YCTcjNl8wUQ',
+    embedUrl: 'https://www.youtube.com/embed/YCTcjNl8wUQ',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -598,7 +598,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.SHOTA_YONEZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/kK5YD_Ssmn0',
+    embedUrl: 'https://www.youtube.com/embed/kK5YD_Ssmn0',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 米澤翔太 リング 2024年 */
@@ -606,7 +606,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.SHOTA_YONEZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/3ykb4zmZfjI',
+    embedUrl: 'https://www.youtube.com/embed/3ykb4zmZfjI',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 米澤翔太 ロープ 2024年 */
@@ -614,7 +614,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.SHOTA_YONEZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/ceFsoAFRhVE',
+    embedUrl: 'https://www.youtube.com/embed/ceFsoAFRhVE',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 米澤翔太 クラブ 2024年 */
@@ -622,7 +622,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.SHOTA_YONEZAWA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/5rd6Db-jYGw',
+    embedUrl: 'https://www.youtube.com/embed/5rd6Db-jYGw',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -632,7 +632,7 @@ const INDIVIDUAL_VIDEOS: {
   //   player: Player.ICHIGO_KAJIKI,
   //   contentType: ContentType.INDIVIDUAL,
   //   apparatus: Apparatus.STICK,
-  //   src: "https://www.youtube.com/embed/kK5YD_Ssmn0",
+  //   embedUrl: "https://www.youtube.com/embed/kK5YD_Ssmn0",
   //   filmedAt: new Date("2024-11-08T00:00:00+09:00"),
   // },
   /** 加治木壱悟 リング 2024年 */
@@ -640,7 +640,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.ICHIGO_KAJIKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/MHAlh0N5GNg',
+    embedUrl: 'https://www.youtube.com/embed/MHAlh0N5GNg',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 加治木壱悟 ロープ 2024年 */
@@ -648,7 +648,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.ICHIGO_KAJIKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/HL7pbuDTACk',
+    embedUrl: 'https://www.youtube.com/embed/HL7pbuDTACk',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 加治木壱悟 クラブ 2024年 */
@@ -656,7 +656,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.ICHIGO_KAJIKI,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/LNH9QonlEx0',
+    embedUrl: 'https://www.youtube.com/embed/LNH9QonlEx0',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -666,7 +666,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AYUMU_HONDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.STICK,
-    src: 'https://www.youtube.com/embed/YvxFHFknk5c',
+    embedUrl: 'https://www.youtube.com/embed/YvxFHFknk5c',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 本田歩夢 リング 2024年 */
@@ -674,7 +674,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AYUMU_HONDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.RING,
-    src: 'https://www.youtube.com/embed/REtdu79h8HM',
+    embedUrl: 'https://www.youtube.com/embed/REtdu79h8HM',
     filmedAt: new Date('2024-11-08T00:00:00+09:00'),
   },
   /** 本田歩夢 ロープ 2024年 */
@@ -682,7 +682,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AYUMU_HONDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.ROPE,
-    src: 'https://www.youtube.com/embed/irSIP9laFOE',
+    embedUrl: 'https://www.youtube.com/embed/irSIP9laFOE',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   /** 本田歩夢 クラブ 2024年 */
@@ -690,7 +690,7 @@ const INDIVIDUAL_VIDEOS: {
     player: Player.AYUMU_HONDA,
     contentType: ContentType.INDIVIDUAL,
     apparatus: Apparatus.CLUB,
-    src: 'https://www.youtube.com/embed/68IesOf6uwg',
+    embedUrl: 'https://www.youtube.com/embed/68IesOf6uwg',
     filmedAt: new Date('2024-11-09T00:00:00+09:00'),
   },
   //#endregion
@@ -723,7 +723,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.KAZUMA_YOSHIDA,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/ZsqQKFm6CSc',
+    embedUrl: 'https://www.youtube.com/embed/ZsqQKFm6CSc',
     filmedAt: new Date('2015-08-01T00:00:00+09:00'),
   },
   //#region 青森大学
@@ -739,7 +739,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.RYOSUKE_IGARASHI,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/uCKLgRFv19c',
+    embedUrl: 'https://www.youtube.com/embed/uCKLgRFv19c',
     filmedAt: new Date('2017-09-10T00:00:00+09:00'),
   },
   /** 青森大学 2017年 JAPAN */
@@ -754,7 +754,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.RYOSUKE_IGARASHI,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/cuq-1dEpXy0',
+    embedUrl: 'https://www.youtube.com/embed/cuq-1dEpXy0',
     filmedAt: new Date('2017-10-29T00:00:00+09:00'),
   },
   /** 青森大学 2018年 全日本インカレ */
@@ -769,7 +769,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.HAYATE_TAMAKI,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/zMvX6Tlzql0',
+    embedUrl: 'https://www.youtube.com/embed/zMvX6Tlzql0',
     filmedAt: new Date('2018-09-09T00:00:00+09:00'),
   },
   /** 青森大学 2018年 JAPAN */
@@ -784,7 +784,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.TSUBASA_MUTO,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/Hl62RcWc6n0',
+    embedUrl: 'https://www.youtube.com/embed/Hl62RcWc6n0',
     filmedAt: new Date('2018-10-20T00:00:00+09:00'),
   },
   /** 青森大学 2019年 全日本インカレ */
@@ -799,7 +799,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.KENTA_MATSUMOTO,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/BfnRFZG2r5w',
+    embedUrl: 'https://www.youtube.com/embed/BfnRFZG2r5w',
     filmedAt: new Date('2019-08-27T00:00:00+09:00'),
   },
   /** 青森大学 2019年 全日本新体操選手権 */
@@ -814,7 +814,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.KENTA_MATSUMOTO,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/N654qFg2HSg',
+    embedUrl: 'https://www.youtube.com/embed/N654qFg2HSg',
     filmedAt: new Date('2019-10-20T00:00:00+09:00'),
   },
   /** 青森大学 2020年 */
@@ -829,7 +829,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.KENTA_MATSUMOTO,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/AFkudLu7ogg',
+    embedUrl: 'https://www.youtube.com/embed/AFkudLu7ogg',
     filmedAt: new Date('2020-11-22T00:00:00+09:00'),
   },
   /** 青森大学 2021年 */
@@ -844,7 +844,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.HAYATO_NOGUCHI,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/RpHN_kcQTvs',
+    embedUrl: 'https://www.youtube.com/embed/RpHN_kcQTvs',
     filmedAt: new Date('2021-09-16T00:00:00+09:00'),
   },
   /** 青森大学 2022年 */
@@ -859,7 +859,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.SOICHIRO_NAKAYAMA,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/rIftdeMi3os',
+    embedUrl: 'https://www.youtube.com/embed/rIftdeMi3os',
     filmedAt: new Date('2022-08-28T00:00:00+09:00'),
   },
   /** 青森大学 2023年 */
@@ -874,7 +874,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.KOICHI_MURASATO,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/48Esk9QxCy0',
+    embedUrl: 'https://www.youtube.com/embed/48Esk9QxCy0',
     filmedAt: new Date('2023-10-29T00:00:00+09:00'),
   },
   /** 青森大学 2024年 */
@@ -888,7 +888,7 @@ const GROUP_VIDEOS: { [key in GroupVideoKey]: GroupVideoResource } = {
       Player.TAKUMI_ASADA,
     ],
     contentType: ContentType.GROUP,
-    src: 'https://www.youtube.com/embed/cT-BIAKWf48',
+    embedUrl: 'https://www.youtube.com/embed/cT-BIAKWf48',
     filmedAt: new Date('2024-11-10T00:00:00+09:00'),
   },
   //#endregion

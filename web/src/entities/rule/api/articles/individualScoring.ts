@@ -2,33 +2,33 @@ import type { RuleArticle } from '../../model/ruleBook'
 
 /**
  * 第2章 採点規則のうち、個人競技。
- * 英語（`titleEn` など）は日本語の本文を訳したもの
+ * 英語（`titleEnglish` など）は日本語の本文を訳したもの
  */
 export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
   {
     title: '個人競技',
-    titleEn: 'Individual Competition',
+    titleEnglish: 'Individual Competition',
     section: [
       {
         title: '配点と採点項目',
-        titleEn: 'Points and Scoring Criteria',
+        titleEnglish: 'Points and Scoring Criteria',
         block: [
           {
             title: '個人競技の採点項目と配点',
-            titleEn: 'Scoring Criteria and Points for the Individual Competition',
+            titleEnglish: 'Scoring Criteria and Points for the Individual Competition',
             element: '個人競技の配点と採点項目は以下の通りとする。',
-            elementEn:
+            elementEnglish:
               'The points and scoring criteria for the individual competition are as follows.',
             image: [
               {
                 src: '/images/rules/SK(D)single.png',
                 alt: '採点項目（Ｄ）',
-                altEn: 'Scoring criteria (D)',
+                altEnglish: 'Scoring criteria (D)',
               },
               {
                 src: '/images/rules/SK(E)single.png',
                 alt: '採点項目（Ｅ）',
-                altEn: 'Scoring criteria (E)',
+                altEnglish: 'Scoring criteria (E)',
               },
             ],
           },
@@ -36,19 +36,19 @@ export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
       },
       {
         title: '構成（Ｄ・Ａ）',
-        titleEn: 'Composition (D/A)',
+        titleEnglish: 'Composition (D/A)',
         block: [
           {
             title: '演技の構成',
-            titleEn: 'Composition of the Routine',
+            titleEnglish: 'Composition of the Routine',
             element:
               '演技は手具操作を伴った徒手系と転回系を持って構成され、高い技術的価値と各要素の多様性、音楽と動きの関係や独創性が求められる。また、すべての運動が合理性と安定性をもった組み合わせで、豊富な運動量を持って構成されなければならない。',
-            elementEn:
+            elementEnglish:
               'A routine is composed of free-hand and tumbling elements with apparatus handling, and must have high technical value, a variety of elements, a good relationship between music and movement, and originality. All movements must be combined rationally and with stability, and the routine must contain a large amount of movement.',
           },
           {
             title: '難度の要求要素',
-            titleEn: 'Difficulty Requirements',
+            titleEnglish: 'Difficulty Requirements',
             element: `個人競技の難度要素としては以下の難度を入れなければならない。
                   
 違反した場合　　減点　
@@ -58,7 +58,7 @@ export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
 
 ※要求された数以上の難度は、ランク下の難度として数えることができる。
                   `,
-            elementEn: `An individual routine must include the following difficulties.
+            elementEnglish: `An individual routine must include the following difficulties.
 
 Violation: deductions
 Each missing B difficulty: 0.10 points
@@ -70,29 +70,29 @@ Each missing D difficulty: 0.50 points
               {
                 src: '/images/rules/(D)requirement.png',
                 alt: '難度の要求要素表',
-                altEn: 'Table of difficulty requirements',
+                altEnglish: 'Table of difficulty requirements',
               },
             ],
           },
           {
             title: '徒手系の要求要素',
-            titleEn: 'Free-Hand Requirements',
+            titleEnglish: 'Free-Hand Requirements',
             element:
               '演技には徒手系基礎要素群（第29条）の１群（各種徒手）を入れなければならない。【違反した場合　減点・・・0.30点】',
-            elementEn:
+            elementEnglish:
               'A routine must include group 1 (various free-hand movements) of the basic free-hand element groups (Article 29). [Violation: deduction 0.30 points]',
           },
           {
             title: '転回系の要求要素',
-            titleEn: 'Tumbling Requirements',
+            titleEnglish: 'Tumbling Requirements',
             element:
               '演技には前方・後方・側方の転回運動をすべてて入れなければならない。【違反した場合　減点：一つにつき・・・0.30点】',
-            elementEn:
+            elementEnglish:
               'A routine must include forward, backward and sideways tumbling. [Violation: deduction 0.30 points for each missing direction]',
           },
           {
             title: '手具操作の要求要素',
-            titleEn: 'Apparatus Handling Requirements',
+            titleEnglish: 'Apparatus Handling Requirements',
             element: `演技には各種目ごとに、次の基礎要素をすべて入れなければならない。
 
 【スティック】
@@ -135,7 +135,7 @@ Each missing D difficulty: 0.50 points
 4. プロペラ回旋２回
 
 【要素が不足した場合　減点：１つにつき・・・0.30点】`,
-            elementEn: `A routine must include all of the following basic elements for each apparatus.
+            elementEnglish: `A routine must include all of the following basic elements for each apparatus.
 
 [Stick]
 
@@ -180,7 +180,7 @@ Each missing D difficulty: 0.50 points
           },
           {
             title: '手具の要素と難度',
-            titleEn: 'Apparatus Elements and Difficulty',
+            titleEnglish: 'Apparatus Elements and Difficulty',
             element: `【投げ上げ】
 
 1. 手具の投げ上げの高さは、競技者が投げたところから最低２m以上とする。低い場合は投げ上げとして扱わない。
@@ -195,7 +195,7 @@ Each missing D difficulty: 0.50 points
 【ロープの様々な跳び】
 前回し跳び、後ろ回し跳びが２回連続でなかった場合、移動をともなう跳びの距離が短かった場合は要素としては扱わない。
                   `,
-            elementEn: `[Throws]
+            elementEnglish: `[Throws]
 
 1. A throw must rise at least 2 m from the point of release. Lower throws are not treated as throws.
 2. A stick throw-and-catch element that is not caught is not counted as an element.
@@ -211,15 +211,15 @@ Forward and backward jumps that are not performed twice in a row, and traveling 
           },
           {
             title: '演技の開始',
-            titleEn: 'Start of the Routine',
+            titleEnglish: 'Start of the Routine',
             element:
               '演技の開始は、演技面のどの位置からでもよいが、手具に触れた状態で配置について開始のポーズをとり、動きを止めてから始めなければならない。【違反した場合　減点・・・0.30点】',
-            elementEn:
+            elementEnglish:
               'The routine may start anywhere on the floor area, but the gymnast must take position touching the apparatus, hold a starting pose and be still before starting. [Violation: deduction 0.30 points]',
           },
           {
             title: '演技の終了',
-            titleEn: 'End of the Routine',
+            titleEnglish: 'End of the Routine',
             element: `演技の終了は、演技面のどの位置でもよいが、手具に触れた状態で終了のポーズをとり、完全に動きを止めて終了しなければならない。
 【違反した場合　減点・・・0.30点】
 
@@ -229,7 +229,7 @@ Forward and backward jumps that are not performed twice in a row, and traveling 
 場外　　　実施主任審判から減点・・・0.20点
 計 1.00点
                   `,
-            elementEn: `The routine may end anywhere on the floor area, but the gymnast must hold a final pose touching the apparatus and stop moving completely.
+            elementEnglish: `The routine may end anywhere on the floor area, but the gymnast must hold a final pose touching the apparatus and stop moving completely.
 [Violation: deduction 0.30 points]
 
 If the gymnast leaves the floor area to retrieve the apparatus and does not hold a final pose:
@@ -240,7 +240,7 @@ Total: 1.00 point`,
           },
           {
             title: '技術的価値の採点',
-            titleEn: 'Scoring of Technical Value',
+            titleEnglish: 'Scoring of Technical Value',
             element: `＜難度の数とレベル＞ 第49条による
 
 【難度要素】
@@ -266,7 +266,7 @@ Total: 1.00 point`,
 
 【投げ受けの技術的価値】
 手具の投げ受けは、手具操作の流れを止めることなく行われなければならない。また、手だけでなく、その他の部位を使った投げ受けやし野外での投げ受けも高い技術的価値として認めることができる。`,
-            elementEn: `<Number and level of difficulties> See Article 49.
+            elementEnglish: `<Number and level of difficulties> See Article 49.
 
 [Difficulty elements]
 1. Difficulties performed with free-hand elements: see Article 71.
@@ -294,7 +294,7 @@ Throws and catches must be performed without stopping the flow of apparatus hand
           },
           {
             title: '多様性の採点',
-            titleEn: 'Scoring of Variety',
+            titleEnglish: 'Scoring of Variety',
             element: `1. 徒手系要素の多様性
 様々な徒手系の運動要素と組み合わせにおいて、多様性に富むものでなければならない。
 
@@ -312,7 +312,7 @@ Throws and catches must be performed without stopping the flow of apparatus hand
 
 6. ダイナミズム（力動感）の変化の多様性
 ダイナミズムとはスピードと力強さの変化によって表現される力動感のことで、その緩急の変化において、多様性に富むものでなければならない。`,
-            elementEn: `1. Variety of free-hand elements
+            elementEnglish: `1. Variety of free-hand elements
 The routine must be rich in variety of free-hand movements and their combinations.
 
 2. Variety of tumbling elements
@@ -332,15 +332,15 @@ Dynamics means the sense of power expressed by changes in speed and strength. Th
           },
           {
             title: '音楽と動きの関係の採点',
-            titleEn: 'Scoring of the Relationship Between Music and Movement',
+            titleEnglish: 'Scoring of the Relationship Between Music and Movement',
             element:
               '新体操の伴奏音楽は、よい音色とメロディーによって特徴付けられるものでなければならない。演技は音楽の性格やリズムに合致しなければならない。',
-            elementEn:
+            elementEnglish:
               'The accompanying music for rhythmic gymnastics must be characterized by good tone and melody. The routine must match the character and rhythm of the music.',
           },
           {
             title: 'ボーナス加点',
-            titleEn: 'Bonus',
+            titleEnglish: 'Bonus',
             element: `【独創性】
 構成は、新しい技術や新しい組み合わせなど、新しさの探求と技術的な創造性によって特徴付けられる独創性が求められる。その独創性が認められる構成にはボーナス加点が与えられる。
 
@@ -359,7 +359,7 @@ Dynamics means the sense of power expressed by changes in speed and strength. Th
 3. 手具を保持して行うＤ難度の転回系に、投げまたは２回以上の操作を実施するものが入っていた場合
 4. 視野外の投げ上げや受け取り、手以外での投げ上げや受け取りが入っていた場合。
 【加点：項目一つにつき・・・0.10点】`,
-            elementEn: `[Originality]
+            elementEnglish: `[Originality]
 The composition must show originality, characterized by the pursuit of novelty and technical creativity, such as new techniques and new combinations. A bonus is given to a composition recognized as original.
 
 An original composition includes, for example:
@@ -380,7 +380,7 @@ The technical value of a routine is mainly determined by the level and number of
           },
           {
             title: '構成の欠点',
-            titleEn: 'Composition Faults',
+            titleEnglish: 'Composition Faults',
             element: `上記に欠点を示していない構成の原点は次の表による。
 構成欠点基準
 【大欠点　　著しく欠けた場合　　　　減点・・・0.30点】
@@ -389,7 +389,7 @@ The technical value of a routine is mainly determined by the level and number of
 【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】
 
 構成欠点表`,
-            elementEn: `Composition deductions not listed above follow the table below.
+            elementEnglish: `Composition deductions not listed above follow the table below.
 Composition fault standards
 [Large fault: severely lacking  Deduction 0.30 points]
 [Medium fault: lacking  Deduction 0.20 points]
@@ -401,7 +401,7 @@ Table of composition faults`,
               {
                 src: '/images/rules/(D)kettenhyou(S).png',
                 alt: '構成欠点表',
-                altEn: 'Table of composition faults',
+                altEnglish: 'Table of composition faults',
               },
             ],
           },
@@ -409,19 +409,19 @@ Table of composition faults`,
       },
       {
         title: '実施（Ｅ）',
-        titleEn: 'Execution (E)',
+        titleEnglish: 'Execution (E)',
         block: [
           {
             title: '演技のできばえ',
-            titleEn: 'Quality of the Routine',
+            titleEnglish: 'Quality of the Routine',
             element:
               '演技は手具操作をともなった徒手系の技術、転回系の技術、伴奏音楽との調和など全体の調和と安定性があり、全体を通じて途切れない印象でのびのびと行われなければならない。伴奏音楽に合わせ、軽快で美しく、かつ優美な表現を持った実施が求められる。',
-            elementEn:
+            elementEnglish:
               'A routine must show overall harmony and stability in free-hand technique with apparatus handling, tumbling technique and harmony with the accompanying music, and must be performed freely, giving an impression of continuity throughout. Execution that is light, beautiful and graceful, in time with the music, is required.',
           },
           {
             title: '手具操作の技術の採点',
-            titleEn: 'Scoring of Apparatus Handling Technique',
+            titleEnglish: 'Scoring of Apparatus Handling Technique',
             element: `【一般的な技術】
 演技中の手具は、常に自然性を持ち、その手具自体の重さからくる惰力を利用して、動かなければならない。また演技上必要とされる静止を除いて、手具を止めてはならない。
 
@@ -434,7 +434,7 @@ Table of composition faults`,
 
 2. 手具を受ける技術
 手具の受け取りは、手具の落下に合わせ、その次の操作に必要とされる部分を、自然性を持って受け取り、止めることなく次の操作に移らなければならない。`,
-            elementEn: `[General technique]
+            elementEnglish: `[General technique]
 During the routine, the apparatus must always move naturally, using the momentum that comes from its own weight. The apparatus must not be stopped, except for static positions required by the routine.
 
 [Swinging technique]
@@ -449,7 +449,7 @@ The apparatus must be caught naturally, in time with its fall, at the part neede
           },
           {
             title: '体の動きの技術の採点',
-            titleEn: 'Scoring of Body Movement Technique',
+            titleEnglish: 'Scoring of Body Movement Technique',
             element: `身体の動きの技術は、次の項目で採点される。
                   
 1. 徒手系の技術
@@ -460,7 +460,7 @@ The apparatus must be caught naturally, in time with its fall, at the part neede
 
 3. リズミカルな実施
 演技は軽快に伸びやかに行わなければならない。`,
-            elementEn: `Body movement technique is scored on the following points.
+            elementEnglish: `Body movement technique is scored on the following points.
 
 1. Free-hand technique
 Free-hand movements must be performed with beautiful posture and flexibility. Movements starting from the solar plexus must be natural, deep and large, with pauses and accents, height in jumps and changes of speed, and must be controlled to the tips of the limbs.
@@ -473,7 +473,7 @@ The routine must be performed lightly and expansively.`,
           },
           {
             title: 'ボーナス加点',
-            titleEn: 'Bonus',
+            titleEnglish: 'Bonus',
             element: `【熟練度と芸術性】
 熟練度とは、手具を扱う技術と身体の動きの技術とが、完璧にかつ同時にコントロールされていることをいう。また芸術性とは、それらの技術を用いて、音楽のテーマと構成のメッセージを観衆に表現し伝え感動させることを言う。以下を満たした場合、これに対してボーナス加点が与えられる。
 
@@ -483,7 +483,7 @@ The routine must be performed lightly and expansively.`,
 【加点・・・各0.10点】
 
 ※ここでの欠点は第65条実施の欠点表に記載されている「徒手の動きの技術」以外の欠点がない場合をいう。`,
-            elementEn: `[Mastery and artistry]
+            elementEnglish: `[Mastery and artistry]
 Mastery means that apparatus handling technique and body movement technique are controlled perfectly and simultaneously. Artistry means using these techniques to express the theme of the music and the message of the composition to the audience, conveying it and moving them. A bonus is given when the following are met.
 
 1. The whole routine is performed without faults.
@@ -495,7 +495,7 @@ Mastery means that apparatus handling technique and body movement technique are 
           },
           {
             title: '実施の欠点',
-            titleEn: 'Execution Faults',
+            titleEnglish: 'Execution Faults',
             element: `上記に欠点を示していない実施の減点は次の表による。
 実施欠点基準
 【大欠点　　著しく欠けた場合　　　　減点・・・0.30点】
@@ -504,7 +504,7 @@ Mastery means that apparatus handling technique and body movement technique are 
 【微小欠点　わずかに欠けた場合　　　減点・・・0.05点】
 
 実施欠点表`,
-            elementEn: `Execution deductions not listed above follow the table below.
+            elementEnglish: `Execution deductions not listed above follow the table below.
 Execution fault standards
 [Large fault: severely lacking  Deduction 0.30 points]
 [Medium fault: lacking  Deduction 0.20 points]
@@ -516,7 +516,7 @@ Table of execution faults`,
               {
                 src: '/images/rules/(E)kettenhyou(S).png',
                 alt: '実施欠点表',
-                altEn: 'Table of execution faults',
+                altEnglish: 'Table of execution faults',
               },
             ],
           },

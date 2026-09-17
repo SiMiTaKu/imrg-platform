@@ -19,16 +19,16 @@ import { SCORING_GENERAL_ARTICLES } from './articles/scoringGeneral'
  */
 export const RULE_BOOK: RuleBook = {
   title: '新体操男子規則',
-  titleEn: "Men's Rhythmic Gymnastics Rules",
+  titleEnglish: "Men's Rhythmic Gymnastics Rules",
   chapter: [
     {
       title: '競技規則',
-      titleEn: 'Competition Rules',
+      titleEnglish: 'Competition Rules',
       article: [...COMPETITION_ORGANIZATION_ARTICLES, ...COMPETITION_CONDUCT_ARTICLES],
     },
     {
       title: '採点規則',
-      titleEn: 'Code of Points',
+      titleEnglish: 'Code of Points',
       article: [
         ...SCORING_GENERAL_ARTICLES,
         ...GROUP_SCORING_ARTICLES,
@@ -38,16 +38,16 @@ export const RULE_BOOK: RuleBook = {
     },
     {
       title: '付録',
-      titleEn: 'Appendix',
+      titleEnglish: 'Appendix',
       article: [
         ...APPENDIX_SPECIAL_RULES_ARTICLES,
         ...APPARATUS_ROUTINES_ARTICLES,
         ...JUDGE_REGULATIONS_ARTICLES,
       ],
     },
-    { title: '主任審判員減点表', titleEn: "Chief Judges' Deduction Tables", article: [] },
-    { title: '審判メモ', titleEn: "Judges' Notes", article: [] },
-    { title: '得点票', titleEn: 'Score Sheets', article: [] },
-    { title: '採点票・減点票', titleEn: 'Scoring and Deduction Sheets', article: [] },
+    { title: '主任審判員減点表', titleEnglish: "Chief Judges' Deduction Tables", article: [] },
+    { title: '審判メモ', titleEnglish: "Judges' Notes", article: [] },
+    { title: '得点票', titleEnglish: 'Score Sheets', article: [] },
+    { title: '採点票・減点票', titleEnglish: 'Scoring and Deduction Sheets', article: [] },
   ],
 }

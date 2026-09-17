@@ -2,31 +2,31 @@ import type { RuleArticle } from '../../model/ruleBook'
 
 /**
  * 第1章 競技規則のうち、競技会・表彰・競技者・監督者・一般的な競技規則・手具。
- * 英語（`titleEn` など）は日本語の本文を訳したもの
+ * 英語（`titleEnglish` など）は日本語の本文を訳したもの
  */
 export const COMPETITION_CONDUCT_ARTICLES: RuleArticle[] = [
   {
     title: '競技会',
-    titleEn: 'Competitions',
+    titleEnglish: 'Competitions',
     section: [
       {
         title: '大会要項',
-        titleEn: 'Competition Guidelines',
+        titleEnglish: 'Competition Guidelines',
         content: '競技会は、その年度の定める大会要項により実施する。',
-        contentEn:
+        contentEnglish:
           'Each competition is held according to the competition guidelines set for that year.',
       },
       {
         title: '競技会の日程と試技順の抽選',
-        titleEn: 'Competition Schedule and Draw for the Order of Performance',
+        titleEnglish: 'Competition Schedule and Draw for the Order of Performance',
         content:
           '男子新体操委員会は、競技会の日程細案作成および公平な抽選による試技順の編成と審判団の編成を行う。',
-        contentEn:
+        contentEnglish:
           "The Men's Rhythmic Gymnastics Committee draws up the detailed competition schedule, sets the order of performance by a fair draw, and forms the judging panel.",
       },
       {
         title: '競技方法の種類',
-        titleEn: 'Competition Formats',
+        titleEnglish: 'Competition Formats',
         content: `競技会は、団体演技、個人演技の２部に分け、以下の競技方法のいずれかで行う
 
 1. 団体演技
@@ -104,7 +104,7 @@ export const COMPETITION_CONDUCT_ARTICLES: RuleArticle[] = [
   
   b. 順位決定方法
     個人４種目の得点合計の１／４（20点満点）と団体競技（20点満点）の得点合計で順位を決定する。`,
-        contentEn: `Competitions are divided into two parts, group routines and individual routines, and are held in one of the following formats.
+        contentEnglish: `Competitions are divided into two parts, group routines and individual routines, and are held in one of the following formats.
 
 1. Group competition
 
@@ -184,22 +184,22 @@ export const COMPETITION_CONDUCT_ARTICLES: RuleArticle[] = [
       },
       {
         title: '団体競技の申し込み',
-        titleEn: 'Entries for the Group Competition',
+        titleEnglish: 'Entries for the Group Competition',
         content: `団体競技は競技者を８名まで申し込むことができる。
 団体競技者は、監督会議において承認された競技者のうち６名が演技を行う。ただし、５名または４名の競技者でも演技を行うこともできる。`,
-        contentEn: `Up to 8 gymnasts may be entered in the group competition.
+        contentEnglish: `Up to 8 gymnasts may be entered in the group competition.
 Six of the gymnasts approved at the team managers' meeting perform the group routine. A group may also perform with five or four gymnasts.`,
       },
       {
         title: '個人競技の申し込み',
-        titleEn: 'Entries for the Individual Competition',
+        titleEnglish: 'Entries for the Individual Competition',
         content: `個人競技は、当該当年度の競技会に定めた競技者を申し込むことができる。
 
 1. 個人競技は、競技Ⅰ・Ⅱ・Ⅲのいずれかを行う。
 2. 個人競技に出場した競技者は、所属団体の団体競技に出場することができる。
 3. 申し込み後の競技者の交代はできない。
 4. 個人競技の１所属に対する出場制限は原則８名までとする。`,
-        contentEn: `Gymnasts may be entered in the individual competition as set for that year's competition.
+        contentEnglish: `Gymnasts may be entered in the individual competition as set for that year's competition.
 
 1. The individual competition is held as Competition I, II or III.
 2. Gymnasts who compete in the individual competition may also compete in their organization's group competition.
@@ -208,13 +208,13 @@ Six of the gymnasts approved at the team managers' meeting perform the group rou
       },
       {
         title: '音響機器の使用',
-        titleEn: 'Use of Audio Equipment',
+        titleEnglish: 'Use of Audio Equipment',
         content: `伴奏音楽は音響機器を使用するものとする。
 
 1. 音響機器は、組織委員会で準備したもの、または自己で準備したものを使用することができる。
 2. 音楽媒体等には、所属名または競技者名を示していかなければならない。
 3. 規定演技の伴奏音楽は、協会制定のものを使用することができる。`,
-        contentEn: `The accompanying music is played on audio equipment.
+        contentEnglish: `The accompanying music is played on audio equipment.
 
 1. Gymnasts may use the audio equipment prepared by the Organizing Committee or their own.
 2. Music media must be labeled with the organization's name or the gymnast's name.
@@ -222,15 +222,15 @@ Six of the gymnasts approved at the team managers' meeting perform the group rou
       },
       {
         title: '音響機器の欠陥の処置',
-        titleEn: 'Faulty Audio Equipment',
+        titleEnglish: 'Faulty Audio Equipment',
         content:
           '審判長・競技部長が当然と認める音響機器に欠点があった場合は、団体競技でも個人競技でも減点なしの復興ができる。',
-        contentEn:
+        contentEnglish:
           'If the Jury President and the Competition Director agree that the audio equipment was faulty, the routine may be repeated without deduction in both the group and the individual competition.',
       },
       {
         title: '順位決定方法',
-        titleEn: 'Ranking',
+        titleEnglish: 'Ranking',
         content: `すべての競技において、獲得した得点で順位を決定する。
 
   1. 得点の合計は、各競技の順位決定方法に従う。
@@ -268,7 +268,7 @@ Six of the gymnasts approved at the team managers' meeting perform the group rou
       ⅱ ⅰにおいて同点の場合、団体競技および個人競技４種目のすべての審判員（主任審判および最高点・最低点）の採点合計の高いチーム。
       ⅲ ⅱにおいて同点の場合、団体競技すべての審判員（主任審判および最高点・最低点）の採点合計の高いチーム。
       ⅳ ⅲにおいて同点の場合、抽選とする。`,
-        contentEn: `In all competitions, rankings are decided by the scores obtained.
+        contentEnglish: `In all competitions, rankings are decided by the scores obtained.
 
   1. Scores are totaled according to the ranking method of each competition.
 
@@ -308,22 +308,22 @@ Six of the gymnasts approved at the team managers' meeting perform the group rou
       },
       {
         title: '所属団体と監督者',
-        titleEn: 'Organizations and Team Managers',
+        titleEnglish: 'Organizations and Team Managers',
         content: '競技会に出場する所属団体は全期間１名の監督者を置かなければならない。',
-        contentEn:
+        contentEnglish:
           'Each organization taking part in a competition must have one team manager for the whole competition.',
       },
       {
         title: '演技中の不快不慮の事故',
-        titleEn: 'Illness or Accident During a Routine',
+        titleEnglish: 'Illness or Accident During a Routine',
         content:
           '演技中の不快不慮の事故が起きた場合は、監督者を通じて直ちに審判長に連絡し演技を中断し、医師の診断を受けなければならない。',
-        contentEn:
+        contentEnglish:
           'If a gymnast becomes ill or has an accident during a routine, the Jury President must be informed immediately through the team manager, the routine must be stopped, and the gymnast must be examined by a doctor.',
       },
       {
         title: '競技場への入場',
-        titleEn: 'Access to the Competition Hall',
+        titleEnglish: 'Access to the Competition Hall',
         content: `競技場に入場できる者は、審判長、競技部長審判員、競技者および監督者と音楽係、審判補助員、音楽機器および演技上の保持に必要欠くべからざる人員に限る。
 その他のっ競技場内への入場に関しては、競技の順調な進行を妨げない条件のもとに許可を得て入場できる。また、次の人々のために特別席を設ける。
 
@@ -331,7 +331,7 @@ Six of the gymnasts approved at the team managers' meeting perform the group rou
 2. 控えの審判員
 3. 補審
 4. 演技を直ちに実施しない競技者と監督`,
-        contentEn: `Access to the competition hall is limited to the Jury President, the Competition Director, the judges, the gymnasts and team managers, the music operators, the judges' assistants, and the staff essential for the audio equipment and for the routines.
+        contentEnglish: `Access to the competition hall is limited to the Jury President, the Competition Director, the judges, the gymnasts and team managers, the music operators, the judges' assistants, and the staff essential for the audio equipment and for the routines.
 Other people may enter the competition hall with permission, provided they do not interfere with the smooth running of the competition. Special seats are provided for the following people.
 
 1. Presidents of the participating member organizations
@@ -343,19 +343,19 @@ Other people may enter the competition hall with permission, provided they do no
   },
   {
     title: '表彰',
-    titleEn: 'Awards',
+    titleEnglish: 'Awards',
     section: [
       {
         title: '表彰式の開催',
-        titleEn: 'Award Ceremony',
+        titleEnglish: 'Award Ceremony',
         content:
           '成績の表彰および賞典の授与は、全競技者（各加盟団体代表）、審判団、組織委員会および公衆の参列のもと、厳粛な儀式を持って行う。',
-        contentEn:
+        contentEnglish:
           'Results are honored and awards presented at a formal ceremony attended by all gymnasts (representatives of each member organization), the judging panel, the Organizing Committee and the public.',
       },
       {
         title: '選手権大会の表彰内容',
-        titleEn: 'Awards at Championships',
+        titleEnglish: 'Awards at Championships',
         content: `選手権大会は、それぞれ入賞したチームには個人にメダルと賞状を授与し、全競技者および審判員には参加賞を付与する。
 1. 団体競技選手権
 競技Ⅰ・Ⅱ・Ⅲの各競技の得点により順位を決定する。第１位のチームは選手権チームとして表彰され、そのチーム全員に対してそれぞれ金メダル１個ずつ授与する。また、第８位までには賞状を授与する。
@@ -368,7 +368,7 @@ Other people may enter the competition hall with permission, provided they do no
 
 4. 個人種目別選手権
 種目別決勝競技、または種目別のそれぞれの得点によって順位を決定する。これらの各種目の第１位の競技者には、選手権者として表彰され、これに金メダル１個を授与する。第２位には銀メダル、第３位には銅メダルを授与する。また第６位までには賞状を授与する。              `,
-        contentEn: `At championships, medals and certificates are presented to the placing teams and individuals, and all gymnasts and judges receive a participation award.
+        contentEnglish: `At championships, medals and certificates are presented to the placing teams and individuals, and all gymnasts and judges receive a participation award.
 1. Group championship
 Teams are ranked by the scores of Competition I, II or III. The first-place team is honored as the champion team, and each member of the team receives a gold medal. Certificates are presented to the top 8 teams.
 
@@ -385,48 +385,48 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
   },
   {
     title: '競技者',
-    titleEn: 'Gymnasts',
+    titleEnglish: 'Gymnasts',
     section: [
       {
         title: '会費の滞納',
-        titleEn: 'Unpaid Membership Fees',
+        titleEnglish: 'Unpaid Membership Fees',
         content: '会費滞納の加盟団体および未登録の競技者は、本協会主催の競技会に出場できない。',
-        contentEn:
+        contentEnglish:
           'Member organizations with unpaid membership fees and unregistered gymnasts may not take part in competitions organized by the Association.',
       },
       {
         title: '出場資格とアマチュア規定',
-        titleEn: 'Eligibility and Amateur Rules',
+        titleEnglish: 'Eligibility and Amateur Rules',
         content:
           '本協会の監督下に行われる競技会には、本協会アマチュア規定によるアマチュアでなければ競技者として承認されない。',
-        contentEn:
+        contentEnglish:
           "Only amateurs as defined by the Association's amateur rules are accepted as gymnasts at competitions held under the supervision of the Association.",
       },
       {
         title: '年齢',
-        titleEn: 'Age',
+        titleEnglish: 'Age',
         content:
           '競技者は、競技会の年（４月２日現在）に満12歳に達し、本協会の加盟団体所属の登録会員でなければならない。１１歳以下の競技者は、その連盟の責任のもとに本協会で承認された競技者にかぎり出場することができる。',
-        contentEn:
+        contentEnglish:
           'Gymnasts must be at least 12 years old in the year of the competition (as of April 2) and be registered members of a member organization of the Association. Gymnasts aged 11 or younger may compete only if approved by the Association under the responsibility of their federation.',
       },
       {
         title: '競技者の義務',
-        titleEn: 'Duties of Gymnasts',
+        titleEnglish: 'Duties of Gymnasts',
         content:
           '競技者は、競技会の演技を実施することを第一義とし、この義務を完遂した後でなければ、他の任務を受諾することはできない。',
-        contentEn:
+        contentEnglish:
           "A gymnast's first duty is to perform at the competition, and a gymnast may not accept any other role until this duty has been fulfilled.",
       },
       {
         title: '競技会の出場種目',
-        titleEn: 'Events a Gymnast May Enter',
+        titleEnglish: 'Events a Gymnast May Enter',
         content: '競技者は団体競技および歌人競技の両方に出場することができる。',
-        contentEn: 'Gymnasts may compete in both the group and the individual competition.',
+        contentEnglish: 'Gymnasts may compete in both the group and the individual competition.',
       },
       {
         title: '競技者の服装',
-        titleEn: "Gymnasts' Attire",
+        titleEnglish: "Gymnasts' Attire",
         content: `競技者の服装は身体にフィットする体操用の上着・体操用ズボンで、頭・顔・首・手・腕以外は肌が見える状態にしてはいけない。色は自由で不透明な布とする。装飾のスパンコールは可とするが、固定されていなければならない。また、所属マークを上半身の前面または上腕部で審判が確認できるところにつけなければならない。
               
 1. 体操用の上着の形状
@@ -448,7 +448,7 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
 4. 団体競技では全員が同型、同色の服装で統一のマークをつけて出場しなければならない。
 
 5. 体操シューズまたは靴下着用で演技しなければならない。色は自由とする。`,
-        contentEn: `Gymnasts wear a close-fitting gymnastics top and gymnastics trousers, with no skin showing except on the head, face, neck, hands and arms. Any color may be used, but the fabric must be opaque. Decorative sequins are allowed if they are securely attached. The organization's emblem must be worn on the front of the upper body or on the upper arm where the judges can see it.
+        contentEnglish: `Gymnasts wear a close-fitting gymnastics top and gymnastics trousers, with no skin showing except on the head, face, neck, hands and arms. Any color may be used, but the fabric must be opaque. Decorative sequins are allowed if they are securely attached. The organization's emblem must be worn on the front of the upper body or on the upper arm where the judges can see it.
 
 1. Gymnastics top
   a. The top may have sleeves and a collar or not, but it must be close-fitting.
@@ -472,7 +472,7 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
       },
       {
         title: '競技者の権利',
-        titleEn: 'Rights of Gymnasts',
+        titleEnglish: 'Rights of Gymnasts',
         content: `競技者には以下の権利が保障される
               
 1. 演技は採点規則の規約によって正確で公平に採点される。
@@ -480,7 +480,7 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
 3. 演技終了後、得点が速やかに表示される。または当該競技会の競技規則に応じた公開がされる。
 4. 演技の中断が競技者に原因がない場合や裁定審判部に認められた不可抗力の事については、演技全体のやり直しができる。
 5. 競技会でのすべての得点は、主催者より公式演技結果として受け取ることができる。`,
-        contentEn: `Gymnasts are guaranteed the following rights.
+        contentEnglish: `Gymnasts are guaranteed the following rights.
 
 1. Their routines are scored accurately and fairly according to the Code of Points.
 2. They may take part in official training at the venue and perform on a carefully prepared floor.
@@ -490,7 +490,7 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
       },
       {
         title: '競技者の規律',
-        titleEn: 'Discipline of Gymnasts',
+        titleEnglish: 'Discipline of Gymnasts',
         content: `競技者は以下の規則を厳守しなければならない。
                
 1. 競技者と審判は、お互いに信頼と尊重をしなければならない。
@@ -504,7 +504,7 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
 9. 競技者は演技中に故意に号令などの合図をしたり、話したりしてはいけない。
 10. 競技者は演技中に試合を放棄する態度をとってはいけない。
 11. 競技エリア内において、観衆に対して不快な言動をとってはならない。`,
-        contentEn: `Gymnasts must strictly observe the following rules.
+        contentEnglish: `Gymnasts must strictly observe the following rules.
 
 1. Gymnasts and judges must trust and respect each other.
 2. Gymnasts must know the competition rules and the Code of Points well and behave as befits a gymnast.
@@ -522,11 +522,11 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
   },
   {
     title: '監督者・コーチ',
-    titleEn: 'Team Managers and Coaches',
+    titleEnglish: 'Team Managers and Coaches',
     section: [
       {
         title: '監督者・コーチの責務と規律',
-        titleEn: 'Duties and Discipline of Team Managers and Coaches',
+        titleEnglish: 'Duties and Discipline of Team Managers and Coaches',
         content: `監督者およびコーチは競技会が円滑に開催できるために、マナーやモラルを守るとともに、以下の規則を厳守しなければならない。
 
 1. 監督者は所属選手に対しすべての責任を負い、競技が円滑に進行するための指示を与えなければならない。
@@ -538,7 +538,7 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
 7. 監督者は演技城内において、観衆や競技役員に対して不愉快な行動をとってはならない。
 8. 採点結果についての疑問点について審判長に問い合わせはできるが、審判員個人へ直接の抗議はしてはならない。,
               `,
-        contentEn: `So that the competition runs smoothly, team managers and coaches must observe good manners and ethics and strictly follow the rules below.
+        contentEnglish: `So that the competition runs smoothly, team managers and coaches must observe good manners and ethics and strictly follow the rules below.
 
 1. Team managers are fully responsible for their gymnasts and must give the instructions needed for the competition to run smoothly.
 2. Team managers must attend the team managers' meeting held before the competition.
@@ -551,36 +551,36 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
       },
       {
         title: '第43条 規律違反',
-        titleEn: 'Violations of Discipline',
+        titleEnglish: 'Violations of Discipline',
         content:
           '競技者および監督・コーチに規律違反があった場合は、採点規則によって原点または処分をされることがある。',
-        contentEn:
+        contentEnglish:
           'If a gymnast, team manager or coach violates the rules of discipline, a deduction or other penalty may be imposed under the Code of Points.',
       },
     ],
   },
   {
     title: '一般的な競技規則',
-    titleEn: 'General Competition Rules',
+    titleEnglish: 'General Competition Rules',
     section: [
       {
         title: '新体操の演技',
-        titleEn: 'Rhythmic Gymnastics Routines',
+        titleEnglish: 'Rhythmic Gymnastics Routines',
         content:
           '新体操の演技は、徒手系要素と回転系要素を織り交ぜ、団体競技では６人の同調性と力強さを、個人競技では４種類の手具の特性に合わせた操作を、体を極限まで運動させながら表現する種目である。各競技に求められた要素を全て含み、高い技術的価値と各種要素の多様性音楽と動きの関係や独創性を持ち、すべての運動が合理性と安定性を持って実施されなければならない。',
-        contentEn:
+        contentEnglish:
           "A men's rhythmic gymnastics routine combines free-hand elements and tumbling elements. In the group competition it expresses the synchronization and power of six gymnasts, and in the individual competition it expresses handling suited to the character of each of the four apparatus, while moving the body to its limits. A routine must contain all the elements required in each competition, have high technical value, a variety of elements, a good relationship between music and movement, and originality, and every movement must be performed rationally and with stability.",
       },
       {
         title: '伴奏音楽',
-        titleEn: 'Accompanying Music',
+        titleEnglish: 'Accompanying Music',
         content: `1. すべての競技において伴奏音楽をつけなければならない。
 2. 伴奏音楽はよりよい音色とメロディーによって、特徴付けられるものでなければならない。すなわち演技の性格に合致し、途切れずはっきりとしたリズムを持ち、競技者の動きのリズムと調和していなければならない。
 3. 伴奏音楽は楽器（シンセサイザーを含む）で演奏されたもの、または人の声に限る。
 4. 伴奏音楽は、音楽を記録した記録媒体等を使用する。大会要項で別途指定された場合はそれに準じる。
 5. 演技面の入退場には伴奏音楽をつけてはならない。
 6. 組織者側に責任のない理由で伴奏音楽が中断された場合は、原則として演技の復行はできない。`,
-        contentEn: `1. All routines must be performed to accompanying music.
+        contentEnglish: `1. All routines must be performed to accompanying music.
 2. The music must be characterized by good tone and melody. It must suit the character of the routine, have a clear, continuous rhythm and be in harmony with the rhythm of the gymnasts' movements.
 3. The music must be played on instruments (including synthesizers) or sung by the human voice.
 4. The music is played from recorded media. If the competition guidelines specify otherwise, those instructions apply.
@@ -589,63 +589,63 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
       },
       {
         title: '得点',
-        titleEn: 'Scores',
+        titleEnglish: 'Scores',
         content: `1. 自由演技は構成（Ｄ）と実施（Ｅ）のそれぞれ10点満点の計20点満点で採点される。また規定演技は実施（Ｅ）の10点満点で採点される。
 2. 主任審判員を除いた４名の審判員の最高点及び最低点を除外し、有効点の平均点を小数点第３位までとし、第４位は切り捨て得点とする。主任審判員が適用する原点があった場合は、その得点から減点し最終得点とする。
 `,
-        contentEn: `1. Free routines are scored out of 20 points: composition (D) out of 10 points and execution (E) out of 10 points. Compulsory routines are scored for execution (E) out of 10 points.
+        contentEnglish: `1. Free routines are scored out of 20 points: composition (D) out of 10 points and execution (E) out of 10 points. Compulsory routines are scored for execution (E) out of 10 points.
 2. The highest and lowest scores of the four judges, excluding the chief judge, are dropped, and the average of the counting scores is calculated to three decimal places, truncating the fourth. If the chief judge applies a deduction, it is subtracted from that score to give the final score.`,
       },
       {
         title: '演技時間',
-        titleEn: 'Duration of the Routine',
+        titleEnglish: 'Duration of the Routine',
         content: `すべての演技は演技時間が下記のとおりに定められる。団体演技ではチームのうち１人以上の動き始めからチーム全員が完全に動きを止めるまでの時間とし、個人競技では競技者の動き始めから完全に動きを止めるまでとする。
               
 1. 団体競技　２分45秒から３分00秒
 2. 個人競技　１分15秒から１分30秒`,
-        contentEn: `The duration of every routine is set as below. In the group competition, it is measured from the moment at least one gymnast starts moving until all gymnasts have completely stopped. In the individual competition, it is measured from the moment the gymnast starts moving until the gymnast has completely stopped.
+        contentEnglish: `The duration of every routine is set as below. In the group competition, it is measured from the moment at least one gymnast starts moving until all gymnasts have completely stopped. In the individual competition, it is measured from the moment the gymnast starts moving until the gymnast has completely stopped.
 
 1. Group competition: 2 min 45 s to 3 min 00 s
 2. Individual competition: 1 min 15 s to 1 min 30 s`,
       },
       {
         title: '演技人数',
-        titleEn: 'Number of Gymnasts in a Group',
+        titleEnglish: 'Number of Gymnasts in a Group',
         content:
           '団体競技の演技人数は６名で行うものとする。ただし５名または４名でも競技に参加することができるが減点される。',
-        contentEn:
+        contentEnglish:
           'A group routine is performed by six gymnasts. A group may also compete with five or four gymnasts, but a deduction is applied.',
       },
     ],
   },
   {
     title: '手具',
-    titleEn: 'Apparatus',
+    titleEnglish: 'Apparatus',
     section: [
       {
         title: '手具の規格',
-        titleEn: 'Apparatus Specifications',
+        titleEnglish: 'Apparatus Specifications',
         content: `競技に使用する器具ならびに手具は、（公財）基本体操協会認定規格による。
 ＊ジュニアは、ジュニア適用規則を参照`,
-        contentEn: `Equipment and apparatus used in competition must meet the certified specifications of the Japan Gymnastics Association.
+        contentEnglish: `Equipment and apparatus used in competition must meet the certified specifications of the Japan Gymnastics Association.
 * For juniors, see the rules for juniors.`,
         image: [
           {
             src: '/images/rules/syugukikakuhyou.png',
             alt: '手具規格',
-            altEn: 'Apparatus specifications',
+            altEnglish: 'Apparatus specifications',
           },
         ],
       },
       {
         title: '手具点検',
-        titleEn: 'Apparatus Inspection',
+        titleEnglish: 'Apparatus Inspection',
         content: `1. 競技開始前には手具点検を行う。予備手具も含め、合格した手具のみ競技会に使用することができる。
 2. 合格した手具には組織委員会が準備した合格シールを貼る。
 3. 競技場に入る直前に合格シール点検を行う。
 4. 審判長または当該主任審判から要求があった場合は、演技終了時に再度手具点検が行われることもある。
 5. 手具が検定品であっても劣化等により規格外になった場合は、手具点検によって規格外となることがある。`,
-        contentEn: `1. Apparatus are inspected before the competition. Only apparatus that pass the inspection, including spare apparatus, may be used in the competition.
+        contentEnglish: `1. Apparatus are inspected before the competition. Only apparatus that pass the inspection, including spare apparatus, may be used in the competition.
 2. Apparatus that pass are marked with a sticker prepared by the Organizing Committee.
 3. The stickers are checked just before gymnasts enter the competition hall.
 4. If the Jury President or the chief judge concerned requests it, the apparatus may be inspected again after the routine.
@@ -653,9 +653,9 @@ Gymnasts are ranked by the score of the apparatus final or of each apparatus. Th
       },
       {
         title: '競技規則に定めない問題',
-        titleEn: 'Matters Not Covered by the Competition Rules',
+        titleEnglish: 'Matters Not Covered by the Competition Rules',
         content: '本規則に定めない審判および採点に関する問題は、すべて採点規則による。',
-        contentEn:
+        contentEnglish:
           'All matters of judging and scoring not covered by these rules follow the Code of Points.',
       },
     ],

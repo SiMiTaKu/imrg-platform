@@ -176,7 +176,7 @@ describe('データ', () => {
       // #endregion
 
       // #region When
-      const invalid = resources.filter((resource) => !englishName.test(resource.nameEn))
+      const invalid = resources.filter((resource) => !englishName.test(resource.nameEnglish))
       // #endregion
 
       // #region Then

@@ -31,7 +31,7 @@ export const localizeRuleBook = (ruleBook: RuleBook, locale: SiteLocale): Locali
    * @returns 表示する言語の代替テキストを持つ図
    */
   const localizeImages = (images: RuleImage[] = []): Image[] =>
-    images.map((image) => ({ src: image.src, alt: pick(image.alt, image.altEn) }))
+    images.map((image) => ({ src: image.src, alt: pick(image.alt, image.altEnglish) }))
 
   /**
    * 条項を言語に合わせる
@@ -39,22 +39,22 @@ export const localizeRuleBook = (ruleBook: RuleBook, locale: SiteLocale): Locali
    * @returns 表示する言語に絞った条項
    */
   const localizeSection = (section: RuleSection): LocalizedRuleSection => ({
-    title: pick(section.title, section.titleEn),
-    content: pick(section.content ?? '', section.contentEn ?? ''),
+    title: pick(section.title, section.titleEnglish),
+    content: pick(section.content ?? '', section.contentEnglish ?? ''),
     image: localizeImages(section.image),
     block: (section.block ?? []).map((block) => ({
-      title: pick(block.title, block.titleEn),
-      element: pick(block.element, block.elementEn),
+      title: pick(block.title, block.titleEnglish),
+      element: pick(block.element, block.elementEnglish),
       image: localizeImages(block.image),
     })),
   })
 
   return {
-    title: pick(ruleBook.title, ruleBook.titleEn),
+    title: pick(ruleBook.title, ruleBook.titleEnglish),
     chapter: ruleBook.chapter.map((chapter) => ({
-      title: pick(chapter.title, chapter.titleEn),
+      title: pick(chapter.title, chapter.titleEnglish),
       article: chapter.article.map((article) => ({
-        title: pick(article.title, article.titleEn),
+        title: pick(article.title, article.titleEnglish),
         section: article.section.map(localizeSection),
       })),
     })),

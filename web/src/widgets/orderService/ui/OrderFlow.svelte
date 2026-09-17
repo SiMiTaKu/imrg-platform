@@ -42,8 +42,8 @@
 
 <section
   class="flow-section"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
   style:--item-width={$pageData.isMobile ? undefined : pcStepWidth(steps.length)}
 >
   <div class="message">
@@ -70,7 +70,7 @@
 
 <style lang="scss">
   // PC の --item-width は段階の数で変わるので、要素の style で渡す
-  .pc {
+  .desktop {
     --width: 1024px;
     --message-font-size: 36px;
     --message-margin-bottom: 80px;
@@ -89,7 +89,7 @@
     --item-description-width: 100%;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --message-font-size: 30px;
     --message-margin-bottom: 60px;
@@ -184,7 +184,7 @@
 
   // スマホでは段階の名前の幅が狭く、英語の長い名前（Consultation など）が区切り線にかかるため小さくする。
   // 日本語ページの見た目（計算済みスタイル）を変えないよう、変数を足さずに言語で当てる
-  .sp .item-label:lang(en) {
+  .mobile .item-label:lang(en) {
     font-size: 16px;
   }
 

@@ -5,7 +5,7 @@ import type { Image } from '@shared/model'
  */
 export type RuleImage = Image & {
   /** 英語の代替テキスト */
-  altEn: string
+  altEnglish: string
 }
 
 /**
@@ -15,11 +15,11 @@ export interface RuleBlock {
   /** 見出し */
   title: string
   /** 英語の見出し */
-  titleEn: string
+  titleEnglish: string
   /** 本文 */
   element: string
   /** 英語の本文 */
-  elementEn: string
+  elementEnglish: string
   /** 図 */
   image?: RuleImage[]
 }
@@ -31,11 +31,11 @@ export interface RuleSection {
   /** 見出し */
   title: string
   /** 英語の見出し */
-  titleEn: string
+  titleEnglish: string
   /** 本文（小項を持たないときだけ使う） */
   content?: string
   /** 英語の本文 */
-  contentEn?: string
+  contentEnglish?: string
   /** 小項 */
   block?: RuleBlock[]
   /** 図 */
@@ -49,7 +49,7 @@ export interface RuleArticle {
   /** 見出し */
   title: string
   /** 英語の見出し */
-  titleEn: string
+  titleEnglish: string
   /** 条項 */
   section: RuleSection[]
 }
@@ -61,7 +61,7 @@ export interface RuleChapter {
   /** 見出し */
   title: string
   /** 英語の見出し */
-  titleEn: string
+  titleEnglish: string
   /** 大項 */
   article: RuleArticle[]
 }
@@ -73,7 +73,7 @@ export interface RuleBook {
   /** 題名 */
   title: string
   /** 英語の題名 */
-  titleEn: string
+  titleEnglish: string
   /** 章 */
   chapter: RuleChapter[]
 }

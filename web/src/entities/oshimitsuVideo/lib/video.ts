@@ -37,12 +37,12 @@ export const isIndividualVideo = (video: VideoResource): video is IndividualVide
  * 選手・チームの名前を、表示する言語で返す
  * @param resource - 選手かチーム
  * @param locale - 表示する言語
- * @returns 日本語なら `name`、英語なら `nameEn`
+ * @returns 日本語なら `name`、英語なら `nameEnglish`
  */
 export const localizedName = (
   resource: PlayerResource | TeamResource,
   locale: SiteLocale,
-): string => (locale === 'en' ? resource.nameEn : resource.name)
+): string => (locale === 'en' ? resource.nameEnglish : resource.name)
 
 /**
  * 撮影日を「年」だけの表記にする
