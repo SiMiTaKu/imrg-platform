@@ -1,4 +1,4 @@
-import type { SrcMeta } from '@shared/ui'
+import type { ImageSourceMeta } from '@shared/ui'
 import Image1_1 from '../_image/work-list-image-1-1.jpg?w=256;512&format=webp&as=meta'
 import Image1_2 from '../_image/work-list-image-1-2.jpg?w=256;512&format=webp&as=meta'
 import Image1_3 from '../_image/work-list-image-1-3.jpg?w=256;512&format=webp&as=meta'
@@ -27,7 +27,7 @@ import Image9_1 from '../_image/work-list-image-9-1.jpg?w=256;512&format=webp&as
 import Image9_2 from '../_image/work-list-image-9-2.jpg?w=256;512&format=webp&as=meta'
 import Image9_3 from '../_image/work-list-image-9-3.jpg?w=256;512&format=webp&as=meta'
 
-export const WORK_LIST: { images: SrcMeta[][] }[] = [
+export const WORK_LIST: { images: ImageSourceMeta[][] }[] = [
   { images: [Image1_1, Image1_2, Image1_3] },
   { images: [Image2_1, Image2_2, Image2_3] },
   { images: [Image3_1, Image3_2, Image3_3] },

@@ -31,7 +31,7 @@ const compareText = (a: string, b: string): number => {
  * 英語ページでも日本語の大会名で並べる。言語で並びが変わると、ページ送りの位置が言語ごとにずれるため
  */
 const compareEvents = (a: CalendarEvent, b: CalendarEvent): number =>
-  compareText(a.startDate, b.startDate) || compareText(a.titleJa, b.titleJa)
+  compareText(a.startDate, b.startDate) || compareText(a.titleJapanese, b.titleJapanese)
 
 /**
  * 検索のために、全角半角と大文字小文字の違いをなくす
@@ -55,10 +55,10 @@ export const matchesKeyword = (event: CalendarEvent, keyword: string): boolean =
 
   const haystack = normalizeText(
     [
-      event.titleJa,
-      event.titleEn,
-      event.venueJa ?? '',
-      event.venueEn ?? '',
+      event.titleJapanese,
+      event.titleEnglish,
+      event.venueJapanese ?? '',
+      event.venueEnglish ?? '',
       categoryLabel(event.category, 'ja'),
       categoryLabel(event.category, 'en'),
     ].join(' '),

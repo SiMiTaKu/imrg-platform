@@ -1,13 +1,13 @@
 <script context="module" lang="ts">
   import { ImageAssets } from '@shared/ui'
-  import type { SrcMeta } from '@shared/ui'
+  import type { ImageSourceMeta } from '@shared/ui'
 </script>
 
 <script lang="ts">
   import { pageData } from '@shared/lib/device'
   import { fade } from 'svelte/transition'
 
-  export let images: SrcMeta[][] = []
+  export let images: ImageSourceMeta[][] = []
   export let workIndex: number
 
   let frontImageIndex = 0
@@ -33,7 +33,7 @@
         height={$pageData.isMobile ? 338 : 331}
         alt={`過去の作品${workIndex + 1}_${frontImageIndex + 1}画像`}
         lazy={true}
-        srcMeta={images[frontImageIndex]}
+        imageSourceMeta={images[frontImageIndex]}
         objectFit="cover"
       />
     </div>
@@ -43,7 +43,7 @@
         width={$pageData.isMobile ? 338 : 331}
         height={$pageData.isMobile ? 338 : 331}
         alt={`過去の作品${workIndex}_${frontImageIndex + 2}画像`}
-        srcMeta={images[backImageIndex]}
+        imageSourceMeta={images[backImageIndex]}
         objectFit="cover"
       />
     </div>

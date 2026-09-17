@@ -95,7 +95,7 @@ export const weekdayName = (weekday: number, locale: SiteLocale): string =>
  * @param month - 月（1〜12）
  * @returns 英語の月の先頭3文字
  */
-export const shortMonthEn = (month: number): string => MONTHS_EN[month - 1].slice(0, 3)
+export const shortMonthEnglish = (month: number): string => MONTHS_EN[month - 1].slice(0, 3)
 
 /**
  * 閲覧者の端末の日付を "YYYY-MM-DD" にする
@@ -165,7 +165,7 @@ export const toDateBadge = (value: string): DateBadge => {
  * @param monthKey - 月 "YYYY-MM"
  * @returns "2026年10月" の形の文字列
  */
-export const formatMonthJa = (monthKey: string): string => {
+export const formatMonthJapanese = (monthKey: string): string => {
   const { year, month } = parseDate(monthKey)
   return `${year}年${month}月`
 }
@@ -175,7 +175,7 @@ export const formatMonthJa = (monthKey: string): string => {
  * @param monthKey - 月 "YYYY-MM"
  * @returns "October 2026" の形の文字列
  */
-export const formatMonthEn = (monthKey: string): string => {
+export const formatMonthEnglish = (monthKey: string): string => {
   const { year, month } = parseDate(monthKey)
   return `${MONTHS_EN[month - 1]} ${year}`
 }
@@ -187,14 +187,14 @@ export const formatMonthEn = (monthKey: string): string => {
  * @returns 日本語は "2026年10月"、英語は "October 2026"
  */
 export const formatMonth = (monthKey: string, locale: SiteLocale): string =>
-  locale === 'en' ? formatMonthEn(monthKey) : formatMonthJa(monthKey)
+  locale === 'en' ? formatMonthEnglish(monthKey) : formatMonthJapanese(monthKey)
 
 /**
  * "2026-09-16" → "2026年9月16日"
  * @param value - 日付 "YYYY-MM-DD"
  * @returns "2026年9月16日" の形の文字列
  */
-export const formatDayJa = (value: string): string => {
+export const formatDayJapanese = (value: string): string => {
   const { year, month, day } = parseDate(value)
   return `${year}年${month}月${day}日`
 }
@@ -204,7 +204,7 @@ export const formatDayJa = (value: string): string => {
  * @param value - 日付 "YYYY-MM-DD"
  * @returns "September 16, 2026" の形の文字列
  */
-export const formatDayEn = (value: string): string => {
+export const formatDayEnglish = (value: string): string => {
   const { year, month, day } = parseDate(value)
   return `${MONTHS_EN[month - 1]} ${day}, ${year}`
 }
@@ -216,16 +216,16 @@ export const formatDayEn = (value: string): string => {
  * @returns 日本語は "2026年9月16日"、英語は "September 16, 2026"
  */
 export const formatDay = (value: string, locale: SiteLocale): string =>
-  locale === 'en' ? formatDayEn(value) : formatDayJa(value)
+  locale === 'en' ? formatDayEnglish(value) : formatDayJapanese(value)
 
 /**
  * 例: "2026年10月30日（金）〜11月1日（日）"。年月だけなら "2027年3月"
  * @param event - 表示するイベント
  * @returns 日本語の開催期間。終了年が開始年と同じなら終了側の年は省く
  */
-export const formatDateRangeJa = (event: CalendarEvent): string => {
+export const formatDateRangeJapanese = (event: CalendarEvent): string => {
   const start = parseDate(event.startDate)
-  if (start.day === undefined) return formatMonthJa(event.startDate)
+  if (start.day === undefined) return formatMonthJapanese(event.startDate)
 
   const startText = `${start.year}年${start.month}月${start.day}日（${WEEKDAYS_JA[weekdayOf(start)]}）`
   if (!event.endDate || event.endDate === event.startDate) return startText
@@ -241,33 +241,34 @@ export const formatDateRangeJa = (event: CalendarEvent): string => {
  * @param parts - 年・月・日
  * @returns 曜日・月・日の英語の表記
  */
-const dayTextEn = (parts: DateParts): string =>
-  `${WEEKDAYS_EN[weekdayOf(parts)]}, ${shortMonthEn(parts.month)} ${parts.day}`
+const dayTextEnglish = (parts: DateParts): string =>
+  `${WEEKDAYS_EN[weekdayOf(parts)]}, ${shortMonthEnglish(parts.month)} ${parts.day}`
 
 /**
  * 例: "Fri, Oct 30 – Sun, Nov 1, 2026"。年月だけなら "March 2027"
  * @param event - 表示するイベント
  * @returns 英語の開催期間。終了年が開始年と同じなら開始側の年は省く
  */
-export const formatDateRangeEn = (event: CalendarEvent): string => {
+export const formatDateRangeEnglish = (event: CalendarEvent): string => {
   const start = parseDate(event.startDate)
-  if (start.day === undefined) return formatMonthEn(event.startDate)
+  if (start.day === undefined) return formatMonthEnglish(event.startDate)
 
   if (!event.endDate || event.endDate === event.startDate)
-    return `${dayTextEn(start)}, ${start.year}`
+    return `${dayTextEnglish(start)}, ${start.year}`
 
   const end = parseDate(event.endDate)
   if (end.day === undefined)
-    return `${dayTextEn(start)}, ${start.year} – ${formatMonthEn(event.endDate)}`
-  if (end.year === start.year) return `${dayTextEn(start)} – ${dayTextEn(end)}, ${end.year}`
-  return `${dayTextEn(start)}, ${start.year} – ${dayTextEn(end)}, ${end.year}`
+    return `${dayTextEnglish(start)}, ${start.year} – ${formatMonthEnglish(event.endDate)}`
+  if (end.year === start.year)
+    return `${dayTextEnglish(start)} – ${dayTextEnglish(end)}, ${end.year}`
+  return `${dayTextEnglish(start)}, ${start.year} – ${dayTextEnglish(end)}, ${end.year}`
 }
 
 /**
  * 開催期間を言語に応じた表記にする
  * @param event - 表示するイベント
  * @param locale - 言語
- * @returns 日本語は `formatDateRangeJa`、英語は `formatDateRangeEn` の形
+ * @returns 日本語は `formatDateRangeJapanese`、英語は `formatDateRangeEnglish` の形
  */
 export const formatDateRange = (event: CalendarEvent, locale: SiteLocale): string =>
-  locale === 'en' ? formatDateRangeEn(event) : formatDateRangeJa(event)
+  locale === 'en' ? formatDateRangeEnglish(event) : formatDateRangeJapanese(event)

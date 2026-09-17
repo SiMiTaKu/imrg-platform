@@ -14,7 +14,7 @@
   export let uniqueId: string
 </script>
 
-<div class="radio-question" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<div class="radio-question" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <QuestionLabel {annotation} caption={title} />
   <div
     class="radio-group {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}"
@@ -43,13 +43,13 @@
 </div>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --header-flex-direction: row;
     --radio-button-size: 48px;
     --level-meter-font-size: 18px;
   }
 
-  .sp {
+  .mobile {
     --header-flex-direction: column;
     --radio-button-size: 32px;
     --level-meter-font-size: 16px;

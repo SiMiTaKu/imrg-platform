@@ -2,8 +2,8 @@
   import { m } from '$lib/paraglide/messages'
   import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
   import { PolicyLayout } from '@widgets/policyLayout'
-  import PrivacyBodyEn from './PrivacyBodyEn.svelte'
-  import PrivacyBodyJa from './PrivacyBodyJa.svelte'
+  import PrivacyBodyEnglish from './PrivacyBodyEnglish.svelte'
+  import PrivacyBodyJapanese from './PrivacyBodyJapanese.svelte'
 
   // 日本語ページは、これまでどおり日本語の本文のあとに英語の本文を載せる。英語ページは英語だけ
   const showsBoth = showsSecondaryText()
@@ -17,11 +17,11 @@
   title={m.meta_privacy_page()}
 >
   {#if showsBoth}
-    <PrivacyBodyJa />
+    <PrivacyBodyJapanese />
     <section lang="en">
-      <PrivacyBodyEn />
+      <PrivacyBodyEnglish />
     </section>
   {:else}
-    <PrivacyBodyEn />
+    <PrivacyBodyEnglish />
   {/if}
 </PolicyLayout>

@@ -30,19 +30,21 @@ export interface LocalizedEvent {
 export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): LocalizedEvent => {
   if (locale !== 'en') {
     return {
-      title: event.titleJa,
-      alternateTitle: event.titleEn !== event.titleJa ? event.titleEn : undefined,
-      venue: event.venueJa,
-      streaming: event.streamingJa,
-      note: event.noteJa,
+      title: event.titleJapanese,
+      alternateTitle: event.titleEnglish !== event.titleJapanese ? event.titleEnglish : undefined,
+      venue: event.venueJapanese,
+      streaming: event.streamingJapanese,
+      note: event.noteJapanese,
     }
   }
   return {
-    title: event.titleEn,
-    alternateTitle: event.titleJa !== event.titleEn ? event.titleJa : undefined,
-    venue: event.venueEn ?? (event.venueJa && (VENUE_NAMES_EN[event.venueJa] ?? event.venueJa)),
-    streaming: event.streamingEn ?? event.streamingJa,
-    note: event.noteEn ?? event.noteJa,
+    title: event.titleEnglish,
+    alternateTitle: event.titleJapanese !== event.titleEnglish ? event.titleJapanese : undefined,
+    venue:
+      event.venueEnglish ??
+      (event.venueJapanese && (VENUE_NAMES_EN[event.venueJapanese] ?? event.venueJapanese)),
+    streaming: event.streamingEnglish ?? event.streamingJapanese,
+    note: event.noteEnglish ?? event.noteJapanese,
   }
 }
 
