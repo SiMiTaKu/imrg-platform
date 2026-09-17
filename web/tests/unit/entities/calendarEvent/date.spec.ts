@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import {
   buildMonthGrid,
   formatDateRange,
-  formatDateRangeEn,
-  formatDateRangeJa,
+  formatDateRangeEnglish,
+  formatDateRangeJapanese,
   formatDay,
   formatMonth,
   shiftMonth,
@@ -97,7 +97,7 @@ describe('toDateBadge', () => {
   })
 })
 
-describe('formatDateRangeJa', () => {
+describe('formatDateRangeJapanese', () => {
   describe('正常系', () => {
     it.each([
       [
@@ -112,7 +112,7 @@ describe('formatDateRangeJa', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeJa(event)
+      const result = formatDateRangeJapanese(event)
       // #endregion
 
       // #region Then
@@ -138,7 +138,7 @@ describe('formatDateRangeJa', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeJa(event)
+      const result = formatDateRangeJapanese(event)
       // #endregion
 
       // #region Then
@@ -148,7 +148,7 @@ describe('formatDateRangeJa', () => {
   })
 })
 
-describe('formatDateRangeEn', () => {
+describe('formatDateRangeEnglish', () => {
   describe('正常系', () => {
     it.each([
       ['1日だけの場合、その日付と曜日になること', { startDate: '2026-10-30' }, 'Fri, Oct 30, 2026'],
@@ -159,7 +159,7 @@ describe('formatDateRangeEn', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeEn(event)
+      const result = formatDateRangeEnglish(event)
       // #endregion
 
       // #region Then
@@ -185,7 +185,7 @@ describe('formatDateRangeEn', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeEn(event)
+      const result = formatDateRangeEnglish(event)
       // #endregion
 
       // #region Then

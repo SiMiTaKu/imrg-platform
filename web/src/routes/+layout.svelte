@@ -44,7 +44,7 @@
 
 <Header />
 
-<main class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<main class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   {@render children()}
 </main>
 
@@ -53,11 +53,11 @@
 <LocalePageLinks />
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --header-padding: 80px;
   }
 
-  .sp {
+  .mobile {
     --header-padding: 64px;
   }
 

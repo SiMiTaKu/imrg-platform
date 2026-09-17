@@ -29,8 +29,8 @@
 
 <div
   class="point-a"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
   in:fly={$pageData.isMobile ? { y: 50 } : { x: 200 }}
 >
   <header class="header">
@@ -61,14 +61,14 @@
 </div>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --header-flex-direction: row;
     --header-gap: 16px;
     --section-font-size: 26px;
     --question-list-gap: 40px;
   }
 
-  .sp {
+  .mobile {
     --header-flex-direction: column;
     --header-gap: 8px;
     --section-font-size: 24px;

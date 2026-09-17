@@ -5,7 +5,7 @@
   import { TOP_LINKS } from '../config/links'
 </script>
 
-<section class="links" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="links" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   {#each TOP_LINKS as { href, label }, index (index)}
     <ButtonLink
       target="_self"
@@ -19,14 +19,14 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --flex-direction: row;
     --item-width: calc((100% - 32px) / 2);
     --item-height: 56px;
   }
 
-  .sp {
+  .mobile {
     --width: #{calc(100% - 32px)};
     --flex-direction: column;
     --item-width: 100%;

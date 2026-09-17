@@ -1,5 +1,5 @@
-export { default as ExecutionPointResultModalPC } from './ui/ExecutionPointResultModalPC.svelte'
-export { default as ExecutionPointResultModalSP } from './ui/ExecutionPointResultModalSP.svelte'
+export { default as ExecutionPointResultModalDesktop } from './ui/ExecutionPointResultModalDesktop.svelte'
+export { default as ExecutionPointResultModalMobile } from './ui/ExecutionPointResultModalMobile.svelte'
 export { default as PointA } from './ui/PointA.svelte'
 export { default as PointB } from './ui/PointB.svelte'
 export { default as SelectApparatus } from './ui/SelectApparatus.svelte'

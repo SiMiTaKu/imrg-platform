@@ -95,8 +95,8 @@
 <article
   style:--color={CATEGORY_COLORS[event.category]}
   class="event-detail"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
 >
   <p class="breadcrumb">
     <a href={calendarHref} onclick={back}
@@ -134,7 +134,7 @@
         <dt>{@render factLabel(m.calendar_fact_venue)}</dt>
         <dd>
           <span class="fact-main">{localized.venue}</span>
-          {#if showsBoth && event.venueEn}
+          {#if showsBoth && event.venueEnglish}
             <span class="fact-en" lang="en">{secondary.venue}</span>
           {/if}
         </dd>
@@ -146,7 +146,7 @@
         <dt>{@render factLabel(m.calendar_fact_streaming)}</dt>
         <dd>
           <span class="fact-text">{localized.streaming}</span>
-          {#if showsBoth && event.streamingEn}
+          {#if showsBoth && event.streamingEnglish}
             <span class="fact-en" lang="en">{secondary.streaming}</span>
           {/if}
         </dd>
@@ -158,7 +158,7 @@
         <dt>{@render factLabel(m.calendar_fact_note)}</dt>
         <dd>
           <span class="fact-text">{localized.note}</span>
-          {#if showsBoth && event.noteEn}
+          {#if showsBoth && event.noteEnglish}
             <span class="fact-en" lang="en">{secondary.note}</span>
           {/if}
         </dd>
@@ -199,13 +199,13 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 720px;
     --title-size: 30px;
     --fact-columns: 120px 1fr;
   }
 
-  .sp {
+  .mobile {
     --width: calc(100% - 32px);
     --title-size: #{$font-size-22};
     --fact-columns: 1fr;

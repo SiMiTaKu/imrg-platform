@@ -14,7 +14,7 @@
   } = $props()
 </script>
 
-<article class="rule-book" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<article class="rule-book" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <p>
     {m.rules_notice_incomplete()}<br />
     {m.rules_notice_readability()}
@@ -70,11 +70,11 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
   }
 

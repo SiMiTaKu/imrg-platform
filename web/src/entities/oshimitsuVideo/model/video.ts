@@ -7,7 +7,7 @@ export interface TeamResource {
   /** 名前（かな） */
   nameKana: string
   /** 英語の名前 */
-  nameEn: string
+  nameEnglish: string
 }
 
 /** 選手 */
@@ -17,7 +17,7 @@ export interface PlayerResource {
   /** 名前（かな） */
   nameKana: string
   /** 英語の名前（ローマ字。「名 姓」の順） */
-  nameEn: string
+  nameEnglish: string
   /** 所属したチーム */
   belongedTeams: TeamResource[]
 }
@@ -37,7 +37,7 @@ export type ApparatusSlug = Apparatus['slug']
 /** 動画に共通の項目 */
 interface BaseVideo {
   /** 埋め込み用の YouTube の URL */
-  src: string
+  embedUrl: string
   /** 撮影日 */
   filmedAt: Date
 }

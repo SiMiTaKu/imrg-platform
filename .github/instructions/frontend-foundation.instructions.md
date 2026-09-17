@@ -76,6 +76,11 @@ oshiage の同名ルールをもとにしている。
 - 関数・変数: lowerCamelCase
 - 変数名・関数名に略称を使用しない（`i` → `index`、`e` → `event`、`el` → `element` など）
   - 命名が衝突する場合は文脈を示すプレフィックスを付ける（例: 外側の index と内側の index → `linkIndex` など）
+- コンポーネント名・スライス名・型名・データの項目名にも略語を使わない
+  - 言語: `Ja` / `En` → `Japanese` / `English`（例: `titleJapanese`、`PrivacyBodyEnglish`）
+  - 端末: `pc` / `sp` → `desktop` / `mobile`（CSS クラスも `.desktop` / `.mobile`）
+  - `src` → `source`（例: `ImageSourceMeta`）。HTML の `src` 属性と、外部ライブラリーが決めている項目名はそのまま
+  - 言語コードの `ja` / `en`（URL・`messages/<言語>.json`・`SITE_LOCALES`）は、規格で決まった書き方なのでそのまま
 - コンポーネント・型: PascalCase
 - 定数: SCREAMING_SNAKE_CASE
 - トップレベルの固定配列・固定マップ・表示定義など、再代入しない値は `ICON_GALLERY_ITEMS` のように SCREAMING_SNAKE_CASE で定義する
