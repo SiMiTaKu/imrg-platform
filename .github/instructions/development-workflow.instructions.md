@@ -30,7 +30,7 @@ name: 開発の進め方
 | `pnpm run format`            | Prettier で整形                                                                |
 | `pnpm run check`             | 型チェック（svelte-check）                                                     |
 | `pnpm test`                  | Vitest                                                                         |
-| `pnpm run textlint`          | README と docs の日本語の表記チェック                                          |
+| `pnpm run textlint`          | README と docs の日本語の表記チェック（AI 向けの指示書は対象外）               |
 
 - コミット時は husky と lint-staged が、変更したファイルだけを整形・lint する（`pnpm install` で有効になる）
 

@@ -17,7 +17,7 @@
     "lint:fix": "eslint . --fix && stylelint \"**/*.{css,scss,svelte}\" --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "textlint": "textlint \"*.md\" \"docs/**/*.md\"",
+    "textlint": "textlint README.md \"docs/**/*.md\"",
     "verify": "pnpm audit --prod --audit-level high && pnpm run format:check && pnpm run lint && pnpm run check && pnpm run test && pnpm run build",
     "prepare": "husky"
   },
