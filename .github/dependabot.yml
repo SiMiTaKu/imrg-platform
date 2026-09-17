@@ -13,6 +13,14 @@ updates:
     cooldown:
       default-days: 3
     open-pull-requests-limit: 5
+    ignore:
+      # 型定義は実際に使う Node（.node-version の 24 系）に合わせる。Node を上げるときに一緒に上げる
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+      # textlint 15 では textlint-rule-preset-jtf-style の「カタカナの長音」が検出しなくなる。
+      # ルールが対応するまで 14 系にとどめる（docs/TODO.md の 2-3）
+      - dependency-name: 'textlint'
+        update-types: ['version-update:semver-major']
     commit-message:
       prefix: 'chore(deps)'
     groups:
