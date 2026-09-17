@@ -65,7 +65,7 @@ CLIを使うときは、アクセスキーを作らずIAM Identity Center（`aws
 
 **いま公開中のサイトで、書き出した各ページの HTML が配信されていない。** 原因はSPA用の書き換えルール。
 
-1. <https://console.aws.amazon.com/amplify/> を開き、対象アプリ（imrg-web-main）を選ぶ
+1. <https://console.aws.amazon.com/amplify/> を開き、対象アプリ（本番のアプリ）を選ぶ
 2. 左メニューの **ホスティング** → **書き換えとリダイレクト** → **テキストエディターを開く**
 3. 現在は次のルールが入っている
 
@@ -274,21 +274,45 @@ imrg.workの登録業者はお名前。com。DNSの管理はRoute 53が行う（
 > 保存を1年に延ばしても費用は年に数円だが、イベント履歴と同じ90日で運用している。
 > 長く追跡したくなったら、ライフサイクルの日数を365に変える。
 
-## 8. 本番のブランチを master から main へ変える（TODO 2-6）
+## 8. 新しいリポジトリー imrg-platform へつなぎ替え、本番を main にする（TODO 3-0、2-6、2-5）
 
-GitHubに `main` ブランチ（`master` と同じ中身）を作ってから行う。アプリは、PRのプレビューを作っている `d1o1ui2gd5pshh`。
+GitHubのリポジトリーを `imrg-web-main` から `imrg-platform` へ移した（コミット履歴の個人のメールアドレスを消すため、新しいリポジトリーを作った）。今の本番のアプリ（`d1o1ui2gd5pshh`）は古いリポジトリーの `master` につながっている。
 
-1. **Amplify** → 対象アプリ → **ブランチを追加** で `main` を選ぶ。ビルドが始まるので、成功するまで待つ（`https://main.d1o1ui2gd5pshh.amplifyapp.com` で見られる）
-2. **ホスティング** → **カスタムドメイン** → `imrg.work` の **ドメインを管理**
-   - `imrg.work`（ルート）と `www` の割り当て先ブランチを `master` から `main` に変えて保存する
-   - 反映まで数分かかる。`https://imrg.work/_app/version.json` の値が、手順1のビルドの値（`https://main.d1o1ui2gd5pshh.amplifyapp.com/_app/version.json`）と同じになれば切り替わっている
-3. **ホスティング** → **プレビュー** で、`main` と `develop` のPRプレビューを有効にする（TODO 2-5）
-4. `main` を本番として扱う設定を確かめる
-   - **ブランチ設定** で `main` の自動ビルドが有効になっている
-   - 環境変数やビルドの設定を `master` に個別に入れていた場合は、`main` にも入れる
-5. 本番が `main` から配信されていることを確かめてから、`master` のブランチ接続を削除する（**アクションを実行** → **ブランチを切断**）
-6. もう1つのアプリ `d1d0cu0fwxm76y` を開き、何に使われているかを確かめる。使っていなければ削除する（GitHubのwebhookも一緒に消える）
-7. 終わったらGitHubの `master` ブランチを消す
+既存のアプリのリポジトリーを画面から付け替える手順は用意されていないため、**新しいアプリを作ってドメインを移す**。新しいアプリはGitHub App方式でつながるので、PRのプレビューもそのまま使える。
+
+### 8-1. 新しいアプリを作る
+
+1. **Amplify** → **新しいアプリ** → **Webアプリをホスト** → **GitHub** を選ぶ
+2. GitHubの画面で **AWS Amplify** のGitHub Appの権限を確かめる。「Only select repositories」にしている場合は `imrg-platform` を足す
+3. リポジトリ `SiMiTaKu/imrg-platform`、ブランチ `main` を選ぶ
+4. ビルドの設定はリポジトリーの `amplify.yml` を使う（画面の内容がそれと同じことを確かめる）
+5. アプリ名は `imrg-platform` にする。**保存してデプロイ** を押し、ビルドの成功を待つ
+6. 古いアプリの設定を写す
+   - **ホスティング** → **書き換えとリダイレクト**：古いアプリの内容（`/<*>` → `/404.html`、`404-200`）と同じにする
+   - **ホスティング** → **環境変数**：古いアプリに入れているものがあれば同じにする（`.env` の値はリポジトリーにあるので、通常は不要）
+   - **ビルドの設定** → **ビルドイメージ**：Amazon Linux 2023であることを確かめる
+7. `https://main.<新しいアプリID>.amplifyapp.com` を開き、トップ・カレンダー・推しミツ！・採点が表示されることを確かめる
+
+### 8-2. ドメインを移す
+
+同じドメインは2つのアプリに同時に割り当てられないので、古いアプリから外してから新しいアプリに付ける。**外してから付け終わるまでの数分から数十分、`imrg.work` が表示されなくなる。**
+
+1. 古いアプリ → **ホスティング** → **カスタムドメイン** → `imrg.work` を削除する
+2. 新しいアプリ → **ホスティング** → **カスタムドメイン** → **ドメインを追加** で `imrg.work` を選ぶ（Route 53で管理しているので、DNSの設定は自動で入る）
+   - `imrg.work`（ルート）と `www` を `main` に割り当てる
+   - SSL証明書は、Amplifyの管理する証明書でよい
+3. 状態が **利用可能** になるまで待つ
+4. `https://imrg.work/_app/version.json` の値が、8-1のビルドの値（`https://main.<新しいアプリID>.amplifyapp.com/_app/version.json`）と同じになれば切り替わっている
+5. `curl -sI https://imrg.work/` でセキュリティーヘッダーが付いていることを確かめる
+
+### 8-3. 仕上げ
+
+1. 新しいアプリに `develop` ブランチも接続する（`https://develop.<新しいアプリID>.amplifyapp.com` で開発中の版を見られる）
+2. **ホスティング** → **プレビュー** で、`main` と `develop` のPRプレビューを有効にする（TODO 2-5）
+3. 新しいアプリのIDを、リポジトリーの `.github/pull_request_template.md` と `.github/instructions/development-workflow.instructions.md` のプレビューのURLに反映する
+4. 古いアプリ（`d1o1ui2gd5pshh`）と、もう1つの古いアプリ（`d1d0cu0fwxm76y`）を削除する。古いリポジトリーのwebhookも一緒に消える
+5. GitHubの古いリポジトリ `imrg-web-main` をアーカイブする（非公開のまま残す）
+6. `imrg-platform` の `master` ブランチを消す
 
 ## 9. 直したあとにやること
 

@@ -51,7 +51,7 @@ name: 開発の進め方
 - GitHub がスタックとして扱っている PR は、`gh pr merge` ではマージできない。一番上の PR を非同期マージの API でマージすると、下の PR もまとめて入る
 
   ```bash
-  gh api -X PUT repos/SiMiTaKu/imrg-web-main/pulls/<一番上の PR>/merge-async -f merge_method=merge
+  gh api -X PUT repos/SiMiTaKu/imrg-platform/pulls/<一番上の PR>/merge-async -f merge_method=merge
   ```
 
 - スタックを作ったあとに上へ足した PR はスタックに含まれない。先にその PR を1つ下のブランチへマージしてから、スタックの一番上をマージする
