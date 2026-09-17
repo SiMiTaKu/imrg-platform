@@ -31,10 +31,8 @@ oshiage の同名ルールをもとにしている。
 
 ## Svelte の書き方
 
-- Svelte 5 を使っている。移行前のページ（`views/`）には Svelte 4 の書き方（`export let`・`$:`・`on:click`・`<slot>`）が残っている。FSD へ移すときに runes へ書き換える（TODO 1-3b）
+- Svelte 5 を使っている。Svelte 4 の書き方（`export let`・`$:`・`on:click`・`<slot>`）は使わない
 - **コンポーネントは runes で書く**（`$props`・`$state`・`$derived`・`onclick`・snippet）。oshiage と同じ書き方
-- 1つのコンポーネントの中で2つの書き方を混ぜない（Svelte 5 はコンポーネント単位でどちらかになる）
-- 既存のコンポーネントを少し直すだけなら、そのコンポーネントの書き方に合わせる
 
 ## コーディング規則
 

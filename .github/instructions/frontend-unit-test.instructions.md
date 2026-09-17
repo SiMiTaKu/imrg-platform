@@ -8,7 +8,7 @@ name: フロントエンド単体テスト実装ガイドライン
 
 ## このリポジトリでの状況
 
-- web のテストは oshiage と同じく `web/tests/unit/<レイヤー>/...` に置く（Vitest）。移行前のページのテストは `web/tests/unit/views/` にある
+- web のテストは oshiage と同じく `web/tests/unit/<レイヤー>/...` に置く（Vitest）
 - デザインシステムのテストは `design-system/tests/unit/<部品名>/` にある（Vitest・Testing Library・happy-dom）。web のコンポーネントのテストを書くときは、web にも同じ道具を入れる
 - `pnpm test` で実行する。CI でも毎回実行される
 

@@ -9,7 +9,7 @@ name: フロントエンドアーキテクチャ設計指針
 ## このドキュメントについて
 
 このドキュメントは、実装時に毎回参照する詳細ルールではなく、開発者が事前に理解しておくべき設計思想と実装方針をまとめた指針です。
-oshiage の同名の指針をもとにしています。web は FSD（Feature-Sliced Design）へ移行中です（TODO 3-2）。移し終えていないページは `web/src/views/page/` に残っています（「1. 構成」の末尾）。
+oshiage の同名の指針をもとにしています。web は FSD（Feature-Sliced Design）の構成です。
 
 ## 0. リポジトリーの構成（モノレポ）
 
@@ -44,14 +44,12 @@ web/src/
 │   ├── lib/       汎用の関数（i18n・device・sitemap）
 │   ├── model/     汎用の型
 │   └── ui/        サイトだけで使う汎用部品（Image）。見た目の部品はデザインシステムに作る
-├── lib/paraglide/ Paraglide JS の生成物（git 管理しない）
-├── style/         SCSS の変数（色・余白・フォント・影・角丸）
-└── views/         移行前の構成（移し終えたら消す）
+└── lib/paraglide/ Paraglide JS の生成物（git 管理しない）
 ```
 
 - 別名は `@app` `@pages` `@widgets` `@features` `@entities` `@shared`（`web/svelte.config.js`）。slice の外からは `index.ts` だけを読む（`import { PageHead } from '@widgets/layout'`）
 - テストは `web/tests/unit/<レイヤー>/...` に置く
-- 移行前のページ（`views/page/<ページ>/`）を触るときは、そのページを FSD へ移してから直す
+- SCSS の変数（色・余白・フォント・影・角丸）はデザインシステムのトークン（`design-system/src/styles`）を使う
 
 ## 2. FSD（Feature-Sliced Design）
 
