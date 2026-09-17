@@ -1,0 +1,48 @@
+name: CI probe
+
+on:
+  # マージ先を問わず、すべての PR で確かめる（スタック PR の途中も含む）
+  pull_request:
+  push:
+    branches:
+      - tmp/actions-probe
+      - main
+
+# 同じ PR やブランチに続けて push したら、古い実行は止める
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # 版は package.json の packageManager から読む
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: '.node-version'
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      # 本番で読み込む依存に high 以上の脆弱性があれば止める
+      - name: Audit (production)
+        run: pnpm audit --prod --audit-level high
+      # 開発用の依存は知らせるだけにする（CI は止めない）
+      - name: Audit (all)
+        run: pnpm audit --audit-level high
+        continue-on-error: true
+      - name: Format
+        run: pnpm run format:check
+      - name: Lint
+        run: pnpm run lint
+      - name: Type check
+        run: pnpm run check
+      - name: Test
+        run: pnpm run test
+      - name: Build
+        run: pnpm run build
