@@ -1,47 +1,91 @@
-<script context="module" lang="ts">
+<script lang="ts" module>
   import { PUBLIC_BASE_URL } from '$env/static/public'
-  import { CATEGORY_LABELS } from '../_data/category'
-  import type { CalendarEvent } from '../_data/model'
-  import { formatDateRangeEn, formatDateRangeJa, hostnameOf } from '../_lib/calendar'
 </script>
 
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
+  import { m } from '$lib/paraglide/messages'
+  import {
+    CATEGORY_COLORS,
+    categoryLabel,
+    formatDateRange,
+    hostnameOf,
+    localizeEvent,
+    type CalendarEvent,
+  } from '@entities/calendarEvent'
   import { pageData } from '@shared/lib/device'
+  import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
+  import type { SiteLocale } from '@shared/lib/i18n'
+  import { ROUTES } from '@shared/routes'
+  import { buildSportsEventJsonLd } from '../lib/detail'
 
-  export let event: CalendarEvent
+  /** 大会の詳細ページの引数 */
+  interface Props {
+    /** 表示する大会 */
+    event: CalendarEvent
+  }
 
-  let fromCalendar = false
+  const { event }: Props = $props()
+
+  const locale = getLocale() as SiteLocale
+  // 日本語ページでは、見出しや値に英語を小さく併記する
+  const showsBoth = showsSecondaryText()
+  const calendarHref = localizeHref(ROUTES.calendar.index)
+
+  let fromCalendar = $state(false)
 
   afterNavigate(({ from }) => {
-    fromCalendar = from?.url.pathname === '/calendar/'
+    fromCalendar = from?.url.pathname === calendarHref
   })
 
-  // カレンダーの一覧から来たときは、検索条件やページを保ったまま戻る
-  function back(clickEvent: MouseEvent) {
+  /**
+   * カレンダーの一覧から来たときは、検索条件やページを保ったまま戻る
+   * @param clickEvent - リンクのクリック
+   */
+  const back = (clickEvent: MouseEvent) => {
     if (!fromCalendar) return
     clickEvent.preventDefault()
     history.back()
   }
 
-  $: label = CATEGORY_LABELS[event.category]
-  $: showSource = event.sourceUrl !== event.officialUrl && event.sourceUrl !== event.resultUrl
+  /**
+   * 日本語ページでは「日本語 / English」の形にする
+   * @param message - 文言
+   * @returns 表示する文字列
+   */
+  const withSecondary = (message: typeof m.calendar_tag_tentative): string =>
+    showsBoth ? `${message()} / ${message({}, { locale: SECONDARY_LOCALE })}` : message()
 
-  // 検索結果に日程と会場を出すための構造化データ（schema.org の SportsEvent）
-  $: jsonLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'SportsEvent',
-    name: event.titleJa,
-    alternateName: event.titleEn !== event.titleJa ? event.titleEn : undefined,
-    startDate: event.startDate,
-    endDate: event.endDate ?? event.startDate,
-    url: `${PUBLIC_BASE_URL}/calendar/${event.id}/`,
-    sport: "Men's Rhythmic Gymnastics",
-    location: event.venueJa ? { '@type': 'Place', name: event.venueJa } : undefined,
-  })
+  const localized = $derived(localizeEvent(event, locale))
+  // 日本語ページで併記する英語の値
+  const secondary = $derived(localizeEvent(event, SECONDARY_LOCALE))
+  const showSource = $derived(
+    event.sourceUrl !== event.officialUrl && event.sourceUrl !== event.resultUrl,
+  )
+  const categoryText = $derived(
+    showsBoth
+      ? `${categoryLabel(event.category)} / ${categoryLabel(event.category, SECONDARY_LOCALE)}`
+      : categoryLabel(event.category),
+  )
+
+  // 検索結果に日程と会場を出すための構造化データ。表示中の言語の値にする
+  const jsonLd = $derived(
+    JSON.stringify(
+      buildSportsEventJsonLd(
+        event,
+        locale,
+        PUBLIC_BASE_URL,
+        localizeHref(ROUTES.calendar.detail(event.id)),
+      ),
+    ),
+  )
   // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる
-  $: jsonLdTag = `<script type="application/ld+json">${jsonLd}<` + '/script>'
+  const jsonLdTag = $derived(`<script type="application/ld+json">${jsonLd}<` + '/script>')
 </script>
+
+{#snippet factLabel(message: typeof m.calendar_fact_date)}
+  {message()}{#if showsBoth}<span lang="en">{message({}, { locale: SECONDARY_LOCALE })}</span>{/if}
+{/snippet}
 
 <svelte:head>
   <!-- eslint-disable-next-line svelte/no-at-html-tags -- 埋め込むのは自前のデータを JSON.stringify した文字列だけで、外部からの入力は混ざらない -->
@@ -49,69 +93,73 @@
 </svelte:head>
 
 <article
-  style:--color={label.color}
+  style:--color={CATEGORY_COLORS[event.category]}
   class="event-detail"
   class:pc={!$pageData.isMobile}
   class:sp={$pageData.isMobile}
 >
   <p class="breadcrumb">
-    <a href="/calendar/" on:click={back}
-      >‹ カレンダーに戻る<span lang="en">Back to calendar</span></a
+    <a href={calendarHref} onclick={back}
+      >‹ {m.calendar_back_to_calendar()}{#if showsBoth}<span lang="en"
+          >{m.calendar_back_to_calendar({}, { locale: SECONDARY_LOCALE })}</span
+        >{/if}</a
     >
   </p>
 
   <p class="badges">
-    <span class="category">{label.ja} / {label.en}</span>
+    <span class="category">{categoryText}</span>
     {#if event.status === 'tentative'}
-      <span class="tentative">日程は予定 / Tentative</span>
+      <span class="tentative">{withSecondary(m.calendar_tag_tentative)}</span>
     {/if}
   </p>
 
-  <h1 class="title">{event.titleJa}</h1>
-  {#if event.titleEn !== event.titleJa}
-    <p class="title-en" lang="en">{event.titleEn}</p>
+  <h1 class="title">{localized.title}</h1>
+  {#if showsBoth && localized.alternateTitle}
+    <p class="title-en" lang="en">{localized.alternateTitle}</p>
   {/if}
 
   <dl class="facts">
     <div class="fact">
-      <dt>日程<span lang="en">Date</span></dt>
+      <dt>{@render factLabel(m.calendar_fact_date)}</dt>
       <dd>
-        <span class="fact-main">{formatDateRangeJa(event)}</span>
-        <span class="fact-en" lang="en">{formatDateRangeEn(event)}</span>
+        <span class="fact-main">{formatDateRange(event, locale)}</span>
+        {#if showsBoth}
+          <span class="fact-en" lang="en">{formatDateRange(event, SECONDARY_LOCALE)}</span>
+        {/if}
       </dd>
     </div>
 
-    {#if event.venueJa}
+    {#if localized.venue}
       <div class="fact">
-        <dt>会場<span lang="en">Venue</span></dt>
+        <dt>{@render factLabel(m.calendar_fact_venue)}</dt>
         <dd>
-          <span class="fact-main">{event.venueJa}</span>
-          {#if event.venueEn}
-            <span class="fact-en" lang="en">{event.venueEn}</span>
+          <span class="fact-main">{localized.venue}</span>
+          {#if showsBoth && event.venueEn}
+            <span class="fact-en" lang="en">{secondary.venue}</span>
           {/if}
         </dd>
       </div>
     {/if}
 
-    {#if event.streamingJa}
+    {#if localized.streaming}
       <div class="fact">
-        <dt>配信<span lang="en">Live stream</span></dt>
+        <dt>{@render factLabel(m.calendar_fact_streaming)}</dt>
         <dd>
-          <span class="fact-text">{event.streamingJa}</span>
-          {#if event.streamingEn}
-            <span class="fact-en" lang="en">{event.streamingEn}</span>
+          <span class="fact-text">{localized.streaming}</span>
+          {#if showsBoth && event.streamingEn}
+            <span class="fact-en" lang="en">{secondary.streaming}</span>
           {/if}
         </dd>
       </div>
     {/if}
 
-    {#if event.noteJa}
+    {#if localized.note}
       <div class="fact">
-        <dt>補足<span lang="en">Note</span></dt>
+        <dt>{@render factLabel(m.calendar_fact_note)}</dt>
         <dd>
-          <span class="fact-text">{event.noteJa}</span>
-          {#if event.noteEn}
-            <span class="fact-en" lang="en">{event.noteEn}</span>
+          <span class="fact-text">{localized.note}</span>
+          {#if showsBoth && event.noteEn}
+            <span class="fact-en" lang="en">{secondary.note}</span>
           {/if}
         </dd>
       </div>
@@ -122,12 +170,12 @@
     <p class="actions">
       {#if event.officialUrl}
         <a class="action primary" href={event.officialUrl} rel="noopener noreferrer" target="_blank"
-          >公式サイト<span lang="en">Official site</span></a
+          >{@render factLabel(m.calendar_official_site)}</a
         >
       {/if}
       {#if event.resultUrl}
         <a class="action" href={event.resultUrl} rel="noopener noreferrer" target="_blank"
-          >結果を見る<span lang="en">Results</span></a
+          >{@render factLabel(m.calendar_results)}</a
         >
       {/if}
     </p>
@@ -135,7 +183,7 @@
 
   {#if showSource}
     <p class="source">
-      出典 / Source:
+      {withSecondary(m.calendar_source)}:
       <a href={event.sourceUrl} rel="noopener noreferrer" target="_blank"
         >{hostnameOf(event.sourceUrl)}</a
       >
@@ -143,10 +191,10 @@
   {/if}
 
   <p class="caution">
-    日程や会場は変更されることがあります。お出かけ前に、必ず主催者の公式情報をご確認ください。
-    <span lang="en"
-      >Dates and venues may change. Please check the organizer's official information before you go.</span
-    >
+    {m.calendar_caution()}
+    {#if showsBoth}
+      <span lang="en">{m.calendar_caution({}, { locale: SECONDARY_LOCALE })}</span>
+    {/if}
   </p>
 </article>
 

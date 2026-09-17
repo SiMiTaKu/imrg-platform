@@ -1,45 +1,76 @@
-<script context="module" lang="ts">
-  import { CATEGORY_LABELS } from '../_data/category'
-  import type { CalendarEvent } from '../_data/model'
-  import { formatDateRangeJa, toDateBadge } from '../_lib/calendar'
-</script>
-
 <script lang="ts">
-  export let event: CalendarEvent
+  import { m } from '$lib/paraglide/messages'
+  import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
+  import type { SiteLocale } from '@shared/lib/i18n'
+  import { ROUTES } from '@shared/routes'
+  import { CATEGORY_COLORS } from '../config/category'
+  import { categoryLabel } from '../lib/category'
+  import { formatDateRange, shortMonthEn, toDateBadge, weekdayName } from '../lib/date'
+  import { localizeEvent } from '../lib/event'
+  import type { CalendarEvent } from '../model'
 
-  $: label = CATEGORY_LABELS[event.category]
-  $: badge = toDateBadge(event.startDate)
+  /** 一覧の1行の引数 */
+  interface Props {
+    /** 表示するイベント */
+    event: CalendarEvent
+  }
+
+  const { event }: Props = $props()
+
+  const locale = getLocale() as SiteLocale
+  // 日本語ページでは、種類名と大会名に英語を小さく併記する
+  const showsBoth = showsSecondaryText()
+
+  // 日程と会場の区切り。英語ページでは全角の中黒を使わない
+  const separator = locale === 'en' ? '·' : '・'
+
+  const localized = $derived(localizeEvent(event, locale))
+  const badge = $derived(toDateBadge(event.startDate))
 </script>
 
 <!-- 一覧の1行。押すと詳細ページへ移る -->
-<a style:--color={label.color} class="event-row" href={`/calendar/${event.id}/`}>
+<a
+  style:--color={CATEGORY_COLORS[event.category]}
+  class="event-row"
+  href={localizeHref(ROUTES.calendar.detail(event.id))}
+>
   <span class="date" aria-hidden="true">
-    <span class="date-month">{badge.month}月</span>
-    {#if badge.day}
+    <span class="date-month"
+      >{m.calendar_row_month({
+        month: locale === 'en' ? shortMonthEn(badge.month) : badge.month,
+      })}</span
+    >
+    {#if badge.day !== undefined && badge.weekday !== undefined}
       <span class="date-day">{badge.day}</span>
-      <span class="date-weekday">{badge.weekdayJa}</span>
+      <span class="date-weekday">{weekdayName(badge.weekday, locale)}</span>
     {:else}
-      <span class="date-undecided">日付<br />未定</span>
+      <span class="date-undecided"
+        >{m.calendar_row_undecided_line1()}<br />{m.calendar_row_undecided_line2()}</span
+      >
     {/if}
   </span>
 
   <span class="body">
     <span class="meta">
-      <span class="category">{label.ja}<span lang="en">{label.en}</span></span>
+      <span class="category"
+        >{categoryLabel(event.category)}{#if showsBoth}<span lang="en"
+            >{categoryLabel(event.category, SECONDARY_LOCALE)}</span
+          >{/if}</span
+      >
       {#if event.status === 'tentative'}
-        <span class="tag">日程は予定</span>
+        <span class="tag">{m.calendar_tag_tentative()}</span>
       {/if}
       {#if event.resultUrl}
-        <span class="tag result">結果あり</span>
+        <span class="tag result">{m.calendar_tag_result()}</span>
       {/if}
     </span>
-    <span class="title">{event.titleJa}</span>
-    {#if event.titleEn !== event.titleJa}
-      <span class="title-en" lang="en">{event.titleEn}</span>
+    <span class="title">{localized.title}</span>
+    {#if showsBoth && localized.alternateTitle}
+      <span class="title-en" lang="en">{localized.alternateTitle}</span>
     {/if}
     <span class="sub">
-      {formatDateRangeJa(event)}{#if event.venueJa}<span class="separator">・</span
-        >{event.venueJa}{/if}
+      {formatDateRange(event, locale)}{#if localized.venue}<span class="separator">{separator}</span
+        >{localized.venue}{/if}
     </span>
   </span>
 

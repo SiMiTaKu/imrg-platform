@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Page from '$views/page/calendar/Page.svelte'
+  import { CalendarPage } from '@pages/calendar'
   import { PageHead } from '@widgets/layout'
   import type { PageData } from './$types'
 
@@ -7,4 +7,4 @@
 </script>
 
 <PageHead meta={data.meta} />
-<Page />
+<CalendarPage />

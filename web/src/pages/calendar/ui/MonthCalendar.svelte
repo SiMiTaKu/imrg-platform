@@ -1,38 +1,81 @@
-<script context="module" lang="ts">
-  import { createEventDispatcher } from 'svelte'
-  import { CATEGORY_LABELS, CATEGORY_ORDER } from '../_data/category'
-  import type { CalendarEvent } from '../_data/model'
+<script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import {
-    WEEKDAYS_EN,
-    WEEKDAYS_JA,
+    CATEGORY_COLORS,
+    CATEGORY_ORDER,
     buildMonthGrid,
+    categoryLabel,
     eventsInMonth,
     eventsOnDay,
-    formatDayJa,
-    formatMonthEn,
-    formatMonthJa,
+    formatDay,
+    formatMonth,
+    localizeEvent,
     shiftMonth,
     toMonthKey,
-  } from '../_lib/calendar'
-
-  /** PC で1マスに出す大会名の数。超えた分は「+N件」にまとめる */
-  const MAX_CHIPS = 3
-</script>
-
-<script lang="ts">
+    weekdayName,
+    type CalendarEvent,
+  } from '@entities/calendarEvent'
   import { pageData } from '@shared/lib/device'
+  import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
+  import type { SiteLocale } from '@shared/lib/i18n'
+  import { ROUTES } from '@shared/routes'
+  import { MAX_DAY_CHIPS } from '../config/calendarConfig'
 
-  export let monthKey: string
-  export let events: CalendarEvent[]
-  export let selectedDay: string | null
-  export let today: string
-  export let canPrev: boolean
-  export let canNext: boolean
+  /** 月のカレンダーの引数 */
+  interface Props {
+    /** 表示する月 "YYYY-MM" */
+    monthKey: string
+    /** 絞り込んだイベント */
+    events: CalendarEvent[]
+    /** 選んでいる日 "YYYY-MM-DD"。選んでいなければ null */
+    selectedDay: string | null
+    /** 今日の日付 "YYYY-MM-DD" */
+    today: string
+    /** 前の月へ移れるか */
+    canPrev: boolean
+    /** 次の月へ移れるか */
+    canNext: boolean
+    /** 表示する月を変えるとき */
+    onmonthchange: (monthKey: string) => void
+    /** 日を選んだとき */
+    onselect: (dateKey: string) => void
+  }
 
-  const dispatch = createEventDispatcher<{ month: string; select: string }>()
+  const { monthKey, events, selectedDay, today, canPrev, canNext, onmonthchange, onselect }: Props =
+    $props()
 
-  $: weeks = buildMonthGrid(monthKey)
-  $: undated = eventsInMonth(events, monthKey).filter((event) => event.startDate.length === 7)
+  const locale = getLocale() as SiteLocale
+  // 日本語ページでは、月・曜日などに英語を小さく併記する
+  const showsBoth = showsSecondaryText()
+  /** 曜日の並び（日曜始まり） */
+  const WEEKDAY_INDEXES = [0, 1, 2, 3, 4, 5, 6] as const
+
+  /**
+   * 日本語ページでは「日本語 / English」の形にする
+   * @param message - 文言
+   * @returns 表示する文字列
+   */
+  const withSecondary = (message: typeof m.calendar_prev_month): string =>
+    showsBoth ? `${message()} / ${message({}, { locale: SECONDARY_LOCALE })}` : message()
+
+  /**
+   * 日のボタンの読み上げ用の名前
+   * @param dateKey - 日付 "YYYY-MM-DD"
+   * @param count - その日のイベントの数
+   * @returns 「2026年9月16日 2件」の形
+   */
+  const dayLabel = (dateKey: string, count: number): string => {
+    const message =
+      new Intl.PluralRules(locale).select(count) === 'one'
+        ? m.calendar_day_label_one
+        : m.calendar_day_label_other
+    return message({ date: formatDay(dateKey, locale), count })
+  }
+
+  const weeks = $derived(buildMonthGrid(monthKey))
+  const undated = $derived(
+    eventsInMonth(events, monthKey).filter((event) => event.startDate.length === 7),
+  )
 </script>
 
 <div class="month-calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
@@ -40,34 +83,38 @@
     <button
       class="nav-button"
       type="button"
-      aria-label="前の月 / Previous month"
+      aria-label={withSecondary(m.calendar_prev_month)}
       disabled={!canPrev}
-      on:click={() => dispatch('month', shiftMonth(monthKey, -1))}>‹</button
+      onclick={() => onmonthchange(shiftMonth(monthKey, -1))}>‹</button
     >
     <h3 class="month-title">
-      {formatMonthJa(monthKey)}
-      <span lang="en">{formatMonthEn(monthKey)}</span>
+      {formatMonth(monthKey, locale)}
+      {#if showsBoth}
+        <span lang="en">{formatMonth(monthKey, SECONDARY_LOCALE)}</span>
+      {/if}
     </h3>
     <button
       class="nav-button"
       type="button"
-      aria-label="次の月 / Next month"
+      aria-label={withSecondary(m.calendar_next_month)}
       disabled={!canNext}
-      on:click={() => dispatch('month', shiftMonth(monthKey, 1))}>›</button
+      onclick={() => onmonthchange(shiftMonth(monthKey, 1))}>›</button
     >
   </div>
   {#if toMonthKey(today) !== monthKey}
-    <button class="this-month" type="button" on:click={() => dispatch('month', toMonthKey(today))}
-      >今月に戻る / This month</button
+    <button class="this-month" type="button" onclick={() => onmonthchange(toMonthKey(today))}
+      >{withSecondary(m.calendar_this_month)}</button
     >
   {/if}
 
   <table class="grid">
     <thead>
       <tr>
-        {#each WEEKDAYS_JA as weekday, index (weekday)}
+        {#each WEEKDAY_INDEXES as index (index)}
           <th class:sunday={index === 0} class:saturday={index === 6} scope="col">
-            {weekday}<span lang="en">{WEEKDAYS_EN[index]}</span>
+            {weekdayName(index, locale)}{#if showsBoth}<span lang="en"
+                >{weekdayName(index, SECONDARY_LOCALE)}</span
+              >{/if}
           </th>
         {/each}
       </tr>
@@ -85,10 +132,10 @@
               <button
                 class="day-button"
                 type="button"
-                aria-label={`${formatDayJa(cell.dateKey)} ${dayEvents.length}件`}
+                aria-label={dayLabel(cell.dateKey, dayEvents.length)}
                 aria-pressed={cell.dateKey === selectedDay}
                 disabled={dayEvents.length === 0}
-                on:click={() => dispatch('select', cell.dateKey)}
+                onclick={() => onselect(cell.dateKey)}
               >
                 <span
                   class="day-number"
@@ -99,9 +146,8 @@
                 >
                 {#if $pageData.isMobile && dayEvents.length}
                   <span class="dots">
-                    {#each dayEvents.slice(0, MAX_CHIPS) as event (event.id)}
-                      <span style:--color={CATEGORY_LABELS[event.category].color} class="dot"
-                      ></span>
+                    {#each dayEvents.slice(0, MAX_DAY_CHIPS) as event (event.id)}
+                      <span style:--color={CATEGORY_COLORS[event.category]} class="dot"></span>
                     {/each}
                   </span>
                 {/if}
@@ -109,24 +155,21 @@
 
               {#if !$pageData.isMobile && dayEvents.length}
                 <ul class="chips">
-                  {#each dayEvents.slice(0, MAX_CHIPS) as event (event.id)}
+                  {#each dayEvents.slice(0, MAX_DAY_CHIPS) as event (event.id)}
+                    {@const title = localizeEvent(event, locale).title}
                     <li>
                       <a
-                        style:--color={CATEGORY_LABELS[event.category].color}
+                        style:--color={CATEGORY_COLORS[event.category]}
                         class="chip"
-                        title={event.titleJa}
-                        href={`/calendar/${event.id}/`}>{event.titleJa}</a
+                        {title}
+                        href={localizeHref(ROUTES.calendar.detail(event.id))}>{title}</a
                       >
                     </li>
                   {/each}
-                  {#if dayEvents.length > MAX_CHIPS}
+                  {#if dayEvents.length > MAX_DAY_CHIPS}
                     <li>
-                      <button
-                        class="more"
-                        type="button"
-                        on:click={() => dispatch('select', cell.dateKey)}
-                      >
-                        +{dayEvents.length - MAX_CHIPS}件
+                      <button class="more" type="button" onclick={() => onselect(cell.dateKey)}>
+                        {m.calendar_more({ count: dayEvents.length - MAX_DAY_CHIPS })}
                       </button>
                     </li>
                   {/if}
@@ -141,12 +184,17 @@
 
   {#if undated.length}
     <div class="undated">
-      <span class="undated-label">日付未定 <span lang="en">Date TBD</span></span>
+      <span class="undated-label"
+        >{showsBoth ? `${m.calendar_date_tbd()} ` : m.calendar_date_tbd()}{#if showsBoth}<span
+            lang="en">{m.calendar_date_tbd({}, { locale: SECONDARY_LOCALE })}</span
+          >{/if}</span
+      >
       {#each undated as event (event.id)}
         <a
-          style:--color={CATEGORY_LABELS[event.category].color}
+          style:--color={CATEGORY_COLORS[event.category]}
           class="undated-chip"
-          href={`/calendar/${event.id}/`}>{event.titleJa}</a
+          href={localizeHref(ROUTES.calendar.detail(event.id))}
+          >{localizeEvent(event, locale).title}</a
         >
       {/each}
     </div>
@@ -155,8 +203,8 @@
   <ul class="legend">
     {#each CATEGORY_ORDER as key (key)}
       <li class="legend-item">
-        <span style:--color={CATEGORY_LABELS[key].color} class="dot"></span>
-        {CATEGORY_LABELS[key].ja}
+        <span style:--color={CATEGORY_COLORS[key]} class="dot"></span>
+        {categoryLabel(key)}
       </li>
     {/each}
   </ul>

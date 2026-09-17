@@ -20,27 +20,43 @@ export type EventStatus = 'confirmed' | 'tentative'
 /**
  * CalendarEvent
  *
- * カレンダーに載せるイベント1件。日本語と英語を併記する
+ * カレンダーに載せるイベント1件。日本語と英語の値を持つ
+ *
+ * @remarks
+ * `~/imrg/calendar-data/build_events_ts.py` が書き出す `api/events.ts` の型。
+ * 英語の値（`venueEn` など）が無いときは、英語ページでも日本語の値を出す
  */
 export interface CalendarEvent {
   /** 詳細ページのURLに使う。開始日と名前から作り、一度決めたら変えない */
   id: string
+  /** 大会名（日本語） */
   titleJa: string
+  /** 大会名（英語） */
   titleEn: string
+  /** 種類 */
   category: EventCategory
   /** "2026-10-30"。年月しか分からないときは "2027-03" */
   startDate: string
   /** 1日だけのイベントは省略する */
   endDate?: string
+  /** 日程が確定しているか */
   status: EventStatus
+  /** 会場（日本語） */
   venueJa?: string
+  /** 会場（英語） */
   venueEn?: string
+  /** 配信（日本語） */
   streamingJa?: string
+  /** 配信（英語） */
   streamingEn?: string
+  /** 補足（日本語） */
   noteJa?: string
+  /** 補足（英語） */
   noteEn?: string
+  /** 公式サイト */
   officialUrl?: string
   /** 日程を確認できたページ。出典のないイベントは載せない */
   sourceUrl: string
+  /** 結果のページ */
   resultUrl?: string
 }

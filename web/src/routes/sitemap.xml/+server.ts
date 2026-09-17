@@ -1,8 +1,8 @@
 import { PUBLIC_BASE_URL } from '$env/static/public'
+import { EVENTS, UPDATED_AT } from '@entities/calendarEvent'
 import { BASE_LOCALE, localizePath, publishedLocales } from '@shared/lib/i18n'
 import type { SitemapEntry } from '@shared/lib/sitemap'
 import { buildSitemapXml, withTrailingSlash } from '@shared/lib/sitemap'
-import { EVENTS, UPDATED_AT } from '$views/page/calendar/_data/events'
 import type { RequestHandler } from './$types'
 
 // ビルド時に静的ファイルとして書き出す

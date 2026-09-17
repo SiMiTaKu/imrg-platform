@@ -20,4 +20,4 @@
 1. **パッケージは pnpm。** PR を出す前に `pnpm run verify` を通す
 2. **`develop` と `main` へ直接 push しない。** `feature/*` から PR を出す
 3. **本番への反映は `https://imrg.work/_app/version.json` で確かめる。** HTML の文字列検索では判定しない
-4. **`web/src/views/page/calendar/_data/events.ts` は手で編集しない。** 元データは `~/imrg/calendar-data/`
+4. **`web/src/entities/calendarEvent/api/events.ts` は手で編集しない。** 元データは `~/imrg/calendar-data/`

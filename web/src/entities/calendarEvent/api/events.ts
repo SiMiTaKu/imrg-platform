@@ -1,4 +1,4 @@
-import type { CalendarEvent } from "./model"
+import type { CalendarEvent } from "../model"
 
 /** 掲載内容を最後に確認した日 */
 export const UPDATED_AT = "2026-09-16"
