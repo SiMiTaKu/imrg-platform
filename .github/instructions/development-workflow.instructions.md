@@ -55,6 +55,17 @@ name: 開発の進め方
   gh api -X PUT repos/SiMiTaKu/imrg-platform/pulls/<一番上の PR>/merge-async -f merge_method=merge
   ```
 
+- 非同期マージの API は、「develop・main を更新できるのはオーナーだけ」のルールの例外（`--admin`）を使えず、受け付けてもマージされない。スタックをマージするときだけ、このルールを一時的に止め、終わったらすぐ戻す（「develop・main の保護」は止めない）
+
+  ```bash
+  R=SiMiTaKu/imrg-platform
+  ID=$(gh api repos/$R/rulesets --jq '.[] | select(.name | contains("オーナーだけ")) | .id')
+  gh api -X PUT repos/$R/rulesets/$ID -f enforcement=disabled
+  gh api -X PUT repos/$R/pulls/<一番上の PR>/merge-async -f merge_method=merge
+  # 全部 MERGED になったら
+  gh api -X PUT repos/$R/rulesets/$ID -f enforcement=active
+  ```
+
 - スタックを作ったあとに上へ足した PR はスタックに含まれない。先にその PR を1つ下のブランチへマージしてから、スタックの一番上をマージする
 - リリースは `develop` → `main` の PR をマージして行う。反映の確かめ方は [static-site-hosting.instructions.md](./static-site-hosting.instructions.md)
 - `gh` のアカウントが仕事用に戻ることがある。`export GH_TOKEN=$(gh auth token --hostname github.com --user SiMiTaKu)` を付けて実行すると確実
