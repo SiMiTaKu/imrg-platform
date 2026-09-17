@@ -22,3 +22,7 @@ export const 標準: Story = {}
 export const 小さめ: Story = {
   args: { fontSize: 30, subtitleFontSize: 16 },
 }
+
+export const 補助の文言なし: Story = {
+  args: { subtitle: undefined },
+}

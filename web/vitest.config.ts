@@ -7,7 +7,7 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: 'node',
-      include: ['src/**/*.spec.ts'],
+      include: ['tests/unit/**/*.spec.ts'],
     },
   }),
 )

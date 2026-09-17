@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-  import { pageData } from '../../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>

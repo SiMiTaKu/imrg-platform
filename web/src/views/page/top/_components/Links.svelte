@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ButtonLink } from '@imrg-platform/design-system'
-  import { pageData } from '../../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
   const LINKS = [
     { href: '/calendar', text: '大会・イベントを探す' },
     { href: '/decorating_apparatus', text: '手具装飾を依頼する' },

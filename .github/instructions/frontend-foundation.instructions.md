@@ -6,7 +6,7 @@ name: フロントエンド開発基盤ルール
 
 # Frontend Foundation - フロントエンド開発基盤ルール
 
-oshiage の同名ルールをもとにしている。このリポジトリは FSD とデザインシステムへの移行前（TODO Phase 3）なので、移行後に使う仕組み（`ROUTES`・`META_DATA`・`AppError` など）は「移行後」と明記した。
+oshiage の同名ルールをもとにしている。
 
 ## 基本方針
 
@@ -17,7 +17,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 
 ## UI実装方針
 
-- 共通部品は `@imrg-platform/design-system` を最優先で利用する（`import { Button } from '@imrg-platform/design-system'`）。まだ移していない部品は `web/src/views/atomic/` にある
+- 共通部品は `@imrg-platform/design-system` を最優先で利用する（`import { Button } from '@imrg-platform/design-system'`）。サイトだけで使う汎用部品は `web/src/shared/ui/` にある
 - 複数のページで使う見た目の部品は、デザインシステムに作る。runes で書き、Storybook のストーリー（`*.stories.ts`）と `design-system/tests/unit/` のテストを付ける
 - デザインシステムの部品は、サイトのストアや文言を持たない。文言は引数で受け取る
 - **端末の判定（`isMobile`・`pageData`）は web だけで使う。** デザインシステムの部品は端末を知らず、幅・高さ・文字の大きさなどを px の数値で受け取る。web 側で `fontSize={$pageData.isMobile ? 20 : 24}` のように分けて渡す
@@ -27,18 +27,19 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 - 新しいUI部品が必要な場合は、共通化前提で設計する
 - アクセシビリティ属性（ラベル、role、キーボード操作）を欠かさない
 - 文言は多言語化を前提に書く（[frontend-architecture-design.instructions.md](./frontend-architecture-design.instructions.md) の「多言語対応」）。日本語だけを部品に直書きしない
-- PC とスマホで見た目を分けるときは、既存の `pageData.isMobile`（`web/src/views/atomic/device-store/store.ts`）と `.pc` / `.sp` の CSS 変数の書き方に合わせる
+- PC とスマホで見た目を分けるときは、既存の `pageData.isMobile`（`@shared/lib/device`）と `.pc` / `.sp` の CSS 変数の書き方に合わせる
 
 ## Svelte の書き方
 
-- Svelte 5 を使っているが、既存のコンポーネントは Svelte 4 の書き方（`export let`・`$:`・`on:click`・`<slot>`）のまま。runes への書き換えは TODO 1-3b でページ単位に行う
-- **新しく作るコンポーネントは runes で書く**（`$props`・`$state`・`$derived`・`onclick`・snippet）。oshiage と同じ書き方
+- Svelte 5 を使っている。移行前のページ（`views/`）には Svelte 4 の書き方（`export let`・`$:`・`on:click`・`<slot>`）が残っている。FSD へ移すときに runes へ書き換える（TODO 1-3b）
+- **コンポーネントは runes で書く**（`$props`・`$state`・`$derived`・`onclick`・snippet）。oshiage と同じ書き方
 - 1つのコンポーネントの中で2つの書き方を混ぜない（Svelte 5 はコンポーネント単位でどちらかになる）
 - 既存のコンポーネントを少し直すだけなら、そのコンポーネントの書き方に合わせる
 
 ## コーディング規則
 
-- メタ情報（title・description・OGP）は、今は各ルートの `+page.server.ts` が返す `layout` で渡す（[static-site-hosting.instructions.md](./static-site-hosting.instructions.md)）。移行後は `shared/config/meta` の `META_DATA` 定数を参照し、ハードコーディングを禁止する
+- メタ情報（title・description・OGP）は `shared/config/meta` の `META_DATA` を参照し、ハードコーディングを禁止する（[static-site-hosting.instructions.md](./static-site-hosting.instructions.md)）
+- パスは `shared/routes` の `ROUTES` を参照し、文字列で直書きしない
 - **自己終了タグ（`<x />`）は空要素（`img` `br` `input` `hr` など）とコンポーネントだけに使う。** `<div />` や `<span />` は閉じタグを書く（`<div></div>`）。Svelte 5 が曖昧な書き方として警告するため。oshiage のルール（閉じタグを省略できるタグは自己完結タグ）とはここが違う
 - 再代入可能な変数 `let` の定義は避け、状態管理で使用する場合を除いて、基本は不変な定数 `const` で定義する
 
@@ -119,7 +120,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 - 各テストケース内は `#region Given` / `#region When` / `#region Then` でグルーピングする
 - `it` の説明文は必ず `〇〇の場合、〇〇になること` 形式で記述する
 - バリエーションの確認は同型の test を並べず、`it.each` を優先する
-- 既存のテスト（`web/src/test/`）はこの形になっていないものがある。触るときに合わせて直す
+- 既存のテスト（`web/tests/unit/`）はこの形になっていないものがある。触るときに合わせて直す
 
 ## フォーム実装補足
 

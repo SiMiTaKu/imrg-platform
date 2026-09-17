@@ -1,4 +1,4 @@
-import type { SrcMeta } from '$views/atomic/image/ImageAssets.svelte'
+import type { SrcMeta } from '@shared/ui'
 import Image1_1 from '../_image/work-list-image-1-1.jpg?w=256;512&format=webp&as=meta'
 import Image1_2 from '../_image/work-list-image-1-2.jpg?w=256;512&format=webp&as=meta'
 import Image1_3 from '../_image/work-list-image-1-3.jpg?w=256;512&format=webp&as=meta'

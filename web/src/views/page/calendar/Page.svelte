@@ -46,7 +46,7 @@
 <script lang="ts">
   import { tick } from 'svelte'
   import { afterNavigate } from '$app/navigation'
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 
   /** 絞り込みの条件を覚えておくキー（同じタブの中だけ） */
   const STATE_KEY = 'imrg-calendar-state'

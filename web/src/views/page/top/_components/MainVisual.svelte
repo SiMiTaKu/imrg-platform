@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
-  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import { ImageAssets } from '@shared/ui'
   import MainImage from '../_images/imrg-logo.jpg?w=650;1300&format=webp&as=meta'
 </script>
 
 <script lang="ts">
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 </script>
 
 <section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>

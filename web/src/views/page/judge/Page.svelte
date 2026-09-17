@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-  import { pageData } from '../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
   import SelectApparatus from './_components/SelectApparatus.svelte'
   import { judgementApparatus } from './_store/apparatus'
 

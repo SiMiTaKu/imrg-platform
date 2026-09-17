@@ -7,7 +7,7 @@
 <script lang="ts">
   import { executionDeduct } from '../_store/store'
   import { fly } from 'svelte/transition'
-  import { pageData } from '../../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
   import { judgementApparatus } from '../_store/apparatus'
 
   const dispatch = createEventDispatcher<{ submit: void }>()

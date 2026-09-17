@@ -1,12 +1,12 @@
 <script context="module" lang="ts">
   import { Heading } from '@imrg-platform/design-system'
   import YoutubeIcon from './_image/youtube-icon.png?w=120;240&format=webp&as=meta'
-  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import { ImageAssets } from '@shared/ui'
   import { WORK_LIST } from './_data/work-list'
 </script>
 
 <script lang="ts">
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>

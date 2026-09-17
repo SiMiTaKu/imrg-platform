@@ -1,12 +1,10 @@
-<script context="module" lang="ts">
-  import Page from '$views/page/privacy/Page.svelte'
-  import Layout from '$views/layout/Layout.svelte'
-</script>
-
 <script lang="ts">
-  import { page } from '$app/stores'
+  import { PrivacyPage } from '@pages/privacy'
+  import { PageHead } from '@widgets/layout'
+  import type { PageData } from './$types'
+
+  const { data }: { data: PageData } = $props()
 </script>
 
-<Layout layout={$page.data.layout}>
-  <Page slot="main" />
-</Layout>
+<PageHead meta={data.meta} />
+<PrivacyPage />

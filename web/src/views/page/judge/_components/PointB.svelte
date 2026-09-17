@@ -7,7 +7,7 @@
   import { Apparatus } from '../_model/apparatus'
   import { executionDeduct } from '../_store/store'
   import { judgementApparatus } from '../_store/apparatus'
-  import { pageData } from '../../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
   import TimesCounter from './TimesCounter.svelte'
 
   const dispatch = createEventDispatcher<{ submit: void }>()

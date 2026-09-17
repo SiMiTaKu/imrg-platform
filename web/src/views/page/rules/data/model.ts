@@ -1,4 +1,4 @@
-import type { Image } from '$lib/common/image'
+import type { Image } from '@shared/model'
 
 /**
  * 規則集全体。章（chapter）の一覧を持つ

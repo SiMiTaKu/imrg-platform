@@ -2,7 +2,7 @@
   import MainVisual from './_components/MainVisual.svelte'
   import WorkList from './_components/WorkList.svelte'
   import Summary from './_components/Summary.svelte'
-  import Contact from '../../common/contact/Contact.svelte'
+  import { Contact } from '@widgets/contact'
 </script>
 
 <article>

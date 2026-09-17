@@ -20,7 +20,7 @@
 </script>
 
 <script lang="ts">
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 
   export let monthKey: string
   export let events: CalendarEvent[]

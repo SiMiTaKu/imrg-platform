@@ -4,7 +4,7 @@
 </script>
 
 <script lang="ts">
-  import { pageData } from '../../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
   import QuestionLabel from '../../../atomic/form/label/QuestionLabel.svelte'
   import { judgementApparatus } from '../_store/apparatus'
 

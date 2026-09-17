@@ -198,6 +198,13 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - Amplifyはルートの `amplify.yml` から `pnpm --filter @imrg-platform/web build` を実行し、`web/build` を配信する。コンソールのモノレポ設定は使わない
 - [ ] **3-2. FSD へ再配置**：`web/src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
   - カレンダーはすでに近い形（`_components` `_data` `_lib`）なので、ここから着手すると移行しやすい
+  - [x] 3-2a. 共通の部分（2026-09-18）
+    - `app`（hooks・全体のCSS）・`shared`（`ROUTES`・`META_DATA`・`AppError`・i18n・端末判定・sitemap・Image）・`widgets`（ヘッダー・フッター・head・お問い合わせ・規約の枠）を作り、runesで書き直した
+    - メタ情報は全ページ `META_DATA`（文言は `messages/meta`）から出し、`+page.svelte` は `PageHead` とページを置くだけにした
+    - 文言ファイルを領域ごと（`messages/<領域>/<言語>.json`）に分け、翻訳済みページの登録も `shared/config/translation/<ページ>.ts` に分けた（ページの作業を並行してもぶつからないように）
+    - プライバシーポリシーと利用規約を `pages` へ移し、英語ページを公開の対象にした（本文の英訳はレビューで確認）
+    - テストを `web/tests/unit/` へ移した
+    - メニューの言語切り替えは、訳し終えたページでだけ出る
 - [x] **3-3. デザインシステムを作る**（土台。2026-09-17）
   - トークン（色・余白・字送り・影・角丸）を `web/src/style` から切り出す
   - 共通部品（Button・ButtonLink・Card・Chip・Badge・Heading・Pagination）をStorybook付きで整理

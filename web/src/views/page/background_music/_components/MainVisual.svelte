@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import { ImageAssets } from '@shared/ui'
   import MainVisual from './_image/main-visual.png?w=1024;2048&format=webp&as=meta'
   const MAIN_VISUALS = [
     { description: '大好きな曲を、自然な演技時間に短縮！' },
@@ -13,7 +13,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { fly } from 'svelte/transition'
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 
   let currentIndex = Math.floor(Math.random() * 5)
   let currentVisual = MAIN_VISUALS[currentIndex]

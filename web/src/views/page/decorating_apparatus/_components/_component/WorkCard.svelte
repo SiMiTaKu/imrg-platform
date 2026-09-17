@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
-  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
-  import type { SrcMeta } from '$views/atomic/image/ImageAssets.svelte'
+  import { ImageAssets } from '@shared/ui'
+  import type { SrcMeta } from '@shared/ui'
 </script>
 
 <script lang="ts">
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
   import { fade } from 'svelte/transition'
 
   export let images: SrcMeta[][] = []

@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
+  import { ImageAssets } from '@shared/ui'
   import Image1 from './_image/main-visual-1.jpg?w=1024;2048&format=webp&as=meta'
   import Image2 from './_image/main-visual-3.jpg?w=1024;2048&format=webp&as=meta'
   import Image3 from './_image/main-visual-5.jpg?w=1024;2048&format=webp&as=meta'
@@ -33,7 +33,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { fade, fly } from 'svelte/transition'
-  import { pageData } from '../../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 
   let currentIndex = Math.floor(Math.random() * 5)
   let currentVisual = MAIN_VISUALS[currentIndex]

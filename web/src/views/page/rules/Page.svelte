@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
-  import Image from '../../atomic/image/Image.svelte'
+  import { Image } from '@shared/ui'
   import { vvRuleBook, calculateIndexOfArticle } from './data/data'
 </script>
 
 <script lang="ts">
-  import { pageData } from '../../atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
 </script>
 
 <article class="rule-book" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>

@@ -1,6 +1,6 @@
 ---
 description: フロントエンド単体テスト実装のガイドライン。TDD実践と品質確保のための指針
-applyTo: '{web/src/**/*.spec.ts,web/tests/unit/**/*.spec.ts}'
+applyTo: '{web/tests/unit/**/*.spec.ts,design-system/tests/unit/**/*.spec.ts}'
 name: フロントエンド単体テスト実装ガイドライン
 ---
 
@@ -8,7 +8,7 @@ name: フロントエンド単体テスト実装ガイドライン
 
 ## このリポジトリでの状況
 
-- テストは今 `web/src/test/*.spec.ts` にある（Vitest）。FSD への移行（TODO 3-2）で oshiage と同じ `web/tests/unit/` へ移す
+- web のテストは oshiage と同じく `web/tests/unit/<レイヤー>/...` に置く（Vitest）。移行前のページのテストは `web/tests/unit/views/` にある
 - デザインシステムのテストは `design-system/tests/unit/<部品名>/` にある（Vitest・Testing Library・happy-dom）。web のコンポーネントのテストを書くときは、web にも同じ道具を入れる
 - `pnpm test` で実行する。CI でも毎回実行される
 

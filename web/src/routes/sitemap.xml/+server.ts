@@ -1,7 +1,7 @@
 import { PUBLIC_BASE_URL } from '$env/static/public'
-import type { SitemapEntry } from '$lib/common/sitemap'
-import { buildSitemapXml, withTrailingSlash } from '$lib/common/sitemap'
-import { BASE_LOCALE, localizePath, publishedLocales } from '$lib/i18n/translation'
+import { BASE_LOCALE, localizePath, publishedLocales } from '@shared/lib/i18n'
+import type { SitemapEntry } from '@shared/lib/sitemap'
+import { buildSitemapXml, withTrailingSlash } from '@shared/lib/sitemap'
 import { EVENTS, UPDATED_AT } from '$views/page/calendar/_data/events'
 import type { RequestHandler } from './$types'
 

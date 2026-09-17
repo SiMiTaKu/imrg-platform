@@ -1,16 +1,19 @@
 <script lang="ts">
-  import { pageData } from '$views/atomic/device-store/store'
+  import { m } from '$lib/paraglide/messages'
+  import { pageData } from '@shared/lib/device'
+  import { localizeHref } from '@shared/lib/i18n'
+  import { ROUTES } from '@shared/routes'
 </script>
 
 <svelte:head>
-  <title>エラーページ|男子新体操国際化プロジェクト</title>
+  <title>{m.meta_error_title()}</title>
 </svelte:head>
 
 <article class="wrapper" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <h1 class="title">エラーが発生しました</h1>
+  <h1 class="title">{m.error_title()}</h1>
   <div class="content">
-    <div class="text">※リクエストされたページは存在しません。</div>
-    <a class="link" href="/">トップに戻る</a>
+    <div class="text">{m.error_not_found()}</div>
+    <a class="link" href={localizeHref(ROUTES.top)}>{m.error_back_to_top()}</a>
   </div>
 </article>
 

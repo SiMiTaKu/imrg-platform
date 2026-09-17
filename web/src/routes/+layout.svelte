@@ -1,19 +1,17 @@
-<script context="module" lang="ts">
-  import Header from '$views/layout/Header.svelte'
-  import Footer from '$views/layout/Footer.svelte'
-  import ScrollToTopButton from '$views/layout/ScrollToTopButton.svelte'
-  import LocalePageLinks from '$lib/i18n/LocalePageLinks.svelte'
-  import './styles.css'
-</script>
-
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import '../app/styles/global.css'
+  import { onMount, type Snippet } from 'svelte'
   import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
+  import { Footer, Header, LocalePageLinks, ScrollToTopButton } from '@widgets/layout'
 
-  let screenWidth = 0
+  const { children }: { children: Snippet } = $props()
 
-  $: pageData.update(screenWidth)
+  let screenWidth = $state(0)
+
+  $effect.pre(() => {
+    pageData.update(screenWidth)
+  })
 
   /** 手元の開発サーバー。Cloudflare 側で弾かれ、コンソールにエラーが出るだけなので読み込まない */
   const LOCAL_HOSTS = ['localhost', '127.0.0.1']
@@ -47,7 +45,7 @@
 <Header />
 
 <main class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <slot></slot>
+  {@render children()}
 </main>
 
 <Footer />

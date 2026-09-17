@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-  import { pageData } from '$views/atomic/device-store/store'
+  import { pageData } from '@shared/lib/device'
   import { criteria } from '../_store/criteria'
   import { ContentType, findApparatus, findContentType } from '$views/page/oshimitsu/_models'
 
