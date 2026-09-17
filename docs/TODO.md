@@ -125,7 +125,9 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 ## Phase 2: CI とブランチ運用
 
-- [ ] **2-1. CI を強化する**：PRで `lint` → `check` → `test` → `build` を実行（現在はlintとtestのみ）
+- [x] **2-1. CI を強化する**：PRで `lint` → `check` → `test` → `build` を実行（現在はlintとtestのみ）
+  - `.github/workflows/ci.yml` で、整形 → lint → 型 → テスト → ビルドを実行する。手元では `pnpm run verify` で同じ確認ができる
+  - マージ先を問わずすべてのPRで動かす（スタックPRの途中にも走る）。`develop` と `master` へのpushでも動かす
 - [ ] **2-2. ブランチ保護**：`master` と `develop` を直push禁止、PR必須、CI必須
   - privateのままならGitHub Proが必要。費用をかけないならpublic化も選択肢（`.env` に秘密情報がないことは確認済み）
 - [ ] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加

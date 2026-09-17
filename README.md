@@ -30,6 +30,14 @@ pnpm run build
 > Nodeのバージョンは `.node-version` で指定しています（24系）。Amplifyもビルドの最初に `nvm install $(cat .node-version)` で同じバージョンを入れます。
 > 以前はAmplifyのビルドが失敗するため18系に留めていました。Amplifyのビルドイメージが古い（Amazon Linux 2）と新しいNodeが動かないため、上げたあとにビルドが失敗したら、コンソールでビルドイメージがAmazon Linux 2023になっているかを確かめてください。
 
+## Verify
+
+CIと同じ確認（整形・lint・型・テスト・ビルド）をまとめて実行します。PRを出す前に通してください。
+
+```bash
+pnpm run verify
+```
+
 ## Lint
 
 ### Check
