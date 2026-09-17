@@ -1,4 +1,4 @@
-# imrg-web-main（imrg.work）— AI への指示
+# imrg-platform（imrg.work）— AI への指示
 
 **このリポジトリのルールは `.github/instructions/` にある。作業を始める前に必ず読むこと。**
 入口は [.github/instructions/general.instructions.md](.github/instructions/general.instructions.md)。そこからタスクごとのルールへたどる。
