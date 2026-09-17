@@ -10,7 +10,7 @@
   import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
 </script>
 
-<section class="contact" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="contact" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
@@ -33,12 +33,12 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --content-font-size: #{$font-size-24};
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --content-font-size: #{$font-size-18};
   }

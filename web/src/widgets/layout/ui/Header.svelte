@@ -16,7 +16,7 @@
   }
 </script>
 
-<header class="header-main" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<header class="header-main" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <div class="content">
     <a class="top-link" href={localizeHref(ROUTES.top)} onclick={closeHamburger}>
       <ImageAssets
@@ -24,7 +24,7 @@
         height={$pageData.isMobile ? 56 : 64}
         alt={m.layout_logo_alt()}
         lazy={false}
-        srcMeta={MainImage}
+        imageSourceMeta={MainImage}
         objectFit="cover"
       />
     </a>
@@ -33,11 +33,15 @@
         <li class="sns-row">
           <a class="sns-link" href={sns.href} rel="noopener noreferrer" target="_blank">
             <ImageAssets
-              width={$pageData.isMobile ? sns.size.header.sp.width : sns.size.header.pc.width}
-              height={$pageData.isMobile ? sns.size.header.sp.height : sns.size.header.pc.height}
+              width={$pageData.isMobile
+                ? sns.size.header.mobile.width
+                : sns.size.header.desktop.width}
+              height={$pageData.isMobile
+                ? sns.size.header.mobile.height
+                : sns.size.header.desktop.height}
               alt={sns.alt()}
               lazy={false}
-              srcMeta={sns.srcMeta}
+              imageSourceMeta={sns.imageSourceMeta}
               objectFit="cover"
             />
           </a>
@@ -53,7 +57,7 @@
 </header>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --height: 80px;
     --content-width: 1024px;
     --content-grid-template-columns: 1fr auto 80px;
@@ -61,7 +65,7 @@
     --sns-link-padding: 0 #{$space-size-16};
   }
 
-  .sp {
+  .mobile {
     --height: 64px;
     --content-width: 100%;
     --content-grid-template-columns: 1fr auto 64px;

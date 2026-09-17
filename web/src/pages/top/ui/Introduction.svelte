@@ -3,7 +3,7 @@
   import { pageData } from '@shared/lib/device'
 </script>
 
-<section class="introduction" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="introduction" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <h1 class="title">{m.top_introduction_title()}</h1>
   <div class="body">
     {m.top_introduction_body_1()}<span class="important">{m.top_introduction_body_2()}</span
@@ -14,7 +14,7 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 534px;
     --gap: 24px;
     --title-font-size: 32px;
@@ -23,7 +23,7 @@
     --important-font-size: 26px;
   }
 
-  .sp {
+  .mobile {
     --width: #{calc(100% - 32px)};
     --gap: 16px;
     --title-font-size: 24px;

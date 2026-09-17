@@ -2,7 +2,7 @@
  * 会場が都道府県名や国名だけのときの英語名。
  *
  * @remarks
- * 元データ（`~/imrg/calendar-data/`）には英語の会場名（`venueEn`）が無いイベントがあり、
+ * 元データ（`~/imrg/calendar-data/`）には英語の会場名（`venueEnglish`）が無いイベントがあり、
  * その多くは会場が都道府県名だけになっている。英語ページで日本語を出さないように、ここで訳す
  */
 export const VENUE_NAMES_EN: Readonly<Record<string, string>> = {

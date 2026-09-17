@@ -143,7 +143,7 @@
       )}
 {/snippet}
 
-<article class="calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<article class="calendar" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
@@ -303,11 +303,11 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 960px;
   }
 
-  .sp {
+  .mobile {
     --width: calc(100% - 32px);
   }
 

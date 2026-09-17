@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
   import PointA from './_components/PointA.svelte'
   import PointB from './_components/PointB.svelte'
-  import ExecutionPointResultModalPC from './_components/ExecutionPointResultModalPC.svelte'
-  import ExecutionPointResultModalSP from './_components/ExecutionPointResultModalSP.svelte'
+  import ExecutionPointResultModalDesktop from './_components/ExecutionPointResultModalDesktop.svelte'
+  import ExecutionPointResultModalMobile from './_components/ExecutionPointResultModalMobile.svelte'
 </script>
 
 <script lang="ts">
@@ -24,8 +24,8 @@
 
 <section
   class="judgement-form {$judgementApparatus ? $judgementApparatus.imageColor : 'gray'}"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
 >
   <div class="form-container">
     <SelectApparatus />
@@ -35,22 +35,22 @@
         <PointB on:submit={() => submitPointB()} />
       {/if}
       {#if $pageData.isMobile}
-        <ExecutionPointResultModalSP show={submittedPointB} />
+        <ExecutionPointResultModalMobile show={submittedPointB} />
       {:else}
-        <ExecutionPointResultModalPC show={submittedPointB} />
+        <ExecutionPointResultModalDesktop show={submittedPointB} />
       {/if}
     {/if}
   </div>
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --padding: 64px 0;
     --container-width: #{calc(1024px - 160px)};
     --container-padding: 40px 80px;
   }
 
-  .sp {
+  .mobile {
     --padding: 40px 0;
     --container-width: #{calc(351px - 24px)};
     --container-padding: 32px 12px;

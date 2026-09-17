@@ -78,7 +78,7 @@
   )
 </script>
 
-<div class="month-calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<div class="month-calendar" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <div class="nav">
     <button
       class="nav-button"
@@ -211,12 +211,12 @@
 </div>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --cell-height: 108px;
     --month-title-size: #{$font-size-24};
   }
 
-  .sp {
+  .mobile {
     --cell-height: 52px;
     --month-title-size: #{$font-size-20};
   }

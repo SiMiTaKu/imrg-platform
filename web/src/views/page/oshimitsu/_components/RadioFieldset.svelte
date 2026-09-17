@@ -15,7 +15,7 @@
   }[]
 </script>
 
-<fieldset class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<fieldset class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <div class="wrapper">
     <legend class="legend">{legendText}</legend>
     <ul class="ul">
@@ -40,13 +40,13 @@
 </fieldset>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 343px;
     --legend-font-size: #{$font-size-24};
     --label-font-size: #{$font-size-20};
   }
 
-  .sp {
+  .mobile {
     --width: 343px;
     --legend-font-size: #{$font-size-20};
     --label-font-size: #{$font-size-18};

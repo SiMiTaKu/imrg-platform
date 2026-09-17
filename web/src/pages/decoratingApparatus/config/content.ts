@@ -1,5 +1,5 @@
 import { m } from '$lib/paraglide/messages'
-import type { SrcMeta } from '@shared/ui'
+import type { ImageSourceMeta } from '@shared/ui'
 import MainVisual1 from '../images/main-visual-1.jpg?w=1024;2048&format=webp&as=meta'
 import MainVisual2 from '../images/main-visual-2.jpg?w=1024;2048&format=webp&as=meta'
 import MainVisual3 from '../images/main-visual-3.jpg?w=1024;2048&format=webp&as=meta'
@@ -9,7 +9,7 @@ import MainVisual5 from '../images/main-visual-5.jpg?w=1024;2048&format=webp&as=
 /** メインビジュアルの1枚（背景画像とキャッチコピー） */
 type MainVisualSlide = {
   /** 背景画像 */
-  image: SrcMeta[]
+  image: ImageSourceMeta[]
   /** キャッチコピー。表示中の言語で取り出せるように、文言の関数のまま持つ */
   description: typeof m.decorating_apparatus_main_visual_description_1
 }

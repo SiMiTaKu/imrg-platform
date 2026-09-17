@@ -2,14 +2,14 @@
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { ImageAssets } from '@shared/ui'
-  import type { SrcMeta } from '@shared/ui'
+  import type { ImageSourceMeta } from '@shared/ui'
   import { fade } from 'svelte/transition'
   import { flipCard, type CardFaces } from '../lib/flipCard'
 
   /** 作品カード（押すと裏返って次の写真を見せる）の引数 */
   interface Props {
     /** 作品の写真 */
-    images: SrcMeta[][]
+    images: ImageSourceMeta[][]
     /** 作品の番号（0 始まり） */
     workIndex: number
   }
@@ -40,7 +40,7 @@
           image: faces.frontImageIndex + 1,
         })}
         lazy={true}
-        srcMeta={images[faces.frontImageIndex]}
+        imageSourceMeta={images[faces.frontImageIndex]}
         objectFit="cover"
       />
     </div>
@@ -53,7 +53,7 @@
           work: workIndex + 1,
           image: backImageIndex + 1,
         })}
-        srcMeta={images[backImageIndex]}
+        imageSourceMeta={images[backImageIndex]}
         objectFit="cover"
       />
     </div>
