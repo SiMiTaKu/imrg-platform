@@ -1,7 +1,13 @@
+packages:
+  - web
+  - design-system
+
 # 依存パッケージのインストール時スクリプトは、許可したものだけ動かす（pnpm 11 以降の既定）
 allowBuilds:
   # sass が使う。環境ごとのビルド済みバイナリが入るので、スクリプトは動かさない
   '@parcel/watcher': false
+  # Storybook が使う。実行環境に合うバイナリを確かめるので、スクリプトを動かす
+  esbuild: true
 
 # pnpm は公開されて間もない版を入れない。下はこの設定を入れた時点で公開から1日たっていなかった版。
 # 次に版を上げるときに消してよい
@@ -11,6 +17,13 @@ minimumReleaseAgeExclude:
   - eslint-plugin-jsdoc@64.5.2
   - eslint-plugin-tsdoc@0.5.3
   - prettier@3.9.7
+  - '@inlang/paraglide-js@2.25.3'
+  - '@inlang/sdk@3.0.6'
+  - '@lix-js/sdk-darwin-arm64@0.17.0'
+  - '@lix-js/sdk-linux-arm64@0.17.0'
+  - '@lix-js/sdk-linux-x64@0.17.0'
+  - '@lix-js/sdk-win32-x64@0.17.0'
+  - '@lix-js/sdk@0.17.0'
 
 # 脆弱性が見つかった間接依存を、修正済みの版に上げる（pnpm audit --fix で追加）
 overrides:

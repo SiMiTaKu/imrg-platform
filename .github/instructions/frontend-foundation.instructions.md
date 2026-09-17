@@ -1,6 +1,6 @@
 ---
 description: フロントエンド実装の基本思想と設計原則。UI実装・状態管理・命名・品質判断で常時参照
-applyTo: 'src/**/*.{ts,js,css,scss,svelte}'
+applyTo: 'web/src/**/*.{ts,js,css,scss,svelte}'
 name: フロントエンド開発基盤ルール
 ---
 
@@ -17,12 +17,17 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 
 ## UI実装方針
 
-- 既存の共通部品（今は `src/views/atomic/`、移行後はデザインシステム）を最優先で利用する
+- 共通部品は `@imrg-platform/design-system` を最優先で利用する（`import { Button } from '@imrg-platform/design-system'`）。まだ移していない部品は `web/src/views/atomic/` にある
+- 複数のページで使う見た目の部品は、デザインシステムに作る。runes で書き、Storybook のストーリー（`*.stories.ts`）と `design-system/tests/unit/` のテストを付ける
+- デザインシステムの部品は、サイトのストアや文言を持たない。文言は引数で受け取る
+- **端末の判定（`isMobile`・`pageData`）は web だけで使う。** デザインシステムの部品は端末を知らず、幅・高さ・文字の大きさなどを px の数値で受け取る。web 側で `fontSize={$pageData.isMobile ? 20 : 24}` のように分けて渡す
+- 部品の動作に欠かせない引数（`type="button"` の `onclick`、リンクの `target` など）は省略可能にしない
+- アイコンだけのボタンには、読み上げ用の名前（`aria-label`）を付ける。名前は使う側が、多言語化の文言（`m.xxx()`）で渡す
 - 同等コンポーネントの再実装は行わない
 - 新しいUI部品が必要な場合は、共通化前提で設計する
 - アクセシビリティ属性（ラベル、role、キーボード操作）を欠かさない
 - 文言は多言語化を前提に書く（[frontend-architecture-design.instructions.md](./frontend-architecture-design.instructions.md) の「多言語対応」）。日本語だけを部品に直書きしない
-- PC とスマホで見た目を分けるときは、既存の `pageData.isMobile`（`src/views/atomic/device-store/store.ts`）と `.pc` / `.sp` の CSS 変数の書き方に合わせる
+- PC とスマホで見た目を分けるときは、既存の `pageData.isMobile`（`web/src/views/atomic/device-store/store.ts`）と `.pc` / `.sp` の CSS 変数の書き方に合わせる
 
 ## Svelte の書き方
 
@@ -45,7 +50,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
   - stylelint で `margin` を禁止している。既存の箇所が残っているため今は警告にとどめているが（TODO 5-5）、**新しいコードでは使わない**
 - UI 崩れ防止のため、重要な要素には `width` / `height` / `min-width` / `min-height` を明示する
 - `margin` / `padding` で余白を作るのは、要素自体のボーダーや背景との関係で不可避な場合のみ許可する
-- 色・余白・フォント・影・角丸は `src/style/` の SCSS 変数を使う（全コンポーネントで `$style/index.scss` を読み込み済み）
+- 色・余白・フォント・影・角丸は `design-system/src/styles/` の SCSS 変数を使う（web とデザインシステムの全コンポーネントで読み込み済み。設定は `design-system/scss.config.js`）
 - プロパティの並び順は stylelint（`order/properties-order`）に従う。`pnpm run lint:fix` で直せる
 - `:global` は使わない。スロットで渡す中身に体裁を当てるなど、どうしても必要な場合だけ、理由を書いて stylelint の該当ルールを止める
 
@@ -56,7 +61,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 
 ## エラー方針
 
-- 静的サイトなので、存在しないページは `src/routes/+error.svelte`（と Amplify の書き換え先 `404.html`）で表示する
+- 静的サイトなので、存在しないページは `web/src/routes/+error.svelte`（と Amplify の書き換え先 `404.html`）で表示する
 - 移行後は `shared/errors` の `AppError` 抽象クラスを継承してエラーを定義し、instanceof チェックで分岐する（404 → `NotFoundError`、500 → `InternalServerError`）
 
 ## フォーム実装方針
@@ -114,7 +119,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 - 各テストケース内は `#region Given` / `#region When` / `#region Then` でグルーピングする
 - `it` の説明文は必ず `〇〇の場合、〇〇になること` 形式で記述する
 - バリエーションの確認は同型の test を並べず、`it.each` を優先する
-- 既存のテスト（`src/test/`）はこの形になっていないものがある。触るときに合わせて直す
+- 既存のテスト（`web/src/test/`）はこの形になっていないものがある。触るときに合わせて直す
 
 ## フォーム実装補足
 

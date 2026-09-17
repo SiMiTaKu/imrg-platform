@@ -13,18 +13,18 @@ SEO・SNS・セキュリティー・CIを整えるための作業一覧。**Phas
 
 作業を始める人が同じ調査を繰り返さないための記録。
 
-| 項目               | 現状                                                                                |
-| ------------------ | ----------------------------------------------------------------------------------- |
-| フレームワーク     | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
-| ホスティング       | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0**        |
-| 配信               | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1）              |
-| CI                 | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行                     |
-| ブランチ保護       | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化）    |
-| セキュリティヘッダ | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定                   |
-| sitemap            | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ）            |
-| アクセス解析       | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN`       |
-| テスト             | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest                              |
-| 構成               | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし             |
+| 項目                 | 現状                                                                                |
+| -------------------- | ----------------------------------------------------------------------------------- |
+| フレームワーク       | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
+| ホスティング         | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0**        |
+| 配信                 | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1）              |
+| CI                   | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行                     |
+| ブランチ保護         | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化）    |
+| セキュリティヘッダー | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定                   |
+| sitemap              | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ）            |
+| アクセス解析         | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN`       |
+| テスト               | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest                              |
+| 構成                 | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし             |
 
 反映の確認方法（全ページが同じHTMLを返すため、文字列検索では判定できない）:
 
@@ -161,7 +161,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 流用した：共通ルール、資料のリンク集、フロントエンドの基盤ルールと設計指針、単体・結合・E2Eテスト
   - 書き換えた：FSDとデザインシステムへの移行前であること、APIの無い静的サイトであること、日英併記、Svelte 5の自己終了タグ、runesへの移行途中であること
   - 追加した：開発の進め方（ブランチ・pnpm・コミット・PR・スタックPRのマージ）、静的サイトの書き出しと配信
-  - バックエンドのルール3本は、このリポジトリにバックエンドが無いので入れていない
+  - バックエンドのルール3本は、このリポジトリーにバックエンドが無いので入れていない
   - Claude Code向けに、ルートの `CLAUDE.md` から同じルールへ案内する。Phase 3でFSDへ移したら、設計指針の「今の構成」を消す
 - [x] **2-6. 本番のブランチを `master` から `main` へ変える**（2026-09-17。`imrg.work` と `www` を新しいアプリの `main` に割り当て、`master` ブランチは消した）
   - 運用を `feature/*` → `develop` → `main` にする（`main` へのマージで本番へ反映）
@@ -185,14 +185,35 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 移していないもの：過去のPRの画面とレビューの記録。古いリポジトリー `imrg-web-main` を非公開のまま残して参照する
   - 手元のフォルダーは `~/imrg/imrg-platform`
   - [x] Amplifyを新しいリポジトリーへつなぎ替える（手順は [aws-setup.md](aws-setup.md) の8。2026-09-17完了。古いアプリ2つは削除し、`imrg-web-main` は非公開のままアーカイブした）
-- [ ] **3-1. pnpm workspace へ移行**（`web` と `design-system` の2パッケージから始める）
-- [ ] **3-2. FSD へ再配置**：`src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
+- Phase 3の進め方（2026-09-17に決めた）
+  - 見た目は変えない（言語の切り替え部品だけが増える）。毎回、ビルドした全ページの表示内容・全要素の計算済みスタイル・ブラウザーでの操作を変更前と比べる
+  - 順番：3-1モノレポ化 → 3-4a多言語化の仕組み → 3-3デザインシステムの土台 → 3-2 FSDへの再配置（ページごと）→ 3-4b英語の中身
+  - パッケージ名は `@imrg-platform/<名前>`
+  - Storybookは手元だけで見る（公開しない）。CIではビルドが通ることだけ確かめる
+  - 英語の文言とデータは、今の併記の英語を使い、無い分はClaudeが下書きしてPRのレビューで確かめる
+  - レビューは区切りごと。3-1・3-4a・3-3をまとめて一度レビューとリリース。3-2は数ページずつ
+- [x] **3-1. pnpm workspace へ移行**（`web` と `design-system` の2パッケージから始める）
+  - サイトを `web/`（`@imrg-platform/web`）へ移し、ルートをpnpm workspaceにした。`design-system` は3-3で足す
+  - lint・整形・textlint・huskyの設定はルートに置いたままで、全パッケージが対象（oshiageと同じ）
+  - Amplifyはルートの `amplify.yml` から `pnpm --filter @imrg-platform/web build` を実行し、`web/build` を配信する。コンソールのモノレポ設定は使わない
+- [ ] **3-2. FSD へ再配置**：`web/src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
   - カレンダーはすでに近い形（`_components` `_data` `_lib`）なので、ここから着手すると移行しやすい
-- [ ] **3-3. デザインシステムを作る**
-  - トークン（色・余白・字送り・影・角丸）を `src/style` から切り出す
+- [x] **3-3. デザインシステムを作る**（土台。2026-09-17）
+  - トークン（色・余白・字送り・影・角丸）を `web/src/style` から切り出す
   - 共通部品（Button・ButtonLink・Card・Chip・Badge・Heading・Pagination）をStorybook付きで整理
   - a11yチェック（Storybookのa11yアドオン）を入れる
+  - `design-system/`（`@imrg-platform/design-system`）を作り、トークン（`src/styles`）を `web/src/style` から移した。SCSSの読み込み設定（`scss.config.js`）はwebと共有する
+  - ButtonとButtonLinkは同じ見た目の共通SCSS（`Button/scss/_button.scss`）を使い、下線やブラウザー既定の余白・文字の違いが出ないようにした
+  - 部品はButton・ButtonLink・Heading（旧WithEnglishHeading）・Pagination（カレンダーから移し、「最初・前・番号・次・最後」をアイコンで並べる形に変えた。読み上げ用の名前は多言語化の文言で渡す）の4つ。runesで書き、Storybookのストーリーとテスト（Testing Library）を付けた
+  - 端末の判定（`isMobile`）はwebだけで使う。部品は幅・高さ・文字の大きさをpxで受け取り、webが端末に応じて分けて渡す
+  - Card・Chip・Badgeは、今のサイトに共通の部品が無いため作っていない。3-2でページを移すときに、実際に使う形から切り出す
+  - Storybookは `pnpm --filter @imrg-platform/design-system storybook` で手元に開く。CIではビルド（`pnpm run build`）が通ることだけ確かめる。a11yアドオンの違反はエラー扱い
 
+- [x] **3-4a. 多言語化の仕組みを入れる**（3-4の進め方の1と5）
+  - Paraglide JS 2を入れ、全ページを日本語と英語（`/en/...`）で書き出すようにした。`<html lang>`・canonical・`og:locale` は言語ごと
+  - 英語ページは訳し終えるまでnoindex。訳したページを `TRANSLATED_PATHS` に足すと、`hreflang`（`x-default` も）とsitemapの言語の対応が出る
+  - 言語の切り替え部品は、英語のページができるまで表に出さない。代わりに非表示のリンクで、書き出し時に英語ページをたどらせている
+  - ページ内のリンクは、まだ言語を付けていない（英語ページから日本語ページへ移る）。3-2でページごとに直す
 - [ ] **3-4. 多言語化の土台を作る**（2026-09-17に、日英併記から言語ごとのページへ移すと決めた）
   - 方針
     - 既定は日本語。まず英語を加え、言語は後から足せる作りにする

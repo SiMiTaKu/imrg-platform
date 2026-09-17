@@ -1,6 +1,6 @@
 ---
 description: フロントエンド結合テスト実装のガイドライン。機能連携・ユーザー操作の品質確保のための指針
-applyTo: 'tests/integration/**/*.spec.ts'
+applyTo: 'web/tests/integration/**/*.spec.ts'
 name: フロントエンド結合テスト実装ガイドライン
 ---
 
@@ -8,7 +8,7 @@ name: フロントエンド結合テスト実装ガイドライン
 
 ## このリポジトリでの状況
 
-- 結合テストはまだ無い。書くときは `tests/integration/` に置き、Testing Library を入れる
+- 結合テストはまだ無い。書くときは `web/tests/integration/` に置き、Testing Library を入れる
 - API が無い静的サイトなので、主な対象は「複数の部品と、ストア・URL のクエリとの連携」（例: カレンダーの絞り込みと表示の切り替え、推しミツ！の検索条件と結果）
 
 ## このルールの適用対象

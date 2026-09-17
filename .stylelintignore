@@ -4,3 +4,4 @@ build/
 coverage/
 storybook-static/
 .svelte-kit/
+web/src/lib/paraglide/

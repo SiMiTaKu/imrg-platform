@@ -1,6 +1,6 @@
 ---
 description: フロントエンド単体テスト実装のガイドライン。TDD実践と品質確保のための指針
-applyTo: '{src/**/*.spec.ts,tests/unit/**/*.spec.ts}'
+applyTo: '{web/src/**/*.spec.ts,web/tests/unit/**/*.spec.ts}'
 name: フロントエンド単体テスト実装ガイドライン
 ---
 
@@ -8,8 +8,8 @@ name: フロントエンド単体テスト実装ガイドライン
 
 ## このリポジトリでの状況
 
-- テストは今 `src/test/*.spec.ts` にある（Vitest）。FSD への移行（TODO 3-2）で oshiage と同じ `tests/unit/` へ移す
-- コンポーネントのテストに使う Testing Library はまだ入っていない。コンポーネントのテストを書くときに入れる（oshiage と同じく `@testing-library/svelte`）
+- テストは今 `web/src/test/*.spec.ts` にある（Vitest）。FSD への移行（TODO 3-2）で oshiage と同じ `web/tests/unit/` へ移す
+- デザインシステムのテストは `design-system/tests/unit/<部品名>/` にある（Vitest・Testing Library・happy-dom）。web のコンポーネントのテストを書くときは、web にも同じ道具を入れる
 - `pnpm test` で実行する。CI でも毎回実行される
 
 ## このルールの適用対象
@@ -70,7 +70,7 @@ name: フロントエンド単体テスト実装ガイドライン
 - it: `<条件>の場合、<結果>になること`
 - コンポーネントテストのファイル名: `<ComponentName>.spec.ts`
 - 関数のテストのファイル名: 対象ファイルと同じ名前（例: `calendar.spec.ts`）
-- コンポーネントテストの配置: `tests/unit/<component-name>/<ComponentName>.spec.ts`（移行後）
+- コンポーネントテストの配置: `web/tests/unit/<component-name>/<ComponentName>.spec.ts`（移行後）
 
 ## テスト設計の原則
 

@@ -1,0 +1,36 @@
+{
+  "name": "@imrg-platform/web",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "i18n:compile": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url baseLocale --emit-ts-declarations --silent",
+    "check": "pnpm run i18n:compile && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "pnpm run i18n:compile && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@imrg-platform/design-system": "workspace:*",
+    "chart.js": "^4.5.1",
+    "date-fns": "^4.4.0"
+  },
+  "devDependencies": {
+    "@inlang/paraglide-js": "^2.25.3",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "@types/node": "^24.13.5",
+    "sass": "^1.104.1",
+    "svelte": "^5.57.0",
+    "svelte-check": "^4.7.6",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.0",
+    "vite-imagetools": "^12.0.1",
+    "vitest": "^5.0.1"
+  }
+}

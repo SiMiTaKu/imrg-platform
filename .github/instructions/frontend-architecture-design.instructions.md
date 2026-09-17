@@ -1,6 +1,6 @@
 ---
 description: フロントエンドアーキテクチャ全体に関わる共通機構の設計指針。今の構成と、移行先の FSD の対応
-applyTo: 'src/**/*'
+applyTo: 'web/src/**/*'
 name: フロントエンドアーキテクチャ設計指針
 ---
 
@@ -11,10 +11,26 @@ name: フロントエンドアーキテクチャ設計指針
 このドキュメントは、実装時に毎回参照する詳細ルールではなく、開発者が事前に理解しておくべき設計思想と実装方針をまとめた指針です。
 oshiage の同名の指針をもとにしています。**このリポジトリはまだ FSD へ移行していません**（TODO 3-2）。移行までは「今の構成」に従い、移行先の考え方（責務と依存方向）を先取りして書きます。
 
-## 1. 今の構成
+## 0. リポジトリーの構成（モノレポ）
+
+pnpm workspace のモノレポ。oshiage と同じく、パッケージごとにフォルダーを分ける。
 
 ```text
-src/
+imrg-platform/
+├── web/              @imrg-platform/web … imrg.work のサイト（SvelteKit）
+├── design-system/    @imrg-platform/design-system … 共通部品とトークン、Storybook
+├── docs/             改修計画・手順書
+├── eslint.config.mjs など  lint・整形の設定はルートに置き、全パッケージに効かせる
+└── amplify.yml       web をビルドして配信する
+```
+
+- パッケージ名は `@imrg-platform/<名前>`。パッケージをまたぐ参照は `workspace:*` で依存に書き、公開境界（`index.ts`）からだけ読む
+- コマンドはルートで実行する（`pnpm dev` `pnpm run verify`）。パッケージだけで動かすときは `pnpm --filter @imrg-platform/web <script>`
+
+## 1. 今の構成（web）
+
+```text
+web/src/
 ├── routes/                 SvelteKit のルート。+page.server.ts（メタ情報）と +page.svelte（Page を呼ぶだけ）
 ├── views/
 │   ├── layout/             ヘッダー・フッター・全体の枠
@@ -34,7 +50,7 @@ src/
 └── test/                   テスト
 ```
 
-- 新しいページは `src/views/page/<ページ>/` に、上の分け方で作る。ページ内のフォルダー名は `_components` `_data` `_lib` `_model` `_store` にそろえる（`_models` `_service` は既存のもの）
+- 新しいページは `web/src/views/page/<ページ>/` に、上の分け方で作る。ページ内のフォルダー名は `_components` `_data` `_lib` `_model` `_store` にそろえる（`_models` `_service` は既存のもの）
 - ページをまたいで使うものだけを `views/atomic` `views/common` `lib` `model` に置く
 - カレンダー（`views/page/calendar/`）が、移行先に一番近い形になっている。迷ったらこれに合わせる
 
