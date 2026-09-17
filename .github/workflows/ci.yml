@@ -29,6 +29,13 @@ jobs:
           cache: pnpm
       - name: Install
         run: pnpm install --frozen-lockfile
+      # 本番で読み込む依存に high 以上の脆弱性があれば止める
+      - name: Audit (production)
+        run: pnpm audit --prod --audit-level high
+      # 開発用の依存は知らせるだけにする（CI は止めない）
+      - name: Audit (all)
+        run: pnpm audit --audit-level high
+        continue-on-error: true
       - name: Format
         run: pnpm run format:check
       - name: Lint

@@ -130,7 +130,11 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - マージ先を問わずすべてのPRで動かす（スタックPRの途中にも走る）。`develop` と `master` へのpushでも動かす
 - [ ] **2-2. ブランチ保護**：`master` と `develop` を直push禁止、PR必須、CI必須
   - privateのままならGitHub Proが必要。費用をかけないならpublic化も選択肢（`.env` に秘密情報がないことは確認済み）
-- [ ] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
+- [x] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
+  - `.github/dependabot.yml`：毎週月曜にpnpmの依存とGitHub Actionsの更新PRを `develop` 向けに出す。メジャー以外は1本にまとめ、公開から3日たった版だけを使う
+  - 脆弱性の通知と、修正PRの自動作成を有効にした
+  - CIで `pnpm audit` を実行する。本番の依存にhigh以上があれば止め、開発用の依存は知らせるだけ
+  - 開発用の依存にあった22件は `pnpm-workspace.yaml` の `overrides` で修正版に上げ、0件にした
   - [x] **2-3a. npmからpnpmへ移す**（2-3と同時に行うことにした。pnpm 12。版は `package.json` の `packageManager`）
     - `package-lock.json` の版をそのまま `pnpm-lock.yaml` へ移した（`pnpm import`）
     - pnpm 11以降は依存のインストール時スクリプトを許可制にしているので、`pnpm-workspace.yaml` の `allowBuilds` で決める

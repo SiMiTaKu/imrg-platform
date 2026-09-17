@@ -15,7 +15,7 @@
     "format:check": "prettier --check .",
     "prepare": "husky",
     "test:watch": "vitest",
-    "verify": "pnpm run format:check && pnpm run lint && pnpm run check && pnpm run test && pnpm run build"
+    "verify": "pnpm audit --prod --audit-level high && pnpm run format:check && pnpm run lint && pnpm run check && pnpm run test && pnpm run build"
   },
   "lint-staged": {
     "*.{js,mjs,cjs,ts}": [
