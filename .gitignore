@@ -17,3 +17,6 @@ vite.config.ts.timestamp-*
 
 # Paraglide JS が生成するファイル
 web/src/lib/paraglide
+
+# Storybook の書き出し先
+storybook-static

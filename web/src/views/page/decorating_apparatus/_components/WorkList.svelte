@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
+  import { Heading } from '@imrg-platform/design-system'
   import WorkCard from './_component/WorkCard.svelte'
-  import WithEnglishHeading from '../../../atomic/heading/WithEnglishHeading.svelte'
   import { WORK_LIST } from './_data/work-list'
 </script>
 
@@ -9,7 +9,7 @@
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <WithEnglishHeading englishTitle="Work List" title="過去の作品" />
+  <Heading isMobile={$pageData.isMobile} subtitle="Work List" title="過去の作品" />
   <ul class="list">
     {#each WORK_LIST as work, index (index)}
       <li class="item">

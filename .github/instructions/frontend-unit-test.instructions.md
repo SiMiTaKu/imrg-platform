@@ -9,7 +9,7 @@ name: フロントエンド単体テスト実装ガイドライン
 ## このリポジトリでの状況
 
 - テストは今 `web/src/test/*.spec.ts` にある（Vitest）。FSD への移行（TODO 3-2）で oshiage と同じ `web/tests/unit/` へ移す
-- コンポーネントのテストに使う Testing Library はまだ入っていない。コンポーネントのテストを書くときに入れる（oshiage と同じく `@testing-library/svelte`）
+- デザインシステムのテストは `design-system/tests/unit/<部品名>/` にある（Vitest・Testing Library・happy-dom）。web のコンポーネントのテストを書くときは、web にも同じ道具を入れる
 - `pnpm test` で実行する。CI でも毎回実行される
 
 ## このルールの適用対象

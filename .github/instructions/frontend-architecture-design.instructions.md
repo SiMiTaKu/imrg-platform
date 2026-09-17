@@ -18,7 +18,7 @@ pnpm workspace のモノレポ。oshiage と同じく、パッケージごとに
 ```text
 imrg-platform/
 ├── web/              @imrg-platform/web … imrg.work のサイト（SvelteKit）
-├── design-system/    @imrg-platform/design-system … 共通部品とトークン（TODO 3-3 で追加）
+├── design-system/    @imrg-platform/design-system … 共通部品とトークン、Storybook
 ├── docs/             改修計画・手順書
 ├── eslint.config.mjs など  lint・整形の設定はルートに置き、全パッケージに効かせる
 └── amplify.yml       web をビルドして配信する

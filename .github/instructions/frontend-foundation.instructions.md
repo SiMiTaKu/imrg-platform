@@ -17,7 +17,9 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 
 ## UI実装方針
 
-- 既存の共通部品（今は `web/src/views/atomic/`、移行後はデザインシステム）を最優先で利用する
+- 共通部品は `@imrg-platform/design-system` を最優先で利用する（`import { Button } from '@imrg-platform/design-system'`）。まだ移していない部品は `web/src/views/atomic/` にある
+- 複数のページで使う見た目の部品は、デザインシステムに作る。runes で書き、Storybook のストーリー（`*.stories.ts`）と `design-system/tests/unit/` のテストを付ける
+- デザインシステムの部品は、サイトのストアや文言を持たない。端末の違いは `isMobile`、文言は引数で受け取る
 - 同等コンポーネントの再実装は行わない
 - 新しいUI部品が必要な場合は、共通化前提で設計する
 - アクセシビリティ属性（ラベル、role、キーボード操作）を欠かさない
@@ -45,7 +47,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
   - stylelint で `margin` を禁止している。既存の箇所が残っているため今は警告にとどめているが（TODO 5-5）、**新しいコードでは使わない**
 - UI 崩れ防止のため、重要な要素には `width` / `height` / `min-width` / `min-height` を明示する
 - `margin` / `padding` で余白を作るのは、要素自体のボーダーや背景との関係で不可避な場合のみ許可する
-- 色・余白・フォント・影・角丸は `web/src/style/` の SCSS 変数を使う（全コンポーネントで `$style/index.scss` を読み込み済み）
+- 色・余白・フォント・影・角丸は `design-system/src/styles/` の SCSS 変数を使う（web とデザインシステムの全コンポーネントで読み込み済み。設定は `design-system/scss.config.js`）
 - プロパティの並び順は stylelint（`order/properties-order`）に従う。`pnpm run lint:fix` で直せる
 - `:global` は使わない。スロットで渡す中身に体裁を当てるなど、どうしても必要な場合だけ、理由を書いて stylelint の該当ルールを止める
 

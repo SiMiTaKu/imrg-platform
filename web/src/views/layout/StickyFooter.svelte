@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import ButtonLink from '$views/atomic/button/ButtonLink.svelte'
+  import { ButtonLink } from '@imrg-platform/design-system'
 </script>
 
 <script lang="ts">
@@ -8,6 +8,7 @@
 
 <footer class="sticky-footer">
   <ButtonLink
+    isMobile={$pageData.isMobile}
     width={$pageData.isMobile ? 320 : 400}
     height={56}
     text="推しを見つける！"

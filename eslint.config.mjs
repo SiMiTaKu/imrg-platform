@@ -34,6 +34,7 @@ export default [
       '**/.svelte-kit/**',
       '**/coverage/**',
       '**/node_modules/**',
+      '**/storybook-static/**',
       // Paraglide JS が生成するファイル
       'web/src/lib/paraglide/**',
     ],

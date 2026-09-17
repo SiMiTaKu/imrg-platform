@@ -13,3 +13,4 @@ web/src/lib/paraglide
 web/project.inlang/cache
 web/project.inlang/README.md
 web/project.inlang/.meta.json
+storybook-static

@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
+  import { ButtonLink } from '@imrg-platform/design-system'
   import IndividualVideoCard from './_components/IndividualVideoCard.svelte'
   import GroupVideoCard from './_components/GroupVideoCard.svelte'
-  import ButtonLink from '$views/atomic/button/ButtonLink.svelte'
   import RadioFieldset from './_components/RadioFieldset.svelte'
   import { findApparatus, findContentType } from '$views/page/oshimitsu/_models/index.js'
   import CheckBoxFieldset from '$views/page/oshimitsu/_components/CheckBoxFieldset.svelte'
@@ -87,6 +87,7 @@
       />
     {/if}
     <ButtonLink
+      isMobile={$pageData.isMobile}
       width={$pageData.isMobile ? 320 : 343}
       height={56}
       text="この条件で推しミツ！"

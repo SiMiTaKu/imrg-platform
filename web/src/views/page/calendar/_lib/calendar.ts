@@ -226,29 +226,6 @@ export function paginate<T>(items: T[], page: number, perPage = PER_PAGE): PageS
 }
 
 /**
- * ページ番号の並び。例: 5ページ目/全20ページ → [1, "…", 4, 5, 6, "…", 20]
- * @param current - 現在のページ番号
- * @param total - 総ページ数
- * @returns 表示するページ番号と、間を省く「…」の並び
- */
-export function pageNumbers(current: number, total: number): (number | '…')[] {
-  const candidates = [1, current - 1, current, current + 1, total]
-  const pages = [...new Set(candidates.filter((page) => page >= 1 && page <= total))].sort(
-    (a, b) => a - b,
-  )
-
-  const result: (number | '…')[] = []
-  pages.forEach((page, index) => {
-    const previous = pages[index - 1]
-    // 1ページだけ飛ぶなら「…」にせず、その番号を出す
-    if (previous !== undefined && page - previous === 2) result.push(previous + 1)
-    else if (previous !== undefined && page - previous > 2) result.push('…')
-    result.push(page)
-  })
-  return result
-}
-
-/**
  * 月のカレンダーのマス目。日曜始まりの週ごとに、前後の月の日も含めて並べる
  * @param monthKey - 表示する月 "YYYY-MM"
  * @returns 週ごとに7マスずつ並べたマス目

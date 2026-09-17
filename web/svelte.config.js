@@ -35,7 +35,6 @@ const config = {
       $images: './src/images',
       $lib: './src/lib',
       $views: './src/views',
-      $style: './src/style',
     },
   },
 }

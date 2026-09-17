@@ -1,9 +1,19 @@
 <script lang="ts">
-  import { pageData } from '$views/atomic/device-store/store'
+  /** ボタンの引数 */
+  interface Props {
+    /** ボタンに表示する文言 */
+    text: string
+    /** 幅（px） */
+    width: number
+    /** 高さ（px） */
+    height: number
+    /** スマホ向けの大きさで表示するか */
+    isMobile?: boolean
+    /** 押したときの処理 */
+    onclick?: (event: MouseEvent) => void
+  }
 
-  export let width: number
-  export let height: number
-  export let text: string
+  const { text, width, height, isMobile = false, onclick }: Props = $props()
 </script>
 
 <button
@@ -11,9 +21,9 @@
   type="button"
   style:width={`${width}px`}
   style:height={`${height}px`}
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
-  on:click
+  class:pc={!isMobile}
+  class:sp={isMobile}
+  {onclick}
 >
   {text}
 </button>

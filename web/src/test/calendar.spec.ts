@@ -12,7 +12,6 @@ import {
   isEveryCategory,
   isUpcoming,
   matchesKeyword,
-  pageNumbers,
   paginate,
   parseState,
   serializeState,
@@ -161,17 +160,6 @@ describe('test paginate', () => {
 
   test('空のときも1ページとして扱う', () => {
     expect(paginate([], 1, 20)).toEqual({ items: [], page: 1, totalPages: 1 })
-  })
-})
-
-describe('test pageNumbers', () => {
-  test.each([
-    ['ページが少なければすべて出す', 1, 3, [1, 2, 3]],
-    ['離れたページは「…」でまとめる', 5, 20, [1, '…', 4, 5, 6, '…', 20]],
-    ['1ページだけ飛ぶならその番号を出す', 4, 7, [1, 2, 3, 4, 5, 6, 7]],
-    ['先頭にいるとき', 1, 10, [1, 2, '…', 10]],
-  ])('%s', (_, current, total, expected) => {
-    expect(pageNumbers(current, total)).toEqual(expected)
   })
 })
 

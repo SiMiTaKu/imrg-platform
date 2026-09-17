@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
-  import WithEnglishHeading from '$views/atomic/heading/WithEnglishHeading.svelte'
-  import ButtonLink from '$views/atomic/button/ButtonLink.svelte'
+  import { ButtonLink, Heading } from '@imrg-platform/design-system'
 </script>
 
 <script lang="ts">
@@ -17,12 +16,13 @@
 </script>
 
 <section class="contact" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <WithEnglishHeading englishTitle="Contact" title="問合わせ先" />
+  <Heading isMobile={$pageData.isMobile} subtitle="Contact" title="問合わせ先" />
   <div class="content">
     お問い合わせはインスタグラムのダイレクトメッセージにて、<br />
     いつでも受け付けております。<br />
     お気軽にお問い合わせください。
     <ButtonLink
+      isMobile={$pageData.isMobile}
       width={$pageData.isMobile ? 320 : 400}
       height={56}
       text="問い合わせる"

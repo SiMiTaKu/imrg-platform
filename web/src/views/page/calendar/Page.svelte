@@ -1,8 +1,7 @@
 <script context="module" lang="ts">
-  import WithEnglishHeading from '$views/atomic/heading/WithEnglishHeading.svelte'
+  import { Heading, Pagination } from '@imrg-platform/design-system'
   import EventRow from './_components/EventRow.svelte'
   import MonthCalendar from './_components/MonthCalendar.svelte'
-  import Pagination from './_components/Pagination.svelte'
   import { CATEGORY_LABELS, CATEGORY_ORDER } from './_data/category'
   import { EVENTS, UPDATED_AT } from './_data/events'
   import type { EventCategory } from './_data/model'
@@ -126,7 +125,11 @@
 </script>
 
 <article class="calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <WithEnglishHeading englishTitle="Event Calendar" title="大会・イベントカレンダー" />
+  <Heading
+    isMobile={$pageData.isMobile}
+    subtitle="Event Calendar"
+    title="大会・イベントカレンダー"
+  />
 
   <p class="lead">
     男子新体操の大会・発表会・講習会の日程をまとめています。見に行きたい大会や、参加できる講習会を探すのにお使いください。
@@ -292,7 +295,10 @@
         <Pagination
           page={slice.page}
           totalPages={slice.totalPages}
-          on:change={(pageEvent) => goToPage(pageEvent.detail)}
+          onchange={goToPage}
+          ariaLabel="ページ / Pages"
+          prevLabel={{ text: '前へ', secondary: 'Prev', secondaryLang: 'en' }}
+          nextLabel={{ text: '次へ', secondary: 'Next', secondaryLang: 'en' }}
         />
       {/if}
     </section>

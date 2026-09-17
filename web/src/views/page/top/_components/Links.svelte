@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { ButtonLink } from '@imrg-platform/design-system'
   import { pageData } from '../../../atomic/device-store/store'
-  import ButtonLink from '../../../atomic/button/ButtonLink.svelte'
   const LINKS = [
     { href: '/calendar', text: '大会・イベントを探す' },
     { href: '/decorating_apparatus', text: '手具装飾を依頼する' },
@@ -13,7 +13,13 @@
 
 <section class="links" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   {#each LINKS as { href, text }, index (index)}
-    <ButtonLink width={$pageData.isMobile ? 320 : 400} height={56} {href} {text} />
+    <ButtonLink
+      isMobile={$pageData.isMobile}
+      width={$pageData.isMobile ? 320 : 400}
+      height={56}
+      {href}
+      {text}
+    />
   {/each}
 </section>
 

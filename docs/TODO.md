@@ -198,10 +198,15 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - Amplifyはルートの `amplify.yml` から `pnpm --filter @imrg-platform/web build` を実行し、`web/build` を配信する。コンソールのモノレポ設定は使わない
 - [ ] **3-2. FSD へ再配置**：`web/src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
   - カレンダーはすでに近い形（`_components` `_data` `_lib`）なので、ここから着手すると移行しやすい
-- [ ] **3-3. デザインシステムを作る**
+- [x] **3-3. デザインシステムを作る**（土台。2026-09-17）
   - トークン（色・余白・字送り・影・角丸）を `web/src/style` から切り出す
   - 共通部品（Button・ButtonLink・Card・Chip・Badge・Heading・Pagination）をStorybook付きで整理
   - a11yチェック（Storybookのa11yアドオン）を入れる
+  - `design-system/`（`@imrg-platform/design-system`）を作り、トークン（`src/styles`）を `web/src/style` から移した。SCSSの読み込み設定（`scss.config.js`）はwebと共有する
+  - 部品はButton・ButtonLink・Heading（旧WithEnglishHeading）・Pagination（カレンダーから移し、文言を外から渡す形にした）の4つ。runesで書き、Storybookのストーリーとテスト（Testing Library）を付けた
+  - 部品は端末の判定（`pageData`）を持たず、`isMobile` を引数で受け取る
+  - Card・Chip・Badgeは、今のサイトに共通の部品が無いため作っていない。3-2でページを移すときに、実際に使う形から切り出す
+  - Storybookは `pnpm --filter @imrg-platform/design-system storybook` で手元に開く。CIではビルド（`pnpm run build`）が通ることだけ確かめる。a11yアドオンの違反はエラー扱い
 
 - [x] **3-4a. 多言語化の仕組みを入れる**（3-4の進め方の1と5）
   - Paraglide JS 2を入れ、全ページを日本語と英語（`/en/...`）で書き出すようにした。`<html lang>`・canonical・`og:locale` は言語ごと

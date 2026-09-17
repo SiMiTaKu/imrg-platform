@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import WithEnglishHeading from '$views/atomic/heading/WithEnglishHeading.svelte'
+  import { Heading } from '@imrg-platform/design-system'
 </script>
 
 <script lang="ts">
@@ -12,7 +12,7 @@
 
 <!-- プライバシーポリシー・利用規約など、文章だけのページの共通の枠 -->
 <article class="policy" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <WithEnglishHeading {englishTitle} {title} />
+  <Heading isMobile={$pageData.isMobile} subtitle={englishTitle} {title} />
   <p class="enacted-at">{enactedAt}</p>
   <slot></slot>
   <p class="back"><a href="/">TOPに戻る</a></p>

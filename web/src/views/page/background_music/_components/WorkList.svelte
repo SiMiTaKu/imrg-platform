@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
+  import { Heading } from '@imrg-platform/design-system'
   import YoutubeIcon from './_image/youtube-icon.png?w=120;240&format=webp&as=meta'
-  import WithEnglishHeading from '../../../atomic/heading/WithEnglishHeading.svelte'
   import ImageAssets from '$views/atomic/image/ImageAssets.svelte'
   import { WORK_LIST } from './_data/work-list'
 </script>
@@ -10,7 +10,7 @@
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <WithEnglishHeading englishTitle="Work List" title="過去の実績" />
+  <Heading isMobile={$pageData.isMobile} subtitle="Work List" title="過去の実績" />
   <ul class="cards">
     {#each WORK_LIST as work, index (index)}
       <li class="card">

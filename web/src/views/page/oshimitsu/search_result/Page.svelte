@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import IndividualVideoCard from '../_components/IndividualVideoCard.svelte'
   import GroupVideoCard from '../_components/GroupVideoCard.svelte'
-  import Button from '$views/atomic/button/Button.svelte'
   import { type VideoResource } from '$views/page/oshimitsu/_models'
   import { onMount } from 'svelte'
   import { Video } from '../_lib'
@@ -117,10 +117,11 @@
     </div>
     {#if totalVideos && totalVideos > videos.length}
       <Button
+        isMobile={$pageData.isMobile}
         width={$pageData.isMobile ? 280 : 340}
         height={56}
         text="もっと見る"
-        on:click={getMoreVideos}
+        onclick={getMoreVideos}
       />
     {:else}
       <p>※現在これ以上表示する動画はありません</p>

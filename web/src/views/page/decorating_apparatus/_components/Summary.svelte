@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import WithEnglishHeading from '../../../atomic/heading/WithEnglishHeading.svelte'
+  import { Heading } from '@imrg-platform/design-system'
 
   const FLOW = [
     {
@@ -33,7 +33,7 @@
   <div class="message">
     あなたの要望に合わせた<br />世界に一つだけの装飾をいたします!!
   </div>
-  <WithEnglishHeading englishTitle="Decorating Flow" title="装飾の流れ" />
+  <Heading isMobile={$pageData.isMobile} subtitle="Decorating Flow" title="装飾の流れ" />
   <ul class="flow">
     {#each FLOW as flow, index (index)}
       <li class="item">
