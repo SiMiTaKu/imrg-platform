@@ -1,0 +1,37 @@
+version: 2
+updates:
+  # pnpm の依存（Dependabot では npm として扱う）
+  - package-ecosystem: npm
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Tokyo
+    # 公開直後の版は避ける（pnpm も公開から日の浅い版を入れない）
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore(deps)'
+    groups:
+      # メジャー以外はまとめて1本にする
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Tokyo
+    commit-message:
+      prefix: 'chore(actions)'
+    groups:
+      actions:
+        patterns:
+          - '*'

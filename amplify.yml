@@ -4,12 +4,15 @@ frontend:
     preBuild:
       commands:
         - nvm install $(cat .node-version)
-        - npm ci
+        # package.json の packageManager に書いた版の pnpm を使う
+        - corepack enable
+        - pnpm config set store-dir .pnpm-store
+        - pnpm install --frozen-lockfile
     build:
       env:
         PUBLIC_BASE_PATH: 'https//imrg.work'
       commands:
-        - npm run build
+        - pnpm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: build
@@ -17,7 +20,7 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      - .pnpm-store/**/*
   customHeaders:
     # 既定。HTML は毎回取りに行き、更新をすぐ反映する
     - pattern: '**/*'

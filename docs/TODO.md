@@ -5,7 +5,7 @@ SEO・SNS・セキュリティー・CIを整えるための作業一覧。**Phas
 
 - 作成日： 2026-09-16
 - 進め方： 上から順に。Phase 0は他の作業の前提になるので先に片付ける
-- ブランチ運用： `feature/*` → `develop` → `master`（masterへのマージでAmplifyが本番へ反映）
+- ブランチ運用： `feature/*` → `develop` → `main`（mainへのマージでAmplifyが本番へ反映。2026-09-17までは `master`）
 
 ---
 
@@ -125,12 +125,34 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 ## Phase 2: CI とブランチ運用
 
-- [ ] **2-1. CI を強化する**：PRで `lint` → `check` → `test` → `build` を実行（現在はlintとtestのみ）
-- [ ] **2-2. ブランチ保護**：`master` と `develop` を直push禁止、PR必須、CI必須
+- [x] **2-1. CI を強化する**：PRで `lint` → `check` → `test` → `build` を実行（現在はlintとtestのみ）
+  - `.github/workflows/ci.yml` で、整形 → lint → 型 → テスト → ビルドを実行する。手元では `pnpm run verify` で同じ確認ができる
+  - マージ先を問わずすべてのPRで動かす（スタックPRの途中にも走る）。`develop` と `main` へのpushでも動かす
+- [ ] **2-2. ブランチ保護**：`main` と `develop` を直push禁止、PR必須、CI必須
   - privateのままならGitHub Proが必要。費用をかけないならpublic化も選択肢（`.env` に秘密情報がないことは確認済み）
-- [ ] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
-- [ ] **2-4. PR テンプレート・CODEOWNERS・`delete_branch_on_merge` を有効化**
+- [x] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
+  - `.github/dependabot.yml`：毎週月曜にpnpmの依存とGitHub Actionsの更新PRを `develop` 向けに出す。メジャー以外は1本にまとめ、公開から3日たった版だけを使う
+  - 脆弱性の通知と、修正PRの自動作成を有効にした
+  - CIで `pnpm audit` を実行する。本番の依存にhigh以上があれば止め、開発用の依存は知らせるだけ
+  - 開発用の依存にあった22件は `pnpm-workspace.yaml` の `overrides` で修正版に上げ、0件にした
+  - [x] **2-3a. npmからpnpmへ移す**（2-3と同時に行うことにした。pnpm 12。版は `package.json` の `packageManager`）
+    - `package-lock.json` の版をそのまま `pnpm-lock.yaml` へ移した（`pnpm import`）
+    - pnpm 11以降は依存のインストール時スクリプトを許可制にしているので、`pnpm-workspace.yaml` の `allowBuilds` で決める
+    - Amplifyはcorepackでpnpmを入れる。キャッシュは `.pnpm-store`
+- [x] **2-4. PR テンプレート・CODEOWNERS・`delete_branch_on_merge` を有効化**
+  - PRテンプレートと、Issueのテンプレート（改善・不具合）を置いた
+  - マージしたブランチを自動で消す設定を有効にし、マージ済みの古いブランチを整理した
+  - CODEOWNERSは、一人で運用しているので作らないことにした
 - [ ] **2-5. PR ごとのプレビュー環境**（Amplifyのプレビュー機能）
+- [x] **2-7. ESLint 9 → 10**（9系のサポートが終わったため。2026-09-17時点の最新は10.10.0）
+  - 使っているプラグインはすべて10に対応済みで、設定の変更は不要だった
+  - oshiageはまだ9系。揃えるならoshiage側も10へ上げる
+- [x] **2-8. 実装のルールを `.github/instructions/` に整える**（oshiageのルールをもとにする）
+  - 流用した：共通ルール、資料のリンク集、フロントエンドの基盤ルールと設計指針、単体・結合・E2Eテスト
+  - 書き換えた：FSDとデザインシステムへの移行前であること、APIの無い静的サイトであること、日英併記、Svelte 5の自己終了タグ、runesへの移行途中であること
+  - 追加した：開発の進め方（ブランチ・pnpm・コミット・PR・スタックPRのマージ）、静的サイトの書き出しと配信
+  - バックエンドのルール3本は、このリポジトリにバックエンドが無いので入れていない
+  - Claude Code向けに、ルートの `CLAUDE.md` から同じルールへ案内する。Phase 3でFSDへ移したら、設計指針の「今の構成」を消す
 - [ ] **2-6. 本番のブランチを `master` から `main` へ変える**
   - 運用を `feature/*` → `develop` → `main` にする（`main` へのマージで本番へ反映）
   - 手順
@@ -138,6 +160,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
     2. Amplifyで `main` ブランチを接続し、本番（`imrg.work`）のドメインの割り当てを `main` へ移す。反映を `https://imrg.work/_app/version.json` で確かめる
     3. CI（`.github/workflows/`）の対象ブランチ、ブランチ保護（2-2）、README・docs・この表の「ブランチ運用」を `main` に直す
     4. 開いているPRのマージ先を直してから、Amplifyの `master` の接続と `master` ブランチを消す
+  - コンソールの操作は [aws-setup.md](aws-setup.md) の8にまとめた
   - ドメインの割り当てを移す間は、切り替わるまで数分かかることがある。アクセスの少ない時間に行う
   - Terraform（Phase 4）へ取り込む前に済ませる。先に取り込むと、ブランチ名の差分が出るため
 
@@ -161,6 +184,22 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - トークン（色・余白・字送り・影・角丸）を `src/style` から切り出す
   - 共通部品（Button・ButtonLink・Card・Chip・Badge・Heading・Pagination）をStorybook付きで整理
   - a11yチェック（Storybookのa11yアドオン）を入れる
+
+- [ ] **3-4. 多言語化の土台を作る**（2026-09-17に、日英併記から言語ごとのページへ移すと決めた）
+  - 方針
+    - 既定は日本語。まず英語を加え、言語は後から足せる作りにする
+    - URLに言語を入れる。日本語は今のURLのまま、英語は `/en/...`（既存のURLと検索順位を保つため）
+    - 実装のルールは `.github/instructions/frontend-architecture-design.instructions.md` の「多言語対応」
+  - ライブラリーを決める。第一候補は **Paraglide JS**（inlang。SvelteKitの公式の追加機能で、静的な書き出しとURLの言語に対応し、文言をキーで型付きに扱える）。oshiageにもまだ仕組みが無いので、同じものを入れる
+  - 進め方
+    1. ライブラリーを入れ、`/en/` の書き出しと、言語の切り替え部品（ヘッダー）を作る
+    2. FSDへの再配置（3-2）と同時に、ページごとに文言をメッセージファイルへ移す。今の日英併記の文言を、そのまま日本語と英語のメッセージにする
+    3. メタ情報（title・description・OGP）、`alt`・`aria-label`、エラーページを翻訳する
+    4. データに英語の値を持たせる。カレンダーは `titleEn` などがある。推しミツ！（選手・チーム・動画）、ルール、採点には無いので、英語の項目を足して訳す
+    5. `hreflang`、sitemapの言語ごとの対応、`og:locale:alternate`、構造化データを言語ごとに出す
+    6. Search Consoleで英語ページの登録を確かめる
+  - 翻訳の作業量が大きい（ルールのページなど）。訳す順番（案はトップ、カレンダー、推しミツ！、ルールと採点の順）と、機械翻訳を下書きに使うかを着手時に決める
+  - 日英併記をやめたときの見た目は、デザインリニューアル（Phase 5）と合わせて決める
 
 ## Phase 4: Terraform 導入
 
@@ -186,6 +225,6 @@ Phase 0の「AWS環境の整備」を先に済ませてから着手する。
   - `tools/calendar/` として取り込み、更新手順を `docs/` に書く
 - [ ] **6-2. 404 ページを用意する**（現在は入れ物ページが返るだけ）
 - [ ] **6-3. アクセシビリティ点検**（コントラスト・キーボード操作・見出し階層）
-- [ ] **6-4. 日英の切り替え**（現在は併記。将来的に `/en/` を分けるか検討）
+- 6-4（日英の切り替え）は、多言語化すると決めたので3-4へ移した
 - [ ] **6-5. アクセス解析の活用**（どのページが見られているかを毎月確認し、次の施策を決める）
 - [ ] **6-6. `PUBLIC_BASE_PATH: 'https//imrg.work'`（`amplify.yml`）のタイポを直す**。未使用なら削除する
