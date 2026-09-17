@@ -87,7 +87,7 @@
       />
     {/if}
     <ButtonLink
-      isMobile={$pageData.isMobile}
+      size={$pageData.isMobile ? 'medium' : 'large'}
       width={$pageData.isMobile ? 320 : 343}
       height={56}
       text="この条件で推しミツ！"

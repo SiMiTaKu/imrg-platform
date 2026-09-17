@@ -5,15 +5,18 @@ const meta = {
   title: 'Design System/Heading',
   component: Heading,
   tags: ['autodocs'],
-  args: { title: '大会・イベントカレンダー', subtitle: 'Event Calendar', isMobile: false },
+  args: { title: '大会・イベントカレンダー', subtitle: 'Event Calendar', size: 'large' },
+  argTypes: {
+    size: { control: 'inline-radio', options: ['large', 'medium'] },
+  },
 } satisfies Meta<typeof Heading>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const PC: Story = {}
+export const 大: Story = {}
 
-export const スマホ: Story = {
-  args: { isMobile: true },
+export const 中: Story = {
+  args: { size: 'medium' },
 }

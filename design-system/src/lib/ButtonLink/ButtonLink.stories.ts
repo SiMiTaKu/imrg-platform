@@ -8,6 +8,7 @@ const meta = {
   args: { text: '大会カレンダーを見る', href: '/calendar/', width: 400, height: 56 },
   argTypes: {
     target: { control: 'inline-radio', options: ['_self', '_blank'] },
+    size: { control: 'inline-radio', options: ['large', 'medium'] },
   },
 } satisfies Meta<typeof ButtonLink>
 
@@ -15,10 +16,10 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const PC: Story = {}
+export const 大: Story = {}
 
-export const スマホ: Story = {
-  args: { width: 320, isMobile: true },
+export const 中: Story = {
+  args: { width: 320, size: 'medium' },
 }
 
 export const 新しいタブで開く: Story = {

@@ -1,18 +1,20 @@
 <script lang="ts">
+  import type { Size } from '../types'
+
   /** セクションの見出しの引数 */
   interface Props {
     /** 見出し */
     title: string
     /** 見出しの下に小さく出す文言（英語の見出しなど） */
     subtitle: string
-    /** スマホ向けの大きさで表示するか */
-    isMobile?: boolean
+    /** 大きさ。`medium` は狭い画面向けの一回り小さい大きさ */
+    size?: Size
   }
 
-  const { title, subtitle, isMobile = false }: Props = $props()
+  const { title, subtitle, size = 'large' }: Props = $props()
 </script>
 
-<h2 class="title" class:pc={!isMobile} class:sp={isMobile}>
+<h2 class="title" class:large={size === 'large'} class:medium={size === 'medium'}>
   {title}
   <span class="subtitle">
     {subtitle}
@@ -20,12 +22,12 @@
 </h2>
 
 <style lang="scss">
-  .pc {
+  .large {
     --title-font-size: 40px;
     --subtitle-font-size: 20px;
   }
 
-  .sp {
+  .medium {
     --title-font-size: 30px;
     --subtitle-font-size: 16px;
   }

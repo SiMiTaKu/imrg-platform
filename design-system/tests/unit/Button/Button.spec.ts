@@ -20,11 +20,15 @@ describe('Button', () => {
     })
 
     it.each([
-      ['PC の場合、pc の見た目になること', false, 'pc'],
-      ['スマホの場合、sp の見た目になること', true, 'sp'],
-    ])('%s', (_, isMobile, className) => {
-      // #region Given / When
-      render(Button, { text: 'もっと見る', width: 280, height: 56, isMobile })
+      ['大きさを省いた場合、large の見た目になること', undefined, 'large'],
+      ['medium を指定した場合、medium の見た目になること', 'medium', 'medium'],
+    ] as const)('%s', (_, size, className) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
+      render(Button, { text: 'もっと見る', width: 280, height: 56, size })
       // #endregion
 
       // #region Then

@@ -126,7 +126,7 @@
 
 <article class="calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <Heading
-    isMobile={$pageData.isMobile}
+    size={$pageData.isMobile ? 'medium' : 'large'}
     subtitle="Event Calendar"
     title="大会・イベントカレンダー"
   />

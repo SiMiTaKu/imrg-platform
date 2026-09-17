@@ -19,7 +19,8 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 
 - 共通部品は `@imrg-platform/design-system` を最優先で利用する（`import { Button } from '@imrg-platform/design-system'`）。まだ移していない部品は `web/src/views/atomic/` にある
 - 複数のページで使う見た目の部品は、デザインシステムに作る。runes で書き、Storybook のストーリー（`*.stories.ts`）と `design-system/tests/unit/` のテストを付ける
-- デザインシステムの部品は、サイトのストアや文言を持たない。端末の違いは `isMobile`、文言は引数で受け取る
+- デザインシステムの部品は、サイトのストアや文言を持たない。文言は引数で受け取る
+- **端末の判定（`isMobile`・`pageData`）は web だけで使う。** デザインシステムの部品は端末を知らず、大きさを `size`（`large` / `medium`）で受け取る。web 側で `size={$pageData.isMobile ? 'medium' : 'large'}` のように選んで渡す
 - 同等コンポーネントの再実装は行わない
 - 新しいUI部品が必要な場合は、共通化前提で設計する
 - アクセシビリティ属性（ラベル、role、キーボード操作）を欠かさない

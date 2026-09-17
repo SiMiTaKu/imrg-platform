@@ -10,7 +10,7 @@
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <Heading isMobile={$pageData.isMobile} subtitle="Work List" title="過去の実績" />
+  <Heading size={$pageData.isMobile ? 'medium' : 'large'} subtitle="Work List" title="過去の実績" />
   <ul class="cards">
     {#each WORK_LIST as work, index (index)}
       <li class="card">

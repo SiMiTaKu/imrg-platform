@@ -28,7 +28,11 @@
   <div class="message">
     あらゆる曲を演技に<br />合わせて編曲します!!
   </div>
-  <Heading isMobile={$pageData.isMobile} subtitle="Editing Flow" title="編曲の流れ" />
+  <Heading
+    size={$pageData.isMobile ? 'medium' : 'large'}
+    subtitle="Editing Flow"
+    title="編曲の流れ"
+  />
   <ul class="flow">
     {#each FLOW as flow, index (index)}
       <li class="item">

@@ -9,7 +9,7 @@
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <Heading isMobile={$pageData.isMobile} subtitle="Work List" title="過去の作品" />
+  <Heading size={$pageData.isMobile ? 'medium' : 'large'} subtitle="Work List" title="過去の作品" />
   <ul class="list">
     {#each WORK_LIST as work, index (index)}
       <li class="item">

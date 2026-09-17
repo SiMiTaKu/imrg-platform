@@ -33,7 +33,11 @@
   <div class="message">
     あなたの要望に合わせた<br />世界に一つだけの装飾をいたします!!
   </div>
-  <Heading isMobile={$pageData.isMobile} subtitle="Decorating Flow" title="装飾の流れ" />
+  <Heading
+    size={$pageData.isMobile ? 'medium' : 'large'}
+    subtitle="Decorating Flow"
+    title="装飾の流れ"
+  />
   <ul class="flow">
     {#each FLOW as flow, index (index)}
       <li class="item">

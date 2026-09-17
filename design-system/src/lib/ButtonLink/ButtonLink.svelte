@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Size } from '../types'
+
   /** ボタンの見た目のリンクの引数 */
   interface Props {
     /** 表示する文言 */
@@ -11,19 +13,19 @@
     height: number
     /** 開き方。`_blank` なら新しいタブで開き、`noopener noreferrer` を付ける */
     target?: '_blank' | '_self'
-    /** スマホ向けの大きさで表示するか */
-    isMobile?: boolean
+    /** 大きさ。`medium` は狭い画面向けの一回り小さい大きさ */
+    size?: Size
   }
 
-  const { text, href, width, height, target = '_self', isMobile = false }: Props = $props()
+  const { text, href, width, height, target = '_self', size = 'large' }: Props = $props()
 </script>
 
 <a
   style:width={`${width}px`}
   style:height={`${height}px`}
   class="button-link"
-  class:pc={!isMobile}
-  class:sp={isMobile}
+  class:large={size === 'large'}
+  class:medium={size === 'medium'}
   {href}
   {target}
   rel={target === '_blank' ? 'noopener noreferrer' : ''}
@@ -32,11 +34,11 @@
 </a>
 
 <style lang="scss">
-  .pc {
+  .large {
     --item-font-size: #{$font-size-24};
   }
 
-  .sp {
+  .medium {
     --item-font-size: #{$font-size-20};
   }
 

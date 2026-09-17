@@ -14,7 +14,7 @@
 <section class="links" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   {#each LINKS as { href, text }, index (index)}
     <ButtonLink
-      isMobile={$pageData.isMobile}
+      size={$pageData.isMobile ? 'medium' : 'large'}
       width={$pageData.isMobile ? 320 : 400}
       height={56}
       {href}

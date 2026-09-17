@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Size } from '../types'
+
   /** ボタンの引数 */
   interface Props {
     /** ボタンに表示する文言 */
@@ -7,13 +9,13 @@
     width: number
     /** 高さ（px） */
     height: number
-    /** スマホ向けの大きさで表示するか */
-    isMobile?: boolean
+    /** 大きさ。`medium` は狭い画面向けの一回り小さい大きさ */
+    size?: Size
     /** 押したときの処理 */
     onclick?: (event: MouseEvent) => void
   }
 
-  const { text, width, height, isMobile = false, onclick }: Props = $props()
+  const { text, width, height, size = 'large', onclick }: Props = $props()
 </script>
 
 <button
@@ -21,19 +23,19 @@
   type="button"
   style:width={`${width}px`}
   style:height={`${height}px`}
-  class:pc={!isMobile}
-  class:sp={isMobile}
+  class:large={size === 'large'}
+  class:medium={size === 'medium'}
   {onclick}
 >
   {text}
 </button>
 
 <style lang="scss">
-  .pc {
+  .large {
     --item-font-size: #{$font-size-24};
   }
 
-  .sp {
+  .medium {
     --item-font-size: #{$font-size-20};
   }
 

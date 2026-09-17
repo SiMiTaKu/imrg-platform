@@ -1,5 +1,5 @@
-import { describe, expect, test } from 'vitest'
-import type { CalendarEvent } from '$views/page/calendar/_data/model'
+import { describe, expect, it } from 'vitest'
+import type { CalendarEvent, EventCategory } from '$views/page/calendar/_data/model'
 import {
   buildMonthGrid,
   defaultState,
@@ -17,6 +17,7 @@ import {
   serializeState,
   shiftMonth,
   toDateKey,
+  type CalendarState,
 } from '$views/page/calendar/_lib/calendar'
 
 /** テスト用のイベントを作る。指定しない項目は適当な値で埋める */
@@ -35,34 +36,109 @@ function makeEvent(overrides: Partial<CalendarEvent>): CalendarEvent {
 
 const titles = (events: CalendarEvent[]) => events.map((event) => event.titleJa)
 
-describe('test toDateKey', () => {
-  test('月と日を2桁にそろえる', () => {
-    expect(toDateKey(new Date(2026, 8, 6))).toBe('2026-09-06')
+describe('toDateKey', () => {
+  describe('正常系', () => {
+    it('月と日が1桁の場合、2桁にそろうこと', () => {
+      // #region Given
+      const date = new Date(2026, 8, 6)
+      // #endregion
+
+      // #region When
+      const result = toDateKey(date)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe('2026-09-06')
+      // #endregion
+    })
   })
 })
 
-describe('test shiftMonth', () => {
-  test.each([
-    ['年をまたいで進む', '2026-12', 1, '2027-01'],
-    ['年をまたいで戻る', '2026-01', -1, '2025-12'],
-  ])('%s', (_, monthKey, delta, expected) => {
-    expect(shiftMonth(monthKey, delta)).toBe(expected)
+describe('shiftMonth', () => {
+  describe('境界値', () => {
+    it.each([
+      ['12月から1か月進める場合、年をまたいで翌年1月になること', '2026-12', 1, '2027-01'],
+      ['1月から1か月戻す場合、年をまたいで前年12月になること', '2026-01', -1, '2025-12'],
+    ])('%s', (_, monthKey, delta, expected) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
+      const result = shiftMonth(monthKey, delta)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
   })
 })
 
-describe('test isUpcoming', () => {
-  test.each([
-    ['終了日が今日より前：終わっている', { startDate: '2026-09-10', endDate: '2026-09-15' }, false],
-    ['終了日が今日：終わっていない', { startDate: '2026-09-14', endDate: '2026-09-16' }, true],
-    ['終了日がなく開始日が今日より前：終わっている', { startDate: '2026-09-15' }, false],
-    ['年月だけで今月：終わっていない', { startDate: '2026-09' }, true],
-    ['年月だけで先月：終わっている', { startDate: '2026-08' }, false],
-  ])('%s', (_, dates, expected) => {
-    expect(isUpcoming(makeEvent(dates), '2026-09-16')).toBe(expected)
+describe('isUpcoming', () => {
+  const TODAY = '2026-09-16'
+
+  describe('正常系', () => {
+    it.each([
+      [
+        '終了日が今日より前の場合、終わっている扱い（false）になること',
+        { startDate: '2026-09-10', endDate: '2026-09-15' },
+        false,
+      ],
+      [
+        '終了日がなく開始日が今日より前の場合、終わっている扱い（false）になること',
+        { startDate: '2026-09-15' },
+        false,
+      ],
+      [
+        '年月だけで先月の場合、終わっている扱い（false）になること',
+        { startDate: '2026-08' },
+        false,
+      ],
+    ])('%s', (_, dates, expected) => {
+      // #region Given
+      const event = makeEvent(dates)
+      // #endregion
+
+      // #region When
+      const result = isUpcoming(event, TODAY)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+
+  describe('境界値', () => {
+    it.each([
+      [
+        '終了日が今日の場合、終わっていない扱い（true）になること',
+        { startDate: '2026-09-14', endDate: '2026-09-16' },
+        true,
+      ],
+      [
+        '年月だけで今月の場合、終わっていない扱い（true）になること',
+        { startDate: '2026-09' },
+        true,
+      ],
+    ])('%s', (_, dates, expected) => {
+      // #region Given
+      const event = makeEvent(dates)
+      // #endregion
+
+      // #region When
+      const result = isUpcoming(event, TODAY)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
   })
 })
 
-describe('test matchesKeyword', () => {
+describe('matchesKeyword', () => {
   const event = makeEvent({
     titleJa: '第79回全日本新体操選手権大会',
     titleEn: '79th All Japan Rhythmic Gymnastics Championships',
@@ -70,34 +146,109 @@ describe('test matchesKeyword', () => {
     venueEn: 'Takasaki Arena',
   })
 
-  test.each([
-    ['空のキーワードはすべてに当てはまる', '', true],
-    ['大会名の一部', '全日本', true],
-    ['空白で区切った語をすべて含む', '全日本 高崎', true],
-    ['区切った語の一つでも含まなければ外れる', '全日本 青森', false],
-    ['英語は大文字小文字を区別しない', 'takasaki', true],
-    ['全角の英数字でも探せる', 'ＡＬＬ　ＪＡＰＡＮ', true],
-    ['種類名でも探せる', '全国大会', true],
-  ])('%s', (_, keyword, expected) => {
-    expect(matchesKeyword(event, keyword)).toBe(expected)
+  describe('正常系', () => {
+    it.each([
+      ['大会名の一部を指定した場合、当てはまること（true）', '全日本', true],
+      ['空白で区切った語をすべて含む場合、当てはまること（true）', '全日本 高崎', true],
+      ['空白で区切った語の一つでも含まない場合、外れること（false）', '全日本 青森', false],
+      ['種類名を指定した場合、当てはまること（true）', '全国大会', true],
+    ])('%s', (_, keyword, expected) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
+      const result = matchesKeyword(event, keyword)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+
+  describe('準正常系', () => {
+    it.each([
+      [
+        '英語を大文字小文字が違う形で指定した場合、区別せず当てはまること（true）',
+        'takasaki',
+        true,
+      ],
+      ['全角の英数字で指定した場合、当てはまること（true）', 'ＡＬＬ　ＪＡＰＡＮ', true],
+    ])('%s', (_, keyword, expected) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
+      const result = matchesKeyword(event, keyword)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+
+  describe('境界値', () => {
+    it('キーワードが空の場合、当てはまること（true）', () => {
+      // #region Given
+      const keyword = ''
+      // #endregion
+
+      // #region When
+      const result = matchesKeyword(event, keyword)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(true)
+      // #endregion
+    })
   })
 })
 
-describe('test isEveryCategory', () => {
-  test.each([
-    ['何も選んでいない', [], true],
-    [
-      '全部選んだ',
-      ['national', 'regional', 'prefectural', 'performance', 'workshop', 'international'],
-      true,
-    ],
-    ['一部だけ選んだ', ['national', 'regional'], false],
-  ])('%s', (_, categories, expected) => {
-    expect(isEveryCategory(categories as never)).toBe(expected)
+describe('isEveryCategory', () => {
+  describe('正常系', () => {
+    it.each<[string, EventCategory[], boolean]>([
+      [
+        '種類を全部選んだ場合、true になること',
+        ['national', 'regional', 'prefectural', 'performance', 'workshop', 'international'],
+        true,
+      ],
+      ['種類を一部だけ選んだ場合、false になること', ['national', 'regional'], false],
+    ])('%s', (_, categories, expected) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
+      const result = isEveryCategory(categories)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+
+  describe('境界値', () => {
+    it('種類を何も選んでいない場合、true になること', () => {
+      // #region Given
+      const categories: EventCategory[] = []
+      // #endregion
+
+      // #region When
+      const result = isEveryCategory(categories)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(true)
+      // #endregion
+    })
   })
 })
 
-describe('test filterEvents', () => {
+describe('filterEvents', () => {
   const events = [
     makeEvent({ titleJa: 'C', category: 'workshop', startDate: '2026-11-03' }),
     makeEvent({ titleJa: 'A', category: 'national', startDate: '2026-09-01' }),
@@ -106,153 +257,394 @@ describe('test filterEvents', () => {
   ]
   const base = { categories: [], keyword: '', today: '2026-09-16' }
 
-  test('これから：終わっていないものを古い順に並べる', () => {
-    expect(titles(filterEvents(events, { ...base, period: 'upcoming' }))).toEqual(['B', 'C'])
-  })
+  describe('正常系', () => {
+    it.each([
+      ['期間が「これから」の場合、終わっていないものが古い順に並ぶこと', 'upcoming', ['B', 'C']],
+      ['期間が「終わった」の場合、終わったものが新しい順に並ぶこと', 'past', ['A', 'Z']],
+      ['期間が「すべて」の場合、すべてが古い順に並ぶこと', 'all', ['Z', 'A', 'B', 'C']],
+    ] as const)('%s', (_, period, expected) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
 
-  test('終わった：終わったものを新しい順に並べる', () => {
-    expect(titles(filterEvents(events, { ...base, period: 'past' }))).toEqual(['A', 'Z'])
-  })
+      // #region When
+      const result = filterEvents(events, { ...base, period })
+      // #endregion
 
-  test('すべて：古い順に並べる', () => {
-    expect(titles(filterEvents(events, { ...base, period: 'all' }))).toEqual(['Z', 'A', 'B', 'C'])
-  })
-
-  test('種類で絞り込む（複数指定できる）', () => {
-    const result = filterEvents(events, {
-      ...base,
-      categories: ['workshop', 'international'],
-      period: 'all',
+      // #region Then
+      expect(titles(result)).toEqual(expected)
+      // #endregion
     })
-    expect(titles(result)).toEqual(['C'])
+
+    it('種類を複数指定した場合、いずれかの種類に当てはまるものだけに絞り込まれること', () => {
+      // #region Given
+      const filter = {
+        ...base,
+        categories: ['workshop', 'international'] as EventCategory[],
+        period: 'all' as const,
+      }
+      // #endregion
+
+      // #region When
+      const result = filterEvents(events, filter)
+      // #endregion
+
+      // #region Then
+      expect(titles(result)).toEqual(['C'])
+      // #endregion
+    })
   })
 })
 
-describe('test groupByMonth', () => {
-  test('開始月が続くかたまりごとにまとめる', () => {
-    const events = [
-      makeEvent({ titleJa: 'A', startDate: '2026-10-01' }),
-      makeEvent({ titleJa: 'B', startDate: '2026-10-30' }),
-      makeEvent({ titleJa: 'C', startDate: '2026-11' }),
-    ]
-    const result = groupByMonth(events)
-    expect(result.map((group) => [group.monthKey, group.events.length])).toEqual([
-      ['2026-10', 2],
-      ['2026-11', 1],
-    ])
+describe('groupByMonth', () => {
+  describe('正常系', () => {
+    it('開始月が同じイベントが続く場合、そのかたまりごとにまとまること', () => {
+      // #region Given
+      const events = [
+        makeEvent({ titleJa: 'A', startDate: '2026-10-01' }),
+        makeEvent({ titleJa: 'B', startDate: '2026-10-30' }),
+        makeEvent({ titleJa: 'C', startDate: '2026-11' }),
+      ]
+      // #endregion
+
+      // #region When
+      const result = groupByMonth(events)
+      // #endregion
+
+      // #region Then
+      expect(result.map((group) => [group.monthKey, group.events.length])).toEqual([
+        ['2026-10', 2],
+        ['2026-11', 1],
+      ])
+      // #endregion
+    })
   })
 })
 
-describe('test paginate', () => {
+describe('paginate', () => {
   const items = Array.from({ length: 45 }, (_, index) => index)
 
-  test.each([
-    ['1ページ目', 1, 1, 0],
-    ['最後のページ', 3, 3, 40],
-    ['範囲より大きいページは最後に寄せる', 99, 3, 40],
-    ['0以下のページは1ページ目に寄せる', 0, 1, 0],
-  ])('%s', (_, page, expectedPage, expectedFirst) => {
-    const result = paginate(items, page, 20)
-    expect(result.page).toBe(expectedPage)
-    expect(result.totalPages).toBe(3)
-    expect(result.items[0]).toBe(expectedFirst)
+  describe('正常系', () => {
+    it.each([
+      ['1ページ目を指定した場合、1ページ目の先頭から返ること', 1, 1, 0],
+      ['最後のページを指定した場合、最後のページの先頭から返ること', 3, 3, 40],
+    ])('%s', (_, page, expectedPage, expectedFirst) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
+      const result = paginate(items, page, 20)
+      // #endregion
+
+      // #region Then
+      expect(result.page).toBe(expectedPage)
+      expect(result.totalPages).toBe(3)
+      expect(result.items[0]).toBe(expectedFirst)
+      // #endregion
+    })
   })
 
-  test('空のときも1ページとして扱う', () => {
-    expect(paginate([], 1, 20)).toEqual({ items: [], page: 1, totalPages: 1 })
-  })
-})
+  describe('準正常系', () => {
+    it.each([
+      ['範囲より大きいページを指定した場合、最後のページに寄せられること', 99, 3, 40],
+      ['0以下のページを指定した場合、1ページ目に寄せられること', 0, 1, 0],
+    ])('%s', (_, page, expectedPage, expectedFirst) => {
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
 
-describe('test buildMonthGrid', () => {
-  test('日曜始まりで、前後の月の日を含めて週ごとに並べる', () => {
-    const weeks = buildMonthGrid('2026-09')
-    expect(weeks).toHaveLength(5)
-    expect(weeks[0][0]).toEqual({ dateKey: '2026-08-30', day: 30, weekday: 0, inMonth: false })
-    expect(weeks[0][2]).toEqual({ dateKey: '2026-09-01', day: 1, weekday: 2, inMonth: true })
-    expect(weeks[4][6]).toEqual({ dateKey: '2026-10-03', day: 3, weekday: 6, inMonth: false })
-  })
-})
+      // #region When
+      const result = paginate(items, page, 20)
+      // #endregion
 
-describe('test eventsOnDay / eventsInMonth', () => {
-  const events = [
-    makeEvent({ titleJa: '期間', startDate: '2026-10-30', endDate: '2026-11-01' }),
-    makeEvent({ titleJa: '1日', startDate: '2026-11-15' }),
-    makeEvent({ titleJa: '年月だけ', startDate: '2026-11' }),
-  ]
-
-  test('期間中の日には期間のイベントが入る', () => {
-    expect(titles(eventsOnDay(events, '2026-10-31'))).toEqual(['期間'])
+      // #region Then
+      expect(result.page).toBe(expectedPage)
+      expect(result.totalPages).toBe(3)
+      expect(result.items[0]).toBe(expectedFirst)
+      // #endregion
+    })
   })
 
-  test('年月だけのイベントは日には入らない', () => {
-    expect(titles(eventsOnDay(events, '2026-11-01'))).toEqual(['期間'])
-  })
+  describe('境界値', () => {
+    it('項目が空の場合、1ページとして扱われること', () => {
+      // #region Given
+      const emptyItems: number[] = []
+      // #endregion
 
-  test('月にかかるイベントは、年月だけのものも含める', () => {
-    expect(titles(eventsInMonth(events, '2026-11'))).toEqual(['期間', '1日', '年月だけ'])
-  })
-})
+      // #region When
+      const result = paginate(emptyItems, 1, 20)
+      // #endregion
 
-describe('test parseState / serializeState', () => {
-  test('初期値のままならクエリは空', () => {
-    expect(serializeState(defaultState('2026-09'), '2026-09')).toBe('')
-  })
-
-  test('書き出した状態を読み戻すと同じになる', () => {
-    const state = {
-      ...defaultState('2026-09'),
-      view: 'list' as const,
-      keyword: '全日本',
-      categories: ['national' as const],
-      period: 'past' as const,
-      page: 3,
-    }
-    const query = serializeState(state, '2026-09')
-    expect(parseState(query, '2026-09')).toEqual(state)
-  })
-
-  test('種類は複数まとめて読み書きできる', () => {
-    const state = {
-      ...defaultState('2026-09'),
-      categories: ['national' as const, 'regional' as const],
-    }
-    expect(serializeState(state, '2026-09')).toBe('?category=national%2Cregional')
-    expect(parseState(serializeState(state, '2026-09'), '2026-09')).toEqual(state)
-  })
-
-  test('カレンダーの月と日を読み戻せる', () => {
-    const state = { ...defaultState('2026-09'), month: '2026-11', day: '2026-11-15' }
-    expect(parseState(serializeState(state, '2026-09'), '2026-09')).toEqual(state)
-  })
-
-  test('おかしな値は初期値にする', () => {
-    const result = parseState(
-      '?view=grid&category=unknown&period=later&page=-2&month=2026-1&day=2026-12-01',
-      '2026-09',
-    )
-    expect(result).toEqual(defaultState('2026-09'))
+      // #region Then
+      expect(result).toEqual({ items: [], page: 1, totalPages: 1 })
+      // #endregion
+    })
   })
 })
 
-describe('test formatDateRange', () => {
-  test.each([
-    ['1日だけ', { startDate: '2026-10-30' }, '2026年10月30日（金）', 'Fri, Oct 30, 2026'],
-    [
-      '月をまたぐ',
-      { startDate: '2026-10-30', endDate: '2026-11-01' },
-      '2026年10月30日（金）〜11月1日（日）',
-      'Fri, Oct 30 – Sun, Nov 1, 2026',
-    ],
-    [
-      '年をまたぐ',
-      { startDate: '2026-12-30', endDate: '2027-01-01' },
-      '2026年12月30日（水）〜2027年1月1日（金）',
-      'Wed, Dec 30, 2026 – Fri, Jan 1, 2027',
-    ],
-    ['年月だけ', { startDate: '2027-03' }, '2027年3月', 'March 2027'],
-  ])('%s', (_, dates, expectedJa, expectedEn) => {
-    const event = makeEvent(dates)
-    expect(formatDateRangeJa(event)).toBe(expectedJa)
-    expect(formatDateRangeEn(event)).toBe(expectedEn)
+describe('buildMonthGrid', () => {
+  describe('正常系', () => {
+    it('月を指定した場合、日曜始まりで前後の月の日を含めて週ごとに並ぶこと', () => {
+      // #region Given
+      const monthKey = '2026-09'
+      // #endregion
+
+      // #region When
+      const weeks = buildMonthGrid(monthKey)
+      // #endregion
+
+      // #region Then
+      expect(weeks).toHaveLength(5)
+      expect(weeks[0][0]).toEqual({ dateKey: '2026-08-30', day: 30, weekday: 0, inMonth: false })
+      expect(weeks[0][2]).toEqual({ dateKey: '2026-09-01', day: 1, weekday: 2, inMonth: true })
+      expect(weeks[4][6]).toEqual({ dateKey: '2026-10-03', day: 3, weekday: 6, inMonth: false })
+      // #endregion
+    })
+  })
+})
+
+/** eventsOnDay / eventsInMonth で共通に使うイベント */
+const dayAndMonthEvents = [
+  makeEvent({ titleJa: '期間', startDate: '2026-10-30', endDate: '2026-11-01' }),
+  makeEvent({ titleJa: '1日', startDate: '2026-11-15' }),
+  makeEvent({ titleJa: '年月だけ', startDate: '2026-11' }),
+]
+
+describe('eventsOnDay', () => {
+  describe('正常系', () => {
+    it('期間中の日を指定した場合、期間のイベントが入ること', () => {
+      // #region Given
+      const dateKey = '2026-10-31'
+      // #endregion
+
+      // #region When
+      const result = eventsOnDay(dayAndMonthEvents, dateKey)
+      // #endregion
+
+      // #region Then
+      expect(titles(result)).toEqual(['期間'])
+      // #endregion
+    })
+  })
+
+  describe('準正常系', () => {
+    it('年月だけのイベントがある月の日を指定した場合、年月だけのイベントは入らないこと', () => {
+      // #region Given
+      const dateKey = '2026-11-01'
+      // #endregion
+
+      // #region When
+      const result = eventsOnDay(dayAndMonthEvents, dateKey)
+      // #endregion
+
+      // #region Then
+      expect(titles(result)).toEqual(['期間'])
+      // #endregion
+    })
+  })
+})
+
+describe('eventsInMonth', () => {
+  describe('正常系', () => {
+    it('月を指定した場合、その月にかかるイベントが年月だけのものも含めて入ること', () => {
+      // #region Given
+      const monthKey = '2026-11'
+      // #endregion
+
+      // #region When
+      const result = eventsInMonth(dayAndMonthEvents, monthKey)
+      // #endregion
+
+      // #region Then
+      expect(titles(result)).toEqual(['期間', '1日', '年月だけ'])
+      // #endregion
+    })
+  })
+})
+
+describe('serializeState', () => {
+  describe('正常系', () => {
+    it('種類を複数選んだ場合、まとめて書き出され、読み戻すと同じ状態になること', () => {
+      // #region Given
+      const state: CalendarState = {
+        ...defaultState('2026-09'),
+        categories: ['national', 'regional'],
+      }
+      // #endregion
+
+      // #region When
+      const query = serializeState(state, '2026-09')
+      // #endregion
+
+      // #region Then
+      expect(query).toBe('?category=national%2Cregional')
+      expect(parseState(query, '2026-09')).toEqual(state)
+      // #endregion
+    })
+  })
+
+  describe('境界値', () => {
+    it('初期値のままの場合、クエリが空になること', () => {
+      // #region Given
+      const state = defaultState('2026-09')
+      // #endregion
+
+      // #region When
+      const query = serializeState(state, '2026-09')
+      // #endregion
+
+      // #region Then
+      expect(query).toBe('')
+      // #endregion
+    })
+  })
+})
+
+describe('parseState', () => {
+  describe('正常系', () => {
+    it.each<[string, CalendarState]>([
+      [
+        '表示・キーワード・種類・期間・ページを書き出した場合、読み戻すと同じ状態になること',
+        {
+          ...defaultState('2026-09'),
+          view: 'list',
+          keyword: '全日本',
+          categories: ['national'],
+          period: 'past',
+          page: 3,
+        },
+      ],
+      [
+        'カレンダーの月と日を書き出した場合、読み戻すと同じ状態になること',
+        { ...defaultState('2026-09'), month: '2026-11', day: '2026-11-15' },
+      ],
+    ])('%s', (_, state) => {
+      // #region Given
+      const query = serializeState(state, '2026-09')
+      // #endregion
+
+      // #region When
+      const result = parseState(query, '2026-09')
+      // #endregion
+
+      // #region Then
+      expect(result).toEqual(state)
+      // #endregion
+    })
+  })
+
+  describe('異常系', () => {
+    it('おかしな値が渡された場合、初期値になること', () => {
+      // #region Given
+      const query = '?view=grid&category=unknown&period=later&page=-2&month=2026-1&day=2026-12-01'
+      // #endregion
+
+      // #region When
+      const result = parseState(query, '2026-09')
+      // #endregion
+
+      // #region Then
+      expect(result).toEqual(defaultState('2026-09'))
+      // #endregion
+    })
+  })
+})
+
+describe('formatDateRangeJa', () => {
+  describe('正常系', () => {
+    it.each([
+      [
+        '1日だけの場合、その日付と曜日になること',
+        { startDate: '2026-10-30' },
+        '2026年10月30日（金）',
+      ],
+      ['年月だけの場合、年と月だけになること', { startDate: '2027-03' }, '2027年3月'],
+    ])('%s', (_, dates, expected) => {
+      // #region Given
+      const event = makeEvent(dates)
+      // #endregion
+
+      // #region When
+      const result = formatDateRangeJa(event)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+  describe('境界値', () => {
+    it.each([
+      [
+        '月をまたぐ場合、月をまたいだ期間の表記になること',
+        { startDate: '2026-10-30', endDate: '2026-11-01' },
+        '2026年10月30日（金）〜11月1日（日）',
+      ],
+      [
+        '年をまたぐ場合、始まりと終わりの両方に年が付いた期間の表記になること',
+        { startDate: '2026-12-30', endDate: '2027-01-01' },
+        '2026年12月30日（水）〜2027年1月1日（金）',
+      ],
+    ])('%s', (_, dates, expected) => {
+      // #region Given
+      const event = makeEvent(dates)
+      // #endregion
+
+      // #region When
+      const result = formatDateRangeJa(event)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+})
+
+describe('formatDateRangeEn', () => {
+  describe('正常系', () => {
+    it.each([
+      ['1日だけの場合、その日付と曜日になること', { startDate: '2026-10-30' }, 'Fri, Oct 30, 2026'],
+      ['年月だけの場合、年と月だけになること', { startDate: '2027-03' }, 'March 2027'],
+    ])('%s', (_, dates, expected) => {
+      // #region Given
+      const event = makeEvent(dates)
+      // #endregion
+
+      // #region When
+      const result = formatDateRangeEn(event)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+  describe('境界値', () => {
+    it.each([
+      [
+        '月をまたぐ場合、月をまたいだ期間の表記になること',
+        { startDate: '2026-10-30', endDate: '2026-11-01' },
+        'Fri, Oct 30 – Sun, Nov 1, 2026',
+      ],
+      [
+        '年をまたぐ場合、始まりと終わりの両方に年が付いた期間の表記になること',
+        { startDate: '2026-12-30', endDate: '2027-01-01' },
+        'Wed, Dec 30, 2026 – Fri, Jan 1, 2027',
+      ],
+    ])('%s', (_, dates, expected) => {
+      // #region Given
+      const event = makeEvent(dates)
+      // #endregion
+
+      // #region When
+      const result = formatDateRangeEn(event)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
   })
 })

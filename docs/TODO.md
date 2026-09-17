@@ -204,7 +204,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - a11yチェック（Storybookのa11yアドオン）を入れる
   - `design-system/`（`@imrg-platform/design-system`）を作り、トークン（`src/styles`）を `web/src/style` から移した。SCSSの読み込み設定（`scss.config.js`）はwebと共有する
   - 部品はButton・ButtonLink・Heading（旧WithEnglishHeading）・Pagination（カレンダーから移し、文言を外から渡す形にした）の4つ。runesで書き、Storybookのストーリーとテスト（Testing Library）を付けた
-  - 部品は端末の判定（`pageData`）を持たず、`isMobile` を引数で受け取る
+  - 端末の判定（`isMobile`）はwebだけで使う。部品は大きさを `size`（`large` / `medium`）で受け取り、webが端末に応じて選ぶ
   - Card・Chip・Badgeは、今のサイトに共通の部品が無いため作っていない。3-2でページを移すときに、実際に使う形から切り出す
   - Storybookは `pnpm --filter @imrg-platform/design-system storybook` で手元に開く。CIではビルド（`pnpm run build`）が通ることだけ確かめる。a11yアドオンの違反はエラー扱い
 
