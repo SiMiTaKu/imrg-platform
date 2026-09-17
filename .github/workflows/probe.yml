@@ -1,0 +1,9 @@
+name: probe
+on:
+  push:
+    branches: [tmp/actions-probe]
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
