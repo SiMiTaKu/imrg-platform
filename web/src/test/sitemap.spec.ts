@@ -8,7 +8,11 @@ describe('withTrailingSlash', () => {
       ['末尾にスラッシュがある場合、そのままになること', '/calendar/', '/calendar/'],
       ['トップの場合、そのままになること', '/', '/'],
     ])('%s', (_, path, expected) => {
-      // #region Given / When
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
       const result = withTrailingSlash(path)
       // #endregion
 
@@ -41,7 +45,11 @@ describe('toAbsoluteUrl', () => {
       ['baseUrl の末尾にスラッシュが無い場合、そのままつながること', 'https://imrg.work'],
       ['baseUrl の末尾にスラッシュがある場合、スラッシュが重ならないこと', 'https://imrg.work/'],
     ])('%s', (_, baseUrl) => {
-      // #region Given / When
+      // #region Given
+      // 引数は it.each の表で渡す
+      // #endregion
+
+      // #region When
       const result = toAbsoluteUrl(baseUrl, '/calendar')
       // #endregion
 
