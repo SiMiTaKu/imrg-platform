@@ -26,7 +26,13 @@ name: 静的サイトの書き出しと配信
 
 - `og:image` は絶対 URL の 1200×630 の画像（`static/images/ogp.png`）
 - 大会の詳細ページには構造化データ（schema.org の `SportsEvent`）を入れている。項目を変えたら Google のリッチリザルト テストで確かめる
-- `<html lang="ja">`。英語の文章は `lang="en"` を付けた要素で囲む（日英併記。`/en/` の分離は TODO 6-4）
+- `<html lang="ja">`。英語の文章は `lang="en"` を付けた要素で囲む（今は日英併記）
+- 多言語化（TODO 3-4）のあとは、言語ごとにページを書き出す。守ること:
+  - URL に言語を入れる（日本語は今の URL のまま、英語は `/en/...`）。クエリや Cookie で言語を切り替えない（静的に書き出せず、検索エンジンにも別ページと認識されない）
+  - `<html lang>` を言語ごとに変え、各ページに `hreflang` の代替リンク（`ja`・`en`・`x-default`）を入れる
+  - sitemap に全言語のページを載せ、`xhtml:link` で対応するページを示す
+  - canonical はその言語のページ自身を指す。OGP（`og:locale` と `og:locale:alternate`、title・description）も言語ごとに出す
+  - 構造化データの名称・会場なども、その言語の値にする
 
 ## 環境変数
 

@@ -21,6 +21,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 - 同等コンポーネントの再実装は行わない
 - 新しいUI部品が必要な場合は、共通化前提で設計する
 - アクセシビリティ属性（ラベル、role、キーボード操作）を欠かさない
+- 文言は多言語化を前提に書く（[frontend-architecture-design.instructions.md](./frontend-architecture-design.instructions.md) の「多言語対応」）。日本語だけを部品に直書きしない
 - PC とスマホで見た目を分けるときは、既存の `pageData.isMobile`（`src/views/atomic/device-store/store.ts`）と `.pc` / `.sp` の CSS 変数の書き方に合わせる
 
 ## Svelte の書き方
