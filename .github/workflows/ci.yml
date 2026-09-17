@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - develop
-      - master
+      - main
 
 # 同じ PR やブランチに続けて push したら、古い実行は止める
 concurrency:

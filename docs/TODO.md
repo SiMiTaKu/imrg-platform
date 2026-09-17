@@ -5,7 +5,7 @@ SEO・SNS・セキュリティー・CIを整えるための作業一覧。**Phas
 
 - 作成日： 2026-09-16
 - 進め方： 上から順に。Phase 0は他の作業の前提になるので先に片付ける
-- ブランチ運用： `feature/*` → `develop` → `master`（masterへのマージでAmplifyが本番へ反映）
+- ブランチ運用： `feature/*` → `develop` → `main`（mainへのマージでAmplifyが本番へ反映。2026-09-17までは `master`）
 
 ---
 
@@ -127,8 +127,8 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 - [x] **2-1. CI を強化する**：PRで `lint` → `check` → `test` → `build` を実行（現在はlintとtestのみ）
   - `.github/workflows/ci.yml` で、整形 → lint → 型 → テスト → ビルドを実行する。手元では `pnpm run verify` で同じ確認ができる
-  - マージ先を問わずすべてのPRで動かす（スタックPRの途中にも走る）。`develop` と `master` へのpushでも動かす
-- [ ] **2-2. ブランチ保護**：`master` と `develop` を直push禁止、PR必須、CI必須
+  - マージ先を問わずすべてのPRで動かす（スタックPRの途中にも走る）。`develop` と `main` へのpushでも動かす
+- [ ] **2-2. ブランチ保護**：`main` と `develop` を直push禁止、PR必須、CI必須
   - privateのままならGitHub Proが必要。費用をかけないならpublic化も選択肢（`.env` に秘密情報がないことは確認済み）
 - [x] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
   - `.github/dependabot.yml`：毎週月曜にpnpmの依存とGitHub Actionsの更新PRを `develop` 向けに出す。メジャー以外は1本にまとめ、公開から3日たった版だけを使う
@@ -151,6 +151,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
     2. Amplifyで `main` ブランチを接続し、本番（`imrg.work`）のドメインの割り当てを `main` へ移す。反映を `https://imrg.work/_app/version.json` で確かめる
     3. CI（`.github/workflows/`）の対象ブランチ、ブランチ保護（2-2）、README・docs・この表の「ブランチ運用」を `main` に直す
     4. 開いているPRのマージ先を直してから、Amplifyの `master` の接続と `master` ブランチを消す
+  - コンソールの操作は [aws-setup.md](aws-setup.md) の8にまとめた
   - ドメインの割り当てを移す間は、切り替わるまで数分かかることがある。アクセスの少ない時間に行う
   - Terraform（Phase 4）へ取り込む前に済ませる。先に取り込むと、ブランチ名の差分が出るため
 
