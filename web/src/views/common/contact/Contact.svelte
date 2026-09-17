@@ -16,13 +16,18 @@
 </script>
 
 <section class="contact" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <Heading size={$pageData.isMobile ? 'medium' : 'large'} subtitle="Contact" title="問合わせ先" />
+  <Heading
+    fontSize={$pageData.isMobile ? 30 : 40}
+    subtitleFontSize={$pageData.isMobile ? 16 : 20}
+    subtitle="Contact"
+    title="問合わせ先"
+  />
   <div class="content">
     お問い合わせはインスタグラムのダイレクトメッセージにて、<br />
     いつでも受け付けております。<br />
     お気軽にお問い合わせください。
     <ButtonLink
-      size={$pageData.isMobile ? 'medium' : 'large'}
+      fontSize={$pageData.isMobile ? 20 : 24}
       width={$pageData.isMobile ? 320 : 400}
       height={56}
       text="問い合わせる"

@@ -1,20 +1,24 @@
 <script lang="ts">
-  import type { Size } from '../types'
-
   /** セクションの見出しの引数 */
   interface Props {
     /** 見出し */
     title: string
     /** 見出しの下に小さく出す文言（英語の見出しなど） */
     subtitle: string
-    /** 大きさ。`medium` は狭い画面向けの一回り小さい大きさ */
-    size?: Size
+    /** 見出しの文字の大きさ（px）。行の高さも同じにする */
+    fontSize: number
+    /** 補助の文言の文字の大きさ（px）。行の高さも同じにする */
+    subtitleFontSize: number
   }
 
-  const { title, subtitle, size = 'large' }: Props = $props()
+  const { title, subtitle, fontSize, subtitleFontSize }: Props = $props()
 </script>
 
-<h2 class="title" class:large={size === 'large'} class:medium={size === 'medium'}>
+<h2
+  class="title"
+  style:--title-font-size={`${fontSize}px`}
+  style:--subtitle-font-size={`${subtitleFontSize}px`}
+>
   {title}
   <span class="subtitle">
     {subtitle}
@@ -22,16 +26,6 @@
 </h2>
 
 <style lang="scss">
-  .large {
-    --title-font-size: 40px;
-    --subtitle-font-size: 20px;
-  }
-
-  .medium {
-    --title-font-size: 30px;
-    --subtitle-font-size: 16px;
-  }
-
   .title {
     display: flex;
     flex-direction: column;

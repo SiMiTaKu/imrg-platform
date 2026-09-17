@@ -87,7 +87,8 @@
       />
     {/if}
     <ButtonLink
-      size={$pageData.isMobile ? 'medium' : 'large'}
+      target="_self"
+      fontSize={$pageData.isMobile ? 20 : 24}
       width={$pageData.isMobile ? 320 : 343}
       height={56}
       text="この条件で推しミツ！"

@@ -29,7 +29,8 @@
     あらゆる曲を演技に<br />合わせて編曲します!!
   </div>
   <Heading
-    size={$pageData.isMobile ? 'medium' : 'large'}
+    fontSize={$pageData.isMobile ? 30 : 40}
+    subtitleFontSize={$pageData.isMobile ? 16 : 20}
     subtitle="Editing Flow"
     title="編曲の流れ"
   />

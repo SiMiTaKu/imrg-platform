@@ -10,9 +10,13 @@ const meta = {
     page: 5,
     totalPages: 12,
     onchange: fn(),
-    ariaLabel: 'ページ / Pages',
-    prevLabel: { text: '前へ', secondary: 'Prev', secondaryLang: 'en' },
-    nextLabel: { text: '次へ', secondary: 'Next', secondaryLang: 'en' },
+    labels: {
+      navigation: 'ページ送り',
+      first: '最初のページ',
+      prev: '前のページ',
+      next: '次のページ',
+      last: '最後のページ',
+    },
   },
 } satisfies Meta<typeof Pagination>
 
@@ -26,10 +30,6 @@ export const 先頭のページ: Story = {
   args: { page: 1 },
 }
 
-export const 補助の文言なし: Story = {
-  args: {
-    ariaLabel: 'Pages',
-    prevLabel: { text: 'Prev' },
-    nextLabel: { text: 'Next' },
-  },
+export const 末尾のページ: Story = {
+  args: { page: 12 },
 }

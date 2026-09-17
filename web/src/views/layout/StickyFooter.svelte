@@ -8,7 +8,8 @@
 
 <footer class="sticky-footer">
   <ButtonLink
-    size={$pageData.isMobile ? 'medium' : 'large'}
+    target="_self"
+    fontSize={$pageData.isMobile ? 20 : 24}
     width={$pageData.isMobile ? 320 : 400}
     height={56}
     text="推しを見つける！"

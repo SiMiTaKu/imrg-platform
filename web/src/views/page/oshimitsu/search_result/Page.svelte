@@ -117,7 +117,7 @@
     </div>
     {#if totalVideos && totalVideos > videos.length}
       <Button
-        size={$pageData.isMobile ? 'medium' : 'large'}
+        fontSize={$pageData.isMobile ? 20 : 24}
         width={$pageData.isMobile ? 280 : 340}
         height={56}
         text="もっと見る"

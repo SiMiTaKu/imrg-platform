@@ -7,7 +7,7 @@ describe('Button', () => {
     it('押した場合、onclick が呼ばれること', async () => {
       // #region Given
       const onclick = vi.fn()
-      render(Button, { text: 'もっと見る', width: 340, height: 56, onclick })
+      render(Button, { text: 'もっと見る', width: 340, height: 56, fontSize: 24, onclick })
       // #endregion
 
       // #region When
@@ -19,22 +19,21 @@ describe('Button', () => {
       // #endregion
     })
 
-    it.each([
-      ['大きさを省いた場合、large の見た目になること', undefined, 'large'],
-      ['medium を指定した場合、medium の見た目になること', 'medium', 'medium'],
-    ] as const)('%s', (_, size, className) => {
+    it('大きさを渡した場合、幅・高さ・文字の大きさがその値になること', () => {
       // #region Given
-      // 引数は it.each の表で渡す
+      const props = { text: 'もっと見る', width: 280, height: 56, fontSize: 20, onclick: vi.fn() }
       // #endregion
 
       // #region When
-      render(Button, { text: 'もっと見る', width: 280, height: 56, size })
+      render(Button, props)
       // #endregion
 
       // #region Then
-      const button = screen.getByRole('button', { name: 'もっと見る' })
-      expect(button).toHaveClass(className)
-      expect(button).toHaveStyle({ width: '280px', height: '56px' })
+      expect(screen.getByRole('button', { name: 'もっと見る' })).toHaveStyle({
+        width: '280px',
+        height: '56px',
+        fontSize: '20px',
+      })
       // #endregion
     })
   })

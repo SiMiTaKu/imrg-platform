@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { Heading, Pagination } from '@imrg-platform/design-system'
   import EventRow from './_components/EventRow.svelte'
   import MonthCalendar from './_components/MonthCalendar.svelte'
@@ -126,7 +127,8 @@
 
 <article class="calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <Heading
-    size={$pageData.isMobile ? 'medium' : 'large'}
+    fontSize={$pageData.isMobile ? 30 : 40}
+    subtitleFontSize={$pageData.isMobile ? 16 : 20}
     subtitle="Event Calendar"
     title="大会・イベントカレンダー"
   />
@@ -296,9 +298,13 @@
           page={slice.page}
           totalPages={slice.totalPages}
           onchange={goToPage}
-          ariaLabel="ページ / Pages"
-          prevLabel={{ text: '前へ', secondary: 'Prev', secondaryLang: 'en' }}
-          nextLabel={{ text: '次へ', secondary: 'Next', secondaryLang: 'en' }}
+          labels={{
+            navigation: m.pagination_label(),
+            first: m.pagination_first(),
+            prev: m.pagination_prev(),
+            next: m.pagination_next(),
+            last: m.pagination_last(),
+          }}
         />
       {/if}
     </section>

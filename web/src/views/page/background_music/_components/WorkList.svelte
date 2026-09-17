@@ -10,7 +10,12 @@
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <Heading size={$pageData.isMobile ? 'medium' : 'large'} subtitle="Work List" title="過去の実績" />
+  <Heading
+    fontSize={$pageData.isMobile ? 30 : 40}
+    subtitleFontSize={$pageData.isMobile ? 16 : 20}
+    subtitle="Work List"
+    title="過去の実績"
+  />
   <ul class="cards">
     {#each WORK_LIST as work, index (index)}
       <li class="card">

@@ -14,7 +14,14 @@ describe('ButtonLink', () => {
     ] as const)('%s', (_, target, rel) => {
       // #region Given
       // target は Svelte の設定と名前が重なるので、props にまとめて渡す
-      const props = { text: '開く', href: '/calendar/', width: 400, height: 56, target }
+      const props = {
+        text: '開く',
+        href: '/calendar/',
+        target,
+        width: 400,
+        height: 56,
+        fontSize: 24,
+      }
       // #endregion
 
       // #region When
@@ -29,14 +36,15 @@ describe('ButtonLink', () => {
       // #endregion
     })
 
-    it('medium を指定した場合、medium の見た目になること', () => {
+    it('大きさを渡した場合、幅・高さ・文字の大きさがその値になること', () => {
       // #region Given
       const props = {
         text: '開く',
-        href: '/calendar/',
+        href: '/',
+        target: '_self',
         width: 320,
         height: 56,
-        size: 'medium',
+        fontSize: 20,
       } as const
       // #endregion
 
@@ -45,7 +53,11 @@ describe('ButtonLink', () => {
       // #endregion
 
       // #region Then
-      expect(screen.getByRole('link', { name: '開く' })).toHaveClass('medium')
+      expect(screen.getByRole('link', { name: '開く' })).toHaveStyle({
+        width: '320px',
+        height: '56px',
+        fontSize: '20px',
+      })
       // #endregion
     })
   })

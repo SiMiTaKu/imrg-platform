@@ -3,8 +3,6 @@
  * 部品と、部品に付随する関数をここから公開する。
  */
 
-export type { Size } from './types'
-
 /** ボタン */
 export { default as Button } from './Button/Button.svelte'
 /** ボタンの見た目のリンク */

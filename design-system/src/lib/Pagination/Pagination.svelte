@@ -1,14 +1,18 @@
 <script lang="ts">
   import { ELLIPSIS, pageNumbers } from './lib/pageNumbers'
 
-  /** 文言と、その下に小さく出す補助の文言（英語など） */
-  interface Label {
-    /** 文言 */
-    text: string
-    /** 補助の文言 */
-    secondary?: string
-    /** 補助の文言の言語（`lang` 属性） */
-    secondaryLang?: string
+  /** 読み上げ用の名前。画面には出さない */
+  interface Labels {
+    /** ページ送り全体 */
+    navigation: string
+    /** 最初のページへ */
+    first: string
+    /** 前のページへ */
+    prev: string
+    /** 次のページへ */
+    next: string
+    /** 最後のページへ */
+    last: string
   }
 
   /** ページ送りの引数 */
@@ -19,25 +23,48 @@
     totalPages: number
     /** ページを選んだときの処理 */
     onchange: (page: number) => void
-    /** ページ送り全体の説明（読み上げ用） */
-    ariaLabel: string
-    /** 「前へ」の文言 */
-    prevLabel: Label
-    /** 「次へ」の文言 */
-    nextLabel: Label
+    /** 読み上げ用の名前。アイコンだけのボタンにも名前が要るため、使う側の言語で渡す */
+    labels: Labels
   }
 
-  const { page, totalPages, onchange, ariaLabel, prevLabel, nextLabel }: Props = $props()
+  const { page, totalPages, onchange, labels }: Props = $props()
 
   const numbers = $derived(pageNumbers(page, totalPages))
+  const isFirst = $derived(page <= 1)
+  const isLast = $derived(page >= totalPages)
 </script>
 
-<nav class="pagination" aria-label={ariaLabel}>
-  <button class="step" type="button" disabled={page <= 1} onclick={() => onchange(page - 1)}>
-    ‹ {prevLabel.text}{#if prevLabel.secondary}<span
-        class="secondary"
-        lang={prevLabel.secondaryLang}>{prevLabel.secondary}</span
-      >{/if}
+<!-- 矢印の形。« ‹ › » の順に、2本線と1本線を左右で使う -->
+{#snippet chevron(direction: 'left' | 'right', double: boolean)}
+  <svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    {#if direction === 'left'}
+      <path d="M10 3 5 8l5 5" />
+      {#if double}<path d="M14 3 9 8l5 5" />{/if}
+    {:else}
+      <path d="m6 3 5 5-5 5" />
+      {#if double}<path d="m2 3 5 5-5 5" />{/if}
+    {/if}
+  </svg>
+{/snippet}
+
+<nav class="pagination" aria-label={labels.navigation}>
+  <button
+    class="step"
+    type="button"
+    aria-label={labels.first}
+    disabled={isFirst}
+    onclick={() => onchange(1)}
+  >
+    {@render chevron('left', true)}
+  </button>
+  <button
+    class="step"
+    type="button"
+    aria-label={labels.prev}
+    disabled={isFirst}
+    onclick={() => onchange(page - 1)}
+  >
+    {@render chevron('left', false)}
   </button>
 
   <ul class="numbers">
@@ -61,12 +88,20 @@
   <button
     class="step"
     type="button"
-    disabled={page >= totalPages}
+    aria-label={labels.next}
+    disabled={isLast}
     onclick={() => onchange(page + 1)}
   >
-    {nextLabel.text}{#if nextLabel.secondary}<span class="secondary" lang={nextLabel.secondaryLang}
-        >{nextLabel.secondary}</span
-      >{/if} ›
+    {@render chevron('right', false)}
+  </button>
+  <button
+    class="step"
+    type="button"
+    aria-label={labels.last}
+    disabled={isLast}
+    onclick={() => onchange(totalPages)}
+  >
+    {@render chevron('right', true)}
   </button>
 </nav>
 
@@ -85,11 +120,14 @@
   .numbers {
     display: flex;
     gap: $space-size-4;
+    padding: 0;
     list-style: none;
   }
 
   .step,
   .number {
+    display: grid;
+    place-items: center;
     min-width: 40px;
     height: 40px;
     padding: 0 $space-size-12;
@@ -108,10 +146,19 @@
     }
   }
 
-  .secondary {
-    margin: 0 $space-size-4;
-    font-size: $font-size-11;
-    font-weight: normal;
+  .step {
+    width: 40px;
+    padding: 0;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentcolor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
   }
 
   .current {

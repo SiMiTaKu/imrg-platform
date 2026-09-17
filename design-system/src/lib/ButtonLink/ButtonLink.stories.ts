@@ -5,10 +5,16 @@ const meta = {
   title: 'Design System/ButtonLink',
   component: ButtonLink,
   tags: ['autodocs'],
-  args: { text: '大会カレンダーを見る', href: '/calendar/', width: 400, height: 56 },
+  args: {
+    text: '大会カレンダーを見る',
+    href: '/calendar/',
+    target: '_self',
+    width: 400,
+    height: 56,
+    fontSize: 24,
+  },
   argTypes: {
     target: { control: 'inline-radio', options: ['_self', '_blank'] },
-    size: { control: 'inline-radio', options: ['large', 'medium'] },
   },
 } satisfies Meta<typeof ButtonLink>
 
@@ -16,10 +22,10 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const 大: Story = {}
+export const 標準: Story = {}
 
-export const 中: Story = {
-  args: { width: 320, size: 'medium' },
+export const 小さめ: Story = {
+  args: { width: 320, fontSize: 20 },
 }
 
 export const 新しいタブで開く: Story = {

@@ -34,7 +34,8 @@
     あなたの要望に合わせた<br />世界に一つだけの装飾をいたします!!
   </div>
   <Heading
-    size={$pageData.isMobile ? 'medium' : 'large'}
+    fontSize={$pageData.isMobile ? 30 : 40}
+    subtitleFontSize={$pageData.isMobile ? 16 : 20}
     subtitle="Decorating Flow"
     title="装飾の流れ"
   />

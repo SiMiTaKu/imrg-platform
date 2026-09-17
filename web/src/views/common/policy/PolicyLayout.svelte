@@ -12,7 +12,12 @@
 
 <!-- プライバシーポリシー・利用規約など、文章だけのページの共通の枠 -->
 <article class="policy" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <Heading size={$pageData.isMobile ? 'medium' : 'large'} subtitle={englishTitle} {title} />
+  <Heading
+    fontSize={$pageData.isMobile ? 30 : 40}
+    subtitleFontSize={$pageData.isMobile ? 16 : 20}
+    subtitle={englishTitle}
+    {title}
+  />
   <p class="enacted-at">{enactedAt}</p>
   <slot></slot>
   <p class="back"><a href="/">TOPに戻る</a></p>

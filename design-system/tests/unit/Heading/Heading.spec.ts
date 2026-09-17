@@ -6,7 +6,12 @@ describe('Heading', () => {
   describe('正常系', () => {
     it('見出しと補助の文言を渡した場合、両方を含む h2 になること', () => {
       // #region Given
-      const props = { title: '大会・イベントカレンダー', subtitle: 'Event Calendar' }
+      const props = {
+        title: '大会・イベントカレンダー',
+        subtitle: 'Event Calendar',
+        fontSize: 40,
+        subtitleFontSize: 20,
+      }
       // #endregion
 
       // #region When
@@ -19,20 +24,19 @@ describe('Heading', () => {
       // #endregion
     })
 
-    it.each([
-      ['大きさを省いた場合、large の見た目になること', undefined, 'large'],
-      ['medium を指定した場合、medium の見た目になること', 'medium', 'medium'],
-    ] as const)('%s', (_, size, className) => {
+    it('文字の大きさを渡した場合、見出しと補助の文言の大きさに使われること', () => {
       // #region Given
-      // 引数は it.each の表で渡す
+      const props = { title: '見出し', subtitle: 'Heading', fontSize: 30, subtitleFontSize: 16 }
       // #endregion
 
       // #region When
-      render(Heading, { title: '見出し', subtitle: 'Heading', size })
+      render(Heading, props)
       // #endregion
 
       // #region Then
-      expect(screen.getByRole('heading', { level: 2 })).toHaveClass(className)
+      const heading = screen.getByRole('heading', { level: 2 })
+      expect(heading.style.getPropertyValue('--title-font-size')).toBe('30px')
+      expect(heading.style.getPropertyValue('--subtitle-font-size')).toBe('16px')
       // #endregion
     })
   })
