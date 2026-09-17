@@ -1,3 +1,8 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rules_notice_incomplete": "※こちらのページは未完成です。適宜更新を行なっておりますので、お待ちください。",
+  "rules_notice_readability": "※見やすいサイト作りを心がけております。",
+  "rules_chapter_heading": "第{number}章 {title}",
+  "rules_article_heading": "第{number}条 {title}",
+  "rules_back_to_top": "TOPに戻る"
 }
