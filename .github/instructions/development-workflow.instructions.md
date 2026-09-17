@@ -10,7 +10,8 @@ name: 開発の進め方
 
 - `feature/*` → `develop` → `main` の順に進める。`main` へのマージで Amplify が本番（`https://imrg.work`）へ反映する
   - 2026-09-17 までは `master` が本番だった。切り替えの手順は `docs/aws-setup.md` の「本番のブランチを master から main へ変える」
-- `develop` と `main` へ直接 push しない。docs だけの変更でも PR を通す
+- `develop` と `main` へ直接 push しない。docs だけの変更でも PR を通す（ルールセットで禁止している。CI の合格も必須）
+- `develop` と `main` を更新できるのはオーナーだけ。オーナーがマージするときは例外の指定が要る（`gh pr merge --merge --admin`、画面では「Merge without waiting for requirements」）。CI が落ちた PR はこの指定でもマージできない
 - ブランチ名は `feature/<内容>`。TODO の項目なら番号を含める（例: `feature/phase2-1-ci`）
 - 大きな作業は、レビューしやすい単位に分けたスタック PR にする（各 PR のマージ先を1つ下のブランチにする）
 - マージしたブランチは GitHub が自動で消す
@@ -44,7 +45,7 @@ name: 開発の進め方
 - 「確認したこと」には、実際に確かめた内容だけを書く。見た目に関わる変更は、PC とスマホの両方で確かめる
 - TODO の項目を終えたら、同じ PR の中で `docs/TODO.md` のチェックを付け、決めたことを書き足す
 - すべての PR で CI（`.github/workflows/ci.yml`）が走る。通らない PR はマージしない
-- `main` 向けの PR には Amplify のプレビュー（`https://pr-<番号>.d1o1ui2gd5pshh.amplifyapp.com`）が作られる。ビルドの設定や依存を変えたときは、本番へ入れる前にプレビューで確かめる
+- `main` と `develop` 向けの PR には Amplify のプレビュー（`https://pr-<番号>.d3fj0jchd8ri0z.amplifyapp.com`）が作られる。ビルドの設定や依存を変えたときは、本番へ入れる前にプレビューで確かめる
 
 ## マージとリリース
 
