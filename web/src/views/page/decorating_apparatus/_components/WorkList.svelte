@@ -8,7 +8,7 @@
   import { pageData } from '@shared/lib/device'
 </script>
 
-<section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="work-list" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
@@ -25,12 +25,12 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --item-size: calc((var(--width) - 16px * 2) / 3);
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --item-size: 337px;
   }

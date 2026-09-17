@@ -1,4 +1,4 @@
-import { designOfSP, getResponsiveDesign } from './responsiveDesign'
+import { designOfMobile, getResponsiveDesign } from './responsiveDesign'
 import { writable } from 'svelte/store'
 
 type PageData = {
@@ -16,7 +16,7 @@ function createStore() {
   return {
     subscribe,
     update(windowWidth: number) {
-      const isMobile = getResponsiveDesign(windowWidth) === designOfSP
+      const isMobile = getResponsiveDesign(windowWidth) === designOfMobile
       update(() => ({ isMobile }))
     },
   }

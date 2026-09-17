@@ -7,8 +7,8 @@ import type { CalendarEvent } from '@entities/calendarEvent'
  */
 export const makeEvent = (overrides: Partial<CalendarEvent>): CalendarEvent => ({
   id: 'test',
-  titleJa: 'テスト大会',
-  titleEn: 'Test Championships',
+  titleJapanese: 'テスト大会',
+  titleEnglish: 'Test Championships',
   category: 'national',
   startDate: '2026-10-30',
   status: 'confirmed',
@@ -21,4 +21,5 @@ export const makeEvent = (overrides: Partial<CalendarEvent>): CalendarEvent => (
  * @param events - イベント
  * @returns 大会名の一覧
  */
-export const titles = (events: CalendarEvent[]): string[] => events.map((event) => event.titleJa)
+export const titles = (events: CalendarEvent[]): string[] =>
+  events.map((event) => event.titleJapanese)

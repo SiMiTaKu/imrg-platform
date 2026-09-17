@@ -43,14 +43,14 @@
   }
 </script>
 
-<section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="main-visual" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <div class="image">
     <ImageAssets
       width="100%"
       height="100%"
       alt="メインビジュアル"
       lazy={false}
-      srcMeta={MainVisual}
+      imageSourceMeta={MainVisual}
       objectFit="cover"
     />
   </div>
@@ -76,7 +76,7 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --height: calc(100dvh - 80px);
     --content-margin: 250px auto 0;
@@ -86,7 +86,7 @@
     --description-font-size: 36px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --height: calc(100dvh - 64px);
     --content-margin: 180px auto 0;

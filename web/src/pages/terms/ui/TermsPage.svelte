@@ -2,8 +2,8 @@
   import { m } from '$lib/paraglide/messages'
   import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
   import { PolicyLayout } from '@widgets/policyLayout'
-  import TermsBodyEn from './TermsBodyEn.svelte'
-  import TermsBodyJa from './TermsBodyJa.svelte'
+  import TermsBodyEnglish from './TermsBodyEnglish.svelte'
+  import TermsBodyJapanese from './TermsBodyJapanese.svelte'
 
   // 日本語ページは、これまでどおり日本語の本文のあとに英語の本文を載せる。英語ページは英語だけ
   const showsBoth = showsSecondaryText()
@@ -17,11 +17,11 @@
   title={m.meta_terms_page()}
 >
   {#if showsBoth}
-    <TermsBodyJa />
+    <TermsBodyJapanese />
     <section lang="en">
-      <TermsBodyEn />
+      <TermsBodyEnglish />
     </section>
   {:else}
-    <TermsBodyEn />
+    <TermsBodyEnglish />
   {/if}
 </PolicyLayout>

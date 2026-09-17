@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
-  designOfPC,
-  designOfSP,
+  designOfDesktop,
+  designOfMobile,
   getResponsiveDesign,
   type ResponsiveDesign,
 } from '@shared/lib/device'
@@ -9,8 +9,8 @@ import {
 describe('getResponsiveDesign', () => {
   describe('境界値', () => {
     it.each<[string, number, ResponsiveDesign]>([
-      ['幅が500以下の場合、SP のデザインになること', 500, designOfSP],
-      ['幅が500より大きい場合、PC のデザインになること', 501, designOfPC],
+      ['幅が500以下の場合、SP のデザインになること', 500, designOfMobile],
+      ['幅が500より大きい場合、PC のデザインになること', 501, designOfDesktop],
     ])('%s', (_, width, expected) => {
       // #region Given
       // 引数は it.each の表で渡す

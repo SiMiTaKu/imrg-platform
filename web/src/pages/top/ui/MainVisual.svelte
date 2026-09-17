@@ -8,14 +8,14 @@
   import { ImageAssets } from '@shared/ui'
 </script>
 
-<section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="main-visual" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <div class="image">
     <ImageAssets
       width={$pageData.isMobile ? 325 : 500}
       height={$pageData.isMobile ? 210 : 330}
       alt={m.top_main_visual_logo_alt()}
       lazy={false}
-      srcMeta={MainImage}
+      imageSourceMeta={MainImage}
       objectFit="cover"
     />
   </div>
@@ -23,13 +23,13 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --height: calc(100dvh - 80px);
     --title-font-size: #{$font-size-48};
   }
 
-  .sp {
+  .mobile {
     --width: 100vw;
     --height: calc(100dvh - 60px);
     --title-font-size: #{$font-size-24};

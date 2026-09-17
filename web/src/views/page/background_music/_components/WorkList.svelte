@@ -9,7 +9,7 @@
   import { pageData } from '@shared/lib/device'
 </script>
 
-<section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="work-list" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
@@ -28,7 +28,7 @@
               height={28}
               alt="Youtubeアイコン"
               lazy={true}
-              srcMeta={YoutubeIcon}
+              imageSourceMeta={YoutubeIcon}
               objectFit="cover"
             />
           </div>
@@ -39,14 +39,14 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --card-width: calc((100% - 16px * 4) / 5);
     --name-font-size: 30px;
     --apparatus-font-size: 20px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --card-width: calc((100% - 16px) / 2);
     --name-font-size: 24px;

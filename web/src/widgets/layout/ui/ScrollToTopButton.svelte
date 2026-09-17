@@ -18,7 +18,12 @@
 <svelte:window bind:scrollY />
 
 {#if scrollY > SHOW_AFTER_SCROLL}
-  <div class="base" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile} transition:fade>
+  <div
+    class="base"
+    class:desktop={!$pageData.isMobile}
+    class:mobile={$pageData.isMobile}
+    transition:fade
+  >
     <div class="wrapper">
       <button class="scroll-to-top-button" type="button" onclick={scrollToTop}>
         {m.layout_scroll_to_top()}
@@ -28,14 +33,14 @@
 {/if}
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --bottom: #{$space-size-8};
     --right: 0;
     --wrapper-width: 1024px;
     --botton-size: 56px;
   }
 
-  .sp {
+  .mobile {
     --bottom: 72px;
     --right: #{$space-size-12};
     --wrapper-width: 100%;
