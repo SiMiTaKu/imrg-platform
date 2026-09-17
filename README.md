@@ -2,6 +2,8 @@
 
 改修の計画と積み残しは [docs/TODO.md](docs/TODO.md) にまとめてあります。作業を始める前に読んでください。
 
+実装のルールは [.github/instructions/](.github/instructions/) にあります（兄弟リポジトリーoshiageのルールをもとにしています）。入口は [general.instructions.md](.github/instructions/general.instructions.md) です。
+
 ## Init
 
 パッケージの管理はpnpmです（版は `package.json` の `packageManager`）。Node 24に付属するcorepackで入れます。
