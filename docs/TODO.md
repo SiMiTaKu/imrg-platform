@@ -128,8 +128,13 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [x] **2-1. CI を強化する**：PRで `lint` → `check` → `test` → `build` を実行（現在はlintとtestのみ）
   - `.github/workflows/ci.yml` で、整形 → lint → 型 → テスト → ビルドを実行する。手元では `pnpm run verify` で同じ確認ができる
   - マージ先を問わずすべてのPRで動かす（スタックPRの途中にも走る）。`develop` と `main` へのpushでも動かす
-- [ ] **2-2. ブランチ保護**：`main` と `develop` を直push禁止、PR必須、CI必須
+- [x] **2-2. ブランチ保護**：`main` と `develop` を直push禁止、PR必須、CI必須
   - privateのままならGitHub Proが必要。費用をかけないならpublic化も選択肢（`.env` に秘密情報がないことは確認済み）
+  - 2026-09-17に `imrg-platform` を公開し、無料で使えるルールセットを2つ入れた（Settings → Rules → Rulesets）
+    - 「develop・mainの保護」：PR必須（承認は0件）、CI（`verify`）の合格必須、強制pushとブランチ削除の禁止。例外なし
+    - 「develop・mainを更新できるのはオーナーだけ」：リポジトリー管理者だけが例外（PR経由のとき）
+  - 2つ目のルールのため、オーナーがマージするときは例外の指定が要る（画面では「Merge without waiting for requirements」にチェック、CLIでは `gh pr merge --admin`）。1つ目のルールには例外が無いので、この指定を付けてもCIが落ちたPRはマージできない
+  - 共同作業者はいない（sou-nkymさんの権限は外した）。外部の人のPRは、CIの実行前に毎回承認が要る設定にした
 - [x] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
   - `.github/dependabot.yml`：毎週月曜にpnpmの依存とGitHub Actionsの更新PRを `develop` 向けに出す。メジャー以外は1本にまとめ、公開から3日たった版だけを使う
   - 脆弱性の通知と、修正PRの自動作成を有効にした
