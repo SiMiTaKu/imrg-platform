@@ -8,9 +8,9 @@
     buildMonthGrid,
     eventsInMonth,
     eventsOnDay,
-    formatDayJa,
-    formatMonthEn,
-    formatMonthJa,
+    formatDayJapanese,
+    formatMonthEnglish,
+    formatMonthJapanese,
     shiftMonth,
     toMonthKey,
   } from '../_lib/calendar'
@@ -35,7 +35,7 @@
   $: undated = eventsInMonth(events, monthKey).filter((event) => event.startDate.length === 7)
 </script>
 
-<div class="month-calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<div class="month-calendar" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <div class="nav">
     <button
       class="nav-button"
@@ -45,8 +45,8 @@
       on:click={() => dispatch('month', shiftMonth(monthKey, -1))}>‹</button
     >
     <h3 class="month-title">
-      {formatMonthJa(monthKey)}
-      <span lang="en">{formatMonthEn(monthKey)}</span>
+      {formatMonthJapanese(monthKey)}
+      <span lang="en">{formatMonthEnglish(monthKey)}</span>
     </h3>
     <button
       class="nav-button"
@@ -85,7 +85,7 @@
               <button
                 class="day-button"
                 type="button"
-                aria-label={`${formatDayJa(cell.dateKey)} ${dayEvents.length}件`}
+                aria-label={`${formatDayJapanese(cell.dateKey)} ${dayEvents.length}件`}
                 aria-pressed={cell.dateKey === selectedDay}
                 disabled={dayEvents.length === 0}
                 on:click={() => dispatch('select', cell.dateKey)}
@@ -114,8 +114,8 @@
                       <a
                         style:--color={CATEGORY_LABELS[event.category].color}
                         class="chip"
-                        title={event.titleJa}
-                        href={`/calendar/${event.id}/`}>{event.titleJa}</a
+                        title={event.titleJapanese}
+                        href={`/calendar/${event.id}/`}>{event.titleJapanese}</a
                       >
                     </li>
                   {/each}
@@ -146,7 +146,7 @@
         <a
           style:--color={CATEGORY_LABELS[event.category].color}
           class="undated-chip"
-          href={`/calendar/${event.id}/`}>{event.titleJa}</a
+          href={`/calendar/${event.id}/`}>{event.titleJapanese}</a
         >
       {/each}
     </div>
@@ -163,12 +163,12 @@
 </div>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --cell-height: 108px;
     --month-title-size: #{$font-size-24};
   }
 
-  .sp {
+  .mobile {
     --cell-height: 52px;
     --month-title-size: #{$font-size-20};
   }

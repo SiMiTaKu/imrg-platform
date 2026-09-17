@@ -63,7 +63,7 @@
   }
 </script>
 
-<section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="main-visual" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   {#if isShow}
     <div class="image" in:fade={{ duration: 1000 }} out:fade={{ duration: 300 }}>
       <ImageAssets
@@ -71,7 +71,7 @@
         height="100%"
         alt="手具装飾のメインビジュアル"
         lazy={false}
-        srcMeta={currentVisual.image}
+        imageSourceMeta={currentVisual.image}
         objectFit="cover"
       />
     </div>
@@ -98,7 +98,7 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --height: calc(100dvh - 80px);
     --content-margin: 250px auto 0;
@@ -108,7 +108,7 @@
     --description-font-size: 36px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --height: calc(100dvh - 64px);
     --content-margin: 180px auto 0;

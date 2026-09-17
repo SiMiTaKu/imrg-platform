@@ -7,7 +7,7 @@
   import { pageData } from '@shared/lib/device'
 </script>
 
-<article class="rule-book" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<article class="rule-book" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <p>
     ※こちらのページは未完成です。適宜更新を行なっておりますので、お待ちください。<br />
     ※見やすいサイト作りを心がけております。
@@ -61,11 +61,11 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
   }
 

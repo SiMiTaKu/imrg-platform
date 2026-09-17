@@ -2,7 +2,7 @@
   import { pageData } from '@shared/lib/device'
 </script>
 
-<section class="introduction" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="introduction" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <h1 class="title">男子新体操国際化プロジェクト</h1>
   <div class="body">
     は<span class="important">男子新体操</span>を<span class="important">オリンピックスポーツ</span
@@ -11,7 +11,7 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 534px;
     --gap: 24px;
     --title-font-size: 32px;
@@ -20,7 +20,7 @@
     --important-font-size: 26px;
   }
 
-  .sp {
+  .mobile {
     --width: #{calc(100% - 32px)};
     --gap: 16px;
     --title-font-size: 24px;

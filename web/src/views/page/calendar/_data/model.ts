@@ -25,20 +25,20 @@ export type EventStatus = 'confirmed' | 'tentative'
 export interface CalendarEvent {
   /** 詳細ページのURLに使う。開始日と名前から作り、一度決めたら変えない */
   id: string
-  titleJa: string
-  titleEn: string
+  titleJapanese: string
+  titleEnglish: string
   category: EventCategory
   /** "2026-10-30"。年月しか分からないときは "2027-03" */
   startDate: string
   /** 1日だけのイベントは省略する */
   endDate?: string
   status: EventStatus
-  venueJa?: string
-  venueEn?: string
-  streamingJa?: string
-  streamingEn?: string
-  noteJa?: string
-  noteEn?: string
+  venueJapanese?: string
+  venueEnglish?: string
+  streamingJapanese?: string
+  streamingEnglish?: string
+  noteJapanese?: string
+  noteEnglish?: string
   officialUrl?: string
   /** 日程を確認できたページ。出典のないイベントは載せない */
   sourceUrl: string

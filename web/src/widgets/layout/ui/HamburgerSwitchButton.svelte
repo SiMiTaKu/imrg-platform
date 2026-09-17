@@ -16,8 +16,8 @@
 <button
   class="button"
   type="button"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
   aria-expanded={isOpen}
   {onclick}
 >
@@ -26,14 +26,14 @@
 </button>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --height: 80px;
     --hamburger-text-font-size: #{$font-size-18};
     --hamburger-wrapper-width: 400px;
     --button-icon-size: #{$font-size-28};
   }
 
-  .sp {
+  .mobile {
     --height: 64px;
     --hamburger-text-font-size: #{$font-size-16};
     --hamburger-wrapper-width: 100vw;
@@ -56,7 +56,7 @@
     }
   }
 
-  .pc:hover {
+  .desktop:hover {
     background: map.get($sky-blue, background);
   }
 

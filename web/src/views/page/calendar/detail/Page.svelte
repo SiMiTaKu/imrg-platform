@@ -2,7 +2,7 @@
   import { PUBLIC_BASE_URL } from '$env/static/public'
   import { CATEGORY_LABELS } from '../_data/category'
   import type { CalendarEvent } from '../_data/model'
-  import { formatDateRangeEn, formatDateRangeJa, hostnameOf } from '../_lib/calendar'
+  import { formatDateRangeEnglish, formatDateRangeJapanese, hostnameOf } from '../_lib/calendar'
 </script>
 
 <script lang="ts">
@@ -31,13 +31,13 @@
   $: jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'SportsEvent',
-    name: event.titleJa,
-    alternateName: event.titleEn !== event.titleJa ? event.titleEn : undefined,
+    name: event.titleJapanese,
+    alternateName: event.titleEnglish !== event.titleJapanese ? event.titleEnglish : undefined,
     startDate: event.startDate,
     endDate: event.endDate ?? event.startDate,
     url: `${PUBLIC_BASE_URL}/calendar/${event.id}/`,
     sport: "Men's Rhythmic Gymnastics",
-    location: event.venueJa ? { '@type': 'Place', name: event.venueJa } : undefined,
+    location: event.venueJapanese ? { '@type': 'Place', name: event.venueJapanese } : undefined,
   })
   // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる
   $: jsonLdTag = `<script type="application/ld+json">${jsonLd}<` + '/script>'
@@ -51,8 +51,8 @@
 <article
   style:--color={label.color}
   class="event-detail"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
 >
   <p class="breadcrumb">
     <a href="/calendar/" on:click={back}
@@ -67,51 +67,51 @@
     {/if}
   </p>
 
-  <h1 class="title">{event.titleJa}</h1>
-  {#if event.titleEn !== event.titleJa}
-    <p class="title-en" lang="en">{event.titleEn}</p>
+  <h1 class="title">{event.titleJapanese}</h1>
+  {#if event.titleEnglish !== event.titleJapanese}
+    <p class="title-en" lang="en">{event.titleEnglish}</p>
   {/if}
 
   <dl class="facts">
     <div class="fact">
       <dt>日程<span lang="en">Date</span></dt>
       <dd>
-        <span class="fact-main">{formatDateRangeJa(event)}</span>
-        <span class="fact-en" lang="en">{formatDateRangeEn(event)}</span>
+        <span class="fact-main">{formatDateRangeJapanese(event)}</span>
+        <span class="fact-en" lang="en">{formatDateRangeEnglish(event)}</span>
       </dd>
     </div>
 
-    {#if event.venueJa}
+    {#if event.venueJapanese}
       <div class="fact">
         <dt>会場<span lang="en">Venue</span></dt>
         <dd>
-          <span class="fact-main">{event.venueJa}</span>
-          {#if event.venueEn}
-            <span class="fact-en" lang="en">{event.venueEn}</span>
+          <span class="fact-main">{event.venueJapanese}</span>
+          {#if event.venueEnglish}
+            <span class="fact-en" lang="en">{event.venueEnglish}</span>
           {/if}
         </dd>
       </div>
     {/if}
 
-    {#if event.streamingJa}
+    {#if event.streamingJapanese}
       <div class="fact">
         <dt>配信<span lang="en">Live stream</span></dt>
         <dd>
-          <span class="fact-text">{event.streamingJa}</span>
-          {#if event.streamingEn}
-            <span class="fact-en" lang="en">{event.streamingEn}</span>
+          <span class="fact-text">{event.streamingJapanese}</span>
+          {#if event.streamingEnglish}
+            <span class="fact-en" lang="en">{event.streamingEnglish}</span>
           {/if}
         </dd>
       </div>
     {/if}
 
-    {#if event.noteJa}
+    {#if event.noteJapanese}
       <div class="fact">
         <dt>補足<span lang="en">Note</span></dt>
         <dd>
-          <span class="fact-text">{event.noteJa}</span>
-          {#if event.noteEn}
-            <span class="fact-en" lang="en">{event.noteEn}</span>
+          <span class="fact-text">{event.noteJapanese}</span>
+          {#if event.noteEnglish}
+            <span class="fact-en" lang="en">{event.noteEnglish}</span>
           {/if}
         </dd>
       </div>
@@ -151,13 +151,13 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 720px;
     --title-size: 30px;
     --fact-columns: 120px 1fr;
   }
 
-  .sp {
+  .mobile {
     --width: calc(100% - 32px);
     --title-size: #{$font-size-22};
     --fact-columns: 1fr;

@@ -61,7 +61,7 @@ export const findApparatus = (slug: string): Apparatus | undefined => {
 
 /** 動画のベースクラス */
 interface BaseVideo {
-  src: string
+  embedUrl: string
   filmedAt: Date
 }
 

@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit'
 import { META_DATA } from '@shared/config/meta'
 import { EVENTS } from '$views/page/calendar/_data/events'
-import { formatDateRangeJa } from '$views/page/calendar/_lib/calendar'
+import { formatDateRangeJapanese } from '$views/page/calendar/_lib/calendar'
 import type { EntryGenerator, PageServerLoad } from './$types'
 
 // イベントの数だけ詳細ページを書き出す
@@ -17,10 +17,10 @@ export const load: PageServerLoad = ({ params }) => {
     event,
     meta: META_DATA.calendarDetail({
       id: event.id,
-      title: event.titleJa,
-      alternateTitle: event.titleEn,
-      dateRange: formatDateRangeJa(event),
-      venue: event.venueJa,
+      title: event.titleJapanese,
+      alternateTitle: event.titleEnglish,
+      dateRange: formatDateRangeJapanese(event),
+      venue: event.venueJapanese,
     }),
   }
 }

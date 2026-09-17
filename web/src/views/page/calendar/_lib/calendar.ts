@@ -86,7 +86,7 @@ function compareText(a: string, b: string): number {
 
 /** 開始日の順、同じ日なら日本語の大会名の順に並べるための比較 */
 function compareEvents(a: CalendarEvent, b: CalendarEvent): number {
-  return compareText(a.startDate, b.startDate) || compareText(a.titleJa, b.titleJa)
+  return compareText(a.startDate, b.startDate) || compareText(a.titleJapanese, b.titleJapanese)
 }
 
 /** 日付の曜日を 0（日曜）〜6（土曜）で返す */
@@ -162,7 +162,7 @@ export function matchesKeyword(event: CalendarEvent, keyword: string): boolean {
 
   const label = CATEGORY_LABELS[event.category]
   const haystack = normalizeText(
-    `${event.titleJa} ${event.titleEn} ${event.venueJa ?? ''} ${event.venueEn ?? ''} ${label.ja} ${label.en}`,
+    `${event.titleJapanese} ${event.titleEnglish} ${event.venueJapanese ?? ''} ${event.venueEnglish ?? ''} ${label.ja} ${label.en}`,
   )
   return terms.every((term) => haystack.includes(term))
 }
@@ -295,7 +295,7 @@ export function toDateBadge(value: string): DateBadge {
  * @param monthKey - 月 "YYYY-MM"
  * @returns "2026年10月" の形の文字列
  */
-export function formatMonthJa(monthKey: string): string {
+export function formatMonthJapanese(monthKey: string): string {
   const { year, month } = parseDate(monthKey)
   return `${year}年${month}月`
 }
@@ -305,7 +305,7 @@ export function formatMonthJa(monthKey: string): string {
  * @param monthKey - 月 "YYYY-MM"
  * @returns "October 2026" の形の文字列
  */
-export function formatMonthEn(monthKey: string): string {
+export function formatMonthEnglish(monthKey: string): string {
   const { year, month } = parseDate(monthKey)
   return `${MONTHS_EN[month - 1]} ${year}`
 }
@@ -315,7 +315,7 @@ export function formatMonthEn(monthKey: string): string {
  * @param value - 日付 "YYYY-MM-DD"
  * @returns "2026年9月16日" の形の文字列
  */
-export function formatDayJa(value: string): string {
+export function formatDayJapanese(value: string): string {
   const { year, month, day } = parseDate(value)
   return `${year}年${month}月${day}日`
 }
@@ -325,7 +325,7 @@ export function formatDayJa(value: string): string {
  * @param value - 日付 "YYYY-MM-DD"
  * @returns "September 16, 2026" の形の文字列
  */
-export function formatDayEn(value: string): string {
+export function formatDayEnglish(value: string): string {
   const { year, month, day } = parseDate(value)
   return `${MONTHS_EN[month - 1]} ${day}, ${year}`
 }
@@ -335,9 +335,9 @@ export function formatDayEn(value: string): string {
  * @param event - 表示するイベント
  * @returns 日本語の開催期間。終了年が開始年と同じなら終了側の年は省く
  */
-export function formatDateRangeJa(event: CalendarEvent): string {
+export function formatDateRangeJapanese(event: CalendarEvent): string {
   const start = parseDate(event.startDate)
-  if (start.day === undefined) return formatMonthJa(event.startDate)
+  if (start.day === undefined) return formatMonthJapanese(event.startDate)
 
   const startText = `${start.year}年${start.month}月${start.day}日（${WEEKDAYS_JA[weekdayOf(start)]}）`
   if (!event.endDate || event.endDate === event.startDate) return startText
@@ -353,9 +353,9 @@ export function formatDateRangeJa(event: CalendarEvent): string {
  * @param event - 表示するイベント
  * @returns 英語の開催期間。終了年が開始年と同じなら開始側の年は省く
  */
-export function formatDateRangeEn(event: CalendarEvent): string {
+export function formatDateRangeEnglish(event: CalendarEvent): string {
   const start = parseDate(event.startDate)
-  if (start.day === undefined) return formatMonthEn(event.startDate)
+  if (start.day === undefined) return formatMonthEnglish(event.startDate)
 
   /** "Fri, Oct 30" の形にする */
   const dayText = (parts: DateParts) =>
@@ -364,7 +364,7 @@ export function formatDateRangeEn(event: CalendarEvent): string {
 
   const end = parseDate(event.endDate)
   if (end.day === undefined)
-    return `${dayText(start)}, ${start.year} – ${formatMonthEn(event.endDate)}`
+    return `${dayText(start)}, ${start.year} – ${formatMonthEnglish(event.endDate)}`
   if (end.year === start.year) return `${dayText(start)} – ${dayText(end)}, ${end.year}`
   return `${dayText(start)}, ${start.year} – ${dayText(end)}, ${end.year}`
 }

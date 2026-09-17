@@ -29,7 +29,7 @@
   import { pageData } from '@shared/lib/device'
 </script>
 
-<section class="flow-section" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="flow-section" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <div class="message">
     あなたの要望に合わせた<br />世界に一つだけの装飾をいたします!!
   </div>
@@ -51,7 +51,7 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --message-font-size: 36px;
     --message-margin-bottom: 80px;
@@ -71,7 +71,7 @@
     --item-description-width: 100%;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --message-font-size: 30px;
     --message-margin-bottom: 60px;

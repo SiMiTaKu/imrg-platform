@@ -6,8 +6,8 @@ import {
   eventsInMonth,
   eventsOnDay,
   filterEvents,
-  formatDateRangeEn,
-  formatDateRangeJa,
+  formatDateRangeEnglish,
+  formatDateRangeJapanese,
   groupByMonth,
   isEveryCategory,
   isUpcoming,
@@ -24,8 +24,8 @@ import {
 function makeEvent(overrides: Partial<CalendarEvent>): CalendarEvent {
   return {
     id: 'test',
-    titleJa: 'テスト大会',
-    titleEn: 'Test Championships',
+    titleJapanese: 'テスト大会',
+    titleEnglish: 'Test Championships',
     category: 'national',
     startDate: '2026-10-30',
     status: 'confirmed',
@@ -34,7 +34,7 @@ function makeEvent(overrides: Partial<CalendarEvent>): CalendarEvent {
   }
 }
 
-const titles = (events: CalendarEvent[]) => events.map((event) => event.titleJa)
+const titles = (events: CalendarEvent[]) => events.map((event) => event.titleJapanese)
 
 describe('toDateKey', () => {
   describe('正常系', () => {
@@ -140,10 +140,10 @@ describe('isUpcoming', () => {
 
 describe('matchesKeyword', () => {
   const event = makeEvent({
-    titleJa: '第79回全日本新体操選手権大会',
-    titleEn: '79th All Japan Rhythmic Gymnastics Championships',
-    venueJa: '高崎アリーナ（群馬県）',
-    venueEn: 'Takasaki Arena',
+    titleJapanese: '第79回全日本新体操選手権大会',
+    titleEnglish: '79th All Japan Rhythmic Gymnastics Championships',
+    venueJapanese: '高崎アリーナ（群馬県）',
+    venueEnglish: 'Takasaki Arena',
   })
 
   describe('正常系', () => {
@@ -250,10 +250,10 @@ describe('isEveryCategory', () => {
 
 describe('filterEvents', () => {
   const events = [
-    makeEvent({ titleJa: 'C', category: 'workshop', startDate: '2026-11-03' }),
-    makeEvent({ titleJa: 'A', category: 'national', startDate: '2026-09-01' }),
-    makeEvent({ titleJa: 'B', category: 'national', startDate: '2026-10-30' }),
-    makeEvent({ titleJa: 'Z', category: 'national', startDate: '2025-05-01' }),
+    makeEvent({ titleJapanese: 'C', category: 'workshop', startDate: '2026-11-03' }),
+    makeEvent({ titleJapanese: 'A', category: 'national', startDate: '2026-09-01' }),
+    makeEvent({ titleJapanese: 'B', category: 'national', startDate: '2026-10-30' }),
+    makeEvent({ titleJapanese: 'Z', category: 'national', startDate: '2025-05-01' }),
   ]
   const base = { categories: [], keyword: '', today: '2026-09-16' }
 
@@ -301,9 +301,9 @@ describe('groupByMonth', () => {
     it('開始月が同じイベントが続く場合、そのかたまりごとにまとまること', () => {
       // #region Given
       const events = [
-        makeEvent({ titleJa: 'A', startDate: '2026-10-01' }),
-        makeEvent({ titleJa: 'B', startDate: '2026-10-30' }),
-        makeEvent({ titleJa: 'C', startDate: '2026-11' }),
+        makeEvent({ titleJapanese: 'A', startDate: '2026-10-01' }),
+        makeEvent({ titleJapanese: 'B', startDate: '2026-10-30' }),
+        makeEvent({ titleJapanese: 'C', startDate: '2026-11' }),
       ]
       // #endregion
 
@@ -406,9 +406,9 @@ describe('buildMonthGrid', () => {
 
 /** eventsOnDay / eventsInMonth で共通に使うイベント */
 const dayAndMonthEvents = [
-  makeEvent({ titleJa: '期間', startDate: '2026-10-30', endDate: '2026-11-01' }),
-  makeEvent({ titleJa: '1日', startDate: '2026-11-15' }),
-  makeEvent({ titleJa: '年月だけ', startDate: '2026-11' }),
+  makeEvent({ titleJapanese: '期間', startDate: '2026-10-30', endDate: '2026-11-01' }),
+  makeEvent({ titleJapanese: '1日', startDate: '2026-11-15' }),
+  makeEvent({ titleJapanese: '年月だけ', startDate: '2026-11' }),
 ]
 
 describe('eventsOnDay', () => {
@@ -551,7 +551,7 @@ describe('parseState', () => {
   })
 })
 
-describe('formatDateRangeJa', () => {
+describe('formatDateRangeJapanese', () => {
   describe('正常系', () => {
     it.each([
       [
@@ -566,7 +566,7 @@ describe('formatDateRangeJa', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeJa(event)
+      const result = formatDateRangeJapanese(event)
       // #endregion
 
       // #region Then
@@ -592,7 +592,7 @@ describe('formatDateRangeJa', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeJa(event)
+      const result = formatDateRangeJapanese(event)
       // #endregion
 
       // #region Then
@@ -602,7 +602,7 @@ describe('formatDateRangeJa', () => {
   })
 })
 
-describe('formatDateRangeEn', () => {
+describe('formatDateRangeEnglish', () => {
   describe('正常系', () => {
     it.each([
       ['1日だけの場合、その日付と曜日になること', { startDate: '2026-10-30' }, 'Fri, Oct 30, 2026'],
@@ -613,7 +613,7 @@ describe('formatDateRangeEn', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeEn(event)
+      const result = formatDateRangeEnglish(event)
       // #endregion
 
       // #region Then
@@ -639,7 +639,7 @@ describe('formatDateRangeEn', () => {
       // #endregion
 
       // #region When
-      const result = formatDateRangeEn(event)
+      const result = formatDateRangeEnglish(event)
       // #endregion
 
       // #region Then

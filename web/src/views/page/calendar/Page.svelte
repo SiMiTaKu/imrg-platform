@@ -13,10 +13,10 @@
     eventsInMonth,
     eventsOnDay,
     filterEvents,
-    formatDayEn,
-    formatDayJa,
-    formatMonthEn,
-    formatMonthJa,
+    formatDayEnglish,
+    formatDayJapanese,
+    formatMonthEnglish,
+    formatMonthJapanese,
     groupByMonth,
     isEveryCategory,
     paginate,
@@ -125,7 +125,7 @@
   }
 </script>
 
-<article class="calendar" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<article class="calendar" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
@@ -140,7 +140,7 @@
     A calendar of men's rhythmic gymnastics competitions, performances and workshops.
   </p>
   <p class="updated-at">
-    最終更新: {formatDayJa(UPDATED_AT)} / Last updated: {formatDayEn(UPDATED_AT)}
+    最終更新: {formatDayJapanese(UPDATED_AT)} / Last updated: {formatDayEnglish(UPDATED_AT)}
   </p>
 
   <section class="search" aria-label="検索と絞り込み / Search and filter">
@@ -249,12 +249,12 @@
       <div class="results-heading">
         <h3 class="section-title">
           {state.day
-            ? `${formatDayJa(state.day)}のイベント`
-            : `${formatMonthJa(state.month)}のイベント`}
+            ? `${formatDayJapanese(state.day)}のイベント`
+            : `${formatMonthJapanese(state.month)}のイベント`}
           <span lang="en"
             >{state.day
-              ? `Events on ${formatDayEn(state.day)}`
-              : `Events in ${formatMonthEn(state.month)}`}</span
+              ? `Events on ${formatDayEnglish(state.day)}`
+              : `Events in ${formatMonthEnglish(state.month)}`}</span
           >
         </h3>
         {#if state.day}
@@ -279,8 +279,8 @@
     <section bind:this={resultsTop} class="results">
       {#each pageGroups as group, index (`${group.monthKey}-${index}`)}
         <h3 class="month-heading">
-          {formatMonthJa(group.monthKey)}
-          <span lang="en">{formatMonthEn(group.monthKey)}</span>
+          {formatMonthJapanese(group.monthKey)}
+          <span lang="en">{formatMonthEnglish(group.monthKey)}</span>
         </h3>
         <ul class="rows">
           {#each group.events as event (event.id)}
@@ -341,11 +341,11 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 960px;
   }
 
-  .sp {
+  .mobile {
     --width: calc(100% - 32px);
   }
 

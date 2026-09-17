@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { CATEGORY_LABELS } from '../_data/category'
   import type { CalendarEvent } from '../_data/model'
-  import { formatDateRangeJa, toDateBadge } from '../_lib/calendar'
+  import { formatDateRangeJapanese, toDateBadge } from '../_lib/calendar'
 </script>
 
 <script lang="ts">
@@ -33,13 +33,13 @@
         <span class="tag result">結果あり</span>
       {/if}
     </span>
-    <span class="title">{event.titleJa}</span>
-    {#if event.titleEn !== event.titleJa}
-      <span class="title-en" lang="en">{event.titleEn}</span>
+    <span class="title">{event.titleJapanese}</span>
+    {#if event.titleEnglish !== event.titleJapanese}
+      <span class="title-en" lang="en">{event.titleEnglish}</span>
     {/if}
     <span class="sub">
-      {formatDateRangeJa(event)}{#if event.venueJa}<span class="separator">・</span
-        >{event.venueJa}{/if}
+      {formatDateRangeJapanese(event)}{#if event.venueJapanese}<span class="separator">・</span
+        >{event.venueJapanese}{/if}
     </span>
   </span>
 
