@@ -1,12 +1,15 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
 </script>
 
 <section class="introduction" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <h1 class="title">男子新体操国際化プロジェクト</h1>
+  <h1 class="title">{m.top_introduction_title()}</h1>
   <div class="body">
-    は<span class="important">男子新体操</span>を<span class="important">オリンピックスポーツ</span
-    >にするため、その魅力を<span class="important">全世界</span>へ発信するための活動です。
+    {m.top_introduction_body_1()}<span class="important">{m.top_introduction_body_2()}</span
+    >{m.top_introduction_body_3()}<span class="important">{m.top_introduction_body_4()}</span
+    >{m.top_introduction_body_5()}<span class="important">{m.top_introduction_body_6()}</span
+    >{m.top_introduction_body_7()}
   </div>
 </section>
 

@@ -1,25 +1,19 @@
 <script lang="ts">
   import { ButtonLink } from '@imrg-platform/design-system'
   import { pageData } from '@shared/lib/device'
-  const LINKS = [
-    { href: '/calendar', text: '大会・イベントを探す' },
-    { href: '/decorating_apparatus', text: '手具装飾を依頼する' },
-    { href: '/background_music', text: '曲編集を依頼する' },
-    { href: '/judge', text: '審判を体験する' },
-    { href: '/rules', text: 'ルールを知る' },
-    { href: '/oshimitsu', text: '推しミツ！' },
-  ]
+  import { localizeHref } from '@shared/lib/i18n'
+  import { TOP_LINKS } from '../config/links'
 </script>
 
 <section class="links" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  {#each LINKS as { href, text }, index (index)}
+  {#each TOP_LINKS as { href, label }, index (index)}
     <ButtonLink
       target="_self"
       fontSize={$pageData.isMobile ? 20 : 24}
       width={$pageData.isMobile ? 320 : 400}
       height={56}
-      {href}
-      {text}
+      href={localizeHref(href)}
+      text={label()}
     />
   {/each}
 </section>

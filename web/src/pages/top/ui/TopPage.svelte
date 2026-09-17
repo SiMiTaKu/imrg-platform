@@ -1,7 +1,7 @@
 <script lang="ts">
-  import MainVisual from './_components/MainVisual.svelte'
-  import Introduction from './_components/Introduction.svelte'
-  import Links from './_components/Links.svelte'
+  import Introduction from './Introduction.svelte'
+  import Links from './Links.svelte'
+  import MainVisual from './MainVisual.svelte'
 </script>
 
 <article class="site-top">

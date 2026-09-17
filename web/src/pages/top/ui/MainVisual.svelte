@@ -1,10 +1,11 @@
-<script context="module" lang="ts">
-  import { ImageAssets } from '@shared/ui'
-  import MainImage from '../_images/imrg-logo.jpg?w=650;1300&format=webp&as=meta'
+<script lang="ts" module>
+  import MainImage from '../images/imrg-logo.jpg?w=650;1300&format=webp&as=meta'
 </script>
 
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
+  import { ImageAssets } from '@shared/ui'
 </script>
 
 <section class="main-visual" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
@@ -12,13 +13,13 @@
     <ImageAssets
       width={$pageData.isMobile ? 325 : 500}
       height={$pageData.isMobile ? 210 : 330}
-      alt="男子新体操国際化プロジェクトのロゴ"
+      alt={m.top_main_visual_logo_alt()}
       lazy={false}
       srcMeta={MainImage}
       objectFit="cover"
     />
   </div>
-  <p class="title">日本の文化を世界のスポーツへ</p>
+  <p class="title">{m.top_main_visual_catchphrase()}</p>
 </section>
 
 <style lang="scss">
@@ -72,6 +73,11 @@
     place-items: center;
     text-shadow: $sky-blue-text-shadow;
     opacity: 0;
+
+    // 英語は長く折り返すので中央にそろえる（日本語は1行に収まるので今の見た目のまま）
+    &:lang(en) {
+      text-align: center;
+    }
   }
 
   @keyframes title-animation {

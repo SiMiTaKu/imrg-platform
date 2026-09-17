@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Page from '$views/page/top/Page.svelte'
+  import { TopPage } from '@pages/top'
   import { PageHead, StickyFooter } from '@widgets/layout'
   import type { PageData } from './$types'
 
@@ -7,5 +7,5 @@
 </script>
 
 <PageHead meta={data.meta} />
-<Page />
+<TopPage />
 <StickyFooter />

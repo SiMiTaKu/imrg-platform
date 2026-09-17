@@ -1,3 +1,19 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "top_main_visual_logo_alt": "Logo of the Men's Rhythmic Gymnastics Internationalization Project",
+  "top_main_visual_catchphrase": "From Japanese Culture to a World Sport",
+  "top_introduction_title": "Men's Rhythmic Gymnastics Internationalization Project",
+  "top_introduction_body_1": "We aim to make ",
+  "top_introduction_body_2": "men's rhythmic gymnastics",
+  "top_introduction_body_3": " an ",
+  "top_introduction_body_4": "Olympic sport",
+  "top_introduction_body_5": " by sharing its appeal with ",
+  "top_introduction_body_6": "the whole world",
+  "top_introduction_body_7": ".",
+  "top_links_calendar": "Find competitions and events",
+  "top_links_decorating_apparatus": "Order apparatus decoration",
+  "top_links_background_music": "Order music editing",
+  "top_links_judge": "Try judging",
+  "top_links_rules": "Learn the rules",
+  "top_links_oshimitsu": "Oshimitsu!"
 }
