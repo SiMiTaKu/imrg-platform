@@ -20,7 +20,7 @@ name: 開発の進め方
 
 - パッケージの管理は pnpm（版は `package.json` の `packageManager`）。npm や yarn は使わない
 - Node の版は `.node-version`。CI と Amplify も同じ版を使う
-- 依存を足すときは `pnpm add`（開発用は `pnpm add -D`）。依存のインストール時スクリプトは `pnpm-workspace.yaml` の `allowBuilds` で許可したものだけ動く
+- モノレポなので、依存は使うパッケージに足す（`pnpm --filter @imrg-platform/web add <名前>`）。lint・整形・textlint などリポジトリー全体で使う道具だけをルートに足す（`pnpm add -D -w <名前>`）。依存のインストール時スクリプトは `pnpm-workspace.yaml` の `allowBuilds` で許可したものだけ動く
 
 | コマンド                     | 内容                                                                           |
 | ---------------------------- | ------------------------------------------------------------------------------ |

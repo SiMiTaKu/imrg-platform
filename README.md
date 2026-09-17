@@ -4,6 +4,17 @@
 
 実装のルールは [.github/instructions/](.github/instructions/) にあります（兄弟リポジトリーoshiageのルールをもとにしています）。入口は [general.instructions.md](.github/instructions/general.instructions.md) です。
 
+## 構成
+
+pnpm workspaceのモノレポです。
+
+| フォルダー | パッケージ           | 内容                                           |
+| ---------- | -------------------- | ---------------------------------------------- |
+| `web/`     | `@imrg-platform/web` | imrg.work のサイト（SvelteKit の静的書き出し） |
+| `docs/`    | —                    | 改修計画と手順書                               |
+
+lint・整形の設定はルートにあり、全パッケージに効きます。コマンドはルートで実行します。
+
 ## Init
 
 パッケージの管理はpnpmです（版は `package.json` の `packageManager`）。Node 24に付属するcorepackで入れます。

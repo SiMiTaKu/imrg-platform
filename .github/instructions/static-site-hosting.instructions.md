@@ -1,6 +1,6 @@
 ---
 description: 静的書き出し（adapter-static）と Amplify での配信、SEO・OGP の決まり
-applyTo: '{src/routes/**/*,src/app.html,src/lib/hooks/**/*,src/model/**/*,static/**/*,svelte.config.js,amplify.yml}'
+applyTo: '{web/src/routes/**/*,web/src/app.html,web/src/lib/hooks/**/*,web/src/model/**/*,web/static/**/*,web/svelte.config.js,amplify.yml}'
 name: 静的サイトの書き出しと配信
 ---
 
@@ -14,17 +14,17 @@ name: 静的サイトの書き出しと配信
 
 ## ページの追加
 
-- ルートは `src/routes/<パス>/` に `+page.server.ts` と `+page.svelte` を置き、画面の中身は `src/views/page/<パス>/Page.svelte` に書く（Phase 3 で FSD へ移す予定）
-- `+page.server.ts` はメタ情報（`layout`: title・description・canonical・OGP）を返す。型は `src/model/view-value-layout.ts`
+- ルートは `web/src/routes/<パス>/` に `+page.server.ts` と `+page.svelte` を置き、画面の中身は `web/src/views/page/<パス>/Page.svelte` に書く（Phase 3 で FSD へ移す予定）
+- `+page.server.ts` はメタ情報（`layout`: title・description・canonical・OGP）を返す。型は `web/src/model/view-value-layout.ts`
   - title は `<ページ名> | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~` の形にそろえる
   - `path` は末尾スラッシュなしで書く（canonical と `og:url` は自動で末尾スラッシュを付ける）
-- 末尾スラッシュは `trailingSlash = 'always'`（`src/routes/+layout.server.ts`）。リンクも `/calendar/` のように末尾スラッシュ付きで書く
+- 末尾スラッシュは `trailingSlash = 'always'`（`web/src/routes/+layout.server.ts`）。リンクも `/calendar/` のように末尾スラッシュ付きで書く
 - 動的なパス（`[id]`）は `entries` で書き出すページを列挙し、`prerender = true` にする
-- 新しいページは `src/routes/sitemap.xml/+server.ts` の `STATIC_ENTRIES` に足す。クエリで中身が変わるページと、書き換えルールの受け皿は載せない
+- 新しいページは `web/src/routes/sitemap.xml/+server.ts` の `STATIC_ENTRIES` に足す。クエリで中身が変わるページと、書き換えルールの受け皿は載せない
 
 ## SEO・SNS
 
-- `og:image` は絶対 URL の 1200×630 の画像（`static/images/ogp.png`）
+- `og:image` は絶対 URL の 1200×630 の画像（`web/static/images/ogp.png`）
 - 大会の詳細ページには構造化データ（schema.org の `SportsEvent`）を入れている。項目を変えたら Google のリッチリザルト テストで確かめる
 - `<html lang="ja">`。英語の文章は `lang="en"` を付けた要素で囲む（今は日英併記）
 - 多言語化（TODO 3-4）のあとは、言語ごとにページを書き出す。守ること:

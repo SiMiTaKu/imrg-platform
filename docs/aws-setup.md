@@ -286,7 +286,7 @@ imrg.workの登録業者はお名前。com。DNSの管理はRoute 53が行う（
 
 1. **Amplify** → **新しいアプリ** → **Webアプリをホスト** → **GitHub** を選ぶ
 2. GitHubの画面で **AWS Amplify** のGitHub Appの権限を確かめる。「Only select repositories」にしている場合は `imrg-platform` を足す
-3. リポジトリ `SiMiTaKu/imrg-platform`、ブランチ `main` を選ぶ
+3. リポジトリー `SiMiTaKu/imrg-platform`、ブランチ `main` を選ぶ
 4. ビルドの設定はリポジトリーの `amplify.yml` を使う（画面の内容がそれと同じことを確かめる）
 5. アプリ名は `imrg-platform` にする。**保存してデプロイ** を押し、ビルドの成功を待つ
 6. 古いアプリの設定を写す
@@ -313,7 +313,7 @@ imrg.workの登録業者はお名前。com。DNSの管理はRoute 53が行う（
 2. **ホスティング** → **プレビュー** で、`main` と `develop` のPRプレビューを有効にする（TODO 2-5）
 3. 新しいアプリのIDを、リポジトリーの `.github/pull_request_template.md` と `.github/instructions/development-workflow.instructions.md` のプレビューのURLに反映する
 4. 古いアプリ（`d1o1ui2gd5pshh`）と、もう1つの古いアプリ（`d1d0cu0fwxm76y`）を削除する。古いリポジトリーのwebhookも一緒に消える
-5. GitHubの古いリポジトリ `imrg-web-main` をアーカイブする（非公開のまま残す）
+5. GitHubの古いリポジトリー `imrg-web-main` をアーカイブする（非公開のまま残す）
 6. `imrg-platform` の `master` ブランチを消す
 
 ## 9. 直したあとにやること

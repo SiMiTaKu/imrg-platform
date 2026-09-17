@@ -12,10 +12,11 @@ frontend:
       env:
         PUBLIC_BASE_PATH: 'https//imrg.work'
       commands:
-        - pnpm run build
+        # web パッケージだけをビルドする
+        - pnpm --filter @imrg-platform/web build
   artifacts:
     # IMPORTANT - Please verify your build output directory
-    baseDirectory: build
+    baseDirectory: web/build
     files:
       - '**/*'
   cache:

@@ -7,7 +7,7 @@ import svelte from 'eslint-plugin-svelte'
 import tsdoc from 'eslint-plugin-tsdoc'
 import unusedImports from 'eslint-plugin-unused-imports'
 import tseslint from 'typescript-eslint'
-import svelteConfig from './svelte.config.js'
+import svelteConfig from './web/svelte.config.js'
 
 const EXPORTED_DOC_CONTEXTS = [
   'ExportNamedDeclaration > FunctionDeclaration',
