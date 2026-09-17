@@ -11,7 +11,7 @@
   const showsBoth = showsSecondaryText()
 </script>
 
-<section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section class="work-list" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
@@ -24,7 +24,7 @@
     {#each WORK_LIST as work, index (index)}
       <li class="card">
         <a class="link" href={work.youtube} rel="noopener noreferrer" target="_blank">
-          <span class="name">{showsBoth ? work.customerName : work.customerNameEn}</span>
+          <span class="name">{showsBoth ? work.customerName : work.customerNameEnglish}</span>
           <span class="apparatus">{APPARATUS_LABELS[work.apparatus]()}</span>
           <div class="youtube">
             <ImageAssets
@@ -32,7 +32,7 @@
               height={28}
               alt={m.background_music_youtube_icon_alt()}
               lazy={true}
-              srcMeta={YoutubeIcon}
+              imageSourceMeta={YoutubeIcon}
               objectFit="cover"
             />
           </div>
@@ -43,14 +43,14 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --card-width: calc((100% - 16px * 4) / 5);
     --name-font-size: 30px;
     --apparatus-font-size: 20px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --card-width: calc((100% - 16px) / 2);
     --name-font-size: 24px;
@@ -99,13 +99,13 @@
 
   // 英語の名前は日本語より長く、カードからはみ出すため小さくする。
   // 日本語ページの見た目（計算済みスタイル）を変えないよう、変数を足さずに言語で当てる
-  .pc .name:lang(en) {
+  .desktop .name:lang(en) {
     font-size: 22px;
     line-height: 22px;
     text-align: center;
   }
 
-  .sp .name:lang(en) {
+  .mobile .name:lang(en) {
     font-size: 18px;
     line-height: 18px;
     text-align: center;

@@ -30,8 +30,8 @@
 
 <div
   class="point-b"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
   in:fly={$pageData.isMobile ? { y: 50 } : { x: 200 }}
 >
   <header class="header">
@@ -77,14 +77,14 @@
 </div>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --header-flex-direction: row;
     --gap: 16px;
     --dropped-apparatus-flex-direction: row;
     --dropped-apparatus-gap: 32px;
   }
 
-  .sp {
+  .mobile {
     --header-flex-direction: column;
     --gap: 8px;
     --dropped-apparatus-flex-direction: column;

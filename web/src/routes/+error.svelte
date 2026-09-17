@@ -9,7 +9,7 @@
   <title>{m.meta_error_title()}</title>
 </svelte:head>
 
-<article class="wrapper" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<article class="wrapper" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <h1 class="title">{m.error_title()}</h1>
   <div class="content">
     <div class="text">{m.error_not_found()}</div>
@@ -18,11 +18,11 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --title-font-size: 40px;
   }
 
-  .sp {
+  .mobile {
     --title-font-size: 30px;
   }
 

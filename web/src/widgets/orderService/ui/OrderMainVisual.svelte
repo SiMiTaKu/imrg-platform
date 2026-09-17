@@ -1,12 +1,12 @@
 <script lang="ts" module>
-  import type { SrcMeta } from '@shared/ui'
+  import type { ImageSourceMeta } from '@shared/ui'
 
   /** メインビジュアルで切り替えて見せる1枚分 */
   export interface OrderMainVisualSlide {
     /** キャッチコピー。改行（`\n`）はそのまま改行して表示する */
     description: string
     /** この1枚の背景画像。省くと `backgroundImage` を出したままにする */
-    image?: SrcMeta[]
+    image?: ImageSourceMeta[]
   }
 
   /** キャッチコピーを切り替える間隔（ミリ秒） */
@@ -32,7 +32,7 @@
     /** 切り替えて見せるキャッチコピー（と背景画像） */
     slides: OrderMainVisualSlide[]
     /** 切り替えずに出したままにする背景画像 */
-    backgroundImage?: SrcMeta[]
+    backgroundImage?: ImageSourceMeta[]
     /** 左から暗くする影の幅（`85%` など） */
     overlayWidth: string
     /** 左から暗くする影の濃さ（0〜1） */
@@ -79,8 +79,8 @@
 
 <section
   class="main-visual"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
   style:--overlay-width={overlayWidth}
   style:--overlay-opacity={overlayOpacity}
 >
@@ -91,7 +91,7 @@
         height="100%"
         alt={imageAlt}
         lazy={false}
-        srcMeta={backgroundImage}
+        imageSourceMeta={backgroundImage}
         objectFit="cover"
       />
     </div>
@@ -103,7 +103,7 @@
         height="100%"
         alt={imageAlt}
         lazy={false}
-        srcMeta={currentSlide.image}
+        imageSourceMeta={currentSlide.image}
         objectFit="cover"
       />
     </div>
@@ -138,7 +138,7 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --height: calc(100dvh - 80px);
     --content-margin: 250px auto 0;
@@ -148,7 +148,7 @@
     --description-font-size: 36px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --height: calc(100dvh - 64px);
     --content-margin: 180px auto 0;

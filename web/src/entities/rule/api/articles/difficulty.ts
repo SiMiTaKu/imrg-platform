@@ -2,20 +2,20 @@ import type { RuleArticle } from '../../model/ruleBook'
 
 /**
  * 第2章 採点規則のうち、難度。
- * 英語（`titleEn` など）は日本語の本文を訳したもの
+ * 英語（`titleEnglish` など）は日本語の本文を訳したもの
  */
 export const DIFFICULTY_ARTICLES: RuleArticle[] = [
   {
     title: '難度',
-    titleEn: 'Difficulty',
+    titleEnglish: 'Difficulty',
     section: [
       {
         title: '難度の要求要素',
-        titleEn: 'Difficulty Requirements',
+        titleEnglish: 'Difficulty Requirements',
         block: [
           {
             title: '徒手系難度',
-            titleEn: 'Free-Hand Difficulties',
+            titleEnglish: 'Free-Hand Difficulties',
             element: `徒手系の難度は以下のとおりにする。
 
 1. 個人競技で手具操作をともなって実施した場合は基礎難度を採用する。
@@ -26,7 +26,7 @@ export const DIFFICULTY_ARTICLES: RuleArticle[] = [
   
 【基礎難度表】
 跳躍・バランス・倒立（静止2秒）・柔軟A〜静的柔軟〜を以下に示す`,
-            elementEn: `Free-hand difficulties are determined as follows.
+            elementEnglish: `Free-hand difficulties are determined as follows.
 
 1. In the individual competition, when performed with apparatus handling, the basic difficulty applies.
 2. In the group competition, the basic difficulty applies when three to five gymnasts perform the element, and the six-gymnast difficulty applies when all six perform it. The element must be performed at the same time or one after another.
@@ -40,22 +40,22 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
               {
                 src: '/images/rules/jumpdifficulties.png',
                 alt: '徒手系難度（跳躍）',
-                altEn: 'Free-hand difficulties (jumps)',
+                altEnglish: 'Free-hand difficulties (jumps)',
               },
               {
                 src: '/images/rules/balansedifficulties.png',
                 alt: '徒手系難度（バランス）',
-                altEn: 'Free-hand difficulties (balances)',
+                altEnglish: 'Free-hand difficulties (balances)',
               },
               {
                 src: '/images/rules/handstanddifficulties.png',
                 alt: '倒立（静止２秒',
-                altEn: 'Handstands (held for 2 seconds)',
+                altEnglish: 'Handstands (held for 2 seconds)',
               },
               {
                 src: '/images/rules/stretchdifficulties.png',
                 alt: '柔軟Ａ　〜静的柔軟〜',
-                altEn: 'Flexibility A (static flexibility)',
+                altEnglish: 'Flexibility A (static flexibility)',
               },
             ],
           },
@@ -63,11 +63,11 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
       },
       {
         title: '転回系難度',
-        titleEn: 'Tumbling Difficulties',
+        titleEnglish: 'Tumbling Difficulties',
         block: [
           {
             title: '転回系難度',
-            titleEn: 'Tumbling Difficulties',
+            titleEnglish: 'Tumbling Difficulties',
             element: `転回系の難度は次の基礎難度をもとに価値が決められる。
                   
 とび技ひねり技・前方系の跳躍技・後方系の跳躍技・宙返りの連続・転回系の連続の表を以下に示す。
@@ -77,7 +77,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
 ※６人全員が同時に実施した場合のみ格上げの対象とする。
 ３回以上の連続後転とびの一部がＢ難度以上の転回系に変わったものも同等として扱う。
 後方伸身宙返りにひねりが加わった場合も同等の扱いとする。`,
-            elementEn: `The value of tumbling difficulties is determined from the following basic difficulties.
+            elementEnglish: `The value of tumbling difficulties is determined from the following basic difficulties.
 
 Tables of twisting elements, forward tumbling elements, backward tumbling elements, salto combinations and tumbling combinations are shown below.
 
@@ -90,27 +90,27 @@ A layout back salto with an added twist is also treated in the same way.`,
               {
                 src: '/images/rules/jumpturndifficulties.png',
                 alt: 'とびひねり技の難度表',
-                altEn: 'Table of twisting element difficulties',
+                altEnglish: 'Table of twisting element difficulties',
               },
               {
                 src: '/images/rules/forwardjumpdifficulties.png',
                 alt: '前方系跳躍技の難度表',
-                altEn: 'Table of forward tumbling difficulties',
+                altEnglish: 'Table of forward tumbling difficulties',
               },
               {
                 src: '/images/rules/backwardjumpdifficulties.png',
                 alt: '後方系の跳躍技の難度表',
-                altEn: 'Table of backward tumbling difficulties',
+                altEnglish: 'Table of backward tumbling difficulties',
               },
               {
                 src: '/images/rules/combinationdifficulties.png',
                 alt: '宙返りの連続の難度表',
-                altEn: 'Table of salto combination difficulties',
+                altEnglish: 'Table of salto combination difficulties',
               },
               {
                 src: '/images/rules/combinationdifficulties2.png',
                 alt: '転回系の連続の難度表',
-                altEn: 'Table of tumbling combination difficulties',
+                altEnglish: 'Table of tumbling combination difficulties',
               },
             ],
           },
@@ -118,11 +118,11 @@ A layout back salto with an added twist is also treated in the same way.`,
       },
       {
         title: '団体競技における難度の組み合わせ',
-        titleEn: 'Difficulty Combinations in the Group Competition',
+        titleEnglish: 'Difficulty Combinations in the Group Competition',
         block: [
           {
             title: '交差技と組運動の難度',
-            titleEn: 'Difficulty of Crossing Elements and Partner Elements',
+            titleEnglish: 'Difficulty of Crossing Elements and Partner Elements',
             element: `【交差技】
 交差技の難度は以下の通りとする。
 
@@ -161,7 +161,7 @@ A layout back salto with an added twist is also treated in the same way.`,
   1. ３名以上が実施した難度を採用する。
   2. シリーズに含まれる交差技または組・組立運動が、シリーズに中で最も高い難度の場合は、人数にかかわらず、その難度を採用する。
   3. 高い難度を低い難度で読み替えても、すべての難度が３名未満の場合は、難度として認めない。`,
-            elementEn: `[Crossing elements]
+            elementEnglish: `[Crossing elements]
 The difficulty of crossing elements is as follows.
 
 1. When a gymnast tumbles over gymnasts performing free-hand elements, the difficulty of the tumbling element applies.
@@ -204,11 +204,11 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
       },
       {
         title: '個人競技における難度',
-        titleEn: 'Difficulty in the Individual Competition',
+        titleEnglish: 'Difficulty in the Individual Competition',
         block: [
           {
             title: '転回系における手具操作と難度',
-            titleEn: 'Apparatus Handling and Difficulty in Tumbling',
+            titleEnglish: 'Apparatus Handling and Difficulty in Tumbling',
             element: `演技の中で転回系を実施した場合の難度は、基礎難度表によって価値が決められる。ただし、以下の条件に当てはまる場合は、その難度から１ランクアップされる。
                   
 1. 手具の投げ受けの間に転回系を実施した場合は、その転回系の難度から１ランクアップされる。
@@ -235,7 +235,7 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
   e. その他の手具操作
     ⅰ. 転回系を実施している間に手具を床に打ちつけてとる。
     ⅱ. 転回系を実施している間に手具を転がして、着地と同時にとる。`,
-            elementEn: `The difficulty of tumbling performed in a routine is determined by the table of basic difficulties. However, it rises one rank in the following cases.
+            elementEnglish: `The difficulty of tumbling performed in a routine is determined by the table of basic difficulties. However, it rises one rank in the following cases.
 
 1. Tumbling performed while the apparatus is in the air rises one rank from the difficulty of that tumbling.
 2. Tumbling performed with two or more apparatus handlings.
@@ -264,25 +264,25 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
           },
           {
             title: '投げ受けの難度',
-            titleEn: 'Throw-and-Catch Difficulty',
+            titleEnglish: 'Throw-and-Catch Difficulty',
             element: `演技の中で投げ受けを実施した場合、その間に実施した徒手系（※）または転回系の数によって以下のように難度が決められる。ただし、転回系が含まれていた場合は第69条の１の条件と比較して、高い方の難度を採用する。
 ※ここでの徒手系は、縦軸または横軸で、360°回転したもののみを１つとして数える。`,
-            elementEn: `When a throw and catch is performed in a routine, the difficulty is determined as follows by the number of free-hand elements (*) or tumbling elements performed during the throw. If tumbling is included, the difficulty is compared with the condition in Article 69 (1), and the higher one applies.
+            elementEnglish: `When a throw and catch is performed in a routine, the difficulty is determined as follows by the number of free-hand elements (*) or tumbling elements performed during the throw. If tumbling is included, the difficulty is compared with the condition in Article 69 (1), and the higher one applies.
 * Here, a free-hand element counts as one only when it is a 360° rotation around the vertical or horizontal axis.`,
             image: [
               {
                 src: '/images/rules/tossdifficulties.png',
                 alt: '投げ受けの難度表',
-                altEn: 'Table of throw-and-catch difficulties',
+                altEnglish: 'Table of throw-and-catch difficulties',
               },
             ],
           },
           {
             title: '手具操作をともなった徒手系の難度',
-            titleEn: 'Difficulty of Free-Hand Elements with Apparatus Handling',
+            titleEnglish: 'Difficulty of Free-Hand Elements with Apparatus Handling',
             element:
               '演技の中で手具操作をともなって徒手系難度を実施した場合は、徒手系難度を採用する。',
-            elementEn:
+            elementEnglish:
               'When a free-hand difficulty is performed with apparatus handling in a routine, the free-hand difficulty applies.',
           },
         ],

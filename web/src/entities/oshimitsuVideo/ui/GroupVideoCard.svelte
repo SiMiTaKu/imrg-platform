@@ -13,26 +13,26 @@
   const locale = getLocale()
   const teamName = $derived(localizedName(video.team, locale))
   const year = $derived(formatFilmedYear(video.filmedAt, locale))
-  const embedSrc = $derived(`${video.src}?controls=0&rel=0&fs=0&modestbranding=1`)
+  const embedSource = $derived(`${video.embedUrl}?controls=0&rel=0&fs=0&modestbranding=1`)
 
   /** 読み込みを終えた埋め込みの URL。表示中の URL と同じになるまで、読み込み中の印を出す */
-  let loadedSrc = $state<string>()
+  let loadedSource = $state<string>()
 </script>
 
-<a class="card" href={video.src}>
+<a class="card" href={video.embedUrl}>
   <iframe
     class="video"
-    class:placeholder={loadedSrc !== embedSrc}
+    class:placeholder={loadedSource !== embedSource}
     allow="accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen
     frameborder="0"
     width={343}
     height={194}
     referrerpolicy="strict-origin-when-cross-origin"
-    src={embedSrc}
+    src={embedSource}
     title={`${teamName} ${year}`}
     loading="lazy"
-    onload={() => (loadedSrc = embedSrc)}
+    onload={() => (loadedSource = embedSource)}
   ></iframe>
   <div class="info">
     <div class="name">{teamName}</div>
