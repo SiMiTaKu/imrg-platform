@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/svelte-vite'
-import ButtonLink from './ButtonLink.svelte'
+import ButtonLink from './ui/ButtonLink.svelte'
 
 const meta = {
   title: 'Design System/ButtonLink',

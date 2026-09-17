@@ -3,10 +3,8 @@
  * 部品と、部品に付随する関数をここから公開する。
  */
 
-/** ボタン */
-export { default as Button } from './Button/Button.svelte'
-/** ボタンの見た目のリンク */
-export { default as ButtonLink } from './ButtonLink/ButtonLink.svelte'
+/** ボタンと、ボタンの見た目のリンク */
+export { Button, ButtonLink } from './Button'
 /** セクションの見出し（見出しと、その下の補助の文言） */
 export { default as Heading } from './Heading/Heading.svelte'
 /** ページ送り */

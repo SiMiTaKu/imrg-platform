@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/svelte-vite'
 import { fn } from 'storybook/test'
-import Button from './Button.svelte'
+import Button from './ui/Button.svelte'
 
 const meta = {
   title: 'Design System/Button',

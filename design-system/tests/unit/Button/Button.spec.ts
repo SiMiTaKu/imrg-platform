@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/svelte'
 import { describe, expect, it, vi } from 'vitest'
-import Button from '../../../src/lib/Button/Button.svelte'
+import Button from '../../../src/lib/Button/ui/Button.svelte'
 
 describe('Button', () => {
   describe('正常系', () => {

@@ -28,14 +28,9 @@
 </button>
 
 <style lang="scss">
+  @use '../scss/button';
+
   .button {
-    display: grid;
-    place-items: center;
-    font-weight: bold;
-    color: $white;
-    border: none;
-    border-radius: $border-radius-64;
-    background: map.get($sky-blue, button);
-    cursor: pointer;
+    @include button.styles;
   }
 </style>

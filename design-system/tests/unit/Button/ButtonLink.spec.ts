@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/svelte'
 import { describe, expect, it } from 'vitest'
-import ButtonLink from '../../../src/lib/ButtonLink/ButtonLink.svelte'
+import ButtonLink from '../../../src/lib/Button/ui/ButtonLink.svelte'
 
 describe('ButtonLink', () => {
   describe('正常系', () => {
