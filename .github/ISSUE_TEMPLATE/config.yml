@@ -1,0 +1,6 @@
+# テンプレートを使わない起票も許す
+blank_issues_enabled: true
+contact_links:
+  - name: 改修計画（docs/TODO.md）
+    url: https://github.com/SiMiTaKu/imrg-web-main/blob/develop/docs/TODO.md
+    about: 起票する前に、TODO にすでに載っていないかを確かめる

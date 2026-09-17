@@ -139,7 +139,10 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
     - `package-lock.json` の版をそのまま `pnpm-lock.yaml` へ移した（`pnpm import`）
     - pnpm 11以降は依存のインストール時スクリプトを許可制にしているので、`pnpm-workspace.yaml` の `allowBuilds` で決める
     - Amplifyはcorepackでpnpmを入れる。キャッシュは `.pnpm-store`
-- [ ] **2-4. PR テンプレート・CODEOWNERS・`delete_branch_on_merge` を有効化**
+- [x] **2-4. PR テンプレート・CODEOWNERS・`delete_branch_on_merge` を有効化**
+  - PRテンプレートと、Issueのテンプレート（改善・不具合）を置いた
+  - マージしたブランチを自動で消す設定を有効にし、マージ済みの古いブランチを整理した
+  - CODEOWNERSは、一人で運用しているので作らないことにした
 - [ ] **2-5. PR ごとのプレビュー環境**（Amplifyのプレビュー機能）
 - [ ] **2-6. 本番のブランチを `master` から `main` へ変える**
   - 運用を `feature/*` → `develop` → `main` にする（`main` へのマージで本番へ反映）
