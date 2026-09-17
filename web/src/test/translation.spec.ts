@@ -14,37 +14,75 @@ describe('isPublished', () => {
         ['/calendar/*'],
         true,
       ],
-    ] as const)('%s', (_, path, locale, translated, expected) => {
-      expect(isPublished(path, locale, translated)).toBe(expected)
+    ] as const)('%s', (_, path, locale, translatedPaths, expected) => {
+      // #region Given / When
+      const result = isPublished(path, locale, translatedPaths)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
     })
   })
 
   describe('境界値', () => {
     it.each([
-      ['動的なページの親を指定した場合、親自身は含まれないこと', '/calendar/', ['/calendar/*']],
-      ['前方一致では判定しないこと', '/calendar/abc/', ['/calendar/']],
-    ] as const)('%s', (_, path, translated) => {
-      expect(isPublished(path, 'en', translated)).toBe(false)
+      ['動的なページの親を指定した場合、親自身は false になること', '/calendar/', ['/calendar/*']],
+      ['子のページでも完全一致の指定の場合、false になること', '/calendar/abc/', ['/calendar/']],
+    ] as const)('%s', (_, path, translatedPaths) => {
+      // #region Given / When
+      const result = isPublished(path, 'en', translatedPaths)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(false)
+      // #endregion
     })
   })
 })
 
 describe('publishedLocales', () => {
-  it('訳したページの場合、既定の言語を先頭に両方の言語が返ること', () => {
-    expect(publishedLocales('/privacy/', ['/privacy/'])).toEqual(['ja', 'en'])
-  })
+  describe('正常系', () => {
+    it.each([
+      ['訳したページの場合、既定の言語を先頭に両方の言語が返ること', ['/privacy/'], ['ja', 'en']],
+      ['訳していないページの場合、既定の言語だけが返ること', [], ['ja']],
+    ] as const)('%s', (_, translatedPaths, expected) => {
+      // #region Given / When
+      const result = publishedLocales('/privacy/', translatedPaths)
+      // #endregion
 
-  it('訳していないページの場合、既定の言語だけが返ること', () => {
-    expect(publishedLocales('/privacy/', [])).toEqual(['ja'])
+      // #region Then
+      expect(result).toEqual(expected)
+      // #endregion
+    })
   })
 })
 
 describe('localizePath', () => {
-  it.each([
-    ['既定の言語の場合、パスが変わらないこと', 'ja', '/calendar/', '/calendar/'],
-    ['英語の場合、/en が先頭に付くこと', 'en', '/calendar/', '/en/calendar/'],
-    ['英語のトップの場合、/en/ になること', 'en', '/', '/en/'],
-  ] as const)('%s', (_, locale, path, expected) => {
-    expect(localizePath(path, locale)).toBe(expected)
+  describe('正常系', () => {
+    it.each([
+      ['既定の言語の場合、パスが変わらないこと', 'ja', '/calendar/', '/calendar/'],
+      ['英語の場合、/en が先頭に付くこと', 'en', '/calendar/', '/en/calendar/'],
+    ] as const)('%s', (_, locale, path, expected) => {
+      // #region Given / When
+      const result = localizePath(path, locale)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(expected)
+      // #endregion
+    })
+  })
+
+  describe('境界値', () => {
+    it('英語でトップの場合、/en/ になること', () => {
+      // #region Given / When
+      const result = localizePath('/', 'en')
+      // #endregion
+
+      // #region Then
+      expect(result).toBe('/en/')
+      // #endregion
+    })
   })
 })

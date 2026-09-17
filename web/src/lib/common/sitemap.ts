@@ -33,8 +33,8 @@ export type SitemapAlternate = {
  * @returns 末尾にスラッシュを付けたパス。"/" で始まらないときは先頭にも付ける
  */
 export function withTrailingSlash(path: string): string {
-  if (!path.startsWith('/')) return `/${path}`.replace(/\/+$/, '/')
-  return path.endsWith('/') ? path : `${path}/`
+  const withLeading = path.startsWith('/') ? path : `/${path}`
+  return withLeading.endsWith('/') ? withLeading : `${withLeading}/`
 }
 
 /** XML に入れられない文字を実体参照にする */
