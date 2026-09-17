@@ -1,4 +1,5 @@
 import type { SiteLocale } from '@shared/lib/i18n'
+import { VENUE_NAMES_EN } from '../config/venue'
 import type { CalendarEvent } from '../model'
 import { toMonthKey } from './date'
 
@@ -24,7 +25,7 @@ export interface LocalizedEvent {
  *
  * @remarks
  * 元データ（`~/imrg/calendar-data/`）には英語の会場名が無いイベントがある。
- * 空欄にするより、日本語の会場名を出したほうが現地で探しやすいため、日本語に戻す
+ * 都道府県名だけの会場は英語に訳し、それ以外は、空欄にするより現地で探しやすいので日本語に戻す
  */
 export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): LocalizedEvent => {
   if (locale !== 'en') {
@@ -39,7 +40,7 @@ export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): Localiz
   return {
     title: event.titleEn,
     alternateTitle: event.titleJa !== event.titleEn ? event.titleJa : undefined,
-    venue: event.venueEn ?? event.venueJa,
+    venue: event.venueEn ?? (event.venueJa && (VENUE_NAMES_EN[event.venueJa] ?? event.venueJa)),
     streaming: event.streamingEn ?? event.streamingJa,
     note: event.noteEn ?? event.noteJa,
   }

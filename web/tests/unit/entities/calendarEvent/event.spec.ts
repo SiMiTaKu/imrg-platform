@@ -198,6 +198,34 @@ describe('localizeEvent', () => {
       // #endregion
     })
 
+    it('英語の会場が無く、会場が都道府県名だけの場合、英語の都道府県名になること', () => {
+      // #region Given
+      const prefectureOnly = makeEvent({ venueJa: '東京都', venueEn: undefined })
+      // #endregion
+
+      // #region When
+      const result = localizeEvent(prefectureOnly, 'en')
+      // #endregion
+
+      // #region Then
+      expect(result.venue).toBe('Tokyo')
+      // #endregion
+    })
+
+    it('英語の会場が無く、会場が都道府県名だけの場合でも、日本語では日本語の会場になること', () => {
+      // #region Given
+      const prefectureOnly = makeEvent({ venueJa: '東京都', venueEn: undefined })
+      // #endregion
+
+      // #region When
+      const result = localizeEvent(prefectureOnly, 'ja')
+      // #endregion
+
+      // #region Then
+      expect(result.venue).toBe('東京都')
+      // #endregion
+    })
+
     it('日本語と英語の大会名が同じ場合、もう一方の言語の大会名が無いこと', () => {
       // #region Given
       const sameTitle = makeEvent({ titleJa: 'BLUE TOKYO', titleEn: 'BLUE TOKYO' })
