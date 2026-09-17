@@ -9,7 +9,7 @@
     "allowJs": true,
     "checkJs": true,
     "verbatimModuleSyntax": true,
-    "types": ["svelte", "node", "@testing-library/jest-dom/vitest"]
+    "types": ["svelte", "node", "vite/client", "@testing-library/jest-dom/vitest"]
   },
   "include": [
     "src/**/*.ts",
