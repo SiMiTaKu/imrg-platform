@@ -140,6 +140,9 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 脆弱性の通知と、修正PRの自動作成を有効にした
   - CIで `pnpm audit` を実行する。本番の依存にhigh以上があれば止め、開発用の依存は知らせるだけ
   - 開発用の依存にあった22件は `pnpm-workspace.yaml` の `overrides` で修正版に上げ、0件にした
+  - Dependabotで出さないメジャー更新（`.github/dependabot.yml` の `ignore`）
+    - `@types/node`：型の版は、実際に使うNode（24系）とそろえる。Nodeの更新と同時に上げる
+    - `textlint`：15にすると `textlint-rule-preset-jtf-style` のルール `2.1.6.カタカナの長音` が何も検出しなくなる（2026-09-17に確認。jtf-styleを最新の3系にしても同じ）。ルールが対応したら外す
   - [x] **2-3a. npmからpnpmへ移す**（2-3と同時に行うことにした。pnpm 12。版は `package.json` の `packageManager`）
     - `package-lock.json` の版をそのまま `pnpm-lock.yaml` へ移した（`pnpm import`）
     - pnpm 11以降は依存のインストール時スクリプトを許可制にしているので、`pnpm-workspace.yaml` の `allowBuilds` で決める
