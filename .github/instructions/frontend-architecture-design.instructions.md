@@ -45,10 +45,11 @@ web/src/
 │   ├── model/     汎用の型
 │   └── ui/        サイトだけで使う汎用部品（Image）。見た目の部品はデザインシステムに作る
 ├── lib/paraglide/ Paraglide JS の生成物（git 管理しない）
-├── style/         SCSS の変数（色・余白・フォント・影・角丸）
 └── views/         移行前の構成（移し終えたら消す）
 ```
 
+- SCSS の変数（色・余白・フォント・影・角丸）はデザインシステムのトークン（`design-system/src/styles`）を使う。`scss.config.js` で全コンポーネントに読み込ませているので、import は要らない
+- web だけで使う SCSS を置くときは `shared/styles/` か、その slice の `scss/` に置く。層でないフォルダーをトップレベルに増やさない
 - 別名は `@app` `@pages` `@widgets` `@features` `@entities` `@shared`（`web/svelte.config.js`）。slice の外からは `index.ts` だけを読む（`import { PageHead } from '@widgets/layout'`）
 - テストは `web/tests/unit/<レイヤー>/...` に置く
 - 移行前のページ（`views/page/<ページ>/`）を触るときは、そのページを FSD へ移してから直す
