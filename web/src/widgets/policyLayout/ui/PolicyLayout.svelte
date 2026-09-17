@@ -22,7 +22,7 @@
 </script>
 
 <!-- プライバシーポリシー・利用規約など、文章だけのページの共通の枠 -->
-<article class="policy" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<article class="policy" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
@@ -35,12 +35,12 @@
 </article>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 800px;
     --heading-font-size: #{$font-size-24};
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --heading-font-size: #{$font-size-20};
   }

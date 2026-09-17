@@ -7,18 +7,26 @@
   import { SNS_LINKS } from '../config/sns'
 </script>
 
-<section class="contents-footer" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
+<section
+  class="contents-footer"
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
+>
   <div class="container">
     <div class="sns">
       {#each SNS_LINKS as sns, index (index)}
         <a class="item" href={sns.href} rel="noopener noreferrer" target="_blank">
           <div class="icon">
             <ImageAssets
-              width={$pageData.isMobile ? sns.size.footer.sp.width : sns.size.footer.pc.width}
-              height={$pageData.isMobile ? sns.size.footer.sp.height : sns.size.footer.pc.height}
+              width={$pageData.isMobile
+                ? sns.size.footer.mobile.width
+                : sns.size.footer.desktop.width}
+              height={$pageData.isMobile
+                ? sns.size.footer.mobile.height
+                : sns.size.footer.desktop.height}
               alt={sns.alt()}
               lazy={true}
-              srcMeta={sns.srcMeta}
+              imageSourceMeta={sns.imageSourceMeta}
               objectFit="cover"
             />
           </div>
@@ -34,14 +42,14 @@
 </section>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --width: 1024px;
     --sns-gap: 16px;
     --item-font-size: 16px;
     --icon-min-height: 72px;
   }
 
-  .sp {
+  .mobile {
     --width: 90%;
     --sns-gap: 8px;
     --item-font-size: 14px;

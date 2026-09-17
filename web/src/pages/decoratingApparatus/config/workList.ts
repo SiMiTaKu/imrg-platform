@@ -1,4 +1,4 @@
-import type { SrcMeta } from '@shared/ui'
+import type { ImageSourceMeta } from '@shared/ui'
 import Image1_1 from '../images/work-list-image-1-1.jpg?w=256;512&format=webp&as=meta'
 import Image1_2 from '../images/work-list-image-1-2.jpg?w=256;512&format=webp&as=meta'
 import Image1_3 from '../images/work-list-image-1-3.jpg?w=256;512&format=webp&as=meta'
@@ -30,7 +30,7 @@ import Image9_3 from '../images/work-list-image-9-3.jpg?w=256;512&format=webp&as
 /** 手具装飾の作品1件 */
 export type DecoratingWork = {
   /** 作品の写真（1作品に複数枚。カードを押すたびに切り替える） */
-  images: SrcMeta[][]
+  images: ImageSourceMeta[][]
 }
 
 /** 手具装飾の作品（写真だけで、説明文は無い） */

@@ -31,8 +31,8 @@
 <div
   style:--open-height={`${itemCount * ITEM_HEIGHT + VERTICAL_SPACE}px`}
   class="wrapper"
-  class:pc={!$pageData.isMobile}
-  class:sp={$pageData.isMobile}
+  class:desktop={!$pageData.isMobile}
+  class:mobile={$pageData.isMobile}
   class:open
 >
   <ul class="links">
@@ -57,11 +57,11 @@
 </div>
 
 <style lang="scss">
-  .pc {
+  .desktop {
     --wrapper-width: 400px;
   }
 
-  .sp {
+  .mobile {
     --wrapper-width: 100vw;
   }
 

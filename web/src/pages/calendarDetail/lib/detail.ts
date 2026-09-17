@@ -29,7 +29,7 @@ export const calendarDetailMetaInput = (
   return {
     id: event.id,
     title: localized.title,
-    alternateTitle: locale === 'en' ? event.titleJa : event.titleEn,
+    alternateTitle: locale === 'en' ? event.titleJapanese : event.titleEnglish,
     dateRange: formatDateRange(event, locale),
     venue: localized.venue,
   }
