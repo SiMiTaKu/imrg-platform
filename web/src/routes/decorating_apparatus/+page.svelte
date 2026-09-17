@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Page from '$views/page/decorating_apparatus/Page.svelte'
+  import { DecoratingApparatusPage } from '@pages/decoratingApparatus'
   import { PageHead } from '@widgets/layout'
   import type { PageData } from './$types'
 
@@ -7,4 +7,4 @@
 </script>
 
 <PageHead meta={data.meta} />
-<Page />
+<DecoratingApparatusPage />

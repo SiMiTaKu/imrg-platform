@@ -1,3 +1,25 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "decorating_apparatus_title": "Decorating Apparatus",
+  "decorating_apparatus_main_visual_alt": "Main visual of decorated apparatus",
+  "decorating_apparatus_main_visual_description_1": "There are no rules for decoration!\nLet your imagination create one-of-a-kind apparatus.",
+  "decorating_apparatus_main_visual_description_2": "Apparatus made just for you, to let your personality shine!",
+  "decorating_apparatus_main_visual_description_3": "Add personality with decoration art\nfor a more brilliant routine.",
+  "decorating_apparatus_main_visual_description_4": "Stand out from the crowd with decorated apparatus!",
+  "decorating_apparatus_main_visual_description_5": "Rich colors take your expression to the next level.",
+  "decorating_apparatus_work_list_title": "Work List",
+  "decorating_apparatus_work_image_alt": "Past work {work}, photo {image}",
+  "decorating_apparatus_message_line1": "One-of-a-kind decorations",
+  "decorating_apparatus_message_line2": "made just the way you want!!",
+  "decorating_apparatus_flow_title": "Decorating Flow",
+  "decorating_apparatus_flow_inquiry_title": "Inquiry",
+  "decorating_apparatus_flow_inquiry_description": "Send us your request by direct message on Instagram.",
+  "decorating_apparatus_flow_meeting_title": "Consultation",
+  "decorating_apparatus_flow_meeting_description": "We talk with you about the details of your request.",
+  "decorating_apparatus_flow_design_title": "Design",
+  "decorating_apparatus_flow_design_description": "We create a design based on our consultation.",
+  "decorating_apparatus_flow_decorating_title": "Decoration",
+  "decorating_apparatus_flow_decorating_description": "We make the decoration based on the design.",
+  "decorating_apparatus_flow_delivery_title": "Delivery",
+  "decorating_apparatus_flow_delivery_description": "We hand over the finished decorated apparatus."
 }

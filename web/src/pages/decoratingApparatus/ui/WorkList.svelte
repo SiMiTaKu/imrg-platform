@@ -1,19 +1,20 @@
-<script context="module" lang="ts">
-  import { Heading } from '@imrg-platform/design-system'
-  import WorkCard from './_component/WorkCard.svelte'
-  import { WORK_LIST } from './_data/work-list'
-</script>
-
 <script lang="ts">
+  import { Heading } from '@imrg-platform/design-system'
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
+  import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
+  import { WORK_LIST } from '../config/workList'
+  import WorkCard from './WorkCard.svelte'
 </script>
 
 <section class="work-list" class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
-    subtitle="Work List"
-    title="過去の作品"
+    subtitle={showsSecondaryText()
+      ? m.decorating_apparatus_work_list_title({}, { locale: SECONDARY_LOCALE })
+      : undefined}
+    title={m.decorating_apparatus_work_list_title()}
   />
   <ul class="list">
     {#each WORK_LIST as work, index (index)}
@@ -43,12 +44,12 @@
 
   .list {
     display: flex;
-    gap: 16px;
-    margin: 0;
-    padding: 0;
     flex-wrap: wrap;
+    gap: 16px;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    padding: 0;
     list-style: none;
   }
 

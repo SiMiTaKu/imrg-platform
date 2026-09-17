@@ -1,3 +1,27 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "background_music_title": "曲編集",
+  "background_music_main_visual_alt": "メインビジュアル",
+  "background_music_main_visual_description_1": "大好きな曲を、自然な演技時間に短縮！",
+  "background_music_main_visual_description_2": "最適な編曲で、最高の演技体験を！",
+  "background_music_main_visual_description_3": "音楽の魔法で、あなたの演技を引き立てます！",
+  "background_music_main_visual_description_4": "No Music, No Life. \nあなたの演技に音楽を添えて！",
+  "background_music_main_visual_description_5": "豊かな音色があなたの演技の魅力を加速させる！",
+  "background_music_work_list_title": "過去の実績",
+  "background_music_youtube_icon_alt": "Youtubeアイコン",
+  "background_music_apparatus_stick": "スティック",
+  "background_music_apparatus_ring": "リング",
+  "background_music_apparatus_rope": "ロープ",
+  "background_music_apparatus_club": "クラブ",
+  "background_music_message_line1": "あらゆる曲を演技に",
+  "background_music_message_line2": "合わせて編曲します!!",
+  "background_music_flow_title": "編曲の流れ",
+  "background_music_flow_inquiry_title": "問い合わせ",
+  "background_music_flow_inquiry_description": "インスタグラムのDMにてご依頼ください。",
+  "background_music_flow_meeting_title": "打ち合わせ",
+  "background_music_flow_meeting_description": "お問い合わせ内容について、打ち合わせをします。",
+  "background_music_flow_editing_title": "編曲",
+  "background_music_flow_editing_description": "打ち合わせの内容から、編曲をします。",
+  "background_music_flow_delivery_title": "納品",
+  "background_music_flow_delivery_description": "編集した曲をデータでお渡しします。"
 }

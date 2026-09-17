@@ -1,3 +1,27 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "background_music_title": "Background Music Editing",
+  "background_music_main_visual_alt": "Main visual",
+  "background_music_main_visual_description_1": "Your favorite song, trimmed to a natural routine length!",
+  "background_music_main_visual_description_2": "The best arrangement for the best performance!",
+  "background_music_main_visual_description_3": "Let the magic of music bring out the best in your routine!",
+  "background_music_main_visual_description_4": "No Music, No Life. \nAdd music to your routine!",
+  "background_music_main_visual_description_5": "Rich sounds make your routine even more captivating!",
+  "background_music_work_list_title": "Work List",
+  "background_music_youtube_icon_alt": "YouTube icon",
+  "background_music_apparatus_stick": "Stick",
+  "background_music_apparatus_ring": "Ring",
+  "background_music_apparatus_rope": "Rope",
+  "background_music_apparatus_club": "Club",
+  "background_music_message_line1": "We edit any song",
+  "background_music_message_line2": "to fit your routine!!",
+  "background_music_flow_title": "Editing Flow",
+  "background_music_flow_inquiry_title": "Inquiry",
+  "background_music_flow_inquiry_description": "Send us your request by direct message on Instagram.",
+  "background_music_flow_meeting_title": "Consultation",
+  "background_music_flow_meeting_description": "We talk with you about the details of your request.",
+  "background_music_flow_editing_title": "Editing",
+  "background_music_flow_editing_description": "We edit the music based on our consultation.",
+  "background_music_flow_delivery_title": "Delivery",
+  "background_music_flow_delivery_description": "We send you the edited music as a digital file."
 }
