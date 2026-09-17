@@ -13,6 +13,18 @@ export type SitemapEntry = {
   lastmod?: string
   /** 0.0〜1.0。省略時は 0.5 */
   priority?: number
+  /** 他の言語のページ（自分自身も含める）。2言語以上で公開しているページだけに付ける */
+  alternates?: SitemapAlternate[]
+}
+
+/**
+ * sitemap.xml に載せる、他の言語のページ
+ */
+export type SitemapAlternate = {
+  /** 言語（"ja" "en"）または "x-default" */
+  hreflang: string
+  /** サイト内のパス。"/" から始める */
+  path: string
 }
 
 /**
@@ -63,14 +75,20 @@ export function buildSitemapXml(baseUrl: string, entries: SitemapEntry[]): strin
     const parts = [`    <loc>${escapeXml(url)}</loc>`]
     if (entry.lastmod) parts.push(`    <lastmod>${escapeXml(entry.lastmod)}</lastmod>`)
     parts.push(`    <priority>${(entry.priority ?? 0.5).toFixed(1)}</priority>`)
+    for (const alternate of entry.alternates ?? []) {
+      const href = escapeXml(toAbsoluteUrl(baseUrl, alternate.path))
+      parts.push(
+        `    <xhtml:link rel="alternate" hreflang="${escapeXml(alternate.hreflang)}" href="${href}"/>`,
+      )
+    }
     urls.push(`  <url>\n${parts.join('\n')}\n  </url>`)
   }
 
-  return [
-    '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...urls,
-    '</urlset>',
-    '',
-  ].join('\n')
+  // 言語の対応を書くときだけ xhtml の名前空間を宣言する
+  const hasAlternates = entries.some((entry) => (entry.alternates ?? []).length > 0)
+  const urlset = hasAlternates
+    ? '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+    : '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+
+  return ['<?xml version="1.0" encoding="UTF-8"?>', urlset, ...urls, '</urlset>', ''].join('\n')
 }

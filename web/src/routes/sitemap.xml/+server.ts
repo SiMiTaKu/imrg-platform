@@ -1,6 +1,7 @@
 import { PUBLIC_BASE_URL } from '$env/static/public'
 import type { SitemapEntry } from '$lib/common/sitemap'
-import { buildSitemapXml } from '$lib/common/sitemap'
+import { buildSitemapXml, withTrailingSlash } from '$lib/common/sitemap'
+import { BASE_LOCALE, localizePath, publishedLocales } from '$lib/i18n/translation'
 import { EVENTS, UPDATED_AT } from '$views/page/calendar/_data/events'
 import type { RequestHandler } from './$types'
 
@@ -31,9 +32,26 @@ export const GET: RequestHandler = async () => {
     lastmod: UPDATED_AT,
     priority: 0.6,
   }))
-  const entries: SitemapEntry[] = STATIC_ENTRIES.concat(eventEntries)
+  const entries: SitemapEntry[] = STATIC_ENTRIES.concat(eventEntries).flatMap(localizeEntry)
 
   return new Response(buildSitemapXml(PUBLIC_BASE_URL, entries), {
     headers: { 'Content-Type': 'application/xml; charset=utf-8' },
   })
+}
+
+/**
+ * 2言語以上で公開しているページを、言語ごとの項目に分け、互いの対応を付ける
+ * @param entry - 既定の言語のページ
+ * @returns 言語ごとの項目。既定の言語だけのページはそのまま1件
+ */
+const localizeEntry = (entry: SitemapEntry): SitemapEntry[] => {
+  const path = withTrailingSlash(entry.path)
+  const locales = publishedLocales(path)
+  if (locales.length < 2) return [entry]
+
+  const alternates = [
+    ...locales.map((locale) => ({ hreflang: locale, path: localizePath(path, locale) })),
+    { hreflang: 'x-default', path: localizePath(path, BASE_LOCALE) },
+  ]
+  return locales.map((locale) => ({ ...entry, path: localizePath(path, locale), alternates }))
 }

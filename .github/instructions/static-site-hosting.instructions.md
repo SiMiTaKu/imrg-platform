@@ -27,7 +27,12 @@ name: 静的サイトの書き出しと配信
 - `og:image` は絶対 URL の 1200×630 の画像（`web/static/images/ogp.png`）
 - 大会の詳細ページには構造化データ（schema.org の `SportsEvent`）を入れている。項目を変えたら Google のリッチリザルト テストで確かめる
 - `<html lang="ja">`。英語の文章は `lang="en"` を付けた要素で囲む（今は日英併記）
-- 多言語化（TODO 3-4）のあとは、言語ごとにページを書き出す。守ること:
+- 言語ごとの仕組み（TODO 3-4a で導入済み）
+  - Paraglide JS（`web/project.inlang`、文言は `web/messages/<言語>.json`）。生成物の `web/src/lib/paraglide/` は git 管理しない
+  - すべてのページを日本語（今の URL）と英語（`/en/...`）の両方で書き出す。英語版は、各ページに置いた非表示のリンク（`LocalePageLinks.svelte`）をクローラーがたどって書き出す
+  - **訳し終えるまで、英語ページは noindex にする。** 訳し終えたページのパスを `web/src/lib/i18n/translation.ts` の `TRANSLATED_PATHS` に足すと、noindex が外れ、`hreflang` と sitemap に英語ページが載る
+  - `amplify.yml` の書き換えルールは、英語ページ用にも同じものを入れる
+- 言語ごとのページで守ること:
   - URL に言語を入れる（日本語は今の URL のまま、英語は `/en/...`）。クエリや Cookie で言語を切り替えない（静的に書き出せず、検索エンジンにも別ページと認識されない）
   - `<html lang>` を言語ごとに変え、各ページに `hreflang` の代替リンク（`ja`・`en`・`x-default`）を入れる
   - sitemap に全言語のページを載せ、`xhtml:link` で対応するページを示す

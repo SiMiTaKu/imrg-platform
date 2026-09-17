@@ -2,6 +2,7 @@
   import Header from '$views/layout/Header.svelte'
   import Footer from '$views/layout/Footer.svelte'
   import ScrollToTopButton from '$views/layout/ScrollToTopButton.svelte'
+  import LocalePageLinks from '$lib/i18n/LocalePageLinks.svelte'
   import './styles.css'
 </script>
 
@@ -51,6 +52,7 @@
 
 <Footer />
 <ScrollToTopButton />
+<LocalePageLinks />
 
 <style lang="scss">
   .pc {

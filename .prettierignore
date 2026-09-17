@@ -7,3 +7,9 @@ pnpm-lock.yaml
 .pnpm-store
 # ~/imrg/calendar-data/build_events_ts.py が書き出すファイル。生成した形のまま置く
 web/src/views/page/calendar/_data/events.ts
+# Paraglide JS が生成するファイル
+web/src/lib/paraglide
+# inlang が作るファイル
+web/project.inlang/cache
+web/project.inlang/README.md
+web/project.inlang/.meta.json

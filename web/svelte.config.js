@@ -27,7 +27,9 @@ const config = {
         throw new Error(message)
       },
     },
-    files: { hooks: { server: 'src/lib/hooks/hooks.server' } },
+    files: {
+      hooks: { server: 'src/lib/hooks/hooks.server', universal: 'src/lib/hooks/hooks' },
+    },
     alias: {
       $model: './src/model',
       $images: './src/images',

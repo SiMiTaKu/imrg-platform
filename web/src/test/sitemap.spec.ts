@@ -42,3 +42,26 @@ describe('test buildSitemapXml', () => {
     expect(buildSitemapXml('https://imrg.work', [{ path: '/a&b' }])).toContain('/a&amp;b/')
   })
 })
+
+describe('言語の対応', () => {
+  test('alternates があるときだけ xhtml の名前空間と link を書き出す', () => {
+    const xml = buildSitemapXml('https://imrg.work', [
+      {
+        path: '/en/calendar/',
+        alternates: [
+          { hreflang: 'ja', path: '/calendar/' },
+          { hreflang: 'en', path: '/en/calendar/' },
+        ],
+      },
+    ])
+    expect(xml).toContain('xmlns:xhtml="http://www.w3.org/1999/xhtml"')
+    expect(xml).toContain(
+      '<xhtml:link rel="alternate" hreflang="ja" href="https://imrg.work/calendar/"/>',
+    )
+  })
+
+  test('alternates が無いときは名前空間を書かない', () => {
+    const xml = buildSitemapXml('https://imrg.work', [{ path: '/calendar' }])
+    expect(xml).not.toContain('xmlns:xhtml')
+  })
+})

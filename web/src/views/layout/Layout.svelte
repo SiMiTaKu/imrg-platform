@@ -2,6 +2,8 @@
   import type { ViewValueLayout } from '$model/view-value-layout'
   import { PUBLIC_BASE_URL } from '$env/static/public'
   import { withTrailingSlash } from '$lib/common/sitemap'
+  import { localizeHref } from '$lib/paraglide/runtime'
+  import LocaleHead from '$lib/i18n/LocaleHead.svelte'
 
   const SITE_NAME = '男子新体操国際化プロジェクト'
   /** SNS のカード画像（1200×630）。絶対 URL でないと表示されない */
@@ -12,7 +14,9 @@
   export let layout: ViewValueLayout
 
   // サイトの設定が trailingSlash: "always" なので、canonical も末尾スラッシュをそろえる
-  $: pageUrl = `${PUBLIC_BASE_URL}${withTrailingSlash(layout.path)}`
+  $: path = withTrailingSlash(layout.path)
+  // 英語ページでは /en/ 付きの URL になる
+  $: pageUrl = `${PUBLIC_BASE_URL}${localizeHref(path)}`
 </script>
 
 <svelte:head>
@@ -38,7 +42,6 @@
   <meta content={layout.ogp.type} property="og:type" />
   <meta content={pageUrl} property="og:url" />
   <meta content={SITE_NAME} property="og:site_name" />
-  <meta content="ja_JP" property="og:locale" />
   <meta content={OGP_IMAGE} property="og:image" />
   <meta content="1200" property="og:image:width" />
   <meta content="630" property="og:image:height" />
@@ -50,5 +53,7 @@
   <meta name="twitter:description" content={layout.ogp.description} />
   <meta name="twitter:image" content={OGP_IMAGE} />
 </svelte:head>
+
+<LocaleHead {path} />
 
 <slot name="main"></slot>

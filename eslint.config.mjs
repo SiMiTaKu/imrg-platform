@@ -29,7 +29,14 @@ const EXPORTED_FUNCTION_CONTEXTS = [
 
 export default [
   {
-    ignores: ['**/build/**', '**/.svelte-kit/**', '**/coverage/**', '**/node_modules/**'],
+    ignores: [
+      '**/build/**',
+      '**/.svelte-kit/**',
+      '**/coverage/**',
+      '**/node_modules/**',
+      // Paraglide JS が生成するファイル
+      'web/src/lib/paraglide/**',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
