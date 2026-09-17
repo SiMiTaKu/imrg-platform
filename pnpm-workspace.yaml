@@ -1,0 +1,15 @@
+# 依存パッケージのインストール時スクリプトは、許可したものだけ動かす（pnpm 11 以降の既定）
+allowBuilds:
+  # sass が使う。環境ごとのビルド済みバイナリが入るので、スクリプトは動かさない
+  '@parcel/watcher': false
+
+minimumReleaseAgeExclude:
+  - '@microsoft/tsdoc-config@0.18.2'
+  - '@microsoft/tsdoc@0.17.0'
+  - eslint-plugin-jsdoc@64.5.2
+  - eslint-plugin-tsdoc@0.5.3
+  - prettier@3.9.7
+
+overrides:
+  # eslint-plugin-tsdoc が古い版（TypeScript 6 未対応）を固定しているので、本体と同じ版にそろえる
+  'eslint-plugin-tsdoc>@typescript-eslint/utils': ^8.70.0

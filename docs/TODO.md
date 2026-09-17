@@ -129,6 +129,10 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [ ] **2-2. ブランチ保護**：`master` と `develop` を直push禁止、PR必須、CI必須
   - privateのままならGitHub Proが必要。費用をかけないならpublic化も選択肢（`.env` に秘密情報がないことは確認済み）
 - [ ] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
+  - [x] **2-3a. npmからpnpmへ移す**（2-3と同時に行うことにした。pnpm 12。版は `package.json` の `packageManager`）
+    - `package-lock.json` の版をそのまま `pnpm-lock.yaml` へ移した（`pnpm import`）
+    - pnpm 11以降は依存のインストール時スクリプトを許可制にしているので、`pnpm-workspace.yaml` の `allowBuilds` で決める
+    - Amplifyはcorepackでpnpmを入れる。キャッシュは `.pnpm-store`
 - [ ] **2-4. PR テンプレート・CODEOWNERS・`delete_branch_on_merge` を有効化**
 - [ ] **2-5. PR ごとのプレビュー環境**（Amplifyのプレビュー機能）
 - [ ] **2-6. 本番のブランチを `master` から `main` へ変える**

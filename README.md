@@ -4,23 +4,26 @@
 
 ## Init
 
+パッケージの管理はpnpmです（版は `package.json` の `packageManager`）。Node 24に付属するcorepackで入れます。
+
 ```bash
-npm install
+corepack enable
+pnpm install
 ```
 
 ## Developing
 
 ```bash
-npm run dev
+pnpm run dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm dev --open
 ```
 
 ## Building
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 > [!NOTE]
@@ -32,13 +35,13 @@ npm run build
 ### Check
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 ### Fix
 
 ```bash
-npm run lint:fix
+pnpm run lint:fix
 ```
 
 ### Format
@@ -47,6 +50,6 @@ npm run lint:fix
 コミット時にlint-stagedが変更したファイルだけを整形・lintします。
 
 ```bash
-npm run format        # 整形する
-npm run format:check  # 整形済みか確かめる
+pnpm run format        # 整形する
+pnpm run format:check  # 整形済みか確かめる
 ```

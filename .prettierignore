@@ -3,6 +3,7 @@ build
 .svelte-kit
 coverage
 static
-package-lock.json
+pnpm-lock.yaml
+.pnpm-store
 # ~/imrg/calendar-data/build_events_ts.py が書き出すファイル。生成した形のまま置く
 src/views/page/calendar/_data/events.ts
