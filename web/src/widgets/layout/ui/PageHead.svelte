@@ -63,8 +63,11 @@
   <meta content={meta.title} property="og:image:alt" />
 
   <!-- 言語の対応 -->
+  <!-- hreflang は自分の言語も含めて並べる。og:locale:alternate は自分以外の言語だけ -->
   {#each alternates as alternate (alternate.hreflang)}
-    <meta content={OG_LOCALES[alternate.hreflang]} property="og:locale:alternate" />
+    {#if alternate.hreflang !== locale}
+      <meta content={OG_LOCALES[alternate.hreflang]} property="og:locale:alternate" />
+    {/if}
     <link href={alternate.href} hreflang={alternate.hreflang} rel="alternate" />
   {/each}
   {#if alternates.length > 0}
