@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Page from '$views/page/oshimitsu/search_result/Page.svelte'
+  import { OshimitsuSearchResultPage } from '@pages/oshimitsuSearchResult'
   import { PageHead } from '@widgets/layout'
   import type { PageData } from './$types'
 
@@ -7,5 +7,5 @@
 </script>
 
 <PageHead meta={data.meta} />
-<!-- 検索条件は URL から読むので、初期条件（initCriteria）は渡さない -->
-<Page />
+<!-- 検索条件は URL のクエリから読むので、初期条件（initialQuery）は渡さない -->
+<OshimitsuSearchResultPage />

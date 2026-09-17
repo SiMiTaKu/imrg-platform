@@ -1,17 +1,7 @@
-import { META_DATA } from '@shared/config/meta'
-import { ROUTES } from '@shared/routes'
-import type { Video } from '$views/page/oshimitsu/_lib'
-import { Apparatus, ContentType } from '$views/page/oshimitsu/_models'
+import { FILTERED_PAGE_QUERIES, filteredPageMeta } from '@pages/oshimitsuSearchResult'
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = () => ({
-  meta: META_DATA.oshimitsuFiltered(
-    `${ContentType.INDIVIDUAL.label} × ${Apparatus.STICK.label}`,
-    ROUTES.oshimitsu.apparatus(Apparatus.STICK.slug),
-  ),
-  criteria: {
-    contentType: ContentType.INDIVIDUAL,
-    apparatuses: [Apparatus.STICK],
-    exceptVideos: [],
-  } satisfies Video.Criteria,
+  meta: filteredPageMeta(FILTERED_PAGE_QUERIES.stick),
+  query: FILTERED_PAGE_QUERIES.stick,
 })

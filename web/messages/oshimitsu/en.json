@@ -1,3 +1,21 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "Oshimitsu!",
+  "oshimitsu_filtered_title": "Oshimitsu! ({filter})",
+  "oshimitsu_lead_line1": "Oshimitsu! is a search tool made just for men's rhythmic gymnastics videos.",
+  "oshimitsu_lead_line2": "Discover a side of men's rhythmic gymnastics you have never seen before!",
+  "oshimitsu_content_type_legend": "Video type",
+  "oshimitsu_apparatus_legend": "Apparatus",
+  "oshimitsu_search_button": "Find videos",
+  "oshimitsu_recommended_title": "Recommended videos",
+  "oshimitsu_content_type_individual": "Individual",
+  "oshimitsu_content_type_group": "Group",
+  "oshimitsu_apparatus_stick": "Stick",
+  "oshimitsu_apparatus_ring": "Ring",
+  "oshimitsu_apparatus_rope": "Rope",
+  "oshimitsu_apparatus_club": "Club",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "Show more",
+  "oshimitsu_no_more_videos": "* There are no more videos to show right now.",
+  "oshimitsu_loading": "Loading..."
 }
