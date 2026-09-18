@@ -12,10 +12,11 @@ import { makeEvent, titles } from '../../entities/calendarEvent/fixtures'
 
 describe('matchesKeyword', () => {
   const event = makeEvent({
-    titleJapanese: '第79回全日本新体操選手権大会',
-    titleEnglish: '79th All Japan Rhythmic Gymnastics Championships',
-    venueJapanese: '高崎アリーナ（群馬県）',
-    venueEnglish: 'Takasaki Arena',
+    title: {
+      japanese: '第79回全日本新体操選手権大会',
+      english: '79th All Japan Rhythmic Gymnastics Championships',
+    },
+    venue: { name: { japanese: '高崎アリーナ（群馬県）', english: 'Takasaki Arena' } },
   })
 
   describe('正常系', () => {
@@ -122,10 +123,26 @@ describe('isEveryCategory', () => {
 
 describe('filterEvents', () => {
   const events = [
-    makeEvent({ titleJapanese: 'C', category: 'workshop', startDate: '2026-11-03' }),
-    makeEvent({ titleJapanese: 'A', category: 'national', startDate: '2026-09-01' }),
-    makeEvent({ titleJapanese: 'B', category: 'national', startDate: '2026-10-30' }),
-    makeEvent({ titleJapanese: 'Z', category: 'national', startDate: '2025-05-01' }),
+    makeEvent({
+      title: { japanese: 'C', english: 'C' },
+      category: 'workshop',
+      startDate: '2026-11-03',
+    }),
+    makeEvent({
+      title: { japanese: 'A', english: 'A' },
+      category: 'national',
+      startDate: '2026-09-01',
+    }),
+    makeEvent({
+      title: { japanese: 'B', english: 'B' },
+      category: 'national',
+      startDate: '2026-10-30',
+    }),
+    makeEvent({
+      title: { japanese: 'Z', english: 'Z' },
+      category: 'national',
+      startDate: '2025-05-01',
+    }),
   ]
   const base = { categories: [], keyword: '', today: '2026-09-16' }
 
@@ -173,9 +190,13 @@ describe('groupByMonth', () => {
     it('開始月が同じイベントが続く場合、そのかたまりごとにまとまること', () => {
       // #region Given
       const events = [
-        makeEvent({ titleJapanese: 'A', startDate: '2026-10-01' }),
-        makeEvent({ titleJapanese: 'B', startDate: '2026-10-30' }),
-        makeEvent({ titleJapanese: 'C', schedule: EventSchedule.MONTH_ONLY, month: '2026-11' }),
+        makeEvent({ title: { japanese: 'A', english: 'A' }, startDate: '2026-10-01' }),
+        makeEvent({ title: { japanese: 'B', english: 'B' }, startDate: '2026-10-30' }),
+        makeEvent({
+          title: { japanese: 'C', english: 'C' },
+          schedule: EventSchedule.MONTH_ONLY,
+          month: '2026-11',
+        }),
       ]
       // #endregion
 

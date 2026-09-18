@@ -1,1 +1,8 @@
-export type { CalendarEvent, EventCategory, EventSchedule } from './calendarEvent'
+export type {
+  CalendarEvent,
+  EventCategory,
+  EventSchedule,
+  LocalizedText,
+  TranslatedText,
+  Venue,
+} from './calendarEvent'
