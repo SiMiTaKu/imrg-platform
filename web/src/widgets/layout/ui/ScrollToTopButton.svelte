@@ -1,11 +1,7 @@
-<script lang="ts" module>
-  /** このくらい下へ進んだら表示する（px） */
-  const SHOW_AFTER_SCROLL = 500
-</script>
-
 <script lang="ts">
   import { fade } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
+  import { SHOW_SCROLL_TO_TOP_AFTER } from '../config/layout'
   import { pageData } from '@shared/lib/device'
 
   let scrollY = $state(0)
@@ -17,7 +13,7 @@
 
 <svelte:window bind:scrollY />
 
-{#if scrollY > SHOW_AFTER_SCROLL}
+{#if scrollY > SHOW_SCROLL_TO_TOP_AFTER}
   <div
     class="base"
     class:desktop={!$pageData.isMobile}
