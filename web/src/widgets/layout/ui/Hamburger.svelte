@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { page } from '$app/state'
-  import { m } from '$lib/paraglide/messages'
+  import { localizeHref } from '@shared/lib/i18n'
+  import { ImageAssets } from '@shared/ui'
   import { pageData } from '@shared/lib/device'
-  import { deLocalizeHref, getLocale, localizeHref, publishedLocales } from '@shared/lib/i18n'
-  import { MENU_ITEM_HEIGHT, MENU_VERTICAL_SPACE } from '../config/layout'
+  import { MENU_ITEM_HEIGHT, MENU_SNS_HEIGHT, MENU_VERTICAL_SPACE } from '../config/layout'
   import { NAVIGATION_LINKS } from '../config/navigation'
+  import { SNS_LINKS } from '../config/sns'
 
   /** メニューの引数 */
   interface Props {
@@ -16,15 +16,13 @@
 
   const { open, onclose }: Props = $props()
 
-  // いま表示しているページを別の言語でも公開していれば、切り替えのリンクを出す。
-  // 訳す前の英語ページでは、日本語ページへのリンクになる
-  const path = $derived(deLocalizeHref(page.url.pathname))
-  const otherLocale = $derived(publishedLocales(path).find((locale) => locale !== getLocale()))
-  const itemCount = $derived(NAVIGATION_LINKS.length + (otherLocale ? 1 : 0))
+  const menuHeight = $derived(
+    NAVIGATION_LINKS.length * MENU_ITEM_HEIGHT + MENU_SNS_HEIGHT + MENU_VERTICAL_SPACE,
+  )
 </script>
 
 <div
-  style:--open-height={`${itemCount * MENU_ITEM_HEIGHT + MENU_VERTICAL_SPACE}px`}
+  style:--open-height={`${menuHeight}px`}
   class="wrapper"
   class:desktop={!$pageData.isMobile}
   class:mobile={$pageData.isMobile}
@@ -36,18 +34,22 @@
         <a class="link" href={localizeHref(link.href)} onclick={onclose}>{link.label()}</a>
       </li>
     {/each}
-    {#if otherLocale}
+  </ul>
+  <ul class="sns">
+    {#each SNS_LINKS as sns, index (index)}
       <li>
-        <!-- 言語の境目をまたぐので、ページを読み込み直して表示と URL をそろえる -->
-        <a
-          class="link"
-          href={localizeHref(path, { locale: otherLocale })}
-          hreflang={otherLocale}
-          lang={otherLocale}
-          data-sveltekit-reload>{m.layout_locale_switch_to()}</a
-        >
+        <a class="sns-link" href={sns.href} rel="noopener noreferrer" target="_blank">
+          <ImageAssets
+            width={sns.size.header.desktop.width}
+            height={sns.size.header.desktop.height}
+            alt={sns.alt()}
+            lazy={false}
+            imageSourceMeta={sns.imageSourceMeta}
+            objectFit="cover"
+          />
+        </a>
       </li>
-    {/if}
+    {/each}
   </ul>
 </div>
 
@@ -101,5 +103,26 @@
   .link {
     display: grid;
     padding: $space-size-8 $space-size-16;
+  }
+
+  .sns {
+    display: flex;
+    gap: $space-size-24;
+    place-content: center;
+    align-items: center;
+    height: $space-size-80;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sns-link {
+    display: grid;
+    place-items: center;
+    transition: 0.25s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 </style>
