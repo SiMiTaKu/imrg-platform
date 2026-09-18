@@ -3,17 +3,14 @@
   import { afterNavigate } from '$app/navigation'
   import { Heading, Pagination } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
+  import { formatDay, formatMonth, toDateKey, toMonthKey } from '@shared/lib/date'
   import {
     EVENTS,
     EventRow,
     UPDATED_AT,
     eventsInMonth,
     eventsOnDay,
-    formatDay,
-    formatMonth,
     monthRangeOf,
-    toDateKey,
-    toMonthKey,
   } from '@entities/calendarEvent'
   import {
     CalendarSearchPanel,

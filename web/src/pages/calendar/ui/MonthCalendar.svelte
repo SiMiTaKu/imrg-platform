@@ -1,18 +1,20 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
   import {
-    CATEGORY_COLORS,
-    CATEGORY_ORDER,
     buildMonthGrid,
-    categoryLabel,
-    eventsInMonth,
-    eventsOnDay,
     formatDay,
     formatMonth,
-    localizeEvent,
     shiftMonth,
     toMonthKey,
     weekdayName,
+  } from '@shared/lib/date'
+  import {
+    CATEGORY_COLORS,
+    CATEGORY_ORDER,
+    categoryLabel,
+    eventsInMonth,
+    eventsOnDay,
+    localizeEvent,
     type CalendarEvent,
   } from '@entities/calendarEvent'
   import { pageData } from '@shared/lib/device'
