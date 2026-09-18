@@ -216,3 +216,15 @@ export const formatDayEnglish = (value: string): string => {
  */
 export const formatDay = (value: string, locale: SiteLocale): string =>
   locale === 'en' ? formatDayEnglish(value) : formatDayJapanese(value)
+
+/**
+ * 日時を「年」だけの表記にする
+ * @param date - 日時
+ * @param locale - 表示する言語
+ * @returns 日本語なら「2024年」、英語なら "2024"
+ *
+ * @remarks
+ * 日本で撮った日付などを扱うので、日本時間で年を取る（ビルドする環境の時刻帯に左右されないように）
+ */
+export const formatYear = (date: Date, locale: SiteLocale): string =>
+  new Intl.DateTimeFormat(locale, { year: 'numeric', timeZone: 'Asia/Tokyo' }).format(date)

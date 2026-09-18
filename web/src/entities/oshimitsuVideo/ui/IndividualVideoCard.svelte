@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getLocale } from '@shared/lib/i18n'
-  import { formatFilmedYear, localizedName } from '../lib/video'
+  import { formatYear } from '@shared/lib/date'
+  import { localizedName } from '../lib/video'
   import type { IndividualVideoResource } from '../model/video'
 
   interface Props {
@@ -12,7 +13,7 @@
 
   const locale = getLocale()
   const playerName = $derived(localizedName(video.player, locale))
-  const detail = $derived(`${video.apparatus.label()} ${formatFilmedYear(video.filmedAt, locale)}`)
+  const detail = $derived(`${video.apparatus.label()} ${formatYear(video.filmedAt, locale)}`)
   const embedSource = $derived(`${video.embedUrl}?controls=0&rel=0&fs=0&modestbranding=1`)
 
   /** 読み込みを終えた埋め込みの URL。表示中の URL と同じになるまで、読み込み中の印を出す */
