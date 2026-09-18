@@ -19,7 +19,7 @@
     type CalendarEvent,
   } from '@entities/calendarEvent'
   import { pageData } from '@shared/lib/device'
-  import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
+  import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
   import { MAX_DAY_CHIPS } from '../config/calendarConfig'
@@ -48,17 +48,7 @@
     $props()
 
   const locale = getLocale() as SiteLocale
-  // 日本語ページでは、月・曜日などに英語を小さく併記する
-  const showsBoth = showsSecondaryText()
   /** 曜日の並び（日曜始まり） */
-
-  /**
-   * 日本語ページでは「日本語 / English」の形にする
-   * @param message - 文言
-   * @returns 表示する文字列
-   */
-  const withSecondary = (message: typeof m.calendar_prev_month): string =>
-    showsBoth ? `${message()} / ${message({}, { locale: SECONDARY_LOCALE })}` : message()
 
   /**
    * 日のボタンの読み上げ用の名前
@@ -85,27 +75,24 @@
     <button
       class="nav-button"
       type="button"
-      aria-label={withSecondary(m.calendar_prev_month)}
+      aria-label={m.calendar_prev_month()}
       disabled={!canPrev}
       onclick={() => onmonthchange(shiftMonth(monthKey, -1))}>‹</button
     >
     <h3 class="month-title">
       {formatMonth(monthKey, locale)}
-      {#if showsBoth}
-        <span lang="en">{formatMonth(monthKey, SECONDARY_LOCALE)}</span>
-      {/if}
     </h3>
     <button
       class="nav-button"
       type="button"
-      aria-label={withSecondary(m.calendar_next_month)}
+      aria-label={m.calendar_next_month()}
       disabled={!canNext}
       onclick={() => onmonthchange(shiftMonth(monthKey, 1))}>›</button
     >
   </div>
   {#if toMonthKey(today) !== monthKey}
     <button class="this-month" type="button" onclick={() => onmonthchange(toMonthKey(today))}
-      >{withSecondary(m.calendar_this_month)}</button
+      >{m.calendar_this_month()}</button
     >
   {/if}
 
@@ -118,9 +105,7 @@
             class:saturday={weekday === Weekday.SATURDAY}
             scope="col"
           >
-            {weekdayName(weekday, locale)}{#if showsBoth}<span lang="en"
-                >{weekdayName(weekday, SECONDARY_LOCALE)}</span
-              >{/if}
+            {weekdayName(weekday, locale)}
           </th>
         {/each}
       </tr>
@@ -190,11 +175,7 @@
 
   {#if undated.length}
     <div class="undated">
-      <span class="undated-label"
-        >{showsBoth ? `${m.calendar_date_tbd()} ` : m.calendar_date_tbd()}{#if showsBoth}<span
-            lang="en">{m.calendar_date_tbd({}, { locale: SECONDARY_LOCALE })}</span
-          >{/if}</span
-      >
+      <span class="undated-label">{m.calendar_date_tbd()}</span>
       {#each undated as event (event.id)}
         <a
           style:--color={categoryColor(event.category)}
@@ -264,12 +245,6 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .month-title span[lang='en'] {
-    font-size: $font-size-12;
-    font-weight: normal;
-    color: map.get($gray, light-text);
-  }
-
   .this-month {
     padding: $space-size-4 $space-size-12;
     font-size: $font-size-12;
@@ -295,13 +270,6 @@
     font-size: $font-size-12;
     color: map.get($gray, 600);
     text-align: center;
-  }
-
-  th span[lang='en'] {
-    display: block;
-    font-size: $font-size-10;
-    font-weight: normal;
-    color: map.get($gray, light-text);
   }
 
   .cell {
@@ -431,10 +399,6 @@
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, light-text);
-  }
-
-  .undated-label span[lang='en'] {
-    font-weight: normal;
   }
 
   .undated-chip {
