@@ -8,7 +8,6 @@ import {
   VIDEOS,
   findApparatus,
   findContentType,
-  formatFilmedYear,
   isIndividualVideo,
   localizedName,
 } from '@entities/oshimitsuVideo'
@@ -123,43 +122,6 @@ describe('localizedName', () => {
 
       // #region Then
       expect(result).toBe(expected)
-      // #endregion
-    })
-  })
-})
-
-describe('formatFilmedYear', () => {
-  describe('正常系', () => {
-    it.each([
-      ['日本語の場合、「年」が付くこと', 'ja', '2024年'],
-      ['英語の場合、数字だけになること', 'en', '2024'],
-    ] as const)('%s', (_, locale, expected) => {
-      // #region Given
-      const filmedAt = new Date('2024-11-08T00:00:00+09:00')
-      // #endregion
-
-      // #region When
-      const result = formatFilmedYear(filmedAt, locale)
-      // #endregion
-
-      // #region Then
-      expect(result).toBe(expected)
-      // #endregion
-    })
-  })
-
-  describe('準正常系', () => {
-    it('日本時間の元日の場合、協定世界時では前の年でも日本時間の年になること', () => {
-      // #region Given
-      const filmedAt = new Date('2024-01-01T00:00:00+09:00')
-      // #endregion
-
-      // #region When
-      const result = formatFilmedYear(filmedAt, 'en')
-      // #endregion
-
-      // #region Then
-      expect(result).toBe('2024')
       // #endregion
     })
   })

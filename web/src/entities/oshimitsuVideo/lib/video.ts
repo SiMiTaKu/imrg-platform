@@ -43,15 +43,3 @@ export const localizedName = (
   resource: PlayerResource | TeamResource,
   locale: SiteLocale,
 ): string => (locale === 'en' ? resource.nameEnglish : resource.name)
-
-/**
- * 撮影日を「年」だけの表記にする
- * @param filmedAt - 撮影日
- * @param locale - 表示する言語
- * @returns 日本語なら「2024年」、英語なら「2024」
- *
- * @remarks
- * 撮影日は日本時間の日付で持っているので、日本時間で年を取る（ビルドする環境の時刻帯に左右されないように）
- */
-export const formatFilmedYear = (filmedAt: Date, locale: SiteLocale): string =>
-  new Intl.DateTimeFormat(locale, { year: 'numeric', timeZone: 'Asia/Tokyo' }).format(filmedAt)
