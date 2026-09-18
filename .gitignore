@@ -20,3 +20,6 @@ web/src/lib/paraglide
 
 # Storybook の書き出し先
 storybook-static
+
+# Claude Code が作る作業用の worktree
+.claude/worktrees

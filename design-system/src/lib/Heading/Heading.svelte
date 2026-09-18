@@ -3,8 +3,8 @@
   interface Props {
     /** 見出し */
     title: string
-    /** 見出しの下に小さく出す文言（英語の見出しなど） */
-    subtitle: string
+    /** 見出しの下に小さく出す文言（英語の見出しなど）。省くと出さない */
+    subtitle?: string
     /** 見出しの文字の大きさ（px）。行の高さも同じにする */
     fontSize: number
     /** 補助の文言の文字の大きさ（px）。行の高さも同じにする */
@@ -20,9 +20,11 @@
   style:--subtitle-font-size={`${subtitleFontSize}px`}
 >
   {title}
-  <span class="subtitle">
-    {subtitle}
-  </span>
+  {#if subtitle}
+    <span class="subtitle">
+      {subtitle}
+    </span>
+  {/if}
 </h2>
 
 <style lang="scss">

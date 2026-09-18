@@ -20,6 +20,7 @@
     ".svelte-kit/non-ambient.d.ts",
     ".svelte-kit/types/**/$types.d.ts",
     "src/**/*",
+    "tests/**/*",
     "svelte.config.js",
     "vite.config.ts",
     "vitest.config.ts"

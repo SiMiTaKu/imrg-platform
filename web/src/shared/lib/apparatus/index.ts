@@ -1,0 +1,1 @@
+export { apparatusOfSlug } from './apparatus'

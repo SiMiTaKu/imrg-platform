@@ -28,6 +28,6 @@ name: プロジェクト仕様ドキュメント参照ルール
 
 ## リポジトリ外の資料
 
-- `~/imrg/calendar-data/README.md` … 大会カレンダーの元データ（JSON）と、`web/src/views/page/calendar/_data/events.ts` を生成するスクリプトの使い方。`events.ts` は手で編集しない（TODO 6-1 で取り込み予定）
+- `~/imrg/calendar-data/README.md` … 大会カレンダーの元データ（JSON）と、`web/src/entities/calendarEvent/api/events.ts` を生成するスクリプトの使い方。`events.ts` は手で編集しない（TODO 6-1 で取り込み予定）
 - `~/imrg/oshiage/` … 構成の手本にしている兄弟リポジトリ（モノレポ・FSD・デザインシステム・Terraform）。lint・整形・CI の設定は oshiage と揃える
 - `~/imrg/oshiage/.github/instructions/` … このディレクトリのルールの元

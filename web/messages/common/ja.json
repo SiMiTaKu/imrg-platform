@@ -1,0 +1,15 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "apparatus_club": "クラブ",
+  "apparatus_ring": "リング",
+  "apparatus_rope": "ロープ",
+  "apparatus_stick": "スティック",
+  "locale_name_en": "English",
+  "locale_name_ja": "日本語",
+  "locale_switcher_label": "表示する言語",
+  "pagination_first": "最初のページ",
+  "pagination_label": "ページ送り",
+  "pagination_last": "最後のページ",
+  "pagination_next": "次のページ",
+  "pagination_prev": "前のページ"
+}

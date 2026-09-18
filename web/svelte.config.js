@@ -28,13 +28,17 @@ const config = {
       },
     },
     files: {
-      hooks: { server: 'src/lib/hooks/hooks.server', universal: 'src/lib/hooks/hooks' },
+      hooks: { server: 'src/app/hooks/hooks.server', universal: 'src/app/hooks/hooks' },
     },
+    // FSD の層ごとの別名。$lib は Paraglide の生成物の置き場
     alias: {
-      $model: './src/model',
-      $images: './src/images',
+      '@app': './src/app',
+      '@pages': './src/pages',
+      '@widgets': './src/widgets',
+      '@features': './src/features',
+      '@entities': './src/entities',
+      '@shared': './src/shared',
       $lib: './src/lib',
-      $views: './src/views',
     },
   },
 }

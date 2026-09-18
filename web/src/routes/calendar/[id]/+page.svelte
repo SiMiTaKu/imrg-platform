@@ -1,12 +1,10 @@
-<script context="module" lang="ts">
-  import Page from '$views/page/calendar/detail/Page.svelte'
-  import Layout from '$views/layout/Layout.svelte'
-</script>
-
 <script lang="ts">
-  import { page } from '$app/stores'
+  import { CalendarDetailPage } from '@pages/calendarDetail'
+  import { PageHead } from '@widgets/layout'
+  import type { PageData } from './$types'
+
+  const { data }: { data: PageData } = $props()
 </script>
 
-<Layout layout={$page.data.layout}>
-  <Page slot="main" event={$page.data.event} />
-</Layout>
+<PageHead meta={data.meta} />
+<CalendarDetailPage event={data.event} />

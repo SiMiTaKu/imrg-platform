@@ -1,0 +1,15 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "apparatus_club": "Club",
+  "apparatus_ring": "Ring",
+  "apparatus_rope": "Rope",
+  "apparatus_stick": "Stick",
+  "locale_name_en": "English",
+  "locale_name_ja": "日本語",
+  "locale_switcher_label": "Language",
+  "pagination_first": "First page",
+  "pagination_label": "Pagination",
+  "pagination_last": "Last page",
+  "pagination_next": "Next page",
+  "pagination_prev": "Previous page"
+}

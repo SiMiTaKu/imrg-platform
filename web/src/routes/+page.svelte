@@ -1,14 +1,11 @@
-<script context="module" lang="ts">
-  import Layout from '$views/layout/Layout.svelte'
-  import Page from '$views/page/top/Page.svelte'
-  import StickyFooter from '$views/layout/StickyFooter.svelte'
-</script>
-
 <script lang="ts">
-  import { page } from '$app/stores'
+  import { TopPage } from '@pages/top'
+  import { PageHead, StickyFooter } from '@widgets/layout'
+  import type { PageData } from './$types'
+
+  const { data }: { data: PageData } = $props()
 </script>
 
-<Layout layout={$page.data.layout}>
-  <Page slot="main" />
-</Layout>
+<PageHead meta={data.meta} />
+<TopPage />
 <StickyFooter />

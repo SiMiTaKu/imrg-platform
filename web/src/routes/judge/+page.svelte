@@ -1,12 +1,10 @@
-<script context="module" lang="ts">
-  import Page from '$views/page/judge/Page.svelte'
-  import Layout from '$views/layout/Layout.svelte'
-</script>
-
 <script lang="ts">
-  import { page } from '$app/stores'
+  import { JudgePage } from '@pages/judge'
+  import { PageHead } from '@widgets/layout'
+  import type { PageData } from './$types'
+
+  const { data }: { data: PageData } = $props()
 </script>
 
-<Layout layout={$page.data.layout}>
-  <Page slot="main" />
-</Layout>
+<PageHead meta={data.meta} />
+<JudgePage />

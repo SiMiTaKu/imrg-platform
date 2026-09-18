@@ -1,22 +1,12 @@
-<script context="module" lang="ts">
-  import Header from '$views/layout/Header.svelte'
-  import Footer from '$views/layout/Footer.svelte'
-  import ScrollToTopButton from '$views/layout/ScrollToTopButton.svelte'
-  import LocalePageLinks from '$lib/i18n/LocalePageLinks.svelte'
-  import './styles.css'
-</script>
-
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import '../app/styles/global.css'
+  import { onMount, type Snippet } from 'svelte'
   import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
-  import { pageData } from '$views/atomic/device-store/store'
+  import { LOCAL_HOSTS } from '../app/config/analytics'
+  import { pageData } from '@shared/lib/device'
+  import { Footer, Header, LocalePageLinks, ScrollToTopButton } from '@widgets/layout'
 
-  let screenWidth = 0
-
-  $: pageData.update(screenWidth)
-
-  /** 手元の開発サーバー。Cloudflare 側で弾かれ、コンソールにエラーが出るだけなので読み込まない */
-  const LOCAL_HOSTS = ['localhost', '127.0.0.1']
+  const { children }: { children: Snippet } = $props()
 
   // アクセス解析（Cloudflare Web Analytics）。Cookie を使わない。
   // トークンが空のときは読み込まない
@@ -29,8 +19,6 @@
     document.head.appendChild(beacon)
   })
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <svelte:head>
   {#if $pageData.isMobile}
@@ -46,8 +34,8 @@
 
 <Header />
 
-<main class:pc={!$pageData.isMobile} class:sp={$pageData.isMobile}>
-  <slot></slot>
+<main>
+  {@render children()}
 </main>
 
 <Footer />
@@ -55,15 +43,16 @@
 <LocalePageLinks />
 
 <style lang="scss">
-  .pc {
-    --header-padding: 80px;
-  }
-
-  .sp {
-    --header-padding: 64px;
-  }
-
+  // ヘッダーの高さ分の余白。app.html が描画の前に付ける印で決めるので、
+  // 読み込みの途中で高さが変わらない
   main {
-    padding-top: var(--header-padding);
+    padding-top: 64px;
   }
+
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+  // app.html が html に付ける印を見るので :global が要る
+  :global(html[data-device='desktop']) main {
+    padding-top: 80px;
+  }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 </style>

@@ -14,11 +14,12 @@ name: 静的サイトの書き出しと配信
 
 ## ページの追加
 
-- ルートは `web/src/routes/<パス>/` に `+page.server.ts` と `+page.svelte` を置き、画面の中身は `web/src/views/page/<パス>/Page.svelte` に書く（Phase 3 で FSD へ移す予定）
-- `+page.server.ts` はメタ情報（`layout`: title・description・canonical・OGP）を返す。型は `web/src/model/view-value-layout.ts`
-  - title は `<ページ名> | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~` の形にそろえる
-  - `path` は末尾スラッシュなしで書く（canonical と `og:url` は自動で末尾スラッシュを付ける）
-- 末尾スラッシュは `trailingSlash = 'always'`（`web/src/routes/+layout.server.ts`）。リンクも `/calendar/` のように末尾スラッシュ付きで書く
+- ルートは `web/src/routes/<パス>/` に `+page.server.ts` と `+page.svelte` を置き、画面の中身は `web/src/pages/<ページ>/` に書く
+- パスは `web/src/shared/routes/index.ts` の `ROUTES` に足す（末尾スラッシュ付き）
+- `+page.server.ts` は `meta: META_DATA.xxx()`（`web/src/shared/config/meta.ts`）を返す。文言は `web/messages/meta/<言語>.json`
+  - title は `m.meta_page_title({ page })` で `<ページ名> | 男子新体操国際化プロジェクト ~日本の文化を世界のスポーツへ~` の形にそろえる
+- `+page.svelte` は `<PageHead meta={data.meta} />`（`@widgets/layout`）とページのコンポーネントを置くだけにする。canonical・OGP・hreflang・noindex は `PageHead` が出す
+- 末尾スラッシュは `trailingSlash = 'always'`（`web/src/routes/+layout.server.ts`）。リンクは `localizeHref(ROUTES.xxx)` で書く（末尾スラッシュ付きになる）
 - 動的なパス（`[id]`）は `entries` で書き出すページを列挙し、`prerender = true` にする
 - 新しいページは `web/src/routes/sitemap.xml/+server.ts` の `STATIC_ENTRIES` に足す。クエリで中身が変わるページと、書き換えルールの受け皿は載せない
 
@@ -26,11 +27,11 @@ name: 静的サイトの書き出しと配信
 
 - `og:image` は絶対 URL の 1200×630 の画像（`web/static/images/ogp.png`）
 - 大会の詳細ページには構造化データ（schema.org の `SportsEvent`）を入れている。項目を変えたら Google のリッチリザルト テストで確かめる
-- `<html lang="ja">`。英語の文章は `lang="en"` を付けた要素で囲む（今は日英併記）
+- `<html lang>` は表示中の言語。日本語ページで英語を併記するときは `lang="en"` を付けた要素で囲む
 - 言語ごとの仕組み（TODO 3-4a で導入済み）
-  - Paraglide JS（`web/project.inlang`、文言は `web/messages/<言語>.json`）。生成物の `web/src/lib/paraglide/` は git 管理しない
-  - すべてのページを日本語（今の URL）と英語（`/en/...`）の両方で書き出す。英語版は、各ページに置いた非表示のリンク（`LocalePageLinks.svelte`）をクローラーがたどって書き出す
-  - **訳し終えるまで、英語ページは noindex にする。** 訳し終えたページのパスを `web/src/lib/i18n/translation.ts` の `TRANSLATED_PATHS` に足すと、noindex が外れ、`hreflang` と sitemap に英語ページが載る
+  - Paraglide JS（`web/project.inlang`、文言は `web/messages/<領域>/<言語>.json`）。生成物の `web/src/lib/paraglide/` は git 管理しない
+  - すべてのページを日本語（今の URL）と英語（`/en/...`）の両方で書き出す。英語版は、各ページに置いた非表示のリンク（`web/src/widgets/layout/ui/LocalePageLinks.svelte`）をクローラーがたどって書き出す
+  - **訳し終えるまで、英語ページは noindex にする。** 訳し終えたページのパスを `web/src/shared/config/translation/<ページ>.ts` に足すと、noindex が外れ、`hreflang` と sitemap に英語ページが載り、メニューに言語の切り替えが出る
   - `amplify.yml` の書き換えルールは、英語ページ用にも同じものを入れる
 - 言語ごとのページで守ること:
   - URL に言語を入れる（日本語は今の URL のまま、英語は `/en/...`）。クエリや Cookie で言語を切り替えない（静的に書き出せず、検索エンジンにも別ページと認識されない）

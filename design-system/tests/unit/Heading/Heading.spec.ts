@@ -24,6 +24,22 @@ describe('Heading', () => {
       // #endregion
     })
 
+    it('補助の文言を省いた場合、見出しだけの h2 になること', () => {
+      // #region Given
+      const props = { title: 'Event Calendar', fontSize: 40, subtitleFontSize: 20 }
+      // #endregion
+
+      // #region When
+      render(Heading, props)
+      // #endregion
+
+      // #region Then
+      const heading = screen.getByRole('heading', { level: 2 })
+      expect(heading).toHaveTextContent(/^\s*Event Calendar\s*$/)
+      expect(heading.querySelector('.subtitle')).toBeNull()
+      // #endregion
+    })
+
     it('文字の大きさを渡した場合、見出しと補助の文言の大きさに使われること', () => {
       // #region Given
       const props = { title: '見出し', subtitle: 'Heading', fontSize: 30, subtitleFontSize: 16 }
