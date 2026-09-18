@@ -1,11 +1,10 @@
 /**
- * 地名（都道府県名・国名）の英語表記。
+ * 都道府県の英語表記。
  *
  * @remarks
- * 英語ページで、日本語の地名しか無いデータ（大会の会場など）を訳すために使う。
- * 会場に限らずどの画面でも使うので shared に置く
+ * 英語ページで、日本語の地名しか無いデータ（大会の会場など）を訳すために使う
  */
-export const PLACE_NAMES_ENGLISH: Readonly<Record<string, string>> = {
+export const PREFECTURE_NAMES_ENGLISH = {
   北海道: 'Hokkaido',
   青森県: 'Aomori',
   岩手県: 'Iwate',
@@ -53,5 +52,14 @@ export const PLACE_NAMES_ENGLISH: Readonly<Record<string, string>> = {
   宮崎県: 'Miyazaki',
   鹿児島県: 'Kagoshima',
   沖縄県: 'Okinawa',
+} as const
+
+/**
+ * 国名の英語表記。
+ *
+ * @remarks
+ * 海外で開かれる大会など、会場が国名だけのデータを訳すために使う
+ */
+export const COUNTRY_NAMES_ENGLISH = {
   スペイン: 'Spain',
-}
+} as const
