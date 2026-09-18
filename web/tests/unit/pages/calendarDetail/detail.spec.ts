@@ -9,12 +9,13 @@ import { makeEvent } from '../../entities/calendarEvent/fixtures'
 
 const event = makeEvent({
   id: '2026-10-30-abcdef',
-  titleJapanese: '全日本新体操選手権大会',
-  titleEnglish: 'All Japan Rhythmic Gymnastics Championships',
+  title: {
+    japanese: '全日本新体操選手権大会',
+    english: 'All Japan Rhythmic Gymnastics Championships',
+  },
   startDate: '2026-10-30',
   endDate: '2026-11-01',
-  venueJapanese: '高崎アリーナ（群馬県）',
-  venueEnglish: 'Takasaki Arena',
+  venue: { name: { japanese: '高崎アリーナ（群馬県）', english: 'Takasaki Arena' } },
 })
 
 describe('calendarDetailMetaInput', () => {
@@ -108,7 +109,7 @@ describe('buildSportsEventJsonLd', () => {
   describe('準正常系', () => {
     it('会場が無い場合、場所を持たないこと', () => {
       // #region Given
-      const noVenue = makeEvent({ venueJapanese: undefined, venueEnglish: undefined })
+      const noVenue = makeEvent({ venue: undefined })
       // #endregion
 
       // #region When
