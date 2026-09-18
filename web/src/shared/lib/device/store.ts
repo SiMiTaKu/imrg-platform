@@ -1,25 +1,27 @@
-import { designOfMobile, getResponsiveDesign } from './responsiveDesign'
-import { writable } from 'svelte/store'
+import { browser } from '$app/environment'
+import { readable } from 'svelte/store'
+import { isMobileUserAgent } from './userAgent'
 
+/** 表示している端末 */
 type PageData = {
+  /** スマホなら true */
   isMobile: boolean
 }
 
 /**
- * 表示中の端末がスマホかどうかを持つストアを作る。初期値はスマホ扱い
+ * 表示している端末がスマホかを返す。
+ *
+ * @remarks
+ * 書き出した HTML はスマホ用で作るので、サーバー側（書き出しのとき）はスマホ扱いにする
+ * @returns スマホなら true
  */
-function createStore() {
-  const defaultPageData: PageData = { isMobile: true }
+const detectIsMobile = (): boolean => (browser ? isMobileUserAgent(navigator.userAgent) : true)
 
-  const { subscribe, update } = writable<PageData>(defaultPageData)
-
-  return {
-    subscribe,
-    update(windowWidth: number) {
-      const isMobile = getResponsiveDesign(windowWidth) === designOfMobile
-      update(() => ({ isMobile }))
-    },
-  }
-}
-
-export const pageData = createStore()
+/**
+ * 表示している端末がスマホかどうかを持つストア。
+ *
+ * @remarks
+ * 画面の幅ではなく User-Agent で決める。値はページを開いたときに1回だけ決まり、
+ * 読み込みの途中で変わらないので、ページを移っても見た目がガタつかない
+ */
+export const pageData = readable<PageData>({ isMobile: detectIsMobile() })
