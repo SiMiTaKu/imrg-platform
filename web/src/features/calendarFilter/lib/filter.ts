@@ -1,8 +1,8 @@
+import { toMonthKey } from '@shared/lib/date'
 import {
   CATEGORY_ORDER,
   categoryLabel,
   isUpcoming,
-  toMonthKey,
   type CalendarEvent,
   type EventCategory,
 } from '@entities/calendarEvent'

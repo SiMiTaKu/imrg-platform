@@ -5,7 +5,8 @@
   import { ROUTES } from '@shared/routes'
   import { CATEGORY_COLORS } from '../config/category'
   import { categoryLabel } from '../lib/category'
-  import { formatDateRange, shortMonthEnglish, toDateBadge, weekdayName } from '../lib/date'
+  import { shortMonthEnglish, toDateBadge, weekdayName } from '@shared/lib/date'
+  import { formatDateRange } from '../lib/date'
   import { localizeEvent } from '../lib/event'
   import type { CalendarEvent } from '../model'
 
