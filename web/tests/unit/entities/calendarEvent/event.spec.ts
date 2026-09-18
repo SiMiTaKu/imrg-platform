@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { EventSchedule } from '@entities/calendarEvent'
 import {
   eventsInMonth,
   eventsOnDay,
@@ -26,7 +27,7 @@ describe('isUpcoming', () => {
       ],
       [
         '年月だけで先月の場合、終わっている扱い（false）になること',
-        { startDate: '2026-08' },
+        { schedule: EventSchedule.MONTH_ONLY, month: '2026-08' },
         false,
       ],
     ])('%s', (_, dates, expected) => {
@@ -53,7 +54,7 @@ describe('isUpcoming', () => {
       ],
       [
         '年月だけで今月の場合、終わっていない扱い（true）になること',
-        { startDate: '2026-09' },
+        { schedule: EventSchedule.MONTH_ONLY, month: '2026-09' },
         true,
       ],
     ])('%s', (_, dates, expected) => {
@@ -76,7 +77,7 @@ describe('isUpcoming', () => {
 const dayAndMonthEvents = [
   makeEvent({ titleJapanese: '期間', startDate: '2026-10-30', endDate: '2026-11-01' }),
   makeEvent({ titleJapanese: '1日', startDate: '2026-11-15' }),
-  makeEvent({ titleJapanese: '年月だけ', startDate: '2026-11' }),
+  makeEvent({ titleJapanese: '年月だけ', schedule: EventSchedule.MONTH_ONLY, month: '2026-11' }),
 ]
 
 describe('eventsOnDay', () => {

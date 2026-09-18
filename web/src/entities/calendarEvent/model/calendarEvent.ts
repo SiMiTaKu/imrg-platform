@@ -1,3 +1,5 @@
+import type { EventSchedule as EVENT_SCHEDULE } from '../config/schedule'
+
 /**
  * イベントの種類
  * - national: 全国大会
@@ -10,23 +12,17 @@
 export type EventCategory =
   'national' | 'regional' | 'prefectural' | 'performance' | 'workshop' | 'international'
 
-/**
- * 日程が確定しているか
- * - confirmed: 主催者が日程を発表している
- * - tentative: 例年の時期しか分からない、または仮の日程
- */
-export type EventStatus = 'confirmed' | 'tentative'
+/** 日程の決まり方のどれか1つ */
+export type EventSchedule = (typeof EVENT_SCHEDULE)[keyof typeof EVENT_SCHEDULE]
 
 /**
- * CalendarEvent
- *
- * カレンダーに載せるイベント1件。日本語と英語の値を持つ
+ * カレンダーに載せるイベントに共通の値。日本語と英語の値を持つ
  *
  * @remarks
  * `~/imrg/calendar-data/build_events_ts.py` が書き出す `api/events.ts` の型。
  * 英語の値（`venueEnglish` など）が無いときは、英語ページでも日本語の値を出す
  */
-export interface CalendarEvent {
+interface BaseCalendarEvent {
   /** 詳細ページのURLに使う。開始日と名前から作り、一度決めたら変えない */
   id: string
   /** 大会名（日本語） */
@@ -35,12 +31,6 @@ export interface CalendarEvent {
   titleEnglish: string
   /** 種類 */
   category: EventCategory
-  /** "2026-10-30"。年月しか分からないときは "2027-03" */
-  startDate: string
-  /** 1日だけのイベントは省略する */
-  endDate?: string
-  /** 日程が確定しているか */
-  status: EventStatus
   /** 会場（日本語） */
   venueJapanese?: string
   /** 会場（英語） */
@@ -60,3 +50,30 @@ export interface CalendarEvent {
   /** 結果のページ */
   resultUrl?: string
 }
+
+/** 日付まで決まっているイベント */
+interface DatedCalendarEvent extends BaseCalendarEvent {
+  /** 日程の決まり方。日付が決まっているので `FIXED` か `TENTATIVE` */
+  schedule: typeof EVENT_SCHEDULE.FIXED | typeof EVENT_SCHEDULE.TENTATIVE
+  /** 開始日 "2026-10-30" */
+  startDate: string
+  /** 終了日。1日だけのイベントは省略する */
+  endDate?: string
+}
+
+/** 年月だけ決まっていて、日付が未定のイベント */
+interface MonthOnlyCalendarEvent extends BaseCalendarEvent {
+  /** 日程の決まり方。日付が未定なので `MONTH_ONLY` */
+  schedule: typeof EVENT_SCHEDULE.MONTH_ONLY
+  /** 開催する月 "2027-03" */
+  month: string
+}
+
+/**
+ * カレンダーに載せるイベント1件。
+ *
+ * @remarks
+ * 日程の決まり方（`schedule`）で形が変わる。日付が未定のイベントは `startDate` を持たないので、
+ * 日付を使う処理では `schedule` で分ける（`eventStartDate` などの関数を使う）
+ */
+export type CalendarEvent = DatedCalendarEvent | MonthOnlyCalendarEvent
