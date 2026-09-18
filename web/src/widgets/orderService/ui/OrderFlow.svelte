@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import { STEP_GAP, STEP_PADDING } from '../config/orderService'
+
   /** 依頼の流れの1段階 */
   export interface OrderFlowStep {
     /** 段階の名前 */
@@ -6,11 +8,6 @@
     /** 段階の説明 */
     description: string
   }
-
-  /** 段階の間の間隔（px） */
-  const STEP_GAP = 20
-  /** 段階の内側の余白の合計（px） */
-  const STEP_PADDING = 16
 
   /**
    * PC で段階を横に並べるときの、1段階の幅
