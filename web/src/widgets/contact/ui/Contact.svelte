@@ -1,11 +1,7 @@
-<script lang="ts" module>
-  /** 問い合わせ先（Instagram のダイレクトメッセージ） */
-  const CONTACT_URL = 'https://www.instagram.com/takumi.rg/'
-</script>
-
 <script lang="ts">
   import { ButtonLink, Heading } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
+  import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
   import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
 </script>
@@ -26,7 +22,7 @@
       width={$pageData.isMobile ? 320 : 400}
       height={56}
       text={m.contact_button()}
-      href={CONTACT_URL}
+      href={LINKS.instagram}
       target="_blank"
     />
   </div>
