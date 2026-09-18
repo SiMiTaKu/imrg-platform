@@ -10,3 +10,5 @@ export { default as Heading } from './Heading/Heading.svelte'
 /** ページ送り */
 export { default as Pagination } from './Pagination/Pagination.svelte'
 export { ELLIPSIS, pageNumbers } from './Pagination/lib/pageNumbers'
+/** 印や線に使う色 */
+export { AccentColor } from './tokens/colors'

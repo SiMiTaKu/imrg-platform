@@ -16,33 +16,60 @@ export type EventCategory =
 export type EventSchedule = (typeof EVENT_SCHEDULE)[keyof typeof EVENT_SCHEDULE]
 
 /**
- * カレンダーに載せるイベントに共通の値。日本語と英語の値を持つ
+ * 日本語と英語の両方がある文字列
+ */
+export interface TranslatedText {
+  /** 日本語 */
+  japanese: string
+  /** 英語 */
+  english: string
+}
+
+/**
+ * 日本語があり、英語は無いこともある文字列。
  *
  * @remarks
- * `~/imrg/calendar-data/build_events_ts.py` が書き出す `api/events.ts` の型。
- * 英語の値（`venueEnglish` など）が無いときは、英語ページでも日本語の値を出す
+ * 英語が無いときは、英語ページでも日本語を出す（会場名など、空欄にするより読めたほうがよいもの）
+ */
+export interface LocalizedText {
+  /** 日本語 */
+  japanese: string
+  /** 英語。訳が無ければ省略する */
+  english?: string
+}
+
+/**
+ * 会場。
+ *
+ * @remarks
+ * 住所は、地図を並べて出すために持てるようにしている（今の元データには入っていない）
+ */
+export interface Venue {
+  /** 会場名 */
+  name: LocalizedText
+  /** 住所 */
+  address?: string
+}
+
+/**
+ * カレンダーに載せるイベントに共通の値
+ *
+ * @remarks
+ * `~/imrg/calendar-data/build_events_ts.py` が書き出す `api/events.ts` の型
  */
 interface BaseCalendarEvent {
   /** 詳細ページのURLに使う。開始日と名前から作り、一度決めたら変えない */
   id: string
-  /** 大会名（日本語） */
-  titleJapanese: string
-  /** 大会名（英語） */
-  titleEnglish: string
+  /** 大会名 */
+  title: TranslatedText
   /** 種類 */
   category: EventCategory
-  /** 会場（日本語） */
-  venueJapanese?: string
-  /** 会場（英語） */
-  venueEnglish?: string
-  /** 配信（日本語） */
-  streamingJapanese?: string
-  /** 配信（英語） */
-  streamingEnglish?: string
-  /** 補足（日本語） */
-  noteJapanese?: string
-  /** 補足（英語） */
-  noteEnglish?: string
+  /** 会場。主催者がまだ発表していないイベントは持たない */
+  venue?: Venue
+  /** 配信 */
+  streaming?: LocalizedText
+  /** 補足 */
+  note?: LocalizedText
   /** 公式サイト */
   officialUrl?: string
   /** 日程を確認できたページ。出典のないイベントは載せない */

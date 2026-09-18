@@ -8,8 +8,7 @@ import { EventSchedule, type CalendarEvent } from '@entities/calendarEvent'
 export const makeEvent = (overrides: Partial<CalendarEvent> = {}): CalendarEvent =>
   ({
     id: 'test',
-    titleJapanese: 'テスト大会',
-    titleEnglish: 'Test Championships',
+    title: { japanese: 'テスト大会', english: 'Test Championships' },
     category: 'national',
     schedule: EventSchedule.FIXED,
     startDate: '2026-10-30',
@@ -23,4 +22,4 @@ export const makeEvent = (overrides: Partial<CalendarEvent> = {}): CalendarEvent
  * @returns 大会名の一覧
  */
 export const titles = (events: CalendarEvent[]): string[] =>
-  events.map((event) => event.titleJapanese)
+  events.map((event) => event.title.japanese)

@@ -31,19 +31,22 @@ export interface LocalizedEvent {
 export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): LocalizedEvent => {
   if (locale !== 'en') {
     return {
-      title: event.titleJapanese,
-      alternateTitle: event.titleEnglish !== event.titleJapanese ? event.titleEnglish : undefined,
-      venue: event.venueJapanese,
-      streaming: event.streamingJapanese,
-      note: event.noteJapanese,
+      title: event.title.japanese,
+      alternateTitle:
+        event.title.english !== event.title.japanese ? event.title.english : undefined,
+      venue: event.venue?.name.japanese,
+      streaming: event.streaming?.japanese,
+      note: event.note?.japanese,
     }
   }
   return {
-    title: event.titleEnglish,
-    alternateTitle: event.titleJapanese !== event.titleEnglish ? event.titleJapanese : undefined,
-    venue: event.venueEnglish ?? (event.venueJapanese && toEnglishPlaceName(event.venueJapanese)),
-    streaming: event.streamingEnglish ?? event.streamingJapanese,
-    note: event.noteEnglish ?? event.noteJapanese,
+    title: event.title.english,
+    alternateTitle: event.title.japanese !== event.title.english ? event.title.japanese : undefined,
+    // 英語の会場名が無いときは、都道府県名・国名だけなら訳し、それ以外は日本語のまま出す
+    venue:
+      event.venue && (event.venue.name.english ?? toEnglishPlaceName(event.venue.name.japanese)),
+    streaming: event.streaming?.english ?? event.streaming?.japanese,
+    note: event.note?.english ?? event.note?.japanese,
   }
 }
 
