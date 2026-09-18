@@ -1,4 +1,5 @@
-import { Apparatus, ContentType } from '@entities/oshimitsuVideo'
+import { ContentType } from '@entities/oshimitsuVideo'
+import { Apparatus } from '@shared/config/apparatus'
 import type { SearchQuery } from '@features/oshimitsuSearch'
 
 /** 種類・手具のページ（`/oshimitsu/content_type/**`）の検索条件 */

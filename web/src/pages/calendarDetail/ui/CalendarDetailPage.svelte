@@ -6,7 +6,7 @@
   import { afterNavigate } from '$app/navigation'
   import { m } from '$lib/paraglide/messages'
   import {
-    CATEGORY_COLORS,
+    categoryColor,
     categoryLabel,
     eventDateRange,
     isTentative,
@@ -94,7 +94,7 @@
 </svelte:head>
 
 <article
-  style:--color={CATEGORY_COLORS[event.category]}
+  style:--color={categoryColor(event.category)}
   class="event-detail"
   class:desktop={!$pageData.isMobile}
   class:mobile={$pageData.isMobile}

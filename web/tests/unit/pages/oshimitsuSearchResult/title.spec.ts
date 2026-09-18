@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { Apparatus, ContentType } from '@entities/oshimitsuVideo'
+import { ContentType } from '@entities/oshimitsuVideo'
+import { Apparatus } from '@shared/config/apparatus'
 import type { Criteria, SearchQuery } from '@features/oshimitsuSearch'
 import {
   FILTERED_PAGE_QUERIES,

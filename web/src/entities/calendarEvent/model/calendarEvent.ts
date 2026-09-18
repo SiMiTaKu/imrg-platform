@@ -1,42 +1,15 @@
+import type { LocalizedText, TranslatedText } from '@shared/model'
+import type { EventCategory as EVENT_CATEGORY } from '../config/category'
 import type { EventSchedule as EVENT_SCHEDULE } from '../config/schedule'
 
-/**
- * イベントの種類
- * - national: 全国大会
- * - regional: 地区・ブロック大会
- * - prefectural: 都道府県大会・新人戦
- * - performance: 発表会・演技会・公演
- * - workshop: 講習会・体験会・合宿
- * - international: 海外・国際的な催し
- */
-export type EventCategory =
-  'national' | 'regional' | 'prefectural' | 'performance' | 'workshop' | 'international'
+/** イベントの種類のどれか1つ */
+export type EventCategory = (typeof EVENT_CATEGORY)[keyof typeof EVENT_CATEGORY]
+
+/** イベントの種類の slug（`national` / `regional` など） */
+export type EventCategorySlug = EventCategory['slug']
 
 /** 日程の決まり方のどれか1つ */
 export type EventSchedule = (typeof EVENT_SCHEDULE)[keyof typeof EVENT_SCHEDULE]
-
-/**
- * 日本語と英語の両方がある文字列
- */
-export interface TranslatedText {
-  /** 日本語 */
-  japanese: string
-  /** 英語 */
-  english: string
-}
-
-/**
- * 日本語があり、英語は無いこともある文字列。
- *
- * @remarks
- * 英語が無いときは、英語ページでも日本語を出す（会場名など、空欄にするより読めたほうがよいもの）
- */
-export interface LocalizedText {
-  /** 日本語 */
-  japanese: string
-  /** 英語。訳が無ければ省略する */
-  english?: string
-}
 
 /**
  * 会場。
@@ -63,7 +36,7 @@ interface BaseCalendarEvent {
   /** 大会名 */
   title: TranslatedText
   /** 種類 */
-  category: EventCategory
+  category: EventCategorySlug
   /** 会場。主催者がまだ発表していないイベントは持たない */
   venue?: Venue
   /** 配信 */

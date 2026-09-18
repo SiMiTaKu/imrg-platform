@@ -1,4 +1,4 @@
-import type { Image } from '@shared/model'
+import type { Image, TranslatedText } from '@shared/model'
 import { BASE_LOCALE, type SiteLocale } from '@shared/lib/i18n'
 import type {
   LocalizedRuleBook,
@@ -19,11 +19,11 @@ export const localizeRuleBook = (ruleBook: RuleBook, locale: SiteLocale): Locali
 
   /**
    * 言語に合う方の文字列を選ぶ
-   * @param ja - 日本語
-   * @param en - 英語
+   * @param text - 日本語と英語を持つ文字列
    * @returns 表示する言語の文字列
    */
-  const pick = (ja: string, en: string): string => (isBase ? ja : en)
+  const pick = (text?: TranslatedText): string =>
+    text ? (isBase ? text.japanese : text.english) : ''
 
   /**
    * 図の代替テキストを言語に合わせる
@@ -31,7 +31,7 @@ export const localizeRuleBook = (ruleBook: RuleBook, locale: SiteLocale): Locali
    * @returns 表示する言語の代替テキストを持つ図
    */
   const localizeImages = (images: RuleImage[] = []): Image[] =>
-    images.map((image) => ({ src: image.src, alt: pick(image.alt, image.altEnglish) }))
+    images.map((image) => ({ src: image.src, alt: pick(image.alt) }))
 
   /**
    * 条項を言語に合わせる
@@ -39,22 +39,22 @@ export const localizeRuleBook = (ruleBook: RuleBook, locale: SiteLocale): Locali
    * @returns 表示する言語に絞った条項
    */
   const localizeSection = (section: RuleSection): LocalizedRuleSection => ({
-    title: pick(section.title, section.titleEnglish),
-    content: pick(section.content ?? '', section.contentEnglish ?? ''),
+    title: pick(section.title),
+    content: pick(section.content),
     image: localizeImages(section.image),
     block: (section.block ?? []).map((block) => ({
-      title: pick(block.title, block.titleEnglish),
-      element: pick(block.element, block.elementEnglish),
+      title: pick(block.title),
+      element: pick(block.element),
       image: localizeImages(block.image),
     })),
   })
 
   return {
-    title: pick(ruleBook.title, ruleBook.titleEnglish),
+    title: pick(ruleBook.title),
     chapter: ruleBook.chapter.map((chapter) => ({
-      title: pick(chapter.title, chapter.titleEnglish),
+      title: pick(chapter.title),
       article: chapter.article.map((article) => ({
-        title: pick(article.title, article.titleEnglish),
+        title: pick(article.title),
         section: article.section.map(localizeSection),
       })),
     })),

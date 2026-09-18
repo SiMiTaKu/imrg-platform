@@ -8,14 +8,12 @@
     /** この1枚の背景画像。省くと `backgroundImage` を出したままにする */
     image?: ImageSourceMeta[]
   }
-
-  /** キャッチコピーを切り替える間隔（ミリ秒） */
-  const SLIDE_INTERVAL = 5000
   /** キャッチコピーを消してから次を出すまでの時間（ミリ秒） */
   const SLIDE_GAP = 1250
 </script>
 
 <script lang="ts">
+  import { SLIDE_INTERVAL } from '../config/orderService'
   import { onMount } from 'svelte'
   import { fade, fly } from 'svelte/transition'
   import { pageData } from '@shared/lib/device'

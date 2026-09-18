@@ -1,22 +1,27 @@
-import { m } from '$lib/paraglide/messages'
 import type { SiteLocale } from '@shared/lib/i18n'
-import type { EventCategory } from '../model'
+import { EVENT_CATEGORIES } from '../config/category'
+import type { EventCategory, EventCategorySlug } from '../model'
 
-/** 種類ごとの表示名の文言 */
-const CATEGORY_MESSAGES: Record<EventCategory, typeof m.calendar_category_national> = {
-  national: m.calendar_category_national,
-  regional: m.calendar_category_regional,
-  prefectural: m.calendar_category_prefectural,
-  performance: m.calendar_category_performance,
-  workshop: m.calendar_category_workshop,
-  international: m.calendar_category_international,
-}
+/**
+ * slug から種類を返す
+ * @param slug - 種類の slug（`national` など）
+ * @returns 種類
+ */
+export const categoryOfSlug = (slug: EventCategorySlug): EventCategory =>
+  EVENT_CATEGORIES.find((category) => category.slug === slug) ?? EVENT_CATEGORIES[0]
 
 /**
  * 種類の表示名を返す
- * @param category - 種類
+ * @param slug - 種類の slug
  * @param locale - 言語。省くと表示中の言語
  * @returns 「全国大会」「National」などの表示名
  */
-export const categoryLabel = (category: EventCategory, locale?: SiteLocale): string =>
-  CATEGORY_MESSAGES[category]({}, locale ? { locale } : undefined)
+export const categoryLabel = (slug: EventCategorySlug, locale?: SiteLocale): string =>
+  categoryOfSlug(slug).label({}, locale ? { locale } : undefined)
+
+/**
+ * 種類の色を返す
+ * @param slug - 種類の slug
+ * @returns カレンダーの印や一覧の線に使う色
+ */
+export const categoryColor = (slug: EventCategorySlug): string => categoryOfSlug(slug).color

@@ -4,9 +4,9 @@ import {
   findApparatus,
   findContentType,
   isIndividualVideo,
-  type ApparatusSlug,
   type VideoResource,
 } from '@entities/oshimitsuVideo'
+import type { ApparatusSlug } from '@shared/model'
 import { ROUTES } from '@shared/routes'
 import { SEARCH_PARAMS, VIDEOS_PER_PAGE } from '../config/search'
 import type { Criteria, FilteredVideos, SearchQuery } from '../model/criteria'

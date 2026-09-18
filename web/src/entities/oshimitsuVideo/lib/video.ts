@@ -1,7 +1,8 @@
 import type { SiteLocale } from '@shared/lib/i18n'
-import { Apparatus, ContentType } from '../config/category'
+import { APPARATUSES } from '@shared/config/apparatus'
+import type { Apparatus as ApparatusType } from '@shared/model'
+import { ContentType } from '../config/category'
 import type {
-  Apparatus as ApparatusType,
   ContentType as ContentTypeType,
   IndividualVideoResource,
   PlayerResource,
@@ -23,7 +24,7 @@ export const findContentType = (slug: string): ContentTypeType | undefined =>
  * @returns 見つかった手具。無ければ undefined
  */
 export const findApparatus = (slug: string): ApparatusType | undefined =>
-  Object.values(Apparatus).find((apparatus) => apparatus.slug === slug)
+  APPARATUSES.find((apparatus) => apparatus.slug === slug)
 
 /**
  * 動画が個人の動画かを判別する
@@ -42,4 +43,4 @@ export const isIndividualVideo = (video: VideoResource): video is IndividualVide
 export const localizedName = (
   resource: PlayerResource | TeamResource,
   locale: SiteLocale,
-): string => (locale === 'en' ? resource.nameEnglish : resource.name)
+): string => (locale === 'en' ? resource.name.english : resource.name.japanese)
