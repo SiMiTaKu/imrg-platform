@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { LINKS } from '@shared/config/links'
   import { m } from '$lib/paraglide/messages'
   import { SECONDARY_LOCALE, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { CONTRIBUTE_URL } from '../config/calendarConfig'
 
   // 日本語ページでは、英語を小さく併記する
   const showsBoth = showsSecondaryText()
@@ -25,7 +25,7 @@
   </h3>
   <p class="contribute-text">
     {m.calendar_contribute_before_link()}<a
-      href={CONTRIBUTE_URL}
+      href={LINKS.instagram}
       rel="noopener noreferrer"
       target="_blank">{m.calendar_contribute_link()}</a
     >{m.calendar_contribute_after_link()}
@@ -33,7 +33,7 @@
   {#if showsBoth}
     <p class="contribute-text-en" lang="en">
       {m.calendar_contribute_before_link({}, { locale: SECONDARY_LOCALE })}<a
-        href={CONTRIBUTE_URL}
+        href={LINKS.instagram}
         rel="noopener noreferrer"
         target="_blank">{m.calendar_contribute_link({}, { locale: SECONDARY_LOCALE })}</a
       >{m.calendar_contribute_after_link({}, { locale: SECONDARY_LOCALE })}
