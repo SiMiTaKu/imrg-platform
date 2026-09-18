@@ -1,11 +1,11 @@
-import type { Image } from '@shared/model'
+import type { Image, TranslatedText } from '@shared/model'
 
 /**
  * 規則集の図（画像）。代替テキストを日本語と英語で持つ
  */
-export type RuleImage = Image & {
-  /** 英語の代替テキスト */
-  altEnglish: string
+export type RuleImage = Omit<Image, 'alt'> & {
+  /** 代替テキスト */
+  alt: TranslatedText
 }
 
 /**
@@ -13,13 +13,9 @@ export type RuleImage = Image & {
  */
 export interface RuleBlock {
   /** 見出し */
-  title: string
-  /** 英語の見出し */
-  titleEnglish: string
+  title: TranslatedText
   /** 本文 */
-  element: string
-  /** 英語の本文 */
-  elementEnglish: string
+  element: TranslatedText
   /** 図 */
   image?: RuleImage[]
 }
@@ -29,13 +25,9 @@ export interface RuleBlock {
  */
 export interface RuleSection {
   /** 見出し */
-  title: string
-  /** 英語の見出し */
-  titleEnglish: string
+  title: TranslatedText
   /** 本文（小項を持たないときだけ使う） */
-  content?: string
-  /** 英語の本文 */
-  contentEnglish?: string
+  content?: TranslatedText
   /** 小項 */
   block?: RuleBlock[]
   /** 図 */
@@ -47,9 +39,7 @@ export interface RuleSection {
  */
 export interface RuleArticle {
   /** 見出し */
-  title: string
-  /** 英語の見出し */
-  titleEnglish: string
+  title: TranslatedText
   /** 条項 */
   section: RuleSection[]
 }
@@ -59,9 +49,7 @@ export interface RuleArticle {
  */
 export interface RuleChapter {
   /** 見出し */
-  title: string
-  /** 英語の見出し */
-  titleEnglish: string
+  title: TranslatedText
   /** 大項 */
   article: RuleArticle[]
 }
@@ -71,9 +59,7 @@ export interface RuleChapter {
  */
 export interface RuleBook {
   /** 題名 */
-  title: string
-  /** 英語の題名 */
-  titleEnglish: string
+  title: TranslatedText
   /** 章 */
   chapter: RuleChapter[]
 }
