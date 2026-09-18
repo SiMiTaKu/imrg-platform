@@ -8,7 +8,8 @@
   import {
     CATEGORY_COLORS,
     categoryLabel,
-    formatDateRange,
+    eventDateRange,
+    isTentative,
     hostnameOf,
     localizeEvent,
     type CalendarEvent,
@@ -108,7 +109,7 @@
 
   <p class="badges">
     <span class="category">{categoryText}</span>
-    {#if event.status === 'tentative'}
+    {#if isTentative(event)}
       <span class="tentative">{withSecondary(m.calendar_tag_tentative)}</span>
     {/if}
   </p>
@@ -122,9 +123,9 @@
     <div class="fact">
       <dt>{@render factLabel(m.calendar_fact_date)}</dt>
       <dd>
-        <span class="fact-main">{formatDateRange(event, locale)}</span>
+        <span class="fact-main">{eventDateRange(event, locale)}</span>
         {#if showsBoth}
-          <span class="fact-en" lang="en">{formatDateRange(event, SECONDARY_LOCALE)}</span>
+          <span class="fact-en" lang="en">{eventDateRange(event, SECONDARY_LOCALE)}</span>
         {/if}
       </dd>
     </div>
