@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { INSTAGRAM, YOUTUBE_TERMS } from '../config/links'
+  import { LINKS } from '@shared/config/links'
 </script>
 
 <!-- 日本語の本文 -->
@@ -12,7 +12,7 @@
 <p>
   本規約は、本サイトと本ツールの利用に関わるすべての場面に適用されます。本ツールは YouTube API
   サービスを利用しており、本ツールを利用する場合は
-  <a href={YOUTUBE_TERMS} rel="noopener noreferrer" target="_blank">YouTube 利用規約</a
+  <a href={LINKS.youtubeTerms} rel="noopener noreferrer" target="_blank">YouTube 利用規約</a
   >にも同意したものとみなします。
 </p>
 
@@ -44,7 +44,7 @@
 
 <h3>8. お問い合わせ</h3>
 <p>
-  本規約に関するお問い合わせは、<a href={INSTAGRAM} rel="noopener noreferrer" target="_blank"
+  本規約に関するお問い合わせは、<a href={LINKS.instagram} rel="noopener noreferrer" target="_blank"
     >Instagram のダイレクトメッセージ</a
   >で受け付けています。
 </p>

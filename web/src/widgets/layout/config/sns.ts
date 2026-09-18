@@ -3,6 +3,7 @@ import InstagramIcon from '../images/instagram-icon.png?w=256;512&format=webp&as
 import TiktokIcon from '../images/tiktok-icon.png?w=256;512&format=webp&as=meta'
 import XIcon from '../images/x-icon.png?w=256;512&format=webp&as=meta'
 import YoutubeIcon from '../images/youtube-icon.png?w=256;512&format=webp&as=meta'
+import { LINKS } from '@shared/config/links'
 import type { ImageSourceMeta } from '@shared/ui'
 
 /** 幅と高さ（px） */
@@ -39,7 +40,7 @@ export interface SnsLink {
 export const SNS_LINKS: readonly SnsLink[] = [
   {
     name: 'YouTube',
-    href: 'https://www.youtube.com/channel/UCK-OUvWo6IQz2W6Z-fH27BQ?sub_confirmation=1',
+    href: LINKS.youtube,
     imageSourceMeta: YoutubeIcon,
     alt: m.layout_youtube_icon_alt,
     size: {
@@ -49,7 +50,7 @@ export const SNS_LINKS: readonly SnsLink[] = [
   },
   {
     name: 'Instagram',
-    href: 'https://www.instagram.com/takumi.rg/',
+    href: LINKS.instagram,
     imageSourceMeta: InstagramIcon,
     alt: m.layout_instagram_icon_alt,
     size: {
@@ -59,7 +60,7 @@ export const SNS_LINKS: readonly SnsLink[] = [
   },
   {
     name: 'X(Twitter)',
-    href: 'https://twitter.com/TakumiShimizu43',
+    href: LINKS.x,
     imageSourceMeta: XIcon,
     alt: m.layout_x_icon_alt,
     size: {
@@ -69,7 +70,7 @@ export const SNS_LINKS: readonly SnsLink[] = [
   },
   {
     name: 'TikTok',
-    href: 'https://www.tiktok.com/@takumishimizu43?lang=ja-JP',
+    href: LINKS.tiktok,
     imageSourceMeta: TiktokIcon,
     alt: m.layout_tiktok_icon_alt,
     size: {
