@@ -4,7 +4,8 @@
   import { pageData } from '@shared/lib/device'
   import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
   import { ImageAssets } from '@shared/ui'
-  import { APPARATUS_LABELS, WORK_LIST } from '../config/workList'
+  import { apparatusOfSlug } from '@shared/lib/apparatus'
+  import { WORK_LIST } from '../config/workList'
   import YoutubeIcon from '../images/youtube-icon.png?w=120;240&format=webp&as=meta'
 
   // 日本語ページだけ、見出しの下に英語を小さく併記する。選手名は英語ページで英語の表記にする
@@ -24,8 +25,10 @@
     {#each WORK_LIST as work, index (index)}
       <li class="card">
         <a class="link" href={work.youtube} rel="noopener noreferrer" target="_blank">
-          <span class="name">{showsBoth ? work.customerName : work.customerNameEnglish}</span>
-          <span class="apparatus">{APPARATUS_LABELS[work.apparatus]()}</span>
+          <span class="name"
+            >{showsBoth ? work.customerName.japanese : work.customerName.english}</span
+          >
+          <span class="apparatus">{apparatusOfSlug(work.apparatus).label()}</span>
           <div class="youtube">
             <ImageAssets
               width={40}

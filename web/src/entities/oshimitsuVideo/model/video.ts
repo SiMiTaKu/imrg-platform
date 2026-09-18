@@ -1,23 +1,20 @@
-import type { Apparatus as APPARATUS, ContentType as CONTENT_TYPE } from '../config/category'
+import type { Apparatus, TranslatedText } from '@shared/model'
+import type { ContentType as CONTENT_TYPE } from '../config/category'
 
 /** チーム */
 export interface TeamResource {
-  /** 名前 */
-  name: string
+  /** 名前（英語はローマ字） */
+  name: TranslatedText
   /** 名前（かな） */
   nameKana: string
-  /** 英語の名前 */
-  nameEnglish: string
 }
 
 /** 選手 */
 export interface PlayerResource {
-  /** 名前 */
-  name: string
+  /** 名前（英語はローマ字で「名 姓」の順） */
+  name: TranslatedText
   /** 名前（かな） */
   nameKana: string
-  /** 英語の名前（ローマ字。「名 姓」の順） */
-  nameEnglish: string
   /** 所属したチーム */
   belongedTeams: TeamResource[]
 }
@@ -27,12 +24,6 @@ export type ContentType = (typeof CONTENT_TYPE)[keyof typeof CONTENT_TYPE]
 
 /** 動画の種類の slug（`individual` / `group`） */
 export type ContentTypeSlug = ContentType['slug']
-
-/** 手具（スティック・リング・ロープ・クラブ）のどれか1つ */
-export type Apparatus = (typeof APPARATUS)[keyof typeof APPARATUS]
-
-/** 手具の slug（`stick` / `ring` / `rope` / `club`） */
-export type ApparatusSlug = Apparatus['slug']
 
 /** 動画に共通の項目 */
 interface BaseVideo {

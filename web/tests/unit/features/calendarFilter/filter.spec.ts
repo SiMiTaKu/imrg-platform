@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { EventSchedule } from '@entities/calendarEvent'
-import type { EventCategory } from '@entities/calendarEvent'
+import type { EventCategorySlug } from '@entities/calendarEvent'
 import {
   filterEvents,
   groupByMonth,
@@ -82,7 +82,7 @@ describe('matchesKeyword', () => {
 
 describe('isEveryCategory', () => {
   describe('正常系', () => {
-    it.each<[string, EventCategory[], boolean]>([
+    it.each<[string, EventCategorySlug[], boolean]>([
       [
         '種類を全部選んだ場合、true になること',
         ['national', 'regional', 'prefectural', 'performance', 'workshop', 'international'],
@@ -107,7 +107,7 @@ describe('isEveryCategory', () => {
   describe('境界値', () => {
     it('種類を何も選んでいない場合、true になること', () => {
       // #region Given
-      const categories: EventCategory[] = []
+      const categories: EventCategorySlug[] = []
       // #endregion
 
       // #region When
@@ -169,7 +169,7 @@ describe('filterEvents', () => {
       // #region Given
       const filter = {
         ...base,
-        categories: ['workshop', 'international'] as EventCategory[],
+        categories: ['workshop', 'international'] as EventCategorySlug[],
         period: 'all' as const,
       }
       // #endregion

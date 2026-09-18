@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import {
-  Apparatus,
   ContentType,
   PLAYERS,
   RECOMMENDED_VIDEOS,
@@ -11,6 +10,7 @@ import {
   isIndividualVideo,
   localizedName,
 } from '@entities/oshimitsuVideo'
+import { Apparatus } from '@shared/config/apparatus'
 
 describe('findContentType', () => {
   describe('正常系', () => {
@@ -138,7 +138,7 @@ describe('データ', () => {
       // #endregion
 
       // #region When
-      const invalid = resources.filter((resource) => !englishName.test(resource.nameEnglish))
+      const invalid = resources.filter((resource) => !englishName.test(resource.name.english))
       // #endregion
 
       // #region Then

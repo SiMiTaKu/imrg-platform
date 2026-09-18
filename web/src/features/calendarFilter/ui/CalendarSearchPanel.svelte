@@ -1,11 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import {
-    CATEGORY_COLORS,
-    CATEGORY_ORDER,
-    categoryLabel,
-    type EventCategory,
-  } from '@entities/calendarEvent'
+  import { EVENT_CATEGORIES, type EventCategorySlug } from '@entities/calendarEvent'
   import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
   import { isEveryCategory } from '../lib/filter'
 
@@ -14,11 +9,11 @@
     /** 入力中のキーワード */
     keyword: string
     /** 選んでいる種類。空ならすべて */
-    categories: readonly EventCategory[]
+    categories: readonly EventCategorySlug[]
     /** キーワードを変えたとき */
     onkeywordchange: (keyword: string) => void
     /** 種類の選択を変えたとき。空の配列は「すべて」 */
-    oncategorieschange: (categories: EventCategory[]) => void
+    oncategorieschange: (categories: EventCategorySlug[]) => void
   }
 
   const { keyword, categories, onkeywordchange, oncategorieschange }: Props = $props()
@@ -39,13 +34,13 @@
 
   /**
    * 種類の絞り込みは複数選べる。押すたびに入り切りする
-   * @param key - 押した種類
+   * @param slug - 押した種類の slug
    */
-  const toggleCategory = (key: EventCategory) => {
+  const toggleCategory = (slug: EventCategorySlug) => {
     oncategorieschange(
-      categories.includes(key)
-        ? categories.filter((category) => category !== key)
-        : [...categories, key],
+      categories.includes(slug)
+        ? categories.filter((selected) => selected !== slug)
+        : [...categories, slug],
     )
   }
 </script>
@@ -78,17 +73,17 @@
           >{m.calendar_category_all({}, { locale: SECONDARY_LOCALE })}</span
         >{/if}
     </button>
-    {#each CATEGORY_ORDER as key (key)}
+    {#each EVENT_CATEGORIES as category (category.slug)}
       <button
-        style:--color={CATEGORY_COLORS[key]}
+        style:--color={category.color}
         class="chip"
-        class:active={categories.includes(key)}
+        class:active={categories.includes(category.slug)}
         type="button"
-        aria-pressed={categories.includes(key)}
-        onclick={() => toggleCategory(key)}
+        aria-pressed={categories.includes(category.slug)}
+        onclick={() => toggleCategory(category.slug)}
       >
-        <span class="chip-dot"></span>{categoryLabel(key)}{#if showsBoth}<span lang="en"
-            >{categoryLabel(key, SECONDARY_LOCALE)}</span
+        <span class="chip-dot"></span>{category.label()}{#if showsBoth}<span lang="en"
+            >{category.label({}, { locale: SECONDARY_LOCALE })}</span
           >{/if}
       </button>
     {/each}
