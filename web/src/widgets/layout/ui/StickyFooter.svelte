@@ -13,7 +13,7 @@
     width={$pageData.isMobile ? 320 : 400}
     height={56}
     text={m.layout_sticky_footer_cta()}
-    href={localizeHref(ROUTES.oshimitsu.index)}
+    href={localizeHref(ROUTES.calendar.index)}
   />
 </footer>
 
