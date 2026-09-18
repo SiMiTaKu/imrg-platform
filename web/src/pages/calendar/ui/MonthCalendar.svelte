@@ -10,10 +10,9 @@
     weekdayName,
   } from '@shared/lib/date'
   import {
-    CATEGORY_COLORS,
+    EVENT_CATEGORIES,
+    categoryColor,
     EventSchedule,
-    CATEGORY_ORDER,
-    categoryLabel,
     eventsInMonth,
     eventsOnDay,
     localizeEvent,
@@ -154,7 +153,7 @@
                 {#if $pageData.isMobile && dayEvents.length}
                   <span class="dots">
                     {#each dayEvents.slice(0, MAX_DAY_CHIPS) as event (event.id)}
-                      <span style:--color={CATEGORY_COLORS[event.category]} class="dot"></span>
+                      <span style:--color={categoryColor(event.category)} class="dot"></span>
                     {/each}
                   </span>
                 {/if}
@@ -166,7 +165,7 @@
                     {@const title = localizeEvent(event, locale).title}
                     <li>
                       <a
-                        style:--color={CATEGORY_COLORS[event.category]}
+                        style:--color={categoryColor(event.category)}
                         class="chip"
                         {title}
                         href={localizeHref(ROUTES.calendar.detail(event.id))}>{title}</a
@@ -198,7 +197,7 @@
       >
       {#each undated as event (event.id)}
         <a
-          style:--color={CATEGORY_COLORS[event.category]}
+          style:--color={categoryColor(event.category)}
           class="undated-chip"
           href={localizeHref(ROUTES.calendar.detail(event.id))}
           >{localizeEvent(event, locale).title}</a
@@ -208,10 +207,10 @@
   {/if}
 
   <ul class="legend">
-    {#each CATEGORY_ORDER as key (key)}
+    {#each EVENT_CATEGORIES as category (category.slug)}
       <li class="legend-item">
-        <span style:--color={CATEGORY_COLORS[key]} class="dot"></span>
-        {categoryLabel(key)}
+        <span style:--color={category.color} class="dot"></span>
+        {category.label()}
       </li>
     {/each}
   </ul>
@@ -352,11 +351,11 @@
   }
 
   .sunday {
-    color: #d64545;
+    color: map.get($weekday, sunday);
   }
 
   .saturday {
-    color: #1f6fd1;
+    color: map.get($weekday, saturday);
   }
 
   .muted {

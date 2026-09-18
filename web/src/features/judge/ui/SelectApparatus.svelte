@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { JudgeThemeColor } from '../config/themeColor'
   import { m } from '$lib/paraglide/messages'
   import { JUDGE_APPARATUSES } from '../config/apparatus'
   import { judgementApparatus } from '../store/apparatus'
@@ -10,7 +11,7 @@
     code: apparatus.code,
     value: apparatus.name(),
   }))
-  const color = $derived($judgementApparatus?.imageColor ?? 'gray')
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 </script>
 
 <div class="select-apparatuses">

@@ -1,12 +1,12 @@
 import { eventMonthKey, eventSortKey } from '@entities/calendarEvent'
 import {
-  CATEGORY_ORDER,
+  EVENT_CATEGORIES,
   categoryLabel,
   isUpcoming,
   type CalendarEvent,
-  type EventCategory,
+  type EventCategorySlug,
 } from '@entities/calendarEvent'
-import { PER_PAGE } from '../config/period'
+import { EventPeriod, PER_PAGE } from '../config/period'
 import type { EventFilter, MonthGroup, PageSlice } from '../model'
 
 /**
@@ -71,8 +71,9 @@ export const matchesKeyword = (event: CalendarEvent, keyword: string): boolean =
  * @param categories - 選んでいる種類
  * @returns 何も選んでいないか、すべての種類を選んでいれば true
  */
-export const isEveryCategory = (categories: readonly EventCategory[]): boolean =>
-  categories.length === 0 || CATEGORY_ORDER.every((key) => categories.includes(key))
+export const isEveryCategory = (categories: readonly EventCategorySlug[]): boolean =>
+  categories.length === 0 ||
+  EVENT_CATEGORIES.every((category) => categories.includes(category.slug))
 
 /**
  * 種類・キーワード・時期で絞り込んで並べる。終わったイベントだけのときは新しい順
@@ -89,11 +90,11 @@ export const filterEvents = (
     .filter((event) => matchesKeyword(event, filter.keyword))
     .filter(
       (event) =>
-        filter.period === 'all' ||
-        isUpcoming(event, filter.today) === (filter.period === 'upcoming'),
+        filter.period === EventPeriod.ALL.key ||
+        isUpcoming(event, filter.today) === (filter.period === EventPeriod.UPCOMING.key),
     )
     .sort(compareEvents)
-  return filter.period === 'past' ? sorted.reverse() : sorted
+  return filter.period === EventPeriod.PAST.key ? sorted.reverse() : sorted
 }
 
 /**

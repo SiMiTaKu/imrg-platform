@@ -1,10 +1,5 @@
-import type {
-  ApparatusResource,
-  ApparatusSlug,
-  ContentTypeResource,
-  ContentTypeSlug,
-  VideoResource,
-} from '@entities/oshimitsuVideo'
+import type { ContentTypeResource, ContentTypeSlug, VideoResource } from '@entities/oshimitsuVideo'
+import type { Apparatus as ApparatusResource, ApparatusSlug } from '@shared/model'
 
 /**
  * 検索の条件（slug で持つ形）。

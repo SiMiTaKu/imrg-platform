@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import {
-  Apparatus,
   ContentType,
   VIDEOS,
   isIndividualVideo,
   type VideoResource,
 } from '@entities/oshimitsuVideo'
+import { Apparatus } from '@shared/config/apparatus'
 import {
   VIDEOS_PER_PAGE,
   buildSearchPath,

@@ -25,102 +25,83 @@ type TeamKey = UniversityKey | HighSchoolKey | 'SINBAD_RG' | 'LEO_RG' | 'IBARA_J
 
 const UNIVERSITY: { [key in UniversityKey]: TeamResource } = {
   AOMORI_UNIVERSITY: {
-    name: '青森大学',
+    name: { japanese: '青森大学', english: 'Aomori University' },
     nameKana: 'あおもりだいがく',
-    nameEnglish: 'Aomori University',
   },
   DOSHISHA_UNIVERSITY: {
-    name: '同志社大学',
+    name: { japanese: '同志社大学', english: 'Doshisha University' },
     nameKana: 'どうししゃだいがく',
-    nameEnglish: 'Doshisha University',
   },
 }
 
 const HIGH_SCHOOL: { [key in HighSchoolKey]: TeamResource } = {
   AOMORI_YAMADA: {
-    name: '青森山田高等学校',
+    name: { japanese: '青森山田高等学校', english: 'Aomori Yamada High School' },
     nameKana: 'あおもりやまだこうとうがっこう',
-    nameEnglish: 'Aomori Yamada High School',
   },
   ENIWA_MINAMI_HIGH: {
-    name: '北海道恵庭南高等学校',
+    name: { japanese: '北海道恵庭南高等学校', english: 'Hokkaido Eniwa Minami High School' },
     nameKana: 'ほっかいどうえにわみなみこうとうがっこう',
-    nameEnglish: 'Hokkaido Eniwa Minami High School',
   },
   KANZAKI_SEIMEI: {
-    name: '神埼清明高等学校',
+    name: { japanese: '神埼清明高等学校', english: 'Kanzaki Seimei High School' },
     nameKana: 'かんざきせいめいこうとうがっこう',
-    nameEnglish: 'Kanzaki Seimei High School',
   },
   SEIFU: {
-    name: '清風高等学校',
+    name: { japanese: '清風高等学校', english: 'Seifu High School' },
     nameKana: 'せいふうこうとうがっこう',
-    nameEnglish: 'Seifu High School',
   },
   AMAGASAKI_NISHI: {
-    name: '尼崎西高校',
+    name: { japanese: '尼崎西高校', english: 'Amagasaki Nishi High School' },
     nameKana: 'あまがさきにしこうこう',
-    nameEnglish: 'Amagasaki Nishi High School',
   },
   SEIBI: {
-    name: '済美高等学校',
+    name: { japanese: '済美高等学校', english: 'Seibi High School' },
     nameKana: 'せいびこうとうがっこう',
-    nameEnglish: 'Seibi High School',
   },
   MURASAKINO: {
-    name: '紫野高等学校',
+    name: { japanese: '紫野高等学校', english: 'Murasakino High School' },
     nameKana: 'むらさきのこうとうがっこう',
-    nameEnglish: 'Murasakino High School',
   },
   ASHIKITA_HIGH: {
-    name: '芦北高等学校',
+    name: { japanese: '芦北高等学校', english: 'Ashikita High School' },
     nameKana: 'あしきたこうとうがっこう',
-    nameEnglish: 'Ashikita High School',
   },
   MAEBASHI_KOGYO: {
-    name: '前橋工業高等学校',
+    name: { japanese: '前橋工業高等学校', english: 'Maebashi Technical High School' },
     nameKana: 'まえばしこうぎょうこうとうがっこう',
-    nameEnglish: 'Maebashi Technical High School',
   },
   SAITAMA_SAKAE: {
-    name: '埼玉栄高等学校',
+    name: { japanese: '埼玉栄高等学校', english: 'Saitama Sakae High School' },
     nameKana: 'さいたまさかえこうとうがっこう',
-    nameEnglish: 'Saitama Sakae High School',
   },
   SHIMADA_KOGYO: {
-    name: '島田工業高等学校',
+    name: { japanese: '島田工業高等学校', english: 'Shimada Technical High School' },
     nameKana: 'しまだこうぎょうこうとうがっこう',
-    nameEnglish: 'Shimada Technical High School',
   },
   KAGOSHIMA_JITSUGYO: {
-    name: '鹿児島実業高等学校',
+    name: { japanese: '鹿児島実業高等学校', english: 'Kagoshima Jitsugyo High School' },
     nameKana: 'かごしまじつぎょうこうとうがっこう',
-    nameEnglish: 'Kagoshima Jitsugyo High School',
   },
   KOBAYASHI_SHUHO: {
-    name: '小林秀峰高等学校',
+    name: { japanese: '小林秀峰高等学校', english: 'Kobayashi Shuho High School' },
     nameKana: 'こばやししゅうほうこうとうがっこう',
-    nameEnglish: 'Kobayashi Shuho High School',
   },
   TAKADA_HIGH: {
-    name: '高田高等学校',
+    name: { japanese: '高田高等学校', english: 'Takada High School' },
     nameKana: 'たかだこうとうがっこう',
-    nameEnglish: 'Takada High School',
   },
   IBARA_HIGH: {
-    name: '井原高等学校',
+    name: { japanese: '井原高等学校', english: 'Ibara High School' },
     nameKana: 'いばらこうとうがっこう',
-    nameEnglish: 'Ibara High School',
   },
   NATORI_HIGH: {
-    name: '名取高等学校',
+    name: { japanese: '名取高等学校', english: 'Natori High School' },
     nameKana: 'なとりこうとうがっこう',
-    nameEnglish: 'Natori High School',
   },
   MORIOKA_SHIRITSU: {
-    name: '盛岡市立高等学校',
+    name: { japanese: '盛岡市立高等学校', english: 'Morioka Municipal High School' },
     nameKana: 'もりおかしりつこうとうがっこう',
-    nameEnglish: 'Morioka Municipal High School',
   },
 }
 
@@ -128,24 +109,20 @@ export const Team: { [key in TeamKey]: TeamResource } = {
   ...UNIVERSITY,
   ...HIGH_SCHOOL,
   SINBAD_RG: {
-    name: 'シンドバッド新体操クラブ',
+    name: { japanese: 'シンドバッド新体操クラブ', english: 'Sinbad Rhythmic Gymnastics Club' },
     nameKana: 'しんばっどしんたいそうくらぶ',
-    nameEnglish: 'Sinbad Rhythmic Gymnastics Club',
   },
   LEO_RG: {
-    name: 'Leo RG',
+    name: { japanese: 'Leo RG', english: 'Leo RG' },
     nameKana: 'れおあーるじー',
-    nameEnglish: 'Leo RG',
   },
   IBARA_JUNIOR: {
-    name: '井原ジュニア',
+    name: { japanese: '井原ジュニア', english: 'Ibara Junior' },
     nameKana: 'いばらじゅにあ',
-    nameEnglish: 'Ibara Junior',
   },
   CUBE_RG: {
-    name: 'キューブRG',
+    name: { japanese: 'キューブRG', english: 'Cube RG' },
     nameKana: 'きゅーぶあーるじー',
-    nameEnglish: 'Cube RG',
   },
 } as const
 

@@ -2,41 +2,58 @@ import type { RuleArticle } from '../../model/ruleBook'
 
 /**
  * 第3章 付録のうち、難度解図・特別規則・徒手の演技。
- * 英語（`titleEnglish` など）は日本語の本文を訳したもの
+ * 英語（`title.english` など）は日本語の本文を訳したもの
  */
 export const APPENDIX_SPECIAL_RULES_ARTICLES: RuleArticle[] = [
   {
-    title: '難度解図',
-    titleEnglish: 'Illustrated Difficulties',
+    title: {
+      japanese: '難度解図',
+      english: 'Illustrated Difficulties',
+    },
     section: [
       {
-        title: '徒手系難度',
-        titleEnglish: 'Free-Hand Difficulties',
+        title: {
+          japanese: '徒手系難度',
+          english: 'Free-Hand Difficulties',
+        },
         block: [
           {
-            title: '徒手系難度',
-            titleEnglish: 'Free-Hand Difficulties',
-            element: '',
-            elementEnglish: '',
+            title: {
+              japanese: '徒手系難度',
+              english: 'Free-Hand Difficulties',
+            },
+            element: {
+              japanese: '',
+              english: '',
+            },
           },
           {
-            title: '転回系難度',
-            titleEnglish: 'Tumbling Difficulties',
-            element: '',
-            elementEnglish: '',
+            title: {
+              japanese: '転回系難度',
+              english: 'Tumbling Difficulties',
+            },
+            element: {
+              japanese: '',
+              english: '',
+            },
           },
         ],
       },
     ],
   },
   {
-    title: '特別規則',
-    titleEnglish: 'Special Rules',
+    title: {
+      japanese: '特別規則',
+      english: 'Special Rules',
+    },
     section: [
       {
-        title: 'ジュニア適用規則',
-        titleEnglish: 'Rules for Juniors',
-        content: `次に示すものを除き、（公財）日本体操協会新体操採点規則による。
+        title: {
+          japanese: 'ジュニア適用規則',
+          english: 'Rules for Juniors',
+        },
+        content: {
+          japanese: `次に示すものを除き、（公財）日本体操協会新体操採点規則による。
 
 【禁止技】
 団体競技、個人競技共に以下の技を禁止する。なお、禁止技を行なった場合は構成・実施ともに０点とする。
@@ -58,7 +75,7 @@ export const APPENDIX_SPECIAL_RULES_ARTICLES: RuleArticle[] = [
 
 【手具の規格】
 体格差が大きいため、（公財）日本体操協会指定業者が販売する手具が使用できない場合は、規格通りであれば自作でも可とする。`,
-        contentEnglish: `Except as shown below, the Rhythmic Gymnastics Code of Points of the Japan Gymnastics Association applies.
+          english: `Except as shown below, the Rhythmic Gymnastics Code of Points of the Japan Gymnastics Association applies.
 
 [Prohibited elements]
 The following elements are prohibited in both the group and the individual competition. If a prohibited element is performed, both composition and execution are scored 0 points.
@@ -80,18 +97,24 @@ Missing triple under with the rope
 
 [Apparatus specifications]
 Because of large differences in body size, if apparatus sold by suppliers designated by the Japan Gymnastics Association cannot be used, self-made apparatus are allowed as long as they meet the specifications.`,
+        },
         image: [
           {
             src: '/images/rules/syugukikaku(J).png',
-            alt: 'ジュニア手具規格表',
-            altEnglish: 'Table of apparatus specifications for juniors',
+            alt: {
+              japanese: 'ジュニア手具規格表',
+              english: 'Table of apparatus specifications for juniors',
+            },
           },
         ],
       },
       {
-        title: '小学生適用規則',
-        titleEnglish: 'Rules for Elementary School Students',
-        content: `次に示すものを除き、（公財）日本体操協会新体操採点規則による。
+        title: {
+          japanese: '小学生適用規則',
+          english: 'Rules for Elementary School Students',
+        },
+        content: {
+          japanese: `次に示すものを除き、（公財）日本体操協会新体操採点規則による。
               
 【団体競技】
 自由演技
@@ -118,7 +141,7 @@ e. チーム全体が元気よく楽しく演技できたか。
 
 【採点用紙】
 次の観点から、演技の採点を行う。`,
-        contentEnglish: `Except as shown below, the Rhythmic Gymnastics Code of Points of the Japan Gymnastics Association applies.
+          english: `Except as shown below, the Rhythmic Gymnastics Code of Points of the Japan Gymnastics Association applies.
 
 [Group competition]
 Free routine
@@ -145,18 +168,24 @@ e. Did the whole team perform energetically and joyfully?
 
 [Score sheet]
 Routines are scored from the following viewpoints.`,
+        },
         image: [
           {
             src: '/images/rules/junior(PCS).png',
-            alt: '新体操小学校適用規則採点用紙',
-            altEnglish: 'Score sheet under the rules for elementary school students',
+            alt: {
+              japanese: '新体操小学校適用規則採点用紙',
+              english: 'Score sheet under the rules for elementary school students',
+            },
           },
         ],
       },
       {
-        title: '高体連規則',
-        titleEnglish: 'Rules of the All Japan High School Athletic Federation',
-        content: `次に示すものを除き、（公財）日本体操協会男子新体操採点規則による。
+        title: {
+          japanese: '高体連規則',
+          english: 'Rules of the All Japan High School Athletic Federation',
+        },
+        content: {
+          japanese: `次に示すものを除き、（公財）日本体操協会男子新体操採点規則による。
               
 【禁止技について】
 団体競技・個人競技ともに下記の技を禁止する。なお、禁止技を行なった場合は、その演技を０点とする。  
@@ -189,7 +218,7 @@ Routines are scored from the following viewpoints.`,
 
 【成績順位および表彰について】
 不慮の事故等で種目の危険があった場合、種目別選手権の表彰対象とする。`,
-        contentEnglish: `Except as shown below, the Men's Rhythmic Gymnastics Code of Points of the Japan Gymnastics Association applies.
+          english: `Except as shown below, the Men's Rhythmic Gymnastics Code of Points of the Japan Gymnastics Association applies.
 
 [Prohibited elements]
 The following elements are prohibited in both the group and the individual competition. If a prohibited element is performed, the routine is scored 0 points.
@@ -222,17 +251,23 @@ The emblem must follow the rules and be distinguishable from the uniform.
 
 [Rankings and awards]
 If a gymnast has to withdraw from an apparatus because of an unforeseen accident or similar, the gymnast remains eligible for the apparatus championship awards.`,
+        },
       },
     ],
   },
   {
-    title: '徒手の演技',
-    titleEnglish: 'Free-Hand Routines',
+    title: {
+      japanese: '徒手の演技',
+      english: 'Free-Hand Routines',
+    },
     section: [
       {
-        title: '徒手の基礎要素群',
-        titleEnglish: 'Basic Free-Hand Element Groups',
-        content: `1. 各種徒手
+        title: {
+          japanese: '徒手の基礎要素群',
+          english: 'Basic Free-Hand Element Groups',
+        },
+        content: {
+          japanese: `1. 各種徒手
 上肢、下肢、体前屈、体側屈、体回旋、腕の振動、脚の屈伸、胸の後反、体の弾性、波動（蛇動）など様々な複合運動
 
 2. 各種跳躍（ジャンプ）
@@ -254,7 +289,7 @@ If a gymnast has to withdraw from an apparatus because of an unforeseen accident
 ターン・ピヴォット。   
 
 以上の要素は、さまざまな方向、さまざまな面、移動を伴うあるいは伴わない、片足支持あるいは両足支持、腕の動きと結びつけるなどの多彩な動きを考慮に入れて実施することができる。`,
-        contentEnglish: `1. Various free-hand movements
+          english: `1. Various free-hand movements
 Arm and leg movements, forward bends, side bends, trunk rotations, arm swings, knee bends, chest arches, body springs, body waves and other combined movements
 
 2. Various jumps
@@ -276,27 +311,39 @@ Various steps.
 Turns and pivots.
 
 These elements can be performed with a wide range of movements: in various directions and planes, with or without traveling, on one foot or both feet, combined with arm movements, and so on.`,
+        },
       },
       {
-        title: '構成に要求されるもの',
-        titleEnglish: 'Requirements for the Composition',
-        content:
-          '演技の構成は、あらゆる徒手の要素を含め、跳躍力、柔軟性、巧緻性などを十分発揮し、あらゆる動きの変化で、その技術は独創的であり、迅速な動きで精神（３秒以上）を含まず、流れるように実施されなければならない。その動きのつなぎとして、前転・後転・側転・ブリッジを使用することは認める。',
-        contentEnglish:
-          'The composition of a routine must include all kinds of free-hand elements, make full use of jumping power, flexibility and dexterity, show all kinds of changes in movement, use original technique, and flow with quick movements without static pauses (of 3 seconds or more). Forward rolls, backward rolls, cartwheels and bridges may be used as links between movements.',
+        title: {
+          japanese: '構成に要求されるもの',
+          english: 'Requirements for the Composition',
+        },
+        content: {
+          japanese:
+            '演技の構成は、あらゆる徒手の要素を含め、跳躍力、柔軟性、巧緻性などを十分発揮し、あらゆる動きの変化で、その技術は独創的であり、迅速な動きで精神（３秒以上）を含まず、流れるように実施されなければならない。その動きのつなぎとして、前転・後転・側転・ブリッジを使用することは認める。',
+          english:
+            'The composition of a routine must include all kinds of free-hand elements, make full use of jumping power, flexibility and dexterity, show all kinds of changes in movement, use original technique, and flow with quick movements without static pauses (of 3 seconds or more). Forward rolls, backward rolls, cartwheels and bridges may be used as links between movements.',
+        },
       },
       {
-        title: '実施',
-        titleEnglish: 'Execution',
-        content:
-          '実施に際しては新体操の特徴を正確に生かしたものでなくてはならない。すなわち、正しい身体の位置、スケールの大きさ、支点の制御、移動の正確さなどである。身体の動きはすべて、緩急の変化、及び力動感、大きさ、スピードのひつな結びつきをともなった継続的な動作でなくてはならない。また、すべての要素は、頭と腕を含む身体全体で行われなくてはならない。つまり、動きは局部的であってはならない。',
-        contentEnglish:
-          'Execution must bring out the characteristics of rhythmic gymnastics accurately: correct body position, amplitude, control of the points of support, accuracy of movement across the floor, and so on. All body movements must be continuous, with changes between fast and slow and a close connection of dynamics, amplitude and speed. All elements must be performed with the whole body, including the head and arms; that is, movements must not be isolated to one part of the body.',
+        title: {
+          japanese: '実施',
+          english: 'Execution',
+        },
+        content: {
+          japanese:
+            '実施に際しては新体操の特徴を正確に生かしたものでなくてはならない。すなわち、正しい身体の位置、スケールの大きさ、支点の制御、移動の正確さなどである。身体の動きはすべて、緩急の変化、及び力動感、大きさ、スピードのひつな結びつきをともなった継続的な動作でなくてはならない。また、すべての要素は、頭と腕を含む身体全体で行われなくてはならない。つまり、動きは局部的であってはならない。',
+          english:
+            'Execution must bring out the characteristics of rhythmic gymnastics accurately: correct body position, amplitude, control of the points of support, accuracy of movement across the floor, and so on. All body movements must be continuous, with changes between fast and slow and a close connection of dynamics, amplitude and speed. All elements must be performed with the whole body, including the head and arms; that is, movements must not be isolated to one part of the body.',
+        },
       },
       {
-        title: '徒手の要素の典型的な欠点',
-        titleEnglish: 'Typical Faults in Free-Hand Elements',
-        content: `【構成の欠点】
+        title: {
+          japanese: '徒手の要素の典型的な欠点',
+          english: 'Typical Faults in Free-Hand Elements',
+        },
+        content: {
+          japanese: `【構成の欠点】
 下記に欠点表を示す。
 
 【実施の欠点】
@@ -311,7 +358,7 @@ These elements can be performed with a wide range of movements: in various direc
   （例：バランスのポーズをとりながら身体を完全に蛇動させるなど）
   d. ２つ以上の要素（同じ、または異なった種類の）を、途中に別の動作を入れずに連続して行う場合。
   （例：中間にステップを入れずに連続ジャンプを行うなど）`,
-        contentEnglish: `[Composition faults]
+          english: `[Composition faults]
 The table of faults is shown below.
 
 [Execution faults]
@@ -326,61 +373,84 @@ General guidelines for judging the level of free-hand difficulties
   (e.g. a full body wave while holding a balance)
   d. When two or more elements (of the same or different kinds) are performed in a row without other movements in between.
   (e.g. consecutive jumps without steps in between)`,
+        },
         image: [
           {
             src: '/images/rules/tosyukettenhyou.png',
-            alt: '徒手欠点表',
-            altEnglish: 'Table of free-hand faults',
+            alt: {
+              japanese: '徒手欠点表',
+              english: 'Table of free-hand faults',
+            },
           },
         ],
       },
       {
-        title: '徒手難度表',
-        titleEnglish: 'Tables of Free-Hand Difficulties',
-        content: `以下の表においては、諸要素はグループ別に記されている。これらの要素には非常に多くの実施方法および配列が考えられる。難度のレベルを決定するには、一般目安の項を参照のこと。
+        title: {
+          japanese: '徒手難度表',
+          english: 'Tables of Free-Hand Difficulties',
+        },
+        content: {
+          japanese: `以下の表においては、諸要素はグループ別に記されている。これらの要素には非常に多くの実施方法および配列が考えられる。難度のレベルを決定するには、一般目安の項を参照のこと。
 ※徒手の難度は、団体競技の場合、全員が実施すれば１ランクあがる。`,
-        contentEnglish: `In the tables below, the elements are listed by group. These elements can be performed and arranged in a great many ways. To determine the level of difficulty, see the section on general guidelines.
+          english: `In the tables below, the elements are listed by group. These elements can be performed and arranged in a great many ways. To determine the level of difficulty, see the section on general guidelines.
 * In the group competition, free-hand difficulties rise one rank when all gymnasts perform them.`,
+        },
         image: [
           {
             src: '/images/rules/jump(D).png',
-            alt: '徒手の難度表（跳躍）',
-            altEnglish: 'Table of free-hand difficulties (jumps)',
+            alt: {
+              japanese: '徒手の難度表（跳躍）',
+              english: 'Table of free-hand difficulties (jumps)',
+            },
           },
           {
             src: '/images/rules/handstand(D).png',
-            alt: '徒手の難度表（倒立）',
-            altEnglish: 'Table of free-hand difficulties (handstands)',
+            alt: {
+              japanese: '徒手の難度表（倒立）',
+              english: 'Table of free-hand difficulties (handstands)',
+            },
           },
           {
             src: '/images/rules/sijikaiten(D).png',
-            alt: '徒手の難度表（支持回転表）',
-            altEnglish: 'Table of free-hand difficulties (support rotations)',
+            alt: {
+              japanese: '徒手の難度表（支持回転表）',
+              english: 'Table of free-hand difficulties (support rotations)',
+            },
           },
           {
             src: '/images/rules/kaisen(D).png',
-            alt: '徒手の難度表（旋回・ 回旋)',
-            altEnglish: 'Table of free-hand difficulties (circles and rotations)',
+            alt: {
+              japanese: '徒手の難度表（旋回・ 回旋)',
+              english: 'Table of free-hand difficulties (circles and rotations)',
+            },
           },
           {
             src: '/images/rules/turn(D).png',
-            alt: '徒手の難度表（転向（ターン））',
-            altEnglish: 'Table of free-hand difficulties (turns)',
+            alt: {
+              japanese: '徒手の難度表（転向（ターン））',
+              english: 'Table of free-hand difficulties (turns)',
+            },
           },
           {
             src: '/images/rules/balance(D).png',
-            alt: '徒手の難度表（平均）',
-            altEnglish: 'Table of free-hand difficulties (balances)',
+            alt: {
+              japanese: '徒手の難度表（平均）',
+              english: 'Table of free-hand difficulties (balances)',
+            },
           },
           {
             src: '/images/rules/stretchA(D).png',
-            alt: '徒手の難度表（静的柔軟）',
-            altEnglish: 'Table of free-hand difficulties (static flexibility)',
+            alt: {
+              japanese: '徒手の難度表（静的柔軟）',
+              english: 'Table of free-hand difficulties (static flexibility)',
+            },
           },
           {
             src: '/images/rules/stretchB(D).png',
-            alt: '徒手の難度表（動的柔軟）',
-            altEnglish: 'Table of free-hand difficulties (dynamic flexibility)',
+            alt: {
+              japanese: '徒手の難度表（動的柔軟）',
+              english: 'Table of free-hand difficulties (dynamic flexibility)',
+            },
           },
         ],
       },

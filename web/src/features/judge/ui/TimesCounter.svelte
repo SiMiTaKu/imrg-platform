@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { JudgeThemeColor } from '../config/themeColor'
   import { m } from '$lib/paraglide/messages'
   import { judgementApparatus } from '../store/apparatus'
 
@@ -11,7 +12,7 @@
 
   const { count, onchange }: Props = $props()
 
-  const color = $derived($judgementApparatus?.imageColor ?? 'gray')
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 </script>
 
 <div class="counter {color}">
@@ -33,23 +34,23 @@
 
 <style lang="scss">
   .gray {
-    --button-color: #707070;
+    --button-color: #{map.get($theme, gray)};
   }
 
   .blue {
-    --button-color: #0065a4;
+    --button-color: #{map.get($theme, blue)};
   }
 
   .red {
-    --button-color: #d30000;
+    --button-color: #{map.get($theme, red)};
   }
 
   .yellow {
-    --button-color: #ecc200;
+    --button-color: #{map.get($theme, yellow)};
   }
 
   .green {
-    --button-color: #219300;
+    --button-color: #{map.get($theme, green)};
   }
 
   .counter {

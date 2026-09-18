@@ -1,4 +1,5 @@
-import { Apparatus, ContentType } from '../config/category'
+import { Apparatus } from '@shared/config/apparatus'
+import { ContentType } from '../config/category'
 import type { GroupVideoResource, IndividualVideoResource, VideoResource } from '../model/video'
 import { Player } from './player'
 import { Team } from './team'

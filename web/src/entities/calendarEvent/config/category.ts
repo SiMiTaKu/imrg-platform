@@ -1,27 +1,39 @@
 import { AccentColor } from '@imrg-platform/design-system'
-import type { EventCategory } from '../model'
-
-/** 絞り込みボタンを並べる順 */
-export const CATEGORY_ORDER: readonly EventCategory[] = [
-  'national',
-  'regional',
-  'prefectural',
-  'performance',
-  'workshop',
-  'international',
-]
+import { m } from '$lib/paraglide/messages'
 
 /**
- * 種類ごとの色。カレンダーの印と一覧の左の線に使う。表示名は文言ファイル（`calendar_category_*`）
+ * イベントの種類。
  *
  * @remarks
- * 色の値はデザインシステム（`AccentColor`）が持つ。ここでは「どの種類にどの色を当てるか」だけを決める
+ * 並びは絞り込みボタンの並び。`label` は表示中の言語の表記を返す関数なので、
+ * サーバーからブラウザーへ渡すデータには入れられない。渡すときは `slug` だけにする
  */
-export const CATEGORY_COLORS: Record<EventCategory, AccentColor> = {
-  national: AccentColor.BLUE,
-  regional: AccentColor.GREEN,
-  prefectural: AccentColor.PURPLE,
-  performance: AccentColor.PINK,
-  workshop: AccentColor.AMBER,
-  international: AccentColor.TEAL,
-}
+export const EventCategory = {
+  /** 全国大会 */
+  NATIONAL: { slug: 'national', label: m.calendar_category_national, color: AccentColor.BLUE },
+  /** 地区・ブロック大会 */
+  REGIONAL: { slug: 'regional', label: m.calendar_category_regional, color: AccentColor.GREEN },
+  /** 都道府県大会・新人戦 */
+  PREFECTURAL: {
+    slug: 'prefectural',
+    label: m.calendar_category_prefectural,
+    color: AccentColor.PURPLE,
+  },
+  /** 発表会・演技会・公演 */
+  PERFORMANCE: {
+    slug: 'performance',
+    label: m.calendar_category_performance,
+    color: AccentColor.PINK,
+  },
+  /** 講習会・体験会・合宿 */
+  WORKSHOP: { slug: 'workshop', label: m.calendar_category_workshop, color: AccentColor.AMBER },
+  /** 海外・国際的な催し */
+  INTERNATIONAL: {
+    slug: 'international',
+    label: m.calendar_category_international,
+    color: AccentColor.TEAL,
+  },
+} as const
+
+/** 種類を絞り込みボタンの並び順に並べたもの */
+export const EVENT_CATEGORIES = Object.values(EventCategory)

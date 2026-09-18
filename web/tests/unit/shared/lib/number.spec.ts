@@ -1,20 +1,20 @@
 import { describe, expect, it } from 'vitest'
-import { buildScoreFormula, formatPoint } from '@features/judge'
+import { formatNumber } from '@shared/lib/number'
 
-describe('formatPoint', () => {
+describe('formatNumber', () => {
   describe('正常系', () => {
     it.each([
       ['日本語で 0.5 の場合、小数 3 桁になること', 0.5, 'ja', '0.500'],
       ['英語で 0.5 の場合、小数 3 桁になること', 0.5, 'en', '0.500'],
       ['日本語で 9.45 の場合、小数 3 桁になること', 9.45, 'ja', '9.450'],
       ['英語で 0 の場合、小数 3 桁になること', 0, 'en', '0.000'],
-    ])('%s', (_, value, locale, expected) => {
+    ] as const)('%s', (_, value, locale, expected) => {
       // #region Given
       // 引数は it.each の表で渡す
       // #endregion
 
       // #region When
-      const result = formatPoint(value, locale)
+      const result = formatNumber(value, locale)
       // #endregion
 
       // #region Then
@@ -30,7 +30,7 @@ describe('formatPoint', () => {
         // #endregion
 
         // #region When
-        const result = formatPoint(value, 'en')
+        const result = formatNumber(value, 'en')
         // #endregion
 
         // #region Then
@@ -45,30 +45,11 @@ describe('formatPoint', () => {
       // #endregion
 
       // #region When
-      const result = formatPoint(value, 'ja', 2)
+      const result = formatNumber(value, 'ja', 2)
       // #endregion
 
       // #region Then
       expect(result).toBe('10.00')
-      // #endregion
-    })
-  })
-})
-
-describe('buildScoreFormula', () => {
-  describe('正常系', () => {
-    it('AとBの減点を渡した場合、以前と同じ形の式になること', () => {
-      // #region Given
-      const pointA = 5.5
-      const pointB = 0.3
-      // #endregion
-
-      // #region When
-      const result = buildScoreFormula(pointA, pointB, 'ja')
-      // #endregion
-
-      // #region Then
-      expect(result).toBe('10.00　-　( 5.500 + 0.300 )')
       // #endregion
     })
   })

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import type { JudgeThemeColor } from '../model/apparatus'
+  import type { JudgeThemeColorKey } from '../model/apparatus'
 
   type Props = {
     /** 設問の見出し */
@@ -8,7 +8,7 @@
     /** 設問の補足。無ければ出さない */
     annotation?: string
     /** テーマの色（手具の色） */
-    color: JudgeThemeColor
+    color: JudgeThemeColorKey
   }
 
   const { caption, annotation = undefined, color }: Props = $props()
@@ -23,23 +23,23 @@
 
 <style lang="scss">
   .gray {
-    --icon-background: #707070;
+    --icon-background: #{map.get($theme, gray)};
   }
 
   .blue {
-    --icon-background: #0065a4;
+    --icon-background: #{map.get($theme, blue)};
   }
 
   .red {
-    --icon-background: #d30000;
+    --icon-background: #{map.get($theme, red)};
   }
 
   .yellow {
-    --icon-background: #ecc200;
+    --icon-background: #{map.get($theme, yellow)};
   }
 
   .green {
-    --icon-background: #219300;
+    --icon-background: #{map.get($theme, green)};
   }
 
   .header {
