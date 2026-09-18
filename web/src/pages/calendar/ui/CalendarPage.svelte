@@ -14,7 +14,7 @@
   } from '@entities/calendarEvent'
   import {
     CalendarSearchPanel,
-    PERIODS,
+    EVENT_PERIODS,
     defaultState,
     filterEvents,
     groupByMonth,
@@ -183,7 +183,7 @@
 
     {#if calendarState.view === 'list'}
       <div class="segmented" aria-label={withSecondary(m.calendar_period_label)} role="group">
-        {#each PERIODS as period (period.key)}
+        {#each EVENT_PERIODS as period (period.key)}
           <button
             class="segment"
             class:active={calendarState.period === period.key}

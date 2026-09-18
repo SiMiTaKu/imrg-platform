@@ -1,12 +1,7 @@
-<script lang="ts" module>
-  import { PUBLIC_BASE_URL } from '$env/static/public'
-
-  /** SNS のカード画像（1200×630）。絶対 URL でないと表示されない */
-  const OGP_IMAGE = `${PUBLIC_BASE_URL}/images/ogp.png`
-</script>
-
 <script lang="ts">
+  import { PUBLIC_BASE_URL } from '$env/static/public'
   import { m } from '$lib/paraglide/messages'
+  import { OGP_IMAGE } from '../config/layout'
   import type { PageMeta } from '@shared/config/meta'
   import {
     BASE_LOCALE,

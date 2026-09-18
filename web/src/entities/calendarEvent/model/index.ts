@@ -1,8 +1,7 @@
 export type {
   CalendarEvent,
   EventCategory,
+  EventCategorySlug,
   EventSchedule,
-  LocalizedText,
-  TranslatedText,
   Venue,
 } from './calendarEvent'
