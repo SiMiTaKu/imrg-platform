@@ -19,5 +19,10 @@
   "background_music_flow_editing_title": "編曲",
   "background_music_flow_editing_description": "打ち合わせの内容から、編曲をします。",
   "background_music_flow_delivery_title": "納品",
-  "background_music_flow_delivery_description": "編集した曲をデータでお渡しします。"
+  "background_music_flow_delivery_description": "編集した曲をデータでお渡しします。",
+  "background_music_price_title": "料金",
+  "background_music_price_unit": "1曲あたり",
+  "background_music_price_amount": "{price}〜",
+  "background_music_price_note_1": "曲の長さや、編集する内容によって変わります。",
+  "background_music_price_note_2": "お見積もりをお伝えしてから作業に入ります。"
 }

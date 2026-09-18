@@ -19,5 +19,10 @@
   "background_music_flow_editing_title": "Editing",
   "background_music_flow_editing_description": "We edit the music based on our consultation.",
   "background_music_flow_delivery_title": "Delivery",
-  "background_music_flow_delivery_description": "We send you the edited music as a digital file."
+  "background_music_flow_delivery_description": "We send you the edited music as a digital file.",
+  "background_music_price_title": "Pricing",
+  "background_music_price_unit": "Per piece of music",
+  "background_music_price_amount": "From {price}",
+  "background_music_price_note_1": "The price depends on the length of the music and how much editing it needs.",
+  "background_music_price_note_2": "We send you a quote before starting the work."
 }
