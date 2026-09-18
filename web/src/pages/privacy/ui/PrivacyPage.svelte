@@ -1,26 +1,17 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
+  import { getLocale } from '@shared/lib/i18n'
   import { PolicyLayout } from '@widgets/policyLayout'
   import PrivacyBodyEnglish from './PrivacyBodyEnglish.svelte'
   import PrivacyBodyJapanese from './PrivacyBodyJapanese.svelte'
 
-  // 日本語ページは、これまでどおり日本語の本文のあとに英語の本文を載せる。英語ページは英語だけ
-  const showsBoth = showsSecondaryText()
+  // 表示する言語の本文だけを出す
+  const isJapanese = getLocale() === 'ja'
 </script>
 
-<PolicyLayout
-  enactedAt={showsBoth
-    ? `${m.privacy_enacted_at()} / ${m.privacy_enacted_at({}, { locale: SECONDARY_LOCALE })}`
-    : m.privacy_enacted_at()}
-  subtitle={showsBoth ? m.meta_privacy_page({}, { locale: SECONDARY_LOCALE }) : undefined}
-  title={m.meta_privacy_page()}
->
-  {#if showsBoth}
+<PolicyLayout enactedAt={m.privacy_enacted_at()} title={m.meta_privacy_page()}>
+  {#if isJapanese}
     <PrivacyBodyJapanese />
-    <section lang="en">
-      <PrivacyBodyEnglish />
-    </section>
   {:else}
     <PrivacyBodyEnglish />
   {/if}
