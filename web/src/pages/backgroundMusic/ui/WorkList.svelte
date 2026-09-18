@@ -1,24 +1,21 @@
 <script lang="ts">
   import { Heading } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
+  import { getLocale } from '@shared/lib/i18n'
   import { pageData } from '@shared/lib/device'
-  import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
+  import {} from '@shared/lib/i18n'
   import { ImageAssets } from '@shared/ui'
   import { apparatusOfSlug } from '@shared/lib/apparatus'
   import { WORK_LIST } from '../config/workList'
   import YoutubeIcon from '../images/youtube-icon.png?w=120;240&format=webp&as=meta'
 
-  // 日本語ページだけ、見出しの下に英語を小さく併記する。選手名は英語ページで英語の表記にする
-  const showsBoth = showsSecondaryText()
+  const locale = getLocale()
 </script>
 
 <section class="work-list" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
-    subtitle={showsBoth
-      ? m.background_music_work_list_title({}, { locale: SECONDARY_LOCALE })
-      : undefined}
     title={m.background_music_work_list_title()}
   />
   <ul class="cards">
@@ -26,7 +23,7 @@
       <li class="card">
         <a class="link" href={work.youtube} rel="noopener noreferrer" target="_blank">
           <span class="name"
-            >{showsBoth ? work.customerName.japanese : work.customerName.english}</span
+            >{locale === 'ja' ? work.customerName.japanese : work.customerName.english}</span
           >
           <span class="apparatus">{apparatusOfSlug(work.apparatus).label()}</span>
           <div class="youtube">

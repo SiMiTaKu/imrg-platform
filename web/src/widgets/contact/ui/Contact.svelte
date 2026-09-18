@@ -3,14 +3,12 @@
   import { m } from '$lib/paraglide/messages'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
-  import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
 </script>
 
 <section class="contact" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
-    subtitle={showsSecondaryText() ? m.contact_title({}, { locale: SECONDARY_LOCALE }) : undefined}
     title={m.contact_title()}
   />
   <div class="content">

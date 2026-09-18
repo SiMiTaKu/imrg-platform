@@ -1,7 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
   import { EVENT_CATEGORIES, type EventCategorySlug } from '@entities/calendarEvent'
-  import { SECONDARY_LOCALE, showsSecondaryText } from '@shared/lib/i18n'
+
   import { isEveryCategory } from '../lib/filter'
 
   /** キーワードと種類で絞り込む欄の引数 */
@@ -17,17 +17,6 @@
   }
 
   const { keyword, categories, onkeywordchange, oncategorieschange }: Props = $props()
-
-  // 日本語ページでは、ラベルに英語を小さく併記する
-  const showsBoth = showsSecondaryText()
-
-  /**
-   * 日本語ページでは「日本語 / English」の形にする
-   * @param message - 文言
-   * @returns 表示する文字列
-   */
-  const withSecondary = (message: typeof m.calendar_search_label): string =>
-    showsBoth ? `${message()} / ${message({}, { locale: SECONDARY_LOCALE })}` : message()
 
   // 全部選んだときは「すべて」と同じ結果なので、「すべて」も選択状態にする
   const allCategories = $derived(isEveryCategory(categories))
@@ -45,23 +34,19 @@
   }
 </script>
 
-<section class="search" aria-label={withSecondary(m.calendar_search_label)}>
+<section class="search" aria-label={m.calendar_search_label()}>
   <label class="keyword">
-    <span class="field-label"
-      >{m.calendar_keyword_label()}{#if showsBoth}<span lang="en"
-          >{m.calendar_keyword_label({}, { locale: SECONDARY_LOCALE })}</span
-        >{/if}</span
-    >
+    <span class="field-label">{m.calendar_keyword_label()}</span>
     <input
       class="keyword-input"
       type="search"
       value={keyword}
-      placeholder={withSecondary(m.calendar_keyword_placeholder)}
+      placeholder={m.calendar_keyword_placeholder()}
       oninput={(inputEvent) => onkeywordchange(inputEvent.currentTarget.value)}
     />
   </label>
 
-  <div class="chips" aria-label={withSecondary(m.calendar_category_filter_label)} role="group">
+  <div class="chips" aria-label={m.calendar_category_filter_label()} role="group">
     <button
       class="chip"
       class:active={allCategories}
@@ -69,9 +54,7 @@
       aria-pressed={allCategories}
       onclick={() => oncategorieschange([])}
     >
-      {m.calendar_category_all()}{#if showsBoth}<span lang="en"
-          >{m.calendar_category_all({}, { locale: SECONDARY_LOCALE })}</span
-        >{/if}
+      {m.calendar_category_all()}
     </button>
     {#each EVENT_CATEGORIES as category (category.slug)}
       <button
@@ -82,9 +65,7 @@
         aria-pressed={categories.includes(category.slug)}
         onclick={() => toggleCategory(category.slug)}
       >
-        <span class="chip-dot"></span>{category.label()}{#if showsBoth}<span lang="en"
-            >{category.label({}, { locale: SECONDARY_LOCALE })}</span
-          >{/if}
+        <span class="chip-dot"></span>{category.label()}
       </button>
     {/each}
   </div>
@@ -108,12 +89,6 @@
   .field-label {
     font-size: 13px;
     font-weight: bold;
-  }
-
-  .field-label span[lang='en'] {
-    margin-left: $space-size-8;
-    font-weight: normal;
-    color: map.get($gray, light-text);
   }
 
   .keyword-input {
@@ -149,12 +124,6 @@
     cursor: pointer;
   }
 
-  .chip span[lang='en'] {
-    font-size: $font-size-10;
-    font-weight: normal;
-    color: map.get($gray, light-text);
-  }
-
   .chip-dot {
     width: 8px;
     height: 8px;
@@ -166,9 +135,5 @@
     color: $white;
     border-color: map.get($sky-blue, button);
     background: map.get($sky-blue, button);
-  }
-
-  .chip.active span[lang='en'] {
-    color: $white;
   }
 </style>
