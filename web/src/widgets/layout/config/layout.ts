@@ -3,6 +3,9 @@ import { PUBLIC_BASE_URL } from '$env/static/public'
 /** メニュー1項目あたりの高さ（px） */
 export const MENU_ITEM_HEIGHT = 44
 
+/** メニューの一番下に並べる SNS の高さ（px） */
+export const MENU_SNS_HEIGHT = 80
+
 /** メニューの上下の余白の合計（px） */
 export const MENU_VERTICAL_SPACE = 20
 
