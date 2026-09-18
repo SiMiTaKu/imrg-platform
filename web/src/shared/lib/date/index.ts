@@ -8,6 +8,7 @@ export {
   formatMonth,
   formatMonthEnglish,
   formatMonthJapanese,
+  formatYear,
   parseDate,
   shiftMonth,
   shortMonthEnglish,
