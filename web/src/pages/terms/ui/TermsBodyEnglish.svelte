@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { INSTAGRAM, YOUTUBE_TERMS } from '../config/links'
+  import { LINKS } from '@shared/config/links'
 </script>
 
 <!-- 英語の本文 -->
@@ -13,7 +13,8 @@
 <p>
   These Terms apply to all use of the Site and the Tool. The Tool uses YouTube API Services; by
   using the Tool, you agree to be bound by the
-  <a href={YOUTUBE_TERMS} rel="noopener noreferrer" target="_blank">YouTube Terms of Service</a>.
+  <a href={LINKS.youtubeTerms} rel="noopener noreferrer" target="_blank">YouTube Terms of Service</a
+  >.
 </p>
 
 <h3>2. Copyright</h3>
@@ -49,7 +50,7 @@
 
 <h3>8. Contact</h3>
 <p>
-  Please contact us via <a href={INSTAGRAM} rel="noopener noreferrer" target="_blank"
+  Please contact us via <a href={LINKS.instagram} rel="noopener noreferrer" target="_blank"
     >Instagram direct message</a
   >.
 </p>

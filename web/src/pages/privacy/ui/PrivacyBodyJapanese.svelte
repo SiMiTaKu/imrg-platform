@@ -1,12 +1,5 @@
 <script lang="ts">
-  import {
-    CLOUDFLARE_PRIVACY,
-    GOOGLE_PERMISSIONS,
-    GOOGLE_PRIVACY,
-    GOOGLE_USER_DATA_POLICY,
-    INSTAGRAM,
-    YOUTUBE_TERMS,
-  } from '../config/links'
+  import { LINKS } from '@shared/config/links'
 </script>
 
 <!-- 日本語の本文 -->
@@ -27,7 +20,7 @@
   本サイトがどのように見られているかを把握して改善するために、Cloudflare, Inc.
   のアクセス解析サービス「Cloudflare Web Analytics」を使用しています。このサービスは Cookie
   を使わず、閲覧者個人を特定したり追跡したりしません。取得するのは、閲覧されたページ、参照元のページ、ブラウザや端末の種類、国・地域、ページの読み込み時間などの集計のための情報です。詳しくは
-  <a href={CLOUDFLARE_PRIVACY} rel="noopener noreferrer" target="_blank"
+  <a href={LINKS.cloudflarePrivacy} rel="noopener noreferrer" target="_blank"
     >Cloudflare のプライバシーポリシー</a
   >をご覧ください。
 </p>
@@ -70,16 +63,17 @@
 <ul>
   <li>
     YouTube 利用規約:
-    <a href={YOUTUBE_TERMS} rel="noopener noreferrer" target="_blank">{YOUTUBE_TERMS}</a>
+    <a href={LINKS.youtubeTerms} rel="noopener noreferrer" target="_blank">{LINKS.youtubeTerms}</a>
   </li>
   <li>
     Google プライバシーポリシー:
-    <a href={GOOGLE_PRIVACY} rel="noopener noreferrer" target="_blank">{GOOGLE_PRIVACY}</a>
+    <a href={LINKS.googlePrivacy} rel="noopener noreferrer" target="_blank">{LINKS.googlePrivacy}</a
+    >
   </li>
 </ul>
 <p>
   本ツールが Google API から受け取った情報の使用と他のアプリへの転送は、限定使用の要件を含む
-  <a href={GOOGLE_USER_DATA_POLICY} rel="noopener noreferrer" target="_blank"
+  <a href={LINKS.googleUserDataPolicy} rel="noopener noreferrer" target="_blank"
     >Google API サービスのユーザーデータに関するポリシー</a
   >に従います。
 </p>
@@ -87,7 +81,9 @@
 <h3>8. アクセス権の取り消し</h3>
 <p>
   本ツールに与えたアクセス権は、Google アカウントのセキュリティ設定からいつでも取り消せます。
-  <a href={GOOGLE_PERMISSIONS} rel="noopener noreferrer" target="_blank">{GOOGLE_PERMISSIONS}</a>
+  <a href={LINKS.googlePermissions} rel="noopener noreferrer" target="_blank"
+    >{LINKS.googlePermissions}</a
+  >
 </p>
 
 <h3>9. 改定</h3>
@@ -97,7 +93,9 @@
 
 <h3>10. お問い合わせ</h3>
 <p>
-  本ポリシーに関するお問い合わせは、<a href={INSTAGRAM} rel="noopener noreferrer" target="_blank"
-    >Instagram のダイレクトメッセージ</a
+  本ポリシーに関するお問い合わせは、<a
+    href={LINKS.instagram}
+    rel="noopener noreferrer"
+    target="_blank">Instagram のダイレクトメッセージ</a
   >で受け付けています。
 </p>
