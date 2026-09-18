@@ -19,7 +19,6 @@
   "layout_sticky_footer_cta": "大会・イベントを探す",
   "layout_scroll_to_top": "TOP",
   "layout_back_to_top": "TOPに戻る",
-  "layout_locale_switch_to": "English",
   "contact_title": "問合わせ先",
   "contact_body_line1": "お問い合わせはインスタグラムのダイレクトメッセージにて、",
   "contact_body_line2": "いつでも受け付けております。",
@@ -27,5 +26,6 @@
   "contact_button": "問い合わせる",
   "error_title": "エラーが発生しました",
   "error_not_found": "※リクエストされたページは存在しません。",
-  "error_back_to_top": "トップに戻る"
+  "error_back_to_top": "トップに戻る",
+  "layout_locale_switch_label": "表示する言語"
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
+  import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
   import { categoryColor } from '../lib/category'
@@ -24,8 +24,6 @@
   const { event }: Props = $props()
 
   const locale = getLocale() as SiteLocale
-  // 日本語ページでは、種類名と大会名に英語を小さく併記する
-  const showsBoth = showsSecondaryText()
 
   // 日程と会場の区切り。英語ページでは全角の中黒を使わない
   const separator = locale === 'en' ? '·' : '・'
@@ -58,11 +56,7 @@
 
   <span class="body">
     <span class="meta">
-      <span class="category"
-        >{categoryLabel(event.category)}{#if showsBoth}<span lang="en"
-            >{categoryLabel(event.category, SECONDARY_LOCALE)}</span
-          >{/if}</span
-      >
+      <span class="category">{categoryLabel(event.category)}</span>
       {#if isTentative(event)}
         <span class="tag">{m.calendar_tag_tentative()}</span>
       {/if}
@@ -71,9 +65,6 @@
       {/if}
     </span>
     <span class="title">{localized.title}</span>
-    {#if showsBoth && localized.alternateTitle}
-      <span class="title-en" lang="en">{localized.alternateTitle}</span>
-    {/if}
     <span class="sub">
       {eventDateRange(event, locale)}{#if localized.venue}<span class="separator">{separator}</span
         >{localized.venue}{/if}
@@ -148,12 +139,6 @@
     color: map.get($gray, 600);
   }
 
-  .category span[lang='en'] {
-    margin-left: $space-size-4;
-    font-weight: normal;
-    color: map.get($gray, light-text);
-  }
-
   .tag {
     padding: 0 $space-size-4;
     color: map.get($gray, light-text);
@@ -171,12 +156,6 @@
     font-weight: bold;
     line-height: 1.45;
     font-feature-settings: 'palt';
-  }
-
-  .title-en {
-    font-size: 13px;
-    line-height: 1.4;
-    color: map.get($gray, light-text);
   }
 
   .sub {

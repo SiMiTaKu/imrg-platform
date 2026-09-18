@@ -19,7 +19,6 @@
   "layout_sticky_footer_cta": "Find competitions and events",
   "layout_scroll_to_top": "TOP",
   "layout_back_to_top": "Back to home",
-  "layout_locale_switch_to": "日本語",
   "contact_title": "Contact",
   "contact_body_line1": "We accept inquiries at any time",
   "contact_body_line2": "via Instagram direct message.",
@@ -27,5 +26,6 @@
   "contact_button": "Contact us",
   "error_title": "An error occurred",
   "error_not_found": "* The requested page does not exist.",
-  "error_back_to_top": "Back to home"
+  "error_back_to_top": "Back to home",
+  "layout_locale_switch_label": "Language"
 }
