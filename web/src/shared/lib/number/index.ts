@@ -1,1 +1,1 @@
-export { formatNumber } from './number'
+export { formatNumber, formatYen } from './number'

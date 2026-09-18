@@ -21,5 +21,11 @@
   "decorating_apparatus_flow_decorating_title": "Decoration",
   "decorating_apparatus_flow_decorating_description": "We make the decoration based on the design.",
   "decorating_apparatus_flow_delivery_title": "Delivery",
-  "decorating_apparatus_flow_delivery_description": "We hand over the finished decorated apparatus."
+  "decorating_apparatus_flow_delivery_description": "We hand over the finished decorated apparatus.",
+  "decorating_apparatus_price_title": "Pricing",
+  "decorating_apparatus_price_unit": "Per hour of work",
+  "decorating_apparatus_price_amount": "From {price}",
+  "decorating_apparatus_price_note_1": "We charge for the time the work takes.",
+  "decorating_apparatus_price_note_2": "The time depends on the design and how much of the apparatus is decorated.",
+  "decorating_apparatus_price_note_3": "We send you a quote before starting the work."
 }

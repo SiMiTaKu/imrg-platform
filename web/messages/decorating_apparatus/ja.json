@@ -21,5 +21,11 @@
   "decorating_apparatus_flow_decorating_title": "装飾",
   "decorating_apparatus_flow_decorating_description": "デザインを元に、装飾を製作します。",
   "decorating_apparatus_flow_delivery_title": "納品",
-  "decorating_apparatus_flow_delivery_description": "製作した装飾をお渡しします。"
+  "decorating_apparatus_flow_delivery_description": "製作した装飾をお渡しします。",
+  "decorating_apparatus_price_title": "料金",
+  "decorating_apparatus_price_unit": "作業1時間あたり",
+  "decorating_apparatus_price_amount": "{price}〜",
+  "decorating_apparatus_price_note_1": "作業にかかった時間で計算します。",
+  "decorating_apparatus_price_note_2": "デザインや装飾する範囲によって、かかる時間が変わります。",
+  "decorating_apparatus_price_note_3": "お見積もりをお伝えしてから作業に入ります。"
 }
