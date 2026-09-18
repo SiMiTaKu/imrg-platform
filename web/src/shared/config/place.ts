@@ -1,11 +1,11 @@
 /**
- * 会場が都道府県名や国名だけのときの英語名。
+ * 地名（都道府県名・国名）の英語表記。
  *
  * @remarks
- * 元データ（`~/imrg/calendar-data/`）には英語の会場名（`venueEnglish`）が無いイベントがあり、
- * その多くは会場が都道府県名だけになっている。英語ページで日本語を出さないように、ここで訳す
+ * 英語ページで、日本語の地名しか無いデータ（大会の会場など）を訳すために使う。
+ * 会場に限らずどの画面でも使うので shared に置く
  */
-export const VENUE_NAMES_EN: Readonly<Record<string, string>> = {
+export const PLACE_NAMES_ENGLISH: Readonly<Record<string, string>> = {
   北海道: 'Hokkaido',
   青森県: 'Aomori',
   岩手県: 'Iwate',
