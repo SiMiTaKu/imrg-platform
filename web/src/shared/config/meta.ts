@@ -172,4 +172,4 @@ export const META_DATA = {
     path: ROUTES.terms,
     ogType: 'website',
   }),
-}
+} as const

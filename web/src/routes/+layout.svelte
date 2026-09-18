@@ -2,6 +2,7 @@
   import '../app/styles/global.css'
   import { onMount, type Snippet } from 'svelte'
   import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
+  import { LOCAL_HOSTS } from '../app/config/analytics'
   import { pageData } from '@shared/lib/device'
   import { Footer, Header, LocalePageLinks, ScrollToTopButton } from '@widgets/layout'
 
@@ -12,9 +13,6 @@
   $effect.pre(() => {
     pageData.update(screenWidth)
   })
-
-  /** 手元の開発サーバー。Cloudflare 側で弾かれ、コンソールにエラーが出るだけなので読み込まない */
-  const LOCAL_HOSTS = ['localhost', '127.0.0.1']
 
   // アクセス解析（Cloudflare Web Analytics）。Cookie を使わない。
   // トークンが空のときは読み込まない

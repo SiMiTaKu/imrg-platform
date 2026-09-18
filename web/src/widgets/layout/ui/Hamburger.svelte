@@ -1,14 +1,9 @@
-<script lang="ts" module>
-  /** メニュー1項目あたりの高さ（px）と、上下の余白の合計（px） */
-  const ITEM_HEIGHT = 44
-  const VERTICAL_SPACE = 20
-</script>
-
 <script lang="ts">
   import { page } from '$app/state'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { deLocalizeHref, getLocale, localizeHref, publishedLocales } from '@shared/lib/i18n'
+  import { MENU_ITEM_HEIGHT, MENU_VERTICAL_SPACE } from '../config/layout'
   import { NAVIGATION_LINKS } from '../config/navigation'
 
   /** メニューの引数 */
@@ -29,7 +24,7 @@
 </script>
 
 <div
-  style:--open-height={`${itemCount * ITEM_HEIGHT + VERTICAL_SPACE}px`}
+  style:--open-height={`${itemCount * MENU_ITEM_HEIGHT + MENU_VERTICAL_SPACE}px`}
   class="wrapper"
   class:desktop={!$pageData.isMobile}
   class:mobile={$pageData.isMobile}

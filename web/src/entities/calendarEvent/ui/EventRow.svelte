@@ -3,7 +3,7 @@
   import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { CATEGORY_COLORS } from '../config/category'
+  import { categoryColor } from '../lib/category'
   import { categoryLabel } from '../lib/category'
   import { shortMonthEnglish, toDateBadge, weekdayName } from '@shared/lib/date'
   import {
@@ -36,7 +36,7 @@
 
 <!-- 一覧の1行。押すと詳細ページへ移る -->
 <a
-  style:--color={CATEGORY_COLORS[event.category]}
+  style:--color={categoryColor(event.category)}
   class="event-row"
   href={localizeHref(ROUTES.calendar.detail(event.id))}
 >
