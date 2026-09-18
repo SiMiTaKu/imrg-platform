@@ -1,12 +1,8 @@
 <script lang="ts">
   import { ButtonLink } from '@imrg-platform/design-system'
-  import {
-    Apparatus,
-    ContentType,
-    findApparatus,
-    findContentType,
-    type ApparatusSlug,
-  } from '@entities/oshimitsuVideo'
+  import { ContentType, findApparatus, findContentType } from '@entities/oshimitsuVideo'
+  import { APPARATUSES } from '@shared/config/apparatus'
+  import type { ApparatusSlug } from '@shared/model'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -20,7 +16,7 @@
     value: contentType.slug,
   }))
 
-  const APPARATUS_OPTIONS = Object.values(Apparatus).map((apparatus) => ({
+  const APPARATUS_OPTIONS = APPARATUSES.map((apparatus) => ({
     label: apparatus.label(),
     value: apparatus.slug,
   }))
