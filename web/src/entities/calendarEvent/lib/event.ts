@@ -1,6 +1,7 @@
-import { PLACE_NAMES_ENGLISH } from '@shared/config/place'
-import { toMonthKey } from '@shared/lib/date'
+import { formatDateRange, formatMonth, toMonthKey } from '@shared/lib/date'
+import { toEnglishPlaceName } from '@shared/lib/i18n'
 import type { SiteLocale } from '@shared/lib/i18n'
+import { EventSchedule } from '../config/schedule'
 import type { CalendarEvent } from '../model'
 
 /** 表示する言語で選んだイベントの値 */
@@ -40,24 +41,73 @@ export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): Localiz
   return {
     title: event.titleEnglish,
     alternateTitle: event.titleJapanese !== event.titleEnglish ? event.titleJapanese : undefined,
-    venue:
-      event.venueEnglish ??
-      (event.venueJapanese && (PLACE_NAMES_ENGLISH[event.venueJapanese] ?? event.venueJapanese)),
+    venue: event.venueEnglish ?? (event.venueJapanese && toEnglishPlaceName(event.venueJapanese)),
     streaming: event.streamingEnglish ?? event.streamingJapanese,
     note: event.noteEnglish ?? event.noteJapanese,
   }
 }
 
 /**
- * まだ終わっていないか。年月しか分からないイベントは、その月のあいだは終わっていない扱い
+ * 日付が決まっていれば開始日を返す
+ * @param event - イベント
+ * @returns 開始日 "YYYY-MM-DD"。日程が未定なら undefined
+ */
+export const eventStartDate = (event: CalendarEvent): string | undefined =>
+  event.schedule === EventSchedule.MONTH_ONLY ? undefined : event.startDate
+
+/**
+ * イベントの開催月
+ * @param event - イベント
+ * @returns 開始月 "YYYY-MM"
+ */
+export const eventMonthKey = (event: CalendarEvent): string =>
+  event.schedule === EventSchedule.MONTH_ONLY ? event.month : toMonthKey(event.startDate)
+
+/**
+ * イベントの終わる月
+ * @param event - イベント
+ * @returns 終了月 "YYYY-MM"。終了日が無ければ開始月
+ */
+const eventEndMonthKey = (event: CalendarEvent): string =>
+  event.schedule === EventSchedule.MONTH_ONLY
+    ? event.month
+    : toMonthKey(event.endDate ?? event.startDate)
+
+/**
+ * 並べ替えに使う日付
+ * @param event - イベント
+ * @returns 日付が決まっていれば "YYYY-MM-DD"、未定なら "YYYY-MM"（同じ月の中では先に来る）
+ */
+export const eventSortKey = (event: CalendarEvent): string =>
+  eventStartDate(event) ?? eventMonthKey(event)
+
+/**
+ * 開催期間を表示中の言語の表記にする
+ * @param event - イベント
+ * @param locale - 表示する言語
+ * @returns 日付が決まっていれば期間、未定なら月の表記
+ */
+export const eventDateRange = (event: CalendarEvent, locale: SiteLocale): string =>
+  event.schedule === EventSchedule.MONTH_ONLY
+    ? formatMonth(event.month, locale)
+    : formatDateRange(event.startDate, event.endDate, locale)
+
+/**
+ * 日程が変わるかもしれないか（「日程は予定」の印を出すか）
+ * @param event - イベント
+ * @returns 仮の日程か、日付が未定なら true
+ */
+export const isTentative = (event: CalendarEvent): boolean => event.schedule !== EventSchedule.FIXED
+
+/**
+ * まだ終わっていないか。日程が未定のイベントは、その月のあいだは終わっていない扱い
  * @param event - 判定するイベント
  * @param today - 今日の日付 "YYYY-MM-DD"
  * @returns 終了日（無ければ開始日）が今日以降なら true
  */
 export const isUpcoming = (event: CalendarEvent, today: string): boolean => {
-  const end = event.endDate ?? event.startDate
-  if (end.length === 7) return end >= toMonthKey(today)
-  return end >= today
+  if (event.schedule === EventSchedule.MONTH_ONLY) return event.month >= toMonthKey(today)
+  return (event.endDate ?? event.startDate) >= today
 }
 
 /**
@@ -69,7 +119,7 @@ export const isUpcoming = (event: CalendarEvent, today: string): boolean => {
 export const eventsOnDay = (events: CalendarEvent[], dateKey: string): CalendarEvent[] =>
   events.filter(
     (event) =>
-      event.startDate.length === 10 &&
+      event.schedule !== EventSchedule.MONTH_ONLY &&
       event.startDate <= dateKey &&
       (event.endDate ?? event.startDate) >= dateKey,
   )
@@ -81,11 +131,7 @@ export const eventsOnDay = (events: CalendarEvent[], dateKey: string): CalendarE
  * @returns 開始月から終了月のあいだにその月が入るイベント
  */
 export const eventsInMonth = (events: CalendarEvent[], monthKey: string): CalendarEvent[] =>
-  events.filter(
-    (event) =>
-      toMonthKey(event.startDate) <= monthKey &&
-      toMonthKey(event.endDate ?? event.startDate) >= monthKey,
-  )
+  events.filter((event) => eventMonthKey(event) <= monthKey && eventEndMonthKey(event) >= monthKey)
 
 /**
  * イベントの載っている最初の月と最後の月
@@ -97,10 +143,7 @@ export const monthRangeOf = (
   events: CalendarEvent[],
   updatedAt: string,
 ): { first: string; last: string } => {
-  const monthKeys = events.flatMap((event) => [
-    toMonthKey(event.startDate),
-    toMonthKey(event.endDate ?? event.startDate),
-  ])
+  const monthKeys = events.flatMap((event) => [eventMonthKey(event), eventEndMonthKey(event)])
   const base = toMonthKey(updatedAt)
   return {
     first: monthKeys.reduce((current, key) => (current < key ? current : key), base),

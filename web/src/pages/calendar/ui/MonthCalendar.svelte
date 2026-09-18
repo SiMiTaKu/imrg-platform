@@ -1,5 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
+  import { WEEKDAYS, Weekday } from '@shared/config/date'
   import {
     buildMonthGrid,
     formatDay,
@@ -10,6 +11,7 @@
   } from '@shared/lib/date'
   import {
     CATEGORY_COLORS,
+    EventSchedule,
     CATEGORY_ORDER,
     categoryLabel,
     eventsInMonth,
@@ -50,7 +52,6 @@
   // 日本語ページでは、月・曜日などに英語を小さく併記する
   const showsBoth = showsSecondaryText()
   /** 曜日の並び（日曜始まり） */
-  const WEEKDAY_INDEXES = [0, 1, 2, 3, 4, 5, 6] as const
 
   /**
    * 日本語ページでは「日本語 / English」の形にする
@@ -76,7 +77,7 @@
 
   const weeks = $derived(buildMonthGrid(monthKey))
   const undated = $derived(
-    eventsInMonth(events, monthKey).filter((event) => event.startDate.length === 7),
+    eventsInMonth(events, monthKey).filter((event) => event.schedule === EventSchedule.MONTH_ONLY),
   )
 </script>
 
@@ -112,10 +113,14 @@
   <table class="grid">
     <thead>
       <tr>
-        {#each WEEKDAY_INDEXES as index (index)}
-          <th class:sunday={index === 0} class:saturday={index === 6} scope="col">
-            {weekdayName(index, locale)}{#if showsBoth}<span lang="en"
-                >{weekdayName(index, SECONDARY_LOCALE)}</span
+        {#each WEEKDAYS as weekday (weekday.index)}
+          <th
+            class:sunday={weekday === Weekday.SUNDAY}
+            class:saturday={weekday === Weekday.SATURDAY}
+            scope="col"
+          >
+            {weekdayName(weekday, locale)}{#if showsBoth}<span lang="en"
+                >{weekdayName(weekday, SECONDARY_LOCALE)}</span
               >{/if}
           </th>
         {/each}
@@ -142,8 +147,8 @@
                 <span
                   class="day-number"
                   class:muted={!cell.inMonth}
-                  class:sunday={cell.inMonth && cell.weekday === 0}
-                  class:saturday={cell.inMonth && cell.weekday === 6}
+                  class:sunday={cell.inMonth && cell.weekday === Weekday.SUNDAY}
+                  class:saturday={cell.inMonth && cell.weekday === Weekday.SATURDAY}
                   class:today-mark={cell.dateKey === today}>{cell.day}</span
                 >
                 {#if $pageData.isMobile && dayEvents.length}
