@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { JudgeThemeColor } from '../config/themeColor'
   import type { Chart } from 'chart.js/auto'
   import { fade } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
@@ -6,7 +7,8 @@
   import { POINT_A_ITEMS } from '../config/pointAItems'
   import { getAmountOfPointA, getAmountOfPointB, getDecisionPoints } from '../lib/calculator'
   import { renderDetailChart } from '../lib/detailChart'
-  import { buildScoreFormula, formatPoint } from '../lib/formatPoint'
+  import { formatNumber } from '@shared/lib/number'
+  import { buildScoreFormula } from '../lib/scoreFormula'
   import { judgementApparatus } from '../store/apparatus'
   import { executionDeduct } from '../store/executionDeduct'
 
@@ -18,7 +20,7 @@
   const { show }: Props = $props()
 
   const locale = getLocale()
-  const color = $derived($judgementApparatus?.imageColor ?? 'gray')
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
   // 満点からAとBの減点を引く式（例: 10.00　-　( 5.500 + 0.300 )）
   const formula = $derived(
     buildScoreFormula(
@@ -107,12 +109,12 @@
             {#each POINT_A_ITEMS as item (item.key)}
               <li class="detail-item">
                 <span class="detail-title">{item.title()}</span>
-                <span>{formatPoint($executionDeduct.pointA[item.key].value, locale)}</span>
+                <span>{formatNumber($executionDeduct.pointA[item.key].value, locale)}</span>
               </li>
             {/each}
             <li class="detail-item">
               <span class="detail-title"> {m.judge_point_b_miss()} </span>
-              <span>{formatPoint($executionDeduct.pointB.miss, locale)}</span>
+              <span>{formatNumber($executionDeduct.pointB.miss, locale)}</span>
             </li>
           </ul>
         </div>
@@ -121,7 +123,7 @@
         {formula}
       </div>
       <div class="result">
-        {formatPoint(decisionPoints, locale)}
+        {formatNumber(decisionPoints, locale)}
       </div>
       <div class="footer">
         <button class="footer-button {color}" type="button" onclick={oneMoreJudge}
@@ -134,28 +136,28 @@
 
 <style lang="scss">
   .gray {
-    --title-background-color: #707070;
-    --footer-button-background-color: #707070;
+    --title-background-color: #{map.get($theme, gray)};
+    --footer-button-background-color: #{map.get($theme, gray)};
   }
 
   .blue {
-    --title-background-color: #0065a4;
-    --footer-button-background-color: #0065a4;
+    --title-background-color: #{map.get($theme, blue)};
+    --footer-button-background-color: #{map.get($theme, blue)};
   }
 
   .red {
-    --title-background-color: #d30000;
-    --footer-button-background-color: #d30000;
+    --title-background-color: #{map.get($theme, red)};
+    --footer-button-background-color: #{map.get($theme, red)};
   }
 
   .yellow {
-    --title-background-color: #ecc200;
-    --footer-button-background-color: #ecc200;
+    --title-background-color: #{map.get($theme, yellow)};
+    --footer-button-background-color: #{map.get($theme, yellow)};
   }
 
   .green {
-    --title-background-color: #219300;
-    --footer-button-background-color: #219300;
+    --title-background-color: #{map.get($theme, green)};
+    --footer-button-background-color: #{map.get($theme, green)};
   }
 
   .modal {

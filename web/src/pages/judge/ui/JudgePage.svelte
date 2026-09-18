@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { JudgeThemeColor } from '@features/judge'
   import {
     ExecutionPointResultModalDesktop,
     ExecutionPointResultModalMobile,
@@ -14,7 +15,7 @@
 </script>
 
 <section
-  class="judgement-form {$judgementApparatus?.imageColor ?? 'gray'}"
+  class="judgement-form {$judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY}"
   class:desktop={!$pageData.isMobile}
   class:mobile={$pageData.isMobile}
 >
@@ -48,23 +49,23 @@
   }
 
   .gray {
-    --background: #f1f1f1;
+    --background: #{map.get($theme-background, gray)};
   }
 
   .blue {
-    --background: #e6f6ff;
+    --background: #{map.get($theme-background, blue)};
   }
 
   .red {
-    --background: #ffe6e6;
+    --background: #{map.get($theme-background, red)};
   }
 
   .yellow {
-    --background: #fffbe6;
+    --background: #{map.get($theme-background, yellow)};
   }
 
   .green {
-    --background: #ecffe6;
+    --background: #{map.get($theme-background, green)};
   }
 
   .judgement-form {

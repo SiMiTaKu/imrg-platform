@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { JudgeThemeColor } from '../model/apparatus'
+  import type { JudgeThemeColorKey } from '../model/apparatus'
 
   type Props = {
     /** select の name */
@@ -11,7 +11,7 @@
     /** 読み上げ用の名前 */
     label: string
     /** テーマの色（手具の色） */
-    color: JudgeThemeColor
+    color: JudgeThemeColorKey
     /** 選び直したときに呼ぶ。引数は選んだ選択肢の value */
     onchange: (value: string) => void
   }
@@ -45,23 +45,23 @@
 
 <style lang="scss">
   .gray {
-    --forcus-border-color: #707070;
+    --forcus-border-color: #{map.get($theme, gray)};
   }
 
   .blue {
-    --forcus-border-color: #0065a4;
+    --forcus-border-color: #{map.get($theme, blue)};
   }
 
   .red {
-    --forcus-border-color: #d30000;
+    --forcus-border-color: #{map.get($theme, red)};
   }
 
   .yellow {
-    --forcus-border-color: #ecc200;
+    --forcus-border-color: #{map.get($theme, yellow)};
   }
 
   .green {
-    --forcus-border-color: #219300;
+    --forcus-border-color: #{map.get($theme, green)};
   }
 
   .select-box {

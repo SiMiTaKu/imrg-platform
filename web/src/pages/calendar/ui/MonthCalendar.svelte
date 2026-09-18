@@ -351,11 +351,11 @@
   }
 
   .sunday {
-    color: #d64545;
+    color: map.get($weekday, sunday);
   }
 
   .saturday {
-    color: #1f6fd1;
+    color: map.get($weekday, saturday);
   }
 
   .muted {

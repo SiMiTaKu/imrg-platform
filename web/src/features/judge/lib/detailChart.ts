@@ -1,6 +1,6 @@
 import { Chart } from 'chart.js/auto'
 import { CHART_BORDER_COLORS } from '../config/chart'
-import type { JudgeThemeColor } from '../model/apparatus'
+import type { JudgeThemeColorKey } from '../model/apparatus'
 import { wrapChartLabel } from './wrapChartLabel'
 
 /**
@@ -12,7 +12,7 @@ export type DetailChartOptions = {
   /** 項目ごとの選択肢のコード（1〜10） */
   values: number[]
   /** テーマの色 */
-  color: JudgeThemeColor
+  color: JudgeThemeColorKey
   /** 項目名を出すか。スマホでは出さない */
   showsPointLabels: boolean
 }

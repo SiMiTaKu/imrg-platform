@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { JudgeThemeColor } from '../config/themeColor'
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
@@ -16,7 +17,7 @@
 
   let submitted = $state(false)
 
-  const color = $derived($judgementApparatus?.imageColor ?? 'gray')
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 
   /**
    * 決定ボタンを押したときに、親へ知らせてボタンを消す
@@ -76,23 +77,23 @@
   }
 
   .gray {
-    --submit-button-background: #707070;
+    --submit-button-background: #{map.get($theme, gray)};
   }
 
   .blue {
-    --submit-button-background: #0065a4;
+    --submit-button-background: #{map.get($theme, blue)};
   }
 
   .red {
-    --submit-button-background: #d30000;
+    --submit-button-background: #{map.get($theme, red)};
   }
 
   .yellow {
-    --submit-button-background: #ecc200;
+    --submit-button-background: #{map.get($theme, yellow)};
   }
 
   .green {
-    --submit-button-background: #219300;
+    --submit-button-background: #{map.get($theme, green)};
   }
 
   .point-a {

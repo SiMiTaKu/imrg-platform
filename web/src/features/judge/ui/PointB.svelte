@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { JudgeThemeColor } from '../config/themeColor'
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
@@ -14,7 +15,7 @@
 
   const { onsubmit }: Props = $props()
 
-  const color = $derived($judgementApparatus?.imageColor ?? 'gray')
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 
   // 入力中の値を書き換えないように、入力欄には最初の値だけを渡す
   const initialMiss = $executionDeduct.pointB.miss
@@ -92,28 +93,28 @@
   }
 
   .gray {
-    --submit-button-background: #707070;
-    --forcus-border-color: #707070;
+    --submit-button-background: #{map.get($theme, gray)};
+    --forcus-border-color: #{map.get($theme, gray)};
   }
 
   .blue {
-    --submit-button-background: #0065a4;
-    --forcus-border-color: #0065a4;
+    --submit-button-background: #{map.get($theme, blue)};
+    --forcus-border-color: #{map.get($theme, blue)};
   }
 
   .red {
-    --submit-button-background: #d30000;
-    --forcus-border-color: #d30000;
+    --submit-button-background: #{map.get($theme, red)};
+    --forcus-border-color: #{map.get($theme, red)};
   }
 
   .yellow {
-    --submit-button-background: #ecc200;
-    --forcus-border-color: #ecc200;
+    --submit-button-background: #{map.get($theme, yellow)};
+    --forcus-border-color: #{map.get($theme, yellow)};
   }
 
   .green {
-    --submit-button-background: #219300;
-    --forcus-border-color: #219300;
+    --submit-button-background: #{map.get($theme, green)};
+    --forcus-border-color: #{map.get($theme, green)};
   }
 
   .point-b {

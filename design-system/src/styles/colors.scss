@@ -47,3 +47,27 @@ $gray: (
   800: #212121,
   900: #000,
 );
+
+// 画面のテーマの色（採点体験の手具ごとの色など）。TS からは AccentColor・ThemeColor で参照する
+$theme: (
+  gray: #707070,
+  blue: #0065a4,
+  red: #d30000,
+  yellow: #ecc200,
+  green: #219300,
+);
+
+// テーマの色の、淡い背景
+$theme-background: (
+  gray: #f1f1f1,
+  blue: #e6f6ff,
+  red: #ffe6e6,
+  yellow: #fffbe6,
+  green: #ecffe6,
+);
+
+// カレンダーの曜日の色
+$weekday: (
+  sunday: #d64545,
+  saturday: #1f6fd1,
+);

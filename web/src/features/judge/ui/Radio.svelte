@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { JudgeThemeColor } from '../config/themeColor'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { POINT_A_OPTIONS } from '../config/pointA'
@@ -21,7 +22,7 @@
 
   const { title, annotation, selected, uniqueId, onchange }: Props = $props()
 
-  const color = $derived($judgementApparatus?.imageColor ?? 'gray')
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 </script>
 
 <div class="radio-question" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
@@ -68,23 +69,23 @@
   }
 
   .gray {
-    --radio-color: #707070;
+    --radio-color: #{map.get($theme, gray)};
   }
 
   .blue {
-    --radio-color: #0065a4;
+    --radio-color: #{map.get($theme, blue)};
   }
 
   .red {
-    --radio-color: #d30000;
+    --radio-color: #{map.get($theme, red)};
   }
 
   .yellow {
-    --radio-color: #ecc200;
+    --radio-color: #{map.get($theme, yellow)};
   }
 
   .green {
-    --radio-color: #219300;
+    --radio-color: #{map.get($theme, green)};
   }
 
   .radio-group {
