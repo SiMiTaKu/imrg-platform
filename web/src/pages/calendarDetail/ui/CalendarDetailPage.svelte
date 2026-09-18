@@ -15,7 +15,7 @@
     type CalendarEvent,
   } from '@entities/calendarEvent'
   import { pageData } from '@shared/lib/device'
-  import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
+  import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
   import { buildSportsEventJsonLd } from '../lib/detail'
@@ -29,8 +29,6 @@
   const { event }: Props = $props()
 
   const locale = getLocale() as SiteLocale
-  // 日本語ページでは、見出しや値に英語を小さく併記する
-  const showsBoth = showsSecondaryText()
   const calendarHref = localizeHref(ROUTES.calendar.index)
 
   let fromCalendar = $state(false)
@@ -49,25 +47,11 @@
     history.back()
   }
 
-  /**
-   * 日本語ページでは「日本語 / English」の形にする
-   * @param message - 文言
-   * @returns 表示する文字列
-   */
-  const withSecondary = (message: typeof m.calendar_tag_tentative): string =>
-    showsBoth ? `${message()} / ${message({}, { locale: SECONDARY_LOCALE })}` : message()
-
   const localized = $derived(localizeEvent(event, locale))
-  // 日本語ページで併記する英語の値
-  const secondary = $derived(localizeEvent(event, SECONDARY_LOCALE))
   const showSource = $derived(
     event.sourceUrl !== event.officialUrl && event.sourceUrl !== event.resultUrl,
   )
-  const categoryText = $derived(
-    showsBoth
-      ? `${categoryLabel(event.category)} / ${categoryLabel(event.category, SECONDARY_LOCALE)}`
-      : categoryLabel(event.category),
-  )
+  const categoryText = $derived(categoryLabel(event.category))
 
   // 検索結果に日程と会場を出すための構造化データ。表示中の言語の値にする
   const jsonLd = $derived(
@@ -85,7 +69,7 @@
 </script>
 
 {#snippet factLabel(message: typeof m.calendar_fact_date)}
-  {message()}{#if showsBoth}<span lang="en">{message({}, { locale: SECONDARY_LOCALE })}</span>{/if}
+  {message()}
 {/snippet}
 
 <svelte:head>
@@ -100,33 +84,23 @@
   class:mobile={$pageData.isMobile}
 >
   <p class="breadcrumb">
-    <a href={calendarHref} onclick={back}
-      >‹ {m.calendar_back_to_calendar()}{#if showsBoth}<span lang="en"
-          >{m.calendar_back_to_calendar({}, { locale: SECONDARY_LOCALE })}</span
-        >{/if}</a
-    >
+    <a href={calendarHref} onclick={back}>‹ {m.calendar_back_to_calendar()}</a>
   </p>
 
   <p class="badges">
     <span class="category">{categoryText}</span>
     {#if isTentative(event)}
-      <span class="tentative">{withSecondary(m.calendar_tag_tentative)}</span>
+      <span class="tentative">{m.calendar_tag_tentative()}</span>
     {/if}
   </p>
 
   <h1 class="title">{localized.title}</h1>
-  {#if showsBoth && localized.alternateTitle}
-    <p class="title-en" lang="en">{localized.alternateTitle}</p>
-  {/if}
 
   <dl class="facts">
     <div class="fact">
       <dt>{@render factLabel(m.calendar_fact_date)}</dt>
       <dd>
         <span class="fact-main">{eventDateRange(event, locale)}</span>
-        {#if showsBoth}
-          <span class="fact-en" lang="en">{eventDateRange(event, SECONDARY_LOCALE)}</span>
-        {/if}
       </dd>
     </div>
 
@@ -135,9 +109,6 @@
         <dt>{@render factLabel(m.calendar_fact_venue)}</dt>
         <dd>
           <span class="fact-main">{localized.venue}</span>
-          {#if showsBoth && event.venue?.name.english}
-            <span class="fact-en" lang="en">{secondary.venue}</span>
-          {/if}
         </dd>
       </div>
     {/if}
@@ -147,9 +118,6 @@
         <dt>{@render factLabel(m.calendar_fact_streaming)}</dt>
         <dd>
           <span class="fact-text">{localized.streaming}</span>
-          {#if showsBoth && event.streaming?.english}
-            <span class="fact-en" lang="en">{secondary.streaming}</span>
-          {/if}
         </dd>
       </div>
     {/if}
@@ -159,9 +127,6 @@
         <dt>{@render factLabel(m.calendar_fact_note)}</dt>
         <dd>
           <span class="fact-text">{localized.note}</span>
-          {#if showsBoth && event.note?.english}
-            <span class="fact-en" lang="en">{secondary.note}</span>
-          {/if}
         </dd>
       </div>
     {/if}
@@ -184,7 +149,7 @@
 
   {#if showSource}
     <p class="source">
-      {withSecondary(m.calendar_source)}:
+      {m.calendar_source()}:
       <a href={event.sourceUrl} rel="noopener noreferrer" target="_blank"
         >{hostnameOf(event.sourceUrl)}</a
       >
@@ -193,9 +158,6 @@
 
   <p class="caution">
     {m.calendar_caution()}
-    {#if showsBoth}
-      <span lang="en">{m.calendar_caution({}, { locale: SECONDARY_LOCALE })}</span>
-    {/if}
   </p>
 </article>
 
@@ -232,12 +194,6 @@
     color: rgb(50, 150, 255);
   }
 
-  .breadcrumb span[lang='en'] {
-    margin-left: $space-size-8;
-    font-size: $font-size-12;
-    color: map.get($gray, light-text);
-  }
-
   .badges {
     display: flex;
     flex-wrap: wrap;
@@ -270,13 +226,6 @@
     font-feature-settings: 'palt';
   }
 
-  .title-en {
-    margin-top: $space-size-4;
-    font-size: 15px;
-    line-height: 1.5;
-    color: map.get($gray, light-text);
-  }
-
   .facts {
     margin-top: $space-size-32;
     border-top: $border-size-1 solid map.get($gray, 200);
@@ -296,11 +245,6 @@
     color: map.get($gray, light-text);
   }
 
-  dt span[lang='en'] {
-    margin-left: $space-size-8;
-    font-weight: normal;
-  }
-
   dd {
     margin: 0;
   }
@@ -315,12 +259,6 @@
   .fact-text {
     display: block;
     font-size: 15px;
-  }
-
-  .fact-en {
-    display: block;
-    font-size: 13px;
-    color: map.get($gray, light-text);
   }
 
   .actions {
@@ -343,11 +281,6 @@
     line-height: 1.3;
   }
 
-  .action span[lang='en'] {
-    font-size: $font-size-11;
-    font-weight: normal;
-  }
-
   .primary {
     color: $white;
     background: map.get($sky-blue, button);
@@ -367,9 +300,5 @@
     margin-top: $space-size-40;
     font-size: 13px;
     color: map.get($gray, light-text);
-  }
-
-  .caution span[lang='en'] {
-    display: block;
   }
 </style>

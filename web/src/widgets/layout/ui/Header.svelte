@@ -4,9 +4,9 @@
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
   import { ImageAssets } from '@shared/ui'
-  import { SNS_LINKS } from '../config/sns'
   import MainImage from '../images/imrg-logo.jpg?w=650;1300&format=webp&as=meta'
   import Hamburger from './Hamburger.svelte'
+  import LocaleSwitch from './LocaleSwitch.svelte'
   import HamburgerSwitchButton from './HamburgerSwitchButton.svelte'
 
   let isHamburgerOpen = $state(false)
@@ -28,26 +28,7 @@
         objectFit="cover"
       />
     </a>
-    <ul class="sns">
-      {#each SNS_LINKS as sns, index (index)}
-        <li class="sns-row">
-          <a class="sns-link" href={sns.href} rel="noopener noreferrer" target="_blank">
-            <ImageAssets
-              width={$pageData.isMobile
-                ? sns.size.header.mobile.width
-                : sns.size.header.desktop.width}
-              height={$pageData.isMobile
-                ? sns.size.header.mobile.height
-                : sns.size.header.desktop.height}
-              alt={sns.alt()}
-              lazy={false}
-              imageSourceMeta={sns.imageSourceMeta}
-              objectFit="cover"
-            />
-          </a>
-        </li>
-      {/each}
-    </ul>
+    <LocaleSwitch />
     <HamburgerSwitchButton
       isOpen={isHamburgerOpen}
       onclick={() => (isHamburgerOpen = !isHamburgerOpen)}
@@ -62,7 +43,6 @@
     --content-width: 1024px;
     --content-grid-template-columns: 1fr auto 80px;
     --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-20};
-    --sns-link-padding: 0 #{$space-size-16};
   }
 
   .mobile {
@@ -70,7 +50,6 @@
     --content-width: 100%;
     --content-grid-template-columns: 1fr auto 64px;
     --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-12};
-    --sns-link-padding: 0 #{$space-size-8};
   }
 
   .header-main {
@@ -113,24 +92,5 @@
     width: 100%;
     height: 100%;
     padding: var(--top-link-padding);
-  }
-
-  .sns {
-    display: flex;
-    box-sizing: border-box;
-    height: 100%;
-  }
-
-  .sns-row {
-    display: grid;
-    place-items: center;
-    height: 100%;
-  }
-
-  .sns-link {
-    display: grid;
-    place-items: center;
-    height: 100%;
-    padding: var(--sns-link-padding);
   }
 </style>
