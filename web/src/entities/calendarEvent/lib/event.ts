@@ -1,7 +1,7 @@
+import { PLACE_NAMES_ENGLISH } from '@shared/config/place'
+import { toMonthKey } from '@shared/lib/date'
 import type { SiteLocale } from '@shared/lib/i18n'
-import { VENUE_NAMES_EN } from '../config/venue'
 import type { CalendarEvent } from '../model'
-import { toMonthKey } from './date'
 
 /** 表示する言語で選んだイベントの値 */
 export interface LocalizedEvent {
@@ -42,7 +42,7 @@ export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): Localiz
     alternateTitle: event.titleJapanese !== event.titleEnglish ? event.titleJapanese : undefined,
     venue:
       event.venueEnglish ??
-      (event.venueJapanese && (VENUE_NAMES_EN[event.venueJapanese] ?? event.venueJapanese)),
+      (event.venueJapanese && (PLACE_NAMES_ENGLISH[event.venueJapanese] ?? event.venueJapanese)),
     streaming: event.streamingEnglish ?? event.streamingJapanese,
     note: event.noteEnglish ?? event.noteJapanese,
   }
