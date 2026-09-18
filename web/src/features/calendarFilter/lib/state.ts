@@ -1,4 +1,5 @@
-import { CATEGORY_ORDER, toMonthKey, type EventCategory } from '@entities/calendarEvent'
+import { toMonthKey } from '@shared/lib/date'
+import { CATEGORY_ORDER, type EventCategory } from '@entities/calendarEvent'
 import type { CalendarState } from '../model'
 
 /**
