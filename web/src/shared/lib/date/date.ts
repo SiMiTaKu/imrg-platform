@@ -1,59 +1,9 @@
+import { MONTHS, WEEKDAYS } from '@shared/config/date'
 import type { SiteLocale } from '@shared/lib/i18n'
-
-/** 曜日の表記（日本語）。日曜始まり */
-export const WEEKDAYS_JAPANESE = ['日', '月', '火', '水', '木', '金', '土'] as const
-/** 曜日の表記（英語）。日曜始まり */
-export const WEEKDAYS_ENGLISH = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const
-/** 月の表記（英語） */
-const MONTHS_ENGLISH = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-] as const
+import type { DateBadge, DateParts, DayCell, Month, Weekday } from '@shared/model'
 
 /** 1日のミリ秒 */
 const DAY_MS = 24 * 60 * 60 * 1000
-
-/** 年・月・日。年月しか分からない日付は day が無い */
-export interface DateParts {
-  /** 年 */
-  year: number
-  /** 月（1〜12） */
-  month: number
-  /** 日 */
-  day?: number
-}
-
-/** 月のカレンダーのマス1つ */
-export interface DayCell {
-  /** 日付 "YYYY-MM-DD" */
-  dateKey: string
-  /** 日 */
-  day: number
-  /** 0（日曜）〜6（土曜） */
-  weekday: number
-  /** 表示中の月の日か */
-  inMonth: boolean
-}
-
-/** 一覧の日付欄に出す値。年月しか分からないイベントは month だけ */
-export interface DateBadge {
-  /** 月（1〜12） */
-  month: number
-  /** 日 */
-  day?: number
-  /** 曜日 0（日曜）〜6（土曜） */
-  weekday?: number
-}
 
 /**
  * "2026-10-30" / "2027-03" を年・月・日に分ける
@@ -66,12 +16,26 @@ export const parseDate = (value: string): DateParts => {
 }
 
 /**
+ * 0（日曜）〜6（土曜）から曜日を返す
+ * @param index - 曜日の番号
+ * @returns 曜日
+ */
+export const weekdayOfIndex = (index: number): Weekday => WEEKDAYS[index]
+
+/**
+ * 1〜12 から月を返す
+ * @param number - 月の数字
+ * @returns 月
+ */
+export const monthOfNumber = (number: number): Month => MONTHS[number - 1]
+
+/**
  * 日付の曜日を返す
  * @param parts - 年・月・日
- * @returns 0（日曜）〜6（土曜）
+ * @returns 曜日
  */
-export const weekdayOf = (parts: DateParts): number =>
-  new Date(Date.UTC(parts.year, parts.month - 1, parts.day)).getUTCDay()
+export const weekdayOf = (parts: DateParts): Weekday =>
+  weekdayOfIndex(new Date(Date.UTC(parts.year, parts.month - 1, parts.day)).getUTCDay())
 
 /**
  * 数字を2桁にそろえる（9 → "09"）
@@ -82,19 +46,19 @@ const pad = (value: number): string => String(value).padStart(2, '0')
 
 /**
  * 曜日の表記を返す
- * @param weekday - 0（日曜）〜6（土曜）
+ * @param weekday - 曜日
  * @param locale - 言語
  * @returns 日本語は「日」、英語は "Sun" の形
  */
-export const weekdayName = (weekday: number, locale: SiteLocale): string =>
-  locale === 'en' ? WEEKDAYS_ENGLISH[weekday] : WEEKDAYS_JAPANESE[weekday]
+export const weekdayName = (weekday: Weekday, locale: SiteLocale): string =>
+  locale === 'en' ? weekday.english : weekday.japanese
 
 /**
  * 月の短い英語の表記を返す（10 → "Oct"）
  * @param month - 月（1〜12）
  * @returns 英語の月の先頭3文字
  */
-export const shortMonthEnglish = (month: number): string => MONTHS_ENGLISH[month - 1].slice(0, 3)
+export const shortMonthEnglish = (month: number): string => monthOfNumber(month).english.slice(0, 3)
 
 /**
  * 閲覧者の端末の日付を "YYYY-MM-DD" にする
@@ -141,7 +105,7 @@ export const buildMonthGrid = (monthKey: string): DayCell[][] => {
       return {
         dateKey: `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`,
         day: date.getUTCDate(),
-        weekday,
+        weekday: weekdayOfIndex(weekday),
         inMonth: date.getUTCMonth() === month - 1,
       }
     }),
@@ -176,7 +140,7 @@ export const formatMonthJapanese = (monthKey: string): string => {
  */
 export const formatMonthEnglish = (monthKey: string): string => {
   const { year, month } = parseDate(monthKey)
-  return `${MONTHS_ENGLISH[month - 1]} ${year}`
+  return `${monthOfNumber(month).english} ${year}`
 }
 
 /**
@@ -205,7 +169,7 @@ export const formatDayJapanese = (value: string): string => {
  */
 export const formatDayEnglish = (value: string): string => {
   const { year, month, day } = parseDate(value)
-  return `${MONTHS_ENGLISH[month - 1]} ${day}, ${year}`
+  return `${monthOfNumber(month).english} ${day}, ${year}`
 }
 
 /**
@@ -216,3 +180,15 @@ export const formatDayEnglish = (value: string): string => {
  */
 export const formatDay = (value: string, locale: SiteLocale): string =>
   locale === 'en' ? formatDayEnglish(value) : formatDayJapanese(value)
+
+/**
+ * 日時を「年」だけの表記にする
+ * @param date - 日時
+ * @param locale - 表示する言語
+ * @returns 日本語なら「2024年」、英語なら "2024"
+ *
+ * @remarks
+ * 日本で撮った日付などを扱うので、日本時間で年を取る（ビルドする環境の時刻帯に左右されないように）
+ */
+export const formatYear = (date: Date, locale: SiteLocale): string =>
+  new Intl.DateTimeFormat(locale, { year: 'numeric', timeZone: 'Asia/Tokyo' }).format(date)

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { EventSchedule } from '@entities/calendarEvent'
 import type { EventCategory } from '@entities/calendarEvent'
 import {
   filterEvents,
@@ -174,7 +175,7 @@ describe('groupByMonth', () => {
       const events = [
         makeEvent({ titleJapanese: 'A', startDate: '2026-10-01' }),
         makeEvent({ titleJapanese: 'B', startDate: '2026-10-30' }),
-        makeEvent({ titleJapanese: 'C', startDate: '2026-11' }),
+        makeEvent({ titleJapanese: 'C', schedule: EventSchedule.MONTH_ONLY, month: '2026-11' }),
       ]
       // #endregion
 
