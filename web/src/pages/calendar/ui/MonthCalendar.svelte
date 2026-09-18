@@ -11,6 +11,7 @@
   } from '@shared/lib/date'
   import {
     CATEGORY_COLORS,
+    EventSchedule,
     CATEGORY_ORDER,
     categoryLabel,
     eventsInMonth,
@@ -76,7 +77,7 @@
 
   const weeks = $derived(buildMonthGrid(monthKey))
   const undated = $derived(
-    eventsInMonth(events, monthKey).filter((event) => event.startDate.length === 7),
+    eventsInMonth(events, monthKey).filter((event) => event.schedule === EventSchedule.MONTH_ONLY),
   )
 </script>
 

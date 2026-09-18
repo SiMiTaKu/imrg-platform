@@ -5,8 +5,14 @@
   import { ROUTES } from '@shared/routes'
   import { CATEGORY_COLORS } from '../config/category'
   import { categoryLabel } from '../lib/category'
-  import { formatDateRange, shortMonthEnglish, toDateBadge, weekdayName } from '@shared/lib/date'
-  import { localizeEvent } from '../lib/event'
+  import { shortMonthEnglish, toDateBadge, weekdayName } from '@shared/lib/date'
+  import {
+    eventDateRange,
+    eventMonthKey,
+    eventStartDate,
+    isTentative,
+    localizeEvent,
+  } from '../lib/event'
   import type { CalendarEvent } from '../model'
 
   /** 一覧の1行の引数 */
@@ -25,7 +31,7 @@
   const separator = locale === 'en' ? '·' : '・'
 
   const localized = $derived(localizeEvent(event, locale))
-  const badge = $derived(toDateBadge(event.startDate))
+  const badge = $derived(toDateBadge(eventStartDate(event) ?? eventMonthKey(event)))
 </script>
 
 <!-- 一覧の1行。押すと詳細ページへ移る -->
@@ -57,7 +63,7 @@
             >{categoryLabel(event.category, SECONDARY_LOCALE)}</span
           >{/if}</span
       >
-      {#if event.status === 'tentative'}
+      {#if isTentative(event)}
         <span class="tag">{m.calendar_tag_tentative()}</span>
       {/if}
       {#if event.resultUrl}
@@ -69,8 +75,7 @@
       <span class="title-en" lang="en">{localized.alternateTitle}</span>
     {/if}
     <span class="sub">
-      {formatDateRange(event.startDate, event.endDate, locale)}{#if localized.venue}<span
-          class="separator">{separator}</span
+      {eventDateRange(event, locale)}{#if localized.venue}<span class="separator">{separator}</span
         >{localized.venue}{/if}
     </span>
   </span>

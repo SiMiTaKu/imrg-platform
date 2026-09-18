@@ -8,11 +8,12 @@
   import {
     CATEGORY_COLORS,
     categoryLabel,
+    eventDateRange,
+    isTentative,
     hostnameOf,
     localizeEvent,
     type CalendarEvent,
   } from '@entities/calendarEvent'
-  import { formatDateRange } from '@shared/lib/date'
   import { pageData } from '@shared/lib/device'
   import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
@@ -108,7 +109,7 @@
 
   <p class="badges">
     <span class="category">{categoryText}</span>
-    {#if event.status === 'tentative'}
+    {#if isTentative(event)}
       <span class="tentative">{withSecondary(m.calendar_tag_tentative)}</span>
     {/if}
   </p>
@@ -122,11 +123,9 @@
     <div class="fact">
       <dt>{@render factLabel(m.calendar_fact_date)}</dt>
       <dd>
-        <span class="fact-main">{formatDateRange(event.startDate, event.endDate, locale)}</span>
+        <span class="fact-main">{eventDateRange(event, locale)}</span>
         {#if showsBoth}
-          <span class="fact-en" lang="en"
-            >{formatDateRange(event.startDate, event.endDate, SECONDARY_LOCALE)}</span
-          >
+          <span class="fact-en" lang="en">{eventDateRange(event, SECONDARY_LOCALE)}</span>
         {/if}
       </dd>
     </div>

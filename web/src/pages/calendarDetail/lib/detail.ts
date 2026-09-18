@@ -1,5 +1,10 @@
-import { EVENTS, localizeEvent, type CalendarEvent } from '@entities/calendarEvent'
-import { formatDateRange } from '@shared/lib/date'
+import {
+  EVENTS,
+  EventSchedule,
+  eventDateRange,
+  localizeEvent,
+  type CalendarEvent,
+} from '@entities/calendarEvent'
 import type { CalendarDetailMetaInput } from '@shared/config/meta'
 import { NotFoundError } from '@shared/errors'
 import type { SiteLocale } from '@shared/lib/i18n'
@@ -31,7 +36,7 @@ export const calendarDetailMetaInput = (
     id: event.id,
     title: localized.title,
     alternateTitle: locale === 'en' ? event.titleJapanese : event.titleEnglish,
-    dateRange: formatDateRange(event.startDate, event.endDate, locale),
+    dateRange: eventDateRange(event, locale),
     venue: localized.venue,
   }
 }
@@ -56,8 +61,12 @@ export const buildSportsEventJsonLd = (
     '@type': 'SportsEvent',
     name: localized.title,
     alternateName: localized.alternateTitle,
-    startDate: event.startDate,
-    endDate: event.endDate ?? event.startDate,
+    // 日程が未定のイベントは、月（"2027-03"）を開始日と終了日に入れる
+    startDate: event.schedule === EventSchedule.MONTH_ONLY ? event.month : event.startDate,
+    endDate:
+      event.schedule === EventSchedule.MONTH_ONLY
+        ? event.month
+        : (event.endDate ?? event.startDate),
     url: `${baseUrl}${path}`,
     sport: "Men's Rhythmic Gymnastics",
     location: localized.venue ? { '@type': 'Place', name: localized.venue } : undefined,
