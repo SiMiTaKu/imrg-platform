@@ -24,7 +24,7 @@
     type CalendarState,
   } from '@features/calendarFilter'
   import { pageData } from '@shared/lib/device'
-  import { SECONDARY_LOCALE, getLocale, showsSecondaryText } from '@shared/lib/i18n'
+  import { getLocale } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { loadCalendarState, saveCalendarState } from '../lib/stateStorage'
   import CalendarContribute from './CalendarContribute.svelte'
@@ -34,8 +34,6 @@
   const MONTH_RANGE = monthRangeOf(EVENTS, UPDATED_AT)
 
   const locale = getLocale() as SiteLocale
-  // 日本語ページでは、見出しやボタンに英語を小さく併記する
-  const showsBoth = showsSecondaryText()
 
   // 書き出すHTMLは最終更新日の時点で作り、閲覧したときに今日の日付とURLの条件で描き直す
   let today = $state(UPDATED_AT)
@@ -74,28 +72,10 @@
       : eventsInMonth(matched, calendarState.month),
   )
   // 最終更新日。日本語ページでは「最終更新: … / Last updated: …」と並べる
-  const updatedAtText = [
-    m.calendar_updated_at({ date: formatDay(UPDATED_AT, locale) }),
-    ...(showsBoth
-      ? [
-          m.calendar_updated_at(
-            { date: formatDay(UPDATED_AT, SECONDARY_LOCALE) },
-            { locale: SECONDARY_LOCALE },
-          ),
-        ]
-      : []),
-  ].join(' / ')
+  const updatedAtText = m.calendar_updated_at({ date: formatDay(UPDATED_AT, locale) })
 
   // 英語の単数・複数で文言を分ける（日本語はどちらも同じ）
   const isOne = $derived(new Intl.PluralRules(locale).select(matched.length) === 'one')
-
-  /**
-   * 日本語ページでは「日本語 / English」の形にする
-   * @param message - 文言
-   * @returns 表示する文字列
-   */
-  const withSecondary = (message: typeof m.calendar_see_all_in_list): string =>
-    showsBoth ? `${message()} / ${message({}, { locale: SECONDARY_LOCALE })}` : message()
 
   /**
    * 条件を変える。ページ送り以外の変更では1ページ目に戻す
@@ -125,7 +105,7 @@
 </script>
 
 {#snippet segmentLabel(message: typeof m.calendar_view_calendar)}
-  {message()}{#if showsBoth}<span lang="en">{message({}, { locale: SECONDARY_LOCALE })}</span>{/if}
+  {message()}
 {/snippet}
 
 {#snippet resultsTitle(targetLocale: SiteLocale)}
@@ -144,14 +124,10 @@
   <Heading
     fontSize={$pageData.isMobile ? 30 : 40}
     subtitleFontSize={$pageData.isMobile ? 16 : 20}
-    subtitle={showsBoth ? m.calendar_title({}, { locale: SECONDARY_LOCALE }) : undefined}
     title={m.calendar_title()}
   />
 
   <p class="lead">{m.calendar_lead()}</p>
-  {#if showsBoth}
-    <p class="lead-en" lang="en">{m.calendar_lead({}, { locale: SECONDARY_LOCALE })}</p>
-  {/if}
   <p class="updated-at">{updatedAtText}</p>
 
   <CalendarSearchPanel
@@ -162,7 +138,7 @@
   />
 
   <div class="toolbar">
-    <div class="segmented" aria-label={withSecondary(m.calendar_view_label)} role="group">
+    <div class="segmented" aria-label={m.calendar_view_label()} role="group">
       <button
         class="segment"
         class:active={calendarState.view === 'calendar'}
@@ -182,7 +158,7 @@
     </div>
 
     {#if calendarState.view === 'list'}
-      <div class="segmented" aria-label={withSecondary(m.calendar_period_label)} role="group">
+      <div class="segmented" aria-label={m.calendar_period_label()} role="group">
         {#each EVENT_PERIODS as period (period.key)}
           <button
             class="segment"
@@ -197,9 +173,8 @@
     {/if}
 
     <p class="count">
-      <strong>{matched.length}</strong>{#if showsBoth}{m.calendar_count_unit_other()}<span lang="en"
-          >{m.calendar_count({ count: matched.length }, { locale: SECONDARY_LOCALE })}</span
-        >{:else}{` ${isOne ? m.calendar_count_unit_one() : m.calendar_count_unit_other()}`}{/if}
+      <strong>{matched.length}</strong
+      >{` ${isOne ? m.calendar_count_unit_one() : m.calendar_count_unit_other()}`}
     </p>
   </div>
 
@@ -213,7 +188,7 @@
           class="link-button"
           type="button"
           onclick={() => update({ view: 'list', period: 'all' })}
-          >{withSecondary(m.calendar_see_all_in_list)}</button
+          >{m.calendar_see_all_in_list()}</button
         >
       </p>
     {/if}
@@ -233,13 +208,10 @@
       <div class="results-heading">
         <h3 class="section-title">
           {@render resultsTitle(locale)}
-          {#if showsBoth}
-            <span lang="en">{@render resultsTitle(SECONDARY_LOCALE)}</span>
-          {/if}
         </h3>
         {#if calendarState.day}
           <button class="link-button" type="button" onclick={() => update({ day: null })}
-            >{withSecondary(m.calendar_show_whole_month)}</button
+            >{m.calendar_show_whole_month()}</button
           >
         {/if}
       </div>
@@ -251,9 +223,7 @@
         </ul>
       {:else}
         <p class="empty">
-          {m.calendar_empty_month()}{#if showsBoth}<span lang="en"
-              >{m.calendar_empty_month({}, { locale: SECONDARY_LOCALE })}</span
-            >{/if}
+          {m.calendar_empty_month()}
         </p>
       {/if}
     </section>
@@ -262,9 +232,6 @@
       {#each pageGroups as group, index (`${group.monthKey}-${index}`)}
         <h3 class="month-heading">
           {formatMonth(group.monthKey, locale)}
-          {#if showsBoth}
-            <span lang="en">{formatMonth(group.monthKey, SECONDARY_LOCALE)}</span>
-          {/if}
         </h3>
         <ul class="rows">
           {#each group.events as event (event.id)}
@@ -273,9 +240,7 @@
         </ul>
       {:else}
         <p class="empty">
-          {m.calendar_empty_filter()}{#if showsBoth}<span lang="en"
-              >{m.calendar_empty_filter({}, { locale: SECONDARY_LOCALE })}</span
-            >{/if}
+          {m.calendar_empty_filter()}
         </p>
       {/each}
 
@@ -325,12 +290,6 @@
     font-size: $font-size-16;
   }
 
-  .lead-en {
-    margin-top: $space-size-4;
-    font-size: 13px;
-    color: map.get($gray, light-text);
-  }
-
   .updated-at {
     margin-top: $space-size-12;
     text-align: right;
@@ -369,11 +328,6 @@
     }
   }
 
-  .segment span[lang='en'] {
-    font-size: $font-size-10;
-    font-weight: normal;
-  }
-
   .segment.active {
     color: $white;
     border-color: map.get($sky-blue, button);
@@ -391,10 +345,6 @@
     margin-right: $space-size-2;
     font-size: $font-size-20;
     color: map.get($gray, text);
-  }
-
-  .count span[lang='en'] {
-    display: none;
   }
 
   .hint {
@@ -439,13 +389,6 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .section-title span[lang='en'],
-  .month-heading span[lang='en'] {
-    font-size: $font-size-12;
-    font-weight: normal;
-    color: map.get($gray, light-text);
-  }
-
   .month-heading {
     margin: $space-size-24 0 $space-size-12;
   }
@@ -460,13 +403,6 @@
     padding: $space-size-32 0;
     font-size: $font-size-14;
     text-align: center;
-    color: map.get($gray, light-text);
-  }
-
-  .empty span[lang='en'] {
-    display: block;
-    font-size: $font-size-12;
-    font-weight: normal;
     color: map.get($gray, light-text);
   }
 </style>
