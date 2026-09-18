@@ -57,3 +57,6 @@ export const FLOW_STEPS = [
     description: m.decorating_apparatus_flow_delivery_description,
   },
 ] as const
+
+/** 手具装飾の料金（作業1時間あたり、円） */
+export const PRICE_PER_HOUR = 1500

@@ -39,3 +39,6 @@ export const FLOW_STEPS = [
     description: m.background_music_flow_delivery_description,
   },
 ] as const
+
+/** 曲編集の料金（1曲あたり、円） */
+export const PRICE_PER_MUSIC = 5000
