@@ -8,12 +8,6 @@
 
   const { children }: { children: Snippet } = $props()
 
-  let screenWidth = $state(0)
-
-  $effect.pre(() => {
-    pageData.update(screenWidth)
-  })
-
   // アクセス解析（Cloudflare Web Analytics）。Cookie を使わない。
   // トークンが空のときは読み込まない
   onMount(() => {
@@ -25,8 +19,6 @@
     document.head.appendChild(beacon)
   })
 </script>
-
-<svelte:window bind:outerWidth={screenWidth} />
 
 <svelte:head>
   {#if $pageData.isMobile}
@@ -42,7 +34,7 @@
 
 <Header />
 
-<main class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
+<main>
   {@render children()}
 </main>
 
@@ -51,15 +43,16 @@
 <LocalePageLinks />
 
 <style lang="scss">
-  .desktop {
-    --header-padding: 80px;
-  }
-
-  .mobile {
-    --header-padding: 64px;
-  }
-
+  // ヘッダーの高さ分の余白。app.html が描画の前に付ける印で決めるので、
+  // 読み込みの途中で高さが変わらない
   main {
-    padding-top: var(--header-padding);
+    padding-top: 64px;
   }
+
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+  // app.html が html に付ける印を見るので :global が要る
+  :global(html[data-device='desktop']) main {
+    padding-top: 80px;
+  }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 </style>

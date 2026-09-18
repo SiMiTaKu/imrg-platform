@@ -3,10 +3,7 @@
 
 declare global {
   namespace App {
-    interface Locals {
-      isMobile: boolean
-    }
-
+    // interface Locals {}
     // interface PageData {}
     // interface Error {}
     // interface Platform {}
