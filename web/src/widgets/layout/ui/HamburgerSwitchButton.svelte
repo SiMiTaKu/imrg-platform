@@ -35,18 +35,24 @@
 <style lang="scss">
   .desktop {
     --height: 80px;
+    --right-padding: #{$space-size-16};
   }
 
   .mobile {
     --height: 64px;
+    --right-padding: #{$space-size-12};
   }
 
   .button {
     display: grid;
     place-items: center;
+
+    // 右に余白を入れてアイコンを左へ寄せ、言語の切り替えとの間隔を詰める。
+    // 押せる範囲（ボタンの大きさ）は変えない
+    box-sizing: border-box;
     width: var(--height);
     height: var(--height);
-    padding: 0;
+    padding: 0 var(--right-padding) 0 0;
     border: none;
     background: transparent;
     transition: 0.25s;
