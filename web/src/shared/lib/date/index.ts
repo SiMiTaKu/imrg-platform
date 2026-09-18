@@ -1,6 +1,4 @@
 export {
-  WEEKDAYS_ENGLISH,
-  WEEKDAYS_JAPANESE,
   buildMonthGrid,
   formatDay,
   formatDayEnglish,
@@ -8,6 +6,8 @@ export {
   formatMonth,
   formatMonthEnglish,
   formatMonthJapanese,
+  formatYear,
+  monthOfNumber,
   parseDate,
   shiftMonth,
   shortMonthEnglish,
@@ -16,5 +16,6 @@ export {
   toMonthKey,
   weekdayName,
   weekdayOf,
+  weekdayOfIndex,
 } from './date'
-export type { DateBadge, DateParts, DayCell } from './date'
+export { formatDateRange, formatDateRangeEnglish, formatDateRangeJapanese } from './dateRange'

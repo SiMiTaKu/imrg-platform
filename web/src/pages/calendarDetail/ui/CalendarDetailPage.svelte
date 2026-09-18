@@ -8,11 +8,11 @@
   import {
     CATEGORY_COLORS,
     categoryLabel,
-    formatDateRange,
     hostnameOf,
     localizeEvent,
     type CalendarEvent,
   } from '@entities/calendarEvent'
+  import { formatDateRange } from '@shared/lib/date'
   import { pageData } from '@shared/lib/device'
   import { SECONDARY_LOCALE, getLocale, localizeHref, showsSecondaryText } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
@@ -122,9 +122,11 @@
     <div class="fact">
       <dt>{@render factLabel(m.calendar_fact_date)}</dt>
       <dd>
-        <span class="fact-main">{formatDateRange(event, locale)}</span>
+        <span class="fact-main">{formatDateRange(event.startDate, event.endDate, locale)}</span>
         {#if showsBoth}
-          <span class="fact-en" lang="en">{formatDateRange(event, SECONDARY_LOCALE)}</span>
+          <span class="fact-en" lang="en"
+            >{formatDateRange(event.startDate, event.endDate, SECONDARY_LOCALE)}</span
+          >
         {/if}
       </dd>
     </div>

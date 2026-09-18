@@ -5,8 +5,7 @@
   import { ROUTES } from '@shared/routes'
   import { CATEGORY_COLORS } from '../config/category'
   import { categoryLabel } from '../lib/category'
-  import { shortMonthEnglish, toDateBadge, weekdayName } from '@shared/lib/date'
-  import { formatDateRange } from '../lib/date'
+  import { formatDateRange, shortMonthEnglish, toDateBadge, weekdayName } from '@shared/lib/date'
   import { localizeEvent } from '../lib/event'
   import type { CalendarEvent } from '../model'
 
@@ -70,7 +69,8 @@
       <span class="title-en" lang="en">{localized.alternateTitle}</span>
     {/if}
     <span class="sub">
-      {formatDateRange(event, locale)}{#if localized.venue}<span class="separator">{separator}</span
+      {formatDateRange(event.startDate, event.endDate, locale)}{#if localized.venue}<span
+          class="separator">{separator}</span
         >{localized.venue}{/if}
     </span>
   </span>

@@ -1,4 +1,5 @@
-import { EVENTS, formatDateRange, localizeEvent, type CalendarEvent } from '@entities/calendarEvent'
+import { EVENTS, localizeEvent, type CalendarEvent } from '@entities/calendarEvent'
+import { formatDateRange } from '@shared/lib/date'
 import type { CalendarDetailMetaInput } from '@shared/config/meta'
 import { NotFoundError } from '@shared/errors'
 import type { SiteLocale } from '@shared/lib/i18n'
@@ -30,7 +31,7 @@ export const calendarDetailMetaInput = (
     id: event.id,
     title: localized.title,
     alternateTitle: locale === 'en' ? event.titleJapanese : event.titleEnglish,
-    dateRange: formatDateRange(event, locale),
+    dateRange: formatDateRange(event.startDate, event.endDate, locale),
     venue: localized.venue,
   }
 }

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { Weekday } from '@shared/config/date'
 import {
   buildMonthGrid,
   formatDay,
@@ -60,9 +61,24 @@ describe('buildMonthGrid', () => {
 
       // #region Then
       expect(weeks).toHaveLength(5)
-      expect(weeks[0][0]).toEqual({ dateKey: '2026-08-30', day: 30, weekday: 0, inMonth: false })
-      expect(weeks[0][2]).toEqual({ dateKey: '2026-09-01', day: 1, weekday: 2, inMonth: true })
-      expect(weeks[4][6]).toEqual({ dateKey: '2026-10-03', day: 3, weekday: 6, inMonth: false })
+      expect(weeks[0][0]).toEqual({
+        dateKey: '2026-08-30',
+        day: 30,
+        weekday: Weekday.SUNDAY,
+        inMonth: false,
+      })
+      expect(weeks[0][2]).toEqual({
+        dateKey: '2026-09-01',
+        day: 1,
+        weekday: Weekday.TUESDAY,
+        inMonth: true,
+      })
+      expect(weeks[4][6]).toEqual({
+        dateKey: '2026-10-03',
+        day: 3,
+        weekday: Weekday.SATURDAY,
+        inMonth: false,
+      })
       // #endregion
     })
   })
@@ -74,7 +90,7 @@ describe('toDateBadge', () => {
       [
         '日付まで分かる場合、月・日・曜日になること',
         '2026-10-30',
-        { month: 10, day: 30, weekday: 5 },
+        { month: 10, day: 30, weekday: Weekday.FRIDAY },
       ],
       ['年月しか分からない場合、月だけになること', '2027-03', { month: 3 }],
     ])('%s', (_, value, expected) => {

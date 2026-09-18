@@ -1,7 +1,6 @@
 export { EVENTS, UPDATED_AT } from './api/events'
 export { CATEGORY_COLORS, CATEGORY_ORDER } from './config/category'
 export { categoryLabel } from './lib/category'
-export { formatDateRange, formatDateRangeEnglish, formatDateRangeJapanese } from './lib/date'
 export {
   eventsInMonth,
   eventsOnDay,
