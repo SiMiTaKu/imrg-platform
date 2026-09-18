@@ -1,0 +1,1 @@
+export { formatYen } from './number'
