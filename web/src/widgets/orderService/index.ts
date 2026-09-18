@@ -2,4 +2,5 @@
 export { default as OrderFlow } from './ui/OrderFlow.svelte'
 export type { OrderFlowStep } from './ui/OrderFlow.svelte'
 export { default as OrderMainVisual } from './ui/OrderMainVisual.svelte'
+export { default as OrderPrice } from './ui/OrderPrice.svelte'
 export type { OrderMainVisualSlide } from './ui/OrderMainVisual.svelte'
