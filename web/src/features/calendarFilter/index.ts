@@ -1,5 +1,4 @@
-export { PER_PAGE, PERIODS } from './config/period'
-export type { PeriodOption } from './config/period'
+export { CalendarView, EVENT_PERIODS, EventPeriod, PER_PAGE } from './config/period'
 export {
   filterEvents,
   groupByMonth,
@@ -11,9 +10,9 @@ export {
 export { defaultState, parseState, serializeState } from './lib/state'
 export type {
   CalendarState,
-  CalendarView,
+  CalendarViewKey,
   EventFilter,
-  EventPeriod,
+  EventPeriodKey,
   MonthGroup,
   PageSlice,
 } from './model'

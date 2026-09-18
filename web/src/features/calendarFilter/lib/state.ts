@@ -1,5 +1,6 @@
 import { toMonthKey } from '@shared/lib/date'
-import { CATEGORY_ORDER, type EventCategory } from '@entities/calendarEvent'
+import { EVENT_CATEGORIES, type EventCategorySlug } from '@entities/calendarEvent'
+import { CalendarView, EventPeriod } from '../config/period'
 import type { CalendarState } from '../model'
 
 /**
@@ -8,10 +9,10 @@ import type { CalendarState } from '../model'
  * @returns カレンダー表示・これからのイベント・1ページ目の状態
  */
 export const defaultState = (month: string): CalendarState => ({
-  view: 'calendar',
+  view: CalendarView.CALENDAR.key,
   keyword: '',
   categories: [],
-  period: 'upcoming',
+  period: EventPeriod.UPCOMING.key,
   page: 1,
   month,
   day: null,
@@ -31,17 +32,20 @@ export const parseState = (search: string, month: string): CalendarState => {
   const defaults = defaultState(month)
   const categories = (params.get('category') ?? '')
     .split(',')
-    .filter((value): value is EventCategory => CATEGORY_ORDER.includes(value as EventCategory))
+    .filter((value): value is EventCategorySlug =>
+      EVENT_CATEGORIES.some((category) => category.slug === value),
+    )
   const period = params.get('period')
   const monthParam = params.get('month')
   const dayParam = params.get('day')
   const resolvedMonth = monthParam && /^\d{4}-\d{2}$/.test(monthParam) ? monthParam : defaults.month
 
   return {
-    view: params.get('view') === 'list' ? 'list' : defaults.view,
+    view: params.get('view') === CalendarView.LIST.key ? CalendarView.LIST.key : defaults.view,
     keyword: params.get('q') ?? '',
     categories: [...new Set(categories)],
-    period: period === 'past' || period === 'all' ? period : defaults.period,
+    period:
+      period === EventPeriod.PAST.key || period === EventPeriod.ALL.key ? period : defaults.period,
     page: Math.max(1, Number.parseInt(params.get('page') ?? '1', 10) || 1),
     month: resolvedMonth,
     day:
@@ -63,10 +67,12 @@ export const serializeState = (state: CalendarState, month: string): string => {
   if (state.view !== defaults.view) params.set('view', state.view)
   if (state.keyword) params.set('q', state.keyword)
   if (state.categories.length) params.set('category', state.categories.join(','))
-  if (state.view === 'list' && state.period !== defaults.period) params.set('period', state.period)
-  if (state.view === 'list' && state.page > 1) params.set('page', String(state.page))
-  if (state.view === 'calendar' && state.month !== defaults.month) params.set('month', state.month)
-  if (state.view === 'calendar' && state.day) params.set('day', state.day)
+  if (state.view === CalendarView.LIST.key && state.period !== defaults.period)
+    params.set('period', state.period)
+  if (state.view === CalendarView.LIST.key && state.page > 1) params.set('page', String(state.page))
+  if (state.view === CalendarView.CALENDAR.key && state.month !== defaults.month)
+    params.set('month', state.month)
+  if (state.view === CalendarView.CALENDAR.key && state.day) params.set('day', state.day)
 
   const query = params.toString()
   return query ? `?${query}` : ''

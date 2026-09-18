@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import { IMAGE_FORMATS } from '@shared/config/image'
+
   /** vite-imagetools の `&as=meta` で読み込んだ画像の情報 */
   export interface ImageSourceMeta {
     /** 画像のパス */
@@ -10,9 +12,6 @@
     /** 形式（webp など） */
     format: string
   }
-
-  /** srcset に並べる形式 */
-  const IMAGE_FORMATS = ['webp', 'png']
 </script>
 
 <script lang="ts">
