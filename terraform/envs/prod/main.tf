@@ -1,0 +1,43 @@
+locals {
+  tags = {
+    Project     = "imrg-platform"
+    Environment = "prod"
+    ManagedBy   = "terraform"
+  }
+}
+
+# Terraform の状態ファイルの置き場。ここだけは先に作る必要がある
+module "state_backend" {
+  source = "../../modules/state_backend"
+
+  bucket_name = "imrg-platform-terraform-state"
+  tags        = local.tags
+}
+
+# S3 + CloudFront でサイトを配る
+module "site" {
+  source = "../../modules/static_site"
+
+  providers = {
+    aws           = aws
+    aws.us_east_1 = aws.us_east_1
+  }
+
+  site_domain    = var.site_domain
+  hosted_zone_id = var.hosted_zone_id
+  bucket_name    = "${replace(var.site_domain, ".", "-")}-site"
+  tags           = local.tags
+}
+
+# GitHub Actions がサイトを配るための役割
+module "deploy_role" {
+  source = "../../modules/deploy_role"
+
+  role_name            = "imrg-platform-deploy"
+  github_repository    = var.github_repository
+  allowed_refs         = ["refs/heads/main"]
+  bucket_arn           = module.site.bucket_arn
+  distribution_arn     = module.site.distribution_arn
+  create_oidc_provider = var.create_github_oidc_provider
+  tags                 = local.tags
+}

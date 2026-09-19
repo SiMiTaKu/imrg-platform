@@ -1,0 +1,86 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  # 手元から配り直したいときのため
+  workflow_dispatch:
+
+# 配信は重ねない。走っている途中で新しい push が来たら順番待ちにする
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  # AWS の役割を引き受けるための一時的な身分証を受け取る
+  id-token: write
+
+env:
+  AWS_REGION: ap-northeast-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://imrg.work
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: '.node-version'
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm --filter @imrg-platform/web build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # ファイル名にハッシュが入るものを先に置く。
+      # HTML より先に新しい資産を置くことで、切り替わる瞬間に読み込めないファイルが出ないようにする
+      - name: Upload immutable assets
+        run: |
+          aws s3 sync web/build/_app/immutable "s3://${{ secrets.AWS_SITE_BUCKET }}/_app/immutable" \
+            --cache-control 'public, max-age=31536000, immutable' \
+            --size-only
+
+      # 残り。HTML やデータは毎回中身を確かめに行かせる
+      - name: Upload pages
+        run: |
+          aws s3 sync web/build "s3://${{ secrets.AWS_SITE_BUCKET }}" \
+            --exclude '_app/immutable/*' \
+            --cache-control 'public, max-age=0, must-revalidate' \
+            --delete
+
+      # ハッシュの付いた資産は放っておいても当たらなくなるので、HTML とデータだけ捨てる
+      - name: Invalidate cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id '${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}' \
+            --paths '/*'
+
+      # 公開されたものが、いま配ったビルドかを確かめる
+      - name: Verify
+        run: |
+          expected=$(cat web/build/_app/version.json)
+          for i in $(seq 1 30); do
+            actual=$(curl -fsS https://imrg.work/_app/version.json || true)
+            if [ "$actual" = "$expected" ]; then
+              echo "公開を確認しました: $actual"
+              exit 0
+            fi
+            echo "待機中 ($i/30) 公開側: $actual"
+            sleep 10
+          done
+          echo "公開されたビルドが一致しませんでした。期待: $expected"
+          exit 1

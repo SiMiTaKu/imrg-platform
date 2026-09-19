@@ -1,0 +1,48 @@
+// CloudFront のビューワーリクエストで動く。静的なファイルを返すために URL を整える
+// 1. www 付きでの来訪は ${site_domain} へ移す
+// 2. 拡張子の無いパスは末尾スラッシュ付きへ移す（サイトは末尾スラッシュ付きを正とする）
+// 3. 末尾スラッシュのパスは、その下の index.html を返す
+function handler(event) {
+  var request = event.request
+  var uri = request.uri
+  var host = request.headers.host ? request.headers.host.value : ''
+
+  if (host.indexOf('www.') === 0) {
+    return redirect('https://${site_domain}' + uri + queryString(request))
+  }
+
+  // ファイル（拡張子つき）はそのまま配信元へ渡す
+  if (/\.[a-zA-Z0-9]+$/.test(uri)) return request
+
+  if (uri.charAt(uri.length - 1) === '/') {
+    request.uri = uri + 'index.html'
+    return request
+  }
+
+  return redirect(uri + '/' + queryString(request))
+}
+
+/** クエリを `?a=1&b=2` の形に組み立て直す。無いときは空文字 */
+function queryString(request) {
+  var keys = Object.keys(request.querystring)
+  if (keys.length === 0) return ''
+
+  return (
+    '?' +
+    keys
+      .map(function (key) {
+        var value = request.querystring[key].value
+        return value === '' ? key : key + '=' + value
+      })
+      .join('&')
+  )
+}
+
+/** 恒久的な転送を返す */
+function redirect(location) {
+  return {
+    statusCode: 301,
+    statusDescription: 'Moved Permanently',
+    headers: { location: { value: location } },
+  }
+}
