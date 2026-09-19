@@ -1,3 +1,17 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "Oshimitsu!",
+  "oshimitsu_filtered_title": "Oshimitsu! ({filter})",
+  "oshimitsu_lead_line1": "Oshimitsu! es un buscador dedicado a los vídeos de gimnasia rítmica masculina.",
+  "oshimitsu_lead_line2": "¡Descubre un lado de la gimnasia rítmica masculina que aún no conoces!",
+  "oshimitsu_content_type_legend": "Tipo de vídeo",
+  "oshimitsu_apparatus_legend": "Aparato",
+  "oshimitsu_search_button": "Buscar vídeos",
+  "oshimitsu_recommended_title": "Vídeos recomendados",
+  "oshimitsu_content_type_individual": "Individual",
+  "oshimitsu_content_type_group": "Conjunto",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "Ver más",
+  "oshimitsu_no_more_videos": "* No hay más vídeos para mostrar por ahora.",
+  "oshimitsu_loading": "Cargando..."
 }

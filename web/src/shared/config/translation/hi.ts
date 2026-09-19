@@ -1,8 +1,9 @@
+import { ALL_PAGES } from './allPages'
+
 /**
- * ヒンディー語に訳し終えたページのパス（言語の接頭辞なし、末尾スラッシュ付き）。
+ * ヒンディー語に訳し終えたページのパス。
  *
  * @remarks
- * 訳し終えたページを足すと、noindex が外れ、hreflang と sitemap に載る。
- * 全ページ訳し終えたら `ALL_PAGES`（`./allPages`）に差し替える
+ * 言語ごとにファイルを分けているのは、言語の作業を並行して進めても同じ行を取り合わないようにするため
  */
-export const HI_TRANSLATED_PATHS: readonly string[] = []
+export const HI_TRANSLATED_PATHS: readonly string[] = ALL_PAGES

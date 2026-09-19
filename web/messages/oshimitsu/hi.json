@@ -1,3 +1,17 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "ओशिमित्सु!",
+  "oshimitsu_filtered_title": "ओशिमित्सु! ({filter})",
+  "oshimitsu_lead_line1": "ओशिमित्सु पुरुष लयबद्ध जिम्नास्टिक के वीडियो के लिए बनी खोज सुविधा है।",
+  "oshimitsu_lead_line2": "पुरुष लयबद्ध जिम्नास्टिक की वह दुनिया और उसका आकर्षण खोजें जो आपने अब तक नहीं देखा!",
+  "oshimitsu_content_type_legend": "वीडियो का प्रकार",
+  "oshimitsu_apparatus_legend": "उपकरण",
+  "oshimitsu_search_button": "इन शर्तों से खोजें",
+  "oshimitsu_recommended_title": "सुझाए गए वीडियो",
+  "oshimitsu_content_type_individual": "व्यक्तिगत",
+  "oshimitsu_content_type_group": "समूह",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "और देखें",
+  "oshimitsu_no_more_videos": "* अभी दिखाने के लिए और वीडियो नहीं हैं",
+  "oshimitsu_loading": "लोड हो रहा है..."
 }

@@ -1,3 +1,19 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "top_main_visual_logo_alt": "पुरुष लयबद्ध जिम्नास्टिक अंतरराष्ट्रीयकरण परियोजना का लोगो",
+  "top_main_visual_catchphrase": "जापान की संस्कृति से विश्व के खेल तक",
+  "top_introduction_title": "पुरुष लयबद्ध जिम्नास्टिक अंतरराष्ट्रीयकरण परियोजना",
+  "top_introduction_body_1": " का उद्देश्य ",
+  "top_introduction_body_2": "पुरुष लयबद्ध जिम्नास्टिक",
+  "top_introduction_body_3": " को ",
+  "top_introduction_body_4": "ओलंपिक खेल",
+  "top_introduction_body_5": " बनाना है, और इसके लिए हम इसके आकर्षण को ",
+  "top_introduction_body_6": "पूरी दुनिया",
+  "top_introduction_body_7": " तक पहुँचाते हैं।",
+  "top_links_calendar": "प्रतियोगिताएँ और कार्यक्रम खोजें",
+  "top_links_decorating_apparatus": "उपकरण सजावट का अनुरोध करें",
+  "top_links_background_music": "संगीत संपादन का अनुरोध करें",
+  "top_links_judge": "निर्णायक बनकर देखें",
+  "top_links_rules": "नियम जानें",
+  "top_links_oshimitsu": "ओशिमित्सु!"
 }
