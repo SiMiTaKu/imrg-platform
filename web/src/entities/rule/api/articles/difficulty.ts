@@ -9,18 +9,21 @@ export const DIFFICULTY_ARTICLES: RuleArticle[] = [
     title: {
       ja: '難度',
       en: 'Difficulty',
+      zh: '难度',
     },
     section: [
       {
         title: {
           ja: '難度の要求要素',
           en: 'Difficulty Requirements',
+          zh: '难度的要求要素',
         },
         block: [
           {
             title: {
               ja: '徒手系難度',
               en: 'Free-Hand Difficulties',
+              zh: '徒手难度',
             },
             element: {
               ja: `徒手系の難度は以下のとおりにする。
@@ -43,6 +46,16 @@ export const DIFFICULTY_ARTICLES: RuleArticle[] = [
 
 [Table of basic difficulties]
 Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexibility) are shown below.`,
+              zh: `徒手难度按以下规定执行。
+
+1. 在个人比赛中伴随器械操作完成时，采用基础难度。
+2. 在团体比赛中，3 至 5 人以上完成时采用基础难度，6 人完成时采用 6 人完成的难度。但完成必须是同时，或依次连续完成。
+  a. 同一组（下列 1 至 4 的各组）的动作中，将不同种类组合完成时，6 人完成即可提高难度的项目组合将被升级。
+  b. 不同组动作的组合，不计为难度。
+  c. 静止 2 秒必须同时完成。
+  
+【基础难度表】
+跳跃、平衡、倒立（静止 2 秒）、柔韧 A（静态柔韧）如下所示`,
             },
             image: [
               {
@@ -50,6 +63,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '徒手系難度（跳躍）',
                   en: 'Free-hand difficulties (jumps)',
+                  zh: '徒手难度（跳跃）',
                 },
               },
               {
@@ -57,6 +71,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '徒手系難度（バランス）',
                   en: 'Free-hand difficulties (balances)',
+                  zh: '徒手难度（平衡）',
                 },
               },
               {
@@ -64,6 +79,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '倒立（静止２秒',
                   en: 'Handstands (held for 2 seconds)',
+                  zh: '倒立（静止 2 秒',
                 },
               },
               {
@@ -71,6 +87,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '柔軟Ａ　〜静的柔軟〜',
                   en: 'Flexibility A (static flexibility)',
+                  zh: '柔韧 A（静态柔韧）',
                 },
               },
             ],
@@ -81,12 +98,14 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
         title: {
           ja: '転回系難度',
           en: 'Tumbling Difficulties',
+          zh: '翻腾难度',
         },
         block: [
           {
             title: {
               ja: '転回系難度',
               en: 'Tumbling Difficulties',
+              zh: '翻腾难度',
             },
             element: {
               ja: `転回系の難度は次の基礎難度をもとに価値が決められる。
@@ -107,6 +126,15 @@ Tables of twisting elements, forward tumbling elements, backward tumbling elemen
 * Upgrades apply only when all six gymnasts perform the element at the same time.
 Three or more consecutive back handsprings in which some are replaced by tumbling of B difficulty or higher are treated in the same way.
 A layout back salto with an added twist is also treated in the same way.`,
+              zh: `翻腾难度依据以下基础难度确定其价值。
+                  
+跳转体动作、前方跳跃动作、后方跳跃动作、空翻连续、翻腾连续的表格如下所示。
+
+※※除空翻以外的动作中，2-3、3-15 的翻腾也同等对待。
+※节奏空翻仅在紧接后方翻腾展开时，方按此对待。
+※仅在 6 人全部同时完成时，才作为升级对象。
+3 次以上的连续后手翻中，其中一部分变为 B 难度以上翻腾的，也同等对待。
+后方直体空翻加转体时，也同等对待。`,
             },
             image: [
               {
@@ -114,6 +142,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: 'とびひねり技の難度表',
                   en: 'Table of twisting element difficulties',
+                  zh: '跳转体动作难度表',
                 },
               },
               {
@@ -121,6 +150,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '前方系跳躍技の難度表',
                   en: 'Table of forward tumbling difficulties',
+                  zh: '前方跳跃动作难度表',
                 },
               },
               {
@@ -128,6 +158,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '後方系の跳躍技の難度表',
                   en: 'Table of backward tumbling difficulties',
+                  zh: '后方跳跃动作难度表',
                 },
               },
               {
@@ -135,6 +166,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '宙返りの連続の難度表',
                   en: 'Table of salto combination difficulties',
+                  zh: '空翻连续难度表',
                 },
               },
               {
@@ -142,6 +174,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '転回系の連続の難度表',
                   en: 'Table of tumbling combination difficulties',
+                  zh: '翻腾连续难度表',
                 },
               },
             ],
@@ -152,12 +185,14 @@ A layout back salto with an added twist is also treated in the same way.`,
         title: {
           ja: '団体競技における難度の組み合わせ',
           en: 'Difficulty Combinations in the Group Competition',
+          zh: '团体比赛中的难度组合',
         },
         block: [
           {
             title: {
               ja: '交差技と組運動の難度',
               en: 'Difficulty of Crossing Elements and Partner Elements',
+              zh: '交叉动作与双人动作的难度',
             },
             element: {
               ja: `【交差技】
@@ -236,6 +271,44 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
   1. The difficulty performed by three or more gymnasts applies.
   2. If a crossing element or a partner or pyramid element in the series is the highest difficulty in the series, that difficulty applies regardless of the number of gymnasts.
   3. If every difficulty is performed by fewer than three gymnasts, even after counting higher difficulties as lower ones, no difficulty is recognized.`,
+              zh: `【交叉动作】
+交叉动作的难度规定如下。
+
+1. 从徒手动作上方以翻腾跃过时，采用该翻腾项目的难度。
+2. 翻腾的交叉动作，必须跃过翻腾的过程之中。最低条件为在翻腾落地前的瞬间跃过。
+3. 翻腾的交叉动作，必须跃过翻腾的过程之中。
+4. 在落地之后跃过时，按（1）对待。
+5. 2 层交叉动作的难度（参见下表）
+6. 3 层以上的交叉动作全部以 B 难度以上的翻腾完成时，定为 D 难度。其中含有 A 难度时，不按此对待。
+
+【双人、叠罗汉动作】
+双人、叠罗汉动作的难度规定如下。
+
+1. 双人、叠罗汉动作的难度表（参见下表）
+※紧接翻腾时，方作为难度对待。
+※为 C 难度以上的翻腾时，采用该翻腾的难度。
+
+2. 双人、叠罗汉动作中难度的升级
+  a. 以跃过动作越过肩上倒立时，跳跃类提高 1 个等级，空翻类提高 2 个等级。
+  b. 双人倒立中为单手倒立，或支撑者以直臂支撑时，提高 1 个等级。
+  
+【系列难度的判定】
+参赛者分为若干组、依次进行翻腾时，难度的判定如下。
+
+1. 原则上除交叉动作与双人、叠罗汉动作外，采用 3 人以上完成的难度。但可以将高难度的动作按低难度计算。
+2. 分为若干组完成相同难度的翻腾时
+  a. 分为 3：3 时
+    i. 原则上采用完成较高难度的组的难度。
+    ii. 即使项目不同，若为 6 人以上完成即可提高难度的项目组合，则予以升级。
+    ※6 人完成时难度升级的动作如下所示
+  b. 分为 4、2 或 5、1 时
+    i. 原则上采用完成较高难度的组的难度。
+    ii. 即使项目不同，若为 6 人以上完成即可提高难度的项目组合，则予以升级。
+    iii. 人数较少的组为交叉动作或双人、叠罗汉动作时，将其作为难度采用，并采用难度较高的组。
+3. 分为若干组完成相同难度的翻腾时
+  1. 采用 3 人以上完成的难度。
+  2. 系列中包含的交叉动作或双人、叠罗汉动作为该系列中最高难度时，不论人数，均采用该难度。
+  3. 即使将高难度按低难度计算，所有难度均不足 3 人完成时，不认定为难度。`,
             },
           },
         ],
@@ -244,12 +317,14 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
         title: {
           ja: '個人競技における難度',
           en: 'Difficulty in the Individual Competition',
+          zh: '个人比赛中的难度',
         },
         block: [
           {
             title: {
               ja: '転回系における手具操作と難度',
               en: 'Apparatus Handling and Difficulty in Tumbling',
+              zh: '翻腾中的器械操作与难度',
             },
             element: {
               ja: `演技の中で転回系を実施した場合の難度は、基礎難度表によって価値が決められる。ただし、以下の条件に当てはまる場合は、その難度から１ランクアップされる。
@@ -304,18 +379,47 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
   e. Other apparatus handling
     i. Bouncing the apparatus on the floor and catching it during tumbling.
     ii. Rolling the apparatus during tumbling and catching it on landing.`,
+              zh: `在成套动作中完成翻腾时，其难度依据基础难度表确定价值。但符合以下条件时，在该难度的基础上提高 1 个等级。
+                  
+1. 在器械抛接之间完成翻腾时，在该翻腾的难度基础上提高 1 个等级。
+2. 伴随 2 次以上的器械操作完成时。
+  
+  a. 短棒
+    ⅰ. 握住端部或中部等，旋转 2 次以上。
+    ⅱ. 左右手交换，旋转 1 次以上。
+    
+  b. 环
+    ⅰ. 将 1 个环或 2 个环旋转 2 次以上。
+    ⅱ. 将 2 个环各旋转 1 周，依次进行。
+    ⅲ. 将 1 个环左右手交换，旋转 1 次以上。
+    
+  c. 绳
+    ⅰ. 用单手或双手，将绳以单根、对折、三折、四折等形式旋转 2 周以上。
+    ⅱ. 左右手交换，旋转 1 次以上。
+    
+  d. 棍棒
+    ⅰ. 握住棒头或棒颈，旋转 2 次以上。
+    ⅱ. 将 2 根棍棒各旋转 1 周，依次进行。
+    ⅲ. 将 1 根棍棒左右手交换，旋转 1 次以上。
+    
+  e. 其他器械操作
+    ⅰ. 在完成翻腾的过程中，将器械击打地面后接住。
+    ⅱ. 在完成翻腾的过程中，将器械滚动，并在落地的同时接住。`,
             },
           },
           {
             title: {
               ja: '投げ受けの難度',
               en: 'Throw-and-Catch Difficulty',
+              zh: '抛接的难度',
             },
             element: {
               ja: `演技の中で投げ受けを実施した場合、その間に実施した徒手系（※）または転回系の数によって以下のように難度が決められる。ただし、転回系が含まれていた場合は第69条の１の条件と比較して、高い方の難度を採用する。
 ※ここでの徒手系は、縦軸または横軸で、360°回転したもののみを１つとして数える。`,
               en: `When a throw and catch is performed in a routine, the difficulty is determined as follows by the number of free-hand elements (*) or tumbling elements performed during the throw. If tumbling is included, the difficulty is compared with the condition in Article 69 (1), and the higher one applies.
 * Here, a free-hand element counts as one only when it is a 360° rotation around the vertical or horizontal axis.`,
+              zh: `在成套动作中完成抛接时，根据其间完成的徒手动作（※）或翻腾的数量，按以下规定确定难度。但含有翻腾时，与第 69 条第 1 款的条件相比较，采用较高的难度。
+※此处的徒手动作，仅将绕纵轴或横轴旋转 360° 的动作计为 1 个。`,
             },
             image: [
               {
@@ -323,6 +427,7 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
                 alt: {
                   ja: '投げ受けの難度表',
                   en: 'Table of throw-and-catch difficulties',
+                  zh: '抛接难度表',
                 },
               },
             ],
@@ -331,10 +436,12 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
             title: {
               ja: '手具操作をともなった徒手系の難度',
               en: 'Difficulty of Free-Hand Elements with Apparatus Handling',
+              zh: '伴随器械操作的徒手难度',
             },
             element: {
               ja: '演技の中で手具操作をともなって徒手系難度を実施した場合は、徒手系難度を採用する。',
               en: 'When a free-hand difficulty is performed with apparatus handling in a routine, the free-hand difficulty applies.',
+              zh: '在成套动作中伴随器械操作完成徒手难度时，采用徒手难度。',
             },
           },
         ],

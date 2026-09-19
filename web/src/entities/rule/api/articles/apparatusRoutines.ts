@@ -9,18 +9,21 @@ export const APPARATUS_ROUTINES_ARTICLES: RuleArticle[] = [
     title: {
       ja: '個人競技の演技',
       en: 'Individual Routines',
+      zh: '个人比赛的成套动作',
     },
     section: [
       {
         title: {
           ja: 'スティック（棒）の演技',
           en: 'Stick Routines',
+          zh: '短棒的成套动作',
         },
         block: [
           {
             title: {
               ja: 'スティック（棒）の規格',
               en: 'Stick Specifications',
+              zh: '短棒的规格',
             },
             element: {
               ja: `1. 素材
@@ -45,12 +48,24 @@ Length 90 cm to 110 cm, thickness (diameter) 2.5 cm to 3.5 cm. Rubber or synthet
 
 4. Color
 Free`,
+              zh: `1. 材质
+木制或合成材料
+
+2. 重量
+最低200克
+
+3. 形状
+长度为90cm—110cm，粗细（直径）为2.5cm—3.5cm。顶端可以安装橡胶或合成材料的封头，其最大直径在４cm以内、长度在５cm以内。此外，也可以在整体或局部缠绕胶带。
+
+4. 颜色
+自由`,
             },
           },
           {
             title: {
               ja: 'スティック（棒）の技術',
               en: 'Stick Technique',
+              zh: '短棒的技术',
             },
             element: {
               ja: `【諸要素群】
@@ -99,12 +114,36 @@ The stick must not stop moving, even when changing planes, and must keep moving 
 
 4. Holding the stick
 During wide movements (e.g. swings and propeller rotations), the stick is usually held lightly with the fingers at the end or in the middle. The stick may also rest briefly on the open hand.`,
+              zh: `【各要素组】
+1. 基础要素组
+  a. 螺旋绕环（风车）
+  b. 滚动
+  c. 抛掷
+  d. 使用短棒的翻腾类
+  
+2. 其他要素组
+  a. 摆动
+  b. 绕环
+  c. 滑动
+  
+以上各要素，可以在考虑以下各点的基础上进行。
+  a. 伴有换手或不伴有换手。
+  b. 在各种方向进行。在各种平面进行。
+  c. 移动或不移动。
+  d. 单脚或双脚支撑，用单手或双手。
+  
+3. 短棒的操作
+短棒的运动即使在变换平面时也不得停止，必须利用短棒自身重量产生的惯性持续运动。做短棒的螺旋绕环和摆动时，必须把短棒当作手臂的延长来处理。短棒的操作必须伴随身体的运动。
+
+4. 短棒的握法
+在幅度较大的动作（例如摆动、螺旋绕环等）过程中，通常必须用手指轻握短棒的顶端或中央（中心）部位。此外，也可以暂时将短棒放在摊开的手上。`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              zh: '编排的要求',
             },
             element: {
               ja: `1. プロペラ回旋
@@ -159,12 +198,39 @@ At least one roll of at least 1 m must be included.
   f. Various rolls.
 
 * When the stick is thrown, the body must always be moving. Throughout the routine, it is essential that the stick always moves in harmony with the body.`,
+              zh: `1. 螺旋绕环
+必须编入２次以上的螺旋绕环。
+
+2. 滚动
+必须编入１次以上、长度１m 以上的滚动。
+
+3. 抛掷
+  a. 抛掷的最低条件
+    ⅰ. 必须编入３次以上的抛掷。
+    ⅱ. 必须编入左手抛左手接１次以上、右手抛右手接１次以上。
+  b. 抛掷的高度
+    ⅰ. 抛掷的高度，从参赛者抛出的位置算起至少要达到２m 以上。
+    
+4. 翻腾类要素
+  a. 必须编入前方、后方、侧方的翻腾。  
+  b. 做翻腾时，必须有效地运用短棒。
+  
+5. 各要素
+  a. 与徒手要素相结合的、各种不同方向和平面的螺旋绕环。
+  b. 各种各样的抛掷。（水平抛、垂直抛、水平及垂直的螺旋绕环抛、单手抛、双手抛）
+  c. 各种绕环（小、中、大）（分别用手腕、前臂、手臂进行）。
+  d. 有节奏的短棒转动。
+  e. 多种多样的握法。
+  f. 各种各样的滚动。
+  
+※　抛出短棒时，身体必须始终在运动。贯穿整套动作，短棒始终与身体保持协调地运动，这对短棒的成套动作来说是不可或缺的。`,
             },
           },
           {
             title: {
               ja: '難度のレベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              zh: '判断难度级别的一般标准',
             },
             element: {
               ja: `スティックに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
@@ -233,6 +299,39 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the stick is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              zh: `短棒特有的各要素，通常在与徒手Ｂ难度要素相结合时计为Ｂ难度，与徒手Ｃ难度要素相结合完成时计为Ｃ难度。
+1. Ａ难度
+以下要素与徒手类或翻腾类要素相结合完成时，计为Ａ难度。
+  a. 握持短棒完成Ａ难度翻腾动作。
+  b. 在完成Ａ难度翻腾动作期间操作短棒１次。
+  c. 在短棒抛起的过程中不做任何动作而接住短棒。
+  d. 其他具有Ａ难度组合技术价值的情况。
+  
+2. Ｂ难度
+以下短棒要素与徒手B难度要素相结合时，计为Ｂ难度。
+  a. 短棒难以控制的情况
+    i. 抛出并接住短棒。（例：与徒手难度要素相结合，将短棒抛出２m 以上并接住。）
+  b. 难以协调动作的情况
+    i. 将徒手要素与短棒结合起来完成。（例：与徒手Ｂ难度要素相结合，做螺旋绕环。）
+  c. 短棒难以接住的情况
+    i. 在短棒抛起的过程中转体后再接住短棒。（例：做１次前滚翻后接住短棒等，用各种抛法抛出短棒，并在抛起期间加入各种转体等再接住。）
+    ii. 在视野外进行短棒的抛接。（例：用各种抛法抛出短棒，在视野之外接住。）
+    
+3. Ｃ难度
+以下要素与翻腾类要素相结合时，计为Ｃ难度。
+  a. 在短棒抛起的过程中完成Ｂ难度翻腾动作。
+  b. 在Ｂ难度翻腾动作期间操作器械２次以上。
+  c. 完成Ｃ难度翻腾动作。
+  d. 在短棒抛起的过程中结合完成２个徒手类或翻腾类动作。
+  e. 其他具有Ｃ难度组合高技术价值的情况。
+  
+4. Ｄ难度
+以下要素与翻腾类要素相结合时，计为Ｄ难度。
+  a. 在短棒抛起的过程中完成Ｃ难度翻腾动作。
+  b. 在完成Ｃ难度翻腾动作期间操作短棒２次以上。
+  c. 完成Ｄ难度翻腾动作。
+  d. 在短棒抛起的过程中结合完成３个以上徒手类或翻腾类动作。
+  e. 其他具有Ｄ难度组合高技术价值的情况。`,
             },
           },
         ],
@@ -241,12 +340,14 @@ The following elements count as D difficulties when combined with tumbling eleme
         title: {
           ja: 'リング（輪）の演技',
           en: 'Ring Routines',
+          zh: '环的成套动作',
         },
         block: [
           {
             title: {
               ja: 'リング（輪）の規格',
               en: 'Ring Specifications',
+              zh: '环的规格',
             },
             element: {
               ja: `1. 素材
@@ -271,12 +372,24 @@ Inner diameter 40 cm to 45 cm, thickness (diameter) 2.5 cm to 3.5 cm. The rings 
 
 4. Color
 Free. The two rings may be different colors.`,
+              zh: `1. 材质
+木制或合成材料。
+
+2. 重量
+每个最低200克。
+
+3. 形状
+大小为内径40cm—45cm，粗细（直径）为2.5cm—3.5cm。此外，也可以在整体或局部缠绕胶带。
+
+4. 颜色
+自由。各环的颜色可以不同。`,
             },
           },
           {
             title: {
               ja: 'リング（輪）の技術',
               en: 'Ring Technique',
+              zh: '环的技术',
             },
             element: {
               ja: `【諸要素群】
@@ -327,12 +440,37 @@ The rings must not stop moving, even when changing planes, and must keep moving 
 
 4. Holding the rings
 To perform the elements characteristic of the rings, the rings must be held lightly so that they move freely. They may also be gripped firmly for a moment.`,
+              zh: `【各要素组】
+1. 基础要素组
+  a. 转动（手、身体）
+  b. 滚动
+  c. 抛掷
+  d. 使用环的翻腾类
+  
+2. 其他要素组
+  a. 摆动
+  b. 绕环
+  c. 左右不同的动作
+  
+以上各要素，可以在考虑以下各点的基础上进行。
+  a. 同时操作２个环。
+  b. 连续操作。
+  c. 在各种方向进行。
+  d. 移动或不移动。
+  e. 单脚或双脚支撑，用单手或双手。
+  
+3. 环的操作
+环的运动即使在变换平面时也不得停止，必须利用环自身重量产生的惯性持续运动。做环的转动和摆动时，环必须被当作手臂的延长来处理。环的操作必须伴随身体的运动。
+
+4. 环的握法
+为完成环特有的各要素，必须轻握环，使其能自由运动。此外，也可以暂时握紧。`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              zh: '编排的要求',
             },
             element: {
               ja: `
@@ -392,12 +530,42 @@ At least one roll of at least 1 m must be included.
   f. Various kinds of rolls.
 
   * When only one ring is thrown, the other ring must also be moving. Throughout the routine, it is essential that both rings always move in harmony with the body.`,
+              zh: `
+1. 转动（手、身体）
+必须编入２次旋转２周以上的转动。
+
+2. 滚动
+必须编入１次以上、长度１m 以上的滚动。
+
+3. 抛掷
+  a. 抛掷的条件
+    ⅰ. 必须编入３次以上的抛掷。
+    ⅱ. 必须编入１次以上的２个同时抛。但是，将两个环结合（组合）在一起的抛不视为２个同时抛。
+    ⅲ. ２个同时抛必须用单手、双手或脚抛出。接的方式自由。
+    
+  b. 抛掷的高度
+    ⅰ. 抛掷的高度，从参赛者抛出的位置算起至少要达到２m 以上。
+    
+4. 翻腾类要素
+  a. 必须编入前方、后方、侧方类动作。
+  b. 做翻腾时，必须有效地运用环。
+  
+5. 各要素
+  a. 各种各样的转动。
+  b. 各种各样的抛掷。
+  c. 伴有平面变化的摆动、绕环等。
+  d. 左右不同的动作。
+  e. 多种多样的握法。
+  f. 各种各样的滚动。
+  
+  ※　只抛出一个环时，另一个环也必须在运动。贯穿整套动作，２个环始终与身体保持协调地运动，这对环的成套动作来说是不可或缺的。`,
             },
           },
           {
             title: {
               ja: '難度レベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              zh: '判断难度级别的一般标准',
             },
             element: {
               ja: `リングに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わせた場合はＢ難度、徒手のＣ難度の要素と組み合わせて実施した場合はＣ難度として数える。
@@ -476,6 +644,44 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the ring is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              zh: `环特有的各要素，通常在与徒手Ｂ难度要素相结合时计为Ｂ难度，与徒手Ｃ难度要素相结合完成时计为Ｃ难度。
+1. Ａ难度
+以下要素与徒手类或翻腾类要素相结合完成时，计为Ａ难度。
+  a. 握持环完成Ａ难度翻腾动作。
+  b. 在完成Ａ难度翻腾动作期间操作环１次。
+  c. 在环抛起的过程中不做任何动作而接住环。
+  d. 其他具有Ａ难度组合技术价值的情况。
+  
+2. Ｂ难度
+以下要素与徒手Ｂ难度要素相结合时，计为Ｂ难度。
+  a. 环与身体动作之间的节奏关系特别复杂的情况
+    ⅰ. 要求环的运动与身体的运动之间完全同时进行的要素。
+  b. 因环所经过的表面而难以保持环的平面的情况
+    ⅰ. 在不规则表面上的大幅度滚动。例：与Ｂ难度徒手要素相结合，让环沿着向侧方伸直的双臂整体滚动。
+    ⅱ. 必须调节弹力以控制环拧转的幅度和次数的情况。（例：与Ｂ难度徒手要素相结合，一边使环拧转２周以上一边抛出。）
+  c. 环难以控制的情况
+    ⅰ. 抛出并接住环。（例：与徒手Ｂ难度要素相结合，使环旋转２周以上抛出并接住。）
+  d. 难以协调动作的情况
+    ⅰ. 将徒手要素与环结合起来完成。（例：与徒手Ｂ难度要素相结合，做２个同时转动。）
+  e. 环难以接住的情况
+    ⅰ. 在环抛起的过程中转体后再接住。（例：做１次前滚翻后接住环等，用各种抛法抛出环，并在抛起期间加入各种转体等再接住。）
+    ⅱ. 在视野外进行环的抛或接。（例：用各种抛法抛出环，在视野之外接住。）
+    
+3. Ｃ难度
+以下要素与翻腾类要素相结合时，计为Ｃ难度。
+  a. 在环抛出的过程中完成Ｂ难度翻腾动作。
+  b. 在Ｂ难度翻腾动作期间操作环２次。
+  c. 完成Ｃ难度翻腾动作。
+  d. 在环抛起的过程中完成Ｂ难度翻腾动作。
+  e. 其他具有Ｃ难度组合高技术价值的情况。
+  
+4. Ｄ难度
+以下要素与翻腾类要素相结合时，计为Ｄ难度。
+  a. 在环抛起的过程中完成Ｃ难度翻腾动作。
+  b. 在完成Ｃ难度翻腾动作期间操作环２次以上。
+  c. 完成Ｄ难度翻腾动作。
+  d. 在环抛起的过程中结合完成３个以上徒手类动作或翻腾动作。
+  e. 其他具有Ｄ难度组合高技术价值的情况。`,
             },
           },
         ],
@@ -484,12 +690,14 @@ The following elements count as D difficulties when combined with tumbling eleme
         title: {
           ja: 'ロープ（縄）の演技',
           en: 'Rope Routines',
+          zh: '绳的成套动作',
         },
         block: [
           {
             title: {
               ja: 'ロープ（縄）の規格',
               en: 'Rope Specifications',
+              zh: '绳的规格',
             },
             element: {
               ja: `1. 素材
@@ -514,12 +722,24 @@ Length is free. The rope must not have handles, but one or two knots may be tied
 
 4. Color
 Free.`,
+              zh: `1. 材质
+麻制或合成纤维。但合成纤维必须像麻制的一样轻而柔软。
+
+2. 重量
+无特别规定。
+
+3. 形状
+长度自由。两端不得安装握把，但可以在两端打１个或２个结。关于直径，只要材质相同，可以整体粗细一致，也可以中间部分比两端粗。结两端散开的部分允许在３cm 以内。
+
+4. 颜色
+自由。`,
             },
           },
           {
             title: {
               ja: 'ロープ（縄）の技術',
               en: 'Rope Technique',
+              zh: '绳的技术',
             },
             element: {
               ja: `【諸要素群】
@@ -568,12 +788,36 @@ The rope must always keep a clear shape. Its movement must be continuous: the ro
 
 4. Holding the rope
 To perform the elements characteristic of the rope, it must be held lightly so that it moves freely. The rope may also be wrapped around the body for a moment or held taut between the arms.`,
+              zh: `【各要素组】
+1. 基础要素组
+  a. 各种各样的连续跳
+  b. 抛掷
+  c. 使用绳的翻腾类
+  
+2. 其他要素组
+  a. 摆动
+  b. 绕环
+  
+以上各要素组，可以在考虑以下各点的基础上进行。
+  a. 将绳展开或折叠使用。
+  b. 用单手或双手握持进行。
+  c. 在各种方向进行。在各种平面进行。
+  d. 移动或不移动。
+  e. 移动或不移动。
+  f. 单脚或双脚支撑，一边向各种方向摇绳一边进行。
+  
+3. 绳的操作
+绳必须始终保持明确的形状。动作必须具有连续性。也就是说，绳始终在运动，必须有足够的弹力，不得显得松弛、缺乏活力。动作的幅度与节奏相关（节奏快＝动作受限，节奏慢＝动作舒展）。
+
+4. 绳的握法
+为完成绳特有的各要素，必须轻握绳，使其能自由运动。此外，也可以暂时将绳缠绕在身上，或在双臂之间拉紧。`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              zh: '编排的要求',
             },
             element: {
               ja: `1. とび
@@ -626,12 +870,38 @@ The jumps a to d below must be included. Rope jumps within tumbling do not count
   d. Changes in the speed of the rope
   e. Changes in how the rope is held (open, folded, in one hand, in both hands, by the end, by the middle, and so on)
   * Handling the rope folded is characteristic of this apparatus, but the routine must not rely too much on it. Routines with the rope open are important. When elements are performed with the rope in one hand, the left and right hands must be used equally.`,
+              zh: `1. 跳
+必须编入下列 a—d 的跳。但翻腾中的绳跳除外。
+  a. 原地２次以上的连续向前摇跳（例：做２次以上向前摇的单摇跳或双摇跳。）
+  b. 原地２次以上的连续向后摇跳（例：做２次以上向后摇的单摇跳或双摇跳。）
+  c. 伴随６m 以上移动的２次以上的连续跳（例：一边移动一边做２次以上的转体跳。）
+  d. 三摇跳（例：做１次以上向前摇的三摇跳。）
+  ※　在 a—d 中做了 d 时，分别计为各自的要素。（例：一边组合做向前摇的三摇跳一边移动６m 以上的情况。）
+  
+2. 抛掷
+  a. 抛掷的条件
+  必须编入３次以上的抛掷。
+  b. 抛掷的高度
+  抛掷的高度，从参赛者抛出的位置算起至少要达到２m以上。
+  
+3. 翻腾类要素
+  a. 必须编入前方、后方、侧方的翻腾。
+  b. 做翻腾时，必须有效地运用绳。
+  
+4. 各要素
+  a. 向前摇或向后摇等各种各样的连续跳
+  b. 在各种方向、平面完成的各种各样的动作（摆动、绕环、８字运动。）
+  c. 各种各样的抛掷
+  d. 绳的速度变化
+  e. 绳的握法变化（展开的绳、折叠的绳、单手握、双手握、握两端、握中央等）
+  ※　在绳折叠状态下的操作是这一器械的特点，但成套动作不可偏重于此。绳展开状态下的成套动作很重要。用单手握持完成要素时，必须平均地使用左手和右手。`,
             },
           },
           {
             title: {
               ja: '難度のレベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              zh: '判断难度级别的一般标准',
             },
             element: {
               ja: `ロープに特徴的な諸要素は通常、それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
@@ -708,6 +978,43 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the rope is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              zh: `绳特有的各要素，通常在与徒手Ｂ难度要素相结合时计为Ｂ难度，与徒手Ｃ难度要素相结合完成时计为Ｃ难度。
+                  
+1. Ａ难度
+以下要素与徒手类或翻腾类要素相结合完成时，计为Ａ难度。
+  a. 握持绳完成Ａ难度翻腾动作。
+  b. 在完成Ａ难度翻腾动作期间操作绳１次。
+  c. 在绳抛起的过程中不做任何动作而接住绳。
+  d. 其他具有Ａ难度组合技术价值的情况。
+  
+2. Ｂ难度
+以下要素与徒手Ｂ难度要素相结合时，计为Ｂ难度。
+  a. 绳与身体动作之间的节奏关系编排得复杂的情况。
+    ⅰ. 在做１个徒手Ｂ难度的期间，做２个（或更多）绳的动作。（例：使绳摇转２周，在１次Ｂ难度跳跃的过程中用绳在头上和脚下交替画水平圆。）
+    ⅱ. 要求绳的运动与身体的运动之间完全同时进行的要素。（例：抛出后，在接住的同时从绳上跳过。）
+  b. 动作的变化使绳的操作变难的情况。
+    ⅰ. 从大幅度的绳的动作过渡到缓慢的动作。（例：一边跳跃一边抛出绳，在不妨碍绳的轨迹的情况下接住，并立即衔接缓慢的绳的动作。）
+  c. 因绳的长度而操作困难的情况。
+    ⅰ. 先抛出绳的一端，接着抛出另一端使其旋转１周后接住。将展开的绳从脚踝向上、或向相反方向不间断地在身体周围缠绕数次。
+  d. 绳难以接住的情况。
+    ⅰ. 在绳抛起的过程中转体后再接住。（例：做１次前滚翻后接住绳等，用各种抛法抛出绳，并在抛起期间加入各种转体等再接住。）
+    ⅱ. 在视野外进行绳的抛接。（例：用各种抛法抛出绳，在视野之外接住。）
+    
+3. Ｃ难度
+以下要素与翻腾类要素相结合时，计为Ｃ难度。
+  a. 在绳抛出的过程中完成Ｂ难度翻腾动作。
+  b. 在Ｂ难度翻腾动作期间操作绳２次。
+  c. 完成Ｃ难度翻腾动作。
+  d. 在绳抛起的过程中结合完成２个徒手类或翻腾类动作。
+  e. 其他具有Ｃ难度组合高技术价值的情况。
+  
+4. Ｄ难度
+以下要素与翻腾类要素相结合时，计为Ｄ难度。
+  a. 在绳抛起的过程中完成Ｃ难度翻腾动作。
+  b. 在完成Ｃ难度翻腾动作期间操作绳２次以上。
+  c. 完成Ｄ难度翻腾动作。
+  d. 在绳抛起的过程中结合完成３个以上徒手类或翻腾类动作。
+  e. 其他具有Ｄ难度组合高技术价值的情况。`,
             },
           },
         ],
@@ -716,12 +1023,14 @@ The following elements count as D difficulties when combined with tumbling eleme
         title: {
           ja: 'クラブ（棍）の演技',
           en: 'Club Routines',
+          zh: '棍棒的成套动作',
         },
         block: [
           {
             title: {
               ja: '',
               en: '',
+              zh: '',
             },
             element: {
               ja: `1. 素材
@@ -746,12 +1055,24 @@ Similar in shape to a bottle, with three parts: head, neck and body. Length 40 c
 
 4. Color
 Free. The two clubs may be different colors.`,
+              zh: `1. 材质
+木制或合成材料。
+
+2. 重量
+每根最低200克。
+
+3. 形状
+形似瓶子，由头、颈、体３个部分组成。长度为40cm—50cm，顶端的头（球体）最大直径在４cm以内，颈的直径为1.5cm—3.5cm，体的直径为６cm—９cm、长度为12cm—18cm。此外，也可以在整体或局部缠绕胶带。
+
+4. 颜色
+自由。各棍棒的颜色可以不同。`,
             },
           },
           {
             title: {
               ja: 'クラブ（棍）の技術',
               en: 'Club Technique',
+              zh: '棍棒的技术',
             },
             element: {
               ja: `【各要素群】
@@ -800,12 +1121,36 @@ These elements can be performed taking the following into account.
 
 [Holding the clubs]
   During wide movements (e.g. swings and propeller rotations), the club is usually held lightly with the fingers at the head. During propeller rotations, small circles and similar movements, the club must be held lightly with the fingers so that the head turns freely in the hollow of the hand. The club may also be held briefly by the neck or the body, or rest on the open hand.`,
+              zh: `【各要素组】
+1. 基础要素组
+  a. 螺旋绕环（风车）
+  b. 滚动
+  c. 抛掷
+  d. 使用棍棒的翻腾类
+  
+2. 其他要素组
+  a. 摆动
+  b. 绕环
+  c. 左右不同的动作
+  d. 小绕环
+  
+以上各要素，可以在考虑以下各点的基础上进行。
+  a. 同时操作２根棍棒。连续操作。
+  b. 在各种方向进行。
+  c. 移动或不移动。单脚或双脚支撑。
+  
+【棍棒的操作】
+  棍棒的运动即使在变换平面时也不得停止，必须利用棍棒自身重量产生的惯性来运动。做棍棒的小绕环、螺旋绕环和摆动期间，棍棒由手腕的动作带动。在其他动作期间，棍棒必须被当作手臂的延长来处理。此外，不得长时间握持颈部完成成套动作。
+  
+【棍棒的握法】
+  在幅度较大的动作（例如摆动、螺旋绕环等）过程中，通常必须用手指轻握棍棒的头部。在螺旋绕环、小绕环、握棍等过程中，必须用手指轻握，使棍棒的头部能在手心的凹处自由转动。此外，也可以暂时握住棍棒的颈部或较粗的部分，或将其放在摊开的手上。`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              zh: '编排的要求',
             },
             element: {
               ja: `1. プロペラ回旋（風車）
@@ -864,12 +1209,41 @@ At least one roll of at least 50 cm must be included.
   f. Various rolls.
 
 * When only one club is thrown, the other club must also be moving. Throughout the routine, it is essential that both clubs always move in harmony with the body.`,
+              zh: `1. 螺旋绕环（风车）
+必须编入２次以上旋转２周以上的螺旋绕环。
+
+2. 滚动
+必须编入１次以上、长度50cm以上的滚动。
+
+3. 抛掷
+  a. 抛掷的条件
+    ⅰ. 必须编入３次以上的抛掷。
+    ⅱ. 必须编入１次以上的同时抛。
+    ⅲ. ２个同时抛必须用单手、双手或脚抛出。接的方式自由。
+    
+  b. 抛掷的高度
+    ⅰ. 抛掷的高度，从参赛者抛出的位置算起至少要达到２m 以上。
+    
+4. 翻腾类要素
+  a. 必须编入前方、后方、侧方的翻腾。
+  b. 做翻腾时，必须有效地运用棍棒。
+  
+5. 各要素
+  a. 与徒手要素相结合的、各种不同方向和平面的螺旋绕环。
+  b. 各种各样的抛掷（单根抛、２根同时抛、２根连续抛）。
+  c. 各种绕环（小、中、大）（分别用手腕、前臂、手臂进行）。
+  d. 左右不同的动作。
+  e. 多种多样的握法。
+  f. 各种各样的滚动。
+  
+※　只抛出１根棍棒时，另一根棍棒也必须在运动。贯穿整套动作，２根棍棒始终与身体保持协调地运动，这对棍棒的成套动作来说是不可或缺的。`,
             },
           },
           {
             title: {
               ja: '難度レベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              zh: '判断难度级别的一般标准',
             },
             element: {
               ja: `クラブに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度と組み合わされて実施された場合はＣ難度として数える。
@@ -940,6 +1314,40 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the club is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              zh: `棍棒特有的各要素，通常在与徒手Ｂ难度要素相结合时计为Ｂ难度，与徒手Ｃ难度相结合完成时计为Ｃ难度。
+1. A难度
+以下要素与徒手类或翻腾类要素相结合完成时，计为Ａ难度。
+  a. 握持棍棒完成Ａ难度翻腾动作。
+  b. 在完成Ａ难度翻腾动作期间操作棍棒１次。但棍棒的滚动除外。
+  c. 在棍棒抛起的过程中不做任何动作而接住棍棒。
+  d. 其他具有Ａ难度组合技术价值的情况。
+  
+2. B难度
+以下棍棒要素与徒手Ｂ难度要素相结合时，计为Ｂ难度。
+  a. 棍棒难以控制的情况。
+    ⅰ. 同时抛出２根棍棒。（例：与徒手Ｂ难度相结合，同时抛出２根棍棒并接住。或将２根棍棒抛出２m 以上并接住。）
+  b. 难以协调动作的情况。
+    ⅰ. 同时完成不同的要素。（例：用每根棍棒同时做不同的要素。）
+    ⅱ. 错开时间完成相同的要素。（例：与徒手Ｂ难度要素相结合，做螺旋绕环。）
+  c. 棍棒的抛接困难的情况。
+    ⅰ. 在视野外进行棍棒的抛接。（例：用各种抛法抛出棍棒，在视野之外接住。）
+    ⅱ. 在棍棒抛起的过程中转体后再接住。（例：做１次前滚翻后接住棍棒等，用各种抛法抛出棍棒，并在抛起期间加入各种转体等再接住。）
+   
+3. C难度
+以下要素与翻腾类要素相结合时，计为Ｃ难度。
+  a. 在棍棒抛出的过程中完成Ｂ难度翻腾动作。
+  b. 在Ｂ难度翻腾动作期间操作棍棒２次。
+  c. 完成Ｃ难度翻腾动作。
+  d. 在棍棒抛起的过程中结合完成２个徒手类或翻腾类动作。
+  e. 其他具有Ｃ难度组合高技术价值的情况。
+  
+4. D难度
+以下要素与翻腾类要素相结合时，计为Ｄ难度。
+  a. 在棍棒抛起的过程中完成Ｃ难度翻腾动作。
+  b. 在完成Ｃ难度翻腾动作期间操作棍棒２次以上。
+  c. 完成Ｄ难度翻腾动作。
+  d. 在棍棒抛起的过程中结合完成３个以上徒手类或翻腾类动作。
+  e. 其他具有Ｄ难度组合高技术价值的情况。`,
             },
           },
         ],

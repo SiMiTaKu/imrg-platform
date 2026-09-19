@@ -9,32 +9,38 @@ export const APPENDIX_SPECIAL_RULES_ARTICLES: RuleArticle[] = [
     title: {
       ja: '難度解図',
       en: 'Illustrated Difficulties',
+      zh: '难度图解',
     },
     section: [
       {
         title: {
           ja: '徒手系難度',
           en: 'Free-Hand Difficulties',
+          zh: '徒手难度',
         },
         block: [
           {
             title: {
               ja: '徒手系難度',
               en: 'Free-Hand Difficulties',
+              zh: '徒手难度',
             },
             element: {
               ja: '',
               en: '',
+              zh: '',
             },
           },
           {
             title: {
               ja: '転回系難度',
               en: 'Tumbling Difficulties',
+              zh: '翻腾难度',
             },
             element: {
               ja: '',
               en: '',
+              zh: '',
             },
           },
         ],
@@ -45,12 +51,14 @@ export const APPENDIX_SPECIAL_RULES_ARTICLES: RuleArticle[] = [
     title: {
       ja: '特別規則',
       en: 'Special Rules',
+      zh: '特别规则',
     },
     section: [
       {
         title: {
           ja: 'ジュニア適用規則',
           en: 'Rules for Juniors',
+          zh: '少年组适用规则',
         },
         content: {
           ja: `次に示すものを除き、（公財）日本体操協会新体操採点規則による。
@@ -97,6 +105,28 @@ Missing triple under with the rope
 
 [Apparatus specifications]
 Because of large differences in body size, if apparatus sold by suppliers designated by the Japan Gymnastics Association cannot be used, self-made apparatus are allowed as long as they meet the specifications.`,
+          zh: `除以下所示内容外，依据（公益财团法人）日本体操协会艺术体操评分规则。
+
+【禁止动作】
+团体比赛、个人比赛均禁止以下动作。此外，做出禁止动作时，编排与完成均记0分。
+
+1. 前空翻转体（1又1/2周）以上
+2. 后空翻两周以上
+3. 前空翻直接成正面支撑卧
+4. 后空翻两周直接成正面支撑卧
+※以上均包含从组合动作中做出的情况。另外（1）（3）包含从向后跳接转体的情况。
+
+【难度的要求要素】
+团体比赛、个人比赛均为1D2C3B。
+
+【特别难度】
+在团体比赛中做出以下翻腾动作时，作为特别难度采用。
+
+【扣分放宽】
+绳的三摇跳要素不足
+
+【器械规格】
+由于体格差异较大，无法使用（公益财团法人）日本体操协会指定厂商销售的器械时，只要符合规格，自制器械也可使用。`,
         },
         image: [
           {
@@ -104,6 +134,7 @@ Because of large differences in body size, if apparatus sold by suppliers design
             alt: {
               ja: 'ジュニア手具規格表',
               en: 'Table of apparatus specifications for juniors',
+              zh: '少年组器械规格表',
             },
           },
         ],
@@ -112,6 +143,7 @@ Because of large differences in body size, if apparatus sold by suppliers design
         title: {
           ja: '小学生適用規則',
           en: 'Rules for Elementary School Students',
+          zh: '小学生适用规则',
         },
         content: {
           ja: `次に示すものを除き、（公財）日本体操協会新体操採点規則による。
@@ -168,6 +200,33 @@ e. Did the whole team perform energetically and joyfully?
 
 [Score sheet]
 Routines are scored from the following viewpoints.`,
+          zh: `除以下所示内容外，依据（公益财团法人）日本体操协会艺术体操评分规则。
+
+【团体比赛】
+自由成套
+1. 自由成套以广播体操第1套为基础，由徒手体操构成。
+2. 成套时间为广播体操第1套的时间。
+3. 团体比赛由4人以上完成成套动作。
+
+4. 自由成套的分值
+以下列5个项目为基准。各项目按10分满分评分，其平均分为各裁判的得分。各队的得分为全体裁判员的平均分。
+
+评分基准
+a. 动作的幅度、深度、重音等体操是否做得准确。
+b. 音乐与体操是否协调。
+c. 队形的变化和移动是否经过精心设计。
+d. 整套动作是否富有节奏感。
+e. 全队是否精神饱满、愉快地完成成套动作。
+
+5. 建议配伴奏音乐，也可以用口令完成。
+6. 翻腾可以加入除空翻以外程度的动作。
+7. 精心设计队形的变化和位置移动。
+8. 服装自由。
+9. 裁判组成以10人为基准。
+10. 表彰依据比赛规程。
+
+【评分表】
+从以下角度对成套动作进行评分。`,
         },
         image: [
           {
@@ -175,6 +234,7 @@ Routines are scored from the following viewpoints.`,
             alt: {
               ja: '新体操小学校適用規則採点用紙',
               en: 'Score sheet under the rules for elementary school students',
+              zh: '艺术体操小学适用规则评分表',
             },
           },
         ],
@@ -183,6 +243,7 @@ Routines are scored from the following viewpoints.`,
         title: {
           ja: '高体連規則',
           en: 'Rules of the All Japan High School Athletic Federation',
+          zh: '高体连规则',
         },
         content: {
           ja: `次に示すものを除き、（公財）日本体操協会男子新体操採点規則による。
@@ -251,6 +312,39 @@ The emblem must follow the rules and be distinguishable from the uniform.
 
 [Rankings and awards]
 If a gymnast has to withdraw from an apparatus because of an unforeseen accident or similar, the gymnast remains eligible for the apparatus championship awards.`,
+          zh: `除以下所示内容外，依据（公益财团法人）日本体操协会男子艺术体操评分规则。
+
+【关于禁止动作】
+团体比赛、个人比赛均禁止下列动作。此外，做出禁止动作时，该成套动作记0分。  
+※以上均包含组合动作。
+1. 前空翻转体（1又1/2周）以上（包含从向后跳接转体）
+2. 后空翻两周以上
+
+【关于限制动作】
+从向后的跳跃动作带转体直接成正面支撑卧的动作，在男子评分规则 第2章 第31条的编排条件中最多只能使用1次。超过上述次数使用时，该成套动作的编排分记0分。
+
+【关于所属标志】
+标志按规定制作，并使其与比赛服有所区别。
+
+【关于同分名次的判定方法】
+1. 团体比赛
+  a. 编排得分较高的队
+  b. 上述条件全部相同时，主裁判员（编排、完成）合计得分较高的队。
+  c. 上述条件全部相同时，除主裁判员以外的8名裁判员合计得分较高的队。
+  d. 上述条件全部相同时，交由主办单位决定。
+
+2. 个人比赛
+  a. 两个项目中获得最高得分者。
+  b. 上述条件全部相同时，两个项目主裁判员合计得分较高者。
+  c. 上述条件全部相同时，除主裁判员以外的8名裁判员合计得分较高者。
+  d. 上述条件全部相同时，交由主办单位决定。
+  
+【关于成套动作中停电、运动员受伤的处理】
+1. 因雷击等导致比赛场馆停电、伴奏音乐停止时，可由裁判长判断中断成套动作，并让其重新比赛。
+2. 成套动作进行中运动员受伤时，可由领队判断中断成套动作。
+
+【关于成绩名次及表彰】
+因意外事故等使某一项目出现危险情况时，仍作为单项锦标赛的表彰对象。`,
         },
       },
     ],
@@ -259,12 +353,14 @@ If a gymnast has to withdraw from an apparatus because of an unforeseen accident
     title: {
       ja: '徒手の演技',
       en: 'Free-Hand Routines',
+      zh: '徒手成套动作',
     },
     section: [
       {
         title: {
           ja: '徒手の基礎要素群',
           en: 'Basic Free-Hand Element Groups',
+          zh: '徒手基础要素组',
         },
         content: {
           ja: `1. 各種徒手
@@ -311,32 +407,59 @@ Various steps.
 Turns and pivots.
 
 These elements can be performed with a wide range of movements: in various directions and planes, with or without traveling, on one foot or both feet, combined with arm movements, and so on.`,
+          zh: `1. 各种徒手动作
+上肢、下肢、体前屈、体侧屈、体回旋、摆臂、腿的屈伸、挺胸后屈、身体的弹动、波浪（蛇形动作）等各种复合动作
+
+2. 各种跳跃
+鹿跳、前后分腿跳、左右分腿跳等各种跳跃。
+
+3. 柔韧
+左右分腿体前屈、前后分腿柔韧、并腿体前屈等各种柔韧动作。
+
+4. 平衡
+各种平衡等。
+
+5. 倒立
+各种倒立等。
+
+6. 各种走和跑
+各种步法等。
+
+7. 转体及转向
+转体、单足转体（pivot）。   
+
+以上要素可以在多种多样的动作方式下完成：各种方向、各种平面、伴随或不伴随移动、单脚支撑或双脚支撑、与手臂动作相结合等。`,
         },
       },
       {
         title: {
           ja: '構成に要求されるもの',
           en: 'Requirements for the Composition',
+          zh: '编排的要求',
         },
         content: {
           ja: '演技の構成は、あらゆる徒手の要素を含め、跳躍力、柔軟性、巧緻性などを十分発揮し、あらゆる動きの変化で、その技術は独創的であり、迅速な動きで精神（３秒以上）を含まず、流れるように実施されなければならない。その動きのつなぎとして、前転・後転・側転・ブリッジを使用することは認める。',
           en: 'The composition of a routine must include all kinds of free-hand elements, make full use of jumping power, flexibility and dexterity, show all kinds of changes in movement, use original technique, and flow with quick movements without static pauses (of 3 seconds or more). Forward rolls, backward rolls, cartwheels and bridges may be used as links between movements.',
+          zh: '成套动作的编排必须包含各种徒手要素，充分发挥跳跃力、柔韧性、灵巧性等，通过各种动作变化，技术富有独创性，以迅速的动作完成，不得含有静止（3秒以上），并且必须流畅地完成。作为动作之间的衔接，允许使用前滚翻、后滚翻、侧手翻、桥。',
         },
       },
       {
         title: {
           ja: '実施',
           en: 'Execution',
+          zh: '完成',
         },
         content: {
           ja: '実施に際しては新体操の特徴を正確に生かしたものでなくてはならない。すなわち、正しい身体の位置、スケールの大きさ、支点の制御、移動の正確さなどである。身体の動きはすべて、緩急の変化、及び力動感、大きさ、スピードのひつな結びつきをともなった継続的な動作でなくてはならない。また、すべての要素は、頭と腕を含む身体全体で行われなくてはならない。つまり、動きは局部的であってはならない。',
           en: 'Execution must bring out the characteristics of rhythmic gymnastics accurately: correct body position, amplitude, control of the points of support, accuracy of movement across the floor, and so on. All body movements must be continuous, with changes between fast and slow and a close connection of dynamics, amplitude and speed. All elements must be performed with the whole body, including the head and arms; that is, movements must not be isolated to one part of the body.',
+          zh: '完成时必须准确地体现艺术体操的特点。即正确的身体位置、动作幅度、支点的控制、移动的准确性等。身体的所有动作都必须是伴随快慢变化以及力度感、幅度、速度紧密结合的连续动作。此外，所有要素都必须用包括头和手臂在内的全身来完成。也就是说，动作不能是局部的。',
         },
       },
       {
         title: {
           ja: '徒手の要素の典型的な欠点',
           en: 'Typical Faults in Free-Hand Elements',
+          zh: '徒手要素的典型错误',
         },
         content: {
           ja: `【構成の欠点】
@@ -369,6 +492,21 @@ General guidelines for judging the level of free-hand difficulties
   (e.g. a full body wave while holding a balance)
   d. When two or more elements (of the same or different kinds) are performed in a row without other movements in between.
   (e.g. consecutive jumps without steps in between)`,
+          zh: `【编排错误】
+下面列出错误表。
+
+【完成错误】
+判断徒手难度等级的一般标准
+1. 徒手基础要素通常计为A难度。
+2. 在以下情况下，徒手要素被视为B难度。
+  a. 完成时需要高水平的运动能力。
+  （例：水平面以下的背屈、在跳跃中于空中完成复杂动作等）
+  b. 完成时需要高水平的协调能力。
+  （例：在很小的面积上（脚尖）支撑身体。更长时间地保持平衡，完成1周半以上（540°以上）的单足转体等）
+  c. 同时完成2个不同的要素。
+  （例：在保持平衡姿势的同时做完整的身体蛇形波浪等）
+  d. 连续完成2个以上的要素（相同或不同种类），中间不加入其他动作。
+  （例：中间不加步法连续跳跃等）`,
         },
         image: [
           {
@@ -376,6 +514,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手欠点表',
               en: 'Table of free-hand faults',
+              zh: '徒手错误表',
             },
           },
         ],
@@ -384,12 +523,15 @@ General guidelines for judging the level of free-hand difficulties
         title: {
           ja: '徒手難度表',
           en: 'Tables of Free-Hand Difficulties',
+          zh: '徒手难度表',
         },
         content: {
           ja: `以下の表においては、諸要素はグループ別に記されている。これらの要素には非常に多くの実施方法および配列が考えられる。難度のレベルを決定するには、一般目安の項を参照のこと。
 ※徒手の難度は、団体競技の場合、全員が実施すれば１ランクあがる。`,
           en: `In the tables below, the elements are listed by group. These elements can be performed and arranged in a great many ways. To determine the level of difficulty, see the section on general guidelines.
 * In the group competition, free-hand difficulties rise one rank when all gymnasts perform them.`,
+          zh: `在下列表格中，各要素按组别列出。这些要素有非常多的完成方法和排列组合。要确定难度等级，请参照一般标准一节。
+※徒手难度在团体比赛中，如果全体运动员都完成，则提升1个等级。`,
         },
         image: [
           {
@@ -397,6 +539,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（跳躍）',
               en: 'Table of free-hand difficulties (jumps)',
+              zh: '徒手难度表（跳跃）',
             },
           },
           {
@@ -404,6 +547,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（倒立）',
               en: 'Table of free-hand difficulties (handstands)',
+              zh: '徒手难度表（倒立）',
             },
           },
           {
@@ -411,6 +555,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（支持回転表）',
               en: 'Table of free-hand difficulties (support rotations)',
+              zh: '徒手难度表（支撑转体表）',
             },
           },
           {
@@ -418,6 +563,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（旋回・ 回旋)',
               en: 'Table of free-hand difficulties (circles and rotations)',
+              zh: '徒手难度表（绕环、回旋）',
             },
           },
           {
@@ -425,6 +571,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（転向（ターン））',
               en: 'Table of free-hand difficulties (turns)',
+              zh: '徒手难度表（转向（转体））',
             },
           },
           {
@@ -432,6 +579,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（平均）',
               en: 'Table of free-hand difficulties (balances)',
+              zh: '徒手难度表（平衡）',
             },
           },
           {
@@ -439,6 +587,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（静的柔軟）',
               en: 'Table of free-hand difficulties (static flexibility)',
+              zh: '徒手难度表（静态柔韧）',
             },
           },
           {
@@ -446,6 +595,7 @@ General guidelines for judging the level of free-hand difficulties
             alt: {
               ja: '徒手の難度表（動的柔軟）',
               en: 'Table of free-hand difficulties (dynamic flexibility)',
+              zh: '徒手难度表（动态柔韧）',
             },
           },
         ],
