@@ -1,3 +1,8 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rules_notice_incomplete": "※本页面尚未完成。我们会不时更新，敬请期待。",
+  "rules_notice_readability": "※我们一直在努力把网站做得更易读。",
+  "rules_chapter_heading": "第{number}章 {title}",
+  "rules_article_heading": "第{number}条 {title}",
+  "rules_back_to_top": "返回首页"
 }

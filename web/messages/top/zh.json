@@ -1,3 +1,19 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "top_main_visual_logo_alt": "男子艺术体操国际化项目的标志",
+  "top_main_visual_catchphrase": "把日本的文化变成世界的运动",
+  "top_introduction_title": "男子艺术体操国际化项目",
+  "top_introduction_body_1": "是为了让",
+  "top_introduction_body_2": "男子艺术体操",
+  "top_introduction_body_3": "成为",
+  "top_introduction_body_4": "奥林匹克运动项目",
+  "top_introduction_body_5": "，把它的魅力传递到",
+  "top_introduction_body_6": "全世界",
+  "top_introduction_body_7": "而开展的活动。",
+  "top_links_calendar": "查找比赛与活动",
+  "top_links_decorating_apparatus": "委托器械装饰",
+  "top_links_background_music": "委托音乐剪辑",
+  "top_links_judge": "体验当裁判",
+  "top_links_rules": "了解规则",
+  "top_links_oshimitsu": "Oshimitsu！"
 }
