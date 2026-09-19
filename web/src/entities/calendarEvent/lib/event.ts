@@ -1,6 +1,7 @@
 import { formatDateRange, formatMonth, toMonthKey } from '@shared/lib/date'
 import { toEnglishPlaceName } from '@shared/lib/i18n'
 import type { SiteLocale } from '@shared/lib/i18n'
+import { eventTranslation } from '../api/translations'
 import { EventSchedule } from '../config/schedule'
 import type { CalendarEvent } from '../model'
 
@@ -26,7 +27,7 @@ export interface LocalizedEvent {
  *
  * @remarks
  * 元データ（`~/imrg/calendar-data/`）は日本語と英語しか持たないので、
- * 日本語以外の言語はすべて英語の値を出す。
+ * ほかの言語の訳は `api/translations/<言語>.ts` に別で持ち、無ければ英語を出す。
  * 英語の会場名が無いイベントもあり、都道府県名だけの会場は英語に訳し、
  * それ以外は、空欄にするより現地で探しやすいので日本語に戻す
  */
@@ -41,13 +42,17 @@ export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): Localiz
       note: event.note?.ja,
     }
   }
+  // その言語の訳があれば使い、無ければ英語にする
+  const translated = eventTranslation(event.id, locale)
   return {
-    title: event.title.en,
+    title: translated.title ?? event.title.en,
     alternateTitle: event.title.ja !== event.title.en ? event.title.ja : undefined,
     // 英語の会場名が無いときは、都道府県名・国名だけなら訳し、それ以外は日本語のまま出す
-    venue: event.venue && (event.venue.name.en ?? toEnglishPlaceName(event.venue.name.ja)),
+    venue:
+      translated.venue ??
+      (event.venue && (event.venue.name.en ?? toEnglishPlaceName(event.venue.name.ja))),
     streaming: event.streaming?.en ?? event.streaming?.ja,
-    note: event.note?.en ?? event.note?.ja,
+    note: translated.note ?? event.note?.en ?? event.note?.ja,
   }
 }
 
