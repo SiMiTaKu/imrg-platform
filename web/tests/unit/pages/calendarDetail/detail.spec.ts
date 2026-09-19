@@ -10,12 +10,12 @@ import { makeEvent } from '../../entities/calendarEvent/fixtures'
 const event = makeEvent({
   id: '2026-10-30-abcdef',
   title: {
-    japanese: '全日本新体操選手権大会',
-    english: 'All Japan Rhythmic Gymnastics Championships',
+    ja: '全日本新体操選手権大会',
+    en: 'All Japan Rhythmic Gymnastics Championships',
   },
   startDate: '2026-10-30',
   endDate: '2026-11-01',
-  venue: { name: { japanese: '高崎アリーナ（群馬県）', english: 'Takasaki Arena' } },
+  venue: { name: { ja: '高崎アリーナ（群馬県）', en: 'Takasaki Arena' } },
 })
 
 describe('calendarDetailMetaInput', () => {

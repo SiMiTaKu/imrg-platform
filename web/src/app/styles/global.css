@@ -3,6 +3,17 @@ body {
   font-family: YuGothic, sans-serif;
 }
 
+/*
+  ロシア語のページ。YuGothic はキリル文字を全角の字形で出すため、
+  そのままだと文字幅が2倍になり、見出しやボタンからはみ出す。
+  キリル文字を持つ欧文フォントを先に当てる（日本語の字はこれまでどおり YuGothic に落ちる）。
+  `[class]` の方は、コンポーネント側で font-family を上書きしている箇所に効かせるためのもの
+*/
+html[lang='ru'] body,
+html[lang='ru'] body [class] {
+  font-family: 'Helvetica Neue', Helvetica, Arial, YuGothic, sans-serif;
+}
+
 section {
   padding: 0;
 }

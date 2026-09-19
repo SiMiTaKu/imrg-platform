@@ -1,0 +1,21 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "apparatus_club": "Булавы",
+  "apparatus_ring": "Кольцо",
+  "apparatus_rope": "Скакалка",
+  "apparatus_stick": "Палочки",
+  "locale_name_en": "English",
+  "locale_name_ja": "日本語",
+  "locale_switcher_label": "Язык",
+  "pagination_first": "Первая страница",
+  "pagination_label": "Постраничная навигация",
+  "pagination_last": "Последняя страница",
+  "pagination_next": "Следующая страница",
+  "pagination_prev": "Предыдущая страница",
+  "locale_name_zh": "中文",
+  "locale_name_ko": "한국어",
+  "locale_name_es": "Español",
+  "locale_name_fr": "Français",
+  "locale_name_ru": "Русский",
+  "locale_name_hi": "हिन्दी"
+}

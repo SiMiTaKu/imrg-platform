@@ -1,5 +1,5 @@
 import type { Image, TranslatedText } from '@shared/model'
-import { BASE_LOCALE, type SiteLocale } from '@shared/lib/i18n'
+import { type SiteLocale, localizedText } from '@shared/lib/i18n'
 import type {
   LocalizedRuleBook,
   LocalizedRuleSection,
@@ -15,15 +15,12 @@ import type {
  * @returns 表示する言語に絞った規則集
  */
 export const localizeRuleBook = (ruleBook: RuleBook, locale: SiteLocale): LocalizedRuleBook => {
-  const isBase = locale === BASE_LOCALE
-
   /**
-   * 言語に合う方の文字列を選ぶ
-   * @param text - 日本語と英語を持つ文字列
-   * @returns 表示する言語の文字列
+   * 言語に合う文字列を選ぶ
+   * @param text - 言語ごとの文字列
+   * @returns 表示する言語の文字列。訳が無ければ英語、それも無ければ日本語
    */
-  const pick = (text?: TranslatedText): string =>
-    text ? (isBase ? text.japanese : text.english) : ''
+  const pick = (text?: TranslatedText): string => (text ? localizedText(text, locale) : '')
 
   /**
    * 図の代替テキストを言語に合わせる

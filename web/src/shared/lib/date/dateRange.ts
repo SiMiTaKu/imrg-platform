@@ -3,6 +3,7 @@ import type { DateParts } from '@shared/model'
 import {
   formatMonthEnglish,
   formatMonthJapanese,
+  formatMonthKorean,
   parseDate,
   shortMonthEnglish,
   weekdayName,
@@ -26,6 +27,28 @@ export const formatDateRangeJapanese = (startDate: string, endDate?: string): st
   const endYear = end.year === start.year ? '' : `${end.year}年`
   if (end.day === undefined) return `${startText}〜${endYear}${end.month}月`
   return `${startText}〜${endYear}${end.month}月${end.day}日（${weekdayName(weekdayOf(end), 'ja')}）`
+}
+
+/**
+ * 例: "2026年10月30日（周五）—11月1日（周日）"。年月だけなら "2027年3月"
+ * @param startDate - 開始日 "YYYY-MM-DD" または "YYYY-MM"
+ * @param endDate - 終了日。無ければ開始日だけの表記にする
+ * @returns 中国語の期間。終了年が開始年と同じなら終了側の年は省く
+ *
+ * @remarks
+ * 年月日の並びは日本語と同じだが、曜日の表記（周五）と期間の区切り（—）が違う
+ */
+export const formatDateRangeChinese = (startDate: string, endDate?: string): string => {
+  const start = parseDate(startDate)
+  if (start.day === undefined) return formatMonthJapanese(startDate)
+
+  const startText = `${start.year}年${start.month}月${start.day}日（${weekdayName(weekdayOf(start), 'zh')}）`
+  if (!endDate || endDate === startDate) return startText
+
+  const end = parseDate(endDate)
+  const endYear = end.year === start.year ? '' : `${end.year}年`
+  if (end.day === undefined) return `${startText}—${endYear}${end.month}月`
+  return `${startText}—${endYear}${end.month}月${end.day}日（${weekdayName(weekdayOf(end), 'zh')}）`
 }
 
 /**
@@ -57,17 +80,38 @@ export const formatDateRangeEnglish = (startDate: string, endDate?: string): str
 }
 
 /**
+ * 例: "2026년 10월 30일(금) ~ 11월 1일(일)"。年月だけなら "2027년 3월"
+ * @param startDate - 開始日 "YYYY-MM-DD" または "YYYY-MM"
+ * @param endDate - 終了日。無ければ開始日だけの表記にする
+ * @returns 韓国語の期間。終了年が開始年と同じなら終了側の年は省く
+ */
+export const formatDateRangeKorean = (startDate: string, endDate?: string): string => {
+  const start = parseDate(startDate)
+  if (start.day === undefined) return formatMonthKorean(startDate)
+
+  const startText = `${start.year}년 ${start.month}월 ${start.day}일(${weekdayName(weekdayOf(start), 'ko')})`
+  if (!endDate || endDate === startDate) return startText
+
+  const end = parseDate(endDate)
+  const endYear = end.year === start.year ? '' : `${end.year}년 `
+  if (end.day === undefined) return `${startText} ~ ${endYear}${end.month}월`
+  return `${startText} ~ ${endYear}${end.month}월 ${end.day}일(${weekdayName(weekdayOf(end), 'ko')})`
+}
+
+/**
  * 期間を言語に応じた表記にする
  * @param startDate - 開始日 "YYYY-MM-DD" または "YYYY-MM"
  * @param endDate - 終了日。無ければ開始日だけの表記にする
  * @param locale - 言語
- * @returns 日本語は `formatDateRangeJapanese`、英語は `formatDateRangeEnglish` の形
+ * @returns 日本語・中国語・韓国語はその言語の表記、それ以外は `formatDateRangeEnglish` の形
  */
 export const formatDateRange = (
   startDate: string,
   endDate: string | undefined,
   locale: SiteLocale,
-): string =>
-  locale === 'en'
-    ? formatDateRangeEnglish(startDate, endDate)
-    : formatDateRangeJapanese(startDate, endDate)
+): string => {
+  if (locale === 'ja') return formatDateRangeJapanese(startDate, endDate)
+  if (locale === 'zh') return formatDateRangeChinese(startDate, endDate)
+  if (locale === 'ko') return formatDateRangeKorean(startDate, endDate)
+  return formatDateRangeEnglish(startDate, endDate)
+}

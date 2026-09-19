@@ -11,5 +11,11 @@
   "pagination_label": "ページ送り",
   "pagination_last": "最後のページ",
   "pagination_next": "次のページ",
-  "pagination_prev": "前のページ"
+  "pagination_prev": "前のページ",
+  "locale_name_zh": "中文",
+  "locale_name_ko": "한국어",
+  "locale_name_es": "Español",
+  "locale_name_fr": "Français",
+  "locale_name_ru": "Русский",
+  "locale_name_hi": "हिन्दी"
 }

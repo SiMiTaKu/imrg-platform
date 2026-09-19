@@ -1,0 +1,17 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "Oshimitsu！",
+  "oshimitsu_filtered_title": "Oshimitsu！（{filter}）",
+  "oshimitsu_lead_line1": "Oshimitsu！是专门用来搜索男子艺术体操视频的功能。",
+  "oshimitsu_lead_line2": "去发现你还不知道的男子艺术体操的世界和魅力吧！",
+  "oshimitsu_content_type_legend": "视频种类",
+  "oshimitsu_apparatus_legend": "器械",
+  "oshimitsu_search_button": "按这些条件 Oshimitsu！",
+  "oshimitsu_recommended_title": "推荐视频",
+  "oshimitsu_content_type_individual": "个人",
+  "oshimitsu_content_type_group": "团体",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "查看更多",
+  "oshimitsu_no_more_videos": "※目前没有更多可以显示的视频了",
+  "oshimitsu_loading": "正在加载…"
+}

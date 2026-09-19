@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rules_notice_incomplete": "※이 페이지는 아직 완성되지 않았습니다. 그때그때 갱신하고 있으니 조금만 기다려 주세요.",
+  "rules_notice_readability": "※보기 편한 사이트를 만들기 위해 힘쓰고 있습니다.",
+  "rules_chapter_heading": "제{number}장 {title}",
+  "rules_article_heading": "제{number}조 {title}",
+  "rules_back_to_top": "TOP으로 돌아가기"
+}

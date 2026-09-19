@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rules_notice_incomplete": "* यह पृष्ठ अभी पूरा नहीं हुआ है। हम इसे समय-समय पर अद्यतन करते रहते हैं, कृपया प्रतीक्षा करें।",
+  "rules_notice_readability": "* हम साइट को पढ़ने में आसान बनाने का प्रयास करते रहते हैं।",
+  "rules_chapter_heading": "अध्याय {number} {title}",
+  "rules_article_heading": "अनुच्छेद {number} {title}",
+  "rules_back_to_top": "मुख्य पृष्ठ पर लौटें"
+}

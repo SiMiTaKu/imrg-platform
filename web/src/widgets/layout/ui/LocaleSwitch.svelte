@@ -6,11 +6,17 @@
   import { deLocalizeHref, getLocale, localizeHref, publishedLocales } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
 
-  /** 言語の表示名。`locale_name_ja` などの文言から取る */
-  const LOCALE_NAMES = {
+  /** 言語の表示名。その言語自身の表記で出す */
+  const LOCALE_NAMES: Record<SiteLocale, () => string> = {
     ja: m.locale_name_ja,
     en: m.locale_name_en,
-  } satisfies Record<SiteLocale, typeof m.locale_name_ja>
+    zh: m.locale_name_zh,
+    ko: m.locale_name_ko,
+    es: m.locale_name_es,
+    fr: m.locale_name_fr,
+    ru: m.locale_name_ru,
+    hi: m.locale_name_hi,
+  }
 
   let isOpen = $state(false)
 
