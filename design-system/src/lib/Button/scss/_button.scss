@@ -6,6 +6,9 @@
   display: grid;
   place-items: center;
   box-sizing: border-box;
+
+  // 幅は使う側が px で渡すが、狭い画面でははみ出さないようにする
+  max-width: 100%;
   padding: 0;
   font-family: inherit;
   font-weight: bold;

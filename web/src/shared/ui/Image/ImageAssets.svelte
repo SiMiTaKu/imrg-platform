@@ -56,3 +56,11 @@
   style:object-fit={objectFit}
   style:vertical-align="top"
 />
+
+<style lang="scss">
+  // 指定した幅より画面が狭いときは、画面に合わせて縮める
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

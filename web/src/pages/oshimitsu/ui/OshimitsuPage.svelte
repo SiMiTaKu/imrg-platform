@@ -38,14 +38,23 @@
   .article {
     display: grid;
     gap: $space-size-40;
-    place-items: center;
+
+    // 中身が画面より広くならないようにする（minmax(0, …) が無いと文章が折り返さない）
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
     padding: $space-size-40 $space-size-16;
+    justify-items: center;
+    box-sizing: border-box;
   }
 
   .section {
     display: grid;
     gap: $space-size-16;
-    place-items: center;
+
+    // 中身が画面より広くならないようにする
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    justify-items: center;
   }
 
   .h2 {
