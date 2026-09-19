@@ -18,6 +18,11 @@ variable "bucket_arn" {
   type        = string
 }
 
+variable "releases_bucket_arn" {
+  description = "配ったビルドを取っておく S3 バケットの ARN"
+  type        = string
+}
+
 variable "distribution_arn" {
   description = "キャッシュの破棄を許す CloudFront の配信の ARN"
   type        = string

@@ -66,6 +66,18 @@ data "aws_iam_policy_document" "deploy" {
   }
 
   statement {
+    sid       = "ListReleasesBucket"
+    actions   = ["s3:ListBucket"]
+    resources = [var.releases_bucket_arn]
+  }
+
+  statement {
+    sid       = "ReadWriteReleases"
+    actions   = ["s3:GetObject", "s3:PutObject"]
+    resources = ["${var.releases_bucket_arn}/*"]
+  }
+
+  statement {
     sid       = "InvalidateCache"
     actions   = ["cloudfront:CreateInvalidation", "cloudfront:GetInvalidation"]
     resources = [var.distribution_arn]

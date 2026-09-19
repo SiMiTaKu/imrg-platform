@@ -37,7 +37,23 @@ module "deploy_role" {
   github_repository    = var.github_repository
   allowed_refs         = ["refs/heads/main"]
   bucket_arn           = module.site.bucket_arn
+  releases_bucket_arn  = module.site.releases_bucket_arn
   distribution_arn     = module.site.distribution_arn
   create_oidc_provider = var.create_github_oidc_provider
   tags                 = local.tags
+}
+
+# 壊れたときに気付けるようにする。CloudFront と証明書のメトリクスは us-east-1 にしか無い
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  providers = {
+    aws = aws.us_east_1
+  }
+
+  name_prefix        = "imrg-work"
+  notification_email = var.notification_email
+  distribution_id    = module.site.distribution_id
+  certificate_arn    = module.site.certificate_arn
+  tags               = local.tags
 }

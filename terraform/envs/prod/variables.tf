@@ -32,3 +32,8 @@ variable "create_github_oidc_provider" {
   type        = bool
   default     = true
 }
+
+variable "notification_email" {
+  description = "異常を知らせる宛先のメールアドレス"
+  type        = string
+}

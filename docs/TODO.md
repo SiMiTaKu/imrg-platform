@@ -266,6 +266,12 @@ Phase 4の進め方（2026-09-19に決めた）
   - `customHeaders` はCloudFrontのレスポンスヘッダーポリシーへ
   - 末尾スラッシュとindex.htmlの解決、wwwの転送はCloudFront Functionsへ
   - `/oshimitsu/content_type/<*>` の書き換え4件は、転送先の `index.html` がビルド結果に無く動いていなかったため落とした
+- [x] **4-5. 戻し方と監視を用意する**
+  - 配ったビルドを `<バケット>-releases` へ90日残す。作り直さなくても前の版へ戻せる（`deploy.yml` の `release` 入力）
+  - サイトの死活はGitHub Actionsで30分ごとに外から確かめる（費用ゼロ。Route53のヘルスチェックは月$0.50かかる）
+  - CloudFrontの5xx・4xxと証明書の残り日数はCloudWatchのアラームからメールで知らせる（10個まで無料枠の範囲）
+- [ ] **4-0. AWSの片づけ**（Terraformで作る前に、これまでの作業で残ったものを消す。手順は [aws-cleanup.md](aws-cleanup.md)）
+  - 棚卸しは `terraform/scripts/aws-audit.sh`（読むだけ。何も消さない）
 - [ ] **4-1. 現在の AWS 構成を洗い出す**（Route53のゾーンID・証明書・Amplifyアプリ）※AWSの資格情報の設定待ち
 - [ ] **4-3. 作って切り替える**（新規作成 → CloudFrontのドメインで確認 → Route53を切り替え → Amplifyを消す）
   - 取り込み（`import`）はしない。Amplifyの構成をそのまま写すのではなく、別の構成へ移すため

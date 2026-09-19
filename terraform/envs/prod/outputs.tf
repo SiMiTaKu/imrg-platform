@@ -17,3 +17,8 @@ output "deploy_role_arn" {
   description = "GitHub Actions に設定する役割の ARN"
   value       = module.deploy_role.role_arn
 }
+
+output "releases_bucket_name" {
+  description = "配ったビルドを取っておく S3 バケットの名前"
+  value       = module.site.releases_bucket_name
+}

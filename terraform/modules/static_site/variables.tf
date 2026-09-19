@@ -22,6 +22,12 @@ variable "price_class" {
   default     = "PriceClass_200"
 }
 
+variable "release_retention_days" {
+  description = "配ったビルドを取っておく日数。この日数を過ぎたものは戻せなくなる"
+  type        = number
+  default     = 90
+}
+
 variable "tags" {
   description = "すべてのリソースに付けるタグ"
   type        = map(string)
