@@ -253,10 +253,28 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 Phase 0の「AWS環境の整備」を先に済ませてから着手する。
 
-- [ ] **4-1. 現在の AWS 構成を洗い出す**（Amplifyアプリ・独自ドメイン・Route53・証明書）
-- [ ] **4-2. state 置き場を用意**（S3 + DynamoDBロック。oshiageの `terraform/README.md` と同じ方針）
-- [ ] **4-3. 既存リソースを `import` して差分ゼロにする**（新規作成ではなく取り込みから始める）
-- [ ] **4-4. 環境変数・ヘッダー・書き換えルールをコード管理にする**（Phase 0の設定を手作業のままにしない）
+Phase 4の進め方（2026-09-19に決めた）
+
+- **Amplifyを取り込むのではなく、S3 + CloudFrontへ移す。** PRプレビューは使っていないため、費用の安いほうを選んだ
+  - ビルドはGitHub Actions（無料枠）、配信はCloudFront（毎月1TBまでの恒久無料枠）。Amplifyはビルドが約 $0.01/分、配信が $0.15/GB
+  - Amplifyのコンソールで手作業になっていたヘッダーと書き換えルールも、まとめてコードへ移せる
+- 状態ファイルのロックはS3のロックファイル（Terraform 1.10以降）を使い、DynamoDBを立てない。版は `terraform/.terraform-version` で固定する
+- 環境は本番だけ。develop環境も作らない（確認は手元の `pnpm run dev` とPRのCIで行う）
+
+- [x] **4-2. state 置き場を用意**（`modules/state_backend`。S3のみ）
+- [x] **4-4. 環境変数・ヘッダー・書き換えルールをコード管理にする**
+  - `customHeaders` はCloudFrontのレスポンスヘッダーポリシーへ
+  - 末尾スラッシュとindex.htmlの解決、wwwの転送はCloudFront Functionsへ
+  - `/oshimitsu/content_type/<*>` の書き換え4件は、転送先の `index.html` がビルド結果に無く動いていなかったため落とした
+- [x] **4-5. 戻し方と監視を用意する**
+  - 配ったビルドを `<バケット>-releases` へ90日残す。作り直さなくても前の版へ戻せる（`deploy.yml` の `release` 入力）
+  - サイトの死活はGitHub Actionsで30分ごとに外から確かめる（費用ゼロ。Route53のヘルスチェックは月$0.50かかる）
+  - CloudFrontの5xx・4xxと証明書の残り日数はCloudWatchのアラームからメールで知らせる（10個まで無料枠の範囲）
+- [ ] **4-0. AWSの片づけ**（Terraformで作る前に、これまでの作業で残ったものを消す。手順は [aws-cleanup.md](aws-cleanup.md)）
+  - 棚卸しは `terraform/scripts/aws-audit.sh`（読むだけ。何も消さない）
+- [ ] **4-1. 現在の AWS 構成を洗い出す**（Route53のゾーンID・証明書・Amplifyアプリ）※AWSの資格情報の設定待ち
+- [ ] **4-3. 作って切り替える**（新規作成 → CloudFrontのドメインで確認 → Route53を切り替え → Amplifyを消す）
+  - 取り込み（`import`）はしない。Amplifyの構成をそのまま写すのではなく、別の構成へ移すため
 
 ## Phase 5: デザインリニューアル
 
@@ -275,7 +293,7 @@ Phase 0の「AWS環境の整備」を先に済ませてから着手する。
 - [ ] **6-3. アクセシビリティ点検**（コントラスト・キーボード操作・見出し階層）
 - 6-4（日英の切り替え）は、多言語化すると決めたので3-4へ移した
 - [ ] **6-5. アクセス解析の活用**（どのページが見られているかを毎月確認し、次の施策を決める）
-- [ ] **6-6. `PUBLIC_BASE_PATH: 'https//imrg.work'`（`amplify.yml`）のタイポを直す**。未使用なら削除する
+- [x] **6-6. `PUBLIC_BASE_PATH: 'https//imrg.work'`（`amplify.yml`）のタイポ**は、未使用だったためPhase 4の移行で `amplify.yml` ごと消す
 - [ ] **6-7. ファイアウォール（AWS WAF）を今は入れない**（2026-09-17に判断）
   - Amplifyのファイアウォールは、アプリ1つにつき月15ドルに加え、AWS WAFの料金（Web ACL月5ドル、ルール1つ月1ドル、100万リクエストごと0.6ドル）がかかる。最低でも月20ドル強
   - このサイトは静的なファイルだけで、フォーム・ログイン・APIが無い。SQLインジェクションやXSSなど、WAFが主に防ぐ攻撃の対象になる処理を持たない

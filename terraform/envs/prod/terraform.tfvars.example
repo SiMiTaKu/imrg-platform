@@ -1,0 +1,8 @@
+# AWS の画面で調べた値を書き、terraform.tfvars として保存する
+hosted_zone_id = "ZXXXXXXXXXXXXX"
+
+# 異常を知らせる宛先。apply のあとに確認のメールが届くので、本文のリンクを開いて承認する
+notification_email = "you@example.com"
+
+# GitHub の OpenID Connect の登録がアカウントにすでにあるなら false にする
+create_github_oidc_provider = true

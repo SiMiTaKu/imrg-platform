@@ -1,0 +1,62 @@
+name: Uptime
+
+# サイトが開けるかを外から確かめる。公開リポジトリーなので実行に費用はかからない
+on:
+  schedule:
+    # 30 分ごと（協定世界時）
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 主要ページが開けるか
+        run: |
+          failed=0
+          for path in / /calendar/ /rules/ /judge/ /oshimitsu/ /en/ /privacy/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://imrg.work$path")
+            if [ "$code" != "200" ]; then
+              echo "::error::https://imrg.work$path が $code を返しました"
+              failed=1
+            fi
+          done
+          exit $failed
+
+      - name: 末尾スラッシュへ転送されるか
+        run: |
+          location=$(curl -s -o /dev/null -w '%{redirect_url}' --max-time 20 https://imrg.work/rules)
+          if [ "$location" != "https://imrg.work/rules/" ]; then
+            echo "::error::/rules の転送先が $location でした"
+            exit 1
+          fi
+
+      - name: www が本体へ転送されるか
+        run: |
+          location=$(curl -s -o /dev/null -w '%{redirect_url}' --max-time 20 https://www.imrg.work/)
+          if [ "$location" != "https://imrg.work/" ]; then
+            echo "::error::www の転送先が $location でした"
+            exit 1
+          fi
+
+      - name: 無いページが 404 を返すか
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://imrg.work/no-such-page/)
+          if [ "$code" != "404" ]; then
+            echo "::error::無いページが $code を返しました"
+            exit 1
+          fi
+
+      - name: 証明書の残り日数
+        run: |
+          expiry=$(echo | openssl s_client -servername imrg.work -connect imrg.work:443 2>/dev/null \
+            | openssl x509 -noout -enddate | cut -d= -f2)
+          days=$((($(date -d "$expiry" +%s) - $(date +%s)) / 86400))
+          echo "証明書の残り: $days 日（$expiry）"
+          if [ "$days" -lt 15 ]; then
+            echo "::error::証明書の残りが $days 日です"
+            exit 1
+          fi

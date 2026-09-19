@@ -23,3 +23,11 @@ storybook-static
 
 # Claude Code が作る作業用の worktree
 .claude/worktrees
+
+# Terraform の作業ファイルと、環境ごとの値（ホストゾーン ID など）
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
