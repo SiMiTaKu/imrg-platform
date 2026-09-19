@@ -57,7 +57,11 @@ export const weekdayName = (weekday: Weekday, locale: SiteLocale): string => {
   if (locale === 'ja') return weekday.ja
   if (locale === 'zh') return weekday.zh
   if (locale === 'ko') return KOREAN_WEEKDAYS[weekday.index]
-  return weekday.en
+  if (locale === 'en') return weekday.en
+  // 1970-01-04 は日曜日。そこから曜日の数だけ進めて、その言語の曜日名を取る
+  return new Intl.DateTimeFormat(locale, { weekday: 'short', timeZone: 'UTC' }).format(
+    new Date(Date.UTC(1970, 0, 4 + weekday.index, 12)),
+  )
 }
 
 /**
@@ -151,6 +155,26 @@ export const formatMonthEnglish = (monthKey: string): string => {
 }
 
 /**
+ * "2026-10" → "2026年10月"（中国語）
+ * @param monthKey - 月 "YYYY-MM"
+ * @returns "2026年10月" の形の文字列
+ */
+export const formatMonthChinese = (monthKey: string): string => {
+  const { year, month } = parseDate(monthKey)
+  return `${year}年${month}月`
+}
+
+/**
+ * "2026-09-16" → "2026年9月16日"（中国語）
+ * @param value - 日付 "YYYY-MM-DD"
+ * @returns "2026年9月16日" の形の文字列
+ */
+export const formatDayChinese = (value: string): string => {
+  const { year, month, day } = parseDate(value)
+  return `${year}年${month}月${day}日`
+}
+
+/**
  * "2026-10" → "2026년 10월"
  * @param monthKey - 月 "YYYY-MM"
  * @returns "2026년 10월" の形の文字列
@@ -161,6 +185,24 @@ export const formatMonthKorean = (monthKey: string): string => {
 }
 
 /**
+ * 言語ごとの表記にするための `Intl` の道具。
+ *
+ * @remarks
+ * 日本語・中国語・韓国語は独自の形（「2026年10月30日（金）」など）にそろえているので使わない。
+ * それ以外の言語は、その言語の書き方を `Intl` に任せる
+ */
+const intlFormat = (
+  value: string,
+  locale: SiteLocale,
+  options: Intl.DateTimeFormatOptions,
+): string => {
+  const { year, month, day } = parseDate(value)
+  // 時差でずれないよう、協定世界時の正午で作る
+  const date = new Date(Date.UTC(year, month - 1, day ?? 1, 12))
+  return new Intl.DateTimeFormat(locale, { ...options, timeZone: 'UTC' }).format(date)
+}
+
+/**
  * 月を言語に応じた表記にする
  * @param monthKey - 月 "YYYY-MM"
  * @param locale - 言語
@@ -168,8 +210,10 @@ export const formatMonthKorean = (monthKey: string): string => {
  */
 export const formatMonth = (monthKey: string, locale: SiteLocale): string => {
   if (locale === 'ja') return formatMonthJapanese(monthKey)
+  if (locale === 'zh') return formatMonthChinese(monthKey)
   if (locale === 'ko') return formatMonthKorean(monthKey)
-  return formatMonthEnglish(monthKey)
+  if (locale === 'en') return formatMonthEnglish(monthKey)
+  return intlFormat(monthKey, locale, { year: 'numeric', month: 'long' })
 }
 
 /**
@@ -210,8 +254,10 @@ export const formatDayKorean = (value: string): string => {
  */
 export const formatDay = (value: string, locale: SiteLocale): string => {
   if (locale === 'ja') return formatDayJapanese(value)
+  if (locale === 'zh') return formatDayChinese(value)
   if (locale === 'ko') return formatDayKorean(value)
-  return formatDayEnglish(value)
+  if (locale === 'en') return formatDayEnglish(value)
+  return intlFormat(value, locale, { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
 /**

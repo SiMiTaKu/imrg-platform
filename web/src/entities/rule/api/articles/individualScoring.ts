@@ -1067,7 +1067,7 @@ Les lancers et les rattrapés doivent être exécutés sans interrompre la conti
 3. 手具操作の多様性
 様々な手具の操作やその組み合わせにおいて、多様性に富むものでなければならない。（付録：各手具の演技参照）
 
-4. 空間仕様の多様性
+4. 空間使用の多様性
 様々な移動を含め、その方向、大きさ、軌道、高さにおいて、演技面全体を使うものでなければならない。
 
 5. リズム変化の多様性
@@ -1388,7 +1388,7 @@ La valeur technique de l'exercice est déterminée principalement par le niveau 
               hi: 'संरचना के दोष',
             },
             element: {
-              ja: `上記に欠点を示していない構成の原点は次の表による。
+              ja: `上記に欠点を示していない構成の減点は次の表による。
 構成欠点基準
 【大欠点　　著しく欠けた場合　　　　減点・・・0.30点】
 【中欠点　　欠けた場合　　　　　　　減点・・・0.20点】
