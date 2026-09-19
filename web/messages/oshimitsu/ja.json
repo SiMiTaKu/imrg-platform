@@ -1,0 +1,17 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "推しミツ！",
+  "oshimitsu_filtered_title": "推しミツ！（{filter}）",
+  "oshimitsu_lead_line1": "推しミツは、男子新体操に関する動画専用の検索機能です。",
+  "oshimitsu_lead_line2": "あなたがまだ知らない男子新体操の世界や魅力を見つけに行こう！",
+  "oshimitsu_content_type_legend": "動画種別",
+  "oshimitsu_apparatus_legend": "手具",
+  "oshimitsu_search_button": "この条件で推しミツ！",
+  "oshimitsu_recommended_title": "おすすめ動画",
+  "oshimitsu_content_type_individual": "個人",
+  "oshimitsu_content_type_group": "団体",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "もっと見る",
+  "oshimitsu_no_more_videos": "※現在これ以上表示する動画はありません",
+  "oshimitsu_loading": "読み込み中..."
+}

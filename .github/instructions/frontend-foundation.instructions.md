@@ -1,12 +1,12 @@
 ---
 description: フロントエンド実装の基本思想と設計原則。UI実装・状態管理・命名・品質判断で常時参照
-applyTo: 'src/**/*.{ts,js,css,scss,svelte}'
+applyTo: 'web/src/**/*.{ts,js,css,scss,svelte}'
 name: フロントエンド開発基盤ルール
 ---
 
 # Frontend Foundation - フロントエンド開発基盤ルール
 
-oshiage の同名ルールをもとにしている。このリポジトリは FSD とデザインシステムへの移行前（TODO Phase 3）なので、移行後に使う仕組み（`ROUTES`・`META_DATA`・`AppError` など）は「移行後」と明記した。
+oshiage の同名ルールをもとにしている。
 
 ## 基本方針
 
@@ -17,23 +17,27 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 
 ## UI実装方針
 
-- 既存の共通部品（今は `src/views/atomic/`、移行後はデザインシステム）を最優先で利用する
+- 共通部品は `@imrg-platform/design-system` を最優先で利用する（`import { Button } from '@imrg-platform/design-system'`）。サイトだけで使う汎用部品は `web/src/shared/ui/` にある
+- 複数のページで使う見た目の部品は、デザインシステムに作る。runes で書き、Storybook のストーリー（`*.stories.ts`）と `design-system/tests/unit/` のテストを付ける
+- デザインシステムの部品は、サイトのストアや文言を持たない。文言は引数で受け取る
+- **端末の判定（`isMobile`・`pageData`）は web だけで使う。** デザインシステムの部品は端末を知らず、幅・高さ・文字の大きさなどを px の数値で受け取る。web 側で `fontSize={$pageData.isMobile ? 20 : 24}` のように分けて渡す
+- 部品の動作に欠かせない引数（`type="button"` の `onclick`、リンクの `target` など）は省略可能にしない
+- アイコンだけのボタンには、読み上げ用の名前（`aria-label`）を付ける。名前は使う側が、多言語化の文言（`m.xxx()`）で渡す
 - 同等コンポーネントの再実装は行わない
 - 新しいUI部品が必要な場合は、共通化前提で設計する
 - アクセシビリティ属性（ラベル、role、キーボード操作）を欠かさない
 - 文言は多言語化を前提に書く（[frontend-architecture-design.instructions.md](./frontend-architecture-design.instructions.md) の「多言語対応」）。日本語だけを部品に直書きしない
-- PC とスマホで見た目を分けるときは、既存の `pageData.isMobile`（`src/views/atomic/device-store/store.ts`）と `.pc` / `.sp` の CSS 変数の書き方に合わせる
+- PC とスマホで見た目を分けるときは、既存の `pageData.isMobile`（`@shared/lib/device`）と `.pc` / `.sp` の CSS 変数の書き方に合わせる
 
 ## Svelte の書き方
 
-- Svelte 5 を使っているが、既存のコンポーネントは Svelte 4 の書き方（`export let`・`$:`・`on:click`・`<slot>`）のまま。runes への書き換えは TODO 1-3b でページ単位に行う
-- **新しく作るコンポーネントは runes で書く**（`$props`・`$state`・`$derived`・`onclick`・snippet）。oshiage と同じ書き方
-- 1つのコンポーネントの中で2つの書き方を混ぜない（Svelte 5 はコンポーネント単位でどちらかになる）
-- 既存のコンポーネントを少し直すだけなら、そのコンポーネントの書き方に合わせる
+- Svelte 5 を使っている。Svelte 4 の書き方（`export let`・`$:`・`on:click`・`<slot>`）は使わない
+- **コンポーネントは runes で書く**（`$props`・`$state`・`$derived`・`onclick`・snippet）。oshiage と同じ書き方
 
 ## コーディング規則
 
-- メタ情報（title・description・OGP）は、今は各ルートの `+page.server.ts` が返す `layout` で渡す（[static-site-hosting.instructions.md](./static-site-hosting.instructions.md)）。移行後は `shared/config/meta` の `META_DATA` 定数を参照し、ハードコーディングを禁止する
+- メタ情報（title・description・OGP）は `shared/config/meta` の `META_DATA` を参照し、ハードコーディングを禁止する（[static-site-hosting.instructions.md](./static-site-hosting.instructions.md)）
+- パスは `shared/routes` の `ROUTES` を参照し、文字列で直書きしない
 - **自己終了タグ（`<x />`）は空要素（`img` `br` `input` `hr` など）とコンポーネントだけに使う。** `<div />` や `<span />` は閉じタグを書く（`<div></div>`）。Svelte 5 が曖昧な書き方として警告するため。oshiage のルール（閉じタグを省略できるタグは自己完結タグ）とはここが違う
 - 再代入可能な変数 `let` の定義は避け、状態管理で使用する場合を除いて、基本は不変な定数 `const` で定義する
 
@@ -45,7 +49,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
   - stylelint で `margin` を禁止している。既存の箇所が残っているため今は警告にとどめているが（TODO 5-5）、**新しいコードでは使わない**
 - UI 崩れ防止のため、重要な要素には `width` / `height` / `min-width` / `min-height` を明示する
 - `margin` / `padding` で余白を作るのは、要素自体のボーダーや背景との関係で不可避な場合のみ許可する
-- 色・余白・フォント・影・角丸は `src/style/` の SCSS 変数を使う（全コンポーネントで `$style/index.scss` を読み込み済み）
+- 色・余白・フォント・影・角丸は `design-system/src/styles/` の SCSS 変数を使う（web とデザインシステムの全コンポーネントで読み込み済み。設定は `design-system/scss.config.js`）
 - プロパティの並び順は stylelint（`order/properties-order`）に従う。`pnpm run lint:fix` で直せる
 - `:global` は使わない。スロットで渡す中身に体裁を当てるなど、どうしても必要な場合だけ、理由を書いて stylelint の該当ルールを止める
 
@@ -56,7 +60,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 
 ## エラー方針
 
-- 静的サイトなので、存在しないページは `src/routes/+error.svelte`（と Amplify の書き換え先 `404.html`）で表示する
+- 静的サイトなので、存在しないページは `web/src/routes/+error.svelte`（と Amplify の書き換え先 `404.html`）で表示する
 - 移行後は `shared/errors` の `AppError` 抽象クラスを継承してエラーを定義し、instanceof チェックで分岐する（404 → `NotFoundError`、500 → `InternalServerError`）
 
 ## フォーム実装方針
@@ -72,6 +76,11 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 - 関数・変数: lowerCamelCase
 - 変数名・関数名に略称を使用しない（`i` → `index`、`e` → `event`、`el` → `element` など）
   - 命名が衝突する場合は文脈を示すプレフィックスを付ける（例: 外側の index と内側の index → `linkIndex` など）
+- コンポーネント名・スライス名・型名・データの項目名にも略語を使わない
+  - 言語: `Ja` / `En` → `Japanese` / `English`（例: `titleJapanese`、`PrivacyBodyEnglish`）
+  - 端末: `pc` / `sp` → `desktop` / `mobile`（CSS クラスも `.desktop` / `.mobile`）
+  - `src` → `source`（例: `ImageSourceMeta`）。HTML の `src` 属性と、外部ライブラリーが決めている項目名はそのまま
+  - 言語コードの `ja` / `en`（URL・`messages/<言語>.json`・`SITE_LOCALES`）は、規格で決まった書き方なのでそのまま
 - コンポーネント・型: PascalCase
 - 定数: SCREAMING_SNAKE_CASE
 - トップレベルの固定配列・固定マップ・表示定義など、再代入しない値は `ICON_GALLERY_ITEMS` のように SCREAMING_SNAKE_CASE で定義する
@@ -114,7 +123,7 @@ oshiage の同名ルールをもとにしている。このリポジトリは FS
 - 各テストケース内は `#region Given` / `#region When` / `#region Then` でグルーピングする
 - `it` の説明文は必ず `〇〇の場合、〇〇になること` 形式で記述する
 - バリエーションの確認は同型の test を並べず、`it.each` を優先する
-- 既存のテスト（`src/test/`）はこの形になっていないものがある。触るときに合わせて直す
+- 既存のテスト（`web/tests/unit/`）はこの形になっていないものがある。触るときに合わせて直す
 
 ## フォーム実装補足
 

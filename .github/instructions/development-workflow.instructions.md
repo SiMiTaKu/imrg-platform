@@ -10,7 +10,8 @@ name: 開発の進め方
 
 - `feature/*` → `develop` → `main` の順に進める。`main` へのマージで Amplify が本番（`https://imrg.work`）へ反映する
   - 2026-09-17 までは `master` が本番だった。切り替えの手順は `docs/aws-setup.md` の「本番のブランチを master から main へ変える」
-- `develop` と `main` へ直接 push しない。docs だけの変更でも PR を通す
+- `develop` と `main` へ直接 push しない。docs だけの変更でも PR を通す（ルールセットで禁止している。CI の合格も必須）
+- `develop` と `main` を更新できるのはオーナーだけ。オーナーがマージするときは例外の指定が要る（`gh pr merge --merge --admin`、画面では「Merge without waiting for requirements」）。CI が落ちた PR はこの指定でもマージできない
 - ブランチ名は `feature/<内容>`。TODO の項目なら番号を含める（例: `feature/phase2-1-ci`）
 - 大きな作業は、レビューしやすい単位に分けたスタック PR にする（各 PR のマージ先を1つ下のブランチにする）
 - マージしたブランチは GitHub が自動で消す
@@ -19,7 +20,7 @@ name: 開発の進め方
 
 - パッケージの管理は pnpm（版は `package.json` の `packageManager`）。npm や yarn は使わない
 - Node の版は `.node-version`。CI と Amplify も同じ版を使う
-- 依存を足すときは `pnpm add`（開発用は `pnpm add -D`）。依存のインストール時スクリプトは `pnpm-workspace.yaml` の `allowBuilds` で許可したものだけ動く
+- モノレポなので、依存は使うパッケージに足す（`pnpm --filter @imrg-platform/web add <名前>`）。lint・整形・textlint などリポジトリー全体で使う道具だけをルートに足す（`pnpm add -D -w <名前>`）。依存のインストール時スクリプトは `pnpm-workspace.yaml` の `allowBuilds` で許可したものだけ動く
 
 | コマンド                     | 内容                                                                           |
 | ---------------------------- | ------------------------------------------------------------------------------ |
@@ -29,7 +30,7 @@ name: 開発の進め方
 | `pnpm run format`            | Prettier で整形                                                                |
 | `pnpm run check`             | 型チェック（svelte-check）                                                     |
 | `pnpm test`                  | Vitest                                                                         |
-| `pnpm run textlint`          | README と docs の日本語の表記チェック                                          |
+| `pnpm run textlint`          | README と docs の日本語の表記チェック（AI 向けの指示書は対象外）               |
 
 - コミット時は husky と lint-staged が、変更したファイルだけを整形・lint する（`pnpm install` で有効になる）
 
@@ -44,14 +45,25 @@ name: 開発の進め方
 - 「確認したこと」には、実際に確かめた内容だけを書く。見た目に関わる変更は、PC とスマホの両方で確かめる
 - TODO の項目を終えたら、同じ PR の中で `docs/TODO.md` のチェックを付け、決めたことを書き足す
 - すべての PR で CI（`.github/workflows/ci.yml`）が走る。通らない PR はマージしない
-- `main` 向けの PR には Amplify のプレビュー（`https://pr-<番号>.d1o1ui2gd5pshh.amplifyapp.com`）が作られる。ビルドの設定や依存を変えたときは、本番へ入れる前にプレビューで確かめる
+- `main` と `develop` 向けの PR には Amplify のプレビュー（`https://pr-<番号>.d3fj0jchd8ri0z.amplifyapp.com`）が作られる。ビルドの設定や依存を変えたときは、本番へ入れる前にプレビューで確かめる
 
 ## マージとリリース
 
 - GitHub がスタックとして扱っている PR は、`gh pr merge` ではマージできない。一番上の PR を非同期マージの API でマージすると、下の PR もまとめて入る
 
   ```bash
-  gh api -X PUT repos/SiMiTaKu/imrg-web-main/pulls/<一番上の PR>/merge-async -f merge_method=merge
+  gh api -X PUT repos/SiMiTaKu/imrg-platform/pulls/<一番上の PR>/merge-async -f merge_method=merge
+  ```
+
+- 非同期マージの API は、「develop・main を更新できるのはオーナーだけ」のルールの例外（`--admin`）を使えず、受け付けてもマージされない。スタックをマージするときだけ、このルールを一時的に止め、終わったらすぐ戻す（「develop・main の保護」は止めない）
+
+  ```bash
+  R=SiMiTaKu/imrg-platform
+  ID=$(gh api repos/$R/rulesets --jq '.[] | select(.name | contains("オーナーだけ")) | .id')
+  gh api -X PUT repos/$R/rulesets/$ID -f enforcement=disabled
+  gh api -X PUT repos/$R/pulls/<一番上の PR>/merge-async -f merge_method=merge
+  # 全部 MERGED になったら
+  gh api -X PUT repos/$R/rulesets/$ID -f enforcement=active
   ```
 
 - スタックを作ったあとに上へ足した PR はスタックに含まれない。先にその PR を1つ下のブランチへマージしてから、スタックの一番上をマージする

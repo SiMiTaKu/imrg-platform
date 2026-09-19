@@ -1,0 +1,4 @@
+/* サイト（web/src/routes/styles.css）と同じ基本の文字にして、実際の見た目で確かめる */
+body {
+  font-family: YuGothic, sans-serif;
+}

@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
-/build
-/.svelte-kit
+build
+.svelte-kit
 /package
 
 .env.*
@@ -14,3 +14,12 @@ vite.config.ts.timestamp-*
 .idea
 # pnpm のキャッシュ（Amplify のビルドで使う）
 .pnpm-store
+
+# Paraglide JS が生成するファイル
+web/src/lib/paraglide
+
+# Storybook の書き出し先
+storybook-static
+
+# Claude Code が作る作業用の worktree
+.claude/worktrees

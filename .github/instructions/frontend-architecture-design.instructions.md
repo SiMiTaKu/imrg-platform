@@ -1,6 +1,6 @@
 ---
-description: フロントエンドアーキテクチャ全体に関わる共通機構の設計指針。今の構成と、移行先の FSD の対応
-applyTo: 'src/**/*'
+description: フロントエンドアーキテクチャ全体に関わる共通機構の設計指針。FSD の構成と多言語対応
+applyTo: 'web/src/**/*'
 name: フロントエンドアーキテクチャ設計指針
 ---
 
@@ -9,36 +9,50 @@ name: フロントエンドアーキテクチャ設計指針
 ## このドキュメントについて
 
 このドキュメントは、実装時に毎回参照する詳細ルールではなく、開発者が事前に理解しておくべき設計思想と実装方針をまとめた指針です。
-oshiage の同名の指針をもとにしています。**このリポジトリはまだ FSD へ移行していません**（TODO 3-2）。移行までは「今の構成」に従い、移行先の考え方（責務と依存方向）を先取りして書きます。
+oshiage の同名の指針をもとにしています。web は FSD（Feature-Sliced Design）の構成です。
 
-## 1. 今の構成
+## 0. リポジトリーの構成（モノレポ）
+
+pnpm workspace のモノレポ。oshiage と同じく、パッケージごとにフォルダーを分ける。
 
 ```text
-src/
-├── routes/                 SvelteKit のルート。+page.server.ts（メタ情報）と +page.svelte（Page を呼ぶだけ）
-├── views/
-│   ├── layout/             ヘッダー・フッター・全体の枠
-│   ├── atomic/             共通部品（ボタン・見出し・画像・フォーム部品）
-│   ├── common/             複数ページで使うまとまり（お問い合わせ・規約の枠）
-│   └── page/<ページ>/
-│       ├── Page.svelte     画面の本体
-│       ├── _components/    そのページだけで使う部品
-│       ├── _data/          静的なデータ（大会一覧・動画一覧など）
-│       ├── _lib/           純粋関数
-│       ├── _model/ _models/ 型
-│       ├── _store/         Svelte ストア
-│       └── _service/       計算などの処理
-├── lib/                    ページをまたぐ関数（sitemap・画像・hooks）
-├── model/                  ページをまたぐ型（メタ情報）
-├── style/                  SCSS の変数（色・余白・フォント・影・角丸）
-└── test/                   テスト
+imrg-platform/
+├── web/              @imrg-platform/web … imrg.work のサイト（SvelteKit）
+├── design-system/    @imrg-platform/design-system … 共通部品とトークン、Storybook
+├── docs/             改修計画・手順書
+├── eslint.config.mjs など  lint・整形の設定はルートに置き、全パッケージに効かせる
+└── amplify.yml       web をビルドして配信する
 ```
 
-- 新しいページは `src/views/page/<ページ>/` に、上の分け方で作る。ページ内のフォルダー名は `_components` `_data` `_lib` `_model` `_store` にそろえる（`_models` `_service` は既存のもの）
-- ページをまたいで使うものだけを `views/atomic` `views/common` `lib` `model` に置く
-- カレンダー（`views/page/calendar/`）が、移行先に一番近い形になっている。迷ったらこれに合わせる
+- パッケージ名は `@imrg-platform/<名前>`。パッケージをまたぐ参照は `workspace:*` で依存に書き、公開境界（`index.ts`）からだけ読む
+- コマンドはルートで実行する（`pnpm dev` `pnpm run verify`）。パッケージだけで動かすときは `pnpm --filter @imrg-platform/web <script>`
 
-## 2. 移行先: FSD（Feature-Sliced Design）
+## 1. 構成（web）
+
+```text
+web/src/
+├── routes/        SvelteKit のルート。+page.server.ts（META_DATA とデータ）と +page.svelte（PageHead とページを呼ぶだけ）
+├── app/           アプリ全体の初期化（hooks・全体の CSS）
+├── pages/         URL ごとのページ（privacy/ terms/ など）
+├── widgets/       複数の部品を組み合わせた UI ブロック（layout/ contact/ policyLayout/ など）
+├── features/      ユーザー操作の単位の振る舞い（絞り込み・採点など）
+├── entities/      ドメインの型とデータ（大会・動画・選手など）
+├── shared/
+│   ├── config/    META_DATA（meta.ts）、翻訳済みページの登録（translation/）
+│   ├── routes/    ROUTES（パスの定数）
+│   ├── errors/    AppError など
+│   ├── lib/       汎用の関数（i18n・device・sitemap）
+│   ├── model/     汎用の型
+│   └── ui/        サイトだけで使う汎用部品（Image）。見た目の部品はデザインシステムに作る
+└── lib/paraglide/ Paraglide JS の生成物（git 管理しない）
+```
+
+- SCSS の変数（色・余白・フォント・影・角丸）はデザインシステムのトークン（`design-system/src/styles`）を使う。`scss.config.js` で全コンポーネントに読み込ませているので、import は要らない
+- web だけで使う SCSS を置くときは `shared/styles/` か、その slice の `scss/` に置く。層でないフォルダーをトップレベルに増やさない
+- 別名は `@app` `@pages` `@widgets` `@features` `@entities` `@shared`（`web/svelte.config.js`）。slice の外からは `index.ts` だけを読む（`import { PageHead } from '@widgets/layout'`）
+- テストは `web/tests/unit/<レイヤー>/...` に置く
+
+## 2. FSD（Feature-Sliced Design）
 
 ### 依存方向
 
@@ -46,19 +60,18 @@ src/
 
 - 各 slice は必ず `index.ts` を持ち、公開インターフェースを制御する
 - 内部構造は slice 内で閉じる
-- 今の構成でも、この向きに反する依存（共通部品がページの中身を読むなど）を新しく作らない
-  - 例: `views/atomic/form/input/SingleSelect.svelte` が採点ページのストアを読んでいるのは、移行時に直す対象
+- この向きに反する依存（共通部品がページの中身を読むなど）を作らない
 
-### レイヤーごとの役割と、今の構成との対応
+### レイヤーごとの役割
 
-| レイヤー | 役割                                                                             | 今の構成で近いもの                                             |
-| -------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| app      | アプリケーション初期化、ルート制御、全体共通のエラー処理                         | `routes/+layout.*`、`routes/+error.svelte`、`lib/hooks`        |
-| pages    | URL ごとのページ（1 path 1 slice）。ページ単位のデータ取得・ロジック・エラー処理 | `views/page/<ページ>/Page.svelte`                              |
-| widgets  | 複数コンポーネントを組み合わせた UI ブロック。データは props で受け取る          | `views/layout`、`views/page/<ページ>/_components` の大きな部品 |
-| features | ユーザー操作や機能単位の振る舞い（絞り込み・採点など）                           | `_store` とそれを操作する部品                                  |
-| entities | ドメインオブジェクトと、その型・データ                                           | `_data`・`_model`（大会・動画・選手・チーム）                  |
-| shared   | 全体で使う汎用リソース（`config` / `routes` / `errors` / `ui`）                  | `views/atomic`、`lib`、`style`                                 |
+| レイヤー | 役割                                                                             | 例                                               |
+| -------- | -------------------------------------------------------------------------------- | ------------------------------------------------ |
+| app      | アプリケーション初期化、ルート制御、全体共通のエラー処理                         | `app/hooks`、`routes/+layout.*`、`+error.svelte` |
+| pages    | URL ごとのページ（1 path 1 slice）。ページ単位のデータ取得・ロジック・エラー処理 | `pages/privacy`                                  |
+| widgets  | 複数コンポーネントを組み合わせた UI ブロック。データは props で受け取る          | `widgets/layout`（ヘッダー・フッター・head）     |
+| features | ユーザー操作や機能単位の振る舞い（絞り込み・採点など）                           | 絞り込みの状態とその部品                         |
+| entities | ドメインオブジェクトと、その型・データ                                           | 大会・動画・選手・チーム                         |
+| shared   | 全体で使う汎用リソース（`config` / `routes` / `errors` / `lib` / `ui`）          | `ROUTES`、`META_DATA`、`localizeHref`            |
 
 ### 実装方針
 
@@ -66,7 +79,7 @@ src/
 - widgets: pages 内で使う前提。データは props で受け取る。画面単位の slice を基本とし、責務に応じて subslice を作る
 - features: 小規模で意味のある振る舞いをカプセル化する
 - entities: entity ごとに slice を作り、`model`（型）と `api`（データの取得）を分ける。このサイトの `api` は、今は静的な TS ファイルの読み込み
-- shared: 他レイヤーへ依存しない。単純な置き場にしない。移行時に `shared/routes`（`ROUTES`・`PAGE_TITLE`）、`shared/config/meta`（`META_DATA`）、`shared/errors`（`AppError`）を用意する
+- shared: 他レイヤーへ依存しない。単純な置き場にしない。パスは `shared/routes` の `ROUTES`、メタ情報は `shared/config/meta` の `META_DATA`、例外は `shared/errors` の `AppError` を使う
 
 ## 3. Slice の切り方
 
@@ -83,7 +96,7 @@ src/
 - テスト追加が難しくなる
 - 変更時の競合が頻発する
 
-## 4. Slice 内ディレクトリ構成（移行後）
+## 4. Slice 内ディレクトリ構成
 
 各 slice は以下のディレクトリに責務を分離する（必要な責務のみ作成する）。
 
@@ -109,21 +122,25 @@ src/
 
 ### 多言語対応（必須）
 
-oshiage と同じく、**多言語対応を前提に実装する**。今は日本語と英語を同じページに併記しているが、言語ごとにページを分ける方針にした（TODO 3-4）。
+oshiage と同じく、**多言語対応を前提に実装する**。仕組みは Paraglide JS（inlang）。既定の言語は日本語（今の URL）、英語は `/en/...`。
 
-- 文言は UI コンポーネント内に直書きせず、i18n リソース経由で管理する
+- 文言は UI コンポーネント内に直書きせず、`web/messages/<領域>/<言語>.json` に置いて `m.xxx()` で使う
+  - 領域は `common`（言語名・ページ送り）、`meta`（title・description）、`layout`（ヘッダー・フッター・お問い合わせ・エラー）と、ページごとのフォルダー（`top` `calendar` など）。フォルダーを足したら `web/project.inlang/settings.json` の `pathPattern` にも足す
+  - キーは領域名を頭に付ける（`calendar_filter_title`）。ページの作業を並行しても同じファイルを取り合わないようにするため
 - 文言キーは責務・画面単位で命名し、将来の言語追加時に影響範囲を局所化する
 - 日付・数値などのロケール依存表示は、ロケール対応可能なフォーマッタを使用する（`Intl` など）
 - バリデーションメッセージ、エラーメッセージ、通知文言、`alt`・`aria-label`、メタ情報（title・description・OGP）もすべて翻訳対象とする
 - 画像内テキストや固定文言を避け、翻訳不能な UI を増やさない
 - 表示するデータ（大会・動画・選手など）は、言語ごとの値を持てる形にする。カレンダーの `titleJa` / `titleEn` がその例
-- 既定の言語は日本語。まず英語を加え、言語は後から足せる作りにする
+- リンクは `localizeHref(ROUTES.xxx)`（`@shared/lib/i18n`）で、表示中の言語のパスにする
+- 規約のような長い文章だけは、文言ファイルに分けず、言語ごとの本文コンポーネントにする（`pages/privacy/ui/PrivacyBodyJa.svelte` / `PrivacyBodyEn.svelte`）
+- 訳し終えたページは、`web/src/shared/config/translation/<ページ>.ts` にパスを足す。足すまで英語ページは noindex で、メニューの言語切り替えも出ない
 
-仕組みが入るまで（TODO 3-4 の前）の書き方:
+日本語ページの英語の併記:
 
-- 新しい文言は、部品の中に散らばらせず、ページの `_data` か定数にまとめ、日本語と英語を対にして持つ
+- 日本語ページでは、これまでどおり見出しなどに英語を小さく併記する（見た目の見直しは Phase 5）。英語ページでは併記しない
+- 併記するかは `showsSecondaryText()`、併記する英語は `m.xxx({}, { locale: SECONDARY_LOCALE })` で取る（どちらも `@shared/lib/i18n`）
 - 英語を併記するときは `lang="en"` を付けた要素に入れる
-- 日本語用と英語用の整形関数を分けておく（例: カレンダーの `formatDateRangeJa` / `formatDateRangeEn`）
 
 補足:
 
@@ -132,7 +149,7 @@ oshiage と同じく、**多言語対応を前提に実装する**。今は日�
 
 ### データ
 
-- API は持たない。表示するデータは `_data/` の TS ファイルに置き、ビルド時に HTML へ書き出す
+- API は持たない。表示するデータは entities の TS ファイルに置き、ビルド時に HTML へ書き出す
 - 生成スクリプトの出力（カレンダーの `events.ts`）は手で編集しない
 
 ### 例外処理

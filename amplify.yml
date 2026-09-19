@@ -12,10 +12,11 @@ frontend:
       env:
         PUBLIC_BASE_PATH: 'https//imrg.work'
       commands:
-        - pnpm run build
+        # web パッケージだけをビルドする
+        - pnpm --filter @imrg-platform/web build
   artifacts:
     # IMPORTANT - Please verify your build output directory
-    baseDirectory: build
+    baseDirectory: web/build
     files:
       - '**/*'
   cache:
@@ -48,4 +49,11 @@ frontend:
       status: 200
     - source: </oshimitsu/content_type/<*>/__data.json>
       target: /oshimitsu/content_type/__data.json
+      status: 200
+    # 英語ページ（/en/）にも同じ書き換えを入れる
+    - source: </en/oshimitsu/content_type/<*>>
+      target: /en/oshimitsu/content_type/index.html
+      status: 200
+    - source: </en/oshimitsu/content_type/<*>/__data.json>
+      target: /en/oshimitsu/content_type/__data.json
       status: 200

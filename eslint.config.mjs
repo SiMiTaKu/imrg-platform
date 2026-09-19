@@ -7,7 +7,7 @@ import svelte from 'eslint-plugin-svelte'
 import tsdoc from 'eslint-plugin-tsdoc'
 import unusedImports from 'eslint-plugin-unused-imports'
 import tseslint from 'typescript-eslint'
-import svelteConfig from './svelte.config.js'
+import svelteConfig from './web/svelte.config.js'
 
 const EXPORTED_DOC_CONTEXTS = [
   'ExportNamedDeclaration > FunctionDeclaration',
@@ -29,7 +29,15 @@ const EXPORTED_FUNCTION_CONTEXTS = [
 
 export default [
   {
-    ignores: ['**/build/**', '**/.svelte-kit/**', '**/coverage/**', '**/node_modules/**'],
+    ignores: [
+      '**/build/**',
+      '**/.svelte-kit/**',
+      '**/coverage/**',
+      '**/node_modules/**',
+      '**/storybook-static/**',
+      // Paraglide JS が生成するファイル
+      'web/src/lib/paraglide/**',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

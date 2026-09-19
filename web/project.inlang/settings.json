@@ -1,0 +1,25 @@
+{
+  "$schema": "https://inlang.com/schema/project-settings",
+  "baseLocale": "ja",
+  "locales": ["ja", "en"],
+  "modules": [
+    "https://cdn.jsdelivr.net/npm/@inlang/plugin-message-format@4.4.0/dist/index.js",
+    "https://cdn.jsdelivr.net/npm/@inlang/plugin-m-function-matcher@2.2.6/dist/index.js"
+  ],
+  "plugin.inlang.messageFormat": {
+    "pathPattern": [
+      "./messages/common/{locale}.json",
+      "./messages/meta/{locale}.json",
+      "./messages/layout/{locale}.json",
+      "./messages/top/{locale}.json",
+      "./messages/calendar/{locale}.json",
+      "./messages/oshimitsu/{locale}.json",
+      "./messages/rules/{locale}.json",
+      "./messages/judge/{locale}.json",
+      "./messages/background_music/{locale}.json",
+      "./messages/decorating_apparatus/{locale}.json",
+      "./messages/privacy/{locale}.json",
+      "./messages/terms/{locale}.json"
+    ]
+  }
+}

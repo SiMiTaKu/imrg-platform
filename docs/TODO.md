@@ -1,6 +1,6 @@
 # imrg.work 改修 TODO
 
-imrg-web-mainを、oshiageと同じ水準の構成（モノレポ・デザインシステム・FSD・Terraform）へ近づけ、
+imrg.work（このリポジトリー。旧名 `imrg-web-main`）を、oshiageと同じ水準の構成（モノレポ・デザインシステム・FSD・Terraform）へ近づけ、
 SEO・SNS・セキュリティー・CIを整えるための作業一覧。**Phase ごとに 1〜数本の PR で少しずつ進める。**
 
 - 作成日： 2026-09-16
@@ -13,18 +13,18 @@ SEO・SNS・セキュリティー・CIを整えるための作業一覧。**Phas
 
 作業を始める人が同じ調査を繰り返さないための記録。
 
-| 項目               | 現状                                                                                |
-| ------------------ | ----------------------------------------------------------------------------------- |
-| フレームワーク     | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
-| ホスティング       | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0**        |
-| 配信               | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1）              |
-| CI                 | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行                     |
-| ブランチ保護       | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化）    |
-| セキュリティヘッダ | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定                   |
-| sitemap            | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ）            |
-| アクセス解析       | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN`       |
-| テスト             | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest                              |
-| 構成               | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし             |
+| 項目                 | 現状                                                                                |
+| -------------------- | ----------------------------------------------------------------------------------- |
+| フレームワーク       | SvelteKit 2.8 / Svelte 4.2（静的書き出し `adapter-static`、`fallback: index.html`） |
+| ホスティング         | AWS Amplify（master ブランチ）。ビルドは `.node-version` の **Node 18.18.0**        |
+| 配信                 | **すべての HTML が 1156 バイトの入れ物ページになる**（下記 Phase 0-1）              |
+| CI                   | PR 時に `lint` と `test` のみ。`check`（型）と `build` は未実行                     |
+| ブランチ保護         | なし。private リポジトリーのため GitHub Free では設定不可（要 Pro か public 化）    |
+| セキュリティヘッダー | HSTS・X-Content-Type-Options・Referrer-Policy・CSP いずれも未設定                   |
+| sitemap              | ファイルが存在しない（`/sitemap.xml` は 200 を返すが中身は入れ物ページ）            |
+| アクセス解析         | Cloudflare Web Analytics（Cookie 不使用）。`.env` の `PUBLIC_CF_BEACON_TOKEN`       |
+| テスト               | Jest（`src/test/*.spec.ts`、47 件）。oshiage は Vitest                              |
+| 構成                 | `src/views/page/<ページ>/` 独自構成。FSD ではない。デザインシステムなし             |
 
 反映の確認方法（全ページが同じHTMLを返すため、文字列検索では判定できない）:
 
@@ -98,7 +98,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [x] **1-3. Svelte 4 → 5**（runesへの移行は段階的に。まず動かし、後からコンポーネントごとに書き換え）
   - 書き方は今のまま（`export let` `$:` `on:click`）。Svelte 5はこの書き方も動かせる
   - `svelte-motion` はCSSのtransitionに置き換えて削除した
-  - [ ] **1-3b. runesへ書き換える**（`$props` `$state` `$derived` `onclick`）。ページ単位で少しずつ。FSDへの再配置（3-2）と同時に行うと手戻りが少ない
+  - [x] **1-3b. runesへ書き換える**（2026-09-18。3-2と同時に全ページを書き換えた）（`$props` `$state` `$derived` `onclick`）。ページ単位で少しずつ。FSDへの再配置（3-2）と同時に行うと手戻りが少ない
 - [x] **1-4. SvelteKit・Vite・svelte-check を最新へ**（`svelte-check` 3 → 4）
   - Vite 5 → 8、vite-plugin-svelte 7、vite-imagetools 12、SvelteKit 2.70
   - TypeScriptは5系の最新まで。6はJestの設定ファイルを読めなくなるため、Jestを外す1-6で上げる（7はSvelteKitが未対応）
@@ -128,13 +128,21 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 - [x] **2-1. CI を強化する**：PRで `lint` → `check` → `test` → `build` を実行（現在はlintとtestのみ）
   - `.github/workflows/ci.yml` で、整形 → lint → 型 → テスト → ビルドを実行する。手元では `pnpm run verify` で同じ確認ができる
   - マージ先を問わずすべてのPRで動かす（スタックPRの途中にも走る）。`develop` と `main` へのpushでも動かす
-- [ ] **2-2. ブランチ保護**：`main` と `develop` を直push禁止、PR必須、CI必須
+- [x] **2-2. ブランチ保護**：`main` と `develop` を直push禁止、PR必須、CI必須
   - privateのままならGitHub Proが必要。費用をかけないならpublic化も選択肢（`.env` に秘密情報がないことは確認済み）
+  - 2026-09-17に `imrg-platform` を公開し、無料で使えるルールセットを2つ入れた（Settings → Rules → Rulesets）
+    - 「develop・mainの保護」：PR必須（承認は0件）、CI（`verify`）の合格必須、強制pushとブランチ削除の禁止。例外なし
+    - 「develop・mainを更新できるのはオーナーだけ」：リポジトリー管理者だけが例外（PR経由のとき）
+  - 2つ目のルールのため、オーナーがマージするときは例外の指定が要る（画面では「Merge without waiting for requirements」にチェック、CLIでは `gh pr merge --admin`）。1つ目のルールには例外が無いので、この指定を付けてもCIが落ちたPRはマージできない
+  - 共同作業者はいない（sou-nkymさんの権限は外した）。外部の人のPRは、CIの実行前に毎回承認が要る設定にした
 - [x] **2-3. Dependabot**（npm・GitHub Actions）と `npm audit` をCIに追加
   - `.github/dependabot.yml`：毎週月曜にpnpmの依存とGitHub Actionsの更新PRを `develop` 向けに出す。メジャー以外は1本にまとめ、公開から3日たった版だけを使う
   - 脆弱性の通知と、修正PRの自動作成を有効にした
   - CIで `pnpm audit` を実行する。本番の依存にhigh以上があれば止め、開発用の依存は知らせるだけ
   - 開発用の依存にあった22件は `pnpm-workspace.yaml` の `overrides` で修正版に上げ、0件にした
+  - Dependabotで出さないメジャー更新（`.github/dependabot.yml` の `ignore`）
+    - `@types/node`：型の版は、実際に使うNode（24系）とそろえる。Nodeの更新と同時に上げる
+    - `textlint`：15にすると `textlint-rule-preset-jtf-style` のルール `2.1.6.カタカナの長音` が何も検出しなくなる（2026-09-17に確認。jtf-styleを最新の3系にしても同じ）。ルールが対応したら外す
   - [x] **2-3a. npmからpnpmへ移す**（2-3と同時に行うことにした。pnpm 12。版は `package.json` の `packageManager`）
     - `package-lock.json` の版をそのまま `pnpm-lock.yaml` へ移した（`pnpm import`）
     - pnpm 11以降は依存のインストール時スクリプトを許可制にしているので、`pnpm-workspace.yaml` の `allowBuilds` で決める
@@ -143,7 +151,9 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - PRテンプレートと、Issueのテンプレート（改善・不具合）を置いた
   - マージしたブランチを自動で消す設定を有効にし、マージ済みの古いブランチを整理した
   - CODEOWNERSは、一人で運用しているので作らないことにした
-- [ ] **2-5. PR ごとのプレビュー環境**（Amplifyのプレビュー機能）
+- [x] **2-5. PR ごとのプレビュー環境**（Amplifyのプレビュー機能）
+  - 新しいAmplifyアプリ（`d3fj0jchd8ri0z`）で、`main` と `develop` 向けのPRにプレビューが作られる（`https://pr-<番号>.d3fj0jchd8ri0z.amplifyapp.com`）
+  - `develop` 自体も `https://develop.d3fj0jchd8ri0z.amplifyapp.com` で見られる
 - [x] **2-7. ESLint 9 → 10**（9系のサポートが終わったため。2026-09-17時点の最新は10.10.0）
   - 使っているプラグインはすべて10に対応済みで、設定の変更は不要だった
   - oshiageはまだ9系。揃えるならoshiage側も10へ上げる
@@ -151,41 +161,79 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 流用した：共通ルール、資料のリンク集、フロントエンドの基盤ルールと設計指針、単体・結合・E2Eテスト
   - 書き換えた：FSDとデザインシステムへの移行前であること、APIの無い静的サイトであること、日英併記、Svelte 5の自己終了タグ、runesへの移行途中であること
   - 追加した：開発の進め方（ブランチ・pnpm・コミット・PR・スタックPRのマージ）、静的サイトの書き出しと配信
-  - バックエンドのルール3本は、このリポジトリにバックエンドが無いので入れていない
+  - バックエンドのルール3本は、このリポジトリーにバックエンドが無いので入れていない
   - Claude Code向けに、ルートの `CLAUDE.md` から同じルールへ案内する。Phase 3でFSDへ移したら、設計指針の「今の構成」を消す
-- [ ] **2-6. 本番のブランチを `master` から `main` へ変える**
+- [x] **2-6. 本番のブランチを `master` から `main` へ変える**（2026-09-17。`imrg.work` と `www` を新しいアプリの `main` に割り当て、`master` ブランチは消した）
   - 運用を `feature/*` → `develop` → `main` にする（`main` へのマージで本番へ反映）
   - 手順
     1. `master` から `main` を作ってpushする
     2. Amplifyで `main` ブランチを接続し、本番（`imrg.work`）のドメインの割り当てを `main` へ移す。反映を `https://imrg.work/_app/version.json` で確かめる
     3. CI（`.github/workflows/`）の対象ブランチ、ブランチ保護（2-2）、README・docs・この表の「ブランチ運用」を `main` に直す
     4. 開いているPRのマージ先を直してから、Amplifyの `master` の接続と `master` ブランチを消す
-  - コンソールの操作は [aws-setup.md](aws-setup.md) の8にまとめた
+  - コンソールの操作は [aws-setup.md](aws-setup.md) の8にまとめた（3-0の新しいリポジトリーへのつなぎ替えと同時に行う）
   - ドメインの割り当てを移す間は、切り替わるまで数分かかることがある。アクセスの少ない時間に行う
   - Terraform（Phase 4）へ取り込む前に済ませる。先に取り込むと、ブランチ名の差分が出るため
 
 ## Phase 3: モノレポ化・FSD・デザインシステム
 
-- [ ] **3-0. リポジトリー名を変える**（`imrg-web-main` → 新しい名前。3-1の直前に行う）
-  - モノレポにすると `web` 以外のパッケージも入るため、`-main` の付いた今の名前が中身と合わなくなる
-  - `imrg-web` のようにWebに限った名前も、デザインシステム・Terraform・ツール類が入ると中身とずれる。特定の用途を表さない名前にする
-  - 候補： `imrg-platform`（サイトと、それを支える部品・インフラ一式）、`imrg-workspace`。動画・資料を置く `imrg-hub` と紛れない名前にする
-  - GitHubの名前変更は元に戻せる。旧URLからの転送（`git push` `git clone` とブラウザー）も効くので、手元の作業はすぐには止まらない
-  - 影響と対応
-    - **Amplify**：旧方式（OAuthとwebhook）でつながっている。webhookは2本（アプリID `d1d0cu0fwxm76y` と `d1o1ui2gd5pshh`）。変更後に `develop` へpushしてビルドが走るか確かめる。走らなければコンソールでリポジトリーを再接続し、あわせてGitHub App方式へ移す。使っていないほうのアプリはこのとき整理する
-    - **手元のclone**：`git remote set-url origin git@github.com:SiMiTaKu/<新しい名前>.git`。フォルダー名 `~/imrg/imrg-web-main` も合わせて変える（imrg-hubのメモやdocs内のパスも直す）
-    - **README・docs・`package.json` の `name`** を新しい名前に揃える
-    - 旧名で新しいリポジトリーを作ると転送が切れる。旧名は使わない
-  - Phase 4（Terraform）より前に済ませる。先にTerraformへ取り込むと、Amplifyアプリのリポジトリー URLの差分が出るため
-- [ ] **3-1. pnpm workspace へ移行**（`web` と `design-system` の2パッケージから始める）
-- [ ] **3-2. FSD へ再配置**：`src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
+- [x] **3-0. リポジトリー名を変える**（`imrg-web-main` → `imrg-platform`。2026-09-17）
+  - モノレポにすると `web` 以外のパッケージも入るため、用途を表さない名前にした
+  - 名前の変更ではなく、**新しいリポジトリーを作って移した。** コミット履歴の作成者欄に個人のGmailが102件あり、公開前に消すため。履歴を書き換えた（ファイルの中身は同じ）
+    - 同じリポジトリーで書き換えても、GitHubが持つ過去のPRの参照（241件）に古いコミットが残り、公開すると見えてしまう
+    - 今後のコミットはGitHubの非公開アドレスで作る（手元の `git config user.email`）
+  - 移したもの：`develop` `main` `master` `feature/hoge` のブランチ、未完了のIssue 15件（番号は変わった）
+  - 移していないもの：過去のPRの画面とレビューの記録。古いリポジトリー `imrg-web-main` を非公開のまま残して参照する
+  - 手元のフォルダーは `~/imrg/imrg-platform`
+  - [x] Amplifyを新しいリポジトリーへつなぎ替える（手順は [aws-setup.md](aws-setup.md) の8。2026-09-17完了。古いアプリ2つは削除し、`imrg-web-main` は非公開のままアーカイブした）
+- Phase 3の進め方（2026-09-17に決めた）
+  - 見た目は変えない（言語の切り替え部品だけが増える）。毎回、ビルドした全ページの表示内容・全要素の計算済みスタイル・ブラウザーでの操作を変更前と比べる
+  - 順番：3-1モノレポ化 → 3-4a多言語化の仕組み → 3-3デザインシステムの土台 → 3-2 FSDへの再配置（ページごと）→ 3-4b英語の中身
+  - パッケージ名は `@imrg-platform/<名前>`
+  - Storybookは手元だけで見る（公開しない）。CIではビルドが通ることだけ確かめる
+  - 英語の文言とデータは、今の併記の英語を使い、無い分はClaudeが下書きしてPRのレビューで確かめる
+  - レビューは区切りごと。3-1・3-4a・3-3をまとめて一度レビューとリリース。3-2は数ページずつ
+- [x] **3-1. pnpm workspace へ移行**（`web` と `design-system` の2パッケージから始める）
+  - サイトを `web/`（`@imrg-platform/web`）へ移し、ルートをpnpm workspaceにした。`design-system` は3-3で足す
+  - lint・整形・textlint・huskyの設定はルートに置いたままで、全パッケージが対象（oshiageと同じ）
+  - Amplifyはルートの `amplify.yml` から `pnpm --filter @imrg-platform/web build` を実行し、`web/build` を配信する。コンソールのモノレポ設定は使わない
+- [x] **3-2. FSD へ再配置**（2026-09-18）：`web/src/views/page/*` → `app` / `pages` / `widgets` / `features` / `entities` / `shared`
   - カレンダーはすでに近い形（`_components` `_data` `_lib`）なので、ここから着手すると移行しやすい
-- [ ] **3-3. デザインシステムを作る**
-  - トークン（色・余白・字送り・影・角丸）を `src/style` から切り出す
+  - [x] 3-2a. 共通の部分（2026-09-18）
+    - `app`（hooks・全体のCSS）・`shared`（`ROUTES`・`META_DATA`・`AppError`・i18n・端末判定・sitemap・Image）・`widgets`（ヘッダー・フッター・head・お問い合わせ・規約の枠）を作り、runesで書き直した
+    - メタ情報は全ページ `META_DATA`（文言は `messages/meta`）から出し、`+page.svelte` は `PageHead` とページを置くだけにした
+    - 文言ファイルを領域ごと（`messages/<領域>/<言語>.json`）に分け、翻訳済みページの登録も `shared/config/translation/<ページ>.ts` に分けた（ページの作業を並行してもぶつからないように）
+    - プライバシーポリシーと利用規約を `pages` へ移し、英語ページを公開の対象にした（本文の英訳はレビューで確認）
+    - テストを `web/tests/unit/` へ移した
+    - メニューの言語切り替えは、訳し終えたページでだけ出る
+  - [x] 3-2b〜3-2g. ページごとに移し、英語ページを作った（カレンダー・トップ・曲編集と手具装飾・推しミツ！・ルール・採点）。移したページはすべてrunesで書き直した
+    - カレンダーの生成ファイルは `web/src/entities/calendarEvent/api/events.ts` へ移し、`~/imrg/calendar-data/build_events_ts.py` の書き出し先も合わせた
+    - 推しミツ！の並べ替えをブラウザー側だけで行うようにして、ハイドレーションの警告を解消した
+    - 採点のフォーム部品は、ストアを読まずにpropsで受け取る形に直した（依存の向きの違反を解消）
+    - ルールの本文は、データの各項目に英語（`titleEn` など）を持たせた。ビルド時に表示する言語だけをページへ渡す
+  - [x] 3-2h. 旧構成（`views/`）と別名（`$views`・`$images`・`$model`）、使わなくなったdate-fnsを消した
+  - デザインシステムに切り出す候補（ページを移したときに見つかったもの。Phase 5で見た目と合わせて決める）
+    - 種類のチップ（色の点付きのボタン）、切り替えボタンの組、一覧の行カード（カレンダー）
+    - ラジオ・チェックボックスの選択肢、動画カード（推しミツ！）
+    - 番号付きの手順カード、押すと裏返る画像カード（曲編集・手具装飾）
+    - 数の増減カウンター、段階を選ぶラジオ、テーマ色の決定ボタン（採点）
+- [x] **3-3. デザインシステムを作る**（土台。2026-09-17）
+  - トークン（色・余白・字送り・影・角丸）を `web/src/style` から切り出す
   - 共通部品（Button・ButtonLink・Card・Chip・Badge・Heading・Pagination）をStorybook付きで整理
   - a11yチェック（Storybookのa11yアドオン）を入れる
+  - `design-system/`（`@imrg-platform/design-system`）を作り、トークン（`src/styles`）を `web/src/style` から移した。SCSSの読み込み設定（`scss.config.js`）はwebと共有する
+  - ButtonとButtonLinkは同じ見た目の共通SCSS（`Button/scss/_button.scss`）を使い、下線やブラウザー既定の余白・文字の違いが出ないようにした
+  - 部品はButton・ButtonLink・Heading（旧WithEnglishHeading）・Pagination（カレンダーから移し、「最初・前・番号・次・最後」をアイコンで並べる形に変えた。読み上げ用の名前は多言語化の文言で渡す）の4つ。runesで書き、Storybookのストーリーとテスト（Testing Library）を付けた
+  - 端末の判定（`isMobile`）はwebだけで使う。部品は幅・高さ・文字の大きさをpxで受け取り、webが端末に応じて分けて渡す
+  - Card・Chip・Badgeは、今のサイトに共通の部品が無いため作っていない。3-2でページを移すときに、実際に使う形から切り出す
+  - Storybookは `pnpm --filter @imrg-platform/design-system storybook` で手元に開く。CIではビルド（`pnpm run build`）が通ることだけ確かめる。a11yアドオンの違反はエラー扱い
 
+- [x] **3-4a. 多言語化の仕組みを入れる**（3-4の進め方の1と5）
+  - Paraglide JS 2を入れ、全ページを日本語と英語（`/en/...`）で書き出すようにした。`<html lang>`・canonical・`og:locale` は言語ごと
+  - 英語ページは訳し終えるまでnoindex。訳したページを `TRANSLATED_PATHS` に足すと、`hreflang`（`x-default` も）とsitemapの言語の対応が出る
+  - 言語の切り替え部品は、英語のページができるまで表に出さない。代わりに非表示のリンクで、書き出し時に英語ページをたどらせている
+  - ページ内のリンクは、まだ言語を付けていない（英語ページから日本語ページへ移る）。3-2でページごとに直す
 - [ ] **3-4. 多言語化の土台を作る**（2026-09-17に、日英併記から言語ごとのページへ移すと決めた）
+  - 2026-09-18: 進め方の1〜5は完了。全ページの英語ページを公開の対象にした。残りは6（Search Consoleでの確認。手作業）と、英訳のレビュー
   - 方針
     - 既定は日本語。まず英語を加え、言語は後から足せる作りにする
     - URLに言語を入れる。日本語は今のURLのまま、英語は `/en/...`（既存のURLと検索順位を保つため）
@@ -197,7 +245,7 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
     3. メタ情報（title・description・OGP）、`alt`・`aria-label`、エラーページを翻訳する
     4. データに英語の値を持たせる。カレンダーは `titleEn` などがある。推しミツ！（選手・チーム・動画）、ルール、採点には無いので、英語の項目を足して訳す
     5. `hreflang`、sitemapの言語ごとの対応、`og:locale:alternate`、構造化データを言語ごとに出す
-    6. Search Consoleで英語ページの登録を確かめる
+    6. Search Consoleで英語ページの登録を確かめる（本番へリリースしたあと、sitemapを送り直して `/en/` のページが登録されるかを見る）
   - 翻訳の作業量が大きい（ルールのページなど）。訳す順番（案はトップ、カレンダー、推しミツ！、ルールと採点の順）と、機械翻訳を下書きに使うかを着手時に決める
   - 日英併記をやめたときの見た目は、デザインリニューアル（Phase 5）と合わせて決める
 
@@ -228,3 +276,9 @@ Phase 0の「AWS環境の整備」を先に済ませてから着手する。
 - 6-4（日英の切り替え）は、多言語化すると決めたので3-4へ移した
 - [ ] **6-5. アクセス解析の活用**（どのページが見られているかを毎月確認し、次の施策を決める）
 - [ ] **6-6. `PUBLIC_BASE_PATH: 'https//imrg.work'`（`amplify.yml`）のタイポを直す**。未使用なら削除する
+- [ ] **6-7. ファイアウォール（AWS WAF）を今は入れない**（2026-09-17に判断）
+  - Amplifyのファイアウォールは、アプリ1つにつき月15ドルに加え、AWS WAFの料金（Web ACL月5ドル、ルール1つ月1ドル、100万リクエストごと0.6ドル）がかかる。最低でも月20ドル強
+  - このサイトは静的なファイルだけで、フォーム・ログイン・APIが無い。SQLインジェクションやXSSなど、WAFが主に防ぐ攻撃の対象になる処理を持たない
+  - 通信量で押し流す攻撃（L3/L4）は、Amplifyの配信に使われるCloudFrontのAWS Shield Standard（無料）で守られている
+  - 残るリスクは、大量のアクセスによる配信料の増加。請求のアラート（0-6）で気付けるようにしてある
+  - 見直す時期：フォームやAPIを持つ機能を足すとき、不審なアクセスで配信料が増えたとき。そのときはレート制限のルールだけの小さな構成から検討する
