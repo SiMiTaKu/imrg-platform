@@ -30,7 +30,7 @@
 
   .mobile {
     --width: 90%;
-    --item-size: 337px;
+    --item-size: min(337px, 100%);
   }
 
   .work-list {

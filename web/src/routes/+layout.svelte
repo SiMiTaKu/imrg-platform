@@ -3,7 +3,6 @@
   import { onMount, type Snippet } from 'svelte'
   import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
   import { LOCAL_HOSTS } from '../app/config/analytics'
-  import { pageData } from '@shared/lib/device'
   import { Footer, Header, LocalePageLinks, ScrollToTopButton } from '@widgets/layout'
 
   const { children }: { children: Snippet } = $props()
@@ -21,15 +20,12 @@
 </script>
 
 <svelte:head>
-  {#if $pageData.isMobile}
-    <meta name="viewport" content="width=375, user-scalable=no" />
-  {:else}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  {/if}
+  <!-- 端末の幅に合わせて表示する。拡大も止めない（スマホでの見やすさと、検索の評価のため） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Google Adsense -->
   <meta name="google-adsense-account" content="ca-pub-8732446757854279" />
 
-  <meta name="keywords" content="男子新体操,ストレッチ,トレーニング,体操競技,柔軟性" />
+  <meta name="keywords" content="男子新体操,バク転,ストレッチ,トレーニング,体操競技,柔軟性" />
 </svelte:head>
 
 <Header />

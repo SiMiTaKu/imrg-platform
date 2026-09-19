@@ -49,8 +49,10 @@
     display: grid;
     grid-template-rows: 97px 97px auto;
     width: 343px;
+    max-width: 100%;
     min-height: 194px;
     border-radius: 8px;
+    box-sizing: border-box;
     place-items: center;
     overflow: hidden;
     box-shadow: $black-box-shadow;
@@ -63,6 +65,7 @@
   .video {
     grid-column: 1;
     grid-row: 1 / 3;
+    max-width: 100%;
     transition: 0.3s;
     pointer-events: none;
     user-select: none;

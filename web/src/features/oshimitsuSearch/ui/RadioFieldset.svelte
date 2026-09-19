@@ -42,6 +42,14 @@
 </fieldset>
 
 <style lang="scss">
+  fieldset {
+    box-sizing: border-box;
+
+    // fieldset は既定で中身より狭くならないので、狭い画面でも縮むようにする
+    min-inline-size: 0;
+    max-width: 100%;
+  }
+
   .desktop {
     --width: 343px;
     --legend-font-size: #{$font-size-24};
@@ -57,7 +65,10 @@
   .wrapper {
     display: grid;
     gap: $space-size-8;
+    box-sizing: border-box;
     width: var(--width);
+    min-width: 0;
+    max-width: 100%;
   }
 
   .legend {

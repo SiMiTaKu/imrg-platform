@@ -28,6 +28,7 @@
   import type { SiteLocale } from '@shared/lib/i18n'
   import { loadCalendarState, saveCalendarState } from '../lib/stateStorage'
   import CalendarContribute from './CalendarContribute.svelte'
+  import CalendarArchive from './CalendarArchive.svelte'
   import MonthCalendar from './MonthCalendar.svelte'
 
   // カレンダーで移動できる範囲（データのある最初の月から最後の月まで）
@@ -261,6 +262,7 @@
     </section>
   {/if}
 
+  <CalendarArchive />
   <CalendarContribute />
 </article>
 
