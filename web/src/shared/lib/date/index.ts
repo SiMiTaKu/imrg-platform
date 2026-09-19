@@ -1,10 +1,12 @@
 export {
   buildMonthGrid,
   formatDay,
+  formatDayChinese,
   formatDayEnglish,
   formatDayJapanese,
   formatDayKorean,
   formatMonth,
+  formatMonthChinese,
   formatMonthEnglish,
   formatMonthJapanese,
   formatMonthKorean,

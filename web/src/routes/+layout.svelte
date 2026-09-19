@@ -1,5 +1,6 @@
 <script lang="ts">
   import '../app/styles/global.css'
+  import { m } from '$lib/paraglide/messages'
   import { onMount, type Snippet } from 'svelte'
   import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
   import { LOCAL_HOSTS } from '../app/config/analytics'
@@ -25,7 +26,7 @@
   <!-- Google Adsense -->
   <meta name="google-adsense-account" content="ca-pub-8732446757854279" />
 
-  <meta name="keywords" content="男子新体操,バク転,ストレッチ,トレーニング,体操競技,柔軟性" />
+  <meta name="keywords" content={m.meta_keywords()} />
 </svelte:head>
 
 <Header />
