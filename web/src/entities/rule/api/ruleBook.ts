@@ -21,12 +21,14 @@ export const RULE_BOOK: RuleBook = {
   title: {
     ja: '新体操男子規則',
     en: "Men's Rhythmic Gymnastics Rules",
+    ko: '리듬체조 남자 규칙',
   },
   chapter: [
     {
       title: {
         ja: '競技規則',
         en: 'Competition Rules',
+        ko: '경기 규칙',
       },
       article: [...COMPETITION_ORGANIZATION_ARTICLES, ...COMPETITION_CONDUCT_ARTICLES],
     },
@@ -34,6 +36,7 @@ export const RULE_BOOK: RuleBook = {
       title: {
         ja: '採点規則',
         en: 'Code of Points',
+        ko: '채점 규칙',
       },
       article: [
         ...SCORING_GENERAL_ARTICLES,
@@ -46,6 +49,7 @@ export const RULE_BOOK: RuleBook = {
       title: {
         ja: '付録',
         en: 'Appendix',
+        ko: '부록',
       },
       article: [
         ...APPENDIX_SPECIAL_RULES_ARTICLES,
@@ -54,11 +58,18 @@ export const RULE_BOOK: RuleBook = {
       ],
     },
     {
-      title: { ja: '主任審判員減点表', en: "Chief Judges' Deduction Tables" },
+      title: {
+        ja: '主任審判員減点表',
+        en: "Chief Judges' Deduction Tables",
+        ko: '주임 심판원 감점표',
+      },
       article: [],
     },
-    { title: { ja: '審判メモ', en: "Judges' Notes" }, article: [] },
-    { title: { ja: '得点票', en: 'Score Sheets' }, article: [] },
-    { title: { ja: '採点票・減点票', en: 'Scoring and Deduction Sheets' }, article: [] },
+    { title: { ja: '審判メモ', en: "Judges' Notes", ko: '심판 메모' }, article: [] },
+    { title: { ja: '得点票', en: 'Score Sheets', ko: '득점표' }, article: [] },
+    {
+      title: { ja: '採点票・減点票', en: 'Scoring and Deduction Sheets', ko: '채점표·감점표' },
+      article: [],
+    },
   ],
 }

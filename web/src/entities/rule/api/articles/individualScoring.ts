@@ -9,22 +9,26 @@ export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
     title: {
       ja: '個人競技',
       en: 'Individual Competition',
+      ko: '개인 경기',
     },
     section: [
       {
         title: {
           ja: '配点と採点項目',
           en: 'Points and Scoring Criteria',
+          ko: '배점과 채점 항목',
         },
         block: [
           {
             title: {
               ja: '個人競技の採点項目と配点',
               en: 'Scoring Criteria and Points for the Individual Competition',
+              ko: '개인 경기의 채점 항목과 배점',
             },
             element: {
               ja: '個人競技の配点と採点項目は以下の通りとする。',
               en: 'The points and scoring criteria for the individual competition are as follows.',
+              ko: '개인 경기의 배점과 채점 항목은 다음과 같이 한다.',
             },
             image: [
               {
@@ -32,6 +36,7 @@ export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
                 alt: {
                   ja: '採点項目（Ｄ）',
                   en: 'Scoring criteria (D)',
+                  ko: '채점 항목(D)',
                 },
               },
               {
@@ -39,6 +44,7 @@ export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
                 alt: {
                   ja: '採点項目（Ｅ）',
                   en: 'Scoring criteria (E)',
+                  ko: '채점 항목(E)',
                 },
               },
             ],
@@ -49,22 +55,26 @@ export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
         title: {
           ja: '構成（Ｄ・Ａ）',
           en: 'Composition (D/A)',
+          ko: '구성(D/A)',
         },
         block: [
           {
             title: {
               ja: '演技の構成',
               en: 'Composition of the Routine',
+              ko: '연기의 구성',
             },
             element: {
               ja: '演技は手具操作を伴った徒手系と転回系を持って構成され、高い技術的価値と各要素の多様性、音楽と動きの関係や独創性が求められる。また、すべての運動が合理性と安定性をもった組み合わせで、豊富な運動量を持って構成されなければならない。',
               en: 'A routine is composed of free-hand and tumbling elements with apparatus handling, and must have high technical value, a variety of elements, a good relationship between music and movement, and originality. All movements must be combined rationally and with stability, and the routine must contain a large amount of movement.',
+              ko: '연기는 수구 조작을 동반한 신체 계열과 공중돌기 계열로 구성되며, 높은 기술적 가치와 각 요소의 다양성, 음악과 움직임의 관계 및 독창성이 요구된다. 또한 모든 운동이 합리성과 안정성을 갖춘 조합으로, 풍부한 운동량을 가지고 구성되어야 한다.',
             },
           },
           {
             title: {
               ja: '難度の要求要素',
               en: 'Difficulty Requirements',
+              ko: '난도의 요구 요소',
             },
             element: {
               ja: `個人競技の難度要素としては以下の難度を入れなければならない。
@@ -84,6 +94,15 @@ Each missing C difficulty: 0.30 points
 Each missing D difficulty: 0.50 points
 
 * Difficulties beyond the required number can be counted as difficulties of a lower rank.`,
+              ko: `개인 경기의 난도 요소로는 다음 난도를 넣어야 한다.
+                  
+위반한 경우  감점
+B난도 부족 1개당...0.10점
+C난도 부족 1개당...0.30점
+D난도 부족 1개당...0.50점
+
+※요구된 수보다 많은 난도는 한 단계 아래 등급의 난도로 셀 수 있다.
+                  `,
             },
             image: [
               {
@@ -91,6 +110,7 @@ Each missing D difficulty: 0.50 points
                 alt: {
                   ja: '難度の要求要素表',
                   en: 'Table of difficulty requirements',
+                  ko: '난도의 요구 요소 표',
                 },
               },
             ],
@@ -99,26 +119,31 @@ Each missing D difficulty: 0.50 points
             title: {
               ja: '徒手系の要求要素',
               en: 'Free-Hand Requirements',
+              ko: '신체 계열의 요구 요소',
             },
             element: {
               ja: '演技には徒手系基礎要素群（第29条）の１群（各種徒手）を入れなければならない。【違反した場合　減点・・・0.30点】',
               en: 'A routine must include group 1 (various free-hand movements) of the basic free-hand element groups (Article 29). [Violation: deduction 0.30 points]',
+              ko: '연기에는 신체 계열 기초 요소군(제29조)의 1군(각종 신체 운동)을 넣어야 한다. 【위반한 경우 감점...0.30점】',
             },
           },
           {
             title: {
               ja: '転回系の要求要素',
               en: 'Tumbling Requirements',
+              ko: '공중돌기 계열의 요구 요소',
             },
             element: {
               ja: '演技には前方・後方・側方の転回運動をすべてて入れなければならない。【違反した場合　減点：一つにつき・・・0.30点】',
               en: 'A routine must include forward, backward and sideways tumbling. [Violation: deduction 0.30 points for each missing direction]',
+              ko: '연기에는 전방, 후방, 측방의 공중돌기 운동을 모두 넣어야 한다. 【위반한 경우 감점: 1개당...0.30점】',
             },
           },
           {
             title: {
               ja: '手具操作の要求要素',
               en: 'Apparatus Handling Requirements',
+              ko: '수구 조작의 요구 요소',
             },
             element: {
               ja: `演技には各種目ごとに、次の基礎要素をすべて入れなければならない。
@@ -205,12 +230,55 @@ Each missing D difficulty: 0.50 points
 4. Two propeller rotations
 
 [Missing elements: deduction 0.30 points each]`,
+              ko: `연기에는 각 종목마다 다음 기초 요소를 모두 넣어야 한다.
+
+【스틱】
+
+1. 왼손 던지기 왼손 받기 1회
+2. 오른손 던지기 오른손 받기 1회
+3. 1. 2.를 포함한 3회 이상의 던져 올리기
+4. 1m 이상의 굴리기
+5. 프로펠러 회전 2회
+
+【요소가 부족한 경우 감점: 1개당...0.30점】
+
+
+【링】
+
+1. 2개 동시 던지기
+2. 1.을 포함한 3회 이상의 던져 올리기
+3. 1m 이상의 굴리기
+4. 돌리기 2회
+
+【요소가 부족한 경우 감점: 1개당...0.30점】
+
+
+【줄】
+
+1. 3회 이상의 던져 올리기
+2. 3중 뛰기
+3. 6m 이상의 이동을 동반한 연속 뛰기
+4. 2회 이상의 연속 앞돌리기 뛰기
+5. 2회 이상의 연속 뒤돌리기 뛰기
+
+【요소가 부족한 경우 감점: 1개당...0.30점】
+
+
+【곤봉】
+
+1. 2개 동시 던지기
+2. 1.을 포함한 3회 이상의 던져 올리기
+3. 50cm 이상의 굴리기
+4. 프로펠러 회전 2회
+
+【요소가 부족한 경우 감점: 1개당...0.30점】`,
             },
           },
           {
             title: {
               ja: '手具の要素と難度',
               en: 'Apparatus Elements and Difficulty',
+              ko: '수구의 요소와 난도',
             },
             element: {
               ja: `【投げ上げ】
@@ -240,22 +308,39 @@ A roll that is too short is not counted as an element.
 
 [Rope jumps]
 Forward and backward jumps that are not performed twice in a row, and traveling jumps that cover too short a distance, are not counted as elements.`,
+              ko: `【던져 올리기】
+
+1. 수구를 던져 올리는 높이는 경기자가 던진 지점에서 최저 2m 이상으로 한다. 낮은 경우에는 던져 올리기로 인정하지 않는다.
+2. 스틱의 던져 받기 요소는 받기에 실패한 경우에는 요소로 인정하지 않는다.
+3. 수구를 던지고 있는 동안에 신체 계열이나 공중돌기 계열을 실시하고 받기에 실패한 경우, 던져 올리기 요소로는 세지만 던져 받기 난도로는 인정하지 않는다. 다만 링이나 곤봉의 2개 동시 던지기에서 한쪽 수구만 받기에 실패한 경우에는 던져 올리기 난도로 센다.
+4. 2개 동시 던지기는 한 손, 양손 또는 발로 던지는 것으로 하며, 받기는 자유로 한다. 다만 2개의 링을 결합하여 던진 경우나, 한쪽 수구가 던진 지점에서 2m에 미치지 못하는 경우에는 요소로 인정하지 않는다.
+
+【굴리기】
+
+굴리기가 짧은 경우에는 요소로 인정하지 않는다.
+
+【줄의 다양한 뛰기】
+앞돌리기 뛰기, 뒤돌리기 뛰기가 2회 연속이 아닌 경우, 이동을 동반한 뛰기의 거리가 짧은 경우에는 요소로 인정하지 않는다.
+                  `,
             },
           },
           {
             title: {
               ja: '演技の開始',
               en: 'Start of the Routine',
+              ko: '연기의 시작',
             },
             element: {
               ja: '演技の開始は、演技面のどの位置からでもよいが、手具に触れた状態で配置について開始のポーズをとり、動きを止めてから始めなければならない。【違反した場合　減点・・・0.30点】',
               en: 'The routine may start anywhere on the floor area, but the gymnast must take position touching the apparatus, hold a starting pose and be still before starting. [Violation: deduction 0.30 points]',
+              ko: '연기의 시작은 연기 면의 어느 위치에서 하여도 좋으나, 수구에 닿은 상태로 자리를 잡고 시작 포즈를 취하여 움직임을 멈춘 뒤에 시작하여야 한다. 【위반한 경우 감점...0.30점】',
             },
           },
           {
             title: {
               ja: '演技の終了',
               en: 'End of the Routine',
+              ko: '연기의 종료',
             },
             element: {
               ja: `演技の終了は、演技面のどの位置でもよいが、手具に触れた状態で終了のポーズをとり、完全に動きを止めて終了しなければならない。
@@ -275,12 +360,22 @@ No ending: deduction by the composition judges, 0.30 points
 Interruption of the routine: deduction by the execution judges, 0.50 points
 Out of bounds: deduction by the execution chief judge, 0.20 points
 Total: 1.00 point`,
+              ko: `연기의 종료는 연기 면의 어느 위치에서 하여도 좋으나, 수구에 닿은 상태로 종료 포즈를 취하고 완전히 움직임을 멈추고 끝내야 한다.
+【위반한 경우 감점...0.30점】
+
+수구를 장외로 가지러 가서 그대로 마지막 포즈를 취하지 않은 경우
+종료 없음  구성 심판의 감점...0.30점
+연기 중단  실시 심판의 감점...0.50점
+장외  실시 주임 심판의 감점...0.20점
+계 1.00점
+                  `,
             },
           },
           {
             title: {
               ja: '技術的価値の採点',
               en: 'Scoring of Technical Value',
+              ko: '기술적 가치의 채점',
             },
             element: {
               ja: `＜難度の数とレベル＞ 第49条による
@@ -333,12 +428,38 @@ As a harmonious whole, the apparatus must be handled with both the left and righ
 
 [Technical value of throws and catches]
 Throws and catches must be performed without stopping the flow of apparatus handling. Throws and catches with parts of the body other than the hands, and throws and catches outside the field of vision, can also be recognized as having high technical value.`,
+              ko: `<난도의 수와 레벨> 제49조에 따른다
+
+【난도 요소】
+1. 신체 계열 요소를 동반하여 실시되는 난도  제71조에 따른다.
+2. 공중돌기 계열 요소를 동반하여 실시되는 난도  제69조에 따른다.
+3. 던져 받기를 동반하여 실시되는 난도  제70조에 따른다.
+                    
+【각종 요소의 조합】
+1. 각 운동의 조합에 따른 기술적 가치
+연기는 각 운동의 조합 가치에 따라서도 기술적 가치가 달라진다.
+
+2. 난도 요소의 배분
+난도 요소는 연기 전체에 균일하게 배분될 것이 요구된다.
+
+3. 난도 요소의 안정
+난도 요소는 경기자의 능력에 맞추어 구성되어야 한다.
+
+
+<수구 조작의 기술적 가치>
+
+【수구 조작에서의 왼손과 오른손의 균형】
+수구의 조작은 하나의 조화로운 구성으로서, 한쪽으로 치우치지 않고 왼손과 오른손으로 이루어져야 한다.
+
+【던져 받기의 기술적 가치】
+수구의 던져 받기는 수구 조작의 흐름을 멈추지 않고 이루어져야 한다. 또한 손뿐만 아니라 그 밖의 부위를 사용한 던져 받기나 시야 밖에서의 던져 받기도 높은 기술적 가치로 인정할 수 있다.`,
             },
           },
           {
             title: {
               ja: '多様性の採点',
               en: 'Scoring of Variety',
+              ko: '다양성의 채점',
             },
             element: {
               ja: `1. 徒手系要素の多様性
@@ -375,22 +496,42 @@ The movements must match the character and rhythm of the music exactly, and the 
 
 6. Variety of dynamics
 Dynamics means the sense of power expressed by changes in speed and strength. The changes between fast and slow must be rich in variety.`,
+              ko: `1. 신체 계열 요소의 다양성
+다양한 신체 계열의 운동 요소와 그 조합에서 다양성이 풍부하여야 한다.
+
+2. 공중돌기 계열 요소의 다양성
+다양한 공중돌기 계열의 요소와 종류, 그 조합에서 다양성이 풍부하여야 한다.
+
+3. 수구 조작의 다양성
+다양한 수구의 조작과 그 조합에서 다양성이 풍부하여야 한다. (부록: 각 수구의 연기 참조)
+
+4. 공간 사용의 다양성
+다양한 이동을 포함하여 그 방향, 크기, 궤도, 높이에서 연기 면 전체를 사용하여야 한다.
+
+5. 리듬 변화의 다양성
+음악의 성격, 그 리듬과 완전히 일치한 운동으로, 그 리듬의 변화가 다양성이 풍부하여야 한다.
+
+6. 다이내미즘(역동감) 변화의 다양성
+다이내미즘이란 스피드와 힘의 변화에 의해 표현되는 역동감을 말하며, 그 완급의 변화에서 다양성이 풍부하여야 한다.`,
             },
           },
           {
             title: {
               ja: '音楽と動きの関係の採点',
               en: 'Scoring of the Relationship Between Music and Movement',
+              ko: '음악과 움직임의 관계의 채점',
             },
             element: {
               ja: '新体操の伴奏音楽は、よい音色とメロディーによって特徴付けられるものでなければならない。演技は音楽の性格やリズムに合致しなければならない。',
               en: 'The accompanying music for rhythmic gymnastics must be characterized by good tone and melody. The routine must match the character and rhythm of the music.',
+              ko: '리듬체조의 반주 음악은 좋은 음색과 멜로디로 특징지어지는 것이어야 한다. 연기는 음악의 성격과 리듬에 합치하여야 한다.',
             },
           },
           {
             title: {
               ja: 'ボーナス加点',
               en: 'Bonus',
+              ko: '보너스 가점',
             },
             element: {
               ja: `【独創性】
@@ -429,12 +570,31 @@ The technical value of a routine is mainly determined by the level and number of
 3. A D difficulty tumbling element performed while holding the apparatus includes a throw or two or more handlings.
 4. The routine includes a throw or catch outside the field of vision, or a throw or catch with a part of the body other than the hands.
 [Bonus: 0.10 points per item]`,
+              ko: `【독창성】
+구성에는 새로운 기술이나 새로운 조합 등, 새로움의 탐구와 기술적인 창조성으로 특징지어지는 독창성이 요구된다. 그 독창성이 인정되는 구성에는 보너스 가점이 주어진다.
+
+독창적인 구성이란 다음과 같은 사항이 요구되는 것을 말한다.
+1. 새로운 요소(신체 움직임의 요소, 수구 조작의 요소, 공중돌기 계열 또는 그것들의 연계 요소)
+2. 경기자와 수구의 관계에서의 새로움
+3. 이미 있는 요소의 새로운 실시 방법
+4. 이미 있는 요소의 새로운 조합
+【가점...0.20점】
+
+【추가 난도】
+연기의 기술적인 가치는 주로 난도의 레벨과 수, 그 조합 가치에 의해 고려된다. 다음 (1)~(4)의 경우에 그 "기술의 가치"에 대하여 보너스 가점이 주어진다.
+
+1. 구성 중에 4개 이상의 D난도가 들어 있는 경우
+2. 수구를 던져 올리고 있는 동안에 4개 이상의 신체 계열이나 공중돌기 계열을 조합하여 실시하는 것, 또는 D난도의 던져 받기를 2개 던지기로 실시한 경우.
+3. 수구를 잡고 실시하는 D난도의 공중돌기 계열에 던지기 또는 2회 이상의 조작을 실시하는 것이 들어 있는 경우
+4. 시야 밖에서의 던져 올리기나 받기, 손 이외의 부위에 의한 던져 올리기나 받기가 들어 있는 경우.
+【가점: 항목 1개당...0.10점】`,
             },
           },
           {
             title: {
               ja: '構成の欠点',
               en: 'Composition Faults',
+              ko: '구성의 결점',
             },
             element: {
               ja: `上記に欠点を示していない構成の原点は次の表による。
@@ -453,6 +613,14 @@ Composition fault standards
 [Very small fault: very slightly lacking  Deduction 0.05 points]
 
 Table of composition faults`,
+              ko: `위에 결점을 제시하지 않은 구성의 감점은 다음 표에 따른다.
+구성 결점 기준
+【대결점  현저하게 부족한 경우  감점...0.30점】
+【중결점  부족한 경우  감점...0.20점】
+【소결점  조금 부족한 경우  감점...0.10점】
+【미소결점  약간 부족한 경우  감점...0.05점】
+
+구성 결점 표`,
             },
             image: [
               {
@@ -460,6 +628,7 @@ Table of composition faults`,
                 alt: {
                   ja: '構成欠点表',
                   en: 'Table of composition faults',
+                  ko: '구성 결점 표',
                 },
               },
             ],
@@ -470,22 +639,26 @@ Table of composition faults`,
         title: {
           ja: '実施（Ｅ）',
           en: 'Execution (E)',
+          ko: '실시(E)',
         },
         block: [
           {
             title: {
               ja: '演技のできばえ',
               en: 'Quality of the Routine',
+              ko: '연기의 완성도',
             },
             element: {
               ja: '演技は手具操作をともなった徒手系の技術、転回系の技術、伴奏音楽との調和など全体の調和と安定性があり、全体を通じて途切れない印象でのびのびと行われなければならない。伴奏音楽に合わせ、軽快で美しく、かつ優美な表現を持った実施が求められる。',
               en: 'A routine must show overall harmony and stability in free-hand technique with apparatus handling, tumbling technique and harmony with the accompanying music, and must be performed freely, giving an impression of continuity throughout. Execution that is light, beautiful and graceful, in time with the music, is required.',
+              ko: '연기는 수구 조작을 동반한 신체 계열의 기술, 공중돌기 계열의 기술, 반주 음악과의 조화 등 전체의 조화와 안정성을 갖추고, 전체를 통하여 끊김 없는 인상으로 시원스럽게 이루어져야 한다. 반주 음악에 맞추어 경쾌하고 아름다우며 우아한 표현을 지닌 실시가 요구된다.',
             },
           },
           {
             title: {
               ja: '手具操作の技術の採点',
               en: 'Scoring of Apparatus Handling Technique',
+              ko: '수구 조작 기술의 채점',
             },
             element: {
               ja: `【一般的な技術】
@@ -512,12 +685,25 @@ Except for special throws, as a rule the apparatus must be thrown using the swin
 
 2. Catching the apparatus
 The apparatus must be caught naturally, in time with its fall, at the part needed for the next handling, and the gymnast must move on to the next handling without stopping.`,
+              ko: `【일반적인 기술】
+연기 중의 수구는 항상 자연성을 지니고, 그 수구 자체의 무게에서 오는 타력을 이용하여 움직여야 한다. 또한 연기상 필요로 하는 정지를 제외하고는 수구를 멈추어서는 안 된다.
+
+【휘두르기의 기술】
+수구를 손에 들고 흔들거나 돌리는 경우에는 원칙적으로 팔의 연장처럼 다루어야 한다.
+
+【던져 받기의 기술】
+1. 손으로 수구를 던지는 기술
+특수한 던지기를 제외하고는 원칙적으로 흔들기나 돌리기의 기술을 이용하여 던져야 한다.
+
+2. 수구를 받는 기술
+수구의 받기는 수구의 낙하에 맞추어, 다음 조작에 필요로 하는 부분을 자연성을 지니고 받아, 멈추지 않고 다음 조작으로 옮겨가야 한다.`,
             },
           },
           {
             title: {
               ja: '体の動きの技術の採点',
               en: 'Scoring of Body Movement Technique',
+              ko: '신체 움직임 기술의 채점',
             },
             element: {
               ja: `身体の動きの技術は、次の項目で採点される。
@@ -540,12 +726,23 @@ Tumbling must be dynamic, with speed and height, an accurate axis of rotation an
 
 3. Rhythmic execution
 The routine must be performed lightly and expansively.`,
+              ko: `신체 움직임의 기술은 다음 항목으로 채점된다.
+                  
+1. 신체 계열의 기술
+신체 계열은 아름다운 자세와 유연성을 가지고 이루어지며, 명치에서 시작되는 움직임의 자연성과 깊이, 크기, 움직임의 간격과 악센트, 도약의 높이, 그리고 스피드에 변화가 있고, 신체의 사지 끝부분까지 제어된 움직임이어야 한다.
+
+2.공중돌기 계열의 기술
+공중돌기 계열은 스피드와 높이, 회전축의 정확성과 착지의 안정성을 지닌 다이내믹한 움직임이어야 한다.
+
+3. 리드미컬한 실시
+연기는 경쾌하고 시원스럽게 이루어져야 한다.`,
             },
           },
           {
             title: {
               ja: 'ボーナス加点',
               en: 'Bonus',
+              ko: '보너스 가점',
             },
             element: {
               ja: `【熟練度と芸術性】
@@ -566,12 +763,22 @@ Mastery means that apparatus handling technique and body movement technique are 
 [Bonus: 0.10 points each]
 
 * "Without faults" here means that there are no faults in the table of execution faults in Article 65 other than those under "free-hand movement technique".`,
+              ko: `【숙련도와 예술성】
+숙련도란 수구를 다루는 기술과 신체 움직임의 기술이 완벽하게 그리고 동시에 제어되고 있는 것을 말한다. 또한 예술성이란 그러한 기술을 사용하여 음악의 주제와 구성의 메시지를 관중에게 표현하고 전달하여 감동시키는 것을 말한다. 다음을 충족한 경우에 이에 대하여 보너스 가점이 주어진다.
+
+1. 연기 전체가 결점 없이 연기된 경우
+2. 연기 전체를 통하여 완벽한 기술, 여유, 탁월한 크기를 가지고 이루어진 경우
+3. 음악의 주제와 구성의 메시지를 완벽하게 표현하여 연기된 경우
+【가점...각 0.10점】
+
+※여기에서의 결점이란 제65조 실시의 결점 표에 기재되어 있는 "신체 움직임의 기술" 이외의 결점이 없는 경우를 말한다.`,
             },
           },
           {
             title: {
               ja: '実施の欠点',
               en: 'Execution Faults',
+              ko: '실시의 결점',
             },
             element: {
               ja: `上記に欠点を示していない実施の減点は次の表による。
@@ -590,6 +797,14 @@ Execution fault standards
 [Very small fault: very slightly lacking  Deduction 0.05 points]
 
 Table of execution faults`,
+              ko: `위에 결점을 제시하지 않은 실시의 감점은 다음 표에 따른다.
+실시 결점 기준
+【대결점  현저하게 부족한 경우  감점...0.30점】
+【중결점  부족한 경우  감점...0.20점】
+【소결점  조금 부족한 경우  감점...0.10점】
+【미소결점  약간 부족한 경우  감점...0.05점】
+
+실시 결점 표`,
             },
             image: [
               {
@@ -597,6 +812,7 @@ Table of execution faults`,
                 alt: {
                   ja: '実施欠点表',
                   en: 'Table of execution faults',
+                  ko: '실시 결점 표',
                 },
               },
             ],

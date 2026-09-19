@@ -9,18 +9,21 @@ export const APPARATUS_ROUTINES_ARTICLES: RuleArticle[] = [
     title: {
       ja: '個人競技の演技',
       en: 'Individual Routines',
+      ko: '개인 경기의 연기',
     },
     section: [
       {
         title: {
           ja: 'スティック（棒）の演技',
           en: 'Stick Routines',
+          ko: '스틱(봉)의 연기',
         },
         block: [
           {
             title: {
               ja: 'スティック（棒）の規格',
               en: 'Stick Specifications',
+              ko: '스틱(봉)의 규격',
             },
             element: {
               ja: `1. 素材
@@ -45,12 +48,24 @@ Length 90 cm to 110 cm, thickness (diameter) 2.5 cm to 3.5 cm. Rubber or synthet
 
 4. Color
 Free`,
+              ko: `1. 소재
+목제 또는 합성 소재
+
+2. 중량
+최저 200그램
+
+3. 형상
+길이는 90cm~110cm로 하고 굵기(지름)는 2.5cm~3.5cm로 한다. 끝부분에는 고무 또는 합성 소재의 캡을 최대 지름 4cm 이내, 길이 5cm 이내로 붙일 수 있다. 또한 전체 또는 일부에 테이프를 감아도 된다.
+
+4. 색채
+자유`,
             },
           },
           {
             title: {
               ja: 'スティック（棒）の技術',
               en: 'Stick Technique',
+              ko: '스틱(봉)의 기술',
             },
             element: {
               ja: `【諸要素群】
@@ -99,12 +114,36 @@ The stick must not stop moving, even when changing planes, and must keep moving 
 
 4. Holding the stick
 During wide movements (e.g. swings and propeller rotations), the stick is usually held lightly with the fingers at the end or in the middle. The stick may also rest briefly on the open hand.`,
+              ko: `【제반 요소군】
+1. 기초 요소군
+  a. 프로펠러 회전(풍차)
+  b. 굴리기
+  c. 던지기
+  d. 스틱(봉)을 사용한 공중돌기 계열
+  
+2. 그 밖의 요소군
+  a. 흔들기
+  b. 회전
+  c. 미끄러뜨리기
+  
+이상의 제반 요소는 다음 사항을 고려하여 실시할 수 있다.
+  a. 손을 바꿔 잡는 것을 동반하거나 동반하지 않는다.
+  b. 다양한 방향으로 실시한다. 다양한 면에서 실시한다.
+  c. 이동하는 경우와 이동하지 않는 경우.
+  d. 한 발 또는 두 발 지지, 한 손 또는 두 손 사용.
+  
+3. 스틱(봉)의 조작
+스틱의 움직임은 면을 변경하는 경우에도 멈추어서는 안 되며, 스틱 자체의 무게에서 오는 관성을 이용하여 계속 움직여야 한다. 스틱의 프로펠러 회전 및 흔들기를 실시하는 경우에는 팔의 연장처럼 다루어야 한다. 스틱의 조작에는 몸의 움직임이 동반되어야 한다.
+
+4. 스틱(봉)을 잡는 법
+크게 펼쳐지는 움직임(예를 들어 흔들기, 프로펠러 회전 등) 중에는 통상 스틱의 끝부분 또는 중앙(중심) 부분을 손가락으로 가볍게 쥐어야 한다. 또한 스틱을 편 손 위에 올려놓는 것도 일시적으로 가능하다.`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              ko: '구성에 요구되는 것',
             },
             element: {
               ja: `1. プロペラ回旋
@@ -159,12 +198,39 @@ At least one roll of at least 1 m must be included.
   f. Various rolls.
 
 * When the stick is thrown, the body must always be moving. Throughout the routine, it is essential that the stick always moves in harmony with the body.`,
+              ko: `1. 프로펠러 회전
+프로펠러 회전은 2회 이상 넣어야 한다.
+
+2. 굴리기
+굴리기는 1회 이상, 길이는 1m 이상 넣어야 한다.
+
+3. 던지기
+  a. 던지기의 최저 조건
+    ⅰ. 3회 이상의 던지기를 넣어야 한다.
+    ⅱ. 왼손으로 던져 왼손으로 받기 1회 이상, 오른손으로 던져 오른손으로 받기 1회 이상을 넣어야 한다.
+  b. 던지기의 높이
+    ⅰ. 던지기의 높이는 경기자가 던진 지점에서 최저 2m 이상의 높이로 한다.
+    
+4. 공중돌기 계열의 요소
+  a. 전방·후방·측방 계열의 공중돌기를 넣어야 한다.  
+  b. 공중돌기를 실시하고 있을 때 스틱이 살려져야 한다.
+  
+5. 제반 요소
+  a. 신체 요소와 조합된, 각종 다른 방향 및 면에서의 프로펠러 회전.
+  b. 다양한 종류의 던지기.(수평 던지기·세로 던지기·수평 및 세로 프로펠러 회전 던지기·한 손, 두 손 던지기)
+  c. 다양한 회전(소, 중, 대)(각각 손목, 팔뚝, 팔을 사용하여 실시한다).
+  d. 리듬감 있는 스틱 돌리기.
+  e. 다양한 잡는 법.
+  f. 다양한 굴리기.
+  
+※ 스틱을 던지는 경우에는 반드시 신체가 움직이고 있어야 한다. 연기 전체를 통하여 스틱이 항상 신체와 조화를 유지하며 움직이고 있다는 것이 스틱 연기에는 불가결하다.`,
             },
           },
           {
             title: {
               ja: '難度のレベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              ko: '난도의 수준을 판단하기 위한 일반적 기준',
             },
             element: {
               ja: `スティックに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
@@ -233,6 +299,39 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the stick is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              ko: `스틱에 특징적인 제반 요소는 통상 그것이 신체 B 난도의 요소와 조합된 경우에는 B 난도, 신체 C 난도의 요소와 조합되어 실시된 경우에는 C 난도로 센다.
+1. A 난도
+다음 요소는 신체 계열이나 공중돌기 계열의 요소와 조합하여 실시한 경우 A 난도로 센다.
+  a. 스틱을 잡은 채로 A 난도의 공중돌기 운동을 실시한 경우.
+  b. A 난도의 공중돌기 운동을 실시하고 있는 동안에 스틱을 1회 조작한 경우.
+  c. 스틱을 던져 올리고 있는 동안에 아무것도 실시하지 않고 스틱을 받은 경우.
+  d. 그 밖에 A 난도로서의 조합의 기술 가치가 있는 경우.
+  
+2. B 난도
+다음 스틱의 요소는 신체 B 난도의 요소와 조합한 경우 B 난도로 센다.
+  a. 스틱의 컨트롤이 어려운 경우
+    i. 스틱을 던져서 받는다.(예: 신체 난도의 요소와 조합하여 스틱을 2m 이상 던져서 받는다.)
+  b. 움직임을 조화시키기 어려운 경우
+    i. 신체 요소와 스틱을 조합하여 실시한다.(예: 신체 B 난도의 요소와 조합하여 프로펠러 회전을 실시한다.)
+  c. 스틱을 받기가 어려운 경우
+    i. 스틱을 던져 올리고 있는 동안에 회전한 후 스틱을 받는다.(예: 앞구르기를 1회 한 후 스틱을 받는 등, 다양한 던지기 방법으로 스틱을 던지고 그 던지고 있는 동안에 다양한 회전 등을 넣어 받는다.)
+    ii. 시야 밖에서 스틱의 던지기와 받기를 실시한다.(예: 다양한 던지기 방법으로 스틱을 던져 시야 밖에서 받는다.)
+    
+3. C 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 C 난도로 센다.
+  a. 스틱을 던져 올리고 있는 동안에 B 난도의 공중돌기 운동을 실시한 경우.
+  b. B 난도의 공중돌기 운동 동안에 수구를 2회 이상 조작한 경우.
+  c. C 난도의 공중돌기 운동을 실시한 경우.
+  d. 스틱을 던져 올리고 있는 동안에 2개의 신체 계열이나 공중돌기 계열을 조합하여 실시한 경우.
+  e. 그 밖에 C 난도로서의 조합의 기술 가치가 높은 경우.
+  
+4. D 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 D 난도로 센다.
+  a. 스틱을 던져 올리고 있는 동안에 C 난도의 공중돌기 운동을 실시한 경우.
+  b. C 난도의 공중돌기 운동을 실시하고 있는 동안에 스틱을 2회 이상 조작한 경우.
+  c. D 난도의 공중돌기 운동을 실시한 경우.
+  d. 스틱을 던져 올리고 있는 동안에 3개 이상의 신체 계열이나 공중돌기 계열을 조합하여 실시한 경우.
+  e. 그 밖에 D 난도로서의 조합의 기술 가치가 높은 경우.`,
             },
           },
         ],
@@ -241,12 +340,14 @@ The following elements count as D difficulties when combined with tumbling eleme
         title: {
           ja: 'リング（輪）の演技',
           en: 'Ring Routines',
+          ko: '링(고리)의 연기',
         },
         block: [
           {
             title: {
               ja: 'リング（輪）の規格',
               en: 'Ring Specifications',
+              ko: '링(고리)의 규격',
             },
             element: {
               ja: `1. 素材
@@ -271,12 +372,24 @@ Inner diameter 40 cm to 45 cm, thickness (diameter) 2.5 cm to 3.5 cm. The rings 
 
 4. Color
 Free. The two rings may be different colors.`,
+              ko: `1. 소재
+목제 또는 합성 소재.
+
+2. 중량
+하나당 최저 200그램.
+
+3. 형상
+크기는 안지름 40cm~45cm로 하고 굵기(지름)는 2.5cm~3.5cm로 한다. 또는 전체나 일부에 테이프를 감아도 된다.
+
+4. 색채
+자유. 각 링의 색을 달리해도 된다.`,
             },
           },
           {
             title: {
               ja: 'リング（輪）の技術',
               en: 'Ring Technique',
+              ko: '링(고리)의 기술',
             },
             element: {
               ja: `【諸要素群】
@@ -327,12 +440,37 @@ The rings must not stop moving, even when changing planes, and must keep moving 
 
 4. Holding the rings
 To perform the elements characteristic of the rings, the rings must be held lightly so that they move freely. They may also be gripped firmly for a moment.`,
+              ko: `【제반 요소군】
+1. 기초 요소군
+  a. 돌리기(손·신체)
+  b. 굴리기
+  c. 던지기
+  d. 링을 사용한 회전 계열
+  
+2. 그 밖의 요소군
+  a. 흔들기
+  b. 회전
+  c. 좌우 따로따로의 움직임
+  
+이상의 제반 요소는 다음 사항을 고려하여 실시할 수 있다.
+  a. 2개의 링을 동시에 조작한다.
+  b. 연속해서 조작한다.
+  c. 다양한 방향으로 실시한다.
+  d. 이동하는 경우와 하지 않는 경우.
+  e. 한 발 또는 두 발 지지, 한 손 또는 두 손 사용.
+  
+3. 링(고리)의 조작
+링의 움직임은 면을 변경하는 경우에도 멈추어서는 안 되며, 링 자체의 무게에서 오는 관성을 이용하여 계속 움직여야 한다. 링의 돌리기 및 흔들기를 실시하는 경우에는 링을 팔의 연장처럼 다루어야 한다. 링의 조작에는 신체의 움직임이 동반되어야 한다.
+
+4. 링(고리)을 잡는 법
+링에 특징적인 제반 요소를 실시하기 위해서는 링이 자유롭게 움직이도록 가볍게 잡아야 한다. 또한 일시적으로 꽉 쥐는 것도 가능하다.`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              ko: '구성에 요구되는 것',
             },
             element: {
               ja: `
@@ -392,12 +530,42 @@ At least one roll of at least 1 m must be included.
   f. Various kinds of rolls.
 
   * When only one ring is thrown, the other ring must also be moving. Throughout the routine, it is essential that both rings always move in harmony with the body.`,
+              ko: `
+1. 돌리기(손·신체)
+2회전 이상의 돌리기를 2회 넣어야 한다.
+
+2. 굴리기
+굴리기는 1회 이상, 길이는 1m 이상 넣어야 한다.
+
+3. 던지기
+  a. 던지기의 조건
+    ⅰ. 3회 이상의 던지기를 넣어야 한다.
+    ⅱ. 2개 동시 던지기를 1회 이상 넣어야 한다. 다만 링을 결합(조합)시킨 던지기는 2개 동시 던지기로 보지 않는다.
+    ⅲ. 2개 동시 던지기는 한 손 또는 두 손 또는 발로 던질 것. 받기는 자유.
+    
+  b. 던지기의 높이
+    ⅰ. 던지기의 높이는 경기자가 던진 지점에서 최저 2m 이상의 높이로 한다.
+    
+4. 공중돌기 계열의 요소
+  a. 전방·후방·측방 계열을 넣어야 한다.
+  b. 공중돌기를 실시하고 있을 때 링이 살려져야 한다.
+  
+5. 제반 요소
+  a. 다양한 종류의 돌리기.
+  b. 다양한 종류의 던지기.
+  c. 면의 변화를 동반한 흔들기, 회전 등.
+  d. 좌우 따로따로의 움직임.
+  e. 다양한 잡는 법.
+  f. 다양한 종류의 굴리기.
+  
+  ※ 링을 하나만 던지는 경우에는 다른 링도 반드시 움직이고 있어야 한다. 연기 전체를 통하여 2개의 링이 항상 몸과 조화를 유지하며 움직이고 있다는 것이 링 연기에는 불가결하다.`,
             },
           },
           {
             title: {
               ja: '難度レベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              ko: '난도 수준을 판단하기 위한 일반적 기준',
             },
             element: {
               ja: `リングに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わせた場合はＢ難度、徒手のＣ難度の要素と組み合わせて実施した場合はＣ難度として数える。
@@ -476,6 +644,44 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the ring is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              ko: `링에 특징적인 제반 요소는 통상 그것이 신체 B 난도의 요소와 조합한 경우에는 B 난도, 신체 C 난도의 요소와 조합하여 실시한 경우에는 C 난도로 센다.
+1. A 난도
+다음 요소는 신체 계열이나 공중돌기 계열의 요소와 조합하여 실시한 경우 A 난도로 센다.
+  a. 링을 잡은 채로 A 난도의 공중돌기 운동을 실시한 경우.
+  b. A 난도의 공중돌기 운동을 실시하고 있는 동안에 링을 1회 조작한 경우.
+  c. 링을 던져 올리고 있는 동안에 아무것도 실시하지 않고 링을 받은 경우.
+  d. 그 밖에 A 난도로서의 조합의 기술 가치가 있는 경우.
+  
+2. B 난도
+다음 요소는 신체 B 난도의 요소와 조합한 경우 B 난도로 센다.
+  a. 링과 신체의 움직임 사이의 리듬 관계가 특히 복잡한 경우
+    ⅰ. 링의 움직임과 신체의 움직임 사이에 완전한 동시성을 필요로 하는 요소.
+  b. 링의 움직임에 사용되는 표면의 성질로 인해 링의 면을 유지하기 어려운 경우
+    ⅰ. 불규칙한 표면 위에서의 큰 굴리기. 예: B 난도의 신체 요소와 조합하여 옆으로 뻗은 두 팔 전체를 따라 링을 굴린다.
+    ⅱ. 링의 비틀어 돌리기의 크기와 횟수를 제어하는 데 필요한 탄력을 조절해야 하는 경우.(예: B 난도의 신체 요소와 결합하여 2회 이상 링을 비틀어 돌리면서 던진다.)
+  c. 링의 컨트롤이 어려운 경우
+    ⅰ. 링을 던져서 받는다.(예: 신체 B 난도의 요소와 조합하여 링을 2회전 이상 시키면서 던져서 받는다.)
+  d. 움직임을 조화시키기 어려운 경우
+    ⅰ. 신체 요소와 링을 조합하여 실시한다.(예: 신체 B 난도의 요소와 조합하여 2개 동시 돌리기를 실시한다.)
+  e. 링을 받기가 어려운 경우
+    ⅰ. 링을 던져 올리고 있는 동안에 회전을 한 후 받는다.(예: 앞구르기를 1회 한 후 링을 받는 등, 다양한 던지기 방법으로 링을 던지고 그 던지고 있는 동안에 다양한 회전 등을 넣어 받는다.)
+    ⅱ. 시야 밖에서 링의 던지기나 받기를 실시한다.(예: 다양한 던지기 방법으로 링을 던져 시야 밖에서 받는다.)
+    
+3. C 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 C 난도로 센다.
+  a. 링을 던지고 있는 동안에 B 난도의 공중돌기 운동을 실시한 경우.
+  b. B 난도의 공중돌기 운동 동안에 링을 2회 조작한 경우.
+  c. C 난도의 공중돌기 운동을 실시한 경우.
+  d. 링을 던져 올리고 있는 동안에 B 난도의 공중돌기 운동을 실시한 경우.
+  e. 그 밖에 C 난도로서의 조합의 기술 가치가 높은 경우.
+  
+4. D 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 D 난도로 센다.
+  a. 링을 던져 올리고 있는 동안에 C 난도의 공중돌기 운동을 실시한 경우.
+  b. C 난도의 공중돌기 운동을 실시하고 있는 동안에 링을 2회 이상 조작한 경우.
+  c. D 난도의 공중돌기 운동을 실시한 경우.
+  d. 링을 던져 올리고 있는 동안에 3개 이상의 신체 계열이나 공중돌기 운동을 조합하여 실시한 경우.
+  e. 그 밖에 D 난도로서의 조합의 기술 가치가 높은 경우.`,
             },
           },
         ],
@@ -484,12 +690,14 @@ The following elements count as D difficulties when combined with tumbling eleme
         title: {
           ja: 'ロープ（縄）の演技',
           en: 'Rope Routines',
+          ko: '줄(로프)의 연기',
         },
         block: [
           {
             title: {
               ja: 'ロープ（縄）の規格',
               en: 'Rope Specifications',
+              ko: '줄(로프)의 규격',
             },
             element: {
               ja: `1. 素材
@@ -514,12 +722,24 @@ Length is free. The rope must not have handles, but one or two knots may be tied
 
 4. Color
 Free.`,
+              ko: `1. 소재
+마 제품 또는 합성 섬유. 다만 합성 섬유인 경우에는 마 제품처럼 가볍고 부드러운 것으로 한다.
+
+2. 중량
+특별히 없음.
+
+3. 형상
+길이는 자유로 한다. 양 끝에는 손잡이를 달아서는 안 되지만 한 개 또는 두 개의 매듭을 양 끝에 만들어도 된다. 지름에 대해서는 소재가 같다면 전체가 같은 굵기여도 되고 중심부가 양 끝보다 굵어도 된다. 매듭 양 끝의 풀림은 3cm 이내는 인정한다.
+
+4. 색채
+자유.`,
             },
           },
           {
             title: {
               ja: 'ロープ（縄）の技術',
               en: 'Rope Technique',
+              ko: '줄(로프)의 기술',
             },
             element: {
               ja: `【諸要素群】
@@ -568,12 +788,36 @@ The rope must always keep a clear shape. Its movement must be continuous: the ro
 
 4. Holding the rope
 To perform the elements characteristic of the rope, it must be held lightly so that it moves freely. The rope may also be wrapped around the body for a moment or held taut between the arms.`,
+              ko: `【제반 요소군】
+1. 기초 요소군
+  a. 다양한 종류의 연속 뛰기
+  b. 던지기
+  c. 줄을 사용한 공중돌기 계열
+  
+2. 그 밖의 요소군
+  a. 흔들기
+  b. 회전
+  
+이상의 요소군은 다음 사항을 고려하여 실시할 수 있다.
+  a. 줄을 펴서 또는 접어서 사용한다.
+  b. 한 손 또는 두 손으로 잡고 실시한다.
+  c. 다양한 방향으로 실시한다. 다양한 면에서 실시한다.
+  d. 이동하는 경우와 하지 않는 경우.
+  e. 이동하는 경우와 하지 않는 경우.
+  f. 한 발 또는 두 발 지지, 다양한 방향으로 줄을 회전시키면서 실시한다.
+  
+3. 줄의 조작
+줄은 항상 명확한 형상이 유지된 상태여야 한다. 움직임은 연속성을 가진 것이어야 한다. 즉 줄은 언제나 움직이고 있으며, 팽팽함이 없고 활기가 없는 느낌을 나타내지 않도록 충분한 탄력이 붙어 있어야 한다. 움직임의 크기는 리듬과 관계를 가진다(빠른 리듬 = 제한된 움직임, 느린 리듬 = 여유로운 움직임).
+
+4. 줄을 잡는 법
+줄에 특징적인 제반 요소를 실시하기 위해서는 줄이 자유롭게 움직이도록 가볍게 잡아야 한다. 또한 줄을 일시적으로 몸에 감거나 두 팔에 팽팽하게 편 상태로 하는 것도 가능하다.`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              ko: '구성에 요구되는 것',
             },
             element: {
               ja: `1. とび
@@ -626,12 +870,38 @@ The jumps a to d below must be included. Rope jumps within tumbling do not count
   d. Changes in the speed of the rope
   e. Changes in how the rope is held (open, folded, in one hand, in both hands, by the end, by the middle, and so on)
   * Handling the rope folded is characteristic of this apparatus, but the routine must not rely too much on it. Routines with the rope open are important. When elements are performed with the rope in one hand, the left and right hands must be used equally.`,
+              ko: `1. 뛰기
+아래의 ①~④의 뛰기를 넣어야 한다. 다만 공중돌기 계열의 줄 뛰기는 제외한다.
+  a. 제자리에서의 2회 이상의 연속 앞돌리기 뛰기(예: 앞돌리기의 1중 뛰기나 2중 뛰기를 2회 이상 실시한다.)
+  b. 제자리에서의 2회 이상의 연속 뒤돌리기 뛰기(예: 뒤돌리기의 1중 뛰기나 2중 뛰기를 2회 이상 실시한다.)
+  c. 6m 이상의 이동을 동반한 2회 이상의 연속 뛰기(예: 이동하면서 회전 뛰기를 2회 이상 실시한다.)
+  d. 3중 뛰기(예: 앞돌리기의 3중 뛰기를 1회 이상 실시한다.)
+  ※ a~d 중에서 d를 실시한 경우에는 각각의 요소로 센다.(예: 앞돌리기의 3중 뛰기를 조합하여 실시하면서 6m 이상 이동한 경우.)
+  
+2. 던지기
+  a. 던지기의 조건
+  3회 이상의 던지기를 넣어야 한다.
+  b. 던지기의 높이
+  던지기의 높이는 경기자가 던진 지점에서 최저 2m 이상의 높이로 한다.
+  
+3. 공중돌기 계열의 요소
+  a. 전방·후방·측방 계열의 공중돌기를 넣어야 한다.
+  b. 공중돌기를 실시하고 있을 때 줄이 살려져야 한다.
+  
+4. 제반 요소
+  a. 앞돌리기 또는 뒤돌리기 등 다양한 종류의 연속 뛰기
+  b. 다양한 방향, 면에서 실시되는 다양한 종류의 움직임(흔들기, 회전, 8자 운동.)
+  c. 다양한 종류의 던지기
+  d. 줄의 속도 변화
+  e. 줄을 잡는 법의 변화(편 줄, 접은 줄, 한 손 잡기, 두 손 잡기, 끝을 잡기, 중앙을 잡기 등)
+  ※ 줄을 접은 상태에서의 조작은 이 수구의 특징적인 것이지만 그것에 치우친 연기여서는 안 된다. 줄을 편 상태의 연기가 중요하다. 한 손 잡기로 요소를 실시할 때에는 왼손과 오른손을 고르게 사용해야 한다.`,
             },
           },
           {
             title: {
               ja: '難度のレベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              ko: '난도의 수준을 판단하기 위한 일반적 기준',
             },
             element: {
               ja: `ロープに特徴的な諸要素は通常、それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
@@ -708,6 +978,43 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the rope is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              ko: `줄에 특징적인 제반 요소는 통상 그것이 신체 B 난도의 요소와 조합된 경우에는 B 난도, 신체 C 난도의 요소와 조합되어 실시된 경우에는 C 난도로 센다.
+                  
+1. A 난도
+다음 요소는 신체 계열이나 공중돌기 계열의 요소와 조합하여 실시한 경우 A 난도로 센다.
+  a. 줄을 잡은 채로 A 난도의 공중돌기 운동을 실시한 경우.
+  b. A 난도의 공중돌기 운동을 실시하고 있는 동안에 줄을 1회 조작한 경우.
+  c. 줄을 던져 올리고 있는 동안에 아무것도 실시하지 않고 줄을 받은 경우.
+  d. 그 밖에 A 난도로서의 조합의 기술 가치가 있는 경우.
+  
+2. B 난도
+다음 요소는 신체 B 난도의 요소와 조합한 경우 B 난도로 센다.
+  a. 줄과 몸의 움직임 사이의 리듬 관계가 복잡하게 구성되어 있는 경우.
+    ⅰ. 신체 B 난도를 1개 실시하는 동안에 줄의 움직임을 2개(또는 그 이상) 실시한다.(예: 줄을 2회전시켜 B 난도의 점프를 1회 하는 동안에 줄로 머리 위와 발 아래에 번갈아 수평의 원을 그린다.)
+    ⅱ. 줄의 운동과 신체의 움직임 사이에 완전한 동시성을 필요로 하는 요소.(예: 던진 후 받는 것과 동시에 줄 위를 뛰어넘는다.)
+  b. 움직임의 변화가 줄의 조작을 어렵게 만드는 경우.
+    ⅰ. 줄을 크게 다루는 움직임에서 느린 움직임으로 이행한다.(예: 점프하면서 줄을 던지고 줄의 궤도를 방해하지 않고 받아 곧바로 느린 줄의 움직임으로 연결한다.)
+  c. 줄의 길이 때문에 조작이 어려운 경우.
+    ⅰ. 처음에 줄의 한쪽 끝을 던지고 이어서 다른 쪽 끝을 던져 1회전시켜 받는다. 편 줄을 발목에서 위쪽으로, 또는 그 반대 방향으로 중단 없이 여러 차례 신체 주위에 감는다.
+  d. 줄을 받기가 어려운 경우.
+    ⅰ. 줄을 던져 올리고 있는 동안에 회전한 후 받는다.(예: 앞구르기를 1회 한 후 줄을 받는 등, 다양한 던지기 방법으로 줄을 던지고 그 던지고 있는 동안에 다양한 회전 등을 넣어 받는다.)
+    ⅱ. 시야 밖에서 줄의 던지기와 받기를 실시한다.(예: 다양한 던지기 방법으로 줄을 던져 시야 밖에서 받는다.)
+    
+3. C 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 C 난도로 센다.
+  a. 줄을 던지고 있는 동안에 B 난도의 공중돌기 운동을 실시한 경우.
+  b. B 난도의 공중돌기 운동 동안에 줄을 2회 조작한 경우.
+  c. C 난도의 공중돌기 운동을 실시한 경우.
+  d. 줄을 던져 올리고 있는 동안에 2개의 신체 계열이나 공중돌기 계열을 조합하여 실시한 경우.
+  e. 그 밖에 C 난도로서의 조합의 기술 가치가 높은 경우.
+  
+4. D 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 D 난도로 센다.
+  a. 줄을 던져 올리고 있는 동안에 C 난도의 공중돌기 운동을 실시한 경우.
+  b. C 난도의 공중돌기 운동을 실시하고 있는 동안에 줄을 2회 이상 조작한 경우.
+  c. D 난도의 공중돌기 운동을 실시한 경우.
+  d. 줄을 던져 올리고 있는 동안에 3개 이상의 신체 계열이나 공중돌기 계열을 조합하여 실시한 경우.
+  e. 그 밖에 D 난도로서의 조합의 기술 가치가 높은 경우.`,
             },
           },
         ],
@@ -716,12 +1023,14 @@ The following elements count as D difficulties when combined with tumbling eleme
         title: {
           ja: 'クラブ（棍）の演技',
           en: 'Club Routines',
+          ko: '곤봉(클럽)의 연기',
         },
         block: [
           {
             title: {
               ja: '',
               en: '',
+              ko: '',
             },
             element: {
               ja: `1. 素材
@@ -746,12 +1055,24 @@ Similar in shape to a bottle, with three parts: head, neck and body. Length 40 c
 
 4. Color
 Free. The two clubs may be different colors.`,
+              ko: `1. 소재
+목제 또는 합성 소재.
+
+2. 중량
+1개당 최저 200그램.
+
+3. 형상
+병 모양과 비슷한 것으로 머리·목·몸통의 3개 부분으로 이루어진다. 길이는 40cm~50cm로 하고 끝의 머리(구체)는 최대 지름 4cm 이내, 목의 지름은 1.5cm~3.5cm, 몸통은 지름 6cm~9cm, 길이는 12cm~18cm로 한다. 또한 전체 또는 일부에 테이프를 감아도 된다.
+
+4. 색채
+자유. 각 곤봉(클럽)의 색을 달리해도 된다.`,
             },
           },
           {
             title: {
               ja: 'クラブ（棍）の技術',
               en: 'Club Technique',
+              ko: '곤봉(클럽)의 기술',
             },
             element: {
               ja: `【各要素群】
@@ -800,12 +1121,36 @@ These elements can be performed taking the following into account.
 
 [Holding the clubs]
   During wide movements (e.g. swings and propeller rotations), the club is usually held lightly with the fingers at the head. During propeller rotations, small circles and similar movements, the club must be held lightly with the fingers so that the head turns freely in the hollow of the hand. The club may also be held briefly by the neck or the body, or rest on the open hand.`,
+              ko: `【각 요소군】
+1. 기초 요소군
+  a. 프로펠러 회전(풍차)
+  b. 굴리기
+  c. 던지기
+  d. 곤봉을 사용한 공중돌기 계열
+  
+2. 그 밖의 요소군
+  a. 흔들기
+  b. 회전
+  c. 좌우 따로따로의 움직임
+  d. 작은 원
+  
+이상의 제반 요소는 다음 사항을 고려하여 실시할 수 있다.
+  a. 2개의 곤봉을 동시에 조작한다. 연속해서 조작한다.
+  b. 다양한 방향으로 실시한다.
+  c. 이동하는 경우와 하지 않는 경우. 한 발 또는 두 발 지지.
+  
+【곤봉의 조작】
+  곤봉의 움직임은 면을 변경하는 경우에도 멈추어서는 안 되며, 곤봉 자체의 무게에서 오는 관성을 이용하여 움직여야 한다. 곤봉의 작은 원, 프로펠러 회전 및 흔들기를 실시하는 동안에는 곤봉은 손목의 움직임에 의해 움직여진다. 그 밖의 움직임 동안에는 곤봉은 팔의 연장처럼 다루어져야 한다. 또한 목 부분을 오랜 시간 잡고 연기해서는 안 된다.
+  
+【곤봉을 잡는 법】
+  크게 펼쳐지는 움직임(예를 들어 흔들기, 프로펠러 회전 등) 중에는 통상 곤봉의 머리 부분을 손가락으로 가볍게 쥐어야 한다. 프로펠러 회전, 작은 원, 곤봉 쥐기 등의 동안에는 곤봉의 머리 부분이 손바닥 오목한 곳 안에서 자유롭게 돌도록 손가락으로 가볍게 쥐어야 한다. 또한 곤봉의 목 부분이나 굵은 부분을 잡거나 편 손 위에 올려놓는 것도 일시적으로는 가능하다.`,
             },
           },
           {
             title: {
               ja: '構成に要求されるもの',
               en: 'Requirements for the Composition',
+              ko: '구성에 요구되는 것',
             },
             element: {
               ja: `1. プロペラ回旋（風車）
@@ -864,12 +1209,41 @@ At least one roll of at least 50 cm must be included.
   f. Various rolls.
 
 * When only one club is thrown, the other club must also be moving. Throughout the routine, it is essential that both clubs always move in harmony with the body.`,
+              ko: `1. 프로펠러 회전(풍차)
+프로펠러 회전은 2회전 이상을 2회 이상 넣어야 한다.
+
+2. 굴리기
+굴리기는 1회 이상, 길이는 50cm 이상을 넣어야 한다.
+
+3. 던지기
+  a. 던지기의 조건
+    ⅰ. 3회 이상의 던지기를 넣어야 한다.
+    ⅱ. 동시 던지기를 1회 이상 넣어야 한다.
+    ⅲ. 2개 동시 던지기는 한 손 또는 두 손 또는 발로 던질 것. 받기는 자유.
+    
+  b. 던지기의 높이
+    ⅰ. 던지기의 높이는 경기자가 던진 지점에서 최저 2m 이상의 높이로 한다.
+    
+4. 공중돌기 계열의 요소
+  a. 전방·후방·측방 계열의 공중돌기를 넣어야 한다.
+  b. 공중돌기를 실시하고 있을 때 곤봉이 살려져야 한다.
+  
+5. 제반 요소
+  a. 신체 요소와 조합된, 각종 다른 방향 및 면에서의 프로펠러 회전.
+  b. 다양한 종류의 던지기(1개 던지기, 2개 동시 던지기, 2개 연속 던지기).
+  c. 다양한 회전(소, 중, 대)(각각 손목, 팔뚝, 팔을 사용하여 실시한다).
+  d. 좌우 따로따로의 움직임.
+  e. 다채로운 잡는 법.
+  f. 다양한 굴리기.
+  
+※ 곤봉 1개만 던지는 경우에는 다른 곤봉도 반드시 움직이고 있어야 한다. 연기 전체를 통하여 2개의 곤봉이 항상 신체와 조화를 유지하며 움직이고 있다는 것이 곤봉 연기에는 불가결하다.`,
             },
           },
           {
             title: {
               ja: '難度レベルを判断するための一般的目安',
               en: 'General Guidelines for Judging the Level of Difficulty',
+              ko: '난도 수준을 판단하기 위한 일반적 기준',
             },
             element: {
               ja: `クラブに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度と組み合わされて実施された場合はＣ難度として数える。
@@ -940,6 +1314,40 @@ The following elements count as D difficulties when combined with tumbling eleme
   c. A D difficulty tumbling movement.
   d. Three or more free-hand or tumbling elements combined while the club is in the air.
   e. Other combinations with the high technical value of a D difficulty.`,
+              ko: `곤봉에 특징적인 제반 요소는 통상 그것이 신체 B 난도의 요소와 조합된 경우에는 B 난도, 신체 C 난도와 조합되어 실시된 경우에는 C 난도로 센다.
+1. A 난도
+다음 요소는 신체 계열이나 공중돌기 계열의 요소와 조합하여 실시한 경우 A 난도로 센다.
+  a. 곤봉을 잡은 채로 A 난도의 공중돌기 운동을 실시한 경우.
+  b. A 난도의 공중돌기 운동을 실시하고 있는 동안에 곤봉을 1회 조작한 경우. 다만 곤봉의 굴리기는 제외한다.
+  c. 곤봉을 던져 올리고 있는 동안에 아무것도 실시하지 않고 곤봉을 받은 경우.
+  d. 그 밖에 A 난도로서의 조합의 기술 가치가 있는 경우.
+  
+2. B 난도
+다음 곤봉의 요소는 신체 B 난도의 요소와 조합된 경우 B 난도로 센다.
+  a. 곤봉의 컨트롤이 어려운 경우.
+    ⅰ. 2개의 곤봉을 동시에 던진다.(예: 신체 B 난도와 조합하여 2개의 곤봉을 동시에 던져서 받는다. 또는 2개의 곤봉을 2m 이상 던져서 받는다.)
+  b. 움직임을 조화시키기 어려운 경우.
+    ⅰ. 다른 요소를 동시에 실시한다.(예: 각각의 곤봉으로 다른 요소를 동시에 실시한다.)
+    ⅱ. 같은 요소를 시차를 두고 실시한다.(예: 신체 B 난도의 요소와 조합하여 프로펠러 회전을 실시한다.)
+  c. 곤봉의 던지기와 받기가 어려운 경우.
+    ⅰ. 시야 밖에서 곤봉의 던지기와 받기를 실시한다.(예: 다양한 던지기 방법으로 곤봉을 던져 시야 밖에서 받는다.)
+    ⅱ. 곤봉을 던져 올리고 있는 동안에 회전을 한 후 받는다.(예: 앞구르기를 1회 한 후 곤봉을 받는 등, 다양한 던지기 방법으로 곤봉을 던지고 그 던지고 있는 동안에 다양한 회전 등을 넣어 받는다.)
+   
+3. C 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 C 난도로 센다.
+  a. 곤봉을 던지고 있는 동안에 B 난도의 공중돌기 운동을 실시한 경우.
+  b. B 난도의 공중돌기 운동 동안에 곤봉을 2회 조작한 경우.
+  c. C 난도의 공중돌기 운동을 실시한 경우.
+  d. 곤봉을 던져 올리고 있는 동안에 2개의 신체 계열이나 공중돌기 계열을 조합하여 실시한 경우.
+  e. 그 밖에 C 난도로서의 조합 기술 가치가 높은 경우.
+  
+4. D 난도
+다음 요소는 공중돌기 계열의 요소와 조합한 경우 D 난도로 센다.
+  a. 곤봉을 던져 올리고 있는 동안에 C 난도의 공중돌기 운동을 실시한 경우.
+  b. C 난도의 공중돌기 운동을 실시하고 있는 동안에 곤봉을 2회 이상 조작한 경우.
+  c. D 난도의 공중돌기 운동을 실시한 경우.
+  d. 곤봉을 던져 올리고 있는 동안에 3개 이상의 신체 계열이나 공중돌기 계열을 조합하여 실시한 경우.
+  e. 그 밖에 D 난도로서의 조합의 기술 가치가 높은 경우.`,
             },
           },
         ],

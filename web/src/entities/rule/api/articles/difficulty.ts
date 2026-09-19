@@ -9,18 +9,21 @@ export const DIFFICULTY_ARTICLES: RuleArticle[] = [
     title: {
       ja: '難度',
       en: 'Difficulty',
+      ko: '난도',
     },
     section: [
       {
         title: {
           ja: '難度の要求要素',
           en: 'Difficulty Requirements',
+          ko: '난도의 요구 요소',
         },
         block: [
           {
             title: {
               ja: '徒手系難度',
               en: 'Free-Hand Difficulties',
+              ko: '신체 난도',
             },
             element: {
               ja: `徒手系の難度は以下のとおりにする。
@@ -43,6 +46,16 @@ export const DIFFICULTY_ARTICLES: RuleArticle[] = [
 
 [Table of basic difficulties]
 Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexibility) are shown below.`,
+              ko: `신체 난도는 다음과 같이 한다.
+
+1. 개인 경기에서 수구 조작을 동반하여 실시한 경우에는 기초 난도를 적용한다.
+2. 단체 경기는 3~5명 이상이 실시한 경우에는 기초 난도, 6명이 실시한 경우에는 6명 실시의 난도를 적용한다. 다만 실시는 동시에, 또는 잇따라 실시한 경우로 한다.
+  a. 같은 군(아래 1~4의 각각)의 기술로 서로 다른 종류를 조합하여 실시한 경우, 6명이 실시하면 난도가 올라가는 종목의 조합은 등급이 올라간다.
+  b. 군이 다른 기술의 조합은 난도로 세지 않는다.
+  c. 정지 2초는 동시여야 한다.
+  
+【기초 난도표】
+도약 · 밸런스 · 물구나무서기(정지 2초) · 유연성 A ~정적 유연성~ 을 아래에 제시한다`,
             },
             image: [
               {
@@ -50,6 +63,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '徒手系難度（跳躍）',
                   en: 'Free-hand difficulties (jumps)',
+                  ko: '신체 난도(도약)',
                 },
               },
               {
@@ -57,6 +71,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '徒手系難度（バランス）',
                   en: 'Free-hand difficulties (balances)',
+                  ko: '신체 난도(밸런스)',
                 },
               },
               {
@@ -64,6 +79,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '倒立（静止２秒',
                   en: 'Handstands (held for 2 seconds)',
+                  ko: '물구나무서기(정지 2초',
                 },
               },
               {
@@ -71,6 +87,7 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
                 alt: {
                   ja: '柔軟Ａ　〜静的柔軟〜',
                   en: 'Flexibility A (static flexibility)',
+                  ko: '유연성 A　~정적 유연성~',
                 },
               },
             ],
@@ -81,12 +98,14 @@ Jumps, balances, handstands (held for 2 seconds) and flexibility A (static flexi
         title: {
           ja: '転回系難度',
           en: 'Tumbling Difficulties',
+          ko: '공중돌기 난도',
         },
         block: [
           {
             title: {
               ja: '転回系難度',
               en: 'Tumbling Difficulties',
+              ko: '공중돌기 난도',
             },
             element: {
               ja: `転回系の難度は次の基礎難度をもとに価値が決められる。
@@ -107,6 +126,15 @@ Tables of twisting elements, forward tumbling elements, backward tumbling elemen
 * Upgrades apply only when all six gymnasts perform the element at the same time.
 Three or more consecutive back handsprings in which some are replaced by tumbling of B difficulty or higher are treated in the same way.
 A layout back salto with an added twist is also treated in the same way.`,
+              ko: `공중돌기 난도는 다음의 기초 난도를 바탕으로 가치가 정해진다.
+                  
+뛰기 기술 · 비틀기 기술 · 전방 계열의 도약 기술 · 후방 계열의 도약 기술 · 공중돌기의 연속 · 공중돌기 계열의 연속에 관한 표를 아래에 제시한다.
+
+※※공중돌기 이외의 기술에서는 2-3, 3-15의 공중돌기 계열도 동등하게 취급한다.
+※템포 공중돌기는 곧바로 후방 계열의 전개로 이어간 경우에만 그와 같이 취급한다.
+※6명 전원이 동시에 실시한 경우에만 등급 상향의 대상으로 한다.
+3회 이상의 연속 백핸드스프링의 일부가 B 난도 이상의 공중돌기 계열로 바뀐 것도 동등하게 취급한다.
+후방 몸펴 공중돌기에 비틀기가 더해진 경우도 동등하게 취급한다.`,
             },
             image: [
               {
@@ -114,6 +142,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: 'とびひねり技の難度表',
                   en: 'Table of twisting element difficulties',
+                  ko: '뛰기 비틀기 기술의 난도표',
                 },
               },
               {
@@ -121,6 +150,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '前方系跳躍技の難度表',
                   en: 'Table of forward tumbling difficulties',
+                  ko: '전방 계열 도약 기술의 난도표',
                 },
               },
               {
@@ -128,6 +158,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '後方系の跳躍技の難度表',
                   en: 'Table of backward tumbling difficulties',
+                  ko: '후방 계열 도약 기술의 난도표',
                 },
               },
               {
@@ -135,6 +166,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '宙返りの連続の難度表',
                   en: 'Table of salto combination difficulties',
+                  ko: '공중돌기 연속의 난도표',
                 },
               },
               {
@@ -142,6 +174,7 @@ A layout back salto with an added twist is also treated in the same way.`,
                 alt: {
                   ja: '転回系の連続の難度表',
                   en: 'Table of tumbling combination difficulties',
+                  ko: '공중돌기 계열 연속의 난도표',
                 },
               },
             ],
@@ -152,12 +185,14 @@ A layout back salto with an added twist is also treated in the same way.`,
         title: {
           ja: '団体競技における難度の組み合わせ',
           en: 'Difficulty Combinations in the Group Competition',
+          ko: '단체 경기에서의 난도 조합',
         },
         block: [
           {
             title: {
               ja: '交差技と組運動の難度',
               en: 'Difficulty of Crossing Elements and Partner Elements',
+              ko: '교차 기술과 조 운동의 난도',
             },
             element: {
               ja: `【交差技】
@@ -236,6 +271,44 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
   1. The difficulty performed by three or more gymnasts applies.
   2. If a crossing element or a partner or pyramid element in the series is the highest difficulty in the series, that difficulty applies regardless of the number of gymnasts.
   3. If every difficulty is performed by fewer than three gymnasts, even after counting higher difficulties as lower ones, no difficulty is recognized.`,
+              ko: `【교차 기술】
+교차 기술의 난도는 다음과 같이 한다.
+
+1. 신체 계열 위를 공중돌기 계열로 뛰어넘은 경우에는 공중돌기 계열 종목의 난도를 적용한다.
+2. 공중돌기 계열의 교차 기술은 공중돌기 계열의 도중을 뛰어넘어야 한다. 최저 조건으로 공중돌기 계열의 착지 직전에 뛰어넘는 것으로 한다.
+3. 공중돌기 계열의 교차 기술은 공중돌기 계열의 도중을 뛰어넘어야 한다.
+4. 착지 후에 뛰어넘은 경우에는 (1)의 취급으로 한다.
+5. 2단 교차 기술의 난도(아래 표 참조)
+6. 3단 이상의 교차 기술을 모두 B 난도 이상의 전개 계열로 실시한 경우에는 D 난도로 한다. A 난도가 들어 있는 경우에는 이 취급이 되지 않는다.
+
+【조 · 조립 운동】
+조 · 조립 운동의 난도는 다음과 같이 한다.
+
+1. 조 · 조립 운동의 난도표(아래 표 참조)
+※다음에 전개 계열로 이어간 경우에 난도로 취급한다.
+※C 난도 이상의 공중돌기 계열인 경우에는 그 공중돌기 계열의 난도로 한다.
+
+2. 조 · 조립 운동에서의 난도 등급 상향
+  a. 어깨 위 물구나무서기를 뛰어넘기 기술로 넘은 경우, 도약 계열은 1등급, 공중돌기 계열은 2등급 난도가 올라간다.
+  b. 조 물구나무서기에서 한 손 물구나무서기 또는 받치는 사람이 팔을 편 채로 지지한 경우에는 1등급 난도가 올라간다.
+  
+【시리즈의 난도 판정】
+경기자가 몇 개의 그룹으로 나뉘어 잇따라 공중돌기 계열을 실시한 경우, 난도의 판정은 다음과 같이 한다.
+
+1. 원칙적으로 교차 기술과 조 · 조립 운동을 제외하고 3명 이상이 실시한 난도를 적용한다. 다만 높은 난도의 기술을 낮은 난도로 바꾸어 볼 수는 있다.
+2. 몇 개의 그룹으로 나뉘어 같은 난도의 공중돌기 계열을 실시한 경우
+  a. 3:3으로 나뉜 경우
+    i. 원칙적으로 높은 난도를 실시한 그룹의 난도를 적용한다.
+    ii. 서로 다른 종목이라 하더라도 6명 이상이 실시하면 난도가 올라가는 종목의 조합인 경우에는 등급이 올라간다.
+    ※6명이 실시한 경우에 난도가 상향되는 기술을 아래에 제시한다
+  b. 4 · 2 또는 5 · 1로 나뉜 경우
+    i. 원칙적으로 높은 난도를 실시한 그룹의 난도를 적용한다.
+    ii. 서로 다른 종목이라 하더라도 6명 이상이 실시하면 난도가 올라가는 종목의 조합인 경우에는 등급이 올라간다.
+    iii. 인원이 적은 그룹이 교차 기술 또는 조 · 조립 운동인 경우에는 난도로 적용하고, 난도가 높은 그룹을 적용한다.
+3. 몇 개의 그룹으로 나뉘어 같은 난도의 공중돌기 계열을 실시한 경우
+  1. 3명 이상이 실시한 난도를 적용한다.
+  2. 시리즈에 포함된 교차 기술 또는 조 · 조립 운동이 시리즈 안에서 가장 높은 난도인 경우에는 인원과 관계없이 그 난도를 적용한다.
+  3. 높은 난도를 낮은 난도로 바꾸어 보아도 모든 난도가 3명 미만인 경우에는 난도로 인정하지 않는다.`,
             },
           },
         ],
@@ -244,12 +317,14 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
         title: {
           ja: '個人競技における難度',
           en: 'Difficulty in the Individual Competition',
+          ko: '개인 경기에서의 난도',
         },
         block: [
           {
             title: {
               ja: '転回系における手具操作と難度',
               en: 'Apparatus Handling and Difficulty in Tumbling',
+              ko: '공중돌기 계열에서의 수구 조작과 난도',
             },
             element: {
               ja: `演技の中で転回系を実施した場合の難度は、基礎難度表によって価値が決められる。ただし、以下の条件に当てはまる場合は、その難度から１ランクアップされる。
@@ -304,18 +379,47 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
   e. Other apparatus handling
     i. Bouncing the apparatus on the floor and catching it during tumbling.
     ii. Rolling the apparatus during tumbling and catching it on landing.`,
+              ko: `연기 중에 공중돌기 계열을 실시한 경우의 난도는 기초 난도표에 따라 가치가 정해진다. 다만 다음 조건에 해당하는 경우에는 그 난도에서 1등급 올라간다.
+                  
+1. 수구를 던지고 받는 사이에 공중돌기 계열을 실시한 경우에는 그 공중돌기 계열의 난도에서 1등급 올라간다.
+2. 2회 이상의 수구 조작을 동반하여 실시한 경우.
+  
+  a. 스틱
+    ⅰ. 끝 또는 중앙부 등을 잡고 2회 이상 돌린다.
+    ⅱ. 좌우의 손을 바꾸어 잡고 1회 이상 돌린다.
+    
+  b. 링
+    ⅰ. 1개의 링 또는 2개의 링을 2회 이상 돌린다.
+    ⅱ. 2개의 링을 1회전씩 차례로 돌린다.
+    ⅲ. 1개의 링을 좌우의 손을 바꾸어 잡고 1회 이상 돌린다.
+    
+  c. 줄
+    ⅰ. 한 손 또는 양손으로 1줄, 2겹, 3겹, 4겹 등으로 하여 2회전 이상 돌린다.
+    ⅱ. 좌우의 손을 바꾸어 잡고 1회 이상 돌린다.
+    
+  d. 곤봉
+    ⅰ. 머리 또는 목을 잡고 2회 이상 돌린다.
+    ⅱ. 2개의 곤봉을 1회전씩 차례로 돌린다.
+    ⅲ. 1개의 곤봉을 좌우의 손을 바꾸어 잡고 1회 이상 돌린다.
+    
+  e. 그 밖의 수구 조작
+    ⅰ. 공중돌기 계열을 실시하는 동안에 수구를 바닥에 쳐서 받는다.
+    ⅱ. 공중돌기 계열을 실시하는 동안에 수구를 굴려서 착지와 동시에 받는다.`,
             },
           },
           {
             title: {
               ja: '投げ受けの難度',
               en: 'Throw-and-Catch Difficulty',
+              ko: '던지고 받기의 난도',
             },
             element: {
               ja: `演技の中で投げ受けを実施した場合、その間に実施した徒手系（※）または転回系の数によって以下のように難度が決められる。ただし、転回系が含まれていた場合は第69条の１の条件と比較して、高い方の難度を採用する。
 ※ここでの徒手系は、縦軸または横軸で、360°回転したもののみを１つとして数える。`,
               en: `When a throw and catch is performed in a routine, the difficulty is determined as follows by the number of free-hand elements (*) or tumbling elements performed during the throw. If tumbling is included, the difficulty is compared with the condition in Article 69 (1), and the higher one applies.
 * Here, a free-hand element counts as one only when it is a 360° rotation around the vertical or horizontal axis.`,
+              ko: `연기 중에 던지고 받기를 실시한 경우, 그 사이에 실시한 신체 계열(※) 또는 공중돌기 계열의 수에 따라 다음과 같이 난도가 정해진다. 다만 공중돌기 계열이 포함되어 있는 경우에는 제69조 1의 조건과 비교하여 높은 쪽의 난도를 적용한다.
+※여기에서의 신체 계열은 세로축 또는 가로축으로 360° 회전한 것만을 1개로 센다.`,
             },
             image: [
               {
@@ -323,6 +427,7 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
                 alt: {
                   ja: '投げ受けの難度表',
                   en: 'Table of throw-and-catch difficulties',
+                  ko: '던지고 받기의 난도표',
                 },
               },
             ],
@@ -331,10 +436,12 @@ When gymnasts divide into groups and perform tumbling one after another, the dif
             title: {
               ja: '手具操作をともなった徒手系の難度',
               en: 'Difficulty of Free-Hand Elements with Apparatus Handling',
+              ko: '수구 조작을 동반한 신체 난도',
             },
             element: {
               ja: '演技の中で手具操作をともなって徒手系難度を実施した場合は、徒手系難度を採用する。',
               en: 'When a free-hand difficulty is performed with apparatus handling in a routine, the free-hand difficulty applies.',
+              ko: '연기 중에 수구 조작을 동반하여 신체 난도를 실시한 경우에는 신체 난도를 적용한다.',
             },
           },
         ],
