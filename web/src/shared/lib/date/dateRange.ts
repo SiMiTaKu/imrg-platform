@@ -1,6 +1,8 @@
 import type { SiteLocale } from '@shared/lib/i18n'
 import type { DateParts } from '@shared/model'
 import {
+  formatDay,
+  formatMonth,
   formatMonthEnglish,
   formatMonthJapanese,
   formatMonthKorean,
@@ -99,11 +101,32 @@ export const formatDateRangeKorean = (startDate: string, endDate?: string): stri
 }
 
 /**
+ * その言語の書き方で期間を作る（日本語・中国語・韓国語・英語のほかの言語）
+ * @param startDate - 開始日 "YYYY-MM-DD" または "YYYY-MM"
+ * @param endDate - 終了日。無ければ開始日だけの表記にする
+ * @param locale - 言語
+ * @returns 例（フランス語）: "vendredi 30 octobre 2026 – dimanche 1 novembre 2026"
+ */
+const formatDateRangeIntl = (
+  startDate: string,
+  endDate: string | undefined,
+  locale: SiteLocale,
+): string => {
+  const start = parseDate(startDate)
+  if (start.day === undefined) return formatMonth(startDate, locale)
+
+  const startText = formatDay(startDate, locale)
+  if (!endDate || endDate === startDate) return startText
+  const end = parseDate(endDate)
+  return `${startText} – ${end.day === undefined ? formatMonth(endDate, locale) : formatDay(endDate, locale)}`
+}
+
+/**
  * 期間を言語に応じた表記にする
  * @param startDate - 開始日 "YYYY-MM-DD" または "YYYY-MM"
  * @param endDate - 終了日。無ければ開始日だけの表記にする
  * @param locale - 言語
- * @returns 日本語・中国語・韓国語はその言語の表記、それ以外は `formatDateRangeEnglish` の形
+ * @returns 日本語・中国語・韓国語・英語はその言語の表記、それ以外は `Intl` に任せた表記
  */
 export const formatDateRange = (
   startDate: string,
@@ -113,5 +136,6 @@ export const formatDateRange = (
   if (locale === 'ja') return formatDateRangeJapanese(startDate, endDate)
   if (locale === 'zh') return formatDateRangeChinese(startDate, endDate)
   if (locale === 'ko') return formatDateRangeKorean(startDate, endDate)
-  return formatDateRangeEnglish(startDate, endDate)
+  if (locale === 'en') return formatDateRangeEnglish(startDate, endDate)
+  return formatDateRangeIntl(startDate, endDate, locale)
 }

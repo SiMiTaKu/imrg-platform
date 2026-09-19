@@ -355,7 +355,7 @@ Pendant les mouvements de grande amplitude (balancers, rotations en hélice, etc
     ⅰ. 投げの高さは、競技者が投げたところから最低２m 以上の高さとする。
     
 4. 転回系の要素
-  a. 前方・後方・速報系の転回系を入れなければならない。  
+  a. 前方・後方・側方系の転回系を入れなければならない。  
   b. 転回系を実施しているときに、スティックが生かされなければならない。
   
 5. 諸要素

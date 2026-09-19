@@ -849,7 +849,7 @@ Six des gymnastes validés lors de la réunion des entraîneurs présentent l'ex
           hi: 'ध्वनि उपकरण में खराबी पर कार्रवाई',
         },
         content: {
-          ja: '審判長・競技部長が当然と認める音響機器に欠点があった場合は、団体競技でも個人競技でも減点なしの復興ができる。',
+          ja: '審判長・競技部長が当然と認める音響機器に欠点があった場合は、団体競技でも個人競技でも減点なしの復行ができる。',
           en: 'If the Jury President and the Competition Director agree that the audio equipment was faulty, the routine may be repeated without deduction in both the group and the individual competition.',
           zh: '裁判长、竞赛部长认可确有音响设备故障时，团体比赛和个人比赛均可不予扣分重做成套动作。',
           ko: '심판장·경기 부장이 당연하다고 인정하는 음향 기기의 결함이 있었을 경우에는 단체 경기에서도 개인 경기에서도 감점 없이 다시 연기할 수 있다.',
@@ -1543,7 +1543,7 @@ Le classement est établi d'après la note de la finale par engin ou de chaque e
           hi: 'प्रतियोगिता की स्पर्धाएँ जिनमें भाग लिया जा सकता है',
         },
         content: {
-          ja: '競技者は団体競技および歌人競技の両方に出場することができる。',
+          ja: '競技者は団体競技および個人競技の両方に出場することができる。',
           en: 'Gymnasts may compete in both the group and the individual competition.',
           zh: '参赛者可以同时参加团体比赛和个人比赛。',
           ko: '경기자는 단체 경기 및 개인 경기 양쪽 모두에 출전할 수 있다.',
@@ -1574,7 +1574,7 @@ Le classement est établi d'après la note de la finale par engin ou de chaque e
 
 2. 体操用ズボンの形状
   a. ストレートタイプの場合は、裾を土踏まずの下を通し、スッキリまとめられていなければならない。
-  b. ズボンの裾を広げる場合、膝までは密着していること。裾幅は足長を超えてはならない。また、裾が乱れるような場合は原点となる。
+  b. ズボンの裾を広げる場合、膝までは密着していること。裾幅は足長を超えてはならない。また、裾が乱れるような場合は減点となる。
 
 3. 所属マークの色は自由とするが、試合着の色と区別できるものとする。形状と大きさは次のいずれかを上回るものとする。
   a. 4.5cm×4.5cmの正方形
@@ -2047,7 +2047,7 @@ Le classement est établi d'après la note de la finale par engin ou de chaque e
           hi: 'अनुच्छेद 43 अनुशासन का उल्लंघन',
         },
         content: {
-          ja: '競技者および監督・コーチに規律違反があった場合は、採点規則によって原点または処分をされることがある。',
+          ja: '競技者および監督・コーチに規律違反があった場合は、採点規則によって減点または処分をされることがある。',
           en: 'If a gymnast, team manager or coach violates the rules of discipline, a deduction or other penalty may be imposed under the Code of Points.',
           zh: '参赛者及领队、教练有违反纪律的行为时，可依据评分规则予以扣分或处分。',
           ko: '경기자 및 감독·코치에게 규율 위반이 있었을 경우에는 채점 규칙에 따라 감점 또는 처분을 받을 수 있다.',
@@ -2168,7 +2168,7 @@ Le classement est établi d'après la note de la finale par engin ou de chaque e
         },
         content: {
           ja: `1. 自由演技は構成（Ｄ）と実施（Ｅ）のそれぞれ10点満点の計20点満点で採点される。また規定演技は実施（Ｅ）の10点満点で採点される。
-2. 主任審判員を除いた４名の審判員の最高点及び最低点を除外し、有効点の平均点を小数点第３位までとし、第４位は切り捨て得点とする。主任審判員が適用する原点があった場合は、その得点から減点し最終得点とする。
+2. 主任審判員を除いた４名の審判員の最高点及び最低点を除外し、有効点の平均点を小数点第３位までとし、第４位は切り捨て得点とする。主任審判員が適用する減点があった場合は、その得点から減点し最終得点とする。
 `,
           en: `1. Free routines are scored out of 20 points: composition (D) out of 10 points and execution (E) out of 10 points. Compulsory routines are scored for execution (E) out of 10 points.
 2. The highest and lowest scores of the four judges, excluding the chief judge, are dropped, and the average of the counting scores is calculated to three decimal places, truncating the fourth. If the chief judge applies a deduction, it is subtracted from that score to give the final score.`,
