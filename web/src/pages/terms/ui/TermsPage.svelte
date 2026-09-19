@@ -5,8 +5,9 @@
   import TermsBodyChinese from './TermsBodyChinese.svelte'
   import TermsBodyEnglish from './TermsBodyEnglish.svelte'
   import TermsBodyJapanese from './TermsBodyJapanese.svelte'
+  import TermsBodyKorean from './TermsBodyKorean.svelte'
 
-  // 表示する言語の本文だけを出す
+  // 表示する言語の本文だけを出す。訳が無い言語は英語の本文にする
   const locale = getLocale()
 </script>
 
@@ -15,6 +16,8 @@
     <TermsBodyJapanese />
   {:else if locale === 'zh'}
     <TermsBodyChinese />
+  {:else if locale === 'ko'}
+    <TermsBodyKorean />
   {:else}
     <TermsBodyEnglish />
   {/if}

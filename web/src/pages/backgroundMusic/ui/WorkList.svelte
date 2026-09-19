@@ -1,15 +1,15 @@
 <script lang="ts">
   import { Heading } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { getLocale } from '@shared/lib/i18n'
+  import { getLocale, localizedText } from '@shared/lib/i18n'
+  import type { SiteLocale } from '@shared/lib/i18n'
   import { pageData } from '@shared/lib/device'
-  import {} from '@shared/lib/i18n'
   import { ImageAssets } from '@shared/ui'
   import { apparatusOfSlug } from '@shared/lib/apparatus'
   import { WORK_LIST } from '../config/workList'
   import YoutubeIcon from '../images/youtube-icon.png?w=120;240&format=webp&as=meta'
 
-  const locale = getLocale()
+  const locale = getLocale() as SiteLocale
 </script>
 
 <section class="work-list" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
@@ -22,7 +22,7 @@
     {#each WORK_LIST as work, index (index)}
       <li class="card">
         <a class="link" href={work.youtube} rel="noopener noreferrer" target="_blank">
-          <span class="name">{locale === 'ja' ? work.customerName.ja : work.customerName.en}</span>
+          <span class="name">{localizedText(work.customerName, locale)}</span>
           <span class="apparatus">{apparatusOfSlug(work.apparatus).label()}</span>
           <div class="youtube">
             <ImageAssets
@@ -95,15 +95,15 @@
     color: #333;
   }
 
-  // 英語の名前は日本語より長く、カードからはみ出すため小さくする。
+  // 日本語以外の名前は日本語より長く、カードからはみ出すため小さくする。
   // 日本語ページの見た目（計算済みスタイル）を変えないよう、変数を足さずに言語で当てる
-  .desktop .name:lang(en) {
+  .desktop .name:not(:lang(ja)) {
     font-size: 22px;
     line-height: 22px;
     text-align: center;
   }
 
-  .mobile .name:lang(en) {
+  .mobile .name:not(:lang(ja)) {
     font-size: 18px;
     line-height: 18px;
     text-align: center;

@@ -1,3 +1,17 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "오시미츠!",
+  "oshimitsu_filtered_title": "오시미츠!({filter})",
+  "oshimitsu_lead_line1": "오시미츠는 남자 리듬체조 영상만을 위한 검색 기능입니다.",
+  "oshimitsu_lead_line2": "당신이 아직 모르는 남자 리듬체조의 세계와 매력을 찾아보세요!",
+  "oshimitsu_content_type_legend": "영상 종류",
+  "oshimitsu_apparatus_legend": "수구",
+  "oshimitsu_search_button": "이 조건으로 오시미츠!",
+  "oshimitsu_recommended_title": "추천 영상",
+  "oshimitsu_content_type_individual": "개인",
+  "oshimitsu_content_type_group": "단체",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "더 보기",
+  "oshimitsu_no_more_videos": "※지금은 더 이상 보여드릴 영상이 없습니다",
+  "oshimitsu_loading": "불러오는 중..."
 }

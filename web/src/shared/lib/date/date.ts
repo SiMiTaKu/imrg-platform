@@ -44,16 +44,20 @@ export const weekdayOf = (parts: DateParts): Weekday =>
  */
 const pad = (value: number): string => String(value).padStart(2, '0')
 
+/** 韓国語の曜日。日曜始まりで `Weekday#index` で引ける */
+const KOREAN_WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토']
+
 /**
  * 曜日の表記を返す
  * @param weekday - 曜日
  * @param locale - 言語
- * @returns 日本語は「日」、中国語は「周日」、英語は "Sun" の形
+ * @returns 日本語は「日」、中国語は「周日」、韓国語は「일」、それ以外は "Sun" の形
  */
 export const weekdayName = (weekday: Weekday, locale: SiteLocale): string => {
-  if (locale === 'en') return weekday.en
+  if (locale === 'ja') return weekday.ja
   if (locale === 'zh') return weekday.zh
-  return weekday.ja
+  if (locale === 'ko') return KOREAN_WEEKDAYS[weekday.index]
+  return weekday.en
 }
 
 /**
@@ -147,13 +151,26 @@ export const formatMonthEnglish = (monthKey: string): string => {
 }
 
 /**
+ * "2026-10" → "2026년 10월"
+ * @param monthKey - 月 "YYYY-MM"
+ * @returns "2026년 10월" の形の文字列
+ */
+export const formatMonthKorean = (monthKey: string): string => {
+  const { year, month } = parseDate(monthKey)
+  return `${year}년 ${month}월`
+}
+
+/**
  * 月を言語に応じた表記にする
  * @param monthKey - 月 "YYYY-MM"
  * @param locale - 言語
- * @returns 日本語は "2026年10月"、英語は "October 2026"
+ * @returns 日本語は "2026年10月"、韓国語は "2026년 10월"、それ以外は "October 2026"
  */
-export const formatMonth = (monthKey: string, locale: SiteLocale): string =>
-  locale === 'en' ? formatMonthEnglish(monthKey) : formatMonthJapanese(monthKey)
+export const formatMonth = (monthKey: string, locale: SiteLocale): string => {
+  if (locale === 'ja') return formatMonthJapanese(monthKey)
+  if (locale === 'ko') return formatMonthKorean(monthKey)
+  return formatMonthEnglish(monthKey)
+}
 
 /**
  * "2026-09-16" → "2026年9月16日"
@@ -176,13 +193,26 @@ export const formatDayEnglish = (value: string): string => {
 }
 
 /**
+ * "2026-09-16" → "2026년 9월 16일"
+ * @param value - 日付 "YYYY-MM-DD"
+ * @returns "2026년 9월 16일" の形の文字列
+ */
+export const formatDayKorean = (value: string): string => {
+  const { year, month, day } = parseDate(value)
+  return `${year}년 ${month}월 ${day}일`
+}
+
+/**
  * 日付を言語に応じた表記にする
  * @param value - 日付 "YYYY-MM-DD"
  * @param locale - 言語
- * @returns 日本語は "2026年9月16日"、英語は "September 16, 2026"
+ * @returns 日本語は "2026年9月16日"、韓国語は "2026년 9월 16일"、それ以外は "September 16, 2026"
  */
-export const formatDay = (value: string, locale: SiteLocale): string =>
-  locale === 'en' ? formatDayEnglish(value) : formatDayJapanese(value)
+export const formatDay = (value: string, locale: SiteLocale): string => {
+  if (locale === 'ja') return formatDayJapanese(value)
+  if (locale === 'ko') return formatDayKorean(value)
+  return formatDayEnglish(value)
+}
 
 /**
  * 日時を「年」だけの表記にする

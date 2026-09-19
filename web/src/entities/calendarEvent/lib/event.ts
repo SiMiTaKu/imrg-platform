@@ -25,8 +25,10 @@ export interface LocalizedEvent {
  * @returns その言語の値。英語の値が無い項目は日本語の値にする
  *
  * @remarks
- * 元データ（`~/imrg/calendar-data/`）には英語の会場名が無いイベントがある。
- * 都道府県名だけの会場は英語に訳し、それ以外は、空欄にするより現地で探しやすいので日本語に戻す
+ * 元データ（`~/imrg/calendar-data/`）は日本語と英語しか持たないので、
+ * 日本語以外の言語はすべて英語の値を出す。
+ * 英語の会場名が無いイベントもあり、都道府県名だけの会場は英語に訳し、
+ * それ以外は、空欄にするより現地で探しやすいので日本語に戻す
  */
 export const localizeEvent = (event: CalendarEvent, locale: SiteLocale): LocalizedEvent => {
   // 日本語以外は、大会名・会場をまだ言語ごとに持っていないので英語にフォールバックする

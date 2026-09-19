@@ -3,9 +3,11 @@ export {
   formatDay,
   formatDayEnglish,
   formatDayJapanese,
+  formatDayKorean,
   formatMonth,
   formatMonthEnglish,
   formatMonthJapanese,
+  formatMonthKorean,
   formatYear,
   monthOfNumber,
   parseDate,
@@ -23,4 +25,5 @@ export {
   formatDateRangeChinese,
   formatDateRangeEnglish,
   formatDateRangeJapanese,
+  formatDateRangeKorean,
 } from './dateRange'
