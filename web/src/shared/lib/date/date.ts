@@ -48,10 +48,13 @@ const pad = (value: number): string => String(value).padStart(2, '0')
  * 曜日の表記を返す
  * @param weekday - 曜日
  * @param locale - 言語
- * @returns 日本語は「日」、英語は "Sun" の形
+ * @returns 日本語は「日」、中国語は「周日」、英語は "Sun" の形
  */
-export const weekdayName = (weekday: Weekday, locale: SiteLocale): string =>
-  locale === 'en' ? weekday.en : weekday.ja
+export const weekdayName = (weekday: Weekday, locale: SiteLocale): string => {
+  if (locale === 'en') return weekday.en
+  if (locale === 'zh') return weekday.zh
+  return weekday.ja
+}
 
 /**
  * 月の短い英語の表記を返す（10 → "Oct"）

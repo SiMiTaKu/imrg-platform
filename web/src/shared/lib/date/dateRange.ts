@@ -29,6 +29,28 @@ export const formatDateRangeJapanese = (startDate: string, endDate?: string): st
 }
 
 /**
+ * 例: "2026年10月30日（周五）—11月1日（周日）"。年月だけなら "2027年3月"
+ * @param startDate - 開始日 "YYYY-MM-DD" または "YYYY-MM"
+ * @param endDate - 終了日。無ければ開始日だけの表記にする
+ * @returns 中国語の期間。終了年が開始年と同じなら終了側の年は省く
+ *
+ * @remarks
+ * 年月日の並びは日本語と同じだが、曜日の表記（周五）と期間の区切り（—）が違う
+ */
+export const formatDateRangeChinese = (startDate: string, endDate?: string): string => {
+  const start = parseDate(startDate)
+  if (start.day === undefined) return formatMonthJapanese(startDate)
+
+  const startText = `${start.year}年${start.month}月${start.day}日（${weekdayName(weekdayOf(start), 'zh')}）`
+  if (!endDate || endDate === startDate) return startText
+
+  const end = parseDate(endDate)
+  const endYear = end.year === start.year ? '' : `${end.year}年`
+  if (end.day === undefined) return `${startText}—${endYear}${end.month}月`
+  return `${startText}—${endYear}${end.month}月${end.day}日（${weekdayName(weekdayOf(end), 'zh')}）`
+}
+
+/**
  * "Fri, Oct 30" の形にする
  * @param parts - 年・月・日
  * @returns 曜日・月・日の英語の表記
@@ -61,13 +83,14 @@ export const formatDateRangeEnglish = (startDate: string, endDate?: string): str
  * @param startDate - 開始日 "YYYY-MM-DD" または "YYYY-MM"
  * @param endDate - 終了日。無ければ開始日だけの表記にする
  * @param locale - 言語
- * @returns 日本語は `formatDateRangeJapanese`、英語は `formatDateRangeEnglish` の形
+ * @returns 日本語は `formatDateRangeJapanese`、中国語は `formatDateRangeChinese`、英語は `formatDateRangeEnglish` の形
  */
 export const formatDateRange = (
   startDate: string,
   endDate: string | undefined,
   locale: SiteLocale,
-): string =>
-  locale === 'en'
-    ? formatDateRangeEnglish(startDate, endDate)
-    : formatDateRangeJapanese(startDate, endDate)
+): string => {
+  if (locale === 'en') return formatDateRangeEnglish(startDate, endDate)
+  if (locale === 'zh') return formatDateRangeChinese(startDate, endDate)
+  return formatDateRangeJapanese(startDate, endDate)
+}

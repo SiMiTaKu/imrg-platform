@@ -6,13 +6,13 @@
  * 表記は言語ごとに持つ（`weekdayName` で表示中の言語のものを取る）
  */
 export const Weekday = {
-  SUNDAY: { index: 0, ja: '日', en: 'Sun' },
-  MONDAY: { index: 1, ja: '月', en: 'Mon' },
-  TUESDAY: { index: 2, ja: '火', en: 'Tue' },
-  WEDNESDAY: { index: 3, ja: '水', en: 'Wed' },
-  THURSDAY: { index: 4, ja: '木', en: 'Thu' },
-  FRIDAY: { index: 5, ja: '金', en: 'Fri' },
-  SATURDAY: { index: 6, ja: '土', en: 'Sat' },
+  SUNDAY: { index: 0, ja: '日', en: 'Sun', zh: '周日' },
+  MONDAY: { index: 1, ja: '月', en: 'Mon', zh: '周一' },
+  TUESDAY: { index: 2, ja: '火', en: 'Tue', zh: '周二' },
+  WEDNESDAY: { index: 3, ja: '水', en: 'Wed', zh: '周三' },
+  THURSDAY: { index: 4, ja: '木', en: 'Thu', zh: '周四' },
+  FRIDAY: { index: 5, ja: '金', en: 'Fri', zh: '周五' },
+  SATURDAY: { index: 6, ja: '土', en: 'Sat', zh: '周六' },
 } as const
 
 /**

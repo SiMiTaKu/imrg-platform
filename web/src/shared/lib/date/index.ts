@@ -18,4 +18,9 @@ export {
   weekdayOf,
   weekdayOfIndex,
 } from './date'
-export { formatDateRange, formatDateRangeEnglish, formatDateRangeJapanese } from './dateRange'
+export {
+  formatDateRange,
+  formatDateRangeChinese,
+  formatDateRangeEnglish,
+  formatDateRangeJapanese,
+} from './dateRange'
