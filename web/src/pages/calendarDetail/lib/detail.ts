@@ -35,7 +35,8 @@ export const calendarDetailMetaInput = (
   return {
     id: event.id,
     title: localized.title,
-    alternateTitle: locale === 'en' ? event.title.japanese : event.title.english,
+    // 日本語のページだけ英語の名前を添え、それ以外の言語では元の日本語の名前を添える
+    alternateTitle: locale === 'ja' ? event.title.en : event.title.ja,
     dateRange: eventDateRange(event, locale),
     venue: localized.venue,
   }

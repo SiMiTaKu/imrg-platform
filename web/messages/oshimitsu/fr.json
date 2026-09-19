@@ -1,0 +1,17 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "Oshimitsu !",
+  "oshimitsu_filtered_title": "Oshimitsu ! ({filter})",
+  "oshimitsu_lead_line1": "Oshimitsu ! est un moteur de recherche dédié aux vidéos de gymnastique rythmique masculine.",
+  "oshimitsu_lead_line2": "Partez à la découverte d'un univers que vous ne connaissez pas encore !",
+  "oshimitsu_content_type_legend": "Type de vidéo",
+  "oshimitsu_apparatus_legend": "Engin",
+  "oshimitsu_search_button": "Lancer la recherche",
+  "oshimitsu_recommended_title": "Vidéos recommandées",
+  "oshimitsu_content_type_individual": "Individuel",
+  "oshimitsu_content_type_group": "Ensemble",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "Voir plus",
+  "oshimitsu_no_more_videos": "* Il n'y a pas d'autre vidéo à afficher pour le moment.",
+  "oshimitsu_loading": "Chargement..."
+}

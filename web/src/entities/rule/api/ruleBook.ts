@@ -19,21 +19,39 @@ import { SCORING_GENERAL_ARTICLES } from './articles/scoringGeneral'
  */
 export const RULE_BOOK: RuleBook = {
   title: {
-    japanese: '新体操男子規則',
-    english: "Men's Rhythmic Gymnastics Rules",
+    ja: '新体操男子規則',
+    en: "Men's Rhythmic Gymnastics Rules",
+    zh: '艺术体操男子规则',
+    ko: '리듬체조 남자 규칙',
+    es: 'Reglamento de gimnasia rítmica masculina',
+    fr: 'Règlement de gymnastique rythmique masculine',
+    ru: 'Правила по мужской художественной гимнастике',
+    hi: 'पुरुष लयबद्ध जिम्नास्टिक के नियम',
   },
   chapter: [
     {
       title: {
-        japanese: '競技規則',
-        english: 'Competition Rules',
+        ja: '競技規則',
+        en: 'Competition Rules',
+        zh: '比赛规则',
+        ko: '경기 규칙',
+        es: 'Reglamento de competición',
+        fr: 'Règlement des compétitions',
+        ru: 'Правила соревнований',
+        hi: 'प्रतियोगिता के नियम',
       },
       article: [...COMPETITION_ORGANIZATION_ARTICLES, ...COMPETITION_CONDUCT_ARTICLES],
     },
     {
       title: {
-        japanese: '採点規則',
-        english: 'Code of Points',
+        ja: '採点規則',
+        en: 'Code of Points',
+        zh: '评分规则',
+        ko: '채점 규칙',
+        es: 'Código de puntuación',
+        fr: 'Code de pointage',
+        ru: 'Правила судейства',
+        hi: 'अंक निर्धारण के नियम',
       },
       article: [
         ...SCORING_GENERAL_ARTICLES,
@@ -44,8 +62,14 @@ export const RULE_BOOK: RuleBook = {
     },
     {
       title: {
-        japanese: '付録',
-        english: 'Appendix',
+        ja: '付録',
+        en: 'Appendix',
+        zh: '附录',
+        ko: '부록',
+        es: 'Apéndice',
+        fr: 'Annexes',
+        ru: 'Приложение',
+        hi: 'परिशिष्ट',
       },
       article: [
         ...APPENDIX_SPECIAL_RULES_ARTICLES,
@@ -54,11 +78,56 @@ export const RULE_BOOK: RuleBook = {
       ],
     },
     {
-      title: { japanese: '主任審判員減点表', english: "Chief Judges' Deduction Tables" },
+      title: {
+        ja: '主任審判員減点表',
+        en: "Chief Judges' Deduction Tables",
+        zh: '主裁判员扣分表',
+        ko: '주임 심판원 감점표',
+        es: 'Tablas de penalización del juez principal',
+        fr: 'Tableaux de pénalités des juges-arbitres',
+        ru: 'Таблицы сбавок старших судей',
+        hi: 'मुख्य निर्णायक की कटौती तालिका',
+      },
       article: [],
     },
-    { title: { japanese: '審判メモ', english: "Judges' Notes" }, article: [] },
-    { title: { japanese: '得点票', english: 'Score Sheets' }, article: [] },
-    { title: { japanese: '採点票・減点票', english: 'Scoring and Deduction Sheets' }, article: [] },
+    {
+      title: {
+        ja: '審判メモ',
+        en: "Judges' Notes",
+        zh: '裁判笔记',
+        ko: '심판 메모',
+        es: 'Notas de los jueces',
+        fr: 'Notes des juges',
+        ru: 'Заметки судьи',
+        hi: 'निर्णायक की टिप्पणी',
+      },
+      article: [],
+    },
+    {
+      title: {
+        ja: '得点票',
+        en: 'Score Sheets',
+        zh: '得分表',
+        ko: '득점표',
+        es: 'Hojas de puntuación',
+        fr: 'Feuilles de notes',
+        ru: 'Оценочные листы',
+        hi: 'अंक पत्रक',
+      },
+      article: [],
+    },
+    {
+      title: {
+        ja: '採点票・減点票',
+        en: 'Scoring and Deduction Sheets',
+        zh: '评分表、扣分表',
+        ko: '채점표·감점표',
+        es: 'Hojas de puntuación y de penalización',
+        fr: 'Feuilles de notation et de pénalités',
+        ru: 'Листы оценок и сбавок',
+        hi: 'अंक निर्धारण और कटौती पत्रक',
+      },
+      article: [],
+    },
   ],
 }

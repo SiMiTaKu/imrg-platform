@@ -11,5 +11,11 @@
   "pagination_label": "Pagination",
   "pagination_last": "Last page",
   "pagination_next": "Next page",
-  "pagination_prev": "Previous page"
+  "pagination_prev": "Previous page",
+  "locale_name_zh": "中文",
+  "locale_name_ko": "한국어",
+  "locale_name_es": "Español",
+  "locale_name_fr": "Français",
+  "locale_name_ru": "Русский",
+  "locale_name_hi": "हिन्दी"
 }

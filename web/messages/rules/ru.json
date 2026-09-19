@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rules_notice_incomplete": "※ Эта страница ещё не закончена. Мы постепенно её дополняем — спасибо за ожидание.",
+  "rules_notice_readability": "※ Мы стараемся сделать сайт удобным для чтения.",
+  "rules_chapter_heading": "Глава {number}. {title}",
+  "rules_article_heading": "Статья {number}. {title}",
+  "rules_back_to_top": "На главную"
+}

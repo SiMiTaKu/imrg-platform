@@ -4,14 +4,20 @@ import { isPublished, localizePath, publishedLocales } from '@shared/lib/i18n/tr
 describe('isPublished', () => {
   describe('正常系', () => {
     it.each([
-      ['既定の言語の場合、訳していなくても true になること', '/calendar/', 'ja', [], true],
-      ['英語で訳していない場合、false になること', '/calendar/', 'en', [], false],
-      ['英語で訳したパスと一致する場合、true になること', '/calendar/', 'en', ['/calendar/'], true],
+      ['既定の言語の場合、訳していなくても true になること', '/calendar/', 'ja', {}, true],
+      ['英語で訳していない場合、false になること', '/calendar/', 'en', {}, false],
+      [
+        '英語で訳したパスと一致する場合、true になること',
+        '/calendar/',
+        'en',
+        { en: ['/calendar/'] },
+        true,
+      ],
       [
         '動的なページの親を指定した場合、子のページが true になること',
         '/calendar/2026-01-01-abc/',
         'en',
-        ['/calendar/*'],
+        { en: ['/calendar/*'] },
         true,
       ],
     ] as const)('%s', (_, path, locale, translatedPaths, expected) => {
@@ -31,8 +37,16 @@ describe('isPublished', () => {
 
   describe('境界値', () => {
     it.each([
-      ['動的なページの親を指定した場合、親自身は false になること', '/calendar/', ['/calendar/*']],
-      ['子のページでも完全一致の指定の場合、false になること', '/calendar/abc/', ['/calendar/']],
+      [
+        '動的なページの親を指定した場合、親自身は false になること',
+        '/calendar/',
+        { en: ['/calendar/*'] },
+      ],
+      [
+        '子のページでも完全一致の指定の場合、false になること',
+        '/calendar/abc/',
+        { en: ['/calendar/'] },
+      ],
     ] as const)('%s', (_, path, translatedPaths) => {
       // #region Given
       // 引数は it.each の表で渡す
@@ -52,8 +66,12 @@ describe('isPublished', () => {
 describe('publishedLocales', () => {
   describe('正常系', () => {
     it.each([
-      ['訳したページの場合、既定の言語を先頭に両方の言語が返ること', ['/privacy/'], ['ja', 'en']],
-      ['訳していないページの場合、既定の言語だけが返ること', [], ['ja']],
+      [
+        '訳したページの場合、既定の言語を先頭に、訳した言語が返ること',
+        { en: ['/privacy/'], zh: ['/privacy/'] },
+        ['ja', 'en', 'zh'],
+      ],
+      ['訳していないページの場合、既定の言語だけが返ること', {}, ['ja']],
     ] as const)('%s', (_, translatedPaths, expected) => {
       // #region Given
       // 引数は it.each の表で渡す

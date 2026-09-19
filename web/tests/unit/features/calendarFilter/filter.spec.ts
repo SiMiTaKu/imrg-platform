@@ -13,10 +13,10 @@ import { makeEvent, titles } from '../../entities/calendarEvent/fixtures'
 describe('matchesKeyword', () => {
   const event = makeEvent({
     title: {
-      japanese: '第79回全日本新体操選手権大会',
-      english: '79th All Japan Rhythmic Gymnastics Championships',
+      ja: '第79回全日本新体操選手権大会',
+      en: '79th All Japan Rhythmic Gymnastics Championships',
     },
-    venue: { name: { japanese: '高崎アリーナ（群馬県）', english: 'Takasaki Arena' } },
+    venue: { name: { ja: '高崎アリーナ（群馬県）', en: 'Takasaki Arena' } },
   })
 
   describe('正常系', () => {
@@ -124,22 +124,22 @@ describe('isEveryCategory', () => {
 describe('filterEvents', () => {
   const events = [
     makeEvent({
-      title: { japanese: 'C', english: 'C' },
+      title: { ja: 'C', en: 'C' },
       category: 'workshop',
       startDate: '2026-11-03',
     }),
     makeEvent({
-      title: { japanese: 'A', english: 'A' },
+      title: { ja: 'A', en: 'A' },
       category: 'national',
       startDate: '2026-09-01',
     }),
     makeEvent({
-      title: { japanese: 'B', english: 'B' },
+      title: { ja: 'B', en: 'B' },
       category: 'national',
       startDate: '2026-10-30',
     }),
     makeEvent({
-      title: { japanese: 'Z', english: 'Z' },
+      title: { ja: 'Z', en: 'Z' },
       category: 'national',
       startDate: '2025-05-01',
     }),
@@ -190,10 +190,10 @@ describe('groupByMonth', () => {
     it('開始月が同じイベントが続く場合、そのかたまりごとにまとまること', () => {
       // #region Given
       const events = [
-        makeEvent({ title: { japanese: 'A', english: 'A' }, startDate: '2026-10-01' }),
-        makeEvent({ title: { japanese: 'B', english: 'B' }, startDate: '2026-10-30' }),
+        makeEvent({ title: { ja: 'A', en: 'A' }, startDate: '2026-10-01' }),
+        makeEvent({ title: { ja: 'B', en: 'B' }, startDate: '2026-10-30' }),
         makeEvent({
-          title: { japanese: 'C', english: 'C' },
+          title: { ja: 'C', en: 'C' },
           schedule: EventSchedule.MONTH_ONLY,
           month: '2026-11',
         }),

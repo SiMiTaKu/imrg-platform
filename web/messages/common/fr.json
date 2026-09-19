@@ -1,0 +1,21 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "apparatus_club": "Massues",
+  "apparatus_ring": "Anneau",
+  "apparatus_rope": "Corde",
+  "apparatus_stick": "Bâton",
+  "locale_name_en": "English",
+  "locale_name_ja": "日本語",
+  "locale_switcher_label": "Langue",
+  "pagination_first": "Première page",
+  "pagination_label": "Pagination",
+  "pagination_last": "Dernière page",
+  "pagination_next": "Page suivante",
+  "pagination_prev": "Page précédente",
+  "locale_name_zh": "中文",
+  "locale_name_ko": "한국어",
+  "locale_name_es": "Español",
+  "locale_name_fr": "Français",
+  "locale_name_ru": "Русский",
+  "locale_name_hi": "हिन्दी"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "oshimitsu_title": "Осимицу!",
+  "oshimitsu_filtered_title": "Осимицу! ({filter})",
+  "oshimitsu_lead_line1": "«Осимицу!» — это поиск, созданный специально для видео о мужской художественной гимнастике.",
+  "oshimitsu_lead_line2": "Откройте для себя мир мужской художественной гимнастики, которого вы ещё не знали!",
+  "oshimitsu_content_type_legend": "Тип видео",
+  "oshimitsu_apparatus_legend": "Предмет",
+  "oshimitsu_search_button": "Искать с этими условиями",
+  "oshimitsu_recommended_title": "Рекомендуемые видео",
+  "oshimitsu_content_type_individual": "Личные",
+  "oshimitsu_content_type_group": "Групповые",
+  "oshimitsu_filter_individual_apparatus": "{contentType} × {apparatus}",
+  "oshimitsu_load_more": "Показать ещё",
+  "oshimitsu_no_more_videos": "※ Больше видео для показа сейчас нет",
+  "oshimitsu_loading": "Загрузка..."
+}

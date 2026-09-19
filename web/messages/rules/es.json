@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rules_notice_incomplete": "* Esta página todavía está en construcción. La vamos actualizando poco a poco, gracias por tu paciencia.",
+  "rules_notice_readability": "* Trabajamos para que este sitio sea fácil de leer.",
+  "rules_chapter_heading": "Capítulo {number}. {title}",
+  "rules_article_heading": "Artículo {number}. {title}",
+  "rules_back_to_top": "Volver arriba"
+}

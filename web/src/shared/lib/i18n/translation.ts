@@ -1,17 +1,18 @@
 import { TRANSLATED_PATHS } from '@shared/config/translation'
+import type { TranslatedPaths } from '@shared/config/translation'
 
 /**
  * 言語ごとのページの公開状態。
  *
  * @remarks
- * 英語ページは、すべてのページについて `/en/...` に書き出している。
+ * 日本語以外のページは、すべてのページについて `/<言語>/...` に書き出している。
  * ただし訳し終わるまでは中身が日本語のままなので、検索エンジンに登録させない（noindex）。
- * 訳し終えたページのパスを `@shared/config/translation` のページごとのファイルに足すと、noindex が外れ、
- * hreflang と sitemap に英語ページが載る。
+ * 訳し終えたページのパスを `@shared/config/translation` の言語ごとのファイルに足すと、noindex が外れ、
+ * hreflang と sitemap にそのページが載る。
  */
 
 /** サイトの言語。先頭が既定の言語 */
-export const SITE_LOCALES = ['ja', 'en'] as const
+export const SITE_LOCALES = ['ja', 'en', 'zh', 'ko', 'es', 'fr', 'ru', 'hi'] as const
 
 /** サイトの言語 */
 export type SiteLocale = (typeof SITE_LOCALES)[number]
@@ -23,6 +24,12 @@ export const BASE_LOCALE: SiteLocale = 'ja'
 export const OG_LOCALES: Record<SiteLocale, string> = {
   ja: 'ja_JP',
   en: 'en_US',
+  zh: 'zh_CN',
+  ko: 'ko_KR',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  ru: 'ru_RU',
+  hi: 'hi_IN',
 }
 
 /**
@@ -35,10 +42,10 @@ export const OG_LOCALES: Record<SiteLocale, string> = {
 export const isPublished = (
   path: string,
   locale: SiteLocale,
-  translatedPaths: readonly string[] = TRANSLATED_PATHS,
+  translatedPaths: TranslatedPaths = TRANSLATED_PATHS,
 ): boolean => {
   if (locale === BASE_LOCALE) return true
-  return translatedPaths.some((translated) =>
+  return (translatedPaths[locale] ?? []).some((translated) =>
     translated.endsWith('/*')
       ? path.startsWith(translated.slice(0, -1)) && path.length > translated.length - 1
       : translated === path,
@@ -62,5 +69,5 @@ export const localizePath = (path: string, locale: SiteLocale): string =>
  */
 export const publishedLocales = (
   path: string,
-  translatedPaths: readonly string[] = TRANSLATED_PATHS,
+  translatedPaths: TranslatedPaths = TRANSLATED_PATHS,
 ): SiteLocale[] => SITE_LOCALES.filter((locale) => isPublished(path, locale, translatedPaths))
