@@ -4,25 +4,25 @@ import type { RuleBook } from '@entities/rule'
 
 /** 小項あり・なしの条項と図を持つ規則集 */
 const RULE_BOOK_SAMPLE: RuleBook = {
-  title: { japanese: '規則', english: 'Rules' },
+  title: { ja: '規則', en: 'Rules' },
   chapter: [
     {
-      title: { japanese: '章', english: 'Chapter' },
+      title: { ja: '章', en: 'Chapter' },
       article: [
         {
-          title: { japanese: '大項', english: 'Part' },
+          title: { ja: '大項', en: 'Part' },
           section: [
             {
-              title: { japanese: '条項', english: 'Section' },
-              content: { japanese: '本文', english: 'Body' },
-              image: [{ src: '/a.png', alt: { japanese: '図', english: 'Figure' } }],
+              title: { ja: '条項', en: 'Section' },
+              content: { ja: '本文', en: 'Body' },
+              image: [{ src: '/a.png', alt: { ja: '図', en: 'Figure' } }],
             },
             {
-              title: { japanese: '小項を持つ条項', english: 'Section with items' },
+              title: { ja: '小項を持つ条項', en: 'Section with items' },
               block: [
                 {
-                  title: { japanese: '小項', english: 'Item' },
-                  element: { japanese: '要素', english: 'Element' },
+                  title: { ja: '小項', en: 'Item' },
+                  element: { ja: '要素', en: 'Element' },
                 },
               ],
             },

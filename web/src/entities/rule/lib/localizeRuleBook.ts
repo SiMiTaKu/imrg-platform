@@ -22,8 +22,7 @@ export const localizeRuleBook = (ruleBook: RuleBook, locale: SiteLocale): Locali
    * @param text - 日本語と英語を持つ文字列
    * @returns 表示する言語の文字列
    */
-  const pick = (text?: TranslatedText): string =>
-    text ? (isBase ? text.japanese : text.english) : ''
+  const pick = (text?: TranslatedText): string => (text ? (isBase ? text.ja : text.en) : '')
 
   /**
    * 図の代替テキストを言語に合わせる

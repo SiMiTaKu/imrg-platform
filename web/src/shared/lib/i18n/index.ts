@@ -10,4 +10,5 @@ export {
 } from './translation'
 export type { SiteLocale } from './translation'
 export { deLocalizeHref, getLocale, localizeHref }
+export { localizedText } from './localizedText'
 export { toEnglishPlaceName } from './placeName'

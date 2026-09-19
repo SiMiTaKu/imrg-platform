@@ -76,13 +76,13 @@ describe('isUpcoming', () => {
 /** eventsOnDay / eventsInMonth で共通に使うイベント */
 const dayAndMonthEvents = [
   makeEvent({
-    title: { japanese: '期間', english: '期間' },
+    title: { ja: '期間', en: '期間' },
     startDate: '2026-10-30',
     endDate: '2026-11-01',
   }),
-  makeEvent({ title: { japanese: '1日', english: '1日' }, startDate: '2026-11-15' }),
+  makeEvent({ title: { ja: '1日', en: '1日' }, startDate: '2026-11-15' }),
   makeEvent({
-    title: { japanese: '年月だけ', english: '年月だけ' },
+    title: { ja: '年月だけ', en: '年月だけ' },
     schedule: EventSchedule.MONTH_ONLY,
     month: '2026-11',
   }),
@@ -143,11 +143,11 @@ describe('eventsInMonth', () => {
 describe('localizeEvent', () => {
   const event = makeEvent({
     title: {
-      japanese: '全日本新体操選手権大会',
-      english: 'All Japan Rhythmic Gymnastics Championships',
+      ja: '全日本新体操選手権大会',
+      en: 'All Japan Rhythmic Gymnastics Championships',
     },
-    venue: { name: { japanese: '高崎アリーナ（群馬県）', english: 'Takasaki Arena' } },
-    note: { japanese: '日程は仮の発表です。', english: 'The dates are provisional.' },
+    venue: { name: { ja: '高崎アリーナ（群馬県）', en: 'Takasaki Arena' } },
+    note: { ja: '日程は仮の発表です。', en: 'The dates are provisional.' },
   })
 
   describe('正常系', () => {
@@ -196,7 +196,7 @@ describe('localizeEvent', () => {
     it('英語の会場が無い場合、英語でも日本語の会場になること', () => {
       // #region Given
       const noVenueEnglish = makeEvent({
-        venue: { name: { japanese: '青森県武道館' } },
+        venue: { name: { ja: '青森県武道館' } },
       })
       // #endregion
 
@@ -212,7 +212,7 @@ describe('localizeEvent', () => {
     it('英語の会場が無く、会場が都道府県名だけの場合、英語の都道府県名になること', () => {
       // #region Given
       const prefectureOnly = makeEvent({
-        venue: { name: { japanese: '東京都' } },
+        venue: { name: { ja: '東京都' } },
       })
       // #endregion
 
@@ -228,7 +228,7 @@ describe('localizeEvent', () => {
     it('英語の会場が無く、会場が都道府県名だけの場合でも、日本語では日本語の会場になること', () => {
       // #region Given
       const prefectureOnly = makeEvent({
-        venue: { name: { japanese: '東京都' } },
+        venue: { name: { ja: '東京都' } },
       })
       // #endregion
 
@@ -244,7 +244,7 @@ describe('localizeEvent', () => {
     it('日本語と英語の大会名が同じ場合、もう一方の言語の大会名が無いこと', () => {
       // #region Given
       const sameTitle = makeEvent({
-        title: { japanese: 'BLUE TOKYO', english: 'BLUE TOKYO' },
+        title: { ja: 'BLUE TOKYO', en: 'BLUE TOKYO' },
       })
       // #endregion
 

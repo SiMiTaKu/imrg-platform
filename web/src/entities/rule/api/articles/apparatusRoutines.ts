@@ -2,28 +2,28 @@ import type { RuleArticle } from '../../model/ruleBook'
 
 /**
  * 第3章 付録のうち、個人競技の演技（手具ごとの規格と技術）。
- * 英語（`title.english` など）は日本語の本文を訳したもの
+ * 英語（`title.en` など）は日本語の本文を訳したもの
  */
 export const APPARATUS_ROUTINES_ARTICLES: RuleArticle[] = [
   {
     title: {
-      japanese: '個人競技の演技',
-      english: 'Individual Routines',
+      ja: '個人競技の演技',
+      en: 'Individual Routines',
     },
     section: [
       {
         title: {
-          japanese: 'スティック（棒）の演技',
-          english: 'Stick Routines',
+          ja: 'スティック（棒）の演技',
+          en: 'Stick Routines',
         },
         block: [
           {
             title: {
-              japanese: 'スティック（棒）の規格',
-              english: 'Stick Specifications',
+              ja: 'スティック（棒）の規格',
+              en: 'Stick Specifications',
             },
             element: {
-              japanese: `1. 素材
+              ja: `1. 素材
 木製または合成素材
 
 2. 重量
@@ -34,7 +34,7 @@ export const APPARATUS_ROUTINES_ARTICLES: RuleArticle[] = [
 
 4. 色彩
 自由`,
-              english: `1. Material
+              en: `1. Material
 Wood or synthetic material
 
 2. Weight
@@ -49,11 +49,11 @@ Free`,
           },
           {
             title: {
-              japanese: 'スティック（棒）の技術',
-              english: 'Stick Technique',
+              ja: 'スティック（棒）の技術',
+              en: 'Stick Technique',
             },
             element: {
-              japanese: `【諸要素群】
+              ja: `【諸要素群】
 1. 基礎要素群
   a. プロペラ回旋（風車）
   b. ころがし
@@ -76,7 +76,7 @@ Free`,
 
 4. スティック（棒）の持ち方
 大きな広がりを持つ動き（例えば、振り・プロペラ回旋など）の間には、通常、スティックの先端あるいは中央（中心）の部分を指で軽くにぎるようにしなければならない。また、スティックを広げた手の上にのせたりすることも一時的に可能である。`,
-              english: `[Element groups]
+              en: `[Element groups]
 1. Basic element groups
   a. Propeller rotations (mills)
   b. Rolls
@@ -103,11 +103,11 @@ During wide movements (e.g. swings and propeller rotations), the stick is usuall
           },
           {
             title: {
-              japanese: '構成に要求されるもの',
-              english: 'Requirements for the Composition',
+              ja: '構成に要求されるもの',
+              en: 'Requirements for the Composition',
             },
             element: {
-              japanese: `1. プロペラ回旋
+              ja: `1. プロペラ回旋
 プロペラ回旋は２回以上入れなければならない。
 
 2. ころがし
@@ -133,7 +133,7 @@ During wide movements (e.g. swings and propeller rotations), the stick is usuall
   f. さまざまなころがし。
   
 ※　スティックを投げる場合には、必ず身体が動いていなければならい。演技全体を通じて、スティックが常に身体と調和を保って動いているということが、スティックの演技には不可欠である。`,
-              english: `1. Propeller rotations
+              en: `1. Propeller rotations
 At least two propeller rotations must be included.
 
 2. Rolls
@@ -163,11 +163,11 @@ At least one roll of at least 1 m must be included.
           },
           {
             title: {
-              japanese: '難度のレベルを判断するための一般的目安',
-              english: 'General Guidelines for Judging the Level of Difficulty',
+              ja: '難度のレベルを判断するための一般的目安',
+              en: 'General Guidelines for Judging the Level of Difficulty',
             },
             element: {
-              japanese: `スティックに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
+              ja: `スティックに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
 1. Ａ難度
 以下の要素は、徒手系や転回系の要素と組み合わせて実施した場合、Ａ難度として数える。
   a. スティックを保持したまま、Ａ難度の転回運動を実施した場合。
@@ -200,7 +200,7 @@ At least one roll of at least 1 m must be included.
   c. Ｄ難度の転回運動を実施した場合。
   d. スティックを投げ上げている間に、３つ以上の徒手系や転回系を組み合わせて実施した場合。
   e. その他、Ｄ難度としての組み合わせの技術価値の高い場合。`,
-              english: `Elements characteristic of the stick usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
+              en: `Elements characteristic of the stick usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
 1. A difficulty
 The following elements count as A difficulties when combined with free-hand or tumbling elements.
   a. An A difficulty tumbling movement performed while holding the stick.
@@ -239,17 +239,17 @@ The following elements count as D difficulties when combined with tumbling eleme
       },
       {
         title: {
-          japanese: 'リング（輪）の演技',
-          english: 'Ring Routines',
+          ja: 'リング（輪）の演技',
+          en: 'Ring Routines',
         },
         block: [
           {
             title: {
-              japanese: 'リング（輪）の規格',
-              english: 'Ring Specifications',
+              ja: 'リング（輪）の規格',
+              en: 'Ring Specifications',
             },
             element: {
-              japanese: `1. 素材
+              ja: `1. 素材
 木製または合成素材。
 
 2. 重量
@@ -260,7 +260,7 @@ The following elements count as D difficulties when combined with tumbling eleme
 
 4. 色彩
 自由。各輪の色を変えてもよい。`,
-              english: `1. Material
+              en: `1. Material
 Wood or synthetic material.
 
 2. Weight
@@ -275,11 +275,11 @@ Free. The two rings may be different colors.`,
           },
           {
             title: {
-              japanese: 'リング（輪）の技術',
-              english: 'Ring Technique',
+              ja: 'リング（輪）の技術',
+              en: 'Ring Technique',
             },
             element: {
-              japanese: `【諸要素群】
+              ja: `【諸要素群】
 1. 基礎要素群
   a. まわし（手・身体）
   b. ころがし
@@ -303,7 +303,7 @@ Free. The two rings may be different colors.`,
 
 4. リング（輪）の持ち方
 リングに特徴的な諸要素の実施のためには、リングに自在に動くように軽く持たななければならない。また、一時的に握りしめることも可能である。`,
-              english: `[Element groups]
+              en: `[Element groups]
 1. Basic element groups
   a. Spins (on the hand or body)
   b. Rolls
@@ -331,11 +331,11 @@ To perform the elements characteristic of the rings, the rings must be held ligh
           },
           {
             title: {
-              japanese: '構成に要求されるもの',
-              english: 'Requirements for the Composition',
+              ja: '構成に要求されるもの',
+              en: 'Requirements for the Composition',
             },
             element: {
-              japanese: `
+              ja: `
 1. まわし（手・身体）
 ２回転以上のまわしを２回入れなければならない。
 
@@ -364,7 +364,7 @@ To perform the elements characteristic of the rings, the rings must be held ligh
   f. さまざまな種類のころがし。
   
   ※　リングを一つのみ投げる場合には、他のリングも必ず動いていなければならない。演技全体を通じて２つのリングが常に体と調和を保って動いているということが、リングに演技には不可欠である。`,
-              english: `1. Spins (on the hand or body)
+              en: `1. Spins (on the hand or body)
 Two spins of at least two rotations must be included.
 
 2. Rolls
@@ -396,11 +396,11 @@ At least one roll of at least 1 m must be included.
           },
           {
             title: {
-              japanese: '難度レベルを判断するための一般的目安',
-              english: 'General Guidelines for Judging the Level of Difficulty',
+              ja: '難度レベルを判断するための一般的目安',
+              en: 'General Guidelines for Judging the Level of Difficulty',
             },
             element: {
-              japanese: `リングに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わせた場合はＢ難度、徒手のＣ難度の要素と組み合わせて実施した場合はＣ難度として数える。
+              ja: `リングに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わせた場合はＢ難度、徒手のＣ難度の要素と組み合わせて実施した場合はＣ難度として数える。
 1. Ａ難度
 以下の要素は、徒手系や、転回系の要素と組み合わせて実施した場合、Ａ難度として数える。
   a. リングを保持したまま、Ａ難度の転回運動を実施した場合。
@@ -438,7 +438,7 @@ At least one roll of at least 1 m must be included.
   c. Ｄ難度の転回運動を実施した場合。
   d. リングを投げ上げている間に、３つ以上の徒手系や転回運動を組み合わせて実施した場合。
   e. その他、Ｄ難度としての組み合わせの技術価値の高い場合。`,
-              english: `Elements characteristic of the rings usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
+              en: `Elements characteristic of the rings usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
 1. A difficulty
 The following elements count as A difficulties when combined with free-hand or tumbling elements.
   a. An A difficulty tumbling movement performed while holding the rings.
@@ -482,17 +482,17 @@ The following elements count as D difficulties when combined with tumbling eleme
       },
       {
         title: {
-          japanese: 'ロープ（縄）の演技',
-          english: 'Rope Routines',
+          ja: 'ロープ（縄）の演技',
+          en: 'Rope Routines',
         },
         block: [
           {
             title: {
-              japanese: 'ロープ（縄）の規格',
-              english: 'Rope Specifications',
+              ja: 'ロープ（縄）の規格',
+              en: 'Rope Specifications',
             },
             element: {
-              japanese: `1. 素材
+              ja: `1. 素材
 麻製または合成繊維。ただし、合成繊維の場合は麻製のように軽くしなやかなものとする。
 
 2. 重量
@@ -503,7 +503,7 @@ The following elements count as D difficulties when combined with tumbling eleme
 
 4. 色彩
 自由。`,
-              english: `1. Material
+              en: `1. Material
 Hemp or synthetic fiber. A synthetic rope must be as light and supple as a hemp rope.
 
 2. Weight
@@ -518,11 +518,11 @@ Free.`,
           },
           {
             title: {
-              japanese: 'ロープ（縄）の技術',
-              english: 'Rope Technique',
+              ja: 'ロープ（縄）の技術',
+              en: 'Rope Technique',
             },
             element: {
-              japanese: `【諸要素群】
+              ja: `【諸要素群】
 1. 基礎要素群
   a. さまざまな種類の連続とび
   b. 投げ
@@ -545,7 +545,7 @@ Free.`,
 
 4. ロープの持ち方
 ロープに特徴的な諸要素の実施のためには、ロープに自在に動くよう軽く持たなければならない。また、ロープを一時的に体に巻きつけたり両腕に張った状態にすることも可能である。`,
-              english: `[Element groups]
+              en: `[Element groups]
 1. Basic element groups
   a. Various kinds of consecutive jumps
   b. Throws
@@ -572,11 +572,11 @@ To perform the elements characteristic of the rope, it must be held lightly so t
           },
           {
             title: {
-              japanese: '構成に要求されるもの',
-              english: 'Requirements for the Composition',
+              ja: '構成に要求されるもの',
+              en: 'Requirements for the Composition',
             },
             element: {
-              japanese: `1. とび
+              ja: `1. とび
 下記の①〜④のとびを入れなければならない。ただし、転回系のロープのとびは除く。
   a. その場での２回以上の連続前回しとび（例：前回しの１重とびや２重とびを２回以上行う。）
   b. その場での２回以上の連続後ろ回しとび（例：後ろ回しの１重とびや２重とびを２回以上行う。）
@@ -601,7 +601,7 @@ To perform the elements characteristic of the rope, it must be held lightly so t
   d. ロープのスピードの変化
   e. ロープの持ち方の変化（ひろげたロープ、折ったロープ、片手持ち、両手持ち、先端を持つ、中央を持つなど）
   ※　ロープを折った状態での操作は、この手具の特徴的なものであるが、それに偏った状態の演技ではいけない。ロープをひろげた状態の演技が重要である。片手持ちでの要素の実施には左手と右手は平均して使わなければならない。`,
-              english: `1. Jumps
+              en: `1. Jumps
 The jumps a to d below must be included. Rope jumps within tumbling do not count.
   a. At least two consecutive forward jumps on the spot (e.g. two or more forward single or double unders.)
   b. At least two consecutive backward jumps on the spot (e.g. two or more backward single or double unders.)
@@ -630,11 +630,11 @@ The jumps a to d below must be included. Rope jumps within tumbling do not count
           },
           {
             title: {
-              japanese: '難度のレベルを判断するための一般的目安',
-              english: 'General Guidelines for Judging the Level of Difficulty',
+              ja: '難度のレベルを判断するための一般的目安',
+              en: 'General Guidelines for Judging the Level of Difficulty',
             },
             element: {
-              japanese: `ロープに特徴的な諸要素は通常、それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
+              ja: `ロープに特徴的な諸要素は通常、それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度の要素と組み合わされて実施された場合はＣ難度として数える。
                   
 1. Ａ難度
 以下の要素は、徒手系や転回系の要素と組み合わせて実施した場合、Ａ難度として数える。
@@ -671,7 +671,7 @@ The jumps a to d below must be included. Rope jumps within tumbling do not count
   c. Ｄ難度の転回運動を実施した場合。
   d. ロープを投げ上げている間に、３つ以上の徒手系や転回系を組み合わせて実施した場合。
   e. その他、Ｄ難度としての組み合わせの技術価値の高い場合。`,
-              english: `Elements characteristic of the rope usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
+              en: `Elements characteristic of the rope usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
 
 1. A difficulty
 The following elements count as A difficulties when combined with free-hand or tumbling elements.
@@ -714,17 +714,17 @@ The following elements count as D difficulties when combined with tumbling eleme
       },
       {
         title: {
-          japanese: 'クラブ（棍）の演技',
-          english: 'Club Routines',
+          ja: 'クラブ（棍）の演技',
+          en: 'Club Routines',
         },
         block: [
           {
             title: {
-              japanese: '',
-              english: '',
+              ja: '',
+              en: '',
             },
             element: {
-              japanese: `1. 素材
+              ja: `1. 素材
 木製または合成素材。
 
 2. 重量
@@ -735,7 +735,7 @@ The following elements count as D difficulties when combined with tumbling eleme
 
 4. 色彩
 自由。各クラブ（棍）の色を変えてもよい。`,
-              english: `1. Material
+              en: `1. Material
 Wood or synthetic material.
 
 2. Weight
@@ -750,11 +750,11 @@ Free. The two clubs may be different colors.`,
           },
           {
             title: {
-              japanese: 'クラブ（棍）の技術',
-              english: 'Club Technique',
+              ja: 'クラブ（棍）の技術',
+              en: 'Club Technique',
             },
             element: {
-              japanese: `【各要素群】
+              ja: `【各要素群】
 1. 基礎要素群
   a. プロペラ回旋（風車）
   b. ころがし
@@ -777,7 +777,7 @@ Free. The two clubs may be different colors.`,
   
 【クラブの持ち方】
   大きな広がりを持つ動き（例えば、振り・プロペラ回旋など）の間には、通常、クラブの頭の部分を指で軽く握るようにしなければならない。プロペラ回旋、小円、クラブの握りなどの間には、クラブの頭の部分が手のくぼみの中で自由に回るように、指で軽く握るようにしなければならない。また、クラブの首の部分や太い部分を持ったり、広げた手の上にのせたりすることも、一時的には可能である。`,
-              english: `[Element groups]
+              en: `[Element groups]
 1. Basic element groups
   a. Propeller rotations (mills)
   b. Rolls
@@ -804,11 +804,11 @@ These elements can be performed taking the following into account.
           },
           {
             title: {
-              japanese: '構成に要求されるもの',
-              english: 'Requirements for the Composition',
+              ja: '構成に要求されるもの',
+              en: 'Requirements for the Composition',
             },
             element: {
-              japanese: `1. プロペラ回旋（風車）
+              ja: `1. プロペラ回旋（風車）
 プロペラ回旋は２回転以上を２回以上入れなければならない。
 
 2. ころがし
@@ -836,7 +836,7 @@ These elements can be performed taking the following into account.
   f. さまざまなころがし。
   
 ※　クラブ１本のみ投げる場合には、他のクラブも必ず動いていなければならない。演技全体を通じて２本のクラブが常に身体と調和を保って動いているということが、クラブの演技には不可欠である。`,
-              english: `1. Propeller rotations (mills)
+              en: `1. Propeller rotations (mills)
 At least two propeller rotations of at least two turns must be included.
 
 2. Rolls
@@ -868,11 +868,11 @@ At least one roll of at least 50 cm must be included.
           },
           {
             title: {
-              japanese: '難度レベルを判断するための一般的目安',
-              english: 'General Guidelines for Judging the Level of Difficulty',
+              ja: '難度レベルを判断するための一般的目安',
+              en: 'General Guidelines for Judging the Level of Difficulty',
             },
             element: {
-              japanese: `クラブに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度と組み合わされて実施された場合はＣ難度として数える。
+              ja: `クラブに特徴的な諸要素は、通常それが徒手のＢ難度の要素と組み合わされた場合はＢ難度、徒手のＣ難度と組み合わされて実施された場合はＣ難度として数える。
 1. A難度
 以下の要素は、徒手系や転回系の要素と組み合わせて実施した場合、Ａ難度として数える。
   a. クラブを保持したまま、Ａ難度の転回運動を実施した場合。
@@ -906,7 +906,7 @@ At least one roll of at least 50 cm must be included.
   c. Ｄ難度の転回運動を実施した場合。
   d. クラブを投げ上げている間に、３つ以上の徒手系や転回系を組み合わせて実施した場合。
   e. その他、Ｄ難度としての組み合わせの技術価値の高い場合。`,
-              english: `Elements characteristic of the clubs usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
+              en: `Elements characteristic of the clubs usually count as B difficulties when combined with B difficulty free-hand elements, and as C difficulties when combined with C difficulty free-hand elements.
 1. A difficulty
 The following elements count as A difficulties when combined with free-hand or tumbling elements.
   a. An A difficulty tumbling movement performed while holding the clubs.

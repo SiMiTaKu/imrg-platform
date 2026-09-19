@@ -51,14 +51,14 @@ const pad = (value: number): string => String(value).padStart(2, '0')
  * @returns 日本語は「日」、英語は "Sun" の形
  */
 export const weekdayName = (weekday: Weekday, locale: SiteLocale): string =>
-  locale === 'en' ? weekday.english : weekday.japanese
+  locale === 'en' ? weekday.en : weekday.ja
 
 /**
  * 月の短い英語の表記を返す（10 → "Oct"）
  * @param month - 月（1〜12）
  * @returns 英語の月の先頭3文字
  */
-export const shortMonthEnglish = (month: number): string => monthOfNumber(month).english.slice(0, 3)
+export const shortMonthEnglish = (month: number): string => monthOfNumber(month).en.slice(0, 3)
 
 /**
  * 閲覧者の端末の日付を "YYYY-MM-DD" にする
@@ -140,7 +140,7 @@ export const formatMonthJapanese = (monthKey: string): string => {
  */
 export const formatMonthEnglish = (monthKey: string): string => {
   const { year, month } = parseDate(monthKey)
-  return `${monthOfNumber(month).english} ${year}`
+  return `${monthOfNumber(month).en} ${year}`
 }
 
 /**
@@ -169,7 +169,7 @@ export const formatDayJapanese = (value: string): string => {
  */
 export const formatDayEnglish = (value: string): string => {
   const { year, month, day } = parseDate(value)
-  return `${monthOfNumber(month).english} ${day}, ${year}`
+  return `${monthOfNumber(month).en} ${day}, ${year}`
 }
 
 /**

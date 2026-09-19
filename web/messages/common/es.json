@@ -1,0 +1,11 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "locale_name_ja": "日本語",
+  "locale_name_en": "English",
+  "locale_name_zh": "中文",
+  "locale_name_ko": "한국어",
+  "locale_name_es": "Español",
+  "locale_name_fr": "Français",
+  "locale_name_ru": "Русский",
+  "locale_name_hi": "हिन्दी"
+}

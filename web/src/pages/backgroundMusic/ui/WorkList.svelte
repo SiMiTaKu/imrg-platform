@@ -22,9 +22,7 @@
     {#each WORK_LIST as work, index (index)}
       <li class="card">
         <a class="link" href={work.youtube} rel="noopener noreferrer" target="_blank">
-          <span class="name"
-            >{locale === 'ja' ? work.customerName.japanese : work.customerName.english}</span
-          >
+          <span class="name">{locale === 'ja' ? work.customerName.ja : work.customerName.en}</span>
           <span class="apparatus">{apparatusOfSlug(work.apparatus).label()}</span>
           <div class="youtube">
             <ImageAssets

@@ -43,4 +43,4 @@ export const isIndividualVideo = (video: VideoResource): video is IndividualVide
 export const localizedName = (
   resource: PlayerResource | TeamResource,
   locale: SiteLocale,
-): string => (locale === 'en' ? resource.name.english : resource.name.japanese)
+): string => (locale === 'en' ? resource.name.en : resource.name.ja)
