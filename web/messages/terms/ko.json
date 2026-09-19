@@ -1,3 +1,4 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format"
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "terms_enacted_at": "제정일: 2026년 9월 15일"
 }

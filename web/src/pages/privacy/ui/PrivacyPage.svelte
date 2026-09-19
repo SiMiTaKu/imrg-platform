@@ -4,14 +4,17 @@
   import { PolicyLayout } from '@widgets/policyLayout'
   import PrivacyBodyEnglish from './PrivacyBodyEnglish.svelte'
   import PrivacyBodyJapanese from './PrivacyBodyJapanese.svelte'
+  import PrivacyBodyKorean from './PrivacyBodyKorean.svelte'
 
-  // 表示する言語の本文だけを出す
-  const isJapanese = getLocale() === 'ja'
+  // 表示する言語の本文だけを出す。訳が無い言語は英語の本文にする
+  const locale = getLocale()
 </script>
 
 <PolicyLayout enactedAt={m.privacy_enacted_at()} title={m.meta_privacy_page()}>
-  {#if isJapanese}
+  {#if locale === 'ja'}
     <PrivacyBodyJapanese />
+  {:else if locale === 'ko'}
+    <PrivacyBodyKorean />
   {:else}
     <PrivacyBodyEnglish />
   {/if}

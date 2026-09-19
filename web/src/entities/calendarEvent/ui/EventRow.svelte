@@ -25,8 +25,8 @@
 
   const locale = getLocale() as SiteLocale
 
-  // 日程と会場の区切り。英語ページでは全角の中黒を使わない
-  const separator = locale === 'en' ? '·' : '・'
+  // 日程と会場の区切り。日本語以外のページでは全角の中黒を使わない
+  const separator = locale === 'ja' ? '・' : '·'
 
   const localized = $derived(localizeEvent(event, locale))
   const badge = $derived(toDateBadge(eventStartDate(event) ?? eventMonthKey(event)))

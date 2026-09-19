@@ -3,9 +3,11 @@ export {
   formatDay,
   formatDayEnglish,
   formatDayJapanese,
+  formatDayKorean,
   formatMonth,
   formatMonthEnglish,
   formatMonthJapanese,
+  formatMonthKorean,
   formatYear,
   monthOfNumber,
   parseDate,
@@ -18,4 +20,9 @@ export {
   weekdayOf,
   weekdayOfIndex,
 } from './date'
-export { formatDateRange, formatDateRangeEnglish, formatDateRangeJapanese } from './dateRange'
+export {
+  formatDateRange,
+  formatDateRangeEnglish,
+  formatDateRangeJapanese,
+  formatDateRangeKorean,
+} from './dateRange'

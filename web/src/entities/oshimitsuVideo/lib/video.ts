@@ -1,4 +1,5 @@
 import type { SiteLocale } from '@shared/lib/i18n'
+import { localizedText } from '@shared/lib/i18n'
 import { APPARATUSES } from '@shared/config/apparatus'
 import type { Apparatus as ApparatusType } from '@shared/model'
 import { ContentType } from '../config/category'
@@ -38,9 +39,9 @@ export const isIndividualVideo = (video: VideoResource): video is IndividualVide
  * 選手・チームの名前を、表示する言語で返す
  * @param resource - 選手かチーム
  * @param locale - 表示する言語
- * @returns 日本語なら `name`、英語なら `nameEnglish`
+ * @returns その言語の名前。訳が無ければ英語、それも無ければ日本語
  */
 export const localizedName = (
   resource: PlayerResource | TeamResource,
   locale: SiteLocale,
-): string => (locale === 'en' ? resource.name.en : resource.name.ja)
+): string => localizedText(resource.name, locale)
