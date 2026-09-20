@@ -274,7 +274,14 @@ Phase 4の進め方（2026-09-19に決めた）
   - サイトの死活はGitHub Actionsで30分ごとに外から確かめる（費用ゼロ。Route53のヘルスチェックは月$0.50かかる）
   - CloudFrontの5xx・4xxと証明書の残り日数はCloudWatchのアラームからメールで知らせる（10個まで無料枠の範囲）
 - [ ] **4-0. AWSの片づけ**（Terraformで作る前に、これまでの作業で残ったものを消す。手順は [aws-cleanup.md](aws-cleanup.md)）
-  - 棚卸しは `terraform/scripts/aws-audit.sh`（読むだけ。何も消さない）
+  - 棚卸しは `terraform/scripts/aws-audit.sh`（読むだけ。何も消さない）。2026-09-20に実施
+  - 残っていたものは、ほぼ2023〜2024年に試したAmplifyのチュートリアル（`d1o1ui2gd5pshh` `d295caw51lipy2` `d7q1eopfj7aj0` `src-owner-sandbox` `reacttutorial`）
+  - [x] RDSのスナップショット `rds-mysql-10mintutorial-snapshot`（20GB・2023-10-21）を消した。**毎月の $0.11 はこれだった**（2026-09-20）
+    - 2022-11-06に作ったMySQLインスタンスの分。インスタンス本体は2023年に消えており、スナップショットだけ3年残っていた
+  - [ ] 古いAmplifyのアプリ `d2e38588w4qs62`（svelte-kit-to-amplify）を消す。CloudFormationのスタック・Cognito・AppSync・DynamoDB・Lambdaがぶら下がっているので、**アプリから消す**
+  - [ ] 孤立したCognito `ap-northeast-1_HwYeR5W0G`、ログ117個、`CDKToolkit`
+  - [ ] IAMユーザー `takumi-shimizu-iam-amplify`（鍵の最終使用は2025-07-30）
+  - ACMに証明書が1つも無い。Amplifyが内部で持っているため、Terraformでは新しく作ることになる（取り込みは不要）
 - [x] **4-6. ステージング環境を用意する**（`envs/stg`。配る手順は `_deploy.yml` に共通化し、本番とステージングで同じものを使う）
 - [ ] **4-1. 現在の AWS 構成を洗い出す**（Route53のゾーンID・証明書・Amplifyアプリ）※AWSの資格情報の設定待ち
 - [ ] **4-3. 作って切り替える**（新規作成 → CloudFrontのドメインで確認 → Route53を切り替え → Amplifyを消す）
