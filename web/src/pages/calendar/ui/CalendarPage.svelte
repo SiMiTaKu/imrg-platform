@@ -223,7 +223,7 @@
       )}
 {/snippet}
 
-<article class="calendar" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
+<article class="calendar" class:mobile={$pageData.isMobile}>
   <CalendarIntro total={EVENTS.length} upcoming={upcomingAll.length} {updatedAtText} />
 
   <CalendarUpcoming events={upcomingPicks} {today} onseeall={showUpcomingList} />
@@ -411,20 +411,12 @@
 </article>
 
 <style lang="scss">
-  .desktop {
-    --max-width: 960px;
-  }
-
-  .mobile {
-    --max-width: 100%;
-  }
-
   .calendar {
     // 固定幅だと、画面がそれより狭いときに横へはみ出す
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-40 0 $space-size-80;
+    padding: $space-size-40 var(--content-padding-inline) $space-size-80;
     font-family:
       'Hiragino Sans', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Meiryo, sans-serif;
     font-size: $font-size-16;
@@ -619,7 +611,7 @@
     justify-items: center;
     gap: $space-size-12;
     padding: $space-size-32 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     text-align: center;
     color: map.get($gray, light-text);
   }

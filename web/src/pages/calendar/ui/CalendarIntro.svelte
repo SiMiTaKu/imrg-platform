@@ -89,7 +89,7 @@
 
   .speaker {
     margin: 0 0 $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
   }
@@ -107,7 +107,7 @@
   .say,
   .how {
     margin: 0 0 $space-size-12;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, text);
     line-height: 1.9;
   }
@@ -149,7 +149,7 @@
   }
 
   dt {
-    font-size: $font-size-10;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, light-text);
     letter-spacing: 0.06em;
@@ -170,7 +170,7 @@
 
   .unit {
     margin-left: $space-size-2;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: normal;
     color: map.get($gray, light-text);
   }
@@ -187,7 +187,7 @@
 
   .caution {
     margin: 0;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, light-text);
     line-height: 1.8;
   }

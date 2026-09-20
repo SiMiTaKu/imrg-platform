@@ -27,24 +27,27 @@
   .numbers {
     width: 100%;
     color: $white;
-    background: map.get($gray, 800);
+
+    // 数字を置く帯は紺。白い文字がいちばん読める濃さ
+    background: map.get($sky-blue, 900);
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-56 $space-size-24;
+    padding: $space-size-56 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-40 $space-size-16;
+    padding: $space-size-40 var(--content-padding-inline);
   }
 
   h2 {
     margin: 0 0 $space-size-24;
     font-size: $font-size-18;
     font-weight: normal;
-    color: map.get($gray, 300);
+    color: map.get($sky-blue, 200);
     letter-spacing: 0.08em;
     text-align: center;
   }
@@ -86,18 +89,18 @@
     margin-left: 2px;
     font-size: $font-size-14;
     font-weight: normal;
-    color: map.get($gray, 300);
+    color: map.get($sky-blue, 200);
   }
 
   .label {
     font-size: $font-size-12;
-    color: map.get($gray, 300);
+    color: map.get($sky-blue, 200);
   }
 
   .source {
     margin: 0;
     font-size: $font-size-12;
-    color: map.get($gray, 300);
+    color: map.get($sky-blue, 200);
     line-height: 1.9;
     text-align: center;
   }

@@ -211,13 +211,11 @@
 
 <style lang="scss">
   .desktop {
-    --max-width: 760px;
     --title-size: #{$font-size-30};
     --fact-columns: repeat(3, minmax(0, 1fr));
   }
 
   .mobile {
-    --width: calc(100% - 32px);
     --title-size: #{$font-size-22};
     --fact-columns: minmax(0, 1fr);
   }
@@ -225,9 +223,9 @@
   .event-detail {
     // 固定幅だと、画面がそれより狭いときに横へはみ出す
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-32 0 $space-size-80;
+    padding: $space-size-32 var(--content-padding-inline) $space-size-80;
     font-family:
       'Hiragino Sans', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Meiryo, sans-serif;
     color: map.get($gray, text);
@@ -349,7 +347,7 @@
   }
 
   dt {
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, light-text);
     letter-spacing: 0.06em;
@@ -386,7 +384,7 @@
   }
 
   .fact-note {
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, light-text);
     line-height: 1.6;
   }
@@ -402,7 +400,7 @@
 
   .note-title {
     margin: 0 0 $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, light-text);
     letter-spacing: 0.06em;
@@ -410,7 +408,7 @@
 
   .note-text {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     line-height: 1.9;
   }
 

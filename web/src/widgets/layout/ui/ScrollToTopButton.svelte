@@ -32,7 +32,7 @@
   .desktop {
     --bottom: #{$space-size-8};
     --right: 0;
-    --wrapper-max-width: 1024px;
+    --wrapper-max-width: var(--content-max-width);
     --botton-size: 56px;
   }
 
@@ -72,10 +72,13 @@
     width: var(--botton-size);
     height: var(--botton-size);
     font-size: $font-size-14;
-    color: $white;
-    border: none;
+
+    // 白抜き。ページの中身の上に浮くので、塗りつぶさずに枠で示す
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
     border-radius: $border-radius-64;
-    background: map.get($sky-blue, button);
+    background: $white;
+    box-shadow: 0 2px 8px rgb(0 48 99 / 15%);
     pointer-events: auto;
   }
 </style>

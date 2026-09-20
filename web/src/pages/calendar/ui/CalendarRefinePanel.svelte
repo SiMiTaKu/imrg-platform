@@ -133,7 +133,7 @@
 
   // 件数を添えると、押す前に何件あるか分かる
   .count {
-    font-size: $font-size-10;
+    font-size: $font-size-12;
     font-weight: normal;
     color: map.get($gray, light-text);
     font-variant-numeric: tabular-nums;

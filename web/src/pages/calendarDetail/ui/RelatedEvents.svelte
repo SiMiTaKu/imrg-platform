@@ -92,7 +92,7 @@
 
   .item-category {
     align-self: flex-start;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, 600);
   }
 </style>

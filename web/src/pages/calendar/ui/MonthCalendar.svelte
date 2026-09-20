@@ -379,7 +379,7 @@
   .chip {
     display: block;
     padding: 1px $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, text);
     border-radius: 2px;
     background: color-mix(in srgb, var(--color) 12%, white);
@@ -396,7 +396,7 @@
 
   .more {
     padding: 0 $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
     border: none;

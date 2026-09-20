@@ -4,9 +4,13 @@
   import { SectionHeading } from '@widgets/orderService'
   import { WORKS_HEADING } from '../config/content'
   import { WORK_LIST } from '../config/workList'
-  import WorkCard from './WorkCard.svelte'
+  import WorkTile from './WorkTile.svelte'
+  import WorkViewer from './WorkViewer.svelte'
 
   const isMobile = $derived($pageData.isMobile)
+
+  /** 大きく見ている作品の番号（0 始まり）。null は閉じている */
+  let openedIndex = $state<number | null>(null)
 </script>
 
 <section class="work-list" class:mobile={isMobile} id="works">
@@ -19,11 +23,23 @@
 
     <ul class="list">
       {#each WORK_LIST as work, index (index)}
-        <li>
-          <WorkCard images={work.images} workIndex={index} />
-        </li>
+        <WorkTile
+          images={work.images}
+          workNumber={index + 1}
+          alt={m.decorating_apparatus_work_image_alt({ work: index + 1, image: 1 })}
+          onOpen={() => (openedIndex = index)}
+        />
       {/each}
     </ul>
+
+    {#if openedIndex !== null}
+      <WorkViewer
+        images={WORK_LIST[openedIndex].images}
+        workNumber={openedIndex + 1}
+        alt={m.decorating_apparatus_work_image_alt({ work: openedIndex + 1, image: 1 })}
+        onClose={() => (openedIndex = null)}
+      />
+    {/if}
 
     <p class="count">これまでに {WORK_LIST.length} 本の手具を仕上げました。</p>
   </div>
@@ -36,13 +52,14 @@
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-80 $space-size-24;
+    padding: $space-size-80 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-48 $space-size-16;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .list {
@@ -57,10 +74,6 @@
   .mobile .list {
     gap: $space-size-12;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .list li {
-    min-width: 0;
   }
 
   .count {

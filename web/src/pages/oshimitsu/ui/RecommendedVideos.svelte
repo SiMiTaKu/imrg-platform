@@ -50,14 +50,15 @@
     display: flex;
     flex-direction: column;
     gap: $space-size-24;
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-64 $space-size-24 $space-size-80;
+    padding: $space-size-64 var(--content-padding-inline) $space-size-80;
     align-items: center;
   }
 
   .mobile .inner {
-    padding: $space-size-40 $space-size-16 $space-size-48;
+    padding: $space-size-40 var(--content-padding-inline) $space-size-48;
   }
 
   .head {
@@ -75,7 +76,7 @@
 
   .head p {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, light-text);
   }
 

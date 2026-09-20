@@ -71,16 +71,17 @@
   .inner {
     display: flex;
     gap: $space-size-32;
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-56 $space-size-24 $space-size-48;
+    padding: $space-size-56 var(--content-padding-inline) $space-size-48;
     align-items: center;
   }
 
   .mobile .inner {
     flex-direction: column;
     gap: $space-size-16;
-    padding: $space-size-32 $space-size-16 $space-size-40;
+    padding: $space-size-32 var(--content-padding-inline) $space-size-40;
     text-align: center;
     align-items: center;
   }
@@ -98,7 +99,7 @@
 
   .speaker {
     margin: 0 0 $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
   }
@@ -142,7 +143,7 @@
 
   .lead {
     margin: 0 0 $space-size-12;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, 600);
     line-height: 1.9;
     overflow-wrap: anywhere;
@@ -150,7 +151,7 @@
 
   .say {
     margin: 0 0 $space-size-20;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, text);
     line-height: 1.9;
     overflow-wrap: anywhere;
@@ -235,7 +236,7 @@
   }
 
   .unit {
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, light-text);
   }
 </style>

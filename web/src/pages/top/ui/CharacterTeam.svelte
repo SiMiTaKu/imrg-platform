@@ -38,13 +38,14 @@
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-80 $space-size-24;
+    padding: $space-size-80 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-48 $space-size-16;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   header {
@@ -64,7 +65,7 @@
   header p {
     max-width: 40em;
     margin: 0 auto;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, light-text);
     line-height: 1.9;
   }
@@ -107,7 +108,7 @@
 
   .specialty {
     margin: 0 0 $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: var(--accent);
   }
@@ -119,13 +120,13 @@
 
   .reading {
     margin: 0 0 $space-size-8;
-    font-size: $font-size-10;
+    font-size: $font-size-12;
     color: map.get($gray, light-text);
   }
 
   .role {
     margin: 0;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, 600);
     line-height: 1.7;
   }

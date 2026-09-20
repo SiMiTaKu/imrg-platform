@@ -1,6 +1,21 @@
+/*
+  ページ全体で守る決まり。
+
+  - 中身の幅は最大 1024px。広い画面ではそこで止める
+  - 左右には必ず 16px の余白を置く（スマホで文字が画面の端に付かないように）
+  - 文字の大きさは 16px を基準にする。補足は 14px、注記は 12px、
+    それより小さい字は使わない
+*/
+:root {
+  --content-max-width: 1024px;
+  --content-padding-inline: 16px;
+}
+
 body {
   margin: 0;
   font-family: YuGothic, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 /*

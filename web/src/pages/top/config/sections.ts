@@ -34,7 +34,7 @@ export const SERVICES = [
   {
     character: Character.AYATO,
     title: '曲編集',
-    price: '1曲 5,000円〜',
+    price: '個人 5,000円〜／団体 10,000円〜',
     body: '競技時間に合わせて曲を組み、構成に合う展開を作る。原曲の指定からでも、任せてもらっても。',
     href: ROUTES.backgroundMusic,
     action: '作例を見る',

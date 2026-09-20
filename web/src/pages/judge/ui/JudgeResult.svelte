@@ -82,7 +82,7 @@
 
   .speaker {
     margin: 0 0 $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
   }
@@ -98,7 +98,7 @@
 
   .say {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     line-height: 1.9;
     color: map.get($gray, 600);
     text-align: left;

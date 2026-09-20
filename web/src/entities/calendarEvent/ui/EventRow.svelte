@@ -113,7 +113,7 @@
 
   .date-undecided {
     margin-top: $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     text-align: center;
     color: map.get($gray, light-text);

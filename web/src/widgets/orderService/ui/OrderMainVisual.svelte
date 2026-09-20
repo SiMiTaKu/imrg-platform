@@ -16,7 +16,7 @@
 <script lang="ts">
   import { SLIDE_INTERVAL } from '../config/orderService'
   import { onMount } from 'svelte'
-  import { fade, fly } from 'svelte/transition'
+  import { fly } from 'svelte/transition'
   import { CharacterFigure, type CharacterProfile } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { ImageAssets } from '@shared/ui'
@@ -121,21 +121,24 @@
         />
       </div>
     {/if}
-    <!-- 写真はキャッチコピーと切り離して出しっぱなしにする。切り替えの合間に背景が暗く抜けない -->
-    {#key currentIndex}
-      {#if currentSlide.image}
-        <div class="image" in:fade={{ duration: 1000 }} out:fade={{ duration: 1000 }}>
+    <!--
+      写真は全部を同じ場所に重ねて置き、いま見せる1枚だけを前に出して透過を解く。
+      下には前の写真が残り続けるので、入れ替わりの合間に背景が暗く抜けない
+    -->
+    {#each slides as slide, index (index)}
+      {#if slide.image}
+        <div class="image" class:showing={index === currentIndex % slides.length}>
           <ImageAssets
             width="100%"
             height="100%"
-            alt={imageAlt}
-            lazy={false}
-            imageSourceMeta={currentSlide.image}
+            alt={index === currentIndex % slides.length ? imageAlt : ''}
+            lazy={index !== 0}
+            imageSourceMeta={slide.image}
             objectFit="cover"
           />
         </div>
       {/if}
-    {/key}
+    {/each}
   </div>
   <div class="layer veil" aria-hidden="true"></div>
 
@@ -219,9 +222,19 @@
 
   .image {
     grid-area: 1 / 1;
+    z-index: 1;
     width: 100%;
     height: 100%;
     overflow: hidden;
+
+    // 見せる1枚だけを前に出し、ゆっくり現れる。下の写真は消さずに残す
+    opacity: 0;
+    transition: opacity 1.4s ease-in-out;
+  }
+
+  .image.showing {
+    z-index: 2;
+    opacity: 1;
   }
 
   // ImageAssets の img は高さが auto になるので、ここで枠いっぱいに伸ばす
@@ -247,13 +260,13 @@
     align-items: center;
     box-sizing: border-box;
     width: 100%;
-    max-width: 1024px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-56 $space-size-24;
+    padding: $space-size-56 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-40 $space-size-16;
+    padding: $space-size-40 var(--content-padding-inline);
   }
 
   .panel {
@@ -292,7 +305,7 @@
     align-self: flex-start;
     margin: 0;
     padding: $space-size-2 $space-size-8;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
     border-radius: 999px;
@@ -331,7 +344,7 @@
 
   .unit {
     padding: $space-size-2 $space-size-8;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: $white;
     border-radius: 999px;
@@ -366,7 +379,7 @@
 
   .summary {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, 600);
     line-height: 1.9;
     overflow-wrap: anywhere;

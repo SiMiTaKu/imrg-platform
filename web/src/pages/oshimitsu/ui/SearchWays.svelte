@@ -80,13 +80,14 @@
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-64 $space-size-24;
+    padding: $space-size-64 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-40 $space-size-16;
+    padding: $space-size-40 var(--content-padding-inline);
   }
 
   .head {
@@ -105,7 +106,7 @@
 
   .head p {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, light-text);
   }
 
@@ -182,7 +183,7 @@
   .badge {
     align-self: flex-start;
     padding: $space-size-4 $space-size-8;
-    font-size: $font-size-10;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
     border-radius: 999px;
@@ -196,7 +197,7 @@
   }
 
   .types .description {
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, 600);
     line-height: 1.85;
     overflow-wrap: anywhere;
@@ -248,7 +249,7 @@
   }
 
   .apparatuses .description {
-    font-size: $font-size-12;
+    font-size: $font-size-14;
     color: map.get($gray, 600);
     line-height: 1.8;
     overflow-wrap: anywhere;
@@ -293,7 +294,7 @@
 
   .form-note {
     margin: 0 0 $space-size-16;
-    font-size: $font-size-12;
+    font-size: $font-size-14;
     color: map.get($gray, light-text);
   }
 

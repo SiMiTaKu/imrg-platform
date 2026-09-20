@@ -28,12 +28,10 @@
 
 <style lang="scss">
   .desktop {
-    --width: 1024px;
     --content-font-size: #{$font-size-24};
   }
 
   .mobile {
-    --width: 90%;
     --content-font-size: #{$font-size-18};
   }
 
@@ -41,9 +39,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: var(--width);
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 0 0 $space-size-80;
+    padding: 0 var(--content-padding-inline) $space-size-80;
     overflow: hidden;
   }
 

@@ -117,7 +117,7 @@
 
   .note {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     line-height: 1.8;
     color: map.get($gray, light-text);
   }
@@ -127,7 +127,7 @@
     flex: none;
     margin-left: auto;
     padding: $space-size-4 $space-size-12;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
     border: 1px solid map.get($sky-blue, border);

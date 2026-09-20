@@ -40,14 +40,12 @@
 <style lang="scss">
   .desktop {
     --height: 80px;
-    --content-max-width: 1024px;
     --content-grid-template-columns: 1fr auto 80px;
     --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-20};
   }
 
   .mobile {
     --height: 64px;
-    --content-max-width: 100%;
     --content-grid-template-columns: 1fr auto 64px;
     --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-12};
   }

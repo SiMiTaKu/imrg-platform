@@ -102,7 +102,7 @@
   .zoom {
     position: absolute;
     padding: $space-size-2 $space-size-8;
-    font-size: $font-size-10;
+    font-size: $font-size-12;
     color: $white;
     border-radius: 4px;
     background: rgb(0 0 0 / 55%);
@@ -157,7 +157,7 @@
   }
 
   thead th {
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, 600);
     background: map.get($gray, background);
     white-space: nowrap;
@@ -170,7 +170,7 @@
   }
 
   .row-header {
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: normal;
     color: map.get($gray, light-text);
   }

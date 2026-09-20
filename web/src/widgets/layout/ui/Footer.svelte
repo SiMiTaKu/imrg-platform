@@ -43,14 +43,12 @@
 
 <style lang="scss">
   .desktop {
-    --max-width: 1024px;
     --sns-gap: 16px;
     --item-font-size: 16px;
     --icon-min-height: 72px;
   }
 
   .mobile {
-    --max-width: 90%;
     --sns-gap: 8px;
     --item-font-size: 14px;
     --icon-min-height: 36px;
@@ -64,9 +62,9 @@
   .container {
     // 固定幅だと、画面がそれより狭いときに横へはみ出す
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 0 $space-size-16;
+    padding-inline: var(--content-padding-inline);
   }
 
   .sns {

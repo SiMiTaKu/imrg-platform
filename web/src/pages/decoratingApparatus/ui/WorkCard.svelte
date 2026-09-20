@@ -142,7 +142,7 @@
     justify-content: center;
     gap: $space-size-4;
     margin: 0;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     color: map.get($gray, light-text);
   }
 

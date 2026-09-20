@@ -166,15 +166,15 @@
     flex-direction: column;
     gap: $space-size-24;
     width: 100%;
-    max-width: 1024px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-24 $space-size-24 $space-size-80;
+    padding: $space-size-24 var(--content-padding-inline) $space-size-80;
     box-sizing: border-box;
   }
 
   .mobile.result {
     gap: $space-size-16;
-    padding: $space-size-16 $space-size-16 $space-size-48;
+    padding: $space-size-16 var(--content-padding-inline) $space-size-48;
   }
 
   /* ─── 現在地と見出し ─── */
@@ -198,7 +198,7 @@
   .kicker {
     margin: 0;
     padding-left: $space-size-8;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, light-text);
 

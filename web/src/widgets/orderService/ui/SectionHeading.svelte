@@ -58,7 +58,7 @@
     display: inline-block;
     margin: 0;
     padding: $space-size-4 $space-size-12;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: $white;
     border-radius: 999px;
@@ -96,7 +96,7 @@
   .lead {
     max-width: 38em;
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, 600);
     line-height: 1.9;
     overflow-wrap: anywhere;

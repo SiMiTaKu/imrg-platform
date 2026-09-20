@@ -81,13 +81,14 @@
   }
 
   .inner {
-    max-width: 880px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-48 $space-size-24;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-32 $space-size-16;
+    padding: $space-size-32 var(--content-padding-inline);
   }
 
   /* ─── 案内役のひとこと ─── */
@@ -116,7 +117,7 @@
 
   .speaker {
     margin: 0 0 $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
   }
@@ -138,7 +139,6 @@
   }
 
   .mobile .say {
-    font-size: $font-size-14;
     text-align: left;
   }
 
@@ -182,7 +182,7 @@
     align-self: flex-start;
     margin-bottom: $space-size-4;
     padding: $space-size-4 $space-size-8;
-    font-size: $font-size-10;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
     border-radius: 999px;
@@ -197,7 +197,7 @@
 
   .points p {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     line-height: 1.85;
     color: map.get($gray, 600);
   }

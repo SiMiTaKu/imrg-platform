@@ -29,9 +29,10 @@
     </h1>
 
     <p class="summary">
-      男子新体操を<strong>オリンピックスポーツ</strong>にするため、その魅力を<strong>全世界</strong
-      >へ発信しています。大会の情報、ルールの解説、演技の動画を1か所にまとめ、
-      <strong class="accent">8つの言語</strong>で届けています。
+      <strong class="accent">大会・ルール・演技の動画・依頼の窓口</strong
+      >が集まる、男子新体操のためのサイトです。 日本で生まれたこの競技を<strong
+        >オリンピックスポーツ</strong
+      >にするため、その魅力を<strong>全世界</strong>へ発信しています。
     </p>
 
     <div class="actions">
@@ -70,15 +71,16 @@
     flex-direction: column;
     align-items: center;
     gap: $space-size-24;
-    max-width: 780px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-40 $space-size-24 $space-size-48;
+    padding: $space-size-40 var(--content-padding-inline) $space-size-48;
     text-align: center;
   }
 
   .mobile .inner {
     gap: $space-size-16;
-    padding: $space-size-32 $space-size-16 $space-size-40;
+    padding: $space-size-32 var(--content-padding-inline) $space-size-40;
   }
 
   .logo {
@@ -116,10 +118,6 @@
     text-align: left;
   }
 
-  .mobile .summary {
-    font-size: $font-size-14;
-  }
-
   .summary strong {
     color: map.get($gray, text);
   }
@@ -133,6 +131,8 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: $space-size-12;
+    width: 100%;
+    max-width: 540px;
   }
 
   .actions a {
@@ -154,12 +154,19 @@
     transform: translateY(-1px);
   }
 
+  // 2つとも同じ重みの入口なので、大きさをそろえて並べる
+  .primary,
+  .secondary {
+    flex: 1 1 240px;
+  }
+
   .primary {
     color: $white;
     background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
+    box-shadow: 0 2px 8px rgb(0 89 184 / 25%);
   }
 
+  // 依頼の入口は白抜き。押す先が違うことを見た目でも分ける
   .secondary {
     color: map.get($sky-blue, text);
     border: 1px solid map.get($sky-blue, border);

@@ -56,7 +56,7 @@
 
   header p {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, light-text);
   }
 
@@ -103,7 +103,7 @@
 
   .cards p {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     line-height: 1.85;
     color: map.get($gray, 600);
   }

@@ -27,7 +27,11 @@
   import MainVisualImage from '../images/main-visual.png?w=1024;2048&format=webp&as=meta'
   import WorkList from './WorkList.svelte'
 
-  const price = formatYen(PRICE_PER_MUSIC, getLocale())
+  const locale = getLocale()
+  // 個人と団体で長さも手数も違うので、値段を分けて出す
+  const individualPrice = formatYen(PRICE_PER_MUSIC.individual, locale)
+  const groupPrice = formatYen(PRICE_PER_MUSIC.group, locale)
+  const price = `個人 ${individualPrice}／団体 ${groupPrice}`
   // 表現・構成が得意な彩人が、曲編集の案内役
   const guide = findCharacter(Character.AYATO)
 </script>
@@ -43,7 +47,7 @@
     points={HERO.points}
     character={guide}
     contactHref={LINKS.instagram}
-    contactLabel="Instagram で相談する"
+    contactLabel="DM で相談する"
     worksHref="#works"
     worksLabel="作例を見る"
     note={HERO.note}

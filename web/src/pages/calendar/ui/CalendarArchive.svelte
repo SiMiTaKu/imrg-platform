@@ -56,7 +56,6 @@
 
 <style lang="scss">
   .desktop {
-    --width: 100%;
     --title-font-size: #{$font-size-24};
     --link-font-size: #{$font-size-16};
     --date-width: 220px;
@@ -64,7 +63,6 @@
   }
 
   .mobile {
-    --width: 100%;
     --title-font-size: #{$font-size-20};
     --link-font-size: #{$font-size-14};
     --date-width: auto;
@@ -73,8 +71,7 @@
 
   .archive {
     box-sizing: border-box;
-    width: var(--width);
-    max-width: 100%;
+    width: 100%;
     margin: $space-size-48 auto 0;
     padding: $space-size-20;
     border: $border-size-1 solid map.get($gray, 100);
@@ -93,7 +90,7 @@
 
   .archive-lead {
     margin: 0 0 $space-size-16;
-    font-size: $font-size-12;
+    font-size: $font-size-14;
     color: map.get($gray, light-text);
     line-height: 1.8;
   }
@@ -118,7 +115,7 @@
 
   .count {
     padding: 0 $space-size-8;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
     border-radius: $border-radius-64;

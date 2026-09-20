@@ -42,7 +42,7 @@
     points={HERO.points}
     character={guide}
     contactHref={LINKS.instagram}
-    contactLabel="Instagram で相談する"
+    contactLabel="DM で相談する"
     worksHref="#works"
     worksLabel="作例を見る"
     note={HERO.note}

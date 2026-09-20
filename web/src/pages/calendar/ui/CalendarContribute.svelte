@@ -98,7 +98,7 @@
     gap: $space-size-4;
     margin: 0;
     padding-left: $space-size-20;
-    font-size: $font-size-12;
+    font-size: $font-size-14;
     color: map.get($gray, 600);
     line-height: 1.8;
   }
@@ -112,7 +112,7 @@
 
   .contribute-text {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     line-height: 1.9;
   }
 

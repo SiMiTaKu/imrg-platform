@@ -21,7 +21,7 @@ export const buildTopJsonLd = (baseUrl: string): Record<string, unknown> => ({
       url: `${baseUrl}/`,
       sport: "Men's Rhythmic Gymnastics",
       description:
-        '日本で生まれた男子新体操を世界へ広げる活動。大会情報、規則集の解説、演技の動画を8言語で公開している。',
+        '男子新体操の大会情報、規則集の解説、演技の動画、曲編集や手具装飾の依頼をまとめたサイト。日本で生まれたこの競技を世界へ広げる活動として運営している。',
       foundingDate: '2022',
       sameAs: [LINKS.instagram, LINKS.youtube, LINKS.x, LINKS.tiktok],
     },
@@ -44,6 +44,7 @@ export const buildTopJsonLd = (baseUrl: string): Record<string, unknown> => ({
       offers: {
         '@type': 'Offer',
         price: service.title === '曲編集' ? '5000' : '1500',
+        // 曲編集は個人の値段。団体は 10,000 円から
         priceCurrency: 'JPY',
         description: service.price,
       },

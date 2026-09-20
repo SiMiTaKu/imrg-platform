@@ -46,13 +46,14 @@
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-80 $space-size-24;
+    padding: $space-size-80 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-48 $space-size-16;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   header {
@@ -64,7 +65,7 @@
     display: inline-block;
     margin: 0 0 $space-size-12;
     padding: $space-size-4 $space-size-12;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: $white;
     border-radius: 999px;
@@ -83,7 +84,7 @@
 
   .description {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, 600);
   }
 
@@ -136,7 +137,7 @@
 
   .body {
     margin: 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     color: map.get($gray, 600);
     line-height: 1.9;
     flex: 1;

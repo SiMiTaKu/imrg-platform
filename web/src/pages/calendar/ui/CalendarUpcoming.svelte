@@ -160,7 +160,7 @@
     align-items: center;
     gap: $space-size-4;
     margin-bottom: $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     line-height: 1.6;
   }
 

@@ -176,14 +176,15 @@
     display: flex;
     flex-direction: column;
     gap: $space-size-24;
-    max-width: 880px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-48 $space-size-24;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .mobile .inner {
     gap: $space-size-16;
-    padding: $space-size-32 $space-size-16;
+    padding: $space-size-32 var(--content-padding-inline);
   }
 
   .panels {

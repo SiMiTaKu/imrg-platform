@@ -45,10 +45,16 @@
 
     <ol class="steps">
       {#each steps as step, index (index)}
-        <li>
+        {#if index > 0}
+          <!-- 段階のつながりを示す矢印。読み上げには要らないので隠す -->
+          <li class="arrow" aria-hidden="true"></li>
+        {/if}
+        <li class="step">
           <span class="index">{index + 1}</span>
-          <h3>{step.title}</h3>
-          <p>{step.description}</p>
+          <div class="words">
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
         </li>
       {/each}
     </ol>
@@ -62,13 +68,14 @@
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-80 $space-size-24;
+    padding: $space-size-80 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-48 $space-size-16;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .message {
@@ -92,41 +99,75 @@
     background: linear-gradient(transparent 70%, map.get($sky-blue, 200) 70%);
   }
 
+  // 段階を詰めて並べ、三角形はその境目に浮かせる。
+  // 矢印の列は幅を持たないので、カードどうしはすき間なく並ぶ
   .steps {
     display: grid;
-    gap: $space-size-16;
-    grid-template-columns: repeat(var(--step-count), minmax(0, 1fr));
+    gap: $space-size-4;
+    grid-template-columns: repeat(var(--step-count), minmax(0, 1fr) 0);
+    align-items: stretch;
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+
+  .arrow {
+    position: relative;
+    z-index: 2;
+  }
+
+  // カードの境目にかぶせる。灰色の三角形で、つながりを示す
+  .arrow::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 16px solid map.get($gray, 300);
+    transform: translate(-50%, -50%);
+    content: '';
   }
 
   .mobile .steps {
     grid-template-columns: 1fr;
   }
 
+  // 縦に並ぶので、三角形も下向きにする
+  .mobile .arrow::before {
+    border-top: 16px solid map.get($gray, 300);
+    border-right: 13px solid transparent;
+    border-bottom: 0;
+    border-left: 13px solid transparent;
+  }
+
   // 番号・名前・説明を縦に積むだけ。番号を重ねない
-  .steps li {
+  .steps .step {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $space-size-8;
+    gap: $space-size-12;
+    align-items: flex-start;
     height: 100%;
     box-sizing: border-box;
-    padding: $space-size-20 $space-size-12;
+    padding: $space-size-16;
     border-top: 3px solid map.get($sky-blue, border);
     border-radius: 8px;
     background: $white;
-    text-align: center;
   }
 
-  .mobile .steps li {
-    align-items: flex-start;
+  .words {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-4;
+    min-inline-size: 0;
+  }
+
+  .mobile .steps .step {
     padding: $space-size-16;
-    text-align: left;
   }
 
   .index {
+    flex: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -149,13 +190,9 @@
 
   .steps p {
     margin: 0;
-    font-size: $font-size-12;
+    font-size: $font-size-14;
     color: map.get($gray, 600);
     line-height: 1.8;
     overflow-wrap: anywhere;
-  }
-
-  .mobile .steps p {
-    font-size: $font-size-14;
   }
 </style>

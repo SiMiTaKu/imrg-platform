@@ -38,9 +38,11 @@
     <ul class="cards">
       {#each items as item, index (item.title)}
         <li>
-          <span class="badge">{String(index + 1).padStart(2, '0')}</span>
-          <h3>{item.title}</h3>
-          <p>{item.body}</p>
+          <span class="badge">{index + 1}</span>
+          <div class="words">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </div>
         </li>
       {/each}
     </ul>
@@ -54,13 +56,14 @@
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-80 $space-size-24;
+    padding: $space-size-80 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-48 $space-size-16;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .cards {
@@ -77,17 +80,25 @@
   }
 
   // 縦に積むだけ。重ねない
+  // 番号を左に置き、見出しと説明を右に並べる。縦に伸びすぎないように
   .cards li {
     display: flex;
-    flex-direction: column;
-    gap: $space-size-8;
+    gap: $space-size-16;
+    align-items: flex-start;
     height: 100%;
     box-sizing: border-box;
-    padding: $space-size-24;
+    padding: $space-size-20;
     border: 1px solid map.get($gray, 100);
     border-radius: 8px;
     background: $white;
     transition: border-color 0.15s ease;
+  }
+
+  .words {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-4;
+    min-inline-size: 0;
   }
 
   .cards li:hover {
@@ -95,15 +106,14 @@
   }
 
   // 番号は青。数えられることが「色々頼める」ことの合図になる
+  // 番号は大きく。何番目かが一目で分かるようにする
   .badge {
-    align-self: flex-start;
-    padding: $space-size-2 $space-size-8;
-    font-size: $font-size-11;
+    flex: none;
+    font-size: $font-size-30;
     font-weight: bold;
-    color: $white;
-    border-radius: 999px;
-    background: map.get($sky-blue, button);
-    letter-spacing: 0.08em;
+    line-height: 1;
+    color: map.get($sky-blue, 200);
+    letter-spacing: 0.02em;
     font-variant-numeric: tabular-nums;
   }
 

@@ -113,7 +113,7 @@
   .row-label {
     flex: none;
     width: 3em;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, light-text);
   }
@@ -159,7 +159,7 @@
   }
 
   .hint {
-    font-size: $font-size-10;
+    font-size: $font-size-12;
     font-weight: normal;
     color: map.get($gray, light-text);
   }

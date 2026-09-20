@@ -4,14 +4,38 @@
   import { apparatusOfSlug } from '@shared/lib/apparatus'
   import { getLocale, localizedText } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
-  import { ImageAssets } from '@shared/ui'
   import { SectionHeading } from '@widgets/orderService'
   import { WORK_LIST } from '../config/workList'
   import { WORKS_HEADING } from '../config/content'
-  import YoutubeIcon from '../images/youtube-icon.png?w=120;240&format=webp&as=meta'
+  import { AutoPlayWatcher } from '../lib/autoPlay'
+  import { youtubeVideoId } from '../lib/youtube'
+  import WorkVideoCard from './WorkVideoCard.svelte'
 
   const locale = getLocale() as SiteLocale
   const isMobile = $derived($pageData.isMobile)
+
+  /** いま鳴っているカードの番号。-1 は何も鳴っていない */
+  let playingIndex = $state(-1)
+  /** 一度でも再生したカードの番号 */
+  let playedIndexes = $state<ReadonlySet<number>>(new Set())
+
+  const watcher = new AutoPlayWatcher((playing, played) => {
+    playingIndex = playing
+    playedIndexes = new Set(played)
+  })
+
+  $effect(() => () => watcher.destroy())
+
+  /**
+   * カードを見張りに加える。画面の真ん中に来たら1つだけ鳴る
+   * @param element - カードの要素
+   * @param index - カードの番号
+   * @returns 片づけの手続き
+   */
+  const watch = (element: HTMLElement, index: number) => {
+    const unwatch = watcher.watch(element, index)
+    return { destroy: unwatch }
+  }
 </script>
 
 <section class="work-list" class:mobile={isMobile} id="works">
@@ -24,24 +48,15 @@
 
     <ul class="cards">
       {#each WORK_LIST as work, index (index)}
-        <li>
-          <a href={work.youtube} rel="noopener noreferrer" target="_blank">
-            <span class="apparatus">{apparatusOfSlug(work.apparatus).label()}</span>
-            <span class="name">{localizedText(work.customerName, locale)}</span>
-            <span class="watch">
-              <span class="icon">
-                <ImageAssets
-                  width={40}
-                  height={28}
-                  alt={m.background_music_youtube_icon_alt()}
-                  lazy={true}
-                  imageSourceMeta={YoutubeIcon}
-                  objectFit="cover"
-                />
-              </span>
-              <span class="watch-label">演技を見る</span>
-            </span>
-          </a>
+        <li use:watch={index}>
+          <WorkVideoCard
+            videoId={youtubeVideoId(work.youtube)}
+            title={localizedText(work.customerName, locale)}
+            label={apparatusOfSlug(work.apparatus).label()}
+            playing={playingIndex === index}
+            played={playedIndexes.has(index)}
+            onRequestPlay={() => watcher.play(index)}
+          />
         </li>
       {/each}
     </ul>
@@ -57,13 +72,14 @@
   }
 
   .inner {
-    max-width: 1024px;
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-80 $space-size-24;
+    padding: $space-size-80 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    padding: $space-size-48 $space-size-16;
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .cards {
@@ -81,72 +97,10 @@
   }
 
   // 手具・名前・見るボタンを縦に積むだけ。重ねない
-  .cards a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $space-size-8;
-    height: 100%;
-    box-sizing: border-box;
-    padding: $space-size-20 $space-size-12;
-    color: inherit;
-    border: 1px solid map.get($sky-blue, 100);
-    border-radius: 8px;
-    background: $white;
-    transition:
-      border-color 0.15s ease,
-      transform 0.15s ease;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .cards a:hover {
-    border-color: map.get($sky-blue, border);
-    transform: translateY(-2px);
-  }
-
-  .apparatus {
-    padding: $space-size-2 $space-size-8;
-    font-size: $font-size-11;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-    border-radius: 999px;
-    background: map.get($sky-blue, background);
-    letter-spacing: 0.06em;
-  }
-
-  .name {
-    font-size: $font-size-20;
-    font-weight: bold;
-    line-height: 1.4;
-    color: map.get($gray, text);
-    overflow-wrap: anywhere;
-  }
 
   // 日本語以外の名前は日本語より長いので小さくする
-  .name:not(:lang(ja)) {
-    font-size: $font-size-16;
-  }
 
   // 下に置く。重ねない
-  .watch {
-    display: inline-flex;
-    align-items: center;
-    gap: $space-size-4;
-    margin-top: auto;
-    padding-top: $space-size-8;
-  }
-
-  .icon {
-    display: block;
-    width: 32px;
-  }
-
-  .watch-label {
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-  }
 
   .count {
     margin: $space-size-24 0 0;

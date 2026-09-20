@@ -41,8 +41,13 @@ export const FLOW_STEPS = [
   },
 ] as const
 
-/** 曲編集の料金（1曲あたり、円） */
-export const PRICE_PER_MUSIC = 5000
+/** 曲編集の料金（1曲あたり、円）。団体は個人より長く、組み立てる手数も多い */
+export const PRICE_PER_MUSIC = {
+  /** 個人 */
+  individual: 5000,
+  /** 団体 */
+  group: 10000,
+} as const
 
 /**
  * ページの上のほうに出す案内の文言。

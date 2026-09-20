@@ -156,7 +156,7 @@
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: $space-size-48 0 $space-size-80;
+    padding: $space-size-48 var(--content-padding-inline) $space-size-80;
     font-size: $font-size-16;
     line-height: 1.9;
     color: map.get($gray, text);
@@ -164,12 +164,11 @@
   }
 
   .mobile {
-    --max-width: 100%;
     --heading-font-size: #{$font-size-18};
     --title-font-size: #{$font-size-24};
     --anchor-offset: 80px;
 
-    padding: $space-size-32 0 $space-size-64;
+    padding: $space-size-32 var(--content-padding-inline) $space-size-64;
   }
 
   /* ─── 見出しと最終更新日 ─── */
@@ -295,7 +294,7 @@
 
   .contact-body {
     margin: 0 0 $space-size-20;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     line-height: 1.9;
   }
 
