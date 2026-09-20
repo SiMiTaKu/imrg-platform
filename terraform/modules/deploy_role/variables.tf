@@ -8,8 +8,14 @@ variable "github_repository" {
   type        = string
 }
 
-variable "allowed_refs" {
-  description = "この役割を使えるブランチやタグ（例: refs/heads/main）"
+variable "allowed_environments" {
+  description = <<-EOT
+    この役割を使える GitHub の環境の名前（例: production）。
+
+    ワークフローの job が environment を指定していると、OpenID Connect の sub は
+    ブランチ名ではなく `repo:<owner>/<repo>:environment:<名前>` になる。
+    環境ごとに許す相手を分けられるので、ブランチで絞るより確かめやすい
+  EOT
   type        = list(string)
 }
 
