@@ -299,14 +299,21 @@ Phase 4の進め方（2026-09-19に決めた）
   - CloudFrontの配信 … **無い**（同上）
   - Amplifyのアプリ … `d3fj0jchd8ri0z`（`iamServiceRoleArn` は `None`、`platform` は `WEB`）
   - S3 … CloudTrailのログ置き場だけ
-- [ ] **4-3. 作って切り替える**（新規作成 → CloudFrontのドメインで確認 → Route53を切り替え → Amplifyを消す）
-  - 取り込み（`import`）はしない。Amplifyの構成をそのまま写すのではなく、別の構成へ移すため
-  - [ ] `envs/prod/terraform.tfvars` を書く（`hosted_zone_id = "Z09326151SBEIRMAZRJNN"`、`notification_email`）
-  - [ ] `terraform apply -target=module.state_backend` → `terraform init -migrate-state` → `terraform apply`
-  - [ ] GitHubのEnvironments（`production`・`staging`）にSecretsを入れる
-  - [ ] `envs/stg/terraform.tfvars` を書いて `terraform apply`（合言葉も決める）
-  - [ ] CloudFrontのドメインで表示・転送・404を確かめる（Route53はまだAmplifyを向いたまま）
-  - [ ] Route53を切り替え、数日おいてAmplifyと残りのIAMロールを消す
+- [x] **4-3. 作って切り替える**（2026-09-20完了）
+  - 取り込み（`import`）はしない。Amplifyの構成をそのまま写すのではなく、別の構成へ移した
+  - [x] 置き場を作り、状態をS3へ移した。`backend.tf` を分けて、コメントアウトの往復をやめた
+  - [x] GitHubのEnvironments（`production`・`staging`）にSecretsを入れた
+  - [x] `envs/stg` を作り、`stg.imrg.work` へ配れるようにした（合言葉つき・検索よけあり）
+  - [x] CloudFrontのドメインで8言語・転送・404・ヘッダーを確かめた
+  - [x] **17:23〜17:27に切り替えた。落ちていたのは3分30秒**
+    - Amplifyのカスタムドメインを外す → `attach_domain = true` で `terraform apply`
+    - 切り替え後、8言語・転送・404・証明書・www転送すべて意図どおり。死活監視も全項目通過
+  - 途中でつまずいた点
+    - **CloudFrontは同じ別名を2つの配信に付けられない。** Amplifyがドメインを持つ間は `CNAMEAlreadyExists` で落ちる。`attach_domain` で別名・証明書・DNSをまとめて後付けする形にした
+    - **IAMの `description` はASCIIしか受け付けない。** 日本語だと `ValidationError`
+    - **このリポジトリーのOIDCは `sub` に所有者IDとリポジトリーIDを埋め込む**（`repo:SiMiTaKu@34091968/imrg-platform@1373814129:environment:staging`）。ドキュメントどおりの形では一致しない
+    - `gh workflow run` は、既定ブランチにワークフローが無いと起動できない
+  - [ ] 数日おいてAmplifyのアプリと、残りのAmplify用IAM（ロール5つ・ポリシー3つ）を消す
 
 ## Phase 5: デザインリニューアル
 
