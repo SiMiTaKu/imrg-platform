@@ -18,13 +18,31 @@ printf 'アカウント: %s\n' "$(aws sts get-caller-identity --query Account)"
 section '1. 直近3か月の費用（サービス別・上位20）'
 start=$(date -v-3m '+%Y-%m-01' 2>/dev/null || date -d '3 months ago' '+%Y-%m-01')
 end=$(date '+%Y-%m-%d')
-aws ce get-cost-and-usage \
+# 金額は文字列で返るため、JMESPath では大小を比べられない。整形は python に任せる
+command aws --profile "$PROFILE" --output json ce get-cost-and-usage \
   --time-period "Start=$start,End=$end" \
   --granularity MONTHLY \
   --metrics UnblendedCost \
-  --group-by Type=DIMENSION,Key=SERVICE \
-  --query 'ResultsByTime[].{月:TimePeriod.Start,明細:Groups[?Metrics.UnblendedCost.Amount>`0.01`].[Keys[0],Metrics.UnblendedCost.Amount]}' \
-  || echo '（Cost Explorer の権限が無いか、有効になっていない）'
+  --group-by Type=DIMENSION,Key=SERVICE 2>/dev/null \
+  | python3 -c '
+import json, sys
+
+try:
+    data = json.load(sys.stdin)
+except Exception:
+    print("（費用を取れなかった。root で「IAM ユーザーによる請求情報へのアクセス」を有効にするか、")
+    print("  このユーザーに ce:GetCostAndUsage の権限を付ける）")
+    sys.exit()
+
+for period in data["ResultsByTime"]:
+    rows = [(g["Keys"][0], float(g["Metrics"]["UnblendedCost"]["Amount"])) for g in period["Groups"]]
+    rows = sorted([r for r in rows if r[1] >= 0.005], key=lambda r: -r[1])
+    total = sum(value for _, value in rows)
+    print("")
+    print(period["TimePeriod"]["Start"] + "  合計 $" + format(total, ".2f"))
+    for name, value in rows:
+        print("    $" + format(value, "6.2f") + "  " + name)
+'
 
 section '2. Amplify のアプリ'
 aws amplify list-apps --region ap-northeast-1 \
@@ -103,16 +121,26 @@ for region in $(aws ec2 describe-regions --query 'Regions[].RegionName'); do
     --query 'Snapshots[].[SnapshotId,VolumeSize,StartTime]')
   databases=$(aws rds describe-db-instances --region "$region" \
     --query 'DBInstances[].[DBInstanceIdentifier,DBInstanceClass,DBInstanceStatus]')
+  # 動いていなくても、スナップショットと自動バックアップには料金がかかる
+  db_snapshots=$(aws rds describe-db-snapshots --region "$region" --snapshot-type manual \
+    --query 'DBSnapshots[].[DBSnapshotIdentifier,AllocatedStorage,SnapshotCreateTime]')
+  db_cluster_snapshots=$(aws rds describe-db-cluster-snapshots --region "$region" --snapshot-type manual \
+    --query 'DBClusterSnapshots[].[DBClusterSnapshotIdentifier,AllocatedStorage,SnapshotCreateTime]')
+  db_backups=$(aws rds describe-db-instance-automated-backups --region "$region" \
+    --query 'DBInstanceAutomatedBackups[].[DBInstanceIdentifier,AllocatedStorage,Status]')
   nats=$(aws ec2 describe-nat-gateways --region "$region" \
     --filter Name=state,Values=available --query 'NatGateways[].NatGatewayId')
 
-  if [ -n "$instances$volumes$addresses$snapshots$databases$nats" ]; then
+  if [ -n "$instances$volumes$addresses$snapshots$databases$db_snapshots$db_cluster_snapshots$db_backups$nats" ]; then
     printf -- '-- %s --\n' "$region"
     [ -n "$instances" ] && printf 'EC2:\n%s\n' "$instances"
     [ -n "$volumes" ] && printf '外れたままのディスク（課金される）:\n%s\n' "$volumes"
     [ -n "$addresses" ] && printf '割り当てていない固定IP（課金される）:\n%s\n' "$addresses"
     [ -n "$snapshots" ] && printf 'スナップショット:\n%s\n' "$snapshots"
     [ -n "$databases" ] && printf 'RDS:\n%s\n' "$databases"
+    [ -n "$db_snapshots" ] && printf 'RDS のスナップショット（課金される）:\n%s\n' "$db_snapshots"
+    [ -n "$db_cluster_snapshots" ] && printf 'RDS クラスターのスナップショット（課金される）:\n%s\n' "$db_cluster_snapshots"
+    [ -n "$db_backups" ] && printf 'RDS の自動バックアップ（インスタンスが無くても残る。課金される）:\n%s\n' "$db_backups"
     [ -n "$nats" ] && printf 'NAT ゲートウェイ（高い）:\n%s\n' "$nats"
   fi
 done
