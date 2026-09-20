@@ -16,6 +16,16 @@ data "aws_iam_openid_connect_provider" "github" {
 }
 
 locals {
+  repository_owner = split("/", var.github_repository)[0]
+  repository_name  = split("/", var.github_repository)[1]
+
+  allowed_subjects = flatten([
+    for name in var.allowed_environments : [
+      "repo:${local.repository_owner}/${local.repository_name}:environment:${name}",
+      "repo:${local.repository_owner}@*/${local.repository_name}@*:environment:${name}",
+    ]
+  ])
+
   oidc_provider_arn = var.create_oidc_provider ? aws_iam_openid_connect_provider.github[0].arn : data.aws_iam_openid_connect_provider.github[0].arn
 }
 
@@ -35,11 +45,14 @@ data "aws_iam_policy_document" "assume" {
       values   = ["sts.amazonaws.com"]
     }
 
-    # 決めたリポジトリの決めた環境からだけ引き受けられる
+    # 決めたリポジトリの決めた環境からだけ引き受けられる。
+    # このリポジトリの OpenID Connect は、sub に所有者とリポジトリの ID を埋め込む
+    # （例: repo:SiMiTaKu@34091968/imrg-platform@1373814129:environment:staging）。
+    # ID の付かない形も将来のために許しておく
     condition {
-      test     = "StringEquals"
+      test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = [for name in var.allowed_environments : "repo:${var.github_repository}:environment:${name}"]
+      values   = local.allowed_subjects
     }
   }
 }
