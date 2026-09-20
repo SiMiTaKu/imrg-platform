@@ -347,7 +347,7 @@
 
   // 今日の印。青（情報）と役割を分けて、黄（今・行動）で出す
   .today-mark {
-    color: map.get($amber, 800);
+    color: map.get($amber, 900);
     background: map.get($amber, 300);
     box-shadow: 0 0 0 2px map.get($amber, button);
   }

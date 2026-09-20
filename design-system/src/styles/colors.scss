@@ -1,72 +1,123 @@
+@use 'sass:map';
+
+// 色の決まり
+// 1. 濃さは 50・100・200・300・400・500・600・700・800・900 の10段階。
+//    50 がいちばん薄く、900 がいちばん濃い。隣どうしの明るさの差はそろえてある
+// 2. 役割の名前は、どの色でも同じ段階を指す。色を変えても見た目の重さが変わらない
+//    | 名前         | 段階 | 使うところ                             |
+//    | ------------ | ---- | -------------------------------------- |
+//    | `background` | 50   | 淡い背景                               |
+//    | `border`     | 300  | 枠・区切り・ラベルの地                 |
+//    | `light-text` | 600  | 控えめな文字                           |
+//    | `button`     | 700  | 塗りのボタンの地（白い文字を載せる）   |
+//    | `text`       | 800  | 文字・リンク                           |
+// 3. 文字と地の明暗の差は 4.5 以上にする（小さい文字でも読めるように）。
+//    青と灰は上の表のとおりで満たす
+// 4. **黄だけは例外。** 黄はもともと明るいので、塗りのボタンにすると
+//    白い文字が読めない。黄のボタンは「300 の地に 900 の文字」で作る（差 6.2）
+// 5. 数字で直に指定してよいのは、上の役割に当てはまらないときだけ。
+//    まず役割の名前を探し、無ければ数字を使う
+
 $white: #fff;
-$sky-blue: (
-  background: #e7f1ff,
-  // 背景 50
-  100: #c5dfff,
-  200: #acd2ff,
-  300: #98c9ff,
-  400: #80baff,
-  // リンク
-  border: #66adff,
-  // ボーダー, ラベル
-  600: #479eff,
-  700: #2e91ff,
-  button: #1986ff,
-  // ボタン 800
-  text: #0079ff, // 文字 900
+
+// 信頼・情報を表す色。サイトの土台
+$sky-blue-scale: (
+  50: #e9f3fe,
+  100: #c7e1fd,
+  200: #9eccfd,
+  300: #75b7fd,
+  400: #49a0fd,
+  500: #1a88ff,
+  600: #006fe6,
+  700: #0059b8,
+  800: #00438a,
+  900: #003063,
+);
+$sky-blue: map.merge(
+  $sky-blue-scale,
+  (
+    background: map.get($sky-blue-scale, 50),
+    border: map.get($sky-blue-scale, 300),
+    light-text: map.get($sky-blue-scale, 600),
+    button: map.get($sky-blue-scale, 700),
+    text: map.get($sky-blue-scale, 800),
+  )
 );
 
-// 希望・行動を表す色。青（信頼）と対にして使う。
-// $yellow は蛍光色寄りで文字に使えないため、読める濃さの琥珀を別に持つ
-$amber: (
-  background: #fff8e8,
-  // 背景 50
-  100: #ffeec2,
-  200: #ffe29b,
-  300: #ffd166,
-  border: #f5be3f,
-  // ボーダー, ラベル 400
-  button: #f0a500,
-  // ボタン 500
-  600: #d98e04,
-  text: #a86a00,
-  // 文字 700
-  800: #8a5600,
+// 希望・行動を表す色。連絡への一歩、今日の印など、ここぞという場所にだけ使う
+$amber-scale: (
+  50: #fef7e9,
+  100: #fdecc6,
+  200: #fddf9e,
+  300: #fed274,
+  400: #ffc547,
+  500: #ffb61a,
+  600: #e69d00,
+  700: #b87d00,
+  800: #8a5e00,
+  900: #634400,
 );
-$yellow: (
-  background: #ffe,
-  // 背景 50
-  100: #ffffd5,
-  200: #ffffbf,
-  300: #ffa,
-  400: #ffff8f,
-  500: #ffff74,
-  // ボーダー, ラベル
-  600: #ffff59,
-  text: #fdfd3a,
-  // 文字 700
-  800: #ff2,
-  900: #ff0,
-);
-$gray: (
-  background: #f3f3f3,
-  // 背景 50
-  100: #e8e8e8,
-  200: #d5d5d5,
-  300: #afafaf,
-  400: #818181,
-  border: #818181,
-  // ボーダー 400
-  light-text: #606060,
-  // 明るい文字 500
-  600: #454545,
-  text: #333,
-  // 文字 700
-  800: #212121,
-  900: #000,
+$amber: map.merge(
+  $amber-scale,
+  (
+    background: map.get($amber-scale, 50),
+    border: map.get($amber-scale, 300),
+    light-text: map.get($amber-scale, 600),
+    button: map.get($amber-scale, 700),
+    text: map.get($amber-scale, 800),
+  )
 );
 
-// 画面のテーマの色（採点体験の手具ごとの色など）。TS からは AccentColor・ThemeColor で参照する
+// 目立たせるための黄。影（$yellow-text-shadow）で使う
+$yellow-scale: (
+  50: #fefde9,
+  100: #fefac6,
+  200: #fef79d,
+  300: #fff673,
+  400: #fff347,
+  500: #fff01a,
+  600: #e6d600,
+  700: #b8ab00,
+  800: #8a8100,
+  900: #635d00,
+);
+$yellow: map.merge(
+  $yellow-scale,
+  (
+    background: map.get($yellow-scale, 50),
+    border: map.get($yellow-scale, 300),
+    light-text: map.get($yellow-scale, 600),
+    button: map.get($yellow-scale, 700),
+    text: map.get($yellow-scale, 800),
+  )
+);
+
+// 文字・枠・背景に使う無彩色。わずかに青を含ませてある
+$gray-scale: (
+  50: #f3f4f4,
+  100: #e0e2e3,
+  200: #cbcdd0,
+  300: #b5b9bc,
+  400: #9fa3a8,
+  500: #878c92,
+  600: #6c737a,
+  700: #555c62,
+  800: #3f454a,
+  900: #2d3236,
+);
+$gray: map.merge(
+  $gray-scale,
+  (
+    background: map.get($gray-scale, 50),
+    border: map.get($gray-scale, 300),
+    light-text: map.get($gray-scale, 600),
+    button: map.get($gray-scale, 700),
+    text: map.get($gray-scale, 800),
+  )
+);
+
+// 画面のテーマの色（採点体験の手具ごとの色など）。TS からは AccentColor・ThemeColor で参照する。
+// 上の10段階とは役割が違う（種類を見分けるための色）ので、そろえていない
 $theme: (
   gray: #707070,
   blue: #0065a4,

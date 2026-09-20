@@ -171,7 +171,7 @@
     padding: 0 $space-size-20;
     font-size: $font-size-18;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: map.get($amber, 900);
     border-radius: 6px;
     background: map.get($amber, 300);
     box-shadow: 0 2px 8px rgb(240 165 0 / 35%);

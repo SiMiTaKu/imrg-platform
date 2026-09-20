@@ -104,7 +104,7 @@
   }
 
   .current .label {
-    color: map.get($amber, 800);
+    color: map.get($amber, 900);
   }
 
   .waiting {
