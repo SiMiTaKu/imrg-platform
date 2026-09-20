@@ -78,8 +78,9 @@
   }
 
   .cards a {
-    position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-8;
     height: 100%;
     padding: $space-size-24;
     color: inherit;
@@ -98,7 +99,7 @@
   }
 
   .badge {
-    display: inline-block;
+    align-self: flex-start;
     margin-bottom: $space-size-8;
     padding: $space-size-2 $space-size-8;
     font-size: $font-size-10;
@@ -122,10 +123,9 @@
     line-height: 1.85;
   }
 
+  // 本文の下に置く。重ねない
   .arrow {
-    position: absolute;
-    right: $space-size-20;
-    bottom: $space-size-20;
+    align-self: flex-end;
     font-size: $font-size-18;
     color: map.get($sky-blue, button);
   }

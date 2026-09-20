@@ -2,7 +2,7 @@
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
   import { pageData } from '@shared/lib/device'
-  import { Image } from '@shared/ui'
+  import RuleFigure from './RuleFigure.svelte'
 
   const {
     ruleBook,
@@ -147,9 +147,7 @@
                       </h5>
                       <p>{block.element}</p>
                       {#each block.image as image, blockImageIndex (blockImageIndex)}
-                        <div class="image">
-                          <Image {image} isLazy={true} width="100%" />
-                        </div>
+                        <RuleFigure {image} />
                       {/each}
                     </div>
                   {/each}
@@ -163,9 +161,7 @@
                     </h5>
                     <p>{section.content}</p>
                     {#each section.image as image, sectionImageIndex (sectionImageIndex)}
-                      <div class="image">
-                        <Image {image} isLazy={true} width="100%" />
-                      </div>
+                      <RuleFigure {image} />
                     {/each}
                   </div>
                 {/if}
@@ -446,10 +442,6 @@
     font-size: $font-size-14;
     line-height: 2;
     white-space: pre-wrap;
-  }
-
-  .image {
-    margin-top: $space-size-12;
   }
 
   .empty {
