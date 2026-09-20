@@ -37,7 +37,7 @@ module "deploy_role" {
 
   role_name            = "imrg-platform-deploy"
   github_repository    = var.github_repository
-  allowed_refs         = ["refs/heads/main"]
+  allowed_environments = ["production"]
   bucket_arn           = module.site.bucket_arn
   releases_bucket_arn  = module.site.releases_bucket_arn
   distribution_arn     = module.site.distribution_arn

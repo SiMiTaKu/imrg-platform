@@ -34,12 +34,12 @@ module "site" {
 module "deploy_role" {
   source = "../../modules/deploy_role"
 
-  role_name           = "imrg-platform-deploy-stg"
-  github_repository   = var.github_repository
-  allowed_refs        = ["refs/heads/*"]
-  bucket_arn          = module.site.bucket_arn
-  releases_bucket_arn = module.site.releases_bucket_arn
-  distribution_arn    = module.site.distribution_arn
+  role_name            = "imrg-platform-deploy-stg"
+  github_repository    = var.github_repository
+  allowed_environments = ["staging"]
+  bucket_arn           = module.site.bucket_arn
+  releases_bucket_arn  = module.site.releases_bucket_arn
+  distribution_arn     = module.site.distribution_arn
   # OpenID Connect の登録はアカウントに1つだけ。prod 側で作ったものを使う
   create_oidc_provider = false
   tags                 = local.tags

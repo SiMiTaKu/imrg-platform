@@ -35,11 +35,11 @@ data "aws_iam_policy_document" "assume" {
       values   = ["sts.amazonaws.com"]
     }
 
-    # 決めたリポジトリの決めたブランチからだけ引き受けられる
+    # 決めたリポジトリの決めた環境からだけ引き受けられる
     condition {
-      test     = "StringLike"
+      test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = [for ref in var.allowed_refs : "repo:${var.github_repository}:ref:${ref}"]
+      values   = [for name in var.allowed_environments : "repo:${var.github_repository}:environment:${name}"]
     }
   }
 }
