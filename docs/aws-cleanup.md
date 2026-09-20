@@ -231,27 +231,48 @@ aws s3api delete-bucket --profile imrg --region ap-northeast-1 --bucket "$bucket
 
 ## 5. 使っていない IAM のアクセスキーを消す
 
-費用はかからないが、**漏れると被害が大きい。**
+費用はかからないが、**これがいちばん危ない。**
 
-```
-takumi-shimizu-iam-amplify   鍵 AKIAZFWXOOO2ZXU3CC6C   最終使用 2025-07-30
-```
+見つかったのは `takumi-shimizu-iam-amplify`（鍵 `AKIAZFWXOOO2ZXU3CC6C`、最終使用2025-07-30）。
+旧Amplify用に作ったもので、1年以上使われていない。
+それなのに **`AdministratorAccess` が付いたまま、鍵が有効だった。**
+漏れればアカウントを丸ごと操作される。
 
-1年以上使われていない。旧Amplify用に作ったもの。
+### すぐ消すか、無効にして様子を見るか
+
+「無効にして数日おく」のは、**まだ何かが使っている恐れがある**ときの用心。
+次の2つが当てはまるなら、待たずに消してよい。
+
+- その鍵を使っていた相手（この場合は旧Amplify）を、もう消してある
+- 最終使用が古い（数か月以上前）
+
+どちらか怪しいなら、先に無効化する。まだ使われていればエラーが出るので気づける。
 
 ```bash
-# まず無効にして数日おく（使われていたらエラーが出るので気づける）
-aws iam update-access-key --profile imrg --user-name takumi-shimizu-iam-amplify \
-  --access-key-id AKIAZFWXOOO2ZXU3CC6C --status Inactive
-
-# 数日たって問題がなければ、鍵とユーザーを消す
-aws iam delete-access-key --profile imrg --user-name takumi-shimizu-iam-amplify \
-  --access-key-id AKIAZFWXOOO2ZXU3CC6C
-aws iam delete-user --profile imrg --user-name takumi-shimizu-iam-amplify
+aws iam update-access-key --profile imrg --user-name <ユーザー名> \
+  --access-key-id <鍵のID> --status Inactive
 ```
 
-ユーザーを消すとき、ポリシーが付いていると失敗する。
-`aws iam list-attached-user-policies --user-name ...` で確かめて、先に切り離す。
+### 消す
+
+ユーザーは、付いているものを全部外さないと消せない。
+
+```bash
+user=takumi-shimizu-iam-amplify
+
+# 何が付いているかを見る
+aws iam list-attached-user-policies --profile imrg --user-name $user --output text
+aws iam list-user-policies --profile imrg --user-name $user --output text
+aws iam list-groups-for-user --profile imrg --user-name $user --output text
+aws iam list-mfa-devices --profile imrg --user-name $user --output text
+aws iam get-login-profile --profile imrg --user-name $user --output text
+
+# 外して消す（無いものは飛ばしてよい）
+aws iam detach-user-policy --profile imrg --user-name $user \
+  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam delete-access-key --profile imrg --user-name $user --access-key-id <鍵のID>
+aws iam delete-user --profile imrg --user-name $user
+```
 
 ## 6. Amplify（現役）を消す（移行が終わってから）
 
