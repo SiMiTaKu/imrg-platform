@@ -5,16 +5,46 @@
 ## 全体像
 
 ```
-Route53（imrg.work / www.imrg.work）
+Route53（imrg.work / www.imrg.work / stg.imrg.work）
   └─ CloudFront（証明書は ACM／us-east-1）
-       ├─ ビューワーリクエスト関数  www を外す・末尾スラッシュを付ける・index.html を返す
+       ├─ ビューワーリクエスト関数  合言葉・www を外す・末尾スラッシュを付ける・index.html を返す
        └─ S3（非公開。OAC 経由でのみ読める）
-GitHub Actions（main への push でビルド）→ S3 へ同期 → CloudFront のキャッシュを捨てる
+GitHub Actions（push でビルド）→ S3 へ同期 → CloudFront のキャッシュを捨てる
 ```
 
 - リージョンは **ap-northeast-1（東京）**。CloudFrontの証明書だけ **us-east-1**（そこにしか置けない）
-- 環境は **prod だけ**。PRプレビューとdevelop環境は費用を抑えるため作らない
 - 長く使える認証情報はどこにも置かない。GitHub Actionsは **OpenID Connect** で一時的に権限を借りる
+
+## 2つの環境
+
+PRごとのプレビューは作らない（PRの数だけ増えて管理が増える）。
+代わりに、**本番と同じ作りのステージングを1つだけ**置く。
+
+|                  | 本番（prod）                 | ステージング（stg）                 |
+| ---------------- | ---------------------------- | ----------------------------------- |
+| URL              | `https://imrg.work/`         | `https://stg.imrg.work/`            |
+| 配るきっかけ     | `main` への push             | `develop` への push＋手で選んで実行 |
+| 見られる人       | だれでも                     | 合言葉を知っている人だけ            |
+| 検索             | 載る                         | `X-Robots-Tag: noindex` で載せない  |
+| `www`            | 本体へ転送する               | 使わない                            |
+| エッジの範囲     | PriceClass_200（日本を含む） | PriceClass_100（北米と欧州）        |
+| ビルドの取り置き | 90日                         | しない                              |
+| 監視・アラート   | あり                         | なし                                |
+
+ステージングを足しても、かかるお金はほぼ変わらない。S3が88MBで月数円、
+CloudFrontは見る人が自分たちだけなので無料枠（毎月1TB）に収まる。
+
+検索に載せない指定は、**本番と同じ中身が別のURLで見つかると本番の順位が下がる**のを防ぐため。
+合言葉（Basic認証）と合わせて二重にしている。
+
+### 手で選んで配る
+
+GitHubの **Actions → Deploy (staging) → Run workflow** で、配りたいブランチを選ぶ。
+コマンドからでもよい。
+
+```bash
+gh workflow run deploy-staging.yml --ref feature/なにか
+```
 
 ## なぜ Amplify から移したか
 
@@ -38,7 +68,8 @@ terraform/
 ├── scripts/
 │   └── aws-audit.sh     アカウントにあるものを一覧する（読むだけ）
 └── envs/
-    └── prod/            本番の実行単位
+    ├── prod/            本番の実行単位（状態ファイルの置き場もここが作る）
+    └── stg/             ステージングの実行単位
 ```
 
 ## 初回の手順
@@ -61,13 +92,31 @@ terraform init -migrate-state
 terraform apply
 ```
 
+続けてステージングを作る。**本番を先に作ること**（状態ファイルの置き場と、
+GitHubのOpenID Connectの登録は本番側が作り、ステージングはそれを使う）。
+
+```bash
+cd ../stg
+cp terraform.tfvars.example terraform.tfvars   # ホストゾーン ID と合言葉を書く
+terraform init
+terraform apply
+```
+
 - プロファイルは `imrg`（`aws configure --profile imrg`）。`variables.tf` の既定で読む
 - 証明書の検証にDNSを使うため、`terraform apply` はRoute53の反映を待って数分かかる
 
 ## 配り方
 
-`main` へのpushで `.github/workflows/deploy.yml` が動く。GitHubのSecretsに次の3つを入れる。
-値は `terraform output` で出る。
+配る手順は2つの環境で共通。[\_deploy.yml](../.github/workflows/_deploy.yml) に1つだけ書いてある。
+`deploy.yml`（本番）と `deploy-staging.yml`（ステージング）は、配り先を決めて呼ぶだけ。
+
+ハッシュ付きの資産（`_app/immutable`）を先に置いてからHTMLを置き、キャッシュを捨て、
+最後に `/_app/version.json` が新しいビルドになるまで確かめる。
+
+### GitHub の設定
+
+**Settings → Environments** に `production` と `staging` を作り、それぞれに同じ名前で
+別の値を入れる。値は各環境で `terraform output` を実行すると出る。
 
 | 名前                             | 中身                         |
 | -------------------------------- | ---------------------------- |
@@ -76,8 +125,14 @@ terraform apply
 | `AWS_CLOUDFRONT_DISTRIBUTION_ID` | `cloudfront_distribution_id` |
 | `AWS_RELEASES_BUCKET`            | `releases_bucket_name`       |
 
-ワークフローは、ハッシュ付きの資産（`_app/immutable`）を先に置いてからHTMLを置き、
-最後に `/_app/version.json` が新しいビルドになるまで確かめる。
+`staging` にはもう1つ、配り終えたあとの確認で使う合言葉を入れる。
+
+| 名前              | 中身                                         |
+| ----------------- | -------------------------------------------- |
+| `SITE_BASIC_AUTH` | `<利用者名>:<合言葉>`（tfvars に書いたもの） |
+
+`production` には、**必要なら承認者（Required reviewers）を設定する**。
+設定すると本番へ配る前に手で承認する一手間が入る。
 
 ## 戻し方（ロールバック）
 

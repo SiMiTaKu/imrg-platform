@@ -1,5 +1,8 @@
 locals {
   origin_id = "s3-${var.bucket_name}"
+
+  # 合言葉は Basic 認証の形（`Basic <利用者名:合言葉 を base64 にしたもの>`）で関数に埋め込む
+  basic_auth_credential = var.basic_auth == null ? "null" : jsonencode("Basic ${base64encode("${var.basic_auth.username}:${var.basic_auth.password}")}")
 }
 
 resource "aws_cloudfront_function" "request" {
@@ -9,7 +12,8 @@ resource "aws_cloudfront_function" "request" {
   publish = true
 
   code = templatefile("${path.module}/functions/request.js.tftpl", {
-    site_domain = var.site_domain
+    site_domain           = var.site_domain
+    basic_auth_credential = local.basic_auth_credential
   })
 }
 
@@ -54,6 +58,17 @@ resource "aws_cloudfront_response_headers_policy" "site" {
       header   = "Permissions-Policy"
       value    = "camera=(), microphone=(), geolocation=()"
       override = true
+    }
+
+    # ステージングの中身が検索に載ると、本番と重なって順位を下げる
+    dynamic "items" {
+      for_each = var.noindex ? [1] : []
+
+      content {
+        header   = "X-Robots-Tag"
+        value    = "noindex, nofollow"
+        override = true
+      }
     }
   }
 }

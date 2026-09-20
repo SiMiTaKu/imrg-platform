@@ -1,0 +1,133 @@
+# 本番とステージングで同じ手順を使うための、呼び出される側のワークフロー。
+# 置き場や役割は、呼び出し側が選んだ environment に登録した値を読む
+name: Deploy (shared)
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: '配り先（production か staging）'
+        required: true
+        type: string
+      site_url:
+        description: '配り終えたあとに確かめる URL'
+        required: true
+        type: string
+      release:
+        description: '戻したいリリースのコミット。省略すると今の中身を作って配る'
+        required: false
+        type: string
+      store_release:
+        description: '配ったビルドを取っておくか'
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  # AWS の役割を引き受けるための一時的な身分証を受け取る
+  id-token: write
+
+env:
+  AWS_REGION: ap-northeast-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      url: ${{ inputs.site_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # 戻すときは作り直さない。そのとき配ったものをそのまま取り出す
+      - name: Fetch release
+        if: inputs.release != ''
+        run: |
+          aws s3 cp "s3://${{ secrets.AWS_RELEASES_BUCKET }}/builds/${{ inputs.release }}.tar.gz" build.tar.gz
+          mkdir -p web/build
+          tar -xzf build.tar.gz -C web/build
+          echo "配るリリース: ${{ inputs.release }}"
+
+      - uses: pnpm/action-setup@v6
+        if: inputs.release == ''
+      - uses: actions/setup-node@v7
+        if: inputs.release == ''
+        with:
+          node-version-file: '.node-version'
+          cache: pnpm
+
+      - name: Install
+        if: inputs.release == ''
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        if: inputs.release == ''
+        run: pnpm --filter @imrg-platform/web build
+
+      # 配ったものを取っておく。あとで作り直さずに戻せる
+      - name: Store release
+        if: inputs.release == '' && inputs.store_release
+        run: |
+          tar -czf build.tar.gz -C web/build .
+          aws s3 cp build.tar.gz \
+            "s3://${{ secrets.AWS_RELEASES_BUCKET }}/builds/${{ github.sha }}.tar.gz"
+
+      # ファイル名にハッシュが入るものを先に置く。
+      # HTML より先に新しい資産を置くことで、切り替わる瞬間に読み込めないファイルが出ないようにする
+      - name: Upload immutable assets
+        run: |
+          aws s3 sync web/build/_app/immutable "s3://${{ secrets.AWS_SITE_BUCKET }}/_app/immutable" \
+            --cache-control 'public, max-age=31536000, immutable' \
+            --size-only
+
+      # 残り。HTML やデータは毎回中身を確かめに行かせる
+      - name: Upload pages
+        run: |
+          aws s3 sync web/build "s3://${{ secrets.AWS_SITE_BUCKET }}" \
+            --exclude '_app/immutable/*' \
+            --cache-control 'public, max-age=0, must-revalidate' \
+            --delete
+
+      # ハッシュの付いた資産は放っておいても当たらなくなるので、まとめて捨ててよい
+      - name: Invalidate cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id '${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}' \
+            --paths '/*'
+
+      # 公開されたものが、いま配ったビルドかを確かめる。
+      # ステージングは合言葉で守っているので、設定していれば付けて確かめる
+      - name: Verify
+        env:
+          BASIC_AUTH: ${{ secrets.SITE_BASIC_AUTH }}
+        run: |
+          expected=$(cat web/build/_app/version.json)
+          auth=()
+          if [ -n "$BASIC_AUTH" ]; then auth=(--user "$BASIC_AUTH"); fi
+
+          for i in $(seq 1 30); do
+            actual=$(curl -fsS "${auth[@]}" '${{ inputs.site_url }}_app/version.json' || true)
+            if [ "$actual" = "$expected" ]; then
+              echo "公開を確認しました: $actual"
+              exit 0
+            fi
+            echo "待機中 ($i/30) 公開側: $actual"
+            sleep 10
+          done
+          echo "公開されたビルドが一致しませんでした。期待: $expected"
+          exit 1
+
+      # いま何が公開されているかを残す。戻すときに探す手がかりになる
+      - name: Record current release
+        if: inputs.store_release
+        run: |
+          released=${{ inputs.release || github.sha }}
+          printf '%s\t%s\t%s\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$released" "${{ github.ref_name }}" > current.txt
+          aws s3 cp current.txt "s3://${{ secrets.AWS_RELEASES_BUCKET }}/current.txt"

@@ -3,7 +3,7 @@ resource "aws_acm_certificate" "site" {
   provider = aws.us_east_1
 
   domain_name               = var.site_domain
-  subject_alternative_names = ["www.${var.site_domain}"]
+  subject_alternative_names = var.enable_www ? ["www.${var.site_domain}"] : []
   validation_method         = "DNS"
   tags                      = var.tags
 

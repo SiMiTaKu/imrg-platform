@@ -1,6 +1,6 @@
 # ドメインと www を CloudFront に向ける。Alias なので料金はかからない
 locals {
-  site_names   = [var.site_domain, "www.${var.site_domain}"]
+  site_names   = var.enable_www ? [var.site_domain, "www.${var.site_domain}"] : [var.site_domain]
   record_types = ["A", "AAAA"]
 
   site_records = {

@@ -13,6 +13,31 @@ variable "bucket_name" {
   type        = string
 }
 
+variable "enable_www" {
+  description = "www 付きの名前も受け取り、本体へ転送するか。ステージングでは要らない"
+  type        = bool
+  default     = true
+}
+
+variable "noindex" {
+  description = "検索に載せないか。ステージングは true にして、本番と中身が重なるのを避ける"
+  type        = bool
+  default     = false
+}
+
+variable "basic_auth" {
+  description = <<-EOT
+    見る人を合言葉で絞るときに設定する。null なら誰でも見られる。
+    CloudFront の関数に埋め込むため、AWS の画面からは中身が読める。本番には使わない
+  EOT
+  type = object({
+    username = string
+    password = string
+  })
+  default   = null
+  sensitive = true
+}
+
 variable "price_class" {
   description = <<-EOT
     CloudFront が使うエッジの範囲。

@@ -259,7 +259,10 @@ Phase 4の進め方（2026-09-19に決めた）
   - ビルドはGitHub Actions（無料枠）、配信はCloudFront（毎月1TBまでの恒久無料枠）。Amplifyはビルドが約 $0.01/分、配信が $0.15/GB
   - Amplifyのコンソールで手作業になっていたヘッダーと書き換えルールも、まとめてコードへ移せる
 - 状態ファイルのロックはS3のロックファイル（Terraform 1.10以降）を使い、DynamoDBを立てない。版は `terraform/.terraform-version` で固定する
-- 環境は本番だけ。develop環境も作らない（確認は手元の `pnpm run dev` とPRのCIで行う）
+- 環境は本番とステージングの2つ。**PRごとのプレビューは作らない**（PRの数だけ増えて管理が増えるため）
+  - ステージングは `stg.imrg.work`。`develop` へのpushで自動、手で動かすときはブランチを選べる
+  - 本番と同じ中身が別のURLで見つかると本番の順位が下がるため、`X-Robots-Tag: noindex` と合言葉（Basic認証）で二重に隠す
+  - 足してもお金はほぼ変わらない（S3が88MBで月数円、CloudFrontは見るのが自分たちだけなので無料枠に収まる）
 
 - [x] **4-2. state 置き場を用意**（`modules/state_backend`。S3のみ）
 - [x] **4-4. 環境変数・ヘッダー・書き換えルールをコード管理にする**
@@ -272,6 +275,7 @@ Phase 4の進め方（2026-09-19に決めた）
   - CloudFrontの5xx・4xxと証明書の残り日数はCloudWatchのアラームからメールで知らせる（10個まで無料枠の範囲）
 - [ ] **4-0. AWSの片づけ**（Terraformで作る前に、これまでの作業で残ったものを消す。手順は [aws-cleanup.md](aws-cleanup.md)）
   - 棚卸しは `terraform/scripts/aws-audit.sh`（読むだけ。何も消さない）
+- [x] **4-6. ステージング環境を用意する**（`envs/stg`。配る手順は `_deploy.yml` に共通化し、本番とステージングで同じものを使う）
 - [ ] **4-1. 現在の AWS 構成を洗い出す**（Route53のゾーンID・証明書・Amplifyアプリ）※AWSの資格情報の設定待ち
 - [ ] **4-3. 作って切り替える**（新規作成 → CloudFrontのドメインで確認 → Route53を切り替え → Amplifyを消す）
   - 取り込み（`import`）はしない。Amplifyの構成をそのまま写すのではなく、別の構成へ移すため
