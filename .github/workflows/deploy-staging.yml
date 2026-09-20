@@ -1,0 +1,27 @@
+name: Deploy (staging)
+
+# develop へ入れたものは自動で配る。
+# 手で動かすときは、GitHub の画面（Run workflow）でブランチを選べる
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/_deploy.yml
+    secrets: inherit
+    with:
+      environment: staging
+      site_url: https://stg.imrg.work/
+      # 本番へ入れる前に見るための場所なので、取っておかない
+      store_release: false

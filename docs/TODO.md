@@ -232,8 +232,11 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
   - 英語ページは訳し終えるまでnoindex。訳したページを `TRANSLATED_PATHS` に足すと、`hreflang`（`x-default` も）とsitemapの言語の対応が出る
   - 言語の切り替え部品は、英語のページができるまで表に出さない。代わりに非表示のリンクで、書き出し時に英語ページをたどらせている
   - ページ内のリンクは、まだ言語を付けていない（英語ページから日本語ページへ移る）。3-2でページごとに直す
-- [ ] **3-4. 多言語化の土台を作る**（2026-09-17に、日英併記から言語ごとのページへ移すと決めた）
-  - 2026-09-18: 進め方の1〜5は完了。全ページの英語ページを公開の対象にした。残りは6（Search Consoleでの確認。手作業）と、英訳のレビュー
+- [x] **3-4. 多言語化の土台を作る**（2026-09-20完了。2026-09-17に、日英併記から言語ごとのページへ移すと決めた）
+  - 2026-09-18: 進め方の1〜5は完了。全ページの英語ページを公開の対象にした
+  - 2026-09-19: 英語だけでなく**8言語**（ja/en/zh/ko/es/fr/ru/hi）に広げ、大会名312件・日付の書き方・メタ情報まで訳し終えてリリースした
+  - 2026-09-20: Search Consoleでsitemap.xml（2,568 URL・8言語のhreflang）を送り直した
+    - 登録が進むには数日から数週間かかる。**しばらくしてから、各言語のページが登録されているかを見る**
   - 方針
     - 既定は日本語。まず英語を加え、言語は後から足せる作りにする
     - URLに言語を入れる。日本語は今のURLのまま、英語は `/en/...`（既存のURLと検索順位を保つため）
@@ -253,10 +256,57 @@ SEO・SNSカードが機能していない原因と、AWS環境の未整備を�
 
 Phase 0の「AWS環境の整備」を先に済ませてから着手する。
 
-- [ ] **4-1. 現在の AWS 構成を洗い出す**（Amplifyアプリ・独自ドメイン・Route53・証明書）
-- [ ] **4-2. state 置き場を用意**（S3 + DynamoDBロック。oshiageの `terraform/README.md` と同じ方針）
-- [ ] **4-3. 既存リソースを `import` して差分ゼロにする**（新規作成ではなく取り込みから始める）
-- [ ] **4-4. 環境変数・ヘッダー・書き換えルールをコード管理にする**（Phase 0の設定を手作業のままにしない）
+Phase 4の進め方（2026-09-19に決めた）
+
+- **Amplifyを取り込むのではなく、S3 + CloudFrontへ移す。** PRプレビューは使っていないため、費用の安いほうを選んだ
+  - ビルドはGitHub Actions（無料枠）、配信はCloudFront（毎月1TBまでの恒久無料枠）。Amplifyはビルドが約 $0.01/分、配信が $0.15/GB
+  - Amplifyのコンソールで手作業になっていたヘッダーと書き換えルールも、まとめてコードへ移せる
+- 状態ファイルのロックはS3のロックファイル（Terraform 1.10以降）を使い、DynamoDBを立てない。版は `terraform/.terraform-version` で固定する
+- 環境は本番とステージングの2つ。**PRごとのプレビューは作らない**（PRの数だけ増えて管理が増えるため）
+  - ステージングは `stg.imrg.work`。`develop` へのpushで自動、手で動かすときはブランチを選べる
+  - 本番と同じ中身が別のURLで見つかると本番の順位が下がるため、`X-Robots-Tag: noindex` と合言葉（Basic認証）で二重に隠す
+  - 足してもお金はほぼ変わらない（S3が88MBで月数円、CloudFrontは見るのが自分たちだけなので無料枠に収まる）
+
+- [x] **4-2. state 置き場を用意**（`modules/state_backend`。S3のみ）
+- [x] **4-4. 環境変数・ヘッダー・書き換えルールをコード管理にする**
+  - `customHeaders` はCloudFrontのレスポンスヘッダーポリシーへ
+  - 末尾スラッシュとindex.htmlの解決、wwwの転送はCloudFront Functionsへ
+  - `/oshimitsu/content_type/<*>` の書き換え4件は、転送先の `index.html` がビルド結果に無く動いていなかったため落とした
+- [x] **4-5. 戻し方と監視を用意する**
+  - 配ったビルドを `<バケット>-releases` へ90日残す。作り直さなくても前の版へ戻せる（`deploy.yml` の `release` 入力）
+  - サイトの死活はGitHub Actionsで30分ごとに外から確かめる（費用ゼロ。Route53のヘルスチェックは月$0.50かかる）
+  - CloudFrontの5xx・4xxと証明書の残り日数はCloudWatchのアラームからメールで知らせる（10個まで無料枠の範囲）
+- [x] **4-0. AWSの片づけ**（2026-09-20完了。手順は [aws-cleanup.md](aws-cleanup.md)）
+  - 棚卸しは `terraform/scripts/aws-audit.sh`（読むだけ。何も消さない）。2026-09-20に実施
+  - 残っていたものは、ほぼ2023〜2024年に試したAmplifyのチュートリアル（`d1o1ui2gd5pshh` `d295caw51lipy2` `d7q1eopfj7aj0` `src-owner-sandbox` `reacttutorial`）
+  - [x] RDSのスナップショット `rds-mysql-10mintutorial-snapshot`（20GB・2023-10-21）を消した。**毎月の $0.11 はこれだった**（2026-09-20）
+    - 2022-11-06に作ったMySQLインスタンスの分。インスタンス本体は2023年に消えており、スナップショットだけ3年残っていた
+  - [x] 古いAmplifyのアプリ `d2e38588w4qs62`（svelte-kit-to-amplify）を消した（2026-09-20）
+    - アプリを消すと、CloudFormationのスタック5つ・Cognito・AppSync・DynamoDB・Lambda 6個・S3・IAMロール7個が連鎖して消えた。**個別に消さずアプリから消すのが正しい**
+  - [x] 孤立したCognito（ユーザープールとIDプール）、Lambda 4個、IAMロール、ログ117個、`CDKToolkit`一式を消した（2026-09-20）
+    - 片づけ後の棚卸しでは、CloudFormation・Lambda・ログ・Cognito・AppSync・DynamoDB・ECRがすべて0になった。S3はCloudTrailのログだけ
+    - つまずいた点：ユーザープールを消してもトリガーのLambdaとIDプールは残る／`AWSLambdaBasicExecutionRole-*` のポリシーは `policy/service-role/` の下にありARNを組み立てると失敗する／CDKのS3は版が有効なので `aws s3 rm` では空にならない
+  - [x] IAMユーザー `takumi-shimizu-iam-amplify` を消した（2026-09-20）
+    - **`AdministratorAccess` が付いたまま、鍵が有効な状態で1年以上放置されていた**（最終使用は2025-07-30）。片づけのなかでいちばん危なかったもの
+    - 使っていた相手（旧Amplify）をすでに消していたため、無効にして様子を見る手順は飛ばした
+  - IAMユーザーは `admin` だけになった
+  - いまのAmplifyアプリは `iamServiceRoleArn` が `None` で `platform` が `WEB` のため、残っている `amplifyconsole-*` と `AmplifySSRLoggingRole-*` はどれも使われていない。移行後にまとめて消す
+  - ACMに証明書が1つも無い。Amplifyが内部で持っているため、Terraformでは新しく作ることになる（取り込みは不要）
+- [x] **4-6. ステージング環境を用意する**（`envs/stg`。配る手順は `_deploy.yml` に共通化し、本番とステージングで同じものを使う）
+- [x] **4-1. 現在の AWS 構成を洗い出す**（2026-09-20。4-0の棚卸しで判明した）
+  - Route53のホストゾーン `imrg.work` … `Z09326151SBEIRMAZRJNN`（レコード6件）
+  - ACMの証明書 … **1つも無い**（Amplifyが内部で持っているため外から見えない）
+  - CloudFrontの配信 … **無い**（同上）
+  - Amplifyのアプリ … `d3fj0jchd8ri0z`（`iamServiceRoleArn` は `None`、`platform` は `WEB`）
+  - S3 … CloudTrailのログ置き場だけ
+- [ ] **4-3. 作って切り替える**（新規作成 → CloudFrontのドメインで確認 → Route53を切り替え → Amplifyを消す）
+  - 取り込み（`import`）はしない。Amplifyの構成をそのまま写すのではなく、別の構成へ移すため
+  - [ ] `envs/prod/terraform.tfvars` を書く（`hosted_zone_id = "Z09326151SBEIRMAZRJNN"`、`notification_email`）
+  - [ ] `terraform apply -target=module.state_backend` → `terraform init -migrate-state` → `terraform apply`
+  - [ ] GitHubのEnvironments（`production`・`staging`）にSecretsを入れる
+  - [ ] `envs/stg/terraform.tfvars` を書いて `terraform apply`（合言葉も決める）
+  - [ ] CloudFrontのドメインで表示・転送・404を確かめる（Route53はまだAmplifyを向いたまま）
+  - [ ] Route53を切り替え、数日おいてAmplifyと残りのIAMロールを消す
 
 ## Phase 5: デザインリニューアル
 
@@ -275,7 +325,7 @@ Phase 0の「AWS環境の整備」を先に済ませてから着手する。
 - [ ] **6-3. アクセシビリティ点検**（コントラスト・キーボード操作・見出し階層）
 - 6-4（日英の切り替え）は、多言語化すると決めたので3-4へ移した
 - [ ] **6-5. アクセス解析の活用**（どのページが見られているかを毎月確認し、次の施策を決める）
-- [ ] **6-6. `PUBLIC_BASE_PATH: 'https//imrg.work'`（`amplify.yml`）のタイポを直す**。未使用なら削除する
+- [x] **6-6. `PUBLIC_BASE_PATH: 'https//imrg.work'`（`amplify.yml`）のタイポ**は、未使用だったためPhase 4の移行で `amplify.yml` ごと消す
 - [ ] **6-7. ファイアウォール（AWS WAF）を今は入れない**（2026-09-17に判断）
   - Amplifyのファイアウォールは、アプリ1つにつき月15ドルに加え、AWS WAFの料金（Web ACL月5ドル、ルール1つ月1ドル、100万リクエストごと0.6ドル）がかかる。最低でも月20ドル強
   - このサイトは静的なファイルだけで、フォーム・ログイン・APIが無い。SQLインジェクションやXSSなど、WAFが主に防ぐ攻撃の対象になる処理を持たない

@@ -1,0 +1,30 @@
+name: Deploy (production)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      release:
+        description: '戻したいリリースのコミット（省略すると今の main を作って配る）'
+        required: false
+        type: string
+
+# 配信は重ねない。走っている途中で新しい push が来たら順番待ちにする
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/_deploy.yml
+    secrets: inherit
+    with:
+      environment: production
+      site_url: https://imrg.work/
+      release: ${{ inputs.release || '' }}
