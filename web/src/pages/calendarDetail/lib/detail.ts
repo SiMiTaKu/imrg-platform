@@ -2,12 +2,17 @@ import {
   EVENTS,
   EventSchedule,
   eventDateRange,
+  eventSortKey,
   localizeEvent,
   type CalendarEvent,
 } from '@entities/calendarEvent'
 import type { CalendarDetailMetaInput } from '@shared/config/meta'
 import { NotFoundError } from '@shared/errors'
+import { parseDate } from '@shared/lib/date'
 import type { SiteLocale } from '@shared/lib/i18n'
+
+/** 1日のミリ秒 */
+const DAY_MS = 24 * 60 * 60 * 1000
 
 /**
  * ID から大会を探す
@@ -72,4 +77,59 @@ export const buildSportsEventJsonLd = (
     sport: "Men's Rhythmic Gymnastics",
     location: localized.venue ? { '@type': 'Place', name: localized.venue } : undefined,
   }
+}
+
+/**
+ * 開催までの近さを短い日本語にする
+ * @param event - 大会
+ * @param today - 今日の日付 "YYYY-MM-DD"
+ * @returns 「今日」「明日」「あと5日」「開催中」「終了」。日付が未定なら undefined
+ *
+ * @remarks
+ * 同じ考え方の関数がカレンダー一覧のページにもある。ページをまたいで共有せず、
+ * それぞれのページの中で完結させている（一覧は「終了」を出さないなど、出し分けが違うため）
+ */
+export const countdownText = (event: CalendarEvent, today: string): string | undefined => {
+  if (event.schedule === EventSchedule.MONTH_ONLY) return undefined
+
+  const start = parseDate(event.startDate)
+  const base = parseDate(today)
+  if (start.day === undefined || base.day === undefined) return undefined
+
+  const left = Math.round(
+    (Date.UTC(start.year, start.month - 1, start.day) -
+      Date.UTC(base.year, base.month - 1, base.day)) /
+      DAY_MS,
+  )
+  if (left > 1) return `あと${left}日`
+  if (left === 1) return '明日'
+  if (left === 0) return '今日'
+  return (event.endDate ?? event.startDate) >= today ? '開催中' : '終了'
+}
+
+/**
+ * 同じころに開かれる大会を探す
+ * @param event - 表示している大会
+ * @param count - 返す件数
+ * @returns 日付の並びで前後にある大会。自分自身は含めない
+ *
+ * @remarks
+ * 「この日に見に行けるほかの大会」をたどれるようにするためのもの。
+ * 並びは一覧と同じ（開始日の順、同じ日なら日本語の大会名の順）
+ */
+export const nearbyEvents = (event: CalendarEvent, count: number): CalendarEvent[] => {
+  const sorted = [...EVENTS].sort(
+    (a, b) =>
+      eventSortKey(a).localeCompare(eventSortKey(b)) || a.title.ja.localeCompare(b.title.ja),
+  )
+  const position = sorted.findIndex((item) => item.id === event.id)
+  if (position < 0) return []
+
+  // 自分を真ん中に置いた窓を切り出し、端に寄ったときは窓ごとずらす
+  const windowSize = count + 1
+  const start = Math.min(
+    Math.max(0, position - Math.floor(count / 2)),
+    Math.max(0, sorted.length - windowSize),
+  )
+  return sorted.slice(start, start + windowSize).filter((item) => item.id !== event.id)
 }

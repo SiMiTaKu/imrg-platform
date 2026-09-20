@@ -1,64 +1,27 @@
 <script lang="ts">
-  import { RECOMMENDED_VIDEOS, VideoCard } from '@entities/oshimitsuVideo'
-  import { OshimitsuSearchForm, shuffle } from '@features/oshimitsuSearch'
-  import { m } from '$lib/paraglide/messages'
-  import { onMount } from 'svelte'
-
-  /**
-   * おすすめ動画。サーバーで書き出す HTML はデータの並びのままにし、ブラウザーで並べ替える
-   * （サーバーとブラウザーで並びがずれると、ハイドレーションの警告が出るため）
-   */
-  let recommendedVideos = $state.raw(RECOMMENDED_VIDEOS)
-
-  onMount(() => {
-    recommendedVideos = shuffle(RECOMMENDED_VIDEOS)
-  })
+  import OshimitsuHero from './OshimitsuHero.svelte'
+  import RecommendedVideos from './RecommendedVideos.svelte'
+  import SearchWays from './SearchWays.svelte'
 </script>
 
+<!--
+  上から「何ができるページか」→「どう探すか」→「まず見る動画」の順に並べる。
+  名前（推しミツ！）だけでは伝わらないので、探し方の入口を折り返しの前に出す
+-->
 <article class="article">
-  <section class="section">
-    <h1>{m.oshimitsu_title()}</h1>
-    <p>
-      {m.oshimitsu_lead_line1()}<br />
-      {m.oshimitsu_lead_line2()}
-    </p>
-  </section>
-  <section class="section">
-    <OshimitsuSearchForm />
-  </section>
-  <section class="section">
-    <h2 class="h2">{m.oshimitsu_recommended_title()}</h2>
-    {#each recommendedVideos as video, index (index)}
-      <VideoCard {video} />
-    {/each}
-  </section>
+  <OshimitsuHero />
+  <SearchWays />
+  <RecommendedVideos />
 </article>
 
 <style lang="scss">
   .article {
-    display: grid;
-    gap: $space-size-40;
-
-    // 中身が画面より広くならないようにする（minmax(0, …) が無いと文章が折り返さない）
-    grid-template-columns: minmax(0, 1fr);
-    width: 100%;
-    padding: $space-size-40 $space-size-16;
-    justify-items: center;
-    box-sizing: border-box;
-  }
-
-  .section {
-    display: grid;
-    gap: $space-size-16;
+    display: flex;
+    flex-direction: column;
 
     // 中身が画面より広くならないようにする
-    grid-template-columns: minmax(0, 1fr);
     width: 100%;
-    justify-items: center;
-  }
-
-  .h2 {
-    font-size: $font-size-30;
-    font-weight: bold;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 </style>

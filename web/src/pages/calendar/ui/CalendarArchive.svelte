@@ -29,6 +29,10 @@
 -->
 <section class="archive" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <h2 class="archive-title">{m.calendar_archive_title()}</h2>
+  <p class="archive-lead">
+    年を開くと、その年に載せている大会・発表会・講習会がすべて並びます。
+    過去の大会からも、その年の出典と結果ページをたどれます。
+  </p>
   {#each eventsByYear as [year, events] (year)}
     <details class="year">
       <summary class="year-summary">
@@ -52,7 +56,7 @@
 
 <style lang="scss">
   .desktop {
-    --width: 1024px;
+    --width: 100%;
     --title-font-size: #{$font-size-24};
     --link-font-size: #{$font-size-16};
     --date-width: 220px;
@@ -71,13 +75,27 @@
     box-sizing: border-box;
     width: var(--width);
     max-width: 100%;
-    margin: $space-size-40 auto 0;
+    margin: $space-size-48 auto 0;
+    padding: $space-size-20;
+    border: $border-size-1 solid map.get($gray, 100);
+    border-radius: 10px;
+    background: $white;
   }
 
   .archive-title {
-    margin: 0 0 $space-size-16;
+    margin: 0 0 $space-size-8;
+    padding-left: $space-size-12;
+    border-left: $border-size-4 solid map.get($sky-blue, button);
     font-size: var(--title-font-size);
+    line-height: 1.4;
     color: map.get($gray, text);
+  }
+
+  .archive-lead {
+    margin: 0 0 $space-size-16;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+    line-height: 1.8;
   }
 
   .year {
@@ -94,10 +112,18 @@
     cursor: pointer;
   }
 
+  .year-summary:hover {
+    color: map.get($sky-blue, text);
+  }
+
   .count {
-    font-size: $font-size-14;
-    font-weight: normal;
-    color: map.get($gray, light-text);
+    padding: 0 $space-size-8;
+    font-size: $font-size-11;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+    border-radius: $border-radius-64;
+    background: map.get($sky-blue, background);
+    font-variant-numeric: tabular-nums;
   }
 
   .list {

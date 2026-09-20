@@ -1,0 +1,310 @@
+<script lang="ts">
+  import { OshimitsuSearchForm } from '@features/oshimitsuSearch'
+  import { pageData } from '@shared/lib/device'
+  import { localizeHref } from '@shared/lib/i18n'
+  import { apparatusEntries, contentTypeEntries } from '../lib/entries'
+
+  const isMobile = $derived($pageData.isMobile)
+  /** 個人・団体の入口 */
+  const contentTypes = $derived(contentTypeEntries())
+  /** 手具の入口 */
+  const apparatuses = $derived(apparatusEntries())
+</script>
+
+<section class="ways" class:mobile={isMobile} id="search">
+  <div class="inner">
+    <header class="head">
+      <h2>どうやって探しますか？</h2>
+      <p>入口は3つ。上の2つは1回押すだけで、動画の一覧に進みます。</p>
+    </header>
+
+    <h3 class="label">
+      <span class="step">1</span>
+      <span class="text">個人（選手）か、団体（チーム）か</span>
+    </h3>
+    <ul class="types">
+      {#each contentTypes as entry (entry.id)}
+        <li>
+          <a href={localizeHref(entry.href)}>
+            {#if entry.badge}
+              <span class="badge">{entry.badge}</span>
+            {/if}
+            <span class="name">{entry.label}</span>
+            <span class="description">{entry.description}</span>
+            <!-- 本数と矢印は、本文の下に置く。重ねない -->
+            <span class="foot">
+              <span class="count">{entry.count}本</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      {/each}
+    </ul>
+
+    <h3 class="label">
+      <span class="step">2</span>
+      <span class="text">手具でえらぶ（個人の演技）</span>
+    </h3>
+    <ul class="apparatuses">
+      {#each apparatuses as entry (entry.id)}
+        <li>
+          <a href={localizeHref(entry.href)}>
+            <span class="name">{entry.label}</span>
+            <span class="description">{entry.description}</span>
+            <span class="foot">
+              <span class="count">{entry.count}本</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      {/each}
+    </ul>
+
+    <h3 class="label">
+      <span class="step">3</span>
+      <span class="text">条件を組み合わせてから進む</span>
+    </h3>
+    <div class="form">
+      <p class="form-note">手具は、個人をえらぶといくつでも付けられます。</p>
+      <div class="form-body">
+        <OshimitsuSearchForm />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .ways {
+    width: 100%;
+    background: $white;
+  }
+
+  .inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: $space-size-64 $space-size-24;
+  }
+
+  .mobile .inner {
+    padding: $space-size-40 $space-size-16;
+  }
+
+  .head {
+    margin-bottom: $space-size-32;
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0 0 $space-size-8;
+    font-size: $font-size-30;
+  }
+
+  .mobile h2 {
+    font-size: $font-size-24;
+  }
+
+  .head p {
+    margin: 0;
+    font-size: $font-size-14;
+    color: map.get($gray, light-text);
+  }
+
+  /* ─── 「1」「2」「3」の見出し ─── */
+
+  .label {
+    display: flex;
+    gap: $space-size-8;
+    margin: $space-size-32 0 $space-size-16;
+    font-size: $font-size-18;
+    align-items: center;
+  }
+
+  .mobile .label {
+    font-size: $font-size-16;
+  }
+
+  .step {
+    display: grid;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    font-size: $font-size-14;
+    color: map.get($amber, 800);
+
+    // 順番は黄（希望・行動）で示す
+    border-radius: 999px;
+    background: map.get($amber, 300);
+    place-items: center;
+  }
+
+  .label .text {
+    min-inline-size: 0;
+  }
+
+  /* ─── 個人・団体のカード ─── */
+
+  .types {
+    display: grid;
+    gap: $space-size-16;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mobile .types {
+    grid-template-columns: 1fr;
+  }
+
+  // カードは縦積みにする。重ねると崩れるので position で重ねない
+  .types a {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-8;
+    height: 100%;
+    padding: $space-size-24;
+    color: inherit;
+    border: 1px solid map.get($gray, 100);
+    border-radius: 8px;
+    background: $white;
+    transition:
+      border-color 0.15s ease,
+      transform 0.15s ease;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  .types a:hover {
+    border-color: map.get($sky-blue, border);
+    transform: translateY(-2px);
+  }
+
+  .badge {
+    align-self: flex-start;
+    padding: $space-size-4 $space-size-8;
+    font-size: $font-size-10;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+    border-radius: 999px;
+    background: map.get($sky-blue, background);
+    letter-spacing: 0.06em;
+  }
+
+  .types .name {
+    font-size: $font-size-24;
+    font-weight: bold;
+  }
+
+  .types .description {
+    font-size: $font-size-14;
+    color: map.get($gray, 600);
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+  }
+
+  /* ─── 手具のカード ─── */
+
+  .apparatuses {
+    display: grid;
+    gap: $space-size-12;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mobile .apparatuses {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .apparatuses a {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-8;
+    height: 100%;
+    padding: $space-size-16;
+    color: inherit;
+    border: 1px solid map.get($gray, 100);
+
+    // 上辺だけ黄を差して、種類のカードと見分ける
+    border-top: 3px solid map.get($amber, border);
+    border-radius: 8px;
+    background: $white;
+    transition:
+      border-color 0.15s ease,
+      transform 0.15s ease;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  .apparatuses a:hover {
+    border-color: map.get($amber, button);
+    transform: translateY(-2px);
+  }
+
+  .apparatuses .name {
+    font-size: $font-size-18;
+    font-weight: bold;
+  }
+
+  .apparatuses .description {
+    font-size: $font-size-12;
+    color: map.get($gray, 600);
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+
+  /* ─── 本数と矢印（カードのいちばん下） ─── */
+
+  .foot {
+    display: flex;
+    gap: $space-size-8;
+
+    // カードの高さが違っても、下辺で揃える（重ねずに下へ送る）
+    margin-top: auto;
+    padding-top: $space-size-8;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .count {
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: map.get($gray, light-text);
+  }
+
+  .arrow {
+    font-size: $font-size-18;
+    color: map.get($sky-blue, button);
+  }
+
+  /* ─── 条件を組み合わせるフォーム ─── */
+
+  .form {
+    padding: $space-size-24;
+    border: 1px solid map.get($gray, 100);
+    border-radius: 8px;
+    background: map.get($gray, background);
+  }
+
+  .mobile .form {
+    padding: $space-size-16;
+  }
+
+  .form-note {
+    margin: 0 0 $space-size-16;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-16;
+    align-items: flex-start;
+  }
+
+  .mobile .form-body {
+    align-items: center;
+  }
+</style>

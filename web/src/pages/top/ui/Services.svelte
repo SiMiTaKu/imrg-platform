@@ -165,8 +165,9 @@
     background: $white;
   }
 
+  // 相談への一歩は黄。青（情報を見る）と役割を分ける
   .order {
-    color: $white;
-    background: map.get($sky-blue, button);
+    color: map.get($amber, 800);
+    background: map.get($amber, 300);
   }
 </style>

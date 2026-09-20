@@ -96,82 +96,85 @@
     >
   {/if}
 
-  <table class="grid">
-    <thead>
-      <tr>
-        {#each WEEKDAYS as weekday (weekday.index)}
-          <th
-            class:sunday={weekday === Weekday.SUNDAY}
-            class:saturday={weekday === Weekday.SATURDAY}
-            scope="col"
-          >
-            {weekdayName(weekday, locale)}
-          </th>
-        {/each}
-      </tr>
-    </thead>
-    <tbody>
-      {#each weeks as week (week[0].dateKey)}
+  <!-- 表は専用の入れ物に入れる。狭い画面でもページ全体が横に動かないようにするため -->
+  <div class="grid-scroller">
+    <table class="grid">
+      <thead>
         <tr>
-          {#each week as cell (cell.dateKey)}
-            {@const dayEvents = cell.inMonth ? eventsOnDay(events, cell.dateKey) : []}
-            <td
-              class="cell"
-              class:outside={!cell.inMonth}
-              class:selected={cell.dateKey === selectedDay}
+          {#each WEEKDAYS as weekday (weekday.index)}
+            <th
+              class:sunday={weekday === Weekday.SUNDAY}
+              class:saturday={weekday === Weekday.SATURDAY}
+              scope="col"
             >
-              <button
-                class="day-button"
-                type="button"
-                aria-label={dayLabel(cell.dateKey, dayEvents.length)}
-                aria-pressed={cell.dateKey === selectedDay}
-                disabled={dayEvents.length === 0}
-                onclick={() => onselect(cell.dateKey)}
-              >
-                <span
-                  class="day-number"
-                  class:muted={!cell.inMonth}
-                  class:sunday={cell.inMonth && cell.weekday === Weekday.SUNDAY}
-                  class:saturday={cell.inMonth && cell.weekday === Weekday.SATURDAY}
-                  class:today-mark={cell.dateKey === today}>{cell.day}</span
-                >
-                {#if $pageData.isMobile && dayEvents.length}
-                  <span class="dots">
-                    {#each dayEvents.slice(0, MAX_DAY_CHIPS) as event (event.id)}
-                      <span style:--color={categoryColor(event.category)} class="dot"></span>
-                    {/each}
-                  </span>
-                {/if}
-              </button>
-
-              {#if !$pageData.isMobile && dayEvents.length}
-                <ul class="chips">
-                  {#each dayEvents.slice(0, MAX_DAY_CHIPS) as event (event.id)}
-                    {@const title = localizeEvent(event, locale).title}
-                    <li>
-                      <a
-                        style:--color={categoryColor(event.category)}
-                        class="chip"
-                        {title}
-                        href={localizeHref(ROUTES.calendar.detail(event.id))}>{title}</a
-                      >
-                    </li>
-                  {/each}
-                  {#if dayEvents.length > MAX_DAY_CHIPS}
-                    <li>
-                      <button class="more" type="button" onclick={() => onselect(cell.dateKey)}>
-                        {m.calendar_more({ count: dayEvents.length - MAX_DAY_CHIPS })}
-                      </button>
-                    </li>
-                  {/if}
-                </ul>
-              {/if}
-            </td>
+              {weekdayName(weekday, locale)}
+            </th>
           {/each}
         </tr>
-      {/each}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {#each weeks as week (week[0].dateKey)}
+          <tr>
+            {#each week as cell (cell.dateKey)}
+              {@const dayEvents = cell.inMonth ? eventsOnDay(events, cell.dateKey) : []}
+              <td
+                class="cell"
+                class:outside={!cell.inMonth}
+                class:selected={cell.dateKey === selectedDay}
+              >
+                <button
+                  class="day-button"
+                  type="button"
+                  aria-label={dayLabel(cell.dateKey, dayEvents.length)}
+                  aria-pressed={cell.dateKey === selectedDay}
+                  disabled={dayEvents.length === 0}
+                  onclick={() => onselect(cell.dateKey)}
+                >
+                  <span
+                    class="day-number"
+                    class:muted={!cell.inMonth}
+                    class:sunday={cell.inMonth && cell.weekday === Weekday.SUNDAY}
+                    class:saturday={cell.inMonth && cell.weekday === Weekday.SATURDAY}
+                    class:today-mark={cell.dateKey === today}>{cell.day}</span
+                  >
+                  {#if $pageData.isMobile && dayEvents.length}
+                    <span class="dots">
+                      {#each dayEvents.slice(0, MAX_DAY_CHIPS) as event (event.id)}
+                        <span style:--color={categoryColor(event.category)} class="dot"></span>
+                      {/each}
+                    </span>
+                  {/if}
+                </button>
+
+                {#if !$pageData.isMobile && dayEvents.length}
+                  <ul class="chips">
+                    {#each dayEvents.slice(0, MAX_DAY_CHIPS) as event (event.id)}
+                      {@const title = localizeEvent(event, locale).title}
+                      <li>
+                        <a
+                          style:--color={categoryColor(event.category)}
+                          class="chip"
+                          {title}
+                          href={localizeHref(ROUTES.calendar.detail(event.id))}>{title}</a
+                        >
+                      </li>
+                    {/each}
+                    {#if dayEvents.length > MAX_DAY_CHIPS}
+                      <li>
+                        <button class="more" type="button" onclick={() => onselect(cell.dateKey)}>
+                          {m.calendar_more({ count: dayEvents.length - MAX_DAY_CHIPS })}
+                        </button>
+                      </li>
+                    {/if}
+                  </ul>
+                {/if}
+              </td>
+            {/each}
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  </div>
 
   {#if undated.length}
     <div class="undated">
@@ -188,6 +191,11 @@
   {/if}
 
   <ul class="legend">
+    <!-- 今日の印は黄。種類の色（青系・緑系…）と役割が違うことが分かるようにする -->
+    <li class="legend-item">
+      <span class="today-dot"></span>
+      今日
+    </li>
     {#each EVENT_CATEGORIES as category (category.slug)}
       <li class="legend-item">
         <span style:--color={category.color} class="dot"></span>
@@ -245,16 +253,23 @@
     font-variant-numeric: tabular-nums;
   }
 
+  // 「今月に戻る」は今すぐ押してほしい操作なので黄にする
   .this-month {
-    padding: $space-size-4 $space-size-12;
+    padding: $space-size-4 $space-size-16;
     font-size: $font-size-12;
     font-weight: bold;
-    color: map.get($sky-blue, text);
-    border: $border-size-1 solid map.get($sky-blue, border);
+    color: map.get($amber, 800);
+    border: $border-size-1 solid map.get($amber, border);
     border-radius: $border-radius-64;
-    background: $white;
+    background: map.get($amber, 300);
     justify-self: center;
     cursor: pointer;
+  }
+
+  // 表だけを横に動かす。ページ全体には横スクロールを出さない
+  .grid-scroller {
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   .grid {
@@ -330,9 +345,11 @@
     color: map.get($gray, 300);
   }
 
+  // 今日の印。青（情報）と役割を分けて、黄（今・行動）で出す
   .today-mark {
-    color: $white;
-    background: map.get($sky-blue, button);
+    color: map.get($amber, 800);
+    background: map.get($amber, 300);
+    box-shadow: 0 0 0 2px map.get($amber, button);
   }
 
   .dots {
@@ -354,6 +371,8 @@
     display: grid;
     gap: $space-size-2;
     grid-template-columns: minmax(0, 1fr);
+    margin: 0;
+    padding: 0;
     list-style: none;
   }
 
@@ -414,6 +433,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: $space-size-4 $space-size-16;
+    margin: 0;
+    padding: 0;
     list-style: none;
     font-size: $font-size-12;
     color: map.get($gray, 600);
@@ -423,5 +444,14 @@
     display: flex;
     align-items: center;
     gap: $space-size-4;
+  }
+
+  .today-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: map.get($amber, 300);
+    box-shadow: 0 0 0 2px map.get($amber, button);
   }
 </style>

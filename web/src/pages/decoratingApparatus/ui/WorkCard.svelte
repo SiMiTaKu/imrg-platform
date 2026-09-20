@@ -1,6 +1,5 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { pageData } from '@shared/lib/device'
   import { ImageAssets } from '@shared/ui'
   import type { ImageSourceMeta } from '@shared/ui'
   import { fade } from 'svelte/transition'
@@ -20,6 +19,8 @@
   let faces: CardFaces = $state({ frontImageIndex: 0, backImageIndex: 1, flipped: false })
   // 写真が1枚だけの作品でも、裏に同じ写真を出せるようにする
   const backImageIndex = $derived(faces.backImageIndex % images.length)
+  // 何枚目を見ているか（1 始まり）
+  const currentNumber = $derived((faces.flipped ? backImageIndex : faces.frontImageIndex) + 1)
 
   /**
    * カードを裏返す
@@ -29,71 +30,97 @@
   }
 </script>
 
-<button class="card" class:flipped={faces.flipped} type="button" onclick={flip}>
-  {#if !faces.flipped}
-    <div class="front" in:fade={{ delay: 250, duration: 200 }} out:fade>
-      <ImageAssets
-        width={$pageData.isMobile ? 338 : 331}
-        height={$pageData.isMobile ? 338 : 331}
-        alt={m.decorating_apparatus_work_image_alt({
-          work: workIndex + 1,
-          image: faces.frontImageIndex + 1,
-        })}
-        lazy={true}
-        imageSourceMeta={images[faces.frontImageIndex]}
-        objectFit="cover"
-      />
-    </div>
-  {:else}
-    <div class="back" in:fade={{ delay: 250, duration: 200 }} out:fade>
-      <ImageAssets
-        width={$pageData.isMobile ? 338 : 331}
-        height={$pageData.isMobile ? 338 : 331}
-        alt={m.decorating_apparatus_work_image_alt({
-          work: workIndex + 1,
-          image: backImageIndex + 1,
-        })}
-        imageSourceMeta={images[backImageIndex]}
-        objectFit="cover"
-      />
-    </div>
-  {/if}
-</button>
+<div class="work-card">
+  <button class="card" class:flipped={faces.flipped} type="button" onclick={flip}>
+    {#if !faces.flipped}
+      <div class="face front" in:fade={{ delay: 250, duration: 200 }} out:fade>
+        <ImageAssets
+          width="100%"
+          height="100%"
+          alt={m.decorating_apparatus_work_image_alt({
+            work: workIndex + 1,
+            image: faces.frontImageIndex + 1,
+          })}
+          lazy={true}
+          imageSourceMeta={images[faces.frontImageIndex]}
+          objectFit="cover"
+        />
+      </div>
+    {:else}
+      <div class="face back" in:fade={{ delay: 250, duration: 200 }} out:fade>
+        <ImageAssets
+          width="100%"
+          height="100%"
+          alt={m.decorating_apparatus_work_image_alt({
+            work: workIndex + 1,
+            image: backImageIndex + 1,
+          })}
+          imageSourceMeta={images[backImageIndex]}
+          objectFit="cover"
+        />
+      </div>
+    {/if}
+  </button>
+
+  <!-- 押せることが分かるように、何枚目かを写真の下に置く。写真には重ねない -->
+  <p class="hint">
+    <span class="counter">{currentNumber} / {images.length}</span>
+    押すと別の角度
+  </p>
+</div>
 
 <style lang="scss">
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-8;
+    width: 100%;
+    min-width: 0;
+  }
+
   .card {
-    position: relative;
+    // 表と裏は grid の同じマス目に置く。position: absolute で重ねない
+    display: grid;
     width: 100%;
     max-width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
-    border: none;
+    border: 1px solid map.get($sky-blue, 100);
     border-radius: 8px;
-    background-color: transparent;
-    transition: 1s;
+    background-color: $white;
+    transition: transform 1s ease;
+    aspect-ratio: 1;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 0 8px rgb(0, 0, 0, 0.5);
     transform: rotateY(0);
   }
 
-  .front {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+  .card:hover {
+    border-color: map.get($amber, border);
+  }
+
+  .face {
+    grid-area: 1 / 1;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+  }
+
+  // ImageAssets の img は高さが auto になるので、ここで枠いっぱいに伸ばす
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+  .face :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+
+  .front {
+    z-index: 1;
   }
 
   .back {
-    position: absolute;
-    top: 0;
-    left: 0;
     z-index: 0;
-    width: 100%;
-    height: 100%;
     transform: rotateY(180deg);
   }
 
@@ -107,5 +134,24 @@
     .back {
       z-index: 1;
     }
+  }
+
+  .hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-size-4;
+    margin: 0;
+    font-size: $font-size-11;
+    color: map.get($gray, light-text);
+  }
+
+  .counter {
+    padding: $space-size-2 $space-size-8;
+    font-weight: bold;
+    color: map.get($amber, 800);
+    border-radius: 999px;
+    background: map.get($amber, 300);
+    font-variant-numeric: tabular-nums;
   }
 </style>

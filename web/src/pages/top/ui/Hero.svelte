@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import LogoImage from '../images/imrg-logo.png?w=560;1120&format=webp&as=meta'
+  import LogoImage from '../images/imrg-logo.png?w=460;920&format=webp&as=meta'
 </script>
 
 <script lang="ts">
@@ -18,8 +18,8 @@
     <!-- ロゴを最初に置く。何のサイトかを言葉より先に見せる -->
     <h1 class="logo">
       <ImageAssets
-        width={isMobile ? 300 : 460}
-        height={isMobile ? 217 : 333}
+        width={isMobile ? 260 : 380}
+        height={isMobile ? 188 : 275}
         alt={m.top_main_visual_logo_alt()}
         lazy={false}
         imageSourceMeta={LogoImage}
@@ -72,7 +72,7 @@
     gap: $space-size-24;
     max-width: 780px;
     margin: 0 auto;
-    padding: $space-size-56 $space-size-24 $space-size-48;
+    padding: $space-size-40 $space-size-24 $space-size-48;
     text-align: center;
   }
 
@@ -160,11 +160,10 @@
     box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
   }
 
-  // 依頼の入口は黄。青と役割を分ける
   .secondary {
-    color: map.get($amber, 800);
-    background: map.get($amber, 300);
-    box-shadow: 0 2px 8px rgb(240 165 0 / 30%);
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
+    background: $white;
   }
 
   .team {
