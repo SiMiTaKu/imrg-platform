@@ -273,7 +273,7 @@ Phase 4の進め方（2026-09-19に決めた）
   - 末尾スラッシュとindex.htmlの解決、wwwの転送はCloudFront Functionsへ
   - `/oshimitsu/content_type/<*>` の書き換え4件は、転送先の `index.html` がビルド結果に無く動いていなかったため落とした
 - [x] **4-5. 戻し方と監視を用意する**
-  - 配ったビルドを `<バケット>-releases` へ90日残す。作り直さなくても前の版へ戻せる（`deploy.yml` の `release` 入力）
+  - 配ったビルドを `<バケット>-releases` へ90日残す。作り直さなくても前の版へ戻せる（手動デプロイの `release` 入力）
   - サイトの死活はGitHub Actionsで30分ごとに外から確かめる（費用ゼロ。Route53のヘルスチェックは月$0.50かかる）
   - CloudFrontの5xx・4xxと証明書の残り日数はCloudWatchのアラームからメールで知らせる（10個まで無料枠の範囲）
 - [x] **4-0. AWSの片づけ**（2026-09-20完了。手順は [aws-cleanup.md](aws-cleanup.md)）

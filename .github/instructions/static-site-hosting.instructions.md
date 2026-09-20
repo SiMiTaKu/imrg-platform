@@ -49,7 +49,10 @@ name: 静的サイトの書き出しと配信
 
 2026-09-20 に Amplify から移した。設定は `terraform/`、説明は `terraform/README.md`。
 
-- ビルドと配信は `.github/workflows/_deploy.yml`。`main` への push で本番、`develop` への push でステージング
+- ビルドと配信の手順は `.github/workflows/_deploy.yml` に1つだけ書き、3つのワークフローから呼ぶ
+  - **自動デプロイ（PROD）** … `main` への push
+  - **自動デプロイ（STG）** … `develop` への push
+  - **手動デプロイ** … ブランチと配り先を選んで実行。前の版へ戻すときもこれを使う
 - レスポンスヘッダー（HSTS ほか）は CloudFront のレスポンスヘッダーポリシー
 - URL の整え方（`www` を外す・末尾スラッシュを付ける・`index.html` を返す）は CloudFront Functions（`terraform/modules/static_site/functions/request.js.tftpl`）
 - HTML は毎回取りに行く（`public, max-age=0, must-revalidate`）。ファイル名にハッシュが入る `/_app/immutable/**` は長期キャッシュ。配信のたびにキャッシュを捨てる
