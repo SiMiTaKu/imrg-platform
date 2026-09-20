@@ -2,151 +2,174 @@
 
 Terraform（Phase 4）で作り直す前に、これまでの作業で残ったものを消す。
 
-2026年9月20日に費用の内訳を確かめ、**消すべきものが分かった状態**で書いてある。
-上から順に進めれば終わる。所要時間の目安は30分。
+2026年9月20日に棚卸しをして、**何が残っているかを確かめた状態**で書いてある。
+名前はすべて実際に見つかったもの。上から順に進めれば終わる。所要時間の目安は30分。
 
 ---
 
-## 0. 何にお金がかかっているか
+## 0. 分かったこと
 
-| サービス                 | 月額            | どうする                                               |
-| ------------------------ | --------------- | ------------------------------------------------------ |
-| Route 53                 | $0.50           | **消さない。** ホストゾーン1つ分の固定費               |
-| RDS                      | $0.11           | **消す。** 静的なサイトにデータベースは要らない        |
-| Amplify                  | $0.07〜**1.83** | **移行後に消す。** 9月に増えたのはビルドが多かったため |
-| Tax                      | 上の約10%       | 上に連動する                                           |
-| S3・DynamoDB・CloudWatch | $0.00           | 無料枠に収まっているが、**中身は残っている**           |
+毎月かかっているのは、Route 53（$0.50）とRDSのスナップショット（$0.11）とAmplify（$0.07〜1.83）だけ。
+**消してお金が減るのはRDSのスナップショットひとつ**で、残りは費用ゼロのまま放置されている残骸。
 
-3月から8月までは月 $0.76〜0.80で落ち着いていた。9月はAmplifyの設定を何度も変えたため $2.65に増えた。
+| サービス                 | 月額            | どうする                                           |
+| ------------------------ | --------------- | -------------------------------------------------- |
+| Route 53                 | $0.50           | **残す。** ホストゾーン1つ分の固定費               |
+| RDS                      | $0.11           | **消す。** 3年前のチュートリアルのスナップショット |
+| Amplify                  | $0.07〜**1.83** | 古いほうは今すぐ消す。今のものは移行後             |
+| S3・DynamoDB・CloudWatch | $0.00           | 無料枠に収まっているが、**残骸は残っている**       |
 
-**片づけと移行を終えたあとの見込みは月 $0.56 前後**（Route 53 $0.50＋S3 $0.01＋税）。
-CloudFrontは毎月1TBまで無料枠があるので、このサイトの通信量では0ドルのまま。
+片づけと移行を終えたあとの見込みは**月 $0.56 前後**（Route 53 $0.50＋S3 $0.01＋税）。
+
+残骸の正体は、ほとんどが**2023年から2024年に試したAmplifyのチュートリアル**。
+`d1o1ui2gd5pshh` `d295caw51lipy2` `d7q1eopfj7aj0` `src-owner-sandbox` `reacttutorial` といった、
+すでに存在しないアプリの名前がログやロールに残っている。
 
 > 金額そのものは小さい。それでも消すのは、**使っていないものが残っていると、
 > 何が動いているのか分からなくなる**ため。Terraformで作り直す前がいちばん片づけやすい。
 
 ## 1. 消してはいけないもの
 
-先にこれを読む。次の4つは、消すとサイトが止まるか、元に戻せない。
-
-| 消さないもの                         | 理由                                                                                                           |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| Amplify のアプリ `d3fj0jchd8ri0z`    | **いま imrg.work を配っている本体。** 新しい構成に切り替えて数日たってから消す                                 |
-| Route53 のホストゾーン `imrg.work`   | 消すとドメインの設定が全部消える。作り直しても**ネームサーバーが変わる**ため、ドメイン側の登録もやり直しになる |
-| いま使われている証明書               | 棚卸しの「使用中」の数が1以上のものは、CloudFrontかAmplifyが使っている                                         |
-| CloudTrail のログ置き場（Phase 0-8） | 記録を残すために作った。残す                                                                                   |
+| 消さないもの                                                | 理由                                                                      |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Amplify のアプリ `d3fj0jchd8ri0z`（imrg-platform）          | **いま imrg.work を配っている本体。** 移行して数日たってから消す（手順5） |
+| Route53 のホストゾーン `imrg.work`（Z09326151SBEIRMAZRJNN） | 消すとドメインの設定が全部消える。作り直しても**ネームサーバーが変わる**  |
+| S3 `aws-cloudtrail-logs-630738285493-8be90f19`              | Phase 0-8 で作った記録の置き場。残す                                      |
+| IAM ユーザー `admin`                                        | いま使っているユーザー。`imrg` プロファイルの鍵はこれ                     |
 
 迷ったら消さない。**止めるだけにして数日おく。** 問題が出なければ消す。
 
-## 2. RDS の残りものを消す（月 $0.11）
+## 2. RDS のスナップショットを消す（月 $0.11）
 
-静的なサイトにデータベースは要らない。それでも毎月かかっているので、何が残っているかを確かめて消す。
+棚卸しで見つかったのはこれ1つ。**動いているデータベースは無い。**
 
-$0.11という額から、**動いているインスタンスではない**（動いていれば月10ドル以上になる）。
-スナップショットか、インスタンスを消したあとも残っている自動バックアップの可能性が高い。
-
-```bash
-# 何が残っているか（全リージョンを見る）
-for region in $(aws ec2 describe-regions --profile imrg --query 'Regions[].RegionName' --output text); do
-  echo "-- $region --"
-  aws rds describe-db-instances --profile imrg --region "$region" \
-    --query 'DBInstances[].[DBInstanceIdentifier,DBInstanceClass,DBInstanceStatus]' --output text
-  aws rds describe-db-snapshots --profile imrg --region "$region" --snapshot-type manual \
-    --query 'DBSnapshots[].[DBSnapshotIdentifier,AllocatedStorage,SnapshotCreateTime]' --output text
-  aws rds describe-db-instance-automated-backups --profile imrg --region "$region" \
-    --query 'DBInstanceAutomatedBackups[].[DBInstanceIdentifier,AllocatedStorage,Status]' --output text
-done
+```
+rds-mysql-10mintutorial-snapshot   20GB   2023-10-21 作成   ap-northeast-1
 ```
 
-見つかったものに応じて消す。
+名前のとおり、AWSの「10分チュートリアル」をやったときの残骸。3年近く放置されている。
+毎月かかる $0.11はこれ。
 
 ```bash
-# スナップショット
-aws rds delete-db-snapshot --profile imrg --region <リージョン> \
-  --db-snapshot-identifier <名前>
-
-# インスタンスを消したあとに残っている自動バックアップ
-aws rds delete-db-instance-automated-backup --profile imrg --region <リージョン> \
-  --dbi-resource-id <リソースID>
-
-# まだインスタンスが残っているとき（最後のスナップショットは取らない）
-aws rds delete-db-instance --profile imrg --region <リージョン> \
-  --db-instance-identifier <名前> --skip-final-snapshot --delete-automated-backups
+aws rds delete-db-snapshot --profile imrg --region ap-northeast-1 \
+  --db-snapshot-identifier rds-mysql-10mintutorial-snapshot
 ```
 
-**中身に心当たりがない場合でも、消す前にスナップショットの名前と作成日を控えておく。**
-何のために作ったものかを思い出す手がかりになる。
+`rds-monitoring-role` というIAMロールも同じ時期のもの。スナップショットを消したあとに消してよい。
 
-## 3. 金額が $0.00 のものを確かめる
+## 3. 古い Amplify のアプリをまとめて消す
 
-請求に名前が出ているということは、**使った実績がある**。
-無料枠に収まっているだけで、中身は残っている。
+`d2e38588w4qs62`（**svelte-kit-to-amplify**、2023年6月作成）が残っている。
+今のサイトとは無関係の試作。
+
+**バラバラに消さず、Amplifyのアプリから消す。** 下にあるものは、
+CloudFormationのスタックとしてつながっているため、アプリを消せば連鎖して片づく。
+
+```
+Amplify アプリ d2e38588w4qs62
+└─ CloudFormation スタック amplify-d2e38588w4qs62-develop-branch-b1d7cb87da
+   ├─ auth179371D7        → Cognito ユーザープール ap-northeast-1_2EkeZCzet
+   ├─ data7552DF31        → AppSync amplifyData
+   │                        DynamoDB Todo-jbmunnw2wvhgbc35xw6opya2ca-NONE
+   ├─ AmplifyTableManager → Lambda 6個
+   └─ TodoNestedStack     → IAM ロール TodoIAMRolecfd440-...
+```
 
 ```bash
-# DynamoDB のテーブル（今回の Terraform では使わない。ロックは S3 のロックファイルで行う）
-for region in ap-northeast-1 us-east-1; do
-  aws dynamodb list-tables --profile imrg --region "$region" --output text
-done
+# 1. アプリを消す（つながっているスタックも消える）
+aws amplify delete-app --profile imrg --region ap-northeast-1 --app-id d2e38588w4qs62
 
-# S3 バケットの一覧と大きさ
-./terraform/scripts/aws-audit.sh 2>/dev/null | sed -n '/3. S3 バケット/,/4\./p'
-
-# CloudWatch のロググループ（保存期間が None のものはずっと残る）
-for region in ap-northeast-1 us-east-1; do
-  aws logs describe-log-groups --profile imrg --region "$region" \
-    --query 'logGroups[].[logGroupName,retentionInDays,storedBytes]' --output text
-done
+# 2. 5分ほどおいて、スタックが消えたか確かめる
+aws cloudformation describe-stacks --profile imrg --region ap-northeast-1 \
+  --query 'Stacks[].[StackName,StackStatus]' --output text
 ```
 
-- **DynamoDB のテーブル** … 以前Terraformのロック用に作ったものなら、今回は使わないので消す
-- **S3 バケット** … 古い静的ホスティングやログの置き場が残っていることが多い
-- **ロググループ** … 消さずに保存期間を決めるのがよい
+スタックが `DELETE_FAILED` で残ったら、中身を手で消してからスタックを消す。
+S3バケット `amplify-d2e38588w4qs62-de-amplifydataamplifycodege-mludx9javuhp` が
+空でないと失敗することがある。
+
+## 4. つながりが切れて残ったもの
+
+アプリを消しても、**作ったアプリ自体がもう無いもの**は残る。棚卸しで見つかったのは次の3つ。
+
+### すでに無いアプリの Cognito
 
 ```bash
-# DynamoDB のテーブルを消す
-aws dynamodb delete-table --profile imrg --region <リージョン> --table-name <名前>
-
-# S3 は中身を空にしないと消せない。まず中身を見る
-aws s3 ls s3://<バケット名>/ --profile imrg --recursive --human-readable --summarize | tail -5
-aws s3 rm s3://<バケット名>/ --profile imrg --recursive
-aws s3api delete-bucket --profile imrg --bucket <バケット名>
-
-# ロググループは期間を決める
-aws logs put-retention-policy --profile imrg --region ap-northeast-1 \
-  --log-group-name <名前> --retention-in-days 30
+# amplify_backend_manager_d1o1ui2gd5pshh。アプリ d1o1ui2gd5pshh はもう存在しない
+aws cognito-idp delete-user-pool --profile imrg --region ap-northeast-1 \
+  --user-pool-id ap-northeast-1_HwYeR5W0G
 ```
 
-版（バージョニング）を有効にしたバケットが消えないときは、コンソールの **バケットを空にする** が早い。
+これに紐づく `amplify-login-*` のLambda 4個と、`ap-northeast-1_HwYeR5W0G-*` のIAMロール3個も
+同じ時期のもの。
 
-## 4. 使っていない IAM のアクセスキーを消す
+### 存在しないアプリのログ 117個（合計 1.13MB）
 
-費用はかからないが、**漏れると被害が大きい。** 棚卸しの「7」で最終使用が「なし」か
-半年以上前のものを見つけたら消す。
+`d1o1ui2gd5pshh` `d295caw51lipy2` `d7q1eopfj7aj0` `src-owner-sandbox` `reacttutorial` など、
+消えたアプリのログがすべて**保存期間なし**で残っている。
+5GBまで無料なので費用はかからないが、一覧が読めなくなるので消す。
+
+```bash
+# まず何が消えるかを見る（lambda と amplify のものだけに絞る）
+aws logs describe-log-groups --profile imrg --region ap-northeast-1 \
+  --query 'logGroups[].logGroupName' --output text | tr '\t' '\n' \
+  | grep -E '^/aws/(lambda/amplify-|amplify/)'
+
+# よければ消す
+aws logs describe-log-groups --profile imrg --region ap-northeast-1 \
+  --query 'logGroups[].logGroupName' --output text | tr '\t' '\n' \
+  | grep -E '^/aws/(lambda/amplify-|amplify/)' \
+  | while read name; do
+      aws logs delete-log-group --profile imrg --region ap-northeast-1 --log-group-name "$name"
+    done
+```
+
+`/aws/lambda/hello-world-python` と `/aws/lambda/my-s3-function` も
+2023年3月のチュートリアルの残骸。同じく消してよい。
+
+### CDK の置き場
+
+`CDKToolkit` のスタック（ap-northeast-1とus-east-1）と、そこから作られた
+S3 `cdk-hnb659fds-assets-630738285493-ap-northeast-1`（26MB）、
+ECR `cdk-hnb659fds-container-assets-*`、`cdk-hnb659fds-*` のIAMロール10個。
+
+これはAmplify Gen2が裏で使っていたもの。**手順3を終えたあと**、CDKを自分で使う予定が無ければ消す。
+
+```bash
+# 先に S3 を空にする（空でないとスタックが消せない）
+aws s3 rm s3://cdk-hnb659fds-assets-630738285493-ap-northeast-1/ --profile imrg --recursive
+
+aws cloudformation delete-stack --profile imrg --region ap-northeast-1 --stack-name CDKToolkit
+aws cloudformation delete-stack --profile imrg --region us-east-1 --stack-name CDKToolkit
+```
+
+## 5. 使っていない IAM のアクセスキーを消す
+
+費用はかからないが、**漏れると被害が大きい。**
+
+```
+takumi-shimizu-iam-amplify   鍵 AKIAZFWXOOO2ZXU3CC6C   最終使用 2025-07-30
+```
+
+1年以上使われていない。旧Amplify用に作ったもの。
 
 ```bash
 # まず無効にして数日おく（使われていたらエラーが出るので気づける）
-aws iam update-access-key --profile imrg --user-name <ユーザー名> \
-  --access-key-id <鍵のID> --status Inactive
+aws iam update-access-key --profile imrg --user-name takumi-shimizu-iam-amplify \
+  --access-key-id AKIAZFWXOOO2ZXU3CC6C --status Inactive
 
-# 数日たって問題がなければ消す
-aws iam delete-access-key --profile imrg --user-name <ユーザー名> --access-key-id <鍵のID>
+# 数日たって問題がなければ、鍵とユーザーを消す
+aws iam delete-access-key --profile imrg --user-name takumi-shimizu-iam-amplify \
+  --access-key-id AKIAZFWXOOO2ZXU3CC6C
+aws iam delete-user --profile imrg --user-name takumi-shimizu-iam-amplify
 ```
 
-## 5. 使っていない証明書と古い CloudFront
+ユーザーを消すとき、ポリシーが付いていると失敗する。
+`aws iam list-attached-user-policies --user-name ...` で確かめて、先に切り離す。
 
-棚卸しの `length(InUseBy)` が `0` の証明書は、どこからも使われていない。
-ただし**これから使う `imrg.work` の証明書は消さない**。
+## 6. Amplify（現役）を消す（移行が終わってから）
 
-```bash
-aws acm delete-certificate --profile imrg --region us-east-1 --certificate-arn <ARN>
-```
-
-CloudFrontの配信はいきなり消せない。**無効化 → 反映を待つ（15分ほど）→ 削除**の順になる。
-コンソールのほうが手順は短い。配信を選んで「無効化」し、状態が `Deployed` に戻ってから「削除」する。
-
-## 6. Amplify を消す（移行が終わってから）
-
-**ここが金額としてはいちばん大きい（9月は $1.83）。**
+**金額としてはここがいちばん大きい（9月は $1.83）。**
 ただし新しい構成に切り替えて数日、問題が出なかったら行う。
 
 1. Amplifyのコンソールで、アプリ `d3fj0jchd8ri0z` の**ブランチの自動ビルドを止める**
@@ -158,20 +181,24 @@ CloudFrontの配信はいきなり消せない。**無効化 → 反映を待つ
 ## 7. 片づけたあとに確かめる
 
 ```bash
-# もう一度棚卸しして、消したものが消えているか
 ./terraform/scripts/aws-audit.sh > ~/aws-audit-after.txt
 diff ~/aws-audit.txt ~/aws-audit-after.txt
 
-# サイトが開くか
 curl -sI https://imrg.work/ | head -1
 ```
 
 翌月の請求で、**RDSの行が消えている**ことを確かめる。
 移行まで終われば、Amplifyの行も消えて月 $0.56前後に落ち着く。
 
-## 棚卸しのやり直し
+## 移行にあたって分かったこと
 
-アカウントにあるものを一覧するスクリプトがある。**読むだけで、何ひとつ変えない。**
+棚卸しで、**ACMに証明書が1つも無く、CloudFrontの配信も無い**ことが分かった。
+Amplifyがドメインの証明書を内部で持っているため、外からは見えない。
+
+つまりTerraformでは、`imrg.work` と `stg.imrg.work` の証明書を**新しく作ることになる**。
+既存のものを取り込む必要はない。DNSでの検証に数分かかる。
+
+## 棚卸しのやり直し
 
 ```bash
 cd ~/imrg/imrg-platform
@@ -179,6 +206,7 @@ cd ~/imrg/imrg-platform
 open -R ~/aws-audit.txt
 ```
 
+**読むだけで、何ひとつ変えない。** 1分ほどで終わる（進み具合は画面に出る）。
 出力にはアカウントIDが入るので、リポジトリーには入れずホームディレクトリーに置く。
 
 費用の項目が空になるときは、rootでログインして
