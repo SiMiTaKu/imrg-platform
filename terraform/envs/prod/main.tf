@@ -26,7 +26,9 @@ module "site" {
   site_domain    = var.site_domain
   hosted_zone_id = var.hosted_zone_id
   bucket_name    = "${replace(var.site_domain, ".", "-")}-site"
-  tags           = local.tags
+  # 切り替えの直前まで false にしておき、CloudFront のドメインで確かめてから true にする
+  create_dns_records = var.create_dns_records
+  tags               = local.tags
 }
 
 # GitHub Actions がサイトを配るための役割

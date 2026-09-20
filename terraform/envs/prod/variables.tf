@@ -37,3 +37,9 @@ variable "notification_email" {
   description = "異常を知らせる宛先のメールアドレス"
   type        = string
 }
+
+variable "create_dns_records" {
+  description = "imrg.work を CloudFront へ向けるか。確かめ終わるまでは false にしておく"
+  type        = bool
+  default     = false
+}

@@ -10,11 +10,14 @@ locals {
 }
 
 resource "aws_route53_record" "site" {
-  for_each = local.site_records
+  for_each = var.create_dns_records ? local.site_records : {}
 
   zone_id = var.hosted_zone_id
   name    = each.value.name
   type    = each.value.type
+
+  # 切り替えのときは Amplify が作ったレコードを置き換えることになる
+  allow_overwrite = true
 
   alias {
     name                   = aws_cloudfront_distribution.site.domain_name

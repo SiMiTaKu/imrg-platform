@@ -38,6 +38,16 @@ variable "basic_auth" {
   sensitive = true
 }
 
+variable "create_dns_records" {
+  description = <<-EOT
+    ドメインを CloudFront へ向けるレコードを作るか。
+    false にすると、配信の一式だけを先に作って CloudFront のドメインで確かめられる。
+    確かめてから true にすると、そこで切り替わる
+  EOT
+  type        = bool
+  default     = true
+}
+
 variable "price_class" {
   description = <<-EOT
     CloudFront が使うエッジの範囲。

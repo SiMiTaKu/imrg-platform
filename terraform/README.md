@@ -179,10 +179,15 @@ gh workflow run deploy.yml -f release=<コミット>
 
 ## Amplify からの切り替え
 
-1. `terraform apply` で作る（この時点ではまだRoute53はAmplifyを向いている）
+**作るのと切り替えるのは分かれている。** `create_dns_records` が false のうちは、
+一式を作っても imrg.work はAmplifyを向いたまま。
+
+1. `terraform.tfvars` に `create_dns_records = false` を書いて `terraform apply`
 2. `terraform output cloudfront_domain_name` のドメインを直接開き、表示・転送・404を確かめる
-3. Route53のレコードがCloudFrontを指すように切り替える（`module.site` の `aws_route53_record.site`）
-4. 数日おいて問題がなければAmplifyのアプリ（`d3fj0jchd8ri0z`）を消し、`amplify.yml` を削る
+3. Amplifyのコンソールでカスタムドメインを外す（外さないとRoute53のレコードを書き戻すことがある）
+4. `create_dns_records = true` にして `terraform apply`。ここで切り替わる
+5. 数日おいて問題がなければAmplifyのアプリ（`d3fj0jchd8ri0z`）を消し、`amplify.yml` を削る
+   - 残っている `amplifyconsole-*` と `AmplifySSRLoggingRole-*` のIAMもこのとき消す
 
 ### Amplify の設定のうち、引き継いだもの・落としたもの
 
