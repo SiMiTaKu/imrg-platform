@@ -4,5 +4,8 @@
   "rules_notice_readability": "※我们一直在努力把网站做得更易读。",
   "rules_chapter_heading": "第{number}章 {title}",
   "rules_article_heading": "第{number}条 {title}",
-  "rules_back_to_top": "返回首页"
+  "rules_back_to_top": "返回首页",
+  "rules_coming_soon_title": "正在准备中",
+  "rules_coming_soon_body": "规则集页面正在修订内容，暂时关闭。我们会重新整理成更易读的形式后再次公开。",
+  "rules_coming_soon_back": "返回首页"
 }

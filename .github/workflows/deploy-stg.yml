@@ -1,0 +1,25 @@
+name: 自動デプロイ（STG）
+
+# develop へ入ったものをステージングへ配る
+on:
+  push:
+    branches:
+      - develop
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/_deploy.yml
+    secrets: inherit
+    with:
+      environment: staging
+      site_url: https://stg.imrg.work/
+      # 本番へ入れる前に見るための場所なので、取っておかない
+      store_release: false

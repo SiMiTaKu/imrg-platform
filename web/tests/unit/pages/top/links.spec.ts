@@ -10,7 +10,6 @@ describe('TOP_LINKS', () => {
         '/decorating_apparatus/',
         '/background_music/',
         '/judge/',
-        '/rules/',
         '/oshimitsu/',
       ]
       // #endregion

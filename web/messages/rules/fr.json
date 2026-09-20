@@ -4,5 +4,8 @@
   "rules_notice_readability": "* Nous travaillons à rendre ce site agréable à lire.",
   "rules_chapter_heading": "Chapitre {number} {title}",
   "rules_article_heading": "Article {number} {title}",
-  "rules_back_to_top": "Retour en haut"
+  "rules_back_to_top": "Retour en haut",
+  "rules_coming_soon_title": "Bientôt disponible",
+  "rules_coming_soon_body": "La page du règlement est temporairement fermée pendant que nous en révisons le contenu. Nous la reconstruirons pour la rendre plus lisible et la publierons de nouveau.",
+  "rules_coming_soon_back": "Retour à l'accueil"
 }

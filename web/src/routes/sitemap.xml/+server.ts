@@ -17,7 +17,6 @@ const STATIC_ENTRIES: SitemapEntry[] = [
   { path: '/', priority: 1, lastmod: UPDATED_AT },
   { path: '/calendar', priority: 0.9, lastmod: UPDATED_AT },
   { path: '/oshimitsu', priority: 0.8, lastmod: UPDATED_AT },
-  { path: '/rules', priority: 0.7, lastmod: UPDATED_AT },
   { path: '/judge', priority: 0.6, lastmod: UPDATED_AT },
   { path: '/decorating_apparatus', priority: 0.6, lastmod: UPDATED_AT },
   { path: '/background_music', priority: 0.6, lastmod: UPDATED_AT },

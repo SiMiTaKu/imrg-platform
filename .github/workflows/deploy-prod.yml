@@ -1,0 +1,24 @@
+name: 自動デプロイ（PROD）
+
+# main へ入ったものを本番へ配る
+on:
+  push:
+    branches:
+      - main
+
+# 配信は重ねない。走っている途中で新しい push が来たら順番待ちにする
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/_deploy.yml
+    secrets: inherit
+    with:
+      environment: production
+      site_url: https://imrg.work/

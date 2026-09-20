@@ -23,6 +23,5 @@ export const TOP_LINKS: readonly TopLink[] = [
   { href: ROUTES.decoratingApparatus, label: m.top_links_decorating_apparatus },
   { href: ROUTES.backgroundMusic, label: m.top_links_background_music },
   { href: ROUTES.judge, label: m.top_links_judge },
-  { href: ROUTES.rules, label: m.top_links_rules },
   { href: ROUTES.oshimitsu.index, label: m.top_links_oshimitsu },
 ]

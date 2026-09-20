@@ -1,0 +1,8 @@
+# 本番と同じ imrg.work のホストゾーン
+hosted_zone_id = "ZXXXXXXXXXXXXX"
+
+# ステージングを見るときの合言葉
+basic_auth = {
+  username = "imrg"
+  password = "ここに決めた合言葉を書く"
+}

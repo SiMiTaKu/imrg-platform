@@ -21,7 +21,7 @@ imrg-platform/
 ├── design-system/    @imrg-platform/design-system … 共通部品とトークン、Storybook
 ├── docs/             改修計画・手順書
 ├── eslint.config.mjs など  lint・整形の設定はルートに置き、全パッケージに効かせる
-└── amplify.yml       web をビルドして配信する
+└── terraform/        S3 + CloudFront の設定（配信のしくみ）
 ```
 
 - パッケージ名は `@imrg-platform/<名前>`。パッケージをまたぐ参照は `workspace:*` で依存に書き、公開境界（`index.ts`）からだけ読む
