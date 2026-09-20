@@ -1,6 +1,6 @@
 ---
-description: 静的書き出し（adapter-static）と Amplify での配信、SEO・OGP の決まり
-applyTo: '{web/src/routes/**/*,web/src/app.html,web/src/lib/hooks/**/*,web/src/model/**/*,web/static/**/*,web/svelte.config.js,amplify.yml}'
+description: 静的書き出し（adapter-static）と S3 + CloudFront での配信、SEO・OGP の決まり
+applyTo: '{web/src/routes/**/*,web/src/app.html,web/src/lib/hooks/**/*,web/src/model/**/*,web/static/**/*,web/svelte.config.js,terraform/**/*,.github/workflows/*deploy*.yml}'
 name: 静的サイトの書き出しと配信
 ---
 
@@ -32,7 +32,6 @@ name: 静的サイトの書き出しと配信
   - Paraglide JS（`web/project.inlang`、文言は `web/messages/<領域>/<言語>.json`）。生成物の `web/src/lib/paraglide/` は git 管理しない
   - すべてのページを日本語（今の URL）と英語（`/en/...`）の両方で書き出す。英語版は、各ページに置いた非表示のリンク（`web/src/widgets/layout/ui/LocalePageLinks.svelte`）をクローラーがたどって書き出す
   - **訳し終えるまで、英語ページは noindex にする。** 訳し終えたページのパスを `web/src/shared/config/translation/<ページ>.ts` に足すと、noindex が外れ、`hreflang` と sitemap に英語ページが載り、メニューに言語の切り替えが出る
-  - `amplify.yml` の書き換えルールは、英語ページ用にも同じものを入れる
 - 言語ごとのページで守ること:
   - URL に言語を入れる（日本語は今の URL のまま、英語は `/en/...`）。クエリや Cookie で言語を切り替えない（静的に書き出せず、検索エンジンにも別ページと認識されない）
   - `<html lang>` を言語ごとに変え、各ページに `hreflang` の代替リンク（`ja`・`en`・`x-default`）を入れる
@@ -46,11 +45,16 @@ name: 静的サイトの書き出しと配信
 - `$env/static/public` から読む。値はビルド時に埋め込まれる
 - アクセス解析は Cloudflare Web Analytics（Cookie を使わない）。トークンは `PUBLIC_CF_BEACON_TOKEN`
 
-## Amplify
+## 配信（S3 + CloudFront）
 
-- ビルド手順・レスポンスヘッダー・リダイレクトは `amplify.yml` にある。書き換えルール（`/<*>` → `/404.html`）はコンソール側の設定
-- HTML は毎回取りに行く（`Cache-Control: no-cache`）。ファイル名にハッシュが入る `/_app/immutable/**` は長期キャッシュ
-- ビルドの設定・Node の版・依存を変えたら、`main` か `develop` 向けの PR のプレビューでビルドが通ることを確かめてからマージする
+2026-09-20 に Amplify から移した。設定は `terraform/`、説明は `terraform/README.md`。
+
+- ビルドと配信は `.github/workflows/_deploy.yml`。`main` への push で本番、`develop` への push でステージング
+- レスポンスヘッダー（HSTS ほか）は CloudFront のレスポンスヘッダーポリシー
+- URL の整え方（`www` を外す・末尾スラッシュを付ける・`index.html` を返す）は CloudFront Functions（`terraform/modules/static_site/functions/request.js.tftpl`）
+- HTML は毎回取りに行く（`public, max-age=0, must-revalidate`）。ファイル名にハッシュが入る `/_app/immutable/**` は長期キャッシュ。配信のたびにキャッシュを捨てる
+- 無いページは CloudFront が `/404.html` を 404 で返す
+- ビルドの設定・Node の版・依存を変えたら、`develop` へ入れてステージング（`https://stg.imrg.work/`）で確かめてから `main` へ入れる
 
 ## 本番への反映の確かめ方
 
