@@ -34,7 +34,7 @@ export const SERVICES = [
   {
     character: Character.KAZUTO,
     title: '指導・演技構成',
-    price: 'オンライン 2,000円〜／1日 10,000円〜',
+    price: 'オンライン 2,000円〜／1日 30,000円〜',
     body: '演技の構成を作る、いまの演技を直す、基本からみる。オンラインでも、会場へ出向く形でも受けています。',
     href: ROUTES.coaching,
     action: '実績を見る',

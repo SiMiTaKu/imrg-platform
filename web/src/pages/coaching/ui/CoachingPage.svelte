@@ -151,10 +151,30 @@
       <ol class="timeline">
         {#each RESULTS as result, index (index)}
           <li>
-            <span class="year">{result.year}</span>
-            <span class="name">{result.name}</span>
-            {#if result.detail}
-              <span class="detail">{result.detail}</span>
+            <div class="result-head">
+              <span class="year">{result.year}</span>
+              <span class="name">{result.name}</span>
+              {#if result.detail}
+                <span class="detail">{result.detail}</span>
+              {/if}
+            </div>
+            {#if result.videos.length > 0}
+              <ul class="videos">
+                {#each result.videos as video (video.href)}
+                  <li>
+                    <a href={video.href} target="_blank" rel="noopener noreferrer">
+                      <svg viewBox="0 0 68 48" width="18" height="13" aria-hidden="true">
+                        <path
+                          d="M66.5 7.7c-.8-2.9-2.5-5.4-5.4-6.2C55.8.1 34 0 34 0S12.2.1 6.9 1.5C4 2.3 2.3 4.8 1.5 7.7 0 13 0 24 0 24s0 11 1.5 16.3c.8 2.9 2.5 5.4 5.4 6.2C12.2 47.9 34 48 34 48s21.8-.1 27.1-1.5c2.9-.8 4.6-3.3 5.4-6.2C68 35 68 24 68 24s0-11-1.5-16.3z"
+                          fill="#f00"
+                        />
+                        <path d="M45 24 27 14v20" fill="#fff" />
+                      </svg>
+                      {video.label}
+                    </a>
+                  </li>
+                {/each}
+              </ul>
             {/if}
           </li>
         {/each}
@@ -606,13 +626,47 @@
     grid-template-columns: 1fr;
   }
 
-  .timeline li {
+  .timeline > li {
     display: flex;
-    gap: $space-size-12;
-    align-items: baseline;
+    flex-direction: column;
+    gap: $space-size-8;
     padding: $space-size-12 $space-size-16;
     border-radius: 6px;
     background: map.get($gray, 50);
+  }
+
+  .result-head {
+    display: flex;
+    gap: $space-size-12;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  // 動画があるものは、そのまま見に行けるようにする
+  .videos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-8;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .videos a {
+    display: inline-flex;
+    gap: $space-size-4;
+    align-items: center;
+    padding: $space-size-4 $space-size-8;
+    font-size: $font-size-12;
+    color: map.get($gray, text);
+    text-decoration: none;
+    border: 1px solid map.get($gray, 200);
+    border-radius: 999px;
+    background: $white;
+  }
+
+  .videos a:hover {
+    border-color: map.get($sky-blue, border);
   }
 
   .year {

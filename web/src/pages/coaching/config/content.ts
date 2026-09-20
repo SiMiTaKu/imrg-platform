@@ -56,7 +56,8 @@ export const PRICES = [
   {
     way: '会場へ出向く',
     items: [
-      { name: '指導', price: '1日 10,000円〜', note: '半日や時間単位も相談できます' },
+      { name: '指導（1日）', price: '30,000円〜', note: '実働5〜6時間。相談できます' },
+      { name: '指導（半日）', price: '15,000円〜', note: '実働2〜3時間。相談できます' },
       { name: '交通費', price: '実費', note: '切符・航空券は事前に手配をお願いしています' },
       { name: '宿泊費', price: '実費', note: '部屋の予約も事前にお願いしています' },
     ],
@@ -65,15 +66,36 @@ export const PRICES = [
 
 /** 過去に作った演技・みてきたチーム */
 export const RESULTS = [
-  { year: '2016', name: '青森山田高校 団体', detail: '構成のおよそ半分' },
-  { year: '2019', name: '青森大学 1部', detail: '' },
-  { year: '2020', name: '青森山田高校 団体', detail: '' },
-  { year: '2021', name: '青森大学 1部', detail: '' },
-  { year: '2021', name: '青森山田高校 団体', detail: '' },
-  { year: '2021', name: '清水 琢巳（個人）', detail: '4種目すべての構成' },
-  { year: '2024', name: '青森山田高校 団体', detail: '' },
-  { year: '2025', name: '神埼ジュニア 団体', detail: '' },
-  { year: '2026', name: '華舞翔 団体', detail: '' },
+  { year: '2016', name: '青森山田高校 団体', detail: '構成のおよそ半分', videos: [] },
+  {
+    year: '2019',
+    name: '青森大学 1部',
+    detail: '',
+    // 推しミツ！に載せている動画から、同じ演技のものをつないでいる
+    videos: [{ label: '演技を見る', href: 'https://youtu.be/N654qFg2HSg' }],
+  },
+  { year: '2020', name: '青森山田高校 団体', detail: '', videos: [] },
+  {
+    year: '2021',
+    name: '青森大学 1部',
+    detail: '',
+    videos: [{ label: '演技を見る', href: 'https://youtu.be/RpHN_kcQTvs' }],
+  },
+  { year: '2021', name: '青森山田高校 団体', detail: '', videos: [] },
+  {
+    year: '2021',
+    name: '清水 琢巳（個人）',
+    detail: '4種目すべての構成',
+    videos: [
+      { label: 'スティック', href: 'https://youtu.be/tssu0o5sG10' },
+      { label: 'リング', href: 'https://youtu.be/X9_KpzsYl7k' },
+      { label: 'ロープ', href: 'https://youtu.be/WcCA_SDdi_o' },
+      { label: 'クラブ', href: 'https://youtu.be/4r6JlP3m2Uc' },
+    ],
+  },
+  { year: '2024', name: '青森山田高校 団体', detail: '', videos: [] },
+  { year: '2025', name: '神埼ジュニア 団体', detail: '', videos: [] },
+  { year: '2026', name: '華舞翔 団体', detail: '', videos: [] },
 ] as const
 
 /** 年ではくくれない実績 */
@@ -108,8 +130,8 @@ export const HERO = {
   summary:
     '演技の構成を作る、いまの演技を直す、基本からみる。オンラインでも、会場へ出向く形でも受けています。全日本や全国大会で使われた構成を作ってきました。',
   points: ['団体の演技を作る', '個人の構成を作る', '動画を見て直す'],
-  priceUnit: '目安',
-  priceAmount: 'オンライン 2,000円〜／出向く場合 1日 10,000円〜',
+  priceUnit: '相談できます',
+  priceAmount: 'オンライン 2,000円〜／出向く場合 1日 30,000円〜',
 } as const
 
 /** ほかの依頼ページへの案内 */
