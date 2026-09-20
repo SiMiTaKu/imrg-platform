@@ -39,12 +39,20 @@ CloudFrontは見る人が自分たちだけなので無料枠（毎月1TB）に�
 
 ### 手で選んで配る
 
-GitHubの **Actions → Deploy (staging) → Run workflow** で、配りたいブランチを選ぶ。
-コマンドからでもよい。
+GitHubの **Actions → 手動デプロイ → Run workflow** で、**ブランチと配り先を選ぶ**。
+ブランチは画面上のドロップダウン、配り先（staging / production）は入力欄で選ぶ。
 
 ```bash
-gh workflow run deploy-staging.yml --ref feature/なにか
+# ステージングへ（配り先の既定は staging）
+gh workflow run deploy-manual.yml --ref feature/なにか
+
+# 本番へ
+gh workflow run deploy-manual.yml --ref main -f environment=production
 ```
+
+ステージングはどのブランチからでも配れる。ワークフロー・GitHubの環境・IAMの信頼条件の
+いずれにもブランチの制限を入れていない。本番用の役割は `environment:production` にだけ
+許しているので、ステージング用の役割で本番へは配れない。
 
 ## なぜ Amplify から移したか
 
@@ -126,7 +134,13 @@ terraform apply
 ## 配り方
 
 配る手順は2つの環境で共通。[\_deploy.yml](../.github/workflows/_deploy.yml) に1つだけ書いてある。
-`deploy.yml`（本番）と `deploy-staging.yml`（ステージング）は、配り先を決めて呼ぶだけ。
+残りの3つは、配り先を決めて呼ぶだけ。
+
+| ワークフロー         | いつ動くか           | 配り先       |
+| -------------------- | -------------------- | ------------ |
+| 自動デプロイ（PROD） | `main` への push     | 本番         |
+| 自動デプロイ（STG）  | `develop` への push  | ステージング |
+| 手動デプロイ         | 画面かコマンドで実行 | 選んだほう   |
 
 ハッシュ付きの資産（`_app/immutable`）を先に置いてからHTMLを置き、キャッシュを捨て、
 最後に `/_app/version.json` が新しいビルドになるまで確かめる。
@@ -166,7 +180,7 @@ aws s3 ls s3://imrg-work-site-releases/builds/ --profile imrg | sort -r | head
 
 # 3. 戻す。GitHub の Actions → Deploy → Run workflow で、
 #    release に戻したいコミットを入れる（コマンドからでもよい）
-gh workflow run deploy.yml -f release=<コミット>
+gh workflow run deploy-manual.yml --ref main -f environment=production -f release=<コミット>
 ```
 
 1〜2分で戻る。作り直さないので、依存の更新で中身が変わってしまう心配がない。
@@ -174,12 +188,12 @@ gh workflow run deploy.yml -f release=<コミット>
 戻したあとは、原因を直した変更を `main` へ入れて、ふつうに配り直す。
 `main` を巻き戻す必要はない。`revert` のコミットを積むほうが、あとから履歴を追える。
 
-| 困りごと                        | やること                                                                |
-| ------------------------------- | ----------------------------------------------------------------------- |
-| 配った内容がおかしい            | 上の手順で前のコミットへ戻す                                            |
-| ファイルを1つだけ壊した・消した | サイトのバケットは版を取ってある（30日）。S3 の画面から前の版を戻す     |
-| 90日より前の版に戻したい        | そのコミットを `gh workflow run deploy.yml`（`release` なし）で作り直す |
-| 設定（CloudFront など）を壊した | `git revert` して `terraform apply`                                     |
+| 困りごと                        | やること                                                            |
+| ------------------------------- | ------------------------------------------------------------------- |
+| 配った内容がおかしい            | 上の手順で前のコミットへ戻す                                        |
+| ファイルを1つだけ壊した・消した | サイトのバケットは版を取ってある（30日）。S3 の画面から前の版を戻す |
+| 90日より前の版に戻したい        | そのコミットを手動デプロイ（`release` なし）で作り直す              |
+| 設定（CloudFront など）を壊した | `git revert` して `terraform apply`                                 |
 
 ## 監視
 

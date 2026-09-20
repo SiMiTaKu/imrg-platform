@@ -1,15 +1,10 @@
-name: Deploy (production)
+name: 自動デプロイ（PROD）
 
+# main へ入ったものを本番へ配る
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      release:
-        description: '戻したいリリースのコミット（省略すると今の main を作って配る）'
-        required: false
-        type: string
 
 # 配信は重ねない。走っている途中で新しい push が来たら順番待ちにする
 concurrency:
@@ -27,4 +22,3 @@ jobs:
     with:
       environment: production
       site_url: https://imrg.work/
-      release: ${{ inputs.release || '' }}

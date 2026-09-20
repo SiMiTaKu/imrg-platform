@@ -11,8 +11,8 @@
 - [ ] `pnpm run verify`（整形・lint・型・テスト・ビルド）が通る
 - [ ] 画面を変えた場合は、PC とスマホで表示を確かめた
 
-<!-- main と develop 向けの PR には Amplify のプレビュー（https://pr-<番号>.d3fj0jchd8ri0z.amplifyapp.com）が作られる -->
+<!-- develop へ入れるとステージング（https://stg.imrg.work/。合言葉つき）へ配られる -->
 
 ## マージ後にやること
 
-<!-- Amplify のコンソール作業、本番での確認など。無ければ「なし」 -->
+<!-- main へのマージ（本番へ配られる）、本番での確認など。無ければ「なし」 -->

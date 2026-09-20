@@ -23,7 +23,7 @@ name: プロジェクト仕様ドキュメント参照ルール
 - [README.md](../../README.md) … 開発環境の準備と、よく使うコマンド
 - [docs/TODO.md](../../docs/TODO.md) … 改修計画（Phase 0〜6）と、調査済みの現状。作業はこの番号単位で進める
 - [docs/aws-setup.md](../../docs/aws-setup.md) … AWS と Amplify のコンソール作業の手順（書き換えルール、権限、CloudTrail、本番ブランチの切り替えなど）
-- [amplify.yml](../../amplify.yml) … Amplify のビルド手順とレスポンスヘッダー
+- [terraform/README.md](../../terraform/README.md) … S3 + CloudFront の全体像、配り方、戻し方、監視
 - [src/routes/oshimitsu/README_V1.md](../../web/src/routes/oshimitsu/README_V1.md) … 推しミツ！の要件（`README_V0.md` はブレスト時の記録）
 
 ## リポジトリ外の資料

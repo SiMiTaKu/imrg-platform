@@ -1,12 +1,10 @@
-name: Deploy (staging)
+name: 自動デプロイ（STG）
 
-# develop へ入れたものは自動で配る。
-# 手で動かすときは、GitHub の画面（Run workflow）でブランチを選べる
+# develop へ入ったものをステージングへ配る
 on:
   push:
     branches:
       - develop
-  workflow_dispatch:
 
 concurrency:
   group: deploy-staging

@@ -1,6 +1,6 @@
 # 本番とステージングで同じ手順を使うための、呼び出される側のワークフロー。
 # 置き場や役割は、呼び出し側が選んだ environment に登録した値を読む
-name: Deploy (shared)
+name: 配信の共通手順
 
 on:
   workflow_call:
