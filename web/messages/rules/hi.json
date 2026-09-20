@@ -4,5 +4,8 @@
   "rules_notice_readability": "* हम साइट को पढ़ने में आसान बनाने का प्रयास करते रहते हैं।",
   "rules_chapter_heading": "अध्याय {number} {title}",
   "rules_article_heading": "अनुच्छेद {number} {title}",
-  "rules_back_to_top": "मुख्य पृष्ठ पर लौटें"
+  "rules_back_to_top": "मुख्य पृष्ठ पर लौटें",
+  "rules_coming_soon_title": "जल्द ही आ रहा है",
+  "rules_coming_soon_body": "नियम पुस्तिका का पृष्ठ अभी अस्थायी रूप से बंद है, क्योंकि हम उसकी सामग्री की समीक्षा कर रहे हैं। उसे पढ़ने में आसान बनाकर हम उसे फिर से प्रकाशित करेंगे।",
+  "rules_coming_soon_back": "मुख्य पृष्ठ पर लौटें"
 }
