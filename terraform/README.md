@@ -69,7 +69,7 @@ terraform/
 │   └── aws-audit.sh     アカウントにあるものを一覧する（読むだけ）
 └── envs/
     ├── prod/            本番の実行単位（状態ファイルの置き場もここが作る）
-    │   └── backend.tf.disabled   置き場ができたら backend.tf へ名前を変える
+    │   └── backend.tf            状態ファイルの置き場の設定（作り直すときだけ外す）
     └── stg/             ステージングの実行単位
 ```
 
@@ -77,12 +77,24 @@ terraform/
 
 作る前に、これまでの作業で残ったものを片づける。手順は [docs/aws-cleanup.md](../docs/aws-cleanup.md)。
 
-状態ファイルの置き場そのものもTerraformで作るため、最初だけ順番がある。
-置き場の設定は `backend.tf.disabled` に分けてあり、**置き場ができるまでTerraformに読ませない**。
+**2026-09-20に実施済み。** 状態は `s3://imrg-platform-terraform-state/prod/terraform.tfstate` にある。
+手元では `terraform.tfvars` を書けばすぐ使える。
 
 ```bash
 cd terraform/envs/prod
 cp terraform.tfvars.example terraform.tfvars   # ホストゾーン ID などを書く
+terraform init
+terraform plan
+```
+
+<details>
+<summary>ゼロから作り直すときの順番</summary>
+
+状態ファイルの置き場そのものもTerraformで作るため、最初だけ順番がある。
+置き場ができるまで `backend.tf` をTerraformに読ませない。
+
+```bash
+mv backend.tf backend.tf.disabled
 
 # 1. 置き場を作る（この時点では状態は手元にある）
 terraform init
@@ -95,6 +107,8 @@ terraform init -migrate-state
 # 3. 残りを作る
 terraform apply
 ```
+
+</details>
 
 続けてステージングを作る。**本番を先に作ること**（状態ファイルの置き場と、
 GitHubのOpenID Connectの登録は本番側が作り、ステージングはそれを使う）。
@@ -183,13 +197,17 @@ gh workflow run deploy.yml -f release=<コミット>
 
 ## Amplify からの切り替え
 
-**作るのと切り替えるのは分かれている。** `create_dns_records` がfalseのうちは、
+**作るのと切り替えるのは分かれている。** `attach_domain` がfalseのうちは、
 一式を作ってもimrg.workはAmplifyを向いたまま。
 
-1. `terraform.tfvars` に `create_dns_records = false` を書いて `terraform apply`
+この分け方は好みではなく必要から来ている。**CloudFrontは同じ別名（CNAME）を
+2つの配信に付けられない。** Amplifyが `imrg.work` を持っている間に別名を設定しようとすると
+`CNAMEAlreadyExists` で失敗する。
+
+1. `terraform.tfvars` に `attach_domain = false` を書いて `terraform apply`
 2. `terraform output cloudfront_domain_name` のドメインを直接開き、表示・転送・404を確かめる
-3. Amplifyのコンソールでカスタムドメインを外す（外さないとRoute53のレコードを書き戻すことがある）
-4. `create_dns_records = true` にして `terraform apply`。ここで切り替わる
+3. Amplifyのコンソールでカスタムドメインを外す。ここで別名が空く
+4. `attach_domain = true` にして `terraform apply`。別名・証明書・Route53のレコードが入る
 5. 数日おいて問題がなければAmplifyのアプリ（`d3fj0jchd8ri0z`）を消し、`amplify.yml` を削る
    - 残っている `amplifyconsole-*` と `AmplifySSRLoggingRole-*` のIAMもこのとき消す
 
