@@ -37,7 +37,7 @@
 
     <div class="actions">
       <a class="primary" href={localizeHref(ROUTES.calendar.index)}>大会・イベントを探す</a>
-      <a class="secondary" href="#services">曲編集・手具装飾を頼む</a>
+      <a class="secondary" href="#services">指導・曲編集を頼む</a>
     </div>
 
     <!-- 5人が並ぶ。競技が「団体5人」であることを、言葉より先に見せる -->

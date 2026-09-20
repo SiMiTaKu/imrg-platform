@@ -13,24 +13,32 @@ export const HIGHLIGHTS = [
     character: Character.SORA,
     title: 'タンブリング',
     summary: '床を蹴って宙を舞う',
-    body: '助走から連続で宙返りを重ねる。5人が同時に跳ぶ姿は、男子新体操でいちばん目を引く場面。',
+    body: '助走から連続で宙返りを重ねる。5人が同時に跳ぶ姿がいちばんの見どころ。',
   },
   {
     character: Character.AYATO,
     title: '手具',
     summary: 'スティック・リング・ロープ・クラブ',
-    body: '個人競技は4種類の手具を扱う。投げて、受けて、体の動きと一体にする。落とせば減点になる。',
+    body: '個人競技は4種類の手具を扱う。投げて受け、体の動きと一体にする。落とせば減点。',
   },
   {
     character: Character.KAZUTO,
     title: '団体',
     summary: '5人が2分半を揃える',
-    body: '団体は5人が同じ動きを揃える。倒立や組、隊形の変化を音楽に合わせて作り上げる。',
+    body: '団体は5人で動きを揃える。倒立や組、隊形の変化を音楽に合わせて作り上げる。',
   },
 ] as const
 
 /** 頼めること。料金の入口を分かりやすくする */
 export const SERVICES = [
+  {
+    character: Character.KAZUTO,
+    title: '指導・演技構成',
+    price: 'オンライン 2,000円〜／1日 10,000円〜',
+    body: '演技の構成を作る、いまの演技を直す、基本からみる。オンラインでも、会場へ出向く形でも受けています。',
+    href: ROUTES.coaching,
+    action: '実績を見る',
+  },
   {
     character: Character.AYATO,
     title: '曲編集',

@@ -27,5 +27,6 @@
   "error_title": "エラーが発生しました",
   "error_not_found": "※リクエストされたページは存在しません。",
   "error_back_to_top": "トップに戻る",
-  "layout_locale_switch_label": "表示する言語"
+  "layout_locale_switch_label": "表示する言語",
+  "layout_nav_coaching": "指導を依頼する"
 }

@@ -20,8 +20,8 @@
   <div class="card trust">
     <h3 class="card-title">この情報について</h3>
     <ul class="points">
-      <li>主催者の発表・各競技団体のサイトを1件ずつ確かめて載せています。</li>
-      <li>大会ごとの詳細ページに、日程を確認したページ（出典）を書いています。</li>
+      <li>主催者の発表と競技団体のサイトを1件ずつ確かめて載せています。</li>
+      <li>大会ごとの詳細ページに、日程の出典を書いています。</li>
       <li>{m.calendar_updated_at({ date: formatDay(UPDATED_AT, locale) })}</li>
     </ul>
     <p class="caution">{m.calendar_caution()}</p>
@@ -100,20 +100,20 @@
     padding-left: $space-size-20;
     font-size: $font-size-14;
     color: map.get($gray, 600);
-    line-height: 1.8;
+    line-height: 1.7;
   }
 
   .caution {
     margin: 0;
     font-size: $font-size-12;
     color: map.get($gray, light-text);
-    line-height: 1.8;
+    line-height: 1.7;
   }
 
   .contribute-text {
     margin: 0;
     font-size: $font-size-16;
-    line-height: 1.9;
+    line-height: 1.8;
   }
 
   .contribute-text a {

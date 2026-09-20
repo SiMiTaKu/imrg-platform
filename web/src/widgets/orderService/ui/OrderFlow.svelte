@@ -47,7 +47,17 @@
       {#each steps as step, index (index)}
         {#if index > 0}
           <!-- 段階のつながりを示す矢印。読み上げには要らないので隠す -->
-          <li class="arrow" aria-hidden="true"></li>
+          <li class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 28" width="22" height="26">
+              <path
+                d="M5 5 L19 14 L5 23 Z"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="7"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </li>
         {/if}
         <li class="step">
           <span class="index">{index + 1}</span>
@@ -111,36 +121,34 @@
     list-style: none;
   }
 
+  // カードの境目に浮かせる三角形。角を丸くしてある
   .arrow {
     position: relative;
     z-index: 2;
+    display: grid;
+    place-items: center;
+    color: map.get($gray, 300);
   }
 
-  // カードの境目にかぶせる。灰色の三角形で、つながりを示す
-  .arrow::before {
+  .arrow svg {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0;
-    height: 0;
-    border-top: 13px solid transparent;
-    border-bottom: 13px solid transparent;
-    border-left: 16px solid map.get($gray, 300);
     transform: translate(-50%, -50%);
-    content: '';
   }
+
+  // 縦に並ぶときは下を向く
+  .mobile .arrow svg {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  // カードの境目にかぶせる。灰色の三角形で、つながりを示す
 
   .mobile .steps {
     grid-template-columns: 1fr;
   }
 
   // 縦に並ぶので、三角形も下向きにする
-  .mobile .arrow::before {
-    border-top: 16px solid map.get($gray, 300);
-    border-right: 13px solid transparent;
-    border-bottom: 0;
-    border-left: 13px solid transparent;
-  }
 
   // 番号・名前・説明を縦に積むだけ。番号を重ねない
   .steps .step {

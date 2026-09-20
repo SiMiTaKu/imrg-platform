@@ -55,8 +55,11 @@
     <ul class="points">
       {#each POINTS as point (point.title)}
         <li>
-          <span class="label">{point.label}</span>
-          <h2>{point.title}</h2>
+          <!-- 数と見出しは1行に並べる。札を上に積むと card が縦に伸びる -->
+          <div class="point-head">
+            <span class="label">{point.label}</span>
+            <h2>{point.title}</h2>
+          </div>
           <p>{point.body}</p>
         </li>
       {/each}
@@ -178,10 +181,16 @@
     background: $white;
   }
 
+  // 数の札と見出しの行
+  .point-head {
+    display: flex;
+    gap: $space-size-8;
+    align-items: center;
+  }
+
   .label {
-    align-self: flex-start;
-    margin-bottom: $space-size-4;
-    padding: $space-size-4 $space-size-8;
+    flex: none;
+    padding: $space-size-2 $space-size-8;
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
@@ -193,12 +202,13 @@
   .points h2 {
     margin: 0;
     font-size: $font-size-18;
+    min-inline-size: 0;
   }
 
   .points p {
     margin: 0;
     font-size: $font-size-16;
-    line-height: 1.85;
+    line-height: 1.8;
     color: map.get($gray, 600);
   }
 

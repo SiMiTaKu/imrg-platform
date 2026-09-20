@@ -20,7 +20,7 @@
           <div class="figure">
             <CharacterFigure
               {character}
-              size={isMobile ? 96 : 120}
+              size={isMobile ? 84 : 96}
               showApparatus={highlight.title === '手具'}
             />
           </div>
@@ -72,7 +72,7 @@
 
   .cards {
     display: grid;
-    gap: $space-size-24;
+    gap: $space-size-16;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin: 0;
     padding: 0;
@@ -89,7 +89,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: $space-size-24;
+    padding: $space-size-20;
     border: 1px solid map.get($gray, 100);
     border-radius: 8px;
 
@@ -99,12 +99,12 @@
   }
 
   .figure {
-    // 姿勢が違っても頭の高さが揃うよう、箱の高さを決める
+    // 姿勢が違っても頭の高さが揃うよう、箱の高さを決める。絵の分だけで、余白は足さない
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    min-height: 124px;
-    margin-bottom: $space-size-8;
+    min-height: 100px;
+    margin-bottom: $space-size-4;
   }
 
   h3 {
@@ -113,7 +113,7 @@
   }
 
   .summary {
-    margin: 0 0 $space-size-12;
+    margin: 0 0 $space-size-8;
     font-size: $font-size-14;
     font-weight: bold;
     color: var(--accent);
@@ -123,7 +123,7 @@
     margin: 0;
     font-size: $font-size-16;
     color: map.get($gray, 600);
-    line-height: 1.9;
+    line-height: 1.75;
     text-align: left;
   }
 </style>

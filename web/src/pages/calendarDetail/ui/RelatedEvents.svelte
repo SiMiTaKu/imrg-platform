@@ -29,9 +29,12 @@
       {#each events as event (event.id)}
         <li style:--color={categoryColor(event.category)}>
           <a class="item" href={localizeHref(ROUTES.calendar.detail(event.id))}>
-            <span class="item-date">{eventDateRange(event, locale)}</span>
+            <!-- 日付と種類は同じ行に。どちらも小さな字なので、別の行に積むと間延びする -->
+            <span class="item-meta">
+              <span class="item-date">{eventDateRange(event, locale)}</span>
+              <span class="item-category">{categoryLabel(event.category)}</span>
+            </span>
             <span class="item-title">{localizeEvent(event, locale).title}</span>
-            <span class="item-category">{categoryLabel(event.category)}</span>
           </a>
         </li>
       {/each}
@@ -77,7 +80,16 @@
     background: map.get($sky-blue, background);
   }
 
+  // 日付と種類の行
+  .item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-4 $space-size-8;
+    align-items: baseline;
+  }
+
   .item-date {
+    flex: none;
     font-size: $font-size-12;
     color: map.get($gray, light-text);
     font-variant-numeric: tabular-nums;
@@ -91,7 +103,7 @@
   }
 
   .item-category {
-    align-self: flex-start;
+    min-inline-size: 0;
     font-size: $font-size-12;
     color: map.get($gray, 600);
   }

@@ -17,10 +17,13 @@
       {#each FEATURES as feature (feature.title)}
         <li>
           <a href={localizeHref(feature.href)}>
-            <span class="badge">{feature.badge}</span>
-            <h3>{feature.title}</h3>
+            <!-- 印・見出し・矢印を1行に並べる。縦に積むと card が間延びする -->
+            <span class="head">
+              <span class="badge">{feature.badge}</span>
+              <h3>{feature.title}</h3>
+              <span class="arrow" aria-hidden="true">→</span>
+            </span>
             <p>{feature.body}</p>
-            <span class="arrow" aria-hidden="true">→</span>
           </a>
         </li>
       {/each}
@@ -83,7 +86,7 @@
     flex-direction: column;
     gap: $space-size-8;
     height: 100%;
-    padding: $space-size-24;
+    padding: $space-size-20;
     color: inherit;
     border: 1px solid map.get($gray, 100);
     border-radius: 8px;
@@ -99,9 +102,15 @@
     transform: translateY(-2px);
   }
 
+  // 印・見出し・矢印の行。矢印は行の右端へ送る
+  .head {
+    display: flex;
+    gap: $space-size-12;
+    align-items: center;
+  }
+
   .badge {
-    align-self: flex-start;
-    margin-bottom: $space-size-8;
+    flex: none;
     padding: $space-size-2 $space-size-8;
     font-size: $font-size-12;
     font-weight: bold;
@@ -112,21 +121,22 @@
   }
 
   h3 {
-    margin: 0 0 $space-size-8;
+    margin: 0;
     font-size: $font-size-20;
+    min-inline-size: 0;
   }
 
   .cards p {
     margin: 0;
-    padding-right: $space-size-24;
     font-size: $font-size-16;
     color: map.get($gray, 600);
-    line-height: 1.85;
+    line-height: 1.8;
   }
 
-  // 本文の下に置く。重ねない
+  // 見出しと同じ行の右端。重ねない
   .arrow {
-    align-self: flex-end;
+    flex: none;
+    margin-left: auto;
     font-size: $font-size-18;
     color: map.get($sky-blue, button);
   }

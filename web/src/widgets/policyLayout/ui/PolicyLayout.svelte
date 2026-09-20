@@ -345,7 +345,7 @@
     line-height: 1.5;
     color: map.get($gray, 800);
     border-top: 1px solid map.get($gray, 100);
-    scroll-margin-top: var(--anchor-offset);
+    scroll-margin-top: calc(var(--header-height) + 16px);
   }
 
   .body :global(h3::before) {

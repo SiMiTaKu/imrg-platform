@@ -80,7 +80,7 @@
     flex-direction: column;
     gap: $space-size-8;
     height: 100%;
-    padding: $space-size-24;
+    padding: $space-size-20;
     color: inherit;
     border: 1px solid map.get($gray, 100);
     border-radius: 8px;
@@ -104,13 +104,13 @@
   .cards p {
     margin: 0;
     font-size: $font-size-16;
-    line-height: 1.85;
+    line-height: 1.8;
     color: map.get($gray, 600);
   }
 
   .action {
     margin-top: auto;
-    padding-top: $space-size-8;
+    padding-top: $space-size-4;
     font-size: $font-size-14;
     font-weight: bold;
     color: map.get($sky-blue, text);

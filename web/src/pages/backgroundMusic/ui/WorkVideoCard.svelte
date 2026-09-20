@@ -138,15 +138,18 @@
     background: rgb(0 0 0 / 60%);
   }
 
+  // 手具の札と名前を同じ行に並べる。札だけで1行を使うと card が縦に伸びる
+  // 入りきらない言語では折り返して2行になるだけで、はみ出しはしない
   .words {
     display: flex;
-    flex-direction: column;
-    gap: $space-size-4;
-    padding: $space-size-12 $space-size-16 $space-size-16;
+    flex-wrap: wrap;
+    gap: $space-size-4 $space-size-8;
+    align-items: baseline;
+    padding: $space-size-12 $space-size-16;
   }
 
   .label {
-    align-self: flex-start;
+    flex: none;
     padding: $space-size-2 $space-size-8;
     font-size: $font-size-12;
     font-weight: bold;
@@ -156,6 +159,7 @@
   }
 
   h3 {
+    min-inline-size: 0;
     margin: 0;
     font-size: $font-size-16;
     line-height: 1.6;

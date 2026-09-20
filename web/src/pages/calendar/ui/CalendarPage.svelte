@@ -442,7 +442,7 @@
     border: $border-size-1 solid map.get($gray, 100);
     border-radius: 10px;
     background: $white;
-    scroll-margin-top: $space-size-16;
+    scroll-margin-top: calc(var(--header-height) + 16px);
   }
 
   .mobile .finder {
@@ -569,7 +569,7 @@
 
   .results {
     margin-top: $space-size-32;
-    scroll-margin-top: 96px;
+    scroll-margin-top: calc(var(--header-height) + 16px);
   }
 
   .results-heading {

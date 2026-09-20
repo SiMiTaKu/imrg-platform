@@ -47,7 +47,9 @@
         {@const countdown = countdownText(event, today)}
         <li style:--color={categoryColor(event.category)}>
           <a class="card" href={localizeHref(ROUTES.calendar.detail(event.id))}>
-            <span class="tags">
+            <!-- 日付と札は1行に。日付を別の行にすると card が1行ぶん高くなる -->
+            <span class="meta">
+              <span class="date">{eventDateRange(event, locale)}</span>
               {#if countdown}
                 <span class="countdown">{countdown}</span>
               {/if}
@@ -57,7 +59,6 @@
               {/if}
             </span>
 
-            <span class="date">{eventDateRange(event, locale)}</span>
             <span class="title">{localized.title}</span>
             {#if localized.venue}
               <span class="venue">{localized.venue}</span>
@@ -154,12 +155,11 @@
     transform: translateY(-2px);
   }
 
-  .tags {
+  .meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: $space-size-4;
-    margin-bottom: $space-size-4;
+    gap: $space-size-4 $space-size-8;
     font-size: $font-size-12;
     line-height: 1.6;
   }
@@ -189,10 +189,12 @@
   }
 
   .date {
+    flex: none;
     font-size: $font-size-14;
     font-weight: bold;
     color: map.get($sky-blue, text);
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
 
   .title {
@@ -212,7 +214,7 @@
 
   .more {
     margin-top: auto;
-    padding-top: $space-size-8;
+    padding-top: $space-size-4;
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);

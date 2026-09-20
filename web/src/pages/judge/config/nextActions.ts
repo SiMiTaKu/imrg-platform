@@ -9,7 +9,7 @@ import { ROUTES } from '@shared/routes'
 export const JUDGE_NEXT_ACTIONS = [
   {
     title: 'ルールを読む',
-    body: '減点の決まりは規則集に書いてある。自分が引いた点と見くらべると、意味が分かってくる。',
+    body: '減点の決まりは規則集にある。自分が引いた点と見くらべると意味が分かる。',
     href: ROUTES.rules,
     action: '規則集を開く',
   },

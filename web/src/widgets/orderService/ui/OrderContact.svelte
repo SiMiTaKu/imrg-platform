@@ -190,15 +190,17 @@
     overflow-wrap: anywhere;
   }
 
+  // 名前・説明・矢印を1行に並べる。3行に積むと札が無駄に高くなる
   .cross {
     display: flex;
-    flex-direction: column;
-    gap: $space-size-4;
+    flex-wrap: wrap;
+    gap: $space-size-4 $space-size-12;
+    align-items: baseline;
     box-sizing: border-box;
     width: 100%;
     max-width: 720px;
     margin: $space-size-16 auto 0;
-    padding: $space-size-16 $space-size-24;
+    padding: $space-size-12 $space-size-20;
     color: inherit;
     border: 1px solid map.get($gray, 100);
     border-radius: 8px;
@@ -212,21 +214,24 @@
   }
 
   .cross-label {
+    flex: none;
     font-size: $font-size-16;
     font-weight: bold;
     color: map.get($sky-blue, text);
   }
 
   .cross-body {
+    min-inline-size: 0;
     font-size: $font-size-14;
     color: map.get($gray, 600);
-    line-height: 1.8;
+    line-height: 1.7;
     overflow-wrap: anywhere;
   }
 
-  // 本文の下に置く。重ねない
+  // 同じ行の右端に送る。重ねない
   .cross-arrow {
-    align-self: flex-end;
+    flex: none;
+    margin-left: auto;
     font-size: $font-size-18;
     color: map.get($sky-blue, button);
   }

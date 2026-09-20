@@ -68,7 +68,7 @@ export const contentTypeEntries = (): SearchEntry[] => [
     id: ContentType.INDIVIDUAL.slug,
     label: ContentType.INDIVIDUAL.label(),
     badge: '選手',
-    description: 'ひとりの選手が、手具を持って演じる。選手ごとの個性が出る',
+    description: 'ひとりの選手が手具を持って演じる。選手ごとの個性が出る',
     href: ROUTES.oshimitsu.contentType(ContentType.INDIVIDUAL.slug),
     count: VIDEO_COUNTS.individual,
   },

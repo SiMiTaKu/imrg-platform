@@ -34,6 +34,7 @@ export const ROUTES = {
     apparatus: (apparatus: string) => `/oshimitsu/content_type/individual/apparatus/${apparatus}/`,
   },
   decoratingApparatus: '/decorating_apparatus/',
+  coaching: '/coaching/',
   backgroundMusic: '/background_music/',
   judge: '/judge/',
   rules: '/rules/',

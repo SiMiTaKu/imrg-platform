@@ -165,7 +165,7 @@
     width: 100%;
 
     // 固定ヘッダ（デスクトップ 80px）の下に隠れないよう、飛び先に余白を持たせる
-    scroll-margin-top: $space-size-80;
+    scroll-margin-top: calc(var(--header-height) + 16px);
 
     // 手具を選ぶと、その手具の色が画面に広がる
     background: var(--background);
@@ -195,7 +195,7 @@
 
   .result-slot {
     // 結果を閉じたときの飛び先。固定ヘッダの下に隠れないようにする
-    scroll-margin-top: $space-size-80;
+    scroll-margin-top: calc(var(--header-height) + 16px);
   }
 
   .before-next {

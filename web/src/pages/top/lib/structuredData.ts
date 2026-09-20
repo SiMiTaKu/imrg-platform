@@ -1,6 +1,13 @@
 import { LINKS } from '@shared/config/links'
 import { SERVICES } from '../config/sections'
 
+/** 依頼ごとの、いちばん安く頼める値段（円） */
+const LOWEST_PRICES: Record<string, string> = {
+  曲編集: '5000',
+  '指導・演技構成': '2000',
+  手具装飾: '1500',
+}
+
 /**
  * トップページの構造化データ（schema.org）。
  *
@@ -43,8 +50,8 @@ export const buildTopJsonLd = (baseUrl: string): Record<string, unknown> => ({
       areaServed: 'JP',
       offers: {
         '@type': 'Offer',
-        price: service.title === '曲編集' ? '5000' : '1500',
-        // 曲編集は個人の値段。団体は 10,000 円から
+        // いちばん安く頼める値段。曲編集は個人の1曲、指導はオンラインの添削から
+        price: LOWEST_PRICES[service.title] ?? '0',
         priceCurrency: 'JPY',
         description: service.price,
       },

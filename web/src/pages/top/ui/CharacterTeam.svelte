@@ -19,7 +19,7 @@
       {#each CHARACTERS as character (character.id)}
         <li style:--accent={character.color}>
           <div class="figure">
-            <CharacterFigure {character} size={isMobile ? 104 : 132} />
+            <CharacterFigure {character} size={isMobile ? 96 : 108} />
           </div>
           <p class="specialty">{character.specialty}</p>
           <h3>{character.name}</h3>
@@ -86,7 +86,7 @@
 
   .members li {
     display: flex;
-    padding: $space-size-16 $space-size-8 $space-size-20;
+    padding: $space-size-16 $space-size-8;
     border-radius: 8px;
     background: $white;
     flex-direction: column;
@@ -95,31 +95,32 @@
     border-bottom: 3px solid var(--accent);
   }
 
+  // 絵の高さで頭がそろう。絵より高い箱にしない
   .figure {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    min-height: 136px;
-  }
-
-  .mobile .figure {
     min-height: 108px;
   }
 
+  .mobile .figure {
+    min-height: 96px;
+  }
+
   .specialty {
-    margin: 0 0 $space-size-4;
+    margin: 0 0 $space-size-2;
     font-size: $font-size-12;
     font-weight: bold;
     color: var(--accent);
   }
 
   h3 {
-    margin: 0 0 $space-size-2;
+    margin: 0;
     font-size: $font-size-16;
   }
 
   .reading {
-    margin: 0 0 $space-size-8;
+    margin: 0 0 $space-size-4;
     font-size: $font-size-12;
     color: map.get($gray, light-text);
   }

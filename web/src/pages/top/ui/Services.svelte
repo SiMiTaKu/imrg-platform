@@ -11,7 +11,7 @@
   <div class="inner">
     <header>
       <p class="eyebrow">依頼できます</p>
-      <h2>曲編集と手具装飾を承っています</h2>
+      <h2>指導・曲編集・手具装飾を承っています</h2>
       <p class="description">
         選手・指導者の方から直接お受けしています。まずは相談だけでも構いません。
       </p>
@@ -90,8 +90,8 @@
 
   .cards {
     display: grid;
-    gap: $space-size-24;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-size-16;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin: 0;
     padding: 0;
     list-style: none;

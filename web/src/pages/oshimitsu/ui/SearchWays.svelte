@@ -26,10 +26,13 @@
       {#each contentTypes as entry (entry.id)}
         <li>
           <a href={localizeHref(entry.href)}>
-            {#if entry.badge}
-              <span class="badge">{entry.badge}</span>
-            {/if}
-            <span class="name">{entry.label}</span>
+            <!-- 札と名前は1行に。札を上に積むと card が縦に伸びる -->
+            <span class="card-head">
+              {#if entry.badge}
+                <span class="badge">{entry.badge}</span>
+              {/if}
+              <span class="name">{entry.label}</span>
+            </span>
             <span class="description">{entry.description}</span>
             <!-- 本数と矢印は、本文の下に置く。重ねない -->
             <span class="foot">
@@ -49,12 +52,13 @@
       {#each apparatuses as entry (entry.id)}
         <li>
           <a href={localizeHref(entry.href)}>
-            <span class="name">{entry.label}</span>
-            <span class="description">{entry.description}</span>
-            <span class="foot">
+            <!-- 名前・本数・矢印を1行に。行が減った分だけ card が縮む -->
+            <span class="card-head">
+              <span class="name">{entry.label}</span>
               <span class="count">{entry.count}本</span>
               <span class="arrow" aria-hidden="true">→</span>
             </span>
+            <span class="description">{entry.description}</span>
           </a>
         </li>
       {/each}
@@ -163,7 +167,7 @@
     flex-direction: column;
     gap: $space-size-8;
     height: 100%;
-    padding: $space-size-24;
+    padding: $space-size-20;
     color: inherit;
     border: 1px solid map.get($gray, 100);
     border-radius: 8px;
@@ -175,14 +179,27 @@
     box-sizing: border-box;
   }
 
+  // カードの名前の行。手具のほうは本数と矢印も同じ行へ送る
+  // 節の見出しの .head とは別物なので名前を分ける
+  .card-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-4 $space-size-8;
+    align-items: baseline;
+  }
+
+  .apparatuses .count {
+    margin-left: auto;
+  }
+
   .types a:hover {
     border-color: map.get($sky-blue, border);
     transform: translateY(-2px);
   }
 
   .badge {
-    align-self: flex-start;
-    padding: $space-size-4 $space-size-8;
+    flex: none;
+    padding: $space-size-2 $space-size-8;
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($sky-blue, text);
@@ -194,6 +211,7 @@
   .types .name {
     font-size: $font-size-24;
     font-weight: bold;
+    min-inline-size: 0;
   }
 
   .types .description {
@@ -246,6 +264,7 @@
   .apparatuses .name {
     font-size: $font-size-18;
     font-weight: bold;
+    min-inline-size: 0;
   }
 
   .apparatuses .description {

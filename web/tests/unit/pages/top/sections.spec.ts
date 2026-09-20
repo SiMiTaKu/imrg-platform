@@ -5,6 +5,20 @@ import { buildTopJsonLd } from '@pages/top/lib/structuredData'
 
 describe('トップページの構成', () => {
   describe('正常系', () => {
+    it('頼めることを並べた場合、いちばん推したい指導が先頭に来ること', () => {
+      // #region Given
+      // トップに来た人へ最初に見せたいのは指導
+      // #endregion
+
+      // #region When
+      const first = SERVICES[0].title
+      // #endregion
+
+      // #region Then
+      expect(first).toBe('指導・演技構成')
+      // #endregion
+    })
+
     it('できることを並べた場合、サイトの主なページが揃うこと', () => {
       // #region Given
       const expected = ['/calendar/', '/rules/', '/judge/', '/oshimitsu/']
@@ -64,6 +78,7 @@ describe('buildTopJsonLd', () => {
       expect(graph.map((node) => node['@type'])).toEqual([
         'SportsOrganization',
         'WebSite',
+        'Service',
         'Service',
         'Service',
       ])

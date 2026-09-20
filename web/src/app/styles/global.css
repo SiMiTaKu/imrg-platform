@@ -9,6 +9,25 @@
 :root {
   --content-max-width: 1024px;
   --content-padding-inline: 16px;
+
+  /* ヘッダーの高さ。上に固定されているので、この分だけ見出しが隠れる */
+  --header-height: 64px;
+}
+
+html[data-device='desktop'] {
+  --header-height: 80px;
+}
+
+/*
+  ページの中の印（#id）へ飛ぶとき、ヘッダーの下に隠れないように止める。
+  飛び先の少し手前で止めたいので、ヘッダーの高さに余白を足す
+*/
+html {
+  scroll-padding-top: calc(var(--header-height) + 16px);
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-height) + 16px);
 }
 
 body {
