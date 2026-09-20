@@ -177,6 +177,23 @@ aws iam delete-user --profile imrg --user-name takumi-shimizu-iam-amplify
 3. アプリを削除する
 4. リポジトリーの `amplify.yml` を消す（`docs/TODO.md` の6-6もここで済む）
 5. GitHubの設定から、Amplifyが付けたwebhookとアプリの連携を外す
+6. 残るAmplify用のIAMロールとポリシーを消す
+
+最後の6つは、`amplify.amazonaws.com` が引き受けるロール。
+
+- `amplifyconsole-backend-role`
+- `AmplifyConsoleServiceRole-AmplifyRole`
+- `AmplifySSRLoggingRole-*`（3つ）と、対になる `AmplifySSRLoggingPolicy-*`（3つ）
+
+いまのアプリを調べると `iamServiceRoleArn` は `None`、`platform` は `WEB`（静的なサイト）なので、
+**実際にはどれも使われていない。** それでも移行が終わるまでは残しておく。
+Amplifyの削除とまとめて片づけるほうが、取り違えが起きない。
+
+```bash
+# 使っていないことの確かめ方
+aws amplify get-app --profile imrg --region ap-northeast-1 --app-id d3fj0jchd8ri0z \
+  --query 'app.[iamServiceRoleArn,platform]' --output text
+```
 
 ## 7. 片づけたあとに確かめる
 

@@ -278,8 +278,10 @@ Phase 4の進め方（2026-09-19に決めた）
   - 残っていたものは、ほぼ2023〜2024年に試したAmplifyのチュートリアル（`d1o1ui2gd5pshh` `d295caw51lipy2` `d7q1eopfj7aj0` `src-owner-sandbox` `reacttutorial`）
   - [x] RDSのスナップショット `rds-mysql-10mintutorial-snapshot`（20GB・2023-10-21）を消した。**毎月の $0.11 はこれだった**（2026-09-20）
     - 2022-11-06に作ったMySQLインスタンスの分。インスタンス本体は2023年に消えており、スナップショットだけ3年残っていた
-  - [ ] 古いAmplifyのアプリ `d2e38588w4qs62`（svelte-kit-to-amplify）を消す。CloudFormationのスタック・Cognito・AppSync・DynamoDB・Lambdaがぶら下がっているので、**アプリから消す**
-  - [ ] 孤立したCognito `ap-northeast-1_HwYeR5W0G`、ログ117個、`CDKToolkit`
+  - [x] 古いAmplifyのアプリ `d2e38588w4qs62`（svelte-kit-to-amplify）を消した（2026-09-20）
+    - アプリを消すと、CloudFormationのスタック5つ・Cognito・AppSync・DynamoDB・Lambda 6個・S3・IAMロール7個が連鎖して消えた。**個別に消さずアプリから消すのが正しい**
+  - [ ] 孤立したCognito `ap-northeast-1_HwYeR5W0G`、それに紐づくLambda 4個とIAMロール4個、ログ117個、`CDKToolkit`一式
+  - いまのAmplifyアプリは `iamServiceRoleArn` が `None` で `platform` が `WEB` のため、残っている `amplifyconsole-*` と `AmplifySSRLoggingRole-*` はどれも使われていない。移行後にまとめて消す
   - [ ] IAMユーザー `takumi-shimizu-iam-amplify`（鍵の最終使用は2025-07-30）
   - ACMに証明書が1つも無い。Amplifyが内部で持っているため、Terraformでは新しく作ることになる（取り込みは不要）
 - [x] **4-6. ステージング環境を用意する**（`envs/stg`。配る手順は `_deploy.yml` に共通化し、本番とステージングで同じものを使う）
