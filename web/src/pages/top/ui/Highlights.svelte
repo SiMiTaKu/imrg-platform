@@ -1,0 +1,128 @@
+<script lang="ts">
+  import { CharacterFigure, findCharacter } from '@entities/character'
+  import { pageData } from '@shared/lib/device'
+  import { HIGHLIGHTS } from '../config/sections'
+
+  const isMobile = $derived($pageData.isMobile)
+</script>
+
+<section class="highlights" class:mobile={isMobile} id="about">
+  <div class="inner">
+    <header>
+      <h2>男子新体操とは</h2>
+      <p>床の上で、跳んで、回して、5人で揃える。3つ知れば見方が変わります。</p>
+    </header>
+
+    <ul class="cards">
+      {#each HIGHLIGHTS as highlight (highlight.title)}
+        {@const character = findCharacter(highlight.character)}
+        <li style:--accent={character.color}>
+          <div class="figure">
+            <CharacterFigure
+              {character}
+              size={isMobile ? 96 : 120}
+              showApparatus={highlight.title === '手具'}
+            />
+          </div>
+          <h3>{highlight.title}</h3>
+          <p class="summary">{highlight.summary}</p>
+          <p class="body">{highlight.body}</p>
+        </li>
+      {/each}
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+  .highlights {
+    width: 100%;
+    background: $white;
+  }
+
+  .inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: $space-size-80 $space-size-24;
+  }
+
+  .mobile .inner {
+    padding: $space-size-48 $space-size-16;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: $space-size-40;
+  }
+
+  h2 {
+    margin: 0 0 $space-size-8;
+    font-size: $font-size-30;
+  }
+
+  .mobile h2 {
+    font-size: $font-size-24;
+  }
+
+  header p {
+    margin: 0;
+    font-size: $font-size-14;
+    color: map.get($gray, light-text);
+  }
+
+  .cards {
+    display: grid;
+    gap: $space-size-24;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mobile .cards {
+    gap: $space-size-16;
+    grid-template-columns: 1fr;
+  }
+
+  .cards li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: $space-size-24;
+    border: 1px solid map.get($gray, 100);
+    border-radius: 8px;
+
+    // 上辺だけ、その人の色を差す
+    border-top: 3px solid var(--accent);
+    background: $white;
+  }
+
+  .figure {
+    // 姿勢が違っても頭の高さが揃うよう、箱の高さを決める
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 124px;
+    margin-bottom: $space-size-8;
+  }
+
+  h3 {
+    margin: 0 0 $space-size-4;
+    font-size: $font-size-20;
+  }
+
+  .summary {
+    margin: 0 0 $space-size-12;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  .body {
+    margin: 0;
+    font-size: $font-size-14;
+    color: map.get($gray, 600);
+    line-height: 1.9;
+    text-align: left;
+  }
+</style>
