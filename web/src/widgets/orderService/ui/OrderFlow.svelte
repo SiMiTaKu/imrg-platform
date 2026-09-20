@@ -86,10 +86,10 @@
     font-size: $font-size-20;
   }
 
-  // 呼びかけの下線は黄。蛍光色の影ではなく、読める線で強調する
+  // 呼びかけの下線は青。蛍光色の影ではなく、読める線で強調する
   .message-line {
     box-decoration-break: clone;
-    background: linear-gradient(transparent 70%, map.get($amber, 200) 70%);
+    background: linear-gradient(transparent 70%, map.get($sky-blue, 200) 70%);
   }
 
   .steps {
@@ -114,7 +114,7 @@
     height: 100%;
     box-sizing: border-box;
     padding: $space-size-20 $space-size-12;
-    border-top: 3px solid map.get($amber, border);
+    border-top: 3px solid map.get($sky-blue, border);
     border-radius: 8px;
     background: $white;
     text-align: center;
@@ -134,9 +134,9 @@
     height: 32px;
     font-size: $font-size-16;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: 999px;
-    background: map.get($amber, 300);
+    background: map.get($sky-blue, button);
     font-variant-numeric: tabular-nums;
   }
 

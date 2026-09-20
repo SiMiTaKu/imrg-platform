@@ -56,9 +56,9 @@
     padding: $space-size-20 $space-size-16;
   }
 
-  // いまいる段階だけ、黄の枠で前に出す
+  // いまいる段階だけ、青の枠で前に出す。黄は上の進み具合の印にだけ残す
   .current {
-    border-color: map.get($amber, border);
+    border-color: map.get($sky-blue, border);
     box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
   }
 
@@ -94,7 +94,7 @@
   }
 
   .current .number {
-    background: map.get($amber, button);
+    background: map.get($sky-blue, button);
   }
 
   .waiting .number {
@@ -129,10 +129,10 @@
     padding: $space-size-4 $space-size-12;
     font-size: $font-size-11;
     font-weight: bold;
-    color: map.get($amber, text);
-    border: 1px solid map.get($amber, border);
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
     border-radius: 999px;
-    background: map.get($amber, background);
+    background: map.get($sky-blue, background);
     white-space: nowrap;
   }
 

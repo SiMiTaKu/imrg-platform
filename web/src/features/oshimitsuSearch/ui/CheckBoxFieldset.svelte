@@ -52,13 +52,13 @@
   }
 
   .desktop {
-    --width: 343px;
+    --max-width: 343px;
     --legend-font-size: #{$font-size-24};
     --label-font-size: #{$font-size-20};
   }
 
   .mobile {
-    --width: 343px;
+    --max-width: 343px;
     --legend-font-size: #{$font-size-20};
     --label-font-size: #{$font-size-18};
   }
@@ -66,10 +66,13 @@
   .wrapper {
     display: grid;
     gap: $space-size-8;
-    box-sizing: border-box;
-    width: var(--width);
+
+    // 固定幅だと、画面がそれより狭いときに横へはみ出す
+    width: 100%;
     min-width: 0;
+    max-width: var(--max-width);
     max-width: 100%;
+    box-sizing: border-box;
   }
 
   .legend {

@@ -61,7 +61,7 @@
   )
   const categoryText = $derived(categoryLabel(event.category))
   const countdown = $derived(countdownText(event, today))
-  // 「終了」は済んだことなので、黄で目立たせない
+  // 「終了」は済んだことなので、青で目立たせない
   const isComingSoon = $derived(countdown !== undefined && countdown !== '終了')
   const nearby = $derived(nearbyEvents(event, NEARBY_COUNT))
 
@@ -211,7 +211,7 @@
 
 <style lang="scss">
   .desktop {
-    --width: 760px;
+    --max-width: 760px;
     --title-size: #{$font-size-30};
     --fact-columns: repeat(3, minmax(0, 1fr));
   }
@@ -223,7 +223,9 @@
   }
 
   .event-detail {
-    width: var(--width);
+    // 固定幅だと、画面がそれより狭いときに横へはみ出す
+    width: 100%;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: $space-size-32 0 $space-size-80;
     font-family:
@@ -279,15 +281,15 @@
     line-height: 1.6;
   }
 
-  // 開催が近いことは「今すぐ動ける情報」なので黄で出す
+  // 開催が近いことは青で塗って出す
   .countdown {
     color: map.get($gray, light-text);
     background: map.get($gray, background);
   }
 
   .countdown.soon {
-    color: map.get($amber, 800);
-    background: map.get($amber, 300);
+    color: $white;
+    background: map.get($sky-blue, button);
   }
 
   .category {
@@ -341,9 +343,9 @@
     background: $white;
   }
 
-  // 日程はいちばん先に知りたい項目なので、上辺を黄にして目線を集める
+  // 日程はいちばん先に知りたい項目なので、上辺を濃い青にして目線を集める
   .fact.date {
-    border-top-color: map.get($amber, button);
+    border-top-color: map.get($sky-blue, button);
   }
 
   dt {
@@ -450,11 +452,12 @@
     box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
   }
 
-  // 結果を見に行くのは別の行動なので黄。青と役割を分ける
+  // 結果を見に行くのは別の行動。青の枠のボタンにして、主な入口と役割を分ける
   .result-action {
-    color: map.get($amber, 800);
-    background: map.get($amber, 300);
-    box-shadow: 0 2px 8px rgb(240 165 0 / 30%);
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
+    background: $white;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   }
 
   /* ─── 出典と注意書き ─── */

@@ -74,10 +74,10 @@
   .intro {
     width: 100%;
 
-    // 青（信頼）と黄（希望）を両端から差す。トップページと同じ作り
+    // 青（信頼）を両端から差す。トップページと同じ作り
     background:
       radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
-      radial-gradient(circle at 92% 6%, rgb(240 165 0 / 16%), transparent 42%), $white;
+      radial-gradient(circle at 92% 6%, rgb(25 134 255 / 16%), transparent 42%), $white;
   }
 
   .inner {
@@ -147,7 +147,7 @@
   }
 
   .say .accent {
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
   }
 
   /* ─── できることを3つ ─── */
@@ -173,7 +173,7 @@
     gap: $space-size-4;
     padding: $space-size-20;
     border: 1px solid map.get($gray, 100);
-    border-top: 3px solid map.get($amber, border);
+    border-top: 3px solid map.get($sky-blue, border);
     border-radius: 8px;
     background: $white;
   }
@@ -184,9 +184,9 @@
     padding: $space-size-4 $space-size-8;
     font-size: $font-size-10;
     font-weight: bold;
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
     border-radius: 999px;
-    background: map.get($amber, background);
+    background: map.get($sky-blue, background);
     letter-spacing: 0.06em;
   }
 
@@ -234,12 +234,12 @@
     transform: translateY(-1px);
   }
 
-  // いちばん押してほしいところに黄（希望・行動）を使う
+  // いちばん押してほしいところは青で塗る
   .start {
     color: $white;
     border: none;
-    background: map.get($amber, button);
-    box-shadow: 0 2px 8px rgb(240 165 0 / 40%);
+    background: map.get($sky-blue, button);
+    box-shadow: 0 2px 8px rgb(25 134 255 / 40%);
   }
 
   .sub {

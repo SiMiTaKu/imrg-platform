@@ -140,8 +140,8 @@
     font-weight: bold;
     text-align: left;
     color: map.get($gray, text);
-    background: map.get($amber, background);
-    border-bottom: 1px solid map.get($amber, 200);
+    background: map.get($gray, background);
+    border-bottom: 1px solid map.get($gray, 200);
   }
 
   th,

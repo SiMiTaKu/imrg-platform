@@ -264,7 +264,7 @@
     width: 100%;
     max-width: 620px;
     padding: $space-size-32;
-    border-top: 4px solid map.get($amber, border);
+    border-top: 4px solid map.get($sky-blue, border);
     border-radius: 10px;
     background: rgb(255 255 255 / 95%);
     box-shadow: 0 8px 24px rgb(0 0 0 / 25%);
@@ -321,7 +321,7 @@
     letter-spacing: 0.25em;
   }
 
-  // 料金は最初の画面で見せる。黄で強調する
+  // 料金は最初の画面で見せる。青で強調する
   .price {
     display: inline-flex;
     align-items: baseline;
@@ -333,14 +333,14 @@
     padding: $space-size-2 $space-size-8;
     font-size: $font-size-11;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: 999px;
-    background: map.get($amber, 300);
+    background: map.get($sky-blue, button);
   }
 
   .amount {
     font-size: $font-size-22;
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
     font-variant-numeric: tabular-nums;
   }
 
@@ -386,9 +386,9 @@
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, 600);
-    border: 1px solid map.get($amber, border);
+    border: 1px solid map.get($sky-blue, border);
     border-radius: 999px;
-    background: map.get($amber, background);
+    background: map.get($sky-blue, background);
   }
 
   .actions {
@@ -416,11 +416,11 @@
     transform: translateY(-1px);
   }
 
-  // 相談へ進む一歩は黄。作例を見に行く（情報）のは青
+  // 相談へ進む一歩は青の塗り。作例を見に行くのは青の枠。黄はページ下の相談の節だけに残す
   .contact {
-    color: map.get($amber, 800);
-    background: map.get($amber, 300);
-    box-shadow: 0 2px 8px rgb(240 165 0 / 35%);
+    color: $white;
+    background: map.get($sky-blue, button);
+    box-shadow: 0 2px 8px rgb(25 134 255 / 35%);
   }
 
   .works {

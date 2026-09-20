@@ -129,11 +129,11 @@
     width: 28px;
     height: 28px;
     font-size: $font-size-14;
-    color: map.get($amber, 800);
+    color: $white;
 
-    // 順番は黄（希望・行動）で示す
+    // 順番は青で塗って示す
     border-radius: 999px;
-    background: map.get($amber, 300);
+    background: map.get($sky-blue, button);
     place-items: center;
   }
 
@@ -226,8 +226,8 @@
     color: inherit;
     border: 1px solid map.get($gray, 100);
 
-    // 上辺だけ黄を差して、種類のカードと見分ける
-    border-top: 3px solid map.get($amber, border);
+    // 上辺だけ濃い青を差して、種類のカードと見分ける
+    border-top: 3px solid map.get($sky-blue, border);
     border-radius: 8px;
     background: $white;
     transition:
@@ -238,7 +238,7 @@
   }
 
   .apparatuses a:hover {
-    border-color: map.get($amber, button);
+    border-color: map.get($sky-blue, button);
     transform: translateY(-2px);
   }
 

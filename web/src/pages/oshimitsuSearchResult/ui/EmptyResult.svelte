@@ -60,11 +60,11 @@
     gap: $space-size-24;
     width: 100%;
     padding: $space-size-32 $space-size-24;
-    border: 1px solid map.get($amber, 100);
+    border: 1px solid map.get($sky-blue, 100);
     border-radius: 10px;
 
-    // 行き止まりに見せない。黄（希望）の淡い背景にする
-    background: map.get($amber, background);
+    // 行き止まりに見せない。青の淡い背景にする
+    background: map.get($sky-blue, background);
     align-items: flex-start;
     box-sizing: border-box;
   }
@@ -92,7 +92,7 @@
     margin: 0;
     font-size: $font-size-11;
     font-weight: bold;
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
   }
 
   h2 {

@@ -55,11 +55,11 @@
 
 <style lang="scss">
   .desktop {
-    --wrapper-width: 400px;
+    --wrapper-width: min(400px, 100%);
   }
 
   .mobile {
-    --wrapper-width: 100vw;
+    --wrapper-width: 100%;
   }
 
   .wrapper {

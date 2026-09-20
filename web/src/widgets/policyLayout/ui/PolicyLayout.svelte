@@ -147,12 +147,14 @@
 
 <style lang="scss">
   .policy {
-    --width: 720px;
+    --max-width: 720px;
     --heading-font-size: #{$font-size-22};
     --title-font-size: #{$font-size-30};
     --anchor-offset: 96px;
 
-    width: var(--width);
+    // 固定幅だと、画面がそれより狭いときに横へはみ出す
+    width: 100%;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: $space-size-48 0 $space-size-80;
     font-size: $font-size-16;
@@ -162,7 +164,7 @@
   }
 
   .mobile {
-    --width: 90%;
+    --max-width: 100%;
     --heading-font-size: #{$font-size-18};
     --title-font-size: #{$font-size-24};
     --anchor-offset: 80px;
@@ -364,13 +366,13 @@
     line-height: 2;
   }
 
-  // 前書きの一文（最初の段落）。何についての文面かが最初に分かるよう、琥珀色の札にする
+  // 前書きの一文（最初の段落）。何についての文面かが最初に分かるよう、青の札にする
   .body > :global(p:first-child) {
     margin-bottom: $space-size-32;
     padding: $space-size-20 $space-size-24;
-    border-left: 4px solid map.get($amber, border);
+    border-left: 4px solid map.get($sky-blue, border);
     border-radius: 4px;
-    background: map.get($amber, background);
+    background: map.get($sky-blue, background);
   }
 
   // サイト全体のリセットで黒丸が消えているので付け直す

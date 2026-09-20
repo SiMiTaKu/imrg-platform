@@ -57,7 +57,7 @@
 <style lang="scss">
   .price {
     width: 100%;
-    background: map.get($amber, background);
+    background: map.get($sky-blue, background);
   }
 
   .inner {
@@ -81,7 +81,7 @@
     max-width: 620px;
     margin: 0 auto;
     padding: $space-size-40 $space-size-32;
-    border: 1px solid map.get($amber, 100);
+    border: 1px solid map.get($sky-blue, 100);
     border-radius: 10px;
     background: $white;
     text-align: center;
@@ -96,9 +96,9 @@
     padding: $space-size-4 $space-size-16;
     font-size: $font-size-14;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: 999px;
-    background: map.get($amber, 300);
+    background: map.get($sky-blue, button);
   }
 
   .amount {
@@ -136,14 +136,14 @@
     padding: $space-size-12 $space-size-16;
     font-size: $font-size-14;
     font-weight: bold;
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
     border-radius: 8px;
-    background: map.get($amber, background);
+    background: map.get($gray, background);
     line-height: 1.8;
     overflow-wrap: anywhere;
   }
 
-  // 料金を見た直後に相談へ進めるようにする。一歩を踏み出すボタンは黄
+  // 料金を見た直後に相談へ進めるようにする。ボタンは青の塗り。黄はページ下の相談の節だけに残す
   .contact {
     display: inline-flex;
     align-items: center;
@@ -156,10 +156,10 @@
     padding: 0 $space-size-20;
     font-size: $font-size-18;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: 6px;
-    background: map.get($amber, 300);
-    box-shadow: 0 2px 8px rgb(240 165 0 / 35%);
+    background: map.get($sky-blue, button);
+    box-shadow: 0 2px 8px rgb(25 134 255 / 35%);
     transition: transform 0.15s ease;
     text-decoration: none;
   }

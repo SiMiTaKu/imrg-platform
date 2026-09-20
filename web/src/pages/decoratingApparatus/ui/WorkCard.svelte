@@ -96,7 +96,7 @@
   }
 
   .card:hover {
-    border-color: map.get($amber, border);
+    border-color: map.get($sky-blue, border);
   }
 
   .face {
@@ -149,9 +149,9 @@
   .counter {
     padding: $space-size-2 $space-size-8;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: 999px;
-    background: map.get($amber, 300);
+    background: map.get($sky-blue, button);
     font-variant-numeric: tabular-nums;
   }
 </style>

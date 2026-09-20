@@ -61,10 +61,10 @@
   .hero {
     width: 100%;
 
-    // 青（信頼）と黄（希望）を両端から差す。トップページと同じ作り
+    // 青（信頼）を両端から差す。トップページと同じ作り
     background:
       radial-gradient(circle at 10% 0%, rgb(25 134 255 / 10%), transparent 45%),
-      radial-gradient(circle at 90% 8%, rgb(240 165 0 / 16%), transparent 44%), $white;
+      radial-gradient(circle at 90% 8%, rgb(25 134 255 / 16%), transparent 44%), $white;
     border-bottom: 1px solid map.get($gray, 100);
   }
 
@@ -131,8 +131,8 @@
     color: map.get($gray, 600);
     letter-spacing: 0.04em;
 
-    // 下線を黄で引く。青一色にしない
-    border-bottom: 3px solid map.get($amber, border);
+    // 下線は青で引く
+    border-bottom: 3px solid map.get($sky-blue, border);
   }
 
   .mobile .what {
@@ -161,7 +161,7 @@
   }
 
   .say .accent {
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
   }
 
   .actions {
@@ -198,11 +198,11 @@
     box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
   }
 
-  // 2つめは黄で。「見る楽しさ」の側を希望の色にする
+  // 2つめは青の枠のボタン。主な入口（塗り）と役割を分ける
   .secondary {
-    color: map.get($amber, 800);
-    border: 1px solid map.get($amber, border);
-    background: map.get($amber, background);
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
+    background: $white;
   }
 
   .stats {

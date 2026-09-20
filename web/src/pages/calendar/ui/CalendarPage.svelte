@@ -412,15 +412,17 @@
 
 <style lang="scss">
   .desktop {
-    --width: 960px;
+    --max-width: 960px;
   }
 
   .mobile {
-    --width: calc(100% - 32px);
+    --max-width: 100%;
   }
 
   .calendar {
-    width: var(--width);
+    // 固定幅だと、画面がそれより狭いときに横へはみ出す
+    width: 100%;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: $space-size-40 0 $space-size-80;
     font-family:
@@ -523,15 +525,15 @@
     padding: $space-size-8 $space-size-12;
     font-size: $font-size-12;
 
-    // 今かかっている条件は、行動に近い情報なので黄で囲む
-    border: $border-size-1 solid map.get($amber, 200);
+    // 今かかっている条件は灰で囲む。表の色とぶつけない
+    border: $border-size-1 solid map.get($gray, 200);
     border-radius: $border-radius-8;
-    background: map.get($amber, background);
+    background: map.get($gray, background);
   }
 
   .active-label {
     font-weight: bold;
-    color: map.get($amber, text);
+    color: map.get($gray, text);
   }
 
   .pill {
@@ -545,10 +547,10 @@
     padding: $space-size-2 $space-size-12;
     font-size: $font-size-12;
     font-weight: bold;
-    color: map.get($amber, 800);
-    border: $border-size-1 solid map.get($amber, border);
+    color: map.get($sky-blue, text);
+    border: $border-size-1 solid map.get($sky-blue, border);
     border-radius: $border-radius-64;
-    background: map.get($amber, 300);
+    background: $white;
     cursor: pointer;
   }
 

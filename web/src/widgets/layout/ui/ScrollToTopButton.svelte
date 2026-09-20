@@ -32,14 +32,14 @@
   .desktop {
     --bottom: #{$space-size-8};
     --right: 0;
-    --wrapper-width: 1024px;
+    --wrapper-max-width: 1024px;
     --botton-size: 56px;
   }
 
   .mobile {
     --bottom: 72px;
     --right: #{$space-size-12};
-    --wrapper-width: 100%;
+    --wrapper-max-width: 100%;
     --botton-size: 48px;
   }
 
@@ -56,7 +56,10 @@
 
   .wrapper {
     position: relative;
-    width: var(--wrapper-width);
+
+    // 固定幅だと、画面がそれより狭いときに横へはみ出す
+    width: 100%;
+    max-width: var(--wrapper-max-width);
     height: var(--botton-size);
     pointer-events: none;
   }

@@ -91,18 +91,18 @@
   }
 
   .cards li:hover {
-    border-color: map.get($amber, border);
+    border-color: map.get($sky-blue, border);
   }
 
-  // 番号は黄。数えられることが「色々頼める」ことの合図になる
+  // 番号は青。数えられることが「色々頼める」ことの合図になる
   .badge {
     align-self: flex-start;
     padding: $space-size-2 $space-size-8;
     font-size: $font-size-11;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: 999px;
-    background: map.get($amber, 300);
+    background: map.get($sky-blue, button);
     letter-spacing: 0.08em;
     font-variant-numeric: tabular-nums;
   }

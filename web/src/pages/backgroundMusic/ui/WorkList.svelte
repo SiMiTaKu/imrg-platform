@@ -101,7 +101,7 @@
   }
 
   .cards a:hover {
-    border-color: map.get($amber, border);
+    border-color: map.get($sky-blue, border);
     transform: translateY(-2px);
   }
 

@@ -40,14 +40,14 @@
 <style lang="scss">
   .desktop {
     --height: 80px;
-    --content-width: 1024px;
+    --content-max-width: 1024px;
     --content-grid-template-columns: 1fr auto 80px;
     --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-20};
   }
 
   .mobile {
     --height: 64px;
-    --content-width: 100%;
+    --content-max-width: 100%;
     --content-grid-template-columns: 1fr auto 64px;
     --top-link-padding: #{$space-size-4} 0 #{$space-size-4} #{$space-size-12};
   }
@@ -58,14 +58,14 @@
     z-index: 1000;
     display: grid;
     place-items: center;
-    width: 100vw;
+    width: 100%;
     height: var(--height);
     background: white;
 
     &::before {
       position: fixed;
       top: 0;
-      width: 100vw;
+      width: 100%;
       height: var(--height);
       background: transparent;
       box-shadow: $black-box-shadow;
@@ -81,7 +81,11 @@
     grid-template-columns: var(--content-grid-template-columns);
     place-items: center;
     box-sizing: border-box;
-    width: var(--content-width);
+
+    // 幅は画面に合わせ、広い画面でだけ 1024px で止める。
+    // 固定幅にすると、画面がそれより狭いときに横へはみ出す
+    width: 100%;
+    max-width: var(--content-max-width);
     height: 100%;
   }
 

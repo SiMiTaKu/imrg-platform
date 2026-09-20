@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  /** 節の見出しのラベルの色味。青は「情報」、黄は「行動・強調」に使う */
+  /** 節の見出しのラベルの色味。いまはどちらも青で出す（黄は相談のボタンにだけ残す） */
   export type SectionHeadingTone = 'blue' | 'amber'
 </script>
 
@@ -66,10 +66,10 @@
     letter-spacing: 0.1em;
   }
 
-  // 行動をうながす節（料金・相談）は黄のラベルにする
+  // 行動をうながす節（料金・相談）も、ラベルは青でそろえる
   .eyebrow.amber {
-    color: map.get($amber, 800);
-    background: map.get($amber, 300);
+    color: $white;
+    background: map.get($sky-blue, button);
   }
 
   h2 {

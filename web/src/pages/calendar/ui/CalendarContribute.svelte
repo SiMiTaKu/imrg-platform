@@ -73,10 +73,10 @@
     background: map.get($sky-blue, background);
   }
 
-  // 行動してほしい側は黄（希望・行動）
+  // 行動してほしい側は灰。青（出どころ）の札と見分ける
   .contribute {
-    border: $border-size-1 solid map.get($amber, 200);
-    background: map.get($amber, background);
+    border: $border-size-1 solid map.get($gray, 200);
+    background: map.get($gray, background);
   }
 
   .card-title {
@@ -90,7 +90,7 @@
   }
 
   .contribute .card-title {
-    color: map.get($amber, text);
+    color: map.get($gray, text);
   }
 
   .points {
@@ -118,7 +118,7 @@
 
   .contribute-text a {
     font-weight: bold;
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
   }
 
   .contribute-button {
@@ -131,14 +131,14 @@
     padding: 0 $space-size-24;
     font-size: $font-size-14;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: 6px;
-    background: map.get($amber, 300);
-    box-shadow: 0 2px 8px rgb(240 165 0 / 30%);
+    background: map.get($sky-blue, button);
+    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
   }
 
   .contribute-button:hover {
-    background: map.get($amber, border);
+    background: map.get($sky-blue, text);
   }
 
   .back {

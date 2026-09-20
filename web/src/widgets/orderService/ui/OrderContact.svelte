@@ -94,10 +94,10 @@
   .contact {
     width: 100%;
 
-    // 青（信頼）と黄（希望）を両端から差す。トップページのヒーローと揃える
+    // 青を両端から差す。トップページのヒーローと揃える
     background:
       radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
-      radial-gradient(circle at 92% 6%, rgb(240 165 0 / 16%), transparent 42%), $white;
+      radial-gradient(circle at 92% 6%, rgb(25 134 255 / 16%), transparent 42%), $white;
     border-top: 1px solid map.get($gray, 100);
   }
 
@@ -120,7 +120,7 @@
     max-width: 720px;
     margin: 0 auto;
     padding: $space-size-32;
-    border: 1px solid map.get($amber, 100);
+    border: 1px solid map.get($sky-blue, 100);
     border-radius: 10px;
     background: $white;
   }
@@ -159,7 +159,7 @@
     font-size: $font-size-14;
   }
 
-  // 連絡への一歩は黄
+  // 連絡への一歩は黄。このページで黄を使うのはここだけ
   .button {
     display: inline-flex;
     align-items: center;

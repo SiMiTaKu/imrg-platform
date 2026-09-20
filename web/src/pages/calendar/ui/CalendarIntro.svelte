@@ -64,10 +64,10 @@
     padding: $space-size-24;
     border-radius: 10px;
 
-    // 青（信頼）と黄（希望）を両端から差す。トップページの見出しと同じ考え方
+    // 青（信頼）を両端から差す。トップページの見出しと同じ考え方
     background:
       radial-gradient(circle at 6% 0%, rgb(25 134 255 / 10%), transparent 46%),
-      radial-gradient(circle at 96% 8%, rgb(240 165 0 / 16%), transparent 44%),
+      radial-gradient(circle at 96% 8%, rgb(25 134 255 / 16%), transparent 44%),
       map.get($gray, background);
   }
 
@@ -116,9 +116,9 @@
     color: map.get($sky-blue, text);
   }
 
-  // 行動の入口は黄。青と役割を分ける
+  // 行動の入口も青でそろえる
   .how .accent {
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
   }
 
   .numbers {
@@ -144,8 +144,8 @@
   }
 
   .number.upcoming {
-    border-color: map.get($amber, 200);
-    background: map.get($amber, background);
+    border-color: map.get($sky-blue, border);
+    background: map.get($sky-blue, background);
   }
 
   dt {
@@ -165,7 +165,7 @@
   }
 
   .upcoming dd {
-    color: map.get($amber, text);
+    color: map.get($sky-blue, text);
   }
 
   .unit {

@@ -202,8 +202,8 @@
     font-weight: bold;
     color: map.get($gray, light-text);
 
-    // 見出しの上の一言に、黄の線を添える
-    border-left: 3px solid map.get($amber, border);
+    // 見出しの上の一言に、青の線を添える
+    border-left: 3px solid map.get($sky-blue, border);
   }
 
   h1 {

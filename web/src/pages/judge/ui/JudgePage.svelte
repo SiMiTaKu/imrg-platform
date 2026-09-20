@@ -213,8 +213,8 @@
     font-family: inherit;
     font-size: $font-size-14;
     font-weight: bold;
-    color: map.get($amber, 800);
-    border: 1px solid map.get($amber, border);
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
     border-radius: 999px;
     background: $white;
     box-shadow: 0 2px 12px rgb(0 0 0 / 25%);

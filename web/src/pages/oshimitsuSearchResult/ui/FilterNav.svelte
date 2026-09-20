@@ -168,15 +168,15 @@
     color: map.get($sky-blue, 100);
   }
 
-  // 手具は黄（希望・行動）で示し、種類と見分けられるようにする
+  // 手具も種類と同じ青でそろえる
   .chip.apparatus:hover {
-    border-color: map.get($amber, border);
-    background: map.get($amber, background);
+    border-color: map.get($sky-blue, border);
+    background: map.get($sky-blue, background);
   }
 
   .chip.apparatus.current {
-    color: map.get($amber, 800);
-    border-color: map.get($amber, button);
-    background: map.get($amber, 300);
+    color: $white;
+    border-color: map.get($sky-blue, button);
+    background: map.get($sky-blue, button);
   }
 </style>

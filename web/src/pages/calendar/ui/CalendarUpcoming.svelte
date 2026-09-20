@@ -93,8 +93,8 @@
     margin: 0;
     padding-left: $space-size-12;
 
-    // 「今すぐ動ける情報」なので、見出しの線は黄
-    border-left: $border-size-4 solid map.get($amber, button);
+    // 見出しの線は青。ページの黄は「今日」の印にだけ残す
+    border-left: $border-size-4 solid map.get($sky-blue, button);
     font-size: $font-size-20;
     line-height: 1.4;
   }
@@ -164,13 +164,13 @@
     line-height: 1.6;
   }
 
-  // 「あと3日」は行動のきっかけなので黄で出す
+  // 「あと3日」は青で塗って出す
   .countdown {
     padding: 0 $space-size-8;
     font-weight: bold;
-    color: map.get($amber, 800);
+    color: $white;
     border-radius: $border-radius-64;
-    background: map.get($amber, 300);
+    background: map.get($sky-blue, button);
   }
 
   .category {

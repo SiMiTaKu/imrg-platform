@@ -253,15 +253,15 @@
     font-variant-numeric: tabular-nums;
   }
 
-  // 「今月に戻る」は今すぐ押してほしい操作なので黄にする
+  // 「今月に戻る」は青の枠のボタン。黄は「今日」の印にだけ残す
   .this-month {
     padding: $space-size-4 $space-size-16;
     font-size: $font-size-12;
     font-weight: bold;
-    color: map.get($amber, 800);
-    border: $border-size-1 solid map.get($amber, border);
+    color: map.get($sky-blue, text);
+    border: $border-size-1 solid map.get($sky-blue, border);
     border-radius: $border-radius-64;
-    background: map.get($amber, 300);
+    background: $white;
     justify-self: center;
     cursor: pointer;
   }

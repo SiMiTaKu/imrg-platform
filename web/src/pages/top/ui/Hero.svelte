@@ -58,10 +58,10 @@
   .hero {
     width: 100%;
 
-    // 青（信頼）と黄（希望）を両端から差す
+    // 青（信頼）を両端から差す
     background:
       radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
-      radial-gradient(circle at 92% 6%, rgb(240 165 0 / 14%), transparent 42%), $white;
+      radial-gradient(circle at 92% 6%, rgb(25 134 255 / 14%), transparent 42%), $white;
     border-bottom: 1px solid map.get($gray, 100);
   }
 
@@ -99,8 +99,8 @@
     font-weight: bold;
     letter-spacing: 0.04em;
 
-    // 下線を黄で引く。青一色にしない
-    border-bottom: 3px solid map.get($amber, border);
+    // 下線は青。黄は相談のボタンにだけ残す
+    border-bottom: 3px solid map.get($sky-blue, border);
   }
 
   .mobile .catchphrase {

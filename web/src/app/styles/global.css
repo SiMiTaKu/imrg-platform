@@ -76,6 +76,13 @@ a {
   color: #000;
 }
 
+/* 余白と枠を幅に含めて数える。含めないと、幅 100% の箱が余白の分だけはみ出す */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 button {
   margin: 0;
   padding: 0;

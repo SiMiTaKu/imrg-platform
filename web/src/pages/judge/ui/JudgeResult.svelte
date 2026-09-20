@@ -47,11 +47,11 @@
     flex-direction: column;
     gap: $space-size-24;
     padding: $space-size-32;
-    border: 2px solid map.get($amber, border);
+    border: 2px solid map.get($sky-blue, border);
     border-radius: 10px;
 
-    // 採点を終えたところは黄（希望）で受ける
-    background: map.get($amber, background);
+    // 採点を終えたところは青の淡い地で受ける
+    background: map.get($sky-blue, background);
   }
 
   .mobile.result {
@@ -105,7 +105,7 @@
   }
 
   .say strong {
-    color: map.get($amber, 800);
+    color: map.get($sky-blue, text);
   }
 
   .buttons {
@@ -132,7 +132,7 @@
   .again {
     color: $white;
     border: none;
-    background: map.get($amber, button);
+    background: map.get($sky-blue, button);
   }
 
   .retry {
