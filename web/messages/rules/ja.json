@@ -4,5 +4,8 @@
   "rules_notice_readability": "※見やすいサイト作りを心がけております。",
   "rules_chapter_heading": "第{number}章 {title}",
   "rules_article_heading": "第{number}条 {title}",
-  "rules_back_to_top": "TOPに戻る"
+  "rules_back_to_top": "TOPに戻る",
+  "rules_coming_soon_title": "準備中です",
+  "rules_coming_soon_body": "規則集のページは、内容を見直しているため一時的に閉じています。読みやすく作り直して、あらためて公開します。",
+  "rules_coming_soon_back": "トップへ戻る"
 }
