@@ -280,9 +280,11 @@ Phase 4の進め方（2026-09-19に決めた）
     - 2022-11-06に作ったMySQLインスタンスの分。インスタンス本体は2023年に消えており、スナップショットだけ3年残っていた
   - [x] 古いAmplifyのアプリ `d2e38588w4qs62`（svelte-kit-to-amplify）を消した（2026-09-20）
     - アプリを消すと、CloudFormationのスタック5つ・Cognito・AppSync・DynamoDB・Lambda 6個・S3・IAMロール7個が連鎖して消えた。**個別に消さずアプリから消すのが正しい**
-  - [ ] 孤立したCognito `ap-northeast-1_HwYeR5W0G`、それに紐づくLambda 4個とIAMロール4個、ログ117個、`CDKToolkit`一式
+  - [x] 孤立したCognito（ユーザープールとIDプール）、Lambda 4個、IAMロール、ログ117個、`CDKToolkit`一式を消した（2026-09-20）
+    - 片づけ後の棚卸しでは、CloudFormation・Lambda・ログ・Cognito・AppSync・DynamoDB・ECRがすべて0になった。S3はCloudTrailのログだけ
+    - つまずいた点：ユーザープールを消してもトリガーのLambdaとIDプールは残る／`AWSLambdaBasicExecutionRole-*` のポリシーは `policy/service-role/` の下にありARNを組み立てると失敗する／CDKのS3は版が有効なので `aws s3 rm` では空にならない
+  - [ ] IAMユーザー `takumi-shimizu-iam-amplify` を消す（鍵の最終使用は2025-07-30。まず無効にして数日おく）
   - いまのAmplifyアプリは `iamServiceRoleArn` が `None` で `platform` が `WEB` のため、残っている `amplifyconsole-*` と `AmplifySSRLoggingRole-*` はどれも使われていない。移行後にまとめて消す
-  - [ ] IAMユーザー `takumi-shimizu-iam-amplify`（鍵の最終使用は2025-07-30）
   - ACMに証明書が1つも無い。Amplifyが内部で持っているため、Terraformでは新しく作ることになる（取り込みは不要）
 - [x] **4-6. ステージング環境を用意する**（`envs/stg`。配る手順は `_deploy.yml` に共通化し、本番とステージングで同じものを使う）
 - [ ] **4-1. 現在の AWS 構成を洗い出す**（Route53のゾーンID・証明書・Amplifyアプリ）※AWSの資格情報の設定待ち

@@ -94,14 +94,27 @@ S3バケット `amplify-d2e38588w4qs62-de-amplifydataamplifycodege-mludx9javuhp`
 
 ### すでに無いアプリの Cognito
 
+**ユーザープールを消しても、トリガーのLambdaとIDプールは道連れにならない。** 3つとも消す。
+
 ```bash
-# amplify_backend_manager_d1o1ui2gd5pshh。アプリ d1o1ui2gd5pshh はもう存在しない
+# 1. ユーザープール（amplify_backend_manager_d1o1ui2gd5pshh。アプリ自体はもう無い）
 aws cognito-idp delete-user-pool --profile imrg --region ap-northeast-1 \
   --user-pool-id ap-northeast-1_HwYeR5W0G
+
+# 2. IDプール（ユーザープールとは別物。一覧の出しかたも違う）
+aws cognito-identity list-identity-pools --profile imrg --region ap-northeast-1 \
+  --max-results 20 --query 'IdentityPools[].[IdentityPoolId,IdentityPoolName]' --output text
+aws cognito-identity delete-identity-pool --profile imrg --region ap-northeast-1 \
+  --identity-pool-id '<上で出たID>'
+
+# 3. トリガーだったLambda 4個
+for fn in custom-message create-auth-challenge verify-auth-challenge define-auth-challenge; do
+  aws lambda delete-function --profile imrg --region ap-northeast-1 \
+    --function-name "amplify-login-$fn-0e598321"
+done
 ```
 
-これに紐づく `amplify-login-*` のLambda 4個と、`ap-northeast-1_HwYeR5W0G-*` のIAMロール3個も
-同じ時期のもの。
+`ap-northeast-1_HwYeR5W0G-*` のIAMロール3個も同じ時期のもの。次で消す。
 
 ### 存在しないアプリのログ 117個（合計 1.13MB）
 
@@ -127,6 +140,50 @@ aws logs describe-log-groups --profile imrg --region ap-northeast-1 \
 `/aws/lambda/hello-world-python` と `/aws/lambda/my-s3-function` も
 2023年3月のチュートリアルの残骸。同じく消してよい。
 
+### 使われていない IAM のロールとポリシー
+
+アプリを消してもロールは残る。棚卸しで残っていたのは次のとおり。
+
+| ロール                              | 由来                              |
+| ----------------------------------- | --------------------------------- |
+| `amplify-login-lambda-0e598321`     | 上のCognitoに紐づくLambda用       |
+| `ap-northeast-1_HwYeR5W0G-*`（3個） | 同じく上のCognito用               |
+| `hello-world-python-role-wwly8c3u`  | 2023年3月のチュートリアル         |
+| `my-s3-function-role`               | 同上                              |
+| `cdk-hnb659fds-*`（10個）           | 次の「CDKの置き場」で一緒に消える |
+
+**ポリシーが付いていると消せない。** 外してから消す。
+
+```bash
+for role in amplify-login-lambda-0e598321 ap-northeast-1_HwYeR5W0G-authRole \
+            ap-northeast-1_HwYeR5W0G_Full-access ap-northeast-1_HwYeR5W0G_Manage-only \
+            hello-world-python-role-wwly8c3u my-s3-function-role; do
+  for arn in $(aws iam list-attached-role-policies --profile imrg --role-name "$role" \
+    --query 'AttachedPolicies[].PolicyArn' --output text); do
+    aws iam detach-role-policy --profile imrg --role-name "$role" --policy-arn "$arn"
+  done
+  for name in $(aws iam list-role-policies --profile imrg --role-name "$role" \
+    --query 'PolicyNames' --output text); do
+    aws iam delete-role-policy --profile imrg --role-name "$role" --policy-name "$name"
+  done
+  aws iam delete-role --profile imrg --role-name "$role"
+done
+```
+
+ロールを消したら、付き先がなくなったポリシーを消す。
+**ARNは名前から組み立てず、一覧から取る。** Lambdaのコンソールが作ったものは
+`policy/` ではなく `policy/service-role/` の下にあるため、組み立てると失敗する。
+
+```bash
+for arn in $(aws iam list-policies --profile imrg --scope Local \
+  --query 'Policies[?starts_with(PolicyName, `AWSLambdaBasicExecutionRole`) && AttachmentCount==`0`].Arn' \
+  --output text); do
+  aws iam delete-policy --profile imrg --policy-arn "$arn"
+done
+```
+
+**`imrg-site-admin` は今使っているものなので残す。**
+
 ### CDK の置き場
 
 `CDKToolkit` のスタック（ap-northeast-1とus-east-1）と、そこから作られた
@@ -136,12 +193,41 @@ ECR `cdk-hnb659fds-container-assets-*`、`cdk-hnb659fds-*` のIAMロール10個�
 これはAmplify Gen2が裏で使っていたもの。**手順3を終えたあと**、CDKを自分で使う予定が無ければ消す。
 
 ```bash
-# 先に S3 を空にする（空でないとスタックが消せない）
-aws s3 rm s3://cdk-hnb659fds-assets-630738285493-ap-northeast-1/ --profile imrg --recursive
-
 aws cloudformation delete-stack --profile imrg --region ap-northeast-1 --stack-name CDKToolkit
 aws cloudformation delete-stack --profile imrg --region us-east-1 --stack-name CDKToolkit
 ```
+
+**S3バケットはスタックを消しても残る**（消さない設定で作られている）。
+しかも版（バージョニング）が有効なので、`aws s3 rm --recursive` では中身が消えない。
+「オブジェクト0件」に見えても、版と削除マーカーが残っていると削除できない。
+
+いちばん楽なのは**コンソールの「バケットを空にする」→「削除」**。
+コマンドでやるなら次のようにする。
+
+```bash
+bucket=cdk-hnb659fds-assets-630738285493-ap-northeast-1
+
+for round in 1 2 3 4 5; do
+  aws s3api list-object-versions --profile imrg --bucket "$bucket" --max-keys 1000 --output json > /tmp/versions.json
+  count=$(python3 -c '
+import json
+data = json.load(open("/tmp/versions.json"))
+items = [{"Key": o["Key"], "VersionId": o["VersionId"]}
+         for key in ("Versions", "DeleteMarkers")
+         for o in data.get(key) or []]
+json.dump({"Objects": items[:1000], "Quiet": True}, open("/tmp/delete.json", "w"))
+print(len(items))
+')
+  echo "$round 回目: 残り $count 件"
+  [ "$count" = "0" ] && break
+  aws s3api delete-objects --profile imrg --bucket "$bucket" --delete file:///tmp/delete.json > /dev/null
+done
+
+aws s3api delete-bucket --profile imrg --region ap-northeast-1 --bucket "$bucket"
+```
+
+> zshでは `--query "{Objects: $key[]...}"` のように**ダブルクォートの中に `[]` を書くと、
+> 配列の添字と解釈されて壊れる**（`zsh: invalid subscript`）。上のようにpythonへ渡すのが安全。
 
 ## 5. 使っていない IAM のアクセスキーを消す
 
