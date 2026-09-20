@@ -38,11 +38,13 @@ variable "basic_auth" {
   sensitive = true
 }
 
-variable "create_dns_records" {
+variable "attach_domain" {
   description = <<-EOT
-    ドメインを CloudFront へ向けるレコードを作るか。
-    false にすると、配信の一式だけを先に作って CloudFront のドメインで確かめられる。
-    確かめてから true にすると、そこで切り替わる
+    この配信にドメインを結びつけるか。別名（CNAME）と Route53 のレコードの両方が対象。
+
+    CloudFront は同じ別名を2つの配信に付けられない。Amplify が imrg.work を持っている間は
+    false にして、CloudFront が配る既定のドメインで中身を確かめる。
+    Amplify からドメインを外してから true にすると、そこで切り替わる
   EOT
   type        = bool
   default     = true

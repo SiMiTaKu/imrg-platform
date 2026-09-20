@@ -69,6 +69,7 @@ terraform/
 │   └── aws-audit.sh     アカウントにあるものを一覧する（読むだけ）
 └── envs/
     ├── prod/            本番の実行単位（状態ファイルの置き場もここが作る）
+    │   └── backend.tf.disabled   置き場ができたら backend.tf へ名前を変える
     └── stg/             ステージングの実行単位
 ```
 
@@ -76,16 +77,19 @@ terraform/
 
 作る前に、これまでの作業で残ったものを片づける。手順は [docs/aws-cleanup.md](../docs/aws-cleanup.md)。
 
+状態ファイルの置き場そのものもTerraformで作るため、最初だけ順番がある。
+置き場の設定は `backend.tf.disabled` に分けてあり、**置き場ができるまでTerraformに読ませない**。
+
 ```bash
 cd terraform/envs/prod
-cp terraform.tfvars.example terraform.tfvars   # ホストゾーン ID を書く
+cp terraform.tfvars.example terraform.tfvars   # ホストゾーン ID などを書く
 
-# 1. 状態ファイルの置き場を作る
-#    versions.tf の backend "s3" ブロックを一時的にコメントにしてから実行する
+# 1. 置き場を作る（この時点では状態は手元にある）
 terraform init
 terraform apply -target=module.state_backend
 
-# 2. backend のコメントを戻し、状態を S3 へ移す
+# 2. 設定を読ませるようにして、状態を S3 へ移す
+mv backend.tf.disabled backend.tf
 terraform init -migrate-state
 
 # 3. 残りを作る
@@ -179,8 +183,8 @@ gh workflow run deploy.yml -f release=<コミット>
 
 ## Amplify からの切り替え
 
-**作るのと切り替えるのは分かれている。** `create_dns_records` が false のうちは、
-一式を作っても imrg.work はAmplifyを向いたまま。
+**作るのと切り替えるのは分かれている。** `create_dns_records` がfalseのうちは、
+一式を作ってもimrg.workはAmplifyを向いたまま。
 
 1. `terraform.tfvars` に `create_dns_records = false` を書いて `terraform apply`
 2. `terraform output cloudfront_domain_name` のドメインを直接開き、表示・転送・404を確かめる

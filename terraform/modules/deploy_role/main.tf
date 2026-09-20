@@ -44,9 +44,10 @@ data "aws_iam_policy_document" "assume" {
   }
 }
 
+# IAM の description は ASCII しか受け付けないため、ここだけ英語で書く
 resource "aws_iam_role" "deploy" {
   name               = var.role_name
-  description        = "GitHub Actions からサイトを配る"
+  description        = "Deploy the static site from GitHub Actions"
   assume_role_policy = data.aws_iam_policy_document.assume.json
   tags               = var.tags
 }

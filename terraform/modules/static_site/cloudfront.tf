@@ -106,8 +106,9 @@ resource "aws_cloudfront_distribution" "site" {
   comment             = var.site_domain
   default_root_object = "index.html"
   price_class         = var.price_class
-  aliases             = local.site_names
-  tags                = var.tags
+  # ドメインを付けるまでは別名なし。CloudFront の既定のドメインで確かめる
+  aliases = var.attach_domain ? local.site_names : []
+  tags    = var.tags
 
   origin {
     domain_name              = aws_s3_bucket.site.bucket_regional_domain_name
@@ -149,9 +150,11 @@ resource "aws_cloudfront_distribution" "site" {
     }
   }
 
+  # 別名が無いうちは CloudFront が用意する証明書を使う（自前の証明書は別名とセット）
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.site.certificate_arn
-    ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2021"
+    cloudfront_default_certificate = !var.attach_domain
+    acm_certificate_arn            = var.attach_domain ? aws_acm_certificate_validation.site.certificate_arn : null
+    ssl_support_method             = var.attach_domain ? "sni-only" : null
+    minimum_protocol_version       = var.attach_domain ? "TLSv1.2_2021" : null
   }
 }

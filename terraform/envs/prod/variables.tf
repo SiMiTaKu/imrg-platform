@@ -38,8 +38,8 @@ variable "notification_email" {
   type        = string
 }
 
-variable "create_dns_records" {
-  description = "imrg.work を CloudFront へ向けるか。確かめ終わるまでは false にしておく"
+variable "attach_domain" {
+  description = "imrg.work をこの配信に結びつけるか。確かめ終わるまでは false にしておく"
   type        = bool
   default     = false
 }

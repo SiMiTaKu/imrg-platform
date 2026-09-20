@@ -7,17 +7,6 @@ terraform {
       version = "~> 5.60"
     }
   }
-
-  # 置き場を作る前は、この塊ごとコメントにして手元の状態ファイルで実行する。
-  # 作ったあとに戻し、`terraform init -migrate-state` で移す
-  backend "s3" {
-    bucket       = "imrg-platform-terraform-state"
-    key          = "prod/terraform.tfstate"
-    region       = "ap-northeast-1"
-    profile      = "imrg"
-    encrypt      = true
-    use_lockfile = true
-  }
 }
 
 provider "aws" {

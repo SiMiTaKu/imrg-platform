@@ -10,7 +10,7 @@ locals {
 }
 
 resource "aws_route53_record" "site" {
-  for_each = var.create_dns_records ? local.site_records : {}
+  for_each = var.attach_domain ? local.site_records : {}
 
   zone_id = var.hosted_zone_id
   name    = each.value.name
