@@ -1,5 +1,11 @@
 import type { RuleBook } from '../model/ruleBook'
 import { APPARATUS_ROUTINES_ARTICLES } from './articles/apparatusRoutines'
+import {
+  CHIEF_JUDGE_DEDUCTION_ARTICLES,
+  JUDGE_NOTE_ARTICLES,
+  SCORE_SHEET_ARTICLES,
+  SCORING_SHEET_ARTICLES,
+} from './articles/forms'
 import { APPENDIX_SPECIAL_RULES_ARTICLES } from './articles/appendixSpecialRules'
 import { COMPETITION_CONDUCT_ARTICLES } from './articles/competitionConduct'
 import { COMPETITION_ORGANIZATION_ARTICLES } from './articles/competitionOrganization'
@@ -15,7 +21,7 @@ import { SCORING_GENERAL_ARTICLES } from './articles/scoringGeneral'
  * @remarks
  * 本文は量が多いので、文言ファイル（messages）には置かず、項目ごとに日本語と英語を持たせている。
  * 大項は、章ごと・分量ごとに `articles/` のファイルへ分けている。
- * 中身がまだ無い章（主任審判員減点表など）も、見出しだけ載せている。
+ * 様式の章（採点票・減点票・審判メモ）は、文字で持ち直した表を出す。
  */
 export const RULE_BOOK: RuleBook = {
   title: {
@@ -88,7 +94,7 @@ export const RULE_BOOK: RuleBook = {
         ru: 'Таблицы сбавок старших судей',
         hi: 'मुख्य निर्णायक की कटौती तालिका',
       },
-      article: [],
+      article: [...CHIEF_JUDGE_DEDUCTION_ARTICLES],
     },
     {
       title: {
@@ -101,7 +107,7 @@ export const RULE_BOOK: RuleBook = {
         ru: 'Заметки судьи',
         hi: 'निर्णायक की टिप्पणी',
       },
-      article: [],
+      article: [...JUDGE_NOTE_ARTICLES],
     },
     {
       title: {
@@ -114,7 +120,7 @@ export const RULE_BOOK: RuleBook = {
         ru: 'Оценочные листы',
         hi: 'अंक पत्रक',
       },
-      article: [],
+      article: [...SCORE_SHEET_ARTICLES],
     },
     {
       title: {
@@ -127,7 +133,7 @@ export const RULE_BOOK: RuleBook = {
         ru: 'Листы оценок и сбавок',
         hi: 'अंक निर्धारण और कटौती पत्रक',
       },
-      article: [],
+      article: [...SCORING_SHEET_ARTICLES],
     },
   ],
 }
