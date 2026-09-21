@@ -34,23 +34,24 @@
   import { loadCalendarState, saveCalendarState } from '../lib/stateStorage'
   import {
     ANY,
+    CalendarArchive,
+    CalendarContribute,
+    CalendarIntro,
+    CalendarRefinePanel,
+    CalendarUpcoming,
+    MonthCalendar,
     countByRegion,
     countByYear,
     defaultRefine,
     isRefined,
     parseRefine,
     refineEvents,
+    regionLabel,
     withRefineQuery,
     type Any,
     type CalendarRefine,
-  } from '../lib/refine'
-  import { regionLabel, type CalendarRegionKey } from '../lib/region'
-  import CalendarContribute from './CalendarContribute.svelte'
-  import CalendarArchive from './CalendarArchive.svelte'
-  import CalendarIntro from './CalendarIntro.svelte'
-  import CalendarRefinePanel from './CalendarRefinePanel.svelte'
-  import CalendarUpcoming from './CalendarUpcoming.svelte'
-  import MonthCalendar from './MonthCalendar.svelte'
+    type CalendarRegionKey,
+  } from '@widgets/calendar'
 
   // カレンダーで移動できる範囲（データのある最初の月から最後の月まで）
   const MONTH_RANGE = monthRangeOf(EVENTS, UPDATED_AT)
