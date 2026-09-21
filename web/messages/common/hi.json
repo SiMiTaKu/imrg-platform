@@ -42,5 +42,8 @@
   "character_yawana_name": "आओयागी यावाना",
   "character_yawana_reading": "青柳 柔凪",
   "character_yawana_specialty": "लचीलापन",
-  "character_yawana_role": "शरीर का लचीलापन सबसे ज़्यादा। देखभाल की भी अच्छी समझ"
+  "character_yawana_role": "शरीर का लचीलापन सबसे ज़्यादा। देखभाल की भी अच्छी समझ",
+  "video_card_title": "{name} का प्रदर्शन",
+  "video_card_play": "{name} का प्रदर्शन चलाएँ",
+  "video_card_again": "फिर देखें"
 }

@@ -42,5 +42,8 @@
   "character_yawana_name": "青柳 柔凪",
   "character_yawana_reading": "あおやぎ やわな",
   "character_yawana_specialty": "柔軟",
-  "character_yawana_role": "体の柔らかさは群を抜く。ケアにも詳しい"
+  "character_yawana_role": "体の柔らかさは群を抜く。ケアにも詳しい",
+  "video_card_title": "{name}の演技",
+  "video_card_play": "{name}の演技を再生する",
+  "video_card_again": "もう一度見る"
 }

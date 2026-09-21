@@ -58,8 +58,5 @@
   "background_music_cross_link_decorating_label": "手具装飾も承っています",
   "background_music_cross_link_decorating_body": "スティック・クラブ・リング・ロープを、チームの色や演技のイメージに合わせて仕上げます。作業1時間 {price}〜。",
   "background_music_cross_link_coaching_label": "指導も承っています",
-  "background_music_cross_link_coaching_body": "演技構成の相談から基本の指導まで。オンラインでも、会場へ出向く形でも受けています。",
-  "background_music_video_title": "{name}の演技",
-  "background_music_video_play": "{name}の演技を再生する",
-  "background_music_video_again": "もう一度見る"
+  "background_music_cross_link_coaching_body": "演技構成の相談から基本の指導まで。オンラインでも、会場へ出向く形でも受けています。"
 }

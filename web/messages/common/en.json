@@ -42,5 +42,8 @@
   "character_yawana_name": "Yawana Aoyagi",
   "character_yawana_reading": "青柳 柔凪",
   "character_yawana_specialty": "Flexibility",
-  "character_yawana_role": "By far the most flexible of the five, and well versed in body care"
+  "character_yawana_role": "By far the most flexible of the five, and well versed in body care",
+  "video_card_title": "{name}’s routine",
+  "video_card_play": "Play {name}’s routine",
+  "video_card_again": "Watch again"
 }

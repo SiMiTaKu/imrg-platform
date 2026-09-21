@@ -58,8 +58,5 @@
   "background_music_cross_link_decorating_label": "我们也承接器械装饰",
   "background_music_cross_link_decorating_body": "我们会配合队伍的颜色和成套动作的形象，完成短棒、棍棒、环、绳的装饰。每小时作业 {price}起。",
   "background_music_cross_link_coaching_label": "我们也承接指导",
-  "background_music_cross_link_coaching_body": "从成套动作的编排咨询到基本功指导。可以在线进行，也可以到现场。",
-  "background_music_video_title": "{name}的成套动作",
-  "background_music_video_play": "播放{name}的成套动作",
-  "background_music_video_again": "再看一次"
+  "background_music_cross_link_coaching_body": "从成套动作的编排咨询到基本功指导。可以在线进行，也可以到现场。"
 }

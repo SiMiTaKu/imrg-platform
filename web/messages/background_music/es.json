@@ -58,8 +58,5 @@
   "background_music_cross_link_decorating_label": "También decoramos aparatos",
   "background_music_cross_link_decorating_body": "Acabamos palo, mazas, aro y cuerda a juego con los colores de tu equipo y la imagen de tu ejercicio. Desde {price} por hora de trabajo.",
   "background_music_cross_link_coaching_label": "También damos entrenamiento",
-  "background_music_cross_link_coaching_body": "Desde el diseño del ejercicio hasta los fundamentos. En línea o presencial en tu sede.",
-  "background_music_video_title": "Ejercicio de {name}",
-  "background_music_video_play": "Reproducir el ejercicio de {name}",
-  "background_music_video_again": "Ver de nuevo"
+  "background_music_cross_link_coaching_body": "Desde el diseño del ejercicio hasta los fundamentos. En línea o presencial en tu sede."
 }

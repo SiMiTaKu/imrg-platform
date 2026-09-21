@@ -42,5 +42,8 @@
   "character_yawana_name": "아오야기 야와나",
   "character_yawana_reading": "青柳 柔凪",
   "character_yawana_specialty": "유연성",
-  "character_yawana_role": "몸의 유연함이 발군입니다. 몸 관리에도 밝습니다"
+  "character_yawana_role": "몸의 유연함이 발군입니다. 몸 관리에도 밝습니다",
+  "video_card_title": "{name} 선수의 연기",
+  "video_card_play": "{name} 선수의 연기 재생",
+  "video_card_again": "다시 보기"
 }

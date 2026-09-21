@@ -42,5 +42,8 @@
   "character_yawana_name": "Yawana Aoyagi",
   "character_yawana_reading": "青柳 柔凪",
   "character_yawana_specialty": "Flexibilidad",
-  "character_yawana_role": "Su flexibilidad destaca sobre el resto. También sabe mucho de cuidado corporal"
+  "character_yawana_role": "Su flexibilidad destaca sobre el resto. También sabe mucho de cuidado corporal",
+  "video_card_title": "Ejercicio de {name}",
+  "video_card_play": "Reproducir el ejercicio de {name}",
+  "video_card_again": "Ver de nuevo"
 }

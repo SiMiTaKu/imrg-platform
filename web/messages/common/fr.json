@@ -42,5 +42,8 @@
   "character_yawana_name": "Yawana Aoyagi",
   "character_yawana_reading": "青柳 柔凪",
   "character_yawana_specialty": "Souplesse",
-  "character_yawana_role": "D’une souplesse hors du commun. Il s’y connaît aussi en soins du corps"
+  "character_yawana_role": "D’une souplesse hors du commun. Il s’y connaît aussi en soins du corps",
+  "video_card_title": "Exercice de {name}",
+  "video_card_play": "Lire l’exercice de {name}",
+  "video_card_again": "Revoir"
 }

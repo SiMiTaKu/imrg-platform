@@ -14,8 +14,8 @@
     videoId: string
     /** 誰の演技か */
     title: string
-    /** 手具の名前 */
-    label: string
+    /** 名前の前に出す小さな札（手具の名前、年など）。無いときは出さない */
+    label?: string
     /** いま再生しているか */
     playing: boolean
     /** 一度でも再生したか。したものは、画面に入っても勝手に始めない */
@@ -34,7 +34,7 @@
       <!-- 勝手に始まるときは音を消す。消さないと、ブラウザーが再生を止める -->
       <iframe
         src={youtubeEmbedUrl(videoId, !played)}
-        title={m.background_music_video_title({ name: title })}
+        title={m.video_card_title({ name: title })}
         loading="lazy"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen
@@ -43,7 +43,7 @@
       <button
         type="button"
         onclick={() => onRequestPlay(true)}
-        aria-label={m.background_music_video_play({ name: title })}
+        aria-label={m.video_card_play({ name: title })}
       >
         <img src={youtubeThumbnail(videoId)} alt="" loading="lazy" />
         <!-- 止まっているカードには、押せば見られることが分かる印を出す -->
@@ -57,14 +57,16 @@
           </svg>
         </span>
         {#if played}
-          <span class="again">{m.background_music_video_again()}</span>
+          <span class="again">{m.video_card_again()}</span>
         {/if}
       </button>
     {/if}
   </div>
 
   <div class="words">
-    <span class="label">{label}</span>
+    {#if label}
+      <span class="label">{label}</span>
+    {/if}
     <h3>{title}</h3>
   </div>
 </article>

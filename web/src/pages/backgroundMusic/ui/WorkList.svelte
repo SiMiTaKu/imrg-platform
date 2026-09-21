@@ -4,12 +4,10 @@
   import { apparatusOfSlug } from '@shared/lib/apparatus'
   import { getLocale, localizedText } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
+  import { AutoPlayWatcher, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { SectionHeading } from '@widgets/orderService'
   import { WORK_LIST } from '../config/workList'
   import { WORKS_HEADING } from '../config/content'
-  import { AutoPlayWatcher } from '../lib/autoPlay'
-  import { youtubeVideoId } from '../lib/youtube'
-  import WorkVideoCard from './WorkVideoCard.svelte'
 
   const locale = getLocale() as SiteLocale
   const isMobile = $derived($pageData.isMobile)
@@ -49,7 +47,7 @@
     <ul class="cards">
       {#each WORK_LIST as work, index (index)}
         <li use:watch={index}>
-          <WorkVideoCard
+          <VideoCard
             videoId={youtubeVideoId(work.youtube)}
             title={localizedText(work.customerName, locale)}
             label={apparatusOfSlug(work.apparatus).label()}

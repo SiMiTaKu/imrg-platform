@@ -58,8 +58,5 @@
   "background_music_cross_link_decorating_label": "수구 장식도 받고 있습니다",
   "background_music_cross_link_decorating_body": "스틱・곤봉・링・줄을 팀의 색과 연기의 이미지에 맞추어 마무리합니다. 작업 1시간 {price}부터.",
   "background_music_cross_link_coaching_label": "지도도 받고 있습니다",
-  "background_music_cross_link_coaching_body": "연기 구성 상담부터 기본기 지도까지. 온라인으로도, 현장에 찾아가는 형태로도 받고 있습니다.",
-  "background_music_video_title": "{name} 선수의 연기",
-  "background_music_video_play": "{name} 선수의 연기 재생",
-  "background_music_video_again": "다시 보기"
+  "background_music_cross_link_coaching_body": "연기 구성 상담부터 기본기 지도까지. 온라인으로도, 현장에 찾아가는 형태로도 받고 있습니다."
 }
