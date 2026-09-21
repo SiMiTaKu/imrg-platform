@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { tick } from 'svelte'
+  import { prefersReducedMotion } from 'svelte/motion'
+  import { slide } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
@@ -16,10 +19,50 @@
   /** ルールの案内役 */
   const guide = findCharacter(Character.OSAMU)
 
+  /** 開閉のアニメーションの長さ（ミリ秒） */
+  const OPEN_CLOSE_DURATION = 240
+
   /** 探している言葉。空なら全部出す */
   let keyword = $state('')
   /** 開いている章。null は全部閉じている */
   let openedChapter = $state<number | null>(0)
+  /** 今回の書き換えだけアニメーションを出さないか */
+  let skipsAnimation = $state(false)
+
+  /**
+   * 開閉のアニメーションの長さ。
+   * 動きを減らす設定の人と、一度にたくさん開け閉めするときは 0 にして、すぐ切り替える
+   */
+  const openCloseDuration = $derived(
+    prefersReducedMotion.current || skipsAnimation ? 0 : OPEN_CLOSE_DURATION,
+  )
+
+  /**
+   * 一度にたくさん開け閉めするあいだだけ、アニメーションを止める
+   * @param change - 開閉を書き換える処理
+   *
+   * @remarks
+   * 章がいくつも同時に開くと動きが重なって見づらいので、まとめて変わるときは動かさない。
+   * 画面の描き換えが終わったらアニメーションを戻す。
+   */
+  const changeWithoutAnimation = (change: () => void) => {
+    skipsAnimation = true
+    change()
+    void tick().then(() => {
+      skipsAnimation = false
+    })
+  }
+
+  /**
+   * 探している言葉を書き換える
+   * @param event - 入力の出来事
+   */
+  const handleKeywordInput = (event: Event & { currentTarget: HTMLInputElement }) => {
+    const { value } = event.currentTarget
+    changeWithoutAnimation(() => {
+      keyword = value
+    })
+  }
 
   /** 章が探している言葉を含むか。見出しと本文の両方を見る */
   const matches = (chapterIndex: number): boolean => {
@@ -83,7 +126,8 @@
     <input
       id="rule-keyword"
       type="search"
-      bind:value={keyword}
+      value={keyword}
+      oninput={handleKeywordInput}
       placeholder="例：減点、スティック、隊形"
       autocomplete="off"
     />
@@ -132,7 +176,7 @@
       </h2>
 
       {#if isOpened(index)}
-        <div class="chapter-body">
+        <div class="chapter-body" transition:slide|local={{ duration: openCloseDuration }}>
           {#each chapter.article as article, articleIndex (articleIndex)}
             <section class="article">
               <h3>{articleIndex + 1}. {article.title}</h3>
