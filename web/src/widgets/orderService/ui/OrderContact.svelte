@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  /** もう一方の依頼（曲編集 ↔ 手具装飾）への案内 */
+  /** ほかの依頼（曲編集・手具装飾・指導）への案内 */
   export interface OrderContactCrossLink {
     /** リンクの文言 */
     label: string
@@ -8,6 +8,15 @@
     /** ひと言の説明 */
     body: string
   }
+
+  /**
+   * 1つでも複数でも、案内の配列として受け取る
+   * @param value - 案内1つ、または案内の配列
+   * @returns 案内の配列
+   */
+  const toLinks = (
+    value: OrderContactCrossLink | readonly OrderContactCrossLink[],
+  ): readonly OrderContactCrossLink[] => ('href' in value ? [value] : value)
 </script>
 
 <script lang="ts">
@@ -35,13 +44,8 @@
     note: string
     /** このページの案内役 */
     character: CharacterProfile
-    /** もう一方の依頼への案内。省くと出さない */
-    crossLink?: OrderContactCrossLink
-    /**
-     * ほかの依頼への案内をまとめて並べるとき。省くと出さない。
-     * `crossLink` を渡していれば、そのあとに続けて並べる
-     */
-    crossLinks?: readonly OrderContactCrossLink[]
+    /** ほかの依頼への案内。1つでも、複数並べても出せる。省くと出さない */
+    crossLink?: OrderContactCrossLink | readonly OrderContactCrossLink[]
   }
 
   const {
@@ -55,13 +59,10 @@
     note,
     character,
     crossLink,
-    crossLinks,
   }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
-
-  // 1つだけ渡す形と、まとめて渡す形のどちらでも同じ並びにする
-  const links = $derived([...(crossLink ? [crossLink] : []), ...(crossLinks ?? [])])
+  const crossLinks = $derived(crossLink ? toLinks(crossLink) : [])
 </script>
 
 <section class="contact" class:mobile={isMobile} id="contact">
@@ -88,10 +89,10 @@
       </div>
     </div>
 
-    {#if links.length > 0}
+    {#if crossLinks.length > 0}
       <!-- ほかの依頼も受けていることを、最後にもう一度知らせる -->
       <ul class="crosses">
-        {#each links as link (link.href)}
+        {#each crossLinks as link (link.href)}
           <li>
             <a class="cross" href={link.href}>
               <span class="cross-label">{link.label}</span>
@@ -205,6 +206,7 @@
     overflow-wrap: anywhere;
   }
 
+  // 案内は縦に積む。数が増えても並びは変えない
   .crosses {
     display: flex;
     flex-direction: column;

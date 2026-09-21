@@ -105,7 +105,7 @@
     contactLabel={m.contact_button()}
     note={CONTACT.note()}
     character={guide}
-    crossLinks={[
+    crossLink={[
       {
         label: CROSS_LINK_BACKGROUND_MUSIC.label(),
         href: localizeHref(CROSS_LINK_BACKGROUND_MUSIC.href),

@@ -55,8 +55,10 @@
   "background_music_contact_eyebrow": "联系咨询",
   "background_music_contact_lead": "曲子还没定也没关系，只告诉我们到比赛为止的日程也可以。先跟我们说一声吧。",
   "background_music_contact_note": "本站由个人运营，回复可能需要几天。报价之前都免费。",
-  "background_music_cross_link_label": "我们也承接器械装饰",
-  "background_music_cross_link_body": "我们会配合队伍的颜色和成套动作的形象，完成短棒、棍棒、环、绳的装饰。每小时作业 {price}起。",
+  "background_music_cross_link_decorating_label": "我们也承接器械装饰",
+  "background_music_cross_link_decorating_body": "我们会配合队伍的颜色和成套动作的形象，完成短棒、棍棒、环、绳的装饰。每小时作业 {price}起。",
+  "background_music_cross_link_coaching_label": "我们也承接指导",
+  "background_music_cross_link_coaching_body": "从成套动作的编排咨询到基本功指导。可以在线进行，也可以到现场。",
   "background_music_video_title": "{name}的成套动作",
   "background_music_video_play": "播放{name}的成套动作",
   "background_music_video_again": "再看一次"

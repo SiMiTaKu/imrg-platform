@@ -14,7 +14,8 @@
   } from '@widgets/orderService'
   import {
     CONTACT,
-    CROSS_LINK,
+    CROSS_LINK_COACHING,
+    CROSS_LINK_DECORATING,
     CROSS_LINK_PRICE_PER_HOUR,
     FLOW_HEADING,
     FLOW_MESSAGE_LINES,
@@ -107,11 +108,18 @@
     contactLabel={m.contact_button()}
     note={CONTACT.note()}
     character={guide}
-    crossLink={{
-      label: CROSS_LINK.label(),
-      href: localizeHref(CROSS_LINK.href),
-      body: CROSS_LINK.body({ price: formatYen(CROSS_LINK_PRICE_PER_HOUR, locale) }),
-    }}
+    crossLink={[
+      {
+        label: CROSS_LINK_DECORATING.label(),
+        href: localizeHref(CROSS_LINK_DECORATING.href),
+        body: CROSS_LINK_DECORATING.body({ price: formatYen(CROSS_LINK_PRICE_PER_HOUR, locale) }),
+      },
+      {
+        label: CROSS_LINK_COACHING.label(),
+        href: localizeHref(CROSS_LINK_COACHING.href),
+        body: CROSS_LINK_COACHING.body(),
+      },
+    ]}
   />
 </article>
 

@@ -55,8 +55,10 @@
   "background_music_contact_eyebrow": "Nous contacter",
   "background_music_contact_lead": "Vous n’avez pas besoin d’avoir choisi la musique : la date de votre compétition suffit. Écrivez-nous simplement.",
   "background_music_contact_note": "Tout est géré par une seule personne : la réponse peut prendre quelques jours. Le devis est gratuit.",
-  "background_music_cross_link_label": "Nous décorons aussi les engins",
-  "background_music_cross_link_body": "Nous finissons bâton, massues, anneau et corde aux couleurs de votre équipe et à l’image de votre exercice. À partir de {price} l’heure de travail.",
+  "background_music_cross_link_decorating_label": "Nous décorons aussi les engins",
+  "background_music_cross_link_decorating_body": "Nous finissons bâton, massues, anneau et corde aux couleurs de votre équipe et à l’image de votre exercice. À partir de {price} l’heure de travail.",
+  "background_music_cross_link_coaching_label": "Nous proposons aussi du coaching",
+  "background_music_cross_link_coaching_body": "De la composition de l’exercice aux bases. En ligne ou sur place, dans votre salle.",
   "background_music_video_title": "Exercice de {name}",
   "background_music_video_play": "Lire l’exercice de {name}",
   "background_music_video_again": "Revoir"

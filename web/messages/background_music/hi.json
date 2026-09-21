@@ -55,8 +55,10 @@
   "background_music_contact_eyebrow": "संपर्क करें",
   "background_music_contact_lead": "गाना तय न हो तो भी चलेगा, बस प्रतियोगिता तक की तारीख़ बता दीजिए। पहले बस एक संदेश भेजिए।",
   "background_music_contact_note": "यह एक ही व्यक्ति चलाता है, इसलिए जवाब में कुछ दिन लग सकते हैं। अनुमान बताना मुफ़्त है।",
-  "background_music_cross_link_label": "हम उपकरण सजावट भी करते हैं",
-  "background_music_cross_link_body": "स्टिक, क्लब, रिंग और रस्सी को आपकी टीम के रंगों और प्रदर्शन की छवि के अनुसार तैयार करते हैं। प्रति घंटा काम {price} से।",
+  "background_music_cross_link_decorating_label": "हम उपकरण सजावट भी करते हैं",
+  "background_music_cross_link_decorating_body": "स्टिक, क्लब, रिंग और रस्सी को आपकी टीम के रंगों और प्रदर्शन की छवि के अनुसार तैयार करते हैं। प्रति घंटा काम {price} से।",
+  "background_music_cross_link_coaching_label": "हम कोचिंग भी करते हैं",
+  "background_music_cross_link_coaching_body": "प्रदर्शन की रचना से लेकर बुनियादी तकनीक तक। ऑनलाइन या आपके स्थान पर आकर।",
   "background_music_video_title": "{name} का प्रदर्शन",
   "background_music_video_play": "{name} का प्रदर्शन चलाएँ",
   "background_music_video_again": "फिर देखें"

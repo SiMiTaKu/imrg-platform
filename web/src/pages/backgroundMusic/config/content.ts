@@ -129,9 +129,21 @@ export const CONTACT = {
  */
 export const CROSS_LINK_PRICE_PER_HOUR = 1500
 
-/** もう一方の依頼（手具装飾）への案内 */
-export const CROSS_LINK = {
-  label: m.background_music_cross_link_label,
+/**
+ * ほかの依頼（手具装飾）への案内。
+ *
+ * @remarks
+ * 3つの依頼を行き来できるように、ページの終わりで手具装飾と指導の両方を知らせる
+ */
+export const CROSS_LINK_DECORATING = {
+  label: m.background_music_cross_link_decorating_label,
   href: ROUTES.decoratingApparatus,
-  body: m.background_music_cross_link_body,
+  body: m.background_music_cross_link_decorating_body,
+} as const
+
+/** ほかの依頼（指導）への案内 */
+export const CROSS_LINK_COACHING = {
+  label: m.background_music_cross_link_coaching_label,
+  href: ROUTES.coaching,
+  body: m.background_music_cross_link_coaching_body,
 } as const
