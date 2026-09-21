@@ -16,7 +16,6 @@
   "layout_menu_close": "Закрыть меню",
   "layout_footer_privacy": "Политика конфиденциальности",
   "layout_footer_terms": "Условия использования",
-  "layout_sticky_footer_cta": "Соревнования и события",
   "layout_scroll_to_top": "Наверх",
   "layout_back_to_top": "На главную",
   "contact_title": "Контакты",
@@ -28,5 +27,7 @@
   "error_not_found": "※ Запрошенная страница не существует.",
   "error_back_to_top": "На главную",
   "layout_locale_switch_label": "Язык",
-  "layout_nav_coaching": "Заказать тренировку"
+  "layout_nav_coaching": "Заказать тренировку",
+  "layout_sticky_cta_find_events": "Найти соревнования",
+  "layout_sticky_cta_find_videos": "Найти выступления"
 }

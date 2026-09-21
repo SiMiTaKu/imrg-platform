@@ -30,14 +30,15 @@
 
 <style lang="scss">
   .desktop {
-    --bottom: #{$space-size-8};
+    // 下に貼り付く案内のぶんだけ持ち上げる
+    --bottom: 80px;
     --right: 0;
     --wrapper-max-width: var(--content-max-width);
     --botton-size: 56px;
   }
 
   .mobile {
-    --bottom: 72px;
+    --bottom: 76px;
     --right: #{$space-size-12};
     --wrapper-max-width: 100%;
     --botton-size: 48px;

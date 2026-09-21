@@ -16,7 +16,6 @@
   "layout_menu_close": "close",
   "layout_footer_privacy": "隐私政策",
   "layout_footer_terms": "使用条款",
-  "layout_sticky_footer_cta": "查找比赛与活动",
   "layout_scroll_to_top": "TOP",
   "layout_back_to_top": "返回首页",
   "contact_title": "联系方式",
@@ -28,5 +27,7 @@
   "error_not_found": "※请求的页面不存在。",
   "error_back_to_top": "返回首页",
   "layout_locale_switch_label": "显示语言",
-  "layout_nav_coaching": "委托指导"
+  "layout_nav_coaching": "委托指导",
+  "layout_sticky_cta_find_events": "查找比赛和活动",
+  "layout_sticky_cta_find_videos": "查找成套动作"
 }

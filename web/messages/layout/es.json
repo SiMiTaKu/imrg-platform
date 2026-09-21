@@ -16,7 +16,6 @@
   "layout_menu_close": "close",
   "layout_footer_privacy": "Política de privacidad",
   "layout_footer_terms": "Condiciones de uso",
-  "layout_sticky_footer_cta": "Buscar competiciones",
   "layout_scroll_to_top": "TOP",
   "layout_back_to_top": "Volver al inicio",
   "contact_title": "Contacto",
@@ -28,5 +27,7 @@
   "error_not_found": "* La página solicitada no existe.",
   "error_back_to_top": "Volver al inicio",
   "layout_locale_switch_label": "Idioma",
-  "layout_nav_coaching": "Entrenamiento"
+  "layout_nav_coaching": "Entrenamiento",
+  "layout_sticky_cta_find_events": "Buscar competiciones",
+  "layout_sticky_cta_find_videos": "Buscar ejercicios"
 }

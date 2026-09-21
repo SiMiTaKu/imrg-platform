@@ -16,7 +16,6 @@
   "layout_menu_close": "close",
   "layout_footer_privacy": "プライバシーポリシー",
   "layout_footer_terms": "利用規約",
-  "layout_sticky_footer_cta": "大会・イベントを探す",
   "layout_scroll_to_top": "TOP",
   "layout_back_to_top": "TOPに戻る",
   "contact_title": "問合わせ先",
@@ -28,5 +27,7 @@
   "error_not_found": "※リクエストされたページは存在しません。",
   "error_back_to_top": "トップに戻る",
   "layout_locale_switch_label": "表示する言語",
-  "layout_nav_coaching": "指導を依頼する"
+  "layout_nav_coaching": "指導を依頼する",
+  "layout_sticky_cta_find_events": "大会・イベントを探す",
+  "layout_sticky_cta_find_videos": "演技を探す"
 }

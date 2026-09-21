@@ -16,7 +16,6 @@
   "layout_menu_close": "close",
   "layout_footer_privacy": "개인정보 처리방침",
   "layout_footer_terms": "이용약관",
-  "layout_sticky_footer_cta": "대회·행사 찾기",
   "layout_scroll_to_top": "TOP",
   "layout_back_to_top": "홈으로 돌아가기",
   "contact_title": "문의처",
@@ -28,5 +27,7 @@
   "error_not_found": "※요청하신 페이지는 존재하지 않습니다.",
   "error_back_to_top": "홈으로 돌아가기",
   "layout_locale_switch_label": "표시 언어",
-  "layout_nav_coaching": "지도 의뢰하기"
+  "layout_nav_coaching": "지도 의뢰하기",
+  "layout_sticky_cta_find_events": "대회・이벤트 찾기",
+  "layout_sticky_cta_find_videos": "연기 찾기"
 }

@@ -4,7 +4,7 @@
   import { onMount, type Snippet } from 'svelte'
   import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
   import { LOCAL_HOSTS } from '../app/config/analytics'
-  import { Footer, Header, LocalePageLinks, ScrollToTopButton } from '@widgets/layout'
+  import { Footer, Header, LocalePageLinks, ScrollToTopButton, StickyFooter } from '@widgets/layout'
 
   const { children }: { children: Snippet } = $props()
 
@@ -37,6 +37,7 @@
 
 <Footer />
 <ScrollToTopButton />
+<StickyFooter />
 <LocalePageLinks />
 
 <style lang="scss">

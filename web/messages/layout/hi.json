@@ -16,7 +16,6 @@
   "layout_menu_close": "बंद करें",
   "layout_footer_privacy": "गोपनीयता नीति",
   "layout_footer_terms": "उपयोग की शर्तें",
-  "layout_sticky_footer_cta": "प्रतियोगिताएँ और कार्यक्रम खोजें",
   "layout_scroll_to_top": "ऊपर",
   "layout_back_to_top": "मुख्य पृष्ठ पर लौटें",
   "contact_title": "संपर्क",
@@ -28,5 +27,7 @@
   "error_not_found": "* माँगा गया पृष्ठ मौजूद नहीं है।",
   "error_back_to_top": "मुख्य पृष्ठ पर लौटें",
   "layout_locale_switch_label": "भाषा",
-  "layout_nav_coaching": "प्रशिक्षण का अनुरोध करें"
+  "layout_nav_coaching": "प्रशिक्षण का अनुरोध करें",
+  "layout_sticky_cta_find_events": "प्रतियोगिताएँ खोजें",
+  "layout_sticky_cta_find_videos": "प्रदर्शन खोजें"
 }
