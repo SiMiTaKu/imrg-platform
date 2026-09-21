@@ -93,8 +93,15 @@
     align-items: center;
     gap: $space-size-16;
     margin: 0;
+
+    // ヘッダーの直下にロゴが詰まって見えないよう、節の余白とは別に上を空ける
+    padding-top: $space-size-24;
     font-size: inherit;
     font-weight: normal;
+  }
+
+  .mobile .logo {
+    padding-top: $space-size-16;
   }
 
   .catchphrase {
