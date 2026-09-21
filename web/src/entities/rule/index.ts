@@ -1,4 +1,5 @@
 export { RULE_BOOK } from './api/ruleBook'
+export { loadRuleBook } from './api/ruleSource'
 export { calculateArticleNumber } from './lib/articleNumber'
 export type { NumberableChapter } from './lib/articleNumber'
 export { localizeRuleBook } from './lib/localizeRuleBook'
