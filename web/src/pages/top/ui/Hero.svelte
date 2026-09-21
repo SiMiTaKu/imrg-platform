@@ -76,13 +76,15 @@
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-40 var(--content-padding-inline) $space-size-48;
+
+    // ファーストビジュアルは画面の最初に出るので、ほかの節より上下を広く取る
+    padding: $space-size-64 var(--content-padding-inline) $space-size-80;
     text-align: center;
   }
 
   .mobile .inner {
     gap: $space-size-16;
-    padding: $space-size-32 var(--content-padding-inline) $space-size-40;
+    padding: $space-size-40 var(--content-padding-inline) $space-size-56;
   }
 
   .logo {
