@@ -54,6 +54,32 @@
   }
 
   /**
+   * 章の見出しの id。目次から飛ぶ先に使う
+   * @param chapterIndex - 章の位置（0 始まり）
+   * @returns 見出しの id
+   */
+  const chapterHeadingId = (chapterIndex: number): string => `${chapterKey(chapterIndex)}-heading`
+
+  /**
+   * 目次から章へ飛ぶ。開いたうえで、その章の見出しまで画面を動かす
+   * @param chapterIndex - 章の位置（0 始まり）
+   *
+   * @remarks
+   * 固定のヘッダーに隠れないよう、飛び先の手前で止める。止める位置は
+   * グローバルの `[id] { scroll-margin-top }` が持っている。
+   * 動きを減らす設定の人には、滑らせずに一度で飛ばす。
+   */
+  const jumpToChapter = (chapterIndex: number) => {
+    openState = { ...openState, [chapterKey(chapterIndex)]: true }
+
+    const heading = document.getElementById(chapterHeadingId(chapterIndex))
+    if (!heading) return
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    heading.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' })
+  }
+
+  /**
    * 章ひとつの中（章・節・条）をまとめて開け閉めする
    * @param chapterIndex - 章の位置（0 始まり）
    * @param open - 開くなら true
@@ -141,10 +167,11 @@
         <ol>
           {#each ruleBook.chapter as chapter, index (index)}
             <li>
+              <!-- 目次は開け閉めではなく、その章へ連れていく役目。押したら必ず開く -->
               <button
                 type="button"
-                onclick={() => toggle(chapterKey(index), DEFAULT_OPEN.chapter)}
-                aria-expanded={isOpen(chapterKey(index), DEFAULT_OPEN.chapter)}
+                class:open={isOpen(chapterKey(index), DEFAULT_OPEN.chapter)}
+                onclick={() => jumpToChapter(index)}
                 aria-controls={chapterKey(index)}
               >
                 <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
@@ -168,7 +195,7 @@
     {#each visibleChapters as { chapter, index } (index)}
       {@const chapterId = chapterKey(index)}
       {@const isChapterOpen = isOpen(chapterId, DEFAULT_OPEN.chapter)}
-      <section class="chapter">
+      <section class="chapter" id={chapterHeadingId(index)}>
         <h2>
           <button
             type="button"
@@ -500,7 +527,7 @@
   }
 
   /* 今開いている章が目次でも分かるようにする */
-  .toc button[aria-expanded='true'] {
+  .toc button.open {
     font-weight: bold;
     color: map.get($sky-blue, text);
     background: map.get($sky-blue, background);
