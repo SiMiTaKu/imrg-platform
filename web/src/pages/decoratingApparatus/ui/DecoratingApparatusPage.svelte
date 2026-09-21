@@ -58,8 +58,6 @@
     layout="full"
   />
 
-  <LiveNotice />
-
   <OrderPoints
     eyebrow={POINTS_HEADING.eyebrow()}
     title={POINTS_HEADING.title()}
@@ -95,6 +93,9 @@
       description: step.description(),
     }))}
   />
+
+  <!-- 配信の予定は、頼むかどうかを決めたあとに読めばよい話。相談の節の手前に置く -->
+  <LiveNotice />
 
   <OrderContact
     eyebrow={CONTACT.eyebrow()}

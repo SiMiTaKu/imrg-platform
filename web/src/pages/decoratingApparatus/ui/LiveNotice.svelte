@@ -5,59 +5,77 @@
   const isMobile = $derived($pageData.isMobile)
 </script>
 
-<!-- 頼んでから知ると困る話なので、最初の画面のすぐ下に置いて見落とされないようにする -->
-<aside class="live-notice" class:mobile={isMobile}>
+<!--
+  知っておいてほしい話だが、頼むかどうかを決める材料ではない。
+  ページの終わりの方に、控えめなカードとして置く
+-->
+<aside
+  class="live-notice"
+  class:mobile={isMobile}
+  aria-label={m.decorating_apparatus_live_notice_label()}
+>
   <div class="inner">
-    <p class="label">{m.decorating_apparatus_live_notice_label()}</p>
-    <p class="body">{m.decorating_apparatus_live_notice_body()}</p>
+    <div class="card">
+      <!-- 「お知らせ」の札の代わりに、案内を表す i の印を出す -->
+      <svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <circle cx="12" cy="7.75" r="1.15" fill="currentColor" />
+        <path
+          d="M12 11v6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+      <p class="body">{m.decorating_apparatus_live_notice_body()}</p>
+    </div>
   </div>
 </aside>
 
 <style lang="scss">
-  // 注意を引くための黄。読ませるための札なので、地は淡い 50、文字は濃い 900 で組む
   .live-notice {
     width: 100%;
-    background: map.get($amber, background);
-    border-bottom: 1px solid map.get($amber, border);
+    background: $white;
   }
 
   .inner {
-    display: flex;
-    align-items: center;
-    gap: $space-size-16;
     box-sizing: border-box;
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-20 var(--content-padding-inline);
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .mobile .inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: $space-size-8;
-    padding: $space-size-16 var(--content-padding-inline);
+    padding: $space-size-32 var(--content-padding-inline);
   }
 
-  .label {
+  // 目を引かせる帯ではなく、読み飛ばしてもよいカード。枠と淡い地だけで囲む
+  .card {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-size-12;
+    box-sizing: border-box;
+    width: 100%;
+    padding: $space-size-20;
+    border: 1px solid map.get($gray, 100);
+    border-radius: 8px;
+    background: map.get($gray, background);
+  }
+
+  // 案内の印は青。注意ではなく情報だと分かる色にする
+  .icon {
     flex: none;
-    margin: 0;
-    padding: $space-size-4 $space-size-12;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($amber, 900);
-    border-radius: 999px;
-    background: map.get($amber, 300);
-    letter-spacing: 0.08em;
+    color: map.get($sky-blue, light-text);
   }
 
   .body {
     min-inline-size: 0;
     margin: 0;
-    font-size: $font-size-16;
-    font-weight: bold;
-    color: map.get($gray, text);
-    line-height: 1.8;
+    font-size: $font-size-14;
+    color: map.get($gray, 600);
+    line-height: 1.85;
     overflow-wrap: anywhere;
   }
 </style>
