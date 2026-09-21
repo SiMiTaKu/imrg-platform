@@ -22,15 +22,15 @@ const PRICE_YEN = {
   /** オンラインの構成作成（個人） */
   onlineCreateIndividual: 10000,
   /** 会場へ出向く指導（1日） */
-  onsiteFullDay: 30000,
+  onsiteFullDay: 20000,
   /** 会場へ出向く指導（半日） */
-  onsiteHalfDay: 15000,
+  onsiteHalfDay: 10000,
 } as const
 
 /**
  * 金額を「◯◯円〜」の形にする
  * @param yen - 金額（円）
- * @returns 表示中の言語での言い方（日本語なら「30,000円〜」、英語なら "From ¥30,000"）
+ * @returns 表示中の言語での言い方（日本語なら「20,000円〜」、英語なら "From ¥20,000"）
  */
 const fromPrice = (yen: number): string =>
   m.coaching_price_from({ price: formatYen(yen, getLocale()) })
