@@ -11,6 +11,7 @@
     OrderPoints,
     OrderPrice,
   } from '@widgets/orderService'
+  import { LiveNotice, WorkList } from '@widgets/decoratingApparatus'
   import {
     CONTACT,
     CROSS_LINK_BACKGROUND_MUSIC,
@@ -26,8 +27,6 @@
     PRICE_HEADING,
     PRICE_PER_HOUR,
   } from '../config/content'
-  import LiveNotice from './LiveNotice.svelte'
-  import WorkList from './WorkList.svelte'
 
   const locale = getLocale()
   const price = formatYen(PRICE_PER_HOUR, locale)

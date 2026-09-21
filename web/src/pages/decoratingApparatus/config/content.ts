@@ -107,12 +107,6 @@ export const ORDER_POINTS = [
   },
 ] as const
 
-/** 「過去の作品」の見出しまわり */
-export const WORKS_HEADING = {
-  eyebrow: m.decorating_apparatus_works_eyebrow,
-  lead: m.decorating_apparatus_works_lead,
-} as const
-
 /** 「料金」の見出しまわり */
 export const PRICE_HEADING = {
   eyebrow: m.decorating_apparatus_price_eyebrow,
