@@ -228,9 +228,12 @@
   }
   /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 
-  // 送る矢印は写真の左右に浮かせる
+  // 送る矢印は写真の左右に浮かせる。
+  // 重ねた写真は透過の途中で前に出るため、矢印はそれより前に置く。
+  // z-index を外すと、戻る矢印だけが写真の裏に回って押せなくなる
   .step {
     position: absolute;
+    z-index: 1;
     top: 50%;
     display: grid;
     place-items: center;
