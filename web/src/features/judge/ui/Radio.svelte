@@ -4,7 +4,7 @@
   import { pageData } from '@shared/lib/device'
   import { getLocale } from '@shared/lib/i18n'
   import { formatNumber } from '@shared/lib/number'
-  import { POINT_A_OPTIONS } from '../config/pointA'
+  import { POINT_A_FINE_OPTIONS, POINT_A_OPTIONS } from '../config/pointA'
   import type { PointAOption } from '../model/executionDeduct'
   import { judgementApparatus } from '../store/apparatus'
   import QuestionLabel from './QuestionLabel.svelte'
@@ -33,11 +33,20 @@
 
   const locale = getLocale()
   const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
+  /** 選んでいるのが 0.05 刻みの補助の選択肢か。そのときは補助の並びを開いておく */
+  const usesFine = $derived(POINT_A_FINE_OPTIONS.some((option) => option.code === selected.code))
   /** 閉じているときに見出しの右へ出す、いまの選び具合 */
   const summary = $derived(
     answered
       ? m.judge_point_a_value_label({ value: formatNumber(selected.value, locale, 2) })
       : m.judge_point_a_item_untouched(),
+  )
+
+  /**
+   * 選んでいる段階の言い回し。補助の選択肢を選んでいるときは空にする
+   */
+  const selectedLevel = $derived(
+    POINT_A_OPTIONS.find((option) => option.code === selected.code)?.level(),
   )
 </script>
 
@@ -57,6 +66,9 @@
   >
     <QuestionLabel {annotation} caption={title} {color} />
     <span class="state">
+      {#if answered && selectedLevel}
+        <span class="summary-level">{selectedLevel}</span>
+      {/if}
       <span class="summary" class:answered>{summary}</span>
       <span class="mark" aria-hidden="true"></span>
     </span>
@@ -64,8 +76,9 @@
 
   {#if open}
     <div class="body" id={`${uniqueId}-body`}>
-      <div class="radio-group {color}" aria-label={title} role="radiogroup">
-        {#each POINT_A_OPTIONS as option, index (index)}
+      <!-- 規則の5段階。ふだんはこの中から選ぶ -->
+      <div class="levels" aria-label={m.judge_point_a_levels_label()} role="radiogroup">
+        {#each POINT_A_OPTIONS as option (option.code)}
           <input
             id={`${uniqueId}-${option.code}`}
             checked={selected.code === option.code}
@@ -74,16 +87,35 @@
             value={option.code}
             onchange={() => onchange(option)}
           />
-          <label for={`${uniqueId}-${option.code}`}>
-            <!-- HTML5の仕様上labelタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
+          <label class="level" for={`${uniqueId}-${option.code}`}>
+            <span class="level-name">{option.level()}</span>
+            <span class="level-value">{formatNumber(option.value, locale, 2)}</span>
           </label>
         {/each}
       </div>
-      <p class="level-meter">
-        <span>{m.judge_level_low()}</span>
-        <span>{m.judge_level_middle()}</span>
-        <span>{m.judge_level_high()}</span>
-      </p>
+
+      <!-- 5段階に当てはまらないわずかな差のための補助。ふだんは畳んでおく -->
+      <details open={usesFine}>
+        <summary class="fine-summary">{m.judge_point_a_fine_summary()}</summary>
+        <div class="fine-body">
+          <p class="fine-note">{m.judge_point_a_fine_note()}</p>
+          <div class="fine-list" aria-label={m.judge_point_a_fine_summary()} role="radiogroup">
+            {#each POINT_A_FINE_OPTIONS as option (option.code)}
+              <input
+                id={`${uniqueId}-${option.code}`}
+                checked={selected.code === option.code}
+                name={uniqueId}
+                type="radio"
+                value={option.code}
+                onchange={() => onchange(option)}
+              />
+              <label class="fine-item" for={`${uniqueId}-${option.code}`}>
+                {formatNumber(option.value, locale, 2)}
+              </label>
+            {/each}
+          </div>
+        </div>
+      </details>
     </div>
   {/if}
 </div>
@@ -91,14 +123,14 @@
 <style lang="scss">
   .desktop {
     --header-flex-direction: row;
-    --radio-button-size: 48px;
-    --level-meter-font-size: 18px;
+    --level-columns: repeat(5, 1fr);
+    --level-name-font-size: #{$font-size-14};
   }
 
   .mobile {
     --header-flex-direction: column;
-    --radio-button-size: 32px;
-    --level-meter-font-size: 16px;
+    --level-columns: 1fr 1fr;
+    --level-name-font-size: #{$font-size-14};
   }
 
   .radio-question {
@@ -156,11 +188,16 @@
     margin-left: auto;
   }
 
+  .summary-level,
   .summary {
     font-size: $font-size-14;
     font-weight: bold;
     color: map.get($gray, light-text);
     white-space: nowrap;
+  }
+
+  .summary-level {
+    color: map.get($gray, 600);
   }
 
   .summary.answered {
@@ -185,80 +222,111 @@
   .body {
     display: flex;
     flex-direction: column;
-    gap: $space-size-8;
+    gap: $space-size-12;
   }
 
-  .radio-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: var(--radio-button-size);
-
-    &::before {
-      position: absolute;
-      width: 100%;
-      height: 5px;
-      border-radius: 1em;
-      background: var(--radio-color);
-      content: '';
-      top: 50%;
-      transform: translateY(-50%);
-    }
+  .levels {
+    display: grid;
+    gap: $space-size-8;
+    grid-template-columns: var(--level-columns);
   }
 
   input[type='radio'] {
     display: none;
   }
 
-  input[type='radio']:checked + label::before {
-    width: var(--radio-button-size);
-    height: var(--radio-button-size);
-    color: white;
-    border: 5px solid var(--radio-color);
-    background: white;
-    opacity: 1;
-  }
-
-  label {
+  .level {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-
-    &::before {
-      content: '';
-      position: relative;
-      display: grid;
-      align-items: center;
-      justify-content: center;
-      width: calc(var(--radio-button-size) / 2);
-      height: calc(var(--radio-button-size) / 2);
-      border-radius: 2em;
-      box-sizing: border-box;
-      background: var(--radio-color);
-      transition: 0.3s;
-    }
+    gap: $space-size-4;
+    min-height: 64px;
+    padding: $space-size-8 $space-size-4;
+    text-align: center;
+    border: $border-size-2 solid map.get($gray, 200);
+    border-radius: 8px;
+    background: $white;
+    cursor: pointer;
+    transition: 0.2s;
 
     &:hover {
-      cursor: pointer;
-    }
-
-    &:hover::before {
-      width: var(--radio-button-size);
-      height: var(--radio-button-size);
-      color: white;
-      border: 5px solid var(--radio-color);
-      background: white;
-      cursor: pointer;
-      opacity: 0.3;
+      border-color: var(--radio-color);
     }
   }
 
-  .level-meter {
-    display: flex;
-    justify-content: space-between;
-    font-size: var(--level-meter-font-size);
+  .level-name {
+    font-size: var(--level-name-font-size);
     font-weight: bold;
-    color: #aaa;
+    line-height: 1.4;
+  }
+
+  .level-value {
+    font-size: $font-size-16;
+    font-weight: bold;
+    color: map.get($gray, light-text);
+  }
+
+  input[type='radio']:checked + .level {
+    color: $white;
+    border-color: var(--radio-color);
+    background: var(--radio-color);
+  }
+
+  input[type='radio']:checked + .level .level-value {
+    color: $white;
+  }
+
+  .fine-summary {
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($gray, light-text);
+    cursor: pointer;
+  }
+
+  .fine-body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-8;
+    padding-top: $space-size-8;
+  }
+
+  .fine-note {
+    margin: 0;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+  }
+
+  .fine-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-8;
+  }
+
+  .fine-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    min-height: 40px;
+    padding: 0 $space-size-12;
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($gray, 600);
+    border: $border-size-1 solid map.get($gray, 200);
+    border-radius: 999px;
+    background: $white;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      border-color: var(--radio-color);
+    }
+  }
+
+  input[type='radio']:checked + .fine-item {
+    color: $white;
+    border-color: var(--radio-color);
+    background: var(--radio-color);
   }
 </style>

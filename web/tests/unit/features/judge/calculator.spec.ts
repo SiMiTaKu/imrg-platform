@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  POINT_A_FINE_OPTIONS,
   POINT_A_OPTIONS,
   createExecutionDeduct,
   getAmountOfPointA,
@@ -37,14 +38,48 @@ const makeDeduct = ({
 
 /**
  * 選択肢のコードから選択肢を返す
- * @param code - 選択肢のコード（1〜10）
+ * @param code - 選択肢のコード（規則の5段階は 1〜5。0.05 刻みの補助は 1.5〜5.5）
  * @returns 選択肢
  */
 const optionOf = (code: number): PointAOption => {
-  const option = POINT_A_OPTIONS.find((candidate) => candidate.code === code)
+  const option = [...POINT_A_OPTIONS, ...POINT_A_FINE_OPTIONS].find(
+    (candidate) => candidate.code === code,
+  )
   if (!option) throw new Error(`選択肢 ${code} がありません`)
   return option
 }
+
+describe('POINT_A_OPTIONS', () => {
+  describe('正常系', () => {
+    it('規則の実施欠点基準どおり、0.50 から 0.10 までの5段階になっていること', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = POINT_A_OPTIONS.map((option) => option.value)
+      // #endregion
+
+      // #region Then
+      expect(result).toEqual([0.5, 0.4, 0.3, 0.2, 0.1])
+      // #endregion
+    })
+
+    it('補助の選択肢が、段階の間を 0.05 刻みで埋めていること', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = POINT_A_FINE_OPTIONS.map((option) => option.value)
+      // #endregion
+
+      // #region Then
+      expect(result).toEqual([0.45, 0.35, 0.25, 0.15, 0.05])
+      // #endregion
+    })
+  })
+})
 
 describe('createExecutionDeduct', () => {
   describe('正常系', () => {
@@ -70,9 +105,9 @@ describe('getAmountOfPointA', () => {
   describe('正常系', () => {
     it.each([
       ['全項目が 0.5 の場合、5.5 になること', 1, 5.5],
-      ['全項目が 0.45 の場合、小数の誤差なく 4.95 になること', 2, 4.95],
-      ['全項目が 0.35 の場合、小数の誤差なく 3.85 になること', 4, 3.85],
-      ['全項目が 0.05 の場合、小数の誤差なく 0.55 になること', 10, 0.55],
+      ['全項目が 0.45 の場合、小数の誤差なく 4.95 になること', 1.5, 4.95],
+      ['全項目が 0.35 の場合、小数の誤差なく 3.85 になること', 2.5, 3.85],
+      ['全項目が 0.05 の場合、小数の誤差なく 0.55 になること', 5.5, 0.55],
     ])('%s', (_, code, expected) => {
       // #region Given
       const data = makeDeduct({ option: optionOf(code) })
@@ -187,8 +222,8 @@ describe('getAmountOfPointB', () => {
 describe('getDecisionPoints', () => {
   describe('正常系', () => {
     it.each([
-      ['減点が最小で落下とミスが無い場合、9.45 になること', 10, 0, 0, 0, 9.45],
-      ['Aが 0.55 で落下 1 回とミス 0.2 の場合、8.95 になること', 10, 1, 0, 0.2, 8.95],
+      ['減点が最小で落下とミスが無い場合、9.45 になること', 5.5, 0, 0, 0, 9.45],
+      ['Aが 0.55 で落下 1 回とミス 0.2 の場合、8.95 になること', 5.5, 1, 0, 0.2, 8.95],
       ['Aが 5.5 の場合、4.5 になること', 1, 0, 0, 0, 4.5],
     ])('%s', (_, code, single, double, miss, expected) => {
       // #region Given
