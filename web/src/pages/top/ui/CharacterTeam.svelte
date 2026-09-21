@@ -19,15 +19,18 @@
           <div class="figure">
             <CharacterFigure {character} size={isMobile ? 96 : 108} />
           </div>
-          <p class="specialty">{character.specialty()}</p>
-          <h3>{character.name()}</h3>
-          <p class="reading">
-            {m.top_team_profile({
-              reading: character.reading(),
-              height: character.heightCentimeter,
-            })}
-          </p>
-          <p class="role">{character.role()}</p>
+          <!-- 名前まわりをひとまとめにする。スマホでは絵の右へ回す -->
+          <div class="naming">
+            <p class="specialty">{character.specialty()}</p>
+            <h3>{character.name()}</h3>
+            <p class="reading">
+              {m.top_team_profile({
+                reading: character.reading(),
+                height: character.heightCentimeter,
+              })}
+            </p>
+            <p class="role">{character.role()}</p>
+          </div>
         </li>
       {/each}
     </ul>
@@ -82,9 +85,10 @@
     list-style: none;
   }
 
+  // スマホは1列。2列だと1枚が細く、名前と得意分野が読みづらかった
   .mobile .members {
     gap: $space-size-12;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .members li {
@@ -98,6 +102,14 @@
     border-bottom: 3px solid var(--accent);
   }
 
+  // 1列で縦に積むと画面が長くなるので、絵を左、名前まわりを右に置く
+  .mobile .members li {
+    gap: $space-size-16;
+    padding: $space-size-12 $space-size-16;
+    flex-direction: row;
+    text-align: left;
+  }
+
   // 絵の高さで頭がそろう。絵より高い箱にしない
   .figure {
     display: flex;
@@ -107,7 +119,18 @@
   }
 
   .mobile .figure {
+    flex: none;
     min-height: 96px;
+  }
+
+  .naming {
+    width: 100%;
+  }
+
+  .mobile .naming {
+    width: auto;
+    flex: 1;
+    min-inline-size: 0;
   }
 
   .specialty {
