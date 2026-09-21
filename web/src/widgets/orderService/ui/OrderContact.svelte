@@ -1,26 +1,6 @@
-<script lang="ts" module>
-  /** ほかの依頼（曲編集・手具装飾・指導）への案内 */
-  export interface OrderContactCrossLink {
-    /** リンクの文言 */
-    label: string
-    /** リンク先（サイトの中のページ） */
-    href: string
-    /** ひと言の説明 */
-    body: string
-  }
-
-  /**
-   * 1つでも複数でも、案内の配列として受け取る
-   * @param value - 案内1つ、または案内の配列
-   * @returns 案内の配列
-   */
-  const toLinks = (
-    value: OrderContactCrossLink | readonly OrderContactCrossLink[],
-  ): readonly OrderContactCrossLink[] => ('href' in value ? [value] : value)
-</script>
-
 <script lang="ts">
   import { CharacterFigure, type CharacterProfile } from '@entities/character'
+  import { CrossLinks, type CrossLink } from '@features/crossLinks'
   import { pageData } from '@shared/lib/device'
   import SectionHeading from './SectionHeading.svelte'
 
@@ -45,7 +25,7 @@
     /** このページの案内役 */
     character: CharacterProfile
     /** ほかの依頼への案内。1つでも、複数並べても出せる。省くと出さない */
-    crossLink?: OrderContactCrossLink | readonly OrderContactCrossLink[]
+    crossLink?: CrossLink | readonly CrossLink[]
   }
 
   const {
@@ -62,7 +42,6 @@
   }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
-  const crossLinks = $derived(crossLink ? toLinks(crossLink) : [])
 </script>
 
 <section class="contact" class:mobile={isMobile} id="contact">
@@ -89,19 +68,9 @@
       </div>
     </div>
 
-    {#if crossLinks.length > 0}
+    {#if crossLink}
       <!-- ほかの依頼も受けていることを、最後にもう一度知らせる -->
-      <ul class="crosses">
-        {#each crossLinks as link (link.href)}
-          <li>
-            <a class="cross" href={link.href}>
-              <span class="cross-label">{link.label}</span>
-              <span class="cross-body">{link.body}</span>
-              <span class="cross-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        {/each}
-      </ul>
+      <CrossLinks links={crossLink} />
     {/if}
   </div>
 </section>
@@ -206,61 +175,5 @@
     line-height: 1.8;
     text-align: center;
     overflow-wrap: anywhere;
-  }
-
-  // 案内は縦に積む。数が増えても並びは変えない
-  .crosses {
-    display: flex;
-    flex-direction: column;
-    gap: $space-size-12;
-    width: 100%;
-    max-width: 720px;
-    margin: $space-size-16 auto 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  // 名前・説明・矢印を1行に並べる。3行に積むと札が無駄に高くなる
-  .cross {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-size-4 $space-size-12;
-    align-items: baseline;
-    box-sizing: border-box;
-    width: 100%;
-    padding: $space-size-12 $space-size-20;
-    color: inherit;
-    border: 1px solid map.get($gray, 100);
-    border-radius: 8px;
-    background: $white;
-    transition: border-color 0.15s ease;
-    text-decoration: none;
-  }
-
-  .cross:hover {
-    border-color: map.get($sky-blue, border);
-  }
-
-  .cross-label {
-    flex: none;
-    font-size: $font-size-16;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-  }
-
-  .cross-body {
-    min-inline-size: 0;
-    font-size: $font-size-14;
-    color: map.get($gray, 600);
-    line-height: 1.7;
-    overflow-wrap: anywhere;
-  }
-
-  // 同じ行の右端に送る。重ねない
-  .cross-arrow {
-    flex: none;
-    margin-left: auto;
-    font-size: $font-size-18;
-    color: map.get($sky-blue, button);
   }
 </style>

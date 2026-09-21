@@ -1,6 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
+  import { CrossLinks } from '@features/crossLinks'
   import { AutoPlayWatcher, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
@@ -19,6 +20,15 @@
   const isMobile = $derived($pageData.isMobile)
   // 基本を誰よりも正確に、が持ち味の一徒が指導の案内役
   const guide = findCharacter(Character.KAZUTO)
+
+  /** ページの下に置く、ほかの依頼（曲編集・手具装飾）への案内 */
+  const otherServiceLinks = $derived(
+    OTHER_SERVICES.map((service) => ({
+      label: service.title(),
+      href: localizeHref(service.href),
+      body: service.body(),
+    })),
+  )
 
   /** 相場の説明を開いているか */
   let isMarketOpen = $state(false)
@@ -405,17 +415,7 @@
       </a>
       <p class="note">{m.coaching_contact_note()}</p>
 
-      <ul class="others">
-        {#each OTHER_SERVICES as service (service.key)}
-          <li>
-            <a href={localizeHref(service.href)}>
-              <span class="other-title">{service.title()}</span>
-              <span class="other-body">{service.body()}</span>
-              <span class="other-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        {/each}
-      </ul>
+      <CrossLinks links={otherServiceLinks} />
     </div>
   </section>
 </article>
@@ -1119,63 +1119,5 @@
     font-weight: bold;
     text-decoration: none;
     border-radius: 6px;
-  }
-
-  // 曲編集・手具装飾のページにある案内（OrderContact の .cross）と同じ見た目にそろえる。
-  // 縦に積む。数が増えても並びは変えない
-  .others {
-    display: flex;
-    flex-direction: column;
-    gap: $space-size-12;
-    width: 100%;
-    max-width: 720px;
-    margin: $space-size-16 auto 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  // 名前・説明・矢印を1行に並べる。3行に積むと札が無駄に高くなる
-  .others a {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-size-4 $space-size-12;
-    align-items: baseline;
-    box-sizing: border-box;
-    width: 100%;
-    padding: $space-size-12 $space-size-20;
-    text-align: left;
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid map.get($gray, 100);
-    border-radius: 8px;
-    background: $white;
-    transition: border-color 0.15s ease;
-  }
-
-  .others a:hover {
-    border-color: map.get($sky-blue, border);
-  }
-
-  .other-title {
-    flex: none;
-    font-size: $font-size-16;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-  }
-
-  .other-body {
-    min-inline-size: 0;
-    font-size: $font-size-14;
-    color: map.get($gray, 600);
-    line-height: 1.7;
-    overflow-wrap: anywhere;
-  }
-
-  // 同じ行の右端に送る。重ねない
-  .other-arrow {
-    flex: none;
-    margin-left: auto;
-    font-size: $font-size-18;
-    color: map.get($sky-blue, button);
   }
 </style>
