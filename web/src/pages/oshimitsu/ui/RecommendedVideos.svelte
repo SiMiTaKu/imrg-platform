@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { RECOMMENDED_VIDEOS, VideoCard } from '@entities/oshimitsuVideo'
+  import { RECOMMENDED_VIDEOS } from '@entities/oshimitsuVideo'
   import { shuffle } from '@features/oshimitsuSearch'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
+  import { AutoPlayWatcher } from '@features/videoAutoPlay'
   import { ROUTES } from '@shared/routes'
   import { onMount } from 'svelte'
+  import RecommendedVideoCard from './RecommendedVideoCard.svelte'
 
   const isMobile = $derived($pageData.isMobile)
 
@@ -15,9 +17,43 @@
    */
   let recommendedVideos = $state.raw(RECOMMENDED_VIDEOS)
 
+  /** いま再生しているカードの番号。-1 は何も再生していない */
+  let playingIndex = $state(-1)
+  /** 一度でも再生したカードの番号 */
+  let playedIndexes = $state<ReadonlySet<number>>(new Set())
+  /** 押して再生を頼んだカードの番号。押したときだけ音を出す */
+  let userStartedIndex = $state(-1)
+
+  const watcher = new AutoPlayWatcher((playing, played) => {
+    playingIndex = playing
+    playedIndexes = new Set(played)
+  })
+
+  $effect(() => () => watcher.destroy())
+
   onMount(() => {
     recommendedVideos = shuffle(RECOMMENDED_VIDEOS)
   })
+
+  /**
+   * カードを見張りに加える。画面の真ん中に来たら1つだけ鳴る
+   * @param element - カードの要素
+   * @param index - カードの番号
+   * @returns 片づけの手続き
+   */
+  const watch = (element: HTMLElement, index: number) => {
+    const unwatch = watcher.watch(element, index)
+    return { destroy: unwatch }
+  }
+
+  /**
+   * 押して再生を頼まれたとき。押したときだけ音を出す
+   * @param index - カードの番号
+   */
+  const requestPlay = (index: number) => {
+    userStartedIndex = index
+    watcher.play(index)
+  }
 </script>
 
 <section class="recommended" class:mobile={isMobile} id="recommended">
@@ -29,7 +65,15 @@
 
     <ul class="cards">
       {#each recommendedVideos as video, index (index)}
-        <li><VideoCard {video} /></li>
+        <li use:watch={index}>
+          <RecommendedVideoCard
+            {video}
+            playing={playingIndex === index}
+            played={playedIndexes.has(index)}
+            muted={userStartedIndex !== index}
+            onRequestPlay={() => requestPlay(index)}
+          />
+        </li>
       {/each}
     </ul>
 

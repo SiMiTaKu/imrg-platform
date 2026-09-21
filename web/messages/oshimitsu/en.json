@@ -66,5 +66,7 @@
   "oshimitsu_empty_back": "Choose how to search again",
   "oshimitsu_filter_nav_label": "Filters",
   "oshimitsu_filter_row_content_type": "Type",
-  "oshimitsu_filter_all": "All"
+  "oshimitsu_filter_all": "All",
+  "oshimitsu_video_play": "Play {name}’s routine",
+  "oshimitsu_video_again": "Watch again"
 }

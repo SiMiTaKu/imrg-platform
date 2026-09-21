@@ -66,5 +66,7 @@
   "oshimitsu_empty_back": "Выбрать способ поиска заново",
   "oshimitsu_filter_nav_label": "Фильтры",
   "oshimitsu_filter_row_content_type": "Тип",
-  "oshimitsu_filter_all": "Все"
+  "oshimitsu_filter_all": "Все",
+  "oshimitsu_video_play": "Воспроизвести упражнение: {name}",
+  "oshimitsu_video_again": "Ещё раз"
 }
