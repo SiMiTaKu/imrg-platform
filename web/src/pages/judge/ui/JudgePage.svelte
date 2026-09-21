@@ -1,8 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
   import {
-    ExecutionPointResultModalDesktop,
-    ExecutionPointResultModalMobile,
+    ExecutionPointResultModal,
     JudgeThemeColor,
     PointA,
     PointB,
@@ -138,18 +137,8 @@
   {/if}
 </article>
 
-<!-- 決定点の画面。画面いっぱいに出るので、閉じる手だてを上に重ねて置く -->
-{#if isMobile}
-  <ExecutionPointResultModalMobile show={resultShown} onretry={retry} />
-{:else}
-  <ExecutionPointResultModalDesktop show={resultShown} onretry={retry} />
-{/if}
-
-{#if resultShown}
-  <button class="close-result" class:mobile={isMobile} type="button" onclick={closeResult}>
-    {m.judge_result_close()}
-  </button>
-{/if}
+<!-- 決定点の画面。閉じるばつは共通のモーダルが持つ -->
+<ExecutionPointResultModal show={resultShown} {isMobile} onretry={retry} onclose={closeResult} />
 
 <style lang="scss">
   .gray {
@@ -224,26 +213,4 @@
   }
 
   // 決定点の画面より前に出す。固定ヘッダ（80px）の下、画面の隅に置く
-  .close-result {
-    position: fixed;
-    top: 96px;
-    right: $space-size-16;
-    z-index: 200;
-    min-height: 44px;
-    padding: 0 $space-size-20;
-    font-family: inherit;
-    font-size: $font-size-14;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    border-radius: 999px;
-    background: $white;
-    box-shadow: 0 2px 12px rgb(0 0 0 / 25%);
-    cursor: pointer;
-  }
-
-  .close-result.mobile {
-    // スマホの固定ヘッダは 64px
-    top: 76px;
-  }
 </style>
