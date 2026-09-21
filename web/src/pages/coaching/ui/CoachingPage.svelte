@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
   import { CrossLinks } from '@features/crossLinks'
@@ -109,10 +110,12 @@
       </ul>
 
       <div class="actions">
-        <a class="contact" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
+        <Button href={LINKS.instagram} target="_blank" variant="yellow" block>
           {m.coaching_contact_button()}
-        </a>
-        <a class="secondary" href="#prices">{m.coaching_hero_price_link()}</a>
+        </Button>
+        <Button href="#prices" target="_self" variant="outline" block>
+          {m.coaching_hero_price_link()}
+        </Button>
       </div>
       <p class="note">
         {m.coaching_hero_note()}
@@ -244,9 +247,11 @@
                   </li>
                 {/each}
               </ul>
-              <button type="button" class="market-close" onclick={closeMarket}>
-                {m.coaching_market_close()}
-              </button>
+              <div class="market-close">
+                <Button variant="outline" onclick={closeMarket}>
+                  {m.coaching_market_close()}
+                </Button>
+              </div>
             </div>
           {/if}
         </div>
@@ -385,9 +390,9 @@
       <p>
         {m.coaching_contact_lead()}
       </p>
-      <a class="contact" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
+      <Button href={LINKS.instagram} target="_blank" variant="yellow" size="large">
         {m.coaching_contact_button()}
-      </a>
+      </Button>
       <p class="note">{m.coaching_contact_note()}</p>
 
       <CrossLinks links={otherServiceLinks} />
@@ -554,35 +559,16 @@
     border-radius: 999px;
   }
 
+  // 相談への一歩（黄）と料金へ寄り道する道（白抜き）を同じ幅で並べる。
+  // スマホでは1列に積んで、1つずつ横いっぱいにする
   .actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: $space-size-12;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .actions a {
-    display: inline-flex;
-    flex: 1 1 200px;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    padding: 0 $space-size-20;
-    font-size: $font-size-16;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 6px;
-  }
-
-  // 連絡への一歩だけ黄にする。黄の地に載せる文字は黒（色の決まり 4）
-  .contact {
-    color: $black;
-    background: map.get($yellow, 300);
-  }
-
-  .secondary {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
+  .mobile .actions {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .note {
@@ -830,16 +816,11 @@
     cursor: pointer;
   }
 
+  // 閉じるボタンは右端。スマホではボタンが横いっぱいになるので、箱も幅いっぱいにする
   .market-close {
-    align-self: flex-end;
-    padding: $space-size-8 $space-size-20;
-    font-size: $font-size-14;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    border-radius: 999px;
-    background: $white;
-    cursor: pointer;
+    display: flex;
+    align-self: stretch;
+    justify-content: flex-end;
   }
 
   .market-note {
@@ -1082,17 +1063,5 @@
     font-size: $font-size-16;
     line-height: 1.9;
     color: map.get($gray, 600);
-  }
-
-  .contact-panel .contact {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    padding: 0 $space-size-32;
-    font-size: $font-size-16;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 6px;
   }
 </style>
