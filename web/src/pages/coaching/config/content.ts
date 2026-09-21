@@ -170,7 +170,12 @@ export const RESULTS: readonly Result[] = [
     year: '2016',
     name: m.coaching_result_aomori_yamada_group,
     detail: m.coaching_result_detail_half_composition,
-    videos: [],
+    videos: [
+      {
+        label: m.coaching_result_video_label,
+        href: 'https://youtu.be/i_8ShItNAwM',
+      },
+    ],
   },
   {
     year: '2019',
@@ -188,7 +193,12 @@ export const RESULTS: readonly Result[] = [
     year: '2020',
     name: m.coaching_result_aomori_yamada_group,
     detail: null,
-    videos: [],
+    videos: [
+      {
+        label: m.coaching_result_video_label,
+        href: 'https://youtu.be/VMqFFgMmjWI',
+      },
+    ],
   },
   {
     year: '2021',
@@ -205,7 +215,12 @@ export const RESULTS: readonly Result[] = [
     year: '2021',
     name: m.coaching_result_aomori_yamada_group,
     detail: null,
-    videos: [],
+    videos: [
+      {
+        label: m.coaching_result_video_label,
+        href: 'https://youtu.be/pLYZMO1V1Jo',
+      },
+    ],
   },
   {
     year: '2021',
@@ -234,7 +249,12 @@ export const RESULTS: readonly Result[] = [
     year: '2024',
     name: m.coaching_result_aomori_yamada_group,
     detail: null,
-    videos: [],
+    videos: [
+      {
+        label: m.coaching_result_video_label,
+        href: 'https://youtu.be/A7dIl-5NZSk',
+      },
+    ],
   },
   {
     year: '2025',
