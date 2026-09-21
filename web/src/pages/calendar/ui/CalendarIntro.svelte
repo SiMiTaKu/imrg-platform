@@ -20,66 +20,77 @@
   const guide = findCharacter(Character.SORA)
 </script>
 
-<!-- 何ができるページかを、いちばん上で言い切る。トップページ・ルールページと同じ「案内役のひとこと」の形 -->
+<!-- 何ができるページかを、いちばん上で言い切る。背景は画面の端まで広げ、中身だけをコンテンツ幅に収める -->
 <header class="intro" class:mobile={isMobile}>
-  <div class="figure">
-    <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
-  </div>
+  <div class="inner">
+    <div class="figure">
+      <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
+    </div>
 
-  <div class="words">
-    <p class="speaker">
-      {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-    </p>
-    <h1>{m.calendar_title()}</h1>
-    <p class="say">{m.calendar_lead()}</p>
-    <p class="how">
-      <strong>{m.calendar_view_calendar()}</strong>{m.calendar_intro_how_calendar()}<strong
-        >{m.calendar_view_list()}</strong
-      >{m.calendar_intro_how_list()}
-      {m.calendar_intro_how_detail_before()}<strong class="accent"
-        >{m.calendar_intro_how_detail_strong()}</strong
-      >{m.calendar_intro_how_detail_after()}
-    </p>
+    <div class="words">
+      <p class="speaker">
+        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+      </p>
+      <h1>{m.calendar_title()}</h1>
+      <p class="say">{m.calendar_lead()}</p>
+      <p class="how">
+        <strong>{m.calendar_view_calendar()}</strong>{m.calendar_intro_how_calendar()}<strong
+          >{m.calendar_view_list()}</strong
+        >{m.calendar_intro_how_list()}
+        {m.calendar_intro_how_detail_before()}<strong class="accent"
+          >{m.calendar_intro_how_detail_strong()}</strong
+        >{m.calendar_intro_how_detail_after()}
+      </p>
 
-    <dl class="numbers">
-      <div class="number">
-        <dt>{m.calendar_intro_stat_total()}</dt>
-        <dd>{total}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
-      </div>
-      <div class="number upcoming">
-        <dt>{m.calendar_period_upcoming()}</dt>
-        <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
-      </div>
-      <div class="number updated">
-        <dt>{m.calendar_intro_stat_freshness()}</dt>
-        <dd class="updated-text">{updatedAtText}</dd>
-      </div>
-    </dl>
+      <dl class="numbers">
+        <div class="number">
+          <dt>{m.calendar_intro_stat_total()}</dt>
+          <dd>{total}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
+        </div>
+        <div class="number upcoming">
+          <dt>{m.calendar_period_upcoming()}</dt>
+          <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
+        </div>
+        <div class="number updated">
+          <dt>{m.calendar_intro_stat_freshness()}</dt>
+          <dd class="updated-text">{updatedAtText}</dd>
+        </div>
+      </dl>
 
-    <p class="caution">{m.calendar_intro_sources_note()}</p>
+      <p class="caution">{m.calendar_intro_sources_note()}</p>
+    </div>
   </div>
 </header>
 
 <style lang="scss">
+  // カードで囲わず、背景を画面の端まで行き渡らせる（トップページの Hero と同じ作り）
   .intro {
-    display: flex;
-    gap: $space-size-24;
-    align-items: flex-start;
-    padding: $space-size-24;
-    border-radius: 10px;
+    width: 100%;
 
     // 青（信頼）を両端から差す。トップページの見出しと同じ考え方
     background:
       radial-gradient(circle at 6% 0%, rgb(25 134 255 / 10%), transparent 46%),
-      radial-gradient(circle at 96% 8%, rgb(25 134 255 / 16%), transparent 44%),
-      map.get($gray, background);
+      radial-gradient(circle at 96% 8%, rgb(25 134 255 / 16%), transparent 44%), $white;
+    border-bottom: $border-size-1 solid map.get($gray, 100);
   }
 
-  .intro.mobile {
+  // 中身だけをコンテンツ幅に収める
+  .inner {
+    display: flex;
+    gap: $space-size-24;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: $space-size-40 var(--content-padding-inline) $space-size-32;
+  }
+
+  .intro.mobile .inner {
     flex-direction: column;
     align-items: center;
     gap: $space-size-12;
-    padding: $space-size-16;
+    padding: $space-size-24 var(--content-padding-inline);
     text-align: center;
   }
 

@@ -226,197 +226,200 @@
 <article class="calendar" class:mobile={$pageData.isMobile}>
   <CalendarIntro total={EVENTS.length} upcoming={upcomingAll.length} {updatedAtText} />
 
-  <CalendarUpcoming events={upcomingPicks} {today} onseeall={showUpcomingList} />
+  <div class="body">
+    <CalendarUpcoming events={upcomingPicks} {today} onseeall={showUpcomingList} />
 
-  <!-- 探すための道具をひとまとめにする。キーワード・種類・年・地域・表示の切り替えを続けて置く -->
-  <section bind:this={finderTop} class="finder" aria-label={m.calendar_search_label()}>
-    <h2 class="finder-title">{m.calendar_finder_title()}</h2>
+    <!-- 探すための道具をひとまとめにする。キーワード・種類・年・地域・表示の切り替えを続けて置く -->
+    <section bind:this={finderTop} class="finder" aria-label={m.calendar_search_label()}>
+      <h2 class="finder-title">{m.calendar_finder_title()}</h2>
 
-    <CalendarSearchPanel
-      keyword={calendarState.keyword}
-      categories={calendarState.categories}
-      onkeywordchange={(keyword) => update({ keyword })}
-      oncategorieschange={(categories) => update({ categories })}
-    />
-
-    <CalendarRefinePanel
-      {refine}
-      {yearCounts}
-      yearTotal={byYear.length}
-      {regionCounts}
-      onyearchange={selectYear}
-      onregionchange={selectRegion}
-    />
-
-    <div class="toolbar">
-      <div class="segmented" aria-label={m.calendar_view_label()} role="group">
-        <button
-          class="segment"
-          class:active={calendarState.view === 'calendar'}
-          type="button"
-          aria-pressed={calendarState.view === 'calendar'}
-          onclick={() => update({ view: 'calendar' })}
-          >{@render segmentLabel(m.calendar_view_calendar)}</button
-        >
-        <button
-          class="segment"
-          class:active={calendarState.view === 'list'}
-          type="button"
-          aria-pressed={calendarState.view === 'list'}
-          onclick={() => update({ view: 'list' })}
-          >{@render segmentLabel(m.calendar_view_list)}</button
-        >
-      </div>
-
-      {#if calendarState.view === 'list'}
-        <div class="segmented" aria-label={m.calendar_period_label()} role="group">
-          {#each EVENT_PERIODS as period (period.key)}
-            <button
-              class="segment"
-              class:active={calendarState.period === period.key}
-              type="button"
-              aria-pressed={calendarState.period === period.key}
-              onclick={() => update({ period: period.key })}
-              >{@render segmentLabel(period.label)}</button
-            >
-          {/each}
-        </div>
-      {/if}
-
-      <p class="count">
-        <strong>{matched.length}</strong
-        >{` ${isOne ? m.calendar_count_unit_one() : m.calendar_count_unit_other()}`}
-      </p>
-    </div>
-
-    {#if isFiltered}
-      <!-- 何で絞っているかを言葉で出す。押した覚えのない条件で0件になるのを防ぐ -->
-      <p class="active-filters">
-        <span class="active-label">{m.calendar_active_filters_label()}</span>
-        {#if calendarState.keyword}
-          <span class="pill">{m.calendar_keyword_pill({ keyword: calendarState.keyword })}</span>
-        {/if}
-        {#if yearPill}
-          <span class="pill">{yearPill}</span>
-        {/if}
-        {#if regionPill}
-          <span class="pill">{regionPill}</span>
-        {/if}
-        {#if !isEveryCategory(calendarState.categories)}
-          {#each calendarState.categories as category (category)}
-            <span class="pill">{categoryLabel(category)}</span>
-          {/each}
-        {/if}
-        {#if calendarState.day}
-          <span class="pill">{formatDay(calendarState.day, locale)}</span>
-        {/if}
-        <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
-      </p>
-    {/if}
-  </section>
-
-  {#if calendarState.view === 'calendar'}
-    {#if calendarState.keyword}
-      <p class="hint">
-        {(isOne ? m.calendar_keyword_hint_one : m.calendar_keyword_hint_other)({
-          count: matched.length,
-        })}
-        <button
-          class="link-button"
-          type="button"
-          onclick={() => update({ view: 'list', period: EventPeriod.ALL.key })}
-          >{m.calendar_see_all_in_list()}</button
-        >
-      </p>
-    {/if}
-
-    <div class="calendar-view">
-      <MonthCalendar
-        canNext={calendarState.month < MONTH_RANGE.last}
-        canPrev={calendarState.month > MONTH_RANGE.first}
-        events={matched}
-        monthKey={calendarState.month}
-        selectedDay={calendarState.day}
-        {today}
-        onmonthchange={(month) => update({ month, day: null })}
-        onselect={selectDay}
+      <CalendarSearchPanel
+        keyword={calendarState.keyword}
+        categories={calendarState.categories}
+        onkeywordchange={(keyword) => update({ keyword })}
+        oncategorieschange={(categories) => update({ categories })}
       />
-    </div>
 
-    <section bind:this={resultsTop} class="results">
-      <div class="results-heading">
-        <h3 class="section-title">
-          {@render resultsTitle(locale)}
-        </h3>
-        {#if calendarState.day}
-          <button class="link-button" type="button" onclick={() => update({ day: null })}
-            >{m.calendar_show_whole_month()}</button
+      <CalendarRefinePanel
+        {refine}
+        {yearCounts}
+        yearTotal={byYear.length}
+        {regionCounts}
+        onyearchange={selectYear}
+        onregionchange={selectRegion}
+      />
+
+      <div class="toolbar">
+        <div class="segmented" aria-label={m.calendar_view_label()} role="group">
+          <button
+            class="segment"
+            class:active={calendarState.view === 'calendar'}
+            type="button"
+            aria-pressed={calendarState.view === 'calendar'}
+            onclick={() => update({ view: 'calendar' })}
+            >{@render segmentLabel(m.calendar_view_calendar)}</button
           >
+          <button
+            class="segment"
+            class:active={calendarState.view === 'list'}
+            type="button"
+            aria-pressed={calendarState.view === 'list'}
+            onclick={() => update({ view: 'list' })}
+            >{@render segmentLabel(m.calendar_view_list)}</button
+          >
+        </div>
+
+        {#if calendarState.view === 'list'}
+          <div class="segmented" aria-label={m.calendar_period_label()} role="group">
+            {#each EVENT_PERIODS as period (period.key)}
+              <button
+                class="segment"
+                class:active={calendarState.period === period.key}
+                type="button"
+                aria-pressed={calendarState.period === period.key}
+                onclick={() => update({ period: period.key })}
+                >{@render segmentLabel(period.label)}</button
+              >
+            {/each}
+          </div>
         {/if}
+
+        <p class="count">
+          <strong>{matched.length}</strong
+          >{` ${isOne ? m.calendar_count_unit_one() : m.calendar_count_unit_other()}`}
+        </p>
       </div>
-      {#if calendarEvents.length}
-        <ul class="rows">
-          {#each calendarEvents as event (event.id)}
-            <li><EventRow {event} /></li>
-          {/each}
-        </ul>
-      {:else}
-        <p class="empty">
-          {m.calendar_empty_month()}
-          {#if isFiltered}
-            <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
+
+      {#if isFiltered}
+        <!-- 何で絞っているかを言葉で出す。押した覚えのない条件で0件になるのを防ぐ -->
+        <p class="active-filters">
+          <span class="active-label">{m.calendar_active_filters_label()}</span>
+          {#if calendarState.keyword}
+            <span class="pill">{m.calendar_keyword_pill({ keyword: calendarState.keyword })}</span>
           {/if}
+          {#if yearPill}
+            <span class="pill">{yearPill}</span>
+          {/if}
+          {#if regionPill}
+            <span class="pill">{regionPill}</span>
+          {/if}
+          {#if !isEveryCategory(calendarState.categories)}
+            {#each calendarState.categories as category (category)}
+              <span class="pill">{categoryLabel(category)}</span>
+            {/each}
+          {/if}
+          {#if calendarState.day}
+            <span class="pill">{formatDay(calendarState.day, locale)}</span>
+          {/if}
+          <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
         </p>
       {/if}
     </section>
-  {:else}
-    <section bind:this={resultsTop} class="results">
-      {#each pageGroups as group, index (`${group.monthKey}-${index}`)}
-        <h3 class="month-heading">
-          {formatMonth(group.monthKey, locale)}
-        </h3>
-        <ul class="rows">
-          {#each group.events as event (event.id)}
-            <li><EventRow {event} /></li>
-          {/each}
-        </ul>
-      {:else}
-        <p class="empty">
-          {m.calendar_empty_filter()}
-          {#if isFiltered}
-            <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
-          {/if}
-        </p>
-      {/each}
 
-      {#if slice.totalPages > 1}
-        <Pagination
-          page={slice.page}
-          totalPages={slice.totalPages}
-          onchange={goToPage}
-          labels={{
-            navigation: m.pagination_label(),
-            first: m.pagination_first(),
-            prev: m.pagination_prev(),
-            next: m.pagination_next(),
-            last: m.pagination_last(),
-          }}
+    {#if calendarState.view === 'calendar'}
+      {#if calendarState.keyword}
+        <p class="hint">
+          {(isOne ? m.calendar_keyword_hint_one : m.calendar_keyword_hint_other)({
+            count: matched.length,
+          })}
+          <button
+            class="link-button"
+            type="button"
+            onclick={() => update({ view: 'list', period: EventPeriod.ALL.key })}
+            >{m.calendar_see_all_in_list()}</button
+          >
+        </p>
+      {/if}
+
+      <div class="calendar-view">
+        <MonthCalendar
+          canNext={calendarState.month < MONTH_RANGE.last}
+          canPrev={calendarState.month > MONTH_RANGE.first}
+          events={matched}
+          monthKey={calendarState.month}
+          selectedDay={calendarState.day}
+          {today}
+          onmonthchange={(month) => update({ month, day: null })}
+          onselect={selectDay}
         />
-      {/if}
-    </section>
-  {/if}
+      </div>
 
-  <CalendarArchive />
-  <CalendarContribute />
+      <section bind:this={resultsTop} class="results">
+        <div class="results-heading">
+          <h3 class="section-title">
+            {@render resultsTitle(locale)}
+          </h3>
+          {#if calendarState.day}
+            <button class="link-button" type="button" onclick={() => update({ day: null })}
+              >{m.calendar_show_whole_month()}</button
+            >
+          {/if}
+        </div>
+        {#if calendarEvents.length}
+          <ul class="rows">
+            {#each calendarEvents as event (event.id)}
+              <li><EventRow {event} /></li>
+            {/each}
+          </ul>
+        {:else}
+          <p class="empty">
+            {m.calendar_empty_month()}
+            {#if isFiltered}
+              <button class="clear" type="button" onclick={clearAll}
+                >{m.calendar_clear_all()}</button
+              >
+            {/if}
+          </p>
+        {/if}
+      </section>
+    {:else}
+      <section bind:this={resultsTop} class="results">
+        {#each pageGroups as group, index (`${group.monthKey}-${index}`)}
+          <h3 class="month-heading">
+            {formatMonth(group.monthKey, locale)}
+          </h3>
+          <ul class="rows">
+            {#each group.events as event (event.id)}
+              <li><EventRow {event} /></li>
+            {/each}
+          </ul>
+        {:else}
+          <p class="empty">
+            {m.calendar_empty_filter()}
+            {#if isFiltered}
+              <button class="clear" type="button" onclick={clearAll}
+                >{m.calendar_clear_all()}</button
+              >
+            {/if}
+          </p>
+        {/each}
+
+        {#if slice.totalPages > 1}
+          <Pagination
+            page={slice.page}
+            totalPages={slice.totalPages}
+            onchange={goToPage}
+            labels={{
+              navigation: m.pagination_label(),
+              first: m.pagination_first(),
+              prev: m.pagination_prev(),
+              next: m.pagination_next(),
+              last: m.pagination_last(),
+            }}
+          />
+        {/if}
+      </section>
+    {/if}
+
+    <CalendarArchive />
+    <CalendarContribute />
+  </div>
 </article>
 
 <style lang="scss">
+  // ファーストビジュアルの背景を画面の端まで広げるため、幅の制限はここでは掛けない
   .calendar {
-    // 固定幅だと、画面がそれより狭いときに横へはみ出す
     width: 100%;
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: $space-size-40 var(--content-padding-inline) $space-size-80;
     font-family:
       'Hiragino Sans', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Meiryo, sans-serif;
     font-size: $font-size-16;
@@ -428,8 +431,13 @@
     overflow-wrap: anywhere;
   }
 
-  .mobile.calendar {
-    padding-top: $space-size-24;
+  // ファーストビジュアルより下だけをコンテンツ幅に収める
+  .body {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: $space-size-8 var(--content-padding-inline) $space-size-80;
   }
 
   /* ─── 探すための道具 ─── */
