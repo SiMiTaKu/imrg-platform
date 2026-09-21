@@ -601,7 +601,7 @@
   // 連絡への一歩だけ黄にする。黄の地に載せる文字は黒（色の決まり 4）
   .contact {
     color: $black;
-    background: map.get($amber, 300);
+    background: map.get($yellow, 300);
   }
 
   .secondary {
@@ -873,16 +873,16 @@
     align-items: flex-start;
     margin: 0;
     padding: $space-size-12 $space-size-16;
-    border: 1px solid map.get($amber, border);
+    border: 1px solid map.get($yellow, border);
     border-radius: 6px;
-    background: map.get($amber, background);
+    background: map.get($yellow, background);
   }
 
   // 電球は文の1行目の高さに合わせる。縮ませない
   .bulb {
     flex: none;
     margin-top: 2px;
-    color: map.get($amber, button);
+    color: map.get($yellow, button);
   }
 
   .market-note span {

@@ -188,7 +188,7 @@
     // 黄は明るいので、文字は黒にする（design-system の色の決まり 4）
     color: $black;
     border-radius: 6px;
-    background: map.get($amber, 300);
+    background: map.get($yellow, 300);
     box-shadow: 0 2px 8px rgb(240 165 0 / 35%);
     transition: transform 0.15s ease;
     text-align: center;

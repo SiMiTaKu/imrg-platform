@@ -47,10 +47,11 @@ $sky-blue: map.merge(
   )
 );
 
-// 希望・行動を表す色。連絡への一歩、今日の印など、ここぞという場所にだけ使う
+// 黄。希望・行動を表す色で、連絡への一歩や今日の印など、ここぞという場所にだけ使う。
+// サイトで使う黄はこれ1つ（手具ごとの色の $theme とは役割が違う）
 // 明るい側（50〜500）は濁りのない黄にして目を引かせ、
 // 濃い側（600〜900）は文字として読める暗さを保つ
-$amber-scale: (
+$yellow-scale: (
   50: #fffce5,
   100: #fff8bf,
   200: #fff28f,
@@ -61,30 +62,6 @@ $amber-scale: (
   700: #9e8500,
   800: #6b5a00,
   900: #453b00,
-);
-$amber: map.merge(
-  $amber-scale,
-  (
-    background: map.get($amber-scale, 50),
-    border: map.get($amber-scale, 300),
-    light-text: map.get($amber-scale, 600),
-    button: map.get($amber-scale, 700),
-    text: map.get($amber-scale, 800),
-  )
-);
-
-// 目立たせるための黄。影（$yellow-text-shadow）で使う
-$yellow-scale: (
-  50: #fefde9,
-  100: #fefac6,
-  200: #fef79d,
-  300: #fff673,
-  400: #fff347,
-  500: #fff01a,
-  600: #e6d600,
-  700: #b8ab00,
-  800: #8a8100,
-  900: #635d00,
 );
 $yellow: map.merge(
   $yellow-scale,

@@ -188,6 +188,6 @@
   // 黄は明るいので、文字は黒にする（design-system の色の決まり 4）
   .order {
     color: $black;
-    background: map.get($amber, 300);
+    background: map.get($yellow, 300);
   }
 </style>

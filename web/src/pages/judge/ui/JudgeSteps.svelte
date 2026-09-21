@@ -94,8 +94,8 @@
 
   // いまいるところは黄（行動）。目がここに行くようにする
   .current {
-    border-color: map.get($amber, border);
-    background: map.get($amber, background);
+    border-color: map.get($yellow, border);
+    background: map.get($yellow, background);
     box-shadow: 0 0 0 3px rgb(240 165 0 / 20%);
   }
 
@@ -103,11 +103,11 @@
   // 決まりどおり「300 の地に黒の文字」にする（差 17.3）
   .current .number {
     color: $black;
-    background: map.get($amber, 300);
+    background: map.get($yellow, 300);
   }
 
   .current .label {
-    color: map.get($amber, 900);
+    color: map.get($yellow, 900);
   }
 
   .waiting {
