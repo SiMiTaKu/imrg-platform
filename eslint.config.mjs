@@ -126,6 +126,17 @@ export default [
     },
   },
   {
+    // ルーン（$state など）を使う共有モジュール。svelte-eslint-parser が読むので、
+    // 中の TypeScript を読ませるために parser を渡す
+    files: ['**/*.svelte.ts', '**/*.svelte.js'],
+    languageOptions: {
+      parserOptions: {
+        parser: tseslint.parser,
+        svelteConfig,
+      },
+    },
+  },
+  {
     files: ['**/*.svelte'],
     languageOptions: {
       parserOptions: {

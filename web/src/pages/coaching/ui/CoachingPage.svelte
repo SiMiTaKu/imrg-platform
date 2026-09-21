@@ -2,7 +2,7 @@
   import { m } from '$lib/paraglide/messages'
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
   import { CrossLinks } from '@features/crossLinks'
-  import { AutoPlayWatcher, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
+  import { createAutoPlayGroup, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -69,36 +69,13 @@
   }
 
   // 自動で再生する動画を実績の並びから取り出して、先にまとめて見せる。
-  // 並んだ順の番号がそのままカードの番号になり、AutoPlayWatcher はこの番号で見張る
+  // 並んだ順の番号がそのままカードの番号になり、見張りはこの番号で見張る
   const autoPlayVideos = RESULTS.flatMap((result) =>
     result.videos.filter((video) => video.autoPlay).map((video) => ({ result, video })),
   )
 
-  /** いま鳴っているカードの番号。-1 は何も鳴っていない */
-  let playingIndex = $state(-1)
-  /** 一度でも再生したカードの番号 */
-  let playedIndexes = $state<ReadonlySet<number>>(new Set())
-  /** 人が押して始めたカードの番号。音を出してよいのはこれだけ */
-  let userStartedIndexes = $state<ReadonlySet<number>>(new Set())
-
-  const watcher = new AutoPlayWatcher((playing, played, userStarted) => {
-    playingIndex = playing
-    playedIndexes = new Set(played)
-    userStartedIndexes = new Set(userStarted)
-  })
-
-  $effect(() => () => watcher.destroy())
-
-  /**
-   * カードを見張りに加える。画面の真ん中に来たら1つだけ鳴る
-   * @param element - カードの要素
-   * @param index - カードの通し番号
-   * @returns 片づけの手続き
-   */
-  const watch = (element: HTMLElement, index: number) => {
-    const unwatch = watcher.watch(element, index)
-    return { destroy: unwatch }
-  }
+  // 画面の真ん中に来たカードを1つだけ鳴らす
+  const { watch, cardState, play } = createAutoPlayGroup()
 </script>
 
 <svelte:window onkeydown={onWindowKeydown} />
@@ -315,10 +292,8 @@
               videoId={youtubeVideoId(pick.video.href)}
               title={pick.result.name()}
               label={pick.video.cardLabel ? pick.video.cardLabel() : pick.result.year}
-              playing={playingIndex === cardIndex}
-              played={playedIndexes.has(cardIndex)}
-              startedByUser={userStartedIndexes.has(cardIndex)}
-              onRequestPlay={() => watcher.play(cardIndex)}
+              {...cardState(cardIndex)}
+              onRequestPlay={() => play(cardIndex)}
             />
           </li>
         {/each}

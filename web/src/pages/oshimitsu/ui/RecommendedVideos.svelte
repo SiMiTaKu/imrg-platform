@@ -1,15 +1,16 @@
 <script lang="ts">
-  import { RECOMMENDED_VIDEOS } from '@entities/oshimitsuVideo'
+  import { isIndividualVideo, localizedName, RECOMMENDED_VIDEOS } from '@entities/oshimitsuVideo'
   import { shuffle } from '@features/oshimitsuSearch'
   import { m } from '$lib/paraglide/messages'
+  import { formatYear } from '@shared/lib/date'
   import { pageData } from '@shared/lib/device'
-  import { localizeHref } from '@shared/lib/i18n'
-  import { AutoPlayWatcher } from '@features/videoAutoPlay'
+  import { getLocale, localizeHref } from '@shared/lib/i18n'
+  import { createAutoPlayGroup, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { ROUTES } from '@shared/routes'
   import { onMount } from 'svelte'
-  import RecommendedVideoCard from './RecommendedVideoCard.svelte'
 
   const isMobile = $derived($pageData.isMobile)
+  const locale = getLocale()
 
   /**
    * おすすめ動画。サーバーで書き出す HTML はデータの並びのままにし、ブラウザーで並べ替える
@@ -17,35 +18,12 @@
    */
   let recommendedVideos = $state.raw(RECOMMENDED_VIDEOS)
 
-  /** いま再生しているカードの番号。-1 は何も再生していない */
-  let playingIndex = $state(-1)
-  /** 一度でも再生したカードの番号 */
-  let playedIndexes = $state<ReadonlySet<number>>(new Set())
-  /** 人が押して始めたカードの番号。音を出してよいのはこれだけ */
-  let userStartedIndexes = $state<ReadonlySet<number>>(new Set())
-
-  const watcher = new AutoPlayWatcher((playing, played, userStarted) => {
-    playingIndex = playing
-    playedIndexes = new Set(played)
-    userStartedIndexes = new Set(userStarted)
-  })
-
-  $effect(() => () => watcher.destroy())
+  // 画面の真ん中に来たカードを1つだけ鳴らす
+  const { watch, cardState, play } = createAutoPlayGroup()
 
   onMount(() => {
     recommendedVideos = shuffle(RECOMMENDED_VIDEOS)
   })
-
-  /**
-   * カードを見張りに加える。画面の真ん中に来たら1つだけ鳴る
-   * @param element - カードの要素
-   * @param index - カードの番号
-   * @returns 片づけの手続き
-   */
-  const watch = (element: HTMLElement, index: number) => {
-    const unwatch = watcher.watch(element, index)
-    return { destroy: unwatch }
-  }
 </script>
 
 <section class="recommended" class:mobile={isMobile} id="recommended">
@@ -57,14 +35,36 @@
 
     <ul class="cards">
       {#each recommendedVideos as video, index (index)}
+        <!-- 選手かチームの名前 -->
+        {@const name = isIndividualVideo(video)
+          ? localizedName(video.player, locale)
+          : localizedName(video.team, locale)}
+        <!-- 名前の下に出す手がかり。個人は手具と年、団体は年 -->
+        {@const detail = isIndividualVideo(video)
+          ? `${video.apparatus.label()} ${formatYear(video.filmedAt, locale)}`
+          : formatYear(video.filmedAt, locale)}
+        <!-- 団体の出場選手。個人のときは空 -->
+        {@const members = isIndividualVideo(video)
+          ? ''
+          : video.players.map((player) => localizedName(player, locale)).join(', ')}
         <li use:watch={index}>
-          <RecommendedVideoCard
-            {video}
-            playing={playingIndex === index}
-            played={playedIndexes.has(index)}
-            muted={!userStartedIndexes.has(index)}
-            onRequestPlay={() => watcher.play(index)}
-          />
+          <VideoCard
+            videoId={youtubeVideoId(video.embedUrl)}
+            title={name}
+            appearance="raised"
+            {...cardState(index)}
+            onRequestPlay={() => play(index)}
+          >
+            {#snippet words()}
+              <div class="info">
+                <span class="name">{name}</span>
+                <span class="detail">{detail}</span>
+                {#if members}
+                  <span class="members">{members}</span>
+                {/if}
+              </div>
+            {/snippet}
+          </VideoCard>
         </li>
       {/each}
     </ul>
@@ -133,6 +133,37 @@
     display: flex;
     width: 100%;
     justify-content: center;
+  }
+
+  // 名前・手具と年・団体の出場選手を、動画の下に並べる
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-4 $space-size-8;
+    padding: $space-size-12 $space-size-16 $space-size-16;
+    align-items: baseline;
+  }
+
+  .name {
+    min-inline-size: 0;
+    font-size: $font-size-24;
+    font-weight: bold;
+    color: map.get($gray, text);
+    overflow-wrap: anywhere;
+  }
+
+  .detail {
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($gray, light-text);
+  }
+
+  // 出場選手は名前より小さく、必ず次の行へ送る
+  .members {
+    width: 100%;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+    overflow-wrap: anywhere;
   }
 
   .all {

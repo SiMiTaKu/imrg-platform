@@ -66,7 +66,5 @@
   "oshimitsu_empty_back": "探し方をもう一度えらぶ",
   "oshimitsu_filter_nav_label": "絞り込み",
   "oshimitsu_filter_row_content_type": "種類",
-  "oshimitsu_filter_all": "すべて",
-  "oshimitsu_video_play": "{name}の演技を再生する",
-  "oshimitsu_video_again": "もう一度見る"
+  "oshimitsu_filter_all": "すべて"
 }

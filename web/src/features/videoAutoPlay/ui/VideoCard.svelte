@@ -1,4 +1,16 @@
+<script lang="ts" module>
+  /**
+   * カードの外枠の見せ方。
+   *
+   * @remarks
+   * `outlined` は細い枠で地に置く（曲編集・指導）。
+   * `raised` は枠を透かして影で浮かせる（推しミツ！）
+   */
+  export type VideoCardAppearance = 'outlined' | 'raised'
+</script>
+
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { m } from '$lib/paraglide/messages'
   import { youtubeEmbedUrl, youtubeThumbnail } from '../lib/youtube'
 
@@ -10,6 +22,8 @@
     played,
     startedByUser = false,
     aspectRatio = '16 / 9',
+    appearance = 'outlined',
+    words,
     onRequestPlay,
   }: {
     /** 動画の ID */
@@ -40,6 +54,16 @@
      * 使う側のページが載せている動画に合わせて渡す。既定は横向き
      */
     aspectRatio?: string
+    /** カードの外枠の見せ方。既定は細い枠 */
+    appearance?: VideoCardAppearance
+    /**
+     * 動画の下に出す言葉。渡すとこちらを丸ごと使う。
+     *
+     * @remarks
+     * 既定は「札＋名前」。それ以外の並べ方（名前・手具と年・団体の出場選手など）を
+     * 出したいページが、自分のところで組み立てて渡す
+     */
+    words?: Snippet
     /**
      * 再生を頼む
      * @param byUser - 押して頼んだか。押したときだけ音を出す
@@ -48,7 +72,7 @@
   } = $props()
 </script>
 
-<article class="card" class:playing>
+<article class="card" class:playing class:raised={appearance === 'raised'}>
   <div class="screen" style:aspect-ratio={aspectRatio}>
     {#if playing}
       <!-- 勝手に始まるときは音を消す。消さないと、ブラウザーが再生を止める -->
@@ -83,12 +107,16 @@
     {/if}
   </div>
 
-  <div class="words">
-    {#if label}
-      <span class="label">{label}</span>
-    {/if}
-    <h3>{title}</h3>
-  </div>
+  {#if words}
+    {@render words()}
+  {:else}
+    <div class="words">
+      {#if label}
+        <span class="label">{label}</span>
+      {/if}
+      <h3>{title}</h3>
+    </div>
+  {/if}
 </article>
 
 <style lang="scss">
@@ -101,6 +129,14 @@
     border-radius: 8px;
     background: $white;
     transition: border-color 0.15s ease;
+  }
+
+  // 影で浮かせるときは枠を透かす。枠の幅は残すので、再生中に色がついても寸法は動かない
+  .card.raised {
+    box-sizing: border-box;
+    width: 100%;
+    border-color: transparent;
+    box-shadow: $black-box-shadow;
   }
 
   .card.playing {

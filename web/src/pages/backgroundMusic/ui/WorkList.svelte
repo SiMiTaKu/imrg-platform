@@ -4,7 +4,7 @@
   import { apparatusOfSlug } from '@shared/lib/apparatus'
   import { getLocale, localizedText } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
-  import { AutoPlayWatcher, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
+  import { createAutoPlayGroup, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { SectionHeading } from '@widgets/orderService'
   import { WORK_LIST } from '../config/workList'
   import { EDITED_MUSIC_TOTAL, WORKS_HEADING, WORK_VIDEO_ASPECT_RATIO } from '../config/content'
@@ -12,31 +12,8 @@
   const locale = getLocale() as SiteLocale
   const isMobile = $derived($pageData.isMobile)
 
-  /** いま鳴っているカードの番号。-1 は何も鳴っていない */
-  let playingIndex = $state(-1)
-  /** 一度でも再生したカードの番号 */
-  let playedIndexes = $state<ReadonlySet<number>>(new Set())
-  /** 人が押して始めたカードの番号。音を出してよいのはこれだけ */
-  let userStartedIndexes = $state<ReadonlySet<number>>(new Set())
-
-  const watcher = new AutoPlayWatcher((playing, played, userStarted) => {
-    playingIndex = playing
-    playedIndexes = new Set(played)
-    userStartedIndexes = new Set(userStarted)
-  })
-
-  $effect(() => () => watcher.destroy())
-
-  /**
-   * カードを見張りに加える。画面の真ん中に来たら1つだけ鳴る
-   * @param element - カードの要素
-   * @param index - カードの番号
-   * @returns 片づけの手続き
-   */
-  const watch = (element: HTMLElement, index: number) => {
-    const unwatch = watcher.watch(element, index)
-    return { destroy: unwatch }
-  }
+  // 画面の真ん中に来たカードを1つだけ鳴らす
+  const { watch, cardState, play } = createAutoPlayGroup()
 </script>
 
 <section class="work-list" class:mobile={isMobile} id="works">
@@ -54,11 +31,9 @@
             videoId={youtubeVideoId(work.youtube)}
             title={localizedText(work.customerName, locale)}
             label={apparatusOfSlug(work.apparatus).label()}
-            playing={playingIndex === index}
-            played={playedIndexes.has(index)}
-            startedByUser={userStartedIndexes.has(index)}
             aspectRatio={WORK_VIDEO_ASPECT_RATIO}
-            onRequestPlay={() => watcher.play(index)}
+            {...cardState(index)}
+            onRequestPlay={() => play(index)}
           />
         </li>
       {/each}

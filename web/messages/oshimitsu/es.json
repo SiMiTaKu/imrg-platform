@@ -66,7 +66,5 @@
   "oshimitsu_empty_back": "Elegir otra vez cómo buscar",
   "oshimitsu_filter_nav_label": "Filtros",
   "oshimitsu_filter_row_content_type": "Tipo",
-  "oshimitsu_filter_all": "Todos",
-  "oshimitsu_video_play": "Reproducir el ejercicio de {name}",
-  "oshimitsu_video_again": "Ver de nuevo"
+  "oshimitsu_filter_all": "Todos"
 }
