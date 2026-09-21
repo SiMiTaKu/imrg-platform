@@ -530,6 +530,7 @@
     color: inherit;
     border: 0;
     background: none;
+    transition: padding var(--rule-open-close-duration) ease;
     align-items: center;
     text-align: left;
     cursor: pointer;
@@ -600,9 +601,18 @@
     font-size: $font-size-18;
   }
 
+  /*
+    閉じているあいだは上下を詰める。閉じた見出しだけが並ぶ一覧では、
+    見出しごとの余白がそのまま縦の長さになり、目当ての章まで遠くなるため
+  */
   .chapter-toggle {
-    padding: $space-size-20 $space-size-4;
+    padding: $space-size-8 $space-size-4;
     font-weight: bold;
+  }
+
+  /* 開いているあいだは元の余白に戻し、中身と見出しが窮屈にならないようにする */
+  .chapter-toggle[aria-expanded='true'] {
+    padding: $space-size-20 $space-size-4;
   }
 
   .chapter-toggle .mark {
@@ -623,12 +633,17 @@
     font-size: $font-size-16;
   }
 
+  /* 章と同じく、閉じているあいだは上下を詰める */
   .article-toggle {
-    padding: $space-size-12 $space-size-8;
+    padding: $space-size-8;
     font-weight: bold;
     border-inline-start: 4px solid map.get($sky-blue, border);
     border-radius: 4px;
     background: map.get($sky-blue, background);
+  }
+
+  .article-toggle[aria-expanded='true'] {
+    padding: $space-size-12 $space-size-8;
   }
 
   .article-toggle .mark {
