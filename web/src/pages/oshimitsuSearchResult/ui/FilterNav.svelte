@@ -113,12 +113,16 @@
     align-items: stretch;
   }
 
+  // 「動画種別」「手具」の見出し。言語によって語の長さが違う（Apparatus・Предмет など）。
+  // 幅を 3em で固定していたため、日本語以外では1〜2文字ずつ折り返して潰れていた。
+  // いちばん長い言語でも1行に収まる幅を取り、折り返しは止める
   .row-label {
     flex: none;
-    width: 3em;
+    min-width: 7em;
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, light-text);
+    white-space: nowrap;
   }
 
   ul {
