@@ -313,20 +313,20 @@ export const SCORING_GENERAL_ARTICLES: RuleArticle[] = [
         },
         content: {
           ja: `審判員は、次の宣誓文を厳粛に宣誓する。
-              
+
 『私は、審判員の資格において、スポーツの品位および誠実の精神を持ってのみ行動すること。ならびに、人物・所属を念頭に置かず、実施された演技を良心的に審判することを誓います。』
-              `,
+`,
           en: `Judges solemnly take the following oath.
 
 "As a judge, I promise to act only in the spirit of sporting dignity and integrity, and to judge the routines performed conscientiously, without regard to the person or the organization."`,
           zh: `裁判员庄严宣读下列誓词。
-              
+
 “我以裁判员的资格，保证仅以体育的品格和诚实的精神行动。并且不顾及人物、所属单位，本着良心对所完成的成套动作进行裁判。”
-              `,
+`,
           ko: `심판원은 다음의 선서문을 엄숙히 선서한다.
-              
+
 『저는 심판원의 자격에 있어서 스포츠의 품위 및 성실의 정신으로만 행동할 것, 그리고 인물·소속을 염두에 두지 아니하고 실시된 연기를 양심적으로 심판할 것을 맹세합니다.』
-              `,
+`,
           es: `Los jueces prestan solemnemente el siguiente juramento.
 
 «En mi condición de juez, prometo actuar únicamente con espíritu de dignidad y honradez deportivas, y juzgar a conciencia los ejercicios realizados, sin atender a las personas ni a la entidad a la que pertenecen.»
@@ -667,17 +667,17 @@ export const SCORING_GENERAL_ARTICLES: RuleArticle[] = [
         },
         content: {
           ja: `補審は審判業務の補助を務める。また緊急の場合は審判交代に応じる。
-                
+
 【上級審判部】
 審判部長、ＦＩＧ技術委員（ＪＧＡ選出）が上級審判部を構成する。但し、必要に応じて審判部が指定するエキスパート１名（審判部員メンバー、または熟練審判員）を選出することができる。（合計２〜３名）
 上級審判部長は部員の互選のより定める。
 上級審判部の職務は：
-                
+
 1. 競技を監督する事と反則や競技執行に影響を及ぼす特別な状況に対処する事
 2. 審判員一人または数名による重大な審判エラーがある場合、必要な処置をとる事
 3. 継続して審判員が授与する点数を最新して業務が不十分または不公平と思われる審判員に対して警告を発する事
 4. 警告の不満足な結果の後、審判人員を排除して交賛する事
-                
+
 【裁定審判部】内規
 裁定審判部は、理事会メンバー２名（うち一人は部長を務める）と審判部メンバー１名（採点業務に関与していないも者）または審判部が指名したエキスパート審判員で構成される。（合計３名）
 理事会のメンバーは理事会が指名し、審判部メンバーは関連審判部が指名する。
@@ -705,17 +705,17 @@ The duties of the Appeals Jury are:
 1. After the competition, at an appropriate time, the Appeals Jury handles petitions from judges who were warned or removed by the Superior Jury.
 2. The Appeals Jury also monitors whether the statutes, the competition rules, and the rules and guidelines are observed. In the case of a violation, it reports to the body responsible for sanctions.`,
           zh: `替补裁判担任裁判工作的辅助。另外在紧急情况下接受裁判的更换。
-                
+
 【上级裁判部】
 裁判部长、FIG技术委员（由JGA选出）组成上级裁判部。但可根据需要选出由裁判部指定的专家1名（裁判部成员，或熟练裁判员）。（合计2—3名）
 上级裁判部长由部员互选决定。
 上级裁判部的职务为：
-                
+
 1. 监督比赛，并处理犯规以及影响比赛执行的特殊情况
 2. 当一名或数名裁判员出现重大裁判失误时，采取必要的措施
 3. 持续复核裁判员所给出的分数，对工作被认为不充分或不公正的裁判员发出警告
 4. 警告后结果仍不令人满意时，将该裁判人员排除并予以更换
-                
+
 【裁定裁判部】内部规定
 裁定裁判部由理事会成员2名（其中一人担任部长）和裁判部成员1名（未参与评分工作者），或由裁判部指名的专家裁判员组成。（合计3名）
 理事会的成员由理事会指名，裁判部成员由相关裁判部指名。
@@ -724,17 +724,17 @@ The duties of the Appeals Jury are:
 1. 裁定裁判部在比赛结束后的适当时候，处理被上级裁判部警告或排除的裁判员提出的申诉。
 2. 裁定裁判部还监督章程、竞赛规则、规则与指南的条件是否得到遵守。发生犯规时，裁定裁判部向负责处分的机构报告。`,
           ko: `보조 심판은 심판 업무의 보조를 맡는다. 또한 긴급한 경우에는 심판 교체에 응한다.
-                
+
 【상급 심판부】
 심판부장, FIG 기술위원(JGA 선출)이 상급 심판부를 구성한다. 다만 필요에 따라 심판부가 지정하는 전문가 1명(심판부원 멤버 또는 숙련 심판원)을 선출할 수 있다. (합계 2~3명)
 상급 심판부장은 부원의 호선으로 정한다.
 상급 심판부의 직무는:
-                
+
 1. 경기를 감독하는 것과 반칙이나 경기 운영에 영향을 미치는 특별한 상황에 대처하는 것
 2. 심판원 1명 또는 여러 명에 의한 중대한 심판 오류가 있는 경우, 필요한 조치를 취하는 것
 3. 계속하여 심판원이 부여하는 점수를 확인하여 업무가 불충분하거나 불공평하다고 여겨지는 심판원에 대하여 경고를 발하는 것
 4. 경고 후에도 만족스러운 결과에 이르지 못한 경우, 해당 심판원을 배제하고 교체하는 것
-                
+
 【재정 심판부】내규
 재정 심판부는 이사회 멤버 2명(그중 1명은 부장을 맡는다)과 심판부 멤버 1명(채점 업무에 관여하지 아니한 자) 또는 심판부가 지명한 전문 심판원으로 구성된다. (합계 3명)
 이사회의 멤버는 이사회가 지명하고, 심판부 멤버는 관련 심판부가 지명한다.
@@ -1011,7 +1011,7 @@ Pour la composition et l'exécution séparément, la note la plus haute et la no
 
 2. 演技時間が下記に満たなかった場合は得点を次の通りにする。
 団体競技　２分３０秒　　　個人競技　１分００秒
-【得点：構成・実施とも0．00点】`,
+【得点：構成・実施とも0.00点】`,
           en: `1. If the duration in Article 47 of the competition rules is not respected, a deduction is applied whether the routine is too long or too short.
 [Deduction by the composition chief judge: 0.005 points per second]
 
@@ -1070,7 +1070,7 @@ Compétition par ensembles : 2 min 30 s    Compétition individuelle : 1 min 00 
         content: {
           ja: `入場から演技開始までの時間が次の時間を超えた場合は減点とする。
 団体競技・・・３０秒　　　個人競技・・・２０秒
-【実施主任審判より減点・・・0．20点】`,
+【実施主任審判より減点・・・0.20点】`,
           en: `A deduction is applied if the time from entering the floor area to the start of the routine exceeds the following.
 Group competition: 30 s    Individual competition: 20 s
 [Deduction by the execution chief judge: 0.20 points]`,
@@ -1107,7 +1107,7 @@ Compétition par ensembles : 30 s    Compétition individuelle : 20 s
         },
         content: {
           ja: `演技面への入退場は、徒歩または駆け足で速やかに行わなければならない。
-【違反した場合　実施審判より減点・・・0．20点】`,
+【違反した場合　実施審判より減点・・・0.20点】`,
           en: `Gymnasts must enter and leave the floor area promptly, walking or running.
 [Violation: deduction by the execution judges, 0.20 points]`,
           zh: `进入和退出场地必须以步行或小跑迅速进行。
@@ -1144,16 +1144,16 @@ Compétition par ensembles : 30 s    Compétition individuelle : 20 s
 
 2. 保持された手具がラインオーバーした場合は、身体の一部として扱い減点する。" +
 
-3. 片足、両足または身体の一部がラインオーバーをした場合。【減点：１回につき・・・0．10点】" +
+3. 片足、両足または身体の一部がラインオーバーをした場合。【減点：１回につき・・・0.10点】" +
 
 4. 団体競技について、何人かの競技者が同時にラインオーバーをした場合。
-【減点：１名につき・・・0．10点】
+【減点：１名につき・・・0.10点】
 
 5. 手具が身体から離れてラインオーバーした場合。
-【減点：１名につき・・・0．10点】
+【減点：１名につき・・・0.10点】
 
 6. １回の過失により身体や手具が、繰り返しラインオーバーをした場合。
-【減点：身体または各手具１回につき・・・0．10点】`,
+【減点：身体または各手具１回につき・・・0.10点】`,
           en: `Out of bounds is treated as follows, and the deduction is applied by the execution chief judge.
 * In items 5 and 6, "each apparatus" means each of the two apparatus in a set.
 
@@ -1295,15 +1295,15 @@ Franchir la ligne en l'air n'est pas pénalisé.
         },
         content: {
           ja: `試合着に関する違反は以下のとおり減点する。
-                
+
 1. 競技規則39条に違反した場合（含所属マーク）ただし、プリント柄の若干の違いは減点しない。
 【構成主任審判より減点：１名につき・・・0.20点】
 
 2. 破れた服装で演技した場合。ただし演技中に敗れたものは減点しない。
-【実施審判より減点：１名につき・・・0．10点】
+【実施審判より減点：１名につき・・・0.10点】
 
 3. 著しく服装が乱れた場合。
-【実施審判より減点：１名につき・・・0．10点】`,
+【実施審判より減点：１名につき・・・0.10点】`,
           en: `Violations concerning competition attire are penalized as follows.
 
 1. Violation of Article 39 of the competition rules (including the emblem). Slight differences in printed patterns are not penalized.
@@ -1315,7 +1315,7 @@ Franchir la ligne en l'air n'est pas pénalisé.
 3. Attire that becomes badly disordered.
 [Deduction by the execution judges: 0.10 points per gymnast]`,
           zh: `与比赛服有关的违例按以下规定扣分。
-                
+
 1. 违反竞赛规则第39条的情况（含所属标志）。但印花图案的些许差异不予扣分。
 【由编排主裁判扣分：每1名……0.20分】
 
@@ -1325,7 +1325,7 @@ Franchir la ligne en l'air n'est pas pénalisé.
 3. 服装明显凌乱的情况。
 【由完成裁判扣分：每1名……0.10分】`,
           ko: `경기복에 관한 위반은 다음과 같이 감점한다.
-                
+
 1. 경기 규칙 제39조를 위반한 경우(소속 마크 포함). 다만 프린트 무늬의 약간의 차이는 감점하지 아니한다.
 【구성 주임 심판으로부터 감점: 1명당…0.20점】
 
@@ -1390,11 +1390,11 @@ Franchir la ligne en l'air n'est pas pénalisé.
         content: {
           ja: `競技規則第45条に基づき、１から４の減点をする。
 
-1. 伴奏音楽がなかった場合。　【構成主任審判より減点：0．50点】
+1. 伴奏音楽がなかった場合。　【構成主任審判より減点：0.50点】
 
-2. 入退場に伴奏音楽をつけた場合。　【構成主任審判員より減点：0．20点】
+2. 入退場に伴奏音楽をつけた場合。　【構成主任審判員より減点：0.20点】
 
-3. 音楽に３秒以上の停止があった場合　【構成審判より減点：0．20点】
+3. 音楽に３秒以上の停止があった場合　【構成審判より減点：0.20点】
 
 4. 組織者側に責任のない理由で音楽が中断された場合は、原則として復行できない。
 中断があった場合、審判長と競技部長は原因を速やかに確認し処理に当たる。`,
@@ -1484,7 +1484,7 @@ En cas d'interruption, le président du jury et le directeur de la compétition 
         content: {
           ja: `1. 演技途中で手具が破損した場合、競技者は手部の差し替えをしなければならない。
 2. 手具の差し替えのための場外は減点の対象とならない。
-3. 差し変えのための中断は、演技の中断として減点する。　【実施審判より減点：１秒につき・・・0．10点】
+3. 差し変えのための中断は、演技の中断として減点する。　【実施審判より減点：１秒につき・・・0.10点】
 4. 破損した後、手具の差し替えを行わなかった場合は、破損後の演技の価値はないものとして採点する。
 5. 手具が演技終了時に破損した場合は、手具に触れずに終了したものとして扱う。
 6. 演技中の手具が破損した場合その演技をやり直すことはできない。
@@ -1561,10 +1561,10 @@ En cas d'interruption, le président du jury et le directeur de la compétition 
         },
         content: {
           ja: `1. 競技者が競技規則第41条に違反した場合
-【実施審判より減点：0．20点】
+【実施審判より減点：0.20点】
 
 2. 監督者が競技規則第42条に違反した場合は厳重に注意をした上で減点や処分を決める。
-【実施主任審判員より減点・・・0．20点】`,
+【実施主任審判員より減点・・・0.20点】`,
           en: `1. A gymnast violates Article 41 of the competition rules.
 [Deduction by the execution judges: 0.20 points]
 

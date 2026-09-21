@@ -128,14 +128,14 @@ export const INDIVIDUAL_SCORING_ARTICLES: RuleArticle[] = [
             },
             element: {
               ja: `個人競技の難度要素としては以下の難度を入れなければならない。
-                  
-違反した場合　　減点　
+
+違反した場合　　減点
 Ｂ難度不足　１つにつき・・・0.10点
 Ｃ難度不足　１つにつき・・・0.30点
 Ｄ難度不足　１つにつき・・・0.50点
 
 ※要求された数以上の難度は、ランク下の難度として数えることができる。
-                  `,
+`,
               en: `An individual routine must include the following difficulties.
 
 Violation: deductions
@@ -145,23 +145,23 @@ Each missing D difficulty: 0.50 points
 
 * Difficulties beyond the required number can be counted as difficulties of a lower rank.`,
               zh: `个人比赛的难度要素必须编入以下难度。
-                  
-违反时　　扣分　
+
+违反时　　扣分
 B难度不足　每缺1个……0.10分
 C难度不足　每缺1个……0.30分
 D难度不足　每缺1个……0.50分
 
 ※超过要求数量的难度，可以作为低一级的难度计算。
-                  `,
+`,
               ko: `개인 경기의 난도 요소로는 다음 난도를 넣어야 한다.
-                  
+
 위반한 경우  감점
 B난도 부족 1개당...0.10점
 C난도 부족 1개당...0.30점
 D난도 부족 1개당...0.50점
 
 ※요구된 수보다 많은 난도는 한 단계 아래 등급의 난도로 셀 수 있다.
-                  `,
+`,
               es: `En la competición individual deben incluirse como elementos de dificultad las dificultades siguientes.
 
 En caso de incumplimiento: penalización
@@ -631,7 +631,7 @@ D कठिनाई की कमी  प्रत्येक के लिए
 
 【ロープの様々な跳び】
 前回し跳び、後ろ回し跳びが２回連続でなかった場合、移動をともなう跳びの距離が短かった場合は要素としては扱わない。
-                  `,
+`,
               en: `[Throws]
 
 1. A throw must rise at least 2 m from the point of release. Lower throws are not treated as throws.
@@ -658,7 +658,7 @@ Forward and backward jumps that are not performed twice in a row, and traveling 
 
 【绳的各种跳】
 向前绕跳、向后绕跳未连续2次时，以及伴随移动的跳距离过短时，不作为要素处理。
-                  `,
+`,
               ko: `【던져 올리기】
 
 1. 수구를 던져 올리는 높이는 경기자가 던진 지점에서 최저 2m 이상으로 한다. 낮은 경우에는 던져 올리기로 인정하지 않는다.
@@ -672,7 +672,7 @@ Forward and backward jumps that are not performed twice in a row, and traveling 
 
 【줄의 다양한 뛰기】
 앞돌리기 뛰기, 뒤돌리기 뛰기가 2회 연속이 아닌 경우, 이동을 동반한 뛰기의 거리가 짧은 경우에는 요소로 인정하지 않는다.
-                  `,
+`,
               es: `[Lanzamientos]
 
 1. El aparato debe elevarse como mínimo 2 m por encima del punto desde el que lo lanza el gimnasta. Si el lanzamiento es más bajo, no se considera lanzamiento.
@@ -770,7 +770,7 @@ Les sauts en rotation avant et arrière qui ne sont pas exécutés deux fois de 
 演技中断　　実施審判からの減点・・・0.50点
 場外　　　実施主任審判から減点・・・0.20点
 計 1.00点
-                  `,
+`,
               en: `The routine may end anywhere on the floor area, but the gymnast must hold a final pose touching the apparatus and stop moving completely.
 [Violation: deduction 0.30 points]
 
@@ -787,7 +787,7 @@ Total: 1.00 point`,
 中断成套　　完成裁判员的扣分……0.50分
 出界　　　完成主裁判员的扣分……0.20分
 合计 1.00分
-                  `,
+`,
               ko: `연기의 종료는 연기 면의 어느 위치에서 하여도 좋으나, 수구에 닿은 상태로 종료 포즈를 취하고 완전히 움직임을 멈추고 끝내야 한다.
 【위반한 경우 감점...0.30점】
 
@@ -796,7 +796,7 @@ Total: 1.00 point`,
 연기 중단  실시 심판의 감점...0.50점
 장외  실시 주임 심판의 감점...0.20점
 계 1.00점
-                  `,
+`,
               es: `El ejercicio puede terminar en cualquier punto del practicable, pero el gimnasta debe adoptar la pose final en contacto con el aparato y detener por completo el movimiento.
 [En caso de incumplimiento: penalización de 0.30 puntos]
 
@@ -850,7 +850,7 @@ Total : 1,00 point`,
 1. 徒手系要素をともなって実施される難度  第71条による。
 2. 転回系要素をともなって実施される難度  第69条による。
 3. 投げ受けをともなって実施される難度  第70条による。
-                    
+
 【各種要素の組み合わせ】
 1. 各運動の組み合わせによる技術的価値
 演技は各運動の組み合わせ価値によっても技術的価値を異にする。
@@ -900,7 +900,7 @@ Throws and catches must be performed without stopping the flow of apparatus hand
 1. 伴随徒手要素完成的难度  依据第71条。
 2. 伴随翻腾要素完成的难度  依据第69条。
 3. 伴随抛接完成的难度  依据第70条。
-                    
+
 【各种要素的组合】
 1. 各动作组合产生的技术价值
 成套动作的技术价值也因各动作的组合价值而有所不同。
@@ -925,7 +925,7 @@ Throws and catches must be performed without stopping the flow of apparatus hand
 1. 신체 계열 요소를 동반하여 실시되는 난도  제71조에 따른다.
 2. 공중돌기 계열 요소를 동반하여 실시되는 난도  제69조에 따른다.
 3. 던져 받기를 동반하여 실시되는 난도  제70조에 따른다.
-                    
+
 【각종 요소의 조합】
 1. 각 운동의 조합에 따른 기술적 가치
 연기는 각 운동의 조합 가치에 따라서도 기술적 가치가 달라진다.
@@ -1628,7 +1628,7 @@ L'engin doit être rattrapé avec naturel, au rythme de sa chute, par la partie 
             },
             element: {
               ja: `身体の動きの技術は、次の項目で採点される。
-                  
+
 1. 徒手系の技術
 徒手系は、美しい姿勢と柔軟性をもって行われ、みぞおちから始まる動きの自然性や深さ、大きさ、動きの間やアクセント、跳躍の高さ、そしてスピードに変化があり、身体の四肢の部分まで制御された動きでなければならない。
 
@@ -1648,7 +1648,7 @@ Tumbling must be dynamic, with speed and height, an accurate axis of rotation an
 3. Rhythmic execution
 The routine must be performed lightly and expansively.`,
               zh: `身体动作的技术按以下项目评分。
-                  
+
 1. 徒手的技术
 徒手动作必须以优美的姿势与柔韧性完成，从心窝开始的动作要有自然性、深度与幅度，动作的间歇与重音、跳跃的高度以及速度要有变化，并且必须是控制到身体四肢末端的动作。
 
@@ -1658,7 +1658,7 @@ The routine must be performed lightly and expansively.`,
 3. 有节奏的完成
 成套动作必须轻快而舒展地完成。`,
               ko: `신체 움직임의 기술은 다음 항목으로 채점된다.
-                  
+
 1. 신체 계열의 기술
 신체 계열은 아름다운 자세와 유연성을 가지고 이루어지며, 명치에서 시작되는 움직임의 자연성과 깊이, 크기, 움직임의 간격과 악센트, 도약의 높이, 그리고 스피드에 변화가 있고, 신체의 사지 끝부분까지 제어된 움직임이어야 한다.
 

@@ -179,7 +179,7 @@ export const GROUP_SCORING_ARTICLES: RuleArticle[] = [
 2. 難度要素の価値とレベル
 団体競技の難度要素としては以下の難度を入れなければならない。
 
-【違反した場合　　減点：　
+【違反した場合　　減点：
 Ｂ難度不足　１つにつき・・・0.10点
 Ｃ難度不足　１つにつき・・・0.30点
 Ｄ難度不足　１つにつき・・・0.50点】
@@ -203,7 +203,7 @@ Each missing D difficulty: 0.50 points]
 2. 难度要素的价值与等级
 团体比赛的难度要素必须编入以下难度。
 
-【违反时　　扣分：　
+【违反时　　扣分：
 B难度不足　每1个……0.10分
 C难度不足　每1个……0.30分
 D难度不足　每1个……0.50分】
@@ -215,7 +215,7 @@ D难度不足　每1个……0.50分】
 2. 난도 요소의 가치와 레벨
 단체 경기의 난도 요소로서 다음의 난도를 넣어야 한다.
 
-【위반한 경우  감점: 
+【위반한 경우  감점:
 B 난도 부족 1개당...0.10점
 C 난도 부족 1개당...0.30점
 D 난도 부족 1개당...0.50점】
@@ -779,7 +779,7 @@ Le groupe d'éléments de tumbling de base 3 peut y figurer jusqu'à deux fois.
 
 【難度の数とレベル】
 第28条による。
-                      
+
 【難度要素】
 1. 徒手系要素をともなって実施される難度
 第66条による。
@@ -788,7 +788,7 @@ Le groupe d'éléments de tumbling de base 3 peut y figurer jusqu'à deux fois.
 第67条による。
 
 【各種要素の組み合わせ】
-1. 各運動の組み合わせによる技術的価値　
+1. 各運動の組み合わせによる技術的価値
 演技は各運動の組み合わせによっても技術価値を異にする。
 
 2. 難度要素の同一性
@@ -827,7 +827,7 @@ Difficulty elements must be chosen according to the gymnasts' ability.`,
 
 【难度的数量与等级】
 依据第28条。
-                      
+
 【难度要素】
 1. 伴随徒手类要素完成的难度
 依据第66条。
@@ -836,7 +836,7 @@ Difficulty elements must be chosen according to the gymnasts' ability.`,
 依据第67条。
 
 【各类要素的组合】
-1. 各动作组合所产生的技术价值　
+1. 各动作组合所产生的技术价值
 成套动作的技术价值也因各动作的组合方式而不同。
 
 2. 难度要素的同一性
@@ -851,7 +851,7 @@ Difficulty elements must be chosen according to the gymnasts' ability.`,
 
 【난도의 수와 레벨】
 제28조에 따른다.
-                      
+
 【난도 요소】
 1. 신체 요소를 수반하여 실시되는 난도
 제66조에 따른다.
@@ -860,7 +860,7 @@ Difficulty elements must be chosen according to the gymnasts' ability.`,
 제67조에 따른다.
 
 【각종 요소의 조합】
-1. 각 운동의 조합에 의한 기술적 가치 
+1. 각 운동의 조합에 의한 기술적 가치
 연기는 각 운동의 조합에 따라서도 기술 가치가 달라진다.
 
 2. 난도 요소의 동일성
@@ -1168,7 +1168,7 @@ Le dynamisme est l'impression de force exprimée par les variations de vitesse e
             },
             element: {
               ja: `上記に欠点を示していない構成の減点は次の表による。
-                  
+
 構成欠点基準
 【大欠点　　著しく欠けた場合　　　　減点・・・0.30点】
 【中欠点　　欠けた場合　　　　　　　減点・・・0.20点】
@@ -1186,7 +1186,7 @@ Composition fault standards
 
 Table of composition faults`,
               zh: `以上未列出缺点的编排扣分依下表。
-                  
+
 编排缺点标准
 【大缺点　　明显欠缺时　　　　扣分……0.30分】
 【中缺点　　欠缺时　　　　　　　扣分……0.20分】
@@ -1195,7 +1195,7 @@ Table of composition faults`,
 
 编排缺点表`,
               ko: `위에 결점을 제시하지 않은 구성의 감점은 다음 표에 따른다.
-                  
+
 구성 결점 기준
 【대결점   현저히 부족한 경우    감점...0.30점】
 【중결점   부족한 경우       감점...0.20점】
@@ -1651,7 +1651,7 @@ L'exercice exige une expression artistique. L'artistique consiste à utiliser la
             },
             element: {
               ja: `上記に示していない実施の減点は次の表による。実施欠点基準
-                  
+
 実施欠点基準
 【大欠点　　著しく欠けた場合　　　　減点・・・0.30点】
 【中欠点　　欠けた場合　　　　　　　減点・・・0.20点】
@@ -1673,7 +1673,7 @@ Table of execution faults
 
 Execution deductions for handstands, balances and flexibility`,
               zh: `以上未列出的完成扣分依下表。完成缺点标准
-                  
+
 完成缺点标准
 【大缺点　　明显欠缺时　　　　扣分……0.30分】
 【中缺点　　欠缺时　　　　　　　扣分……0.20分】
@@ -1684,7 +1684,7 @@ Execution deductions for handstands, balances and flexibility`,
 
 倒立、平衡、柔韧的完成扣分`,
               ko: `위에 제시하지 않은 실시의 감점은 다음 표에 따른다. 실시 결점 기준
-                  
+
 실시 결점 기준
 【대결점   현저히 부족한 경우    감점...0.30점】
 【중결점   부족한 경우       감점...0.20점】
