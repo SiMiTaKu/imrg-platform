@@ -58,6 +58,8 @@
   "decorating_apparatus_contact_note": "Esto lo lleva una sola persona, así que la respuesta puede tardar unos días. El presupuesto es gratuito.",
   "decorating_apparatus_cross_link_label": "También editamos música",
   "decorating_apparatus_cross_link_body": "Montamos tus canciones favoritas en un solo tema que sigue tu ejercicio. Desde {price} por tema.",
+  "decorating_apparatus_cross_link_coaching_label": "También damos clases y coreografiamos",
+  "decorating_apparatus_cross_link_coaching_body": "Creamos el ejercicio desde cero, pulimos el que ya tienes o trabajamos desde la base. En línea o presencialmente en tu gimnasio.",
   "decorating_apparatus_work_zoom_label": "Ampliar: {alt}",
   "decorating_apparatus_work_flip_hint": "Pulsa para otro ángulo",
   "decorating_apparatus_viewer_count": "Trabajo {work} — foto {index} de {total}",

@@ -58,6 +58,8 @@
   "decorating_apparatus_contact_note": "個人で運営しているため、返事に数日いただくことがあります。見積もりまでは無料です。",
   "decorating_apparatus_cross_link_label": "曲編集も承っています",
   "decorating_apparatus_cross_link_body": "演技の構成に合わせて、好きな曲を1曲に組み上げます。1曲 {price}〜。",
+  "decorating_apparatus_cross_link_coaching_label": "指導・演技構成も承っています",
+  "decorating_apparatus_cross_link_coaching_body": "演技の構成を作る、いまの演技を直す、基本からみる。オンラインでも、会場へ出向く形でも受けています。",
   "decorating_apparatus_work_zoom_label": "{alt}を大きく見る",
   "decorating_apparatus_work_flip_hint": "押すと別の角度",
   "decorating_apparatus_viewer_count": "作品 {work}／{index} 枚目（全 {total} 枚）",

@@ -58,6 +58,8 @@
   "decorating_apparatus_contact_note": "This is a one-person operation, so a reply can take a few days. Quotes are free.",
   "decorating_apparatus_cross_link_label": "We also edit music",
   "decorating_apparatus_cross_link_body": "We build your favorite tracks into a single piece that follows your routine. From {price} per piece.",
+  "decorating_apparatus_cross_link_coaching_label": "We also coach and choreograph",
+  "decorating_apparatus_cross_link_coaching_body": "We build routines from scratch, polish the one you have, or work from the basics up. Online or in person at your gym.",
   "decorating_apparatus_work_zoom_label": "Enlarge: {alt}",
   "decorating_apparatus_work_flip_hint": "Tap for another angle",
   "decorating_apparatus_viewer_count": "Work {work} — photo {index} of {total}",

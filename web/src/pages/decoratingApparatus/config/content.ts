@@ -143,8 +143,15 @@ export const CONTACT = {
 export const CROSS_LINK_PRICE_PER_MUSIC = 5000
 
 /** もう一方の依頼（曲編集）への案内 */
-export const CROSS_LINK = {
+export const CROSS_LINK_BACKGROUND_MUSIC = {
   label: m.decorating_apparatus_cross_link_label,
   href: ROUTES.backgroundMusic,
   body: m.decorating_apparatus_cross_link_body,
+} as const
+
+/** 指導依頼への案内 */
+export const CROSS_LINK_COACHING = {
+  label: m.decorating_apparatus_cross_link_coaching_label,
+  href: ROUTES.coaching,
+  body: m.decorating_apparatus_cross_link_coaching_body,
 } as const

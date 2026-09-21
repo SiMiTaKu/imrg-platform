@@ -58,6 +58,8 @@
   "decorating_apparatus_contact_note": "Tout est géré par une seule personne : la réponse peut prendre quelques jours. Le devis est gratuit.",
   "decorating_apparatus_cross_link_label": "Nous montons aussi la musique",
   "decorating_apparatus_cross_link_body": "Nous assemblons vos morceaux préférés en une seule bande-son qui suit votre exercice. À partir de {price} le morceau.",
+  "decorating_apparatus_cross_link_coaching_label": "Nous entraînons et chorégraphions aussi",
+  "decorating_apparatus_cross_link_coaching_body": "Nous construisons l’exercice de zéro, retravaillons celui que vous avez, ou reprenons les bases. En ligne comme sur place, dans votre salle.",
   "decorating_apparatus_work_zoom_label": "Agrandir : {alt}",
   "decorating_apparatus_work_flip_hint": "Appuyez pour un autre angle",
   "decorating_apparatus_viewer_count": "Réalisation {work} — photo {index} sur {total}",

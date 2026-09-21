@@ -58,6 +58,8 @@
   "decorating_apparatus_contact_note": "Проект ведёт один человек, поэтому ответ может занять несколько дней. Смета бесплатна.",
   "decorating_apparatus_cross_link_label": "Мы также монтируем музыку",
   "decorating_apparatus_cross_link_body": "Собираем любимые треки в одну композицию под ваше упражнение. От {price} за композицию.",
+  "decorating_apparatus_cross_link_coaching_label": "Мы также тренируем и ставим композиции",
+  "decorating_apparatus_cross_link_coaching_body": "Составим композицию с нуля, доведём до ума уже готовую или разберём всё с основ. Работаем онлайн и с выездом в зал.",
   "decorating_apparatus_work_zoom_label": "Увеличить: {alt}",
   "decorating_apparatus_work_flip_hint": "Нажмите — другой ракурс",
   "decorating_apparatus_viewer_count": "Работа {work} — фото {index} из {total}",

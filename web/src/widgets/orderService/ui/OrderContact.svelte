@@ -37,6 +37,11 @@
     character: CharacterProfile
     /** もう一方の依頼への案内。省くと出さない */
     crossLink?: OrderContactCrossLink
+    /**
+     * ほかの依頼への案内をまとめて並べるとき。省くと出さない。
+     * `crossLink` を渡していれば、そのあとに続けて並べる
+     */
+    crossLinks?: readonly OrderContactCrossLink[]
   }
 
   const {
@@ -50,9 +55,13 @@
     note,
     character,
     crossLink,
+    crossLinks,
   }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
+
+  // 1つだけ渡す形と、まとめて渡す形のどちらでも同じ並びにする
+  const links = $derived([...(crossLink ? [crossLink] : []), ...(crossLinks ?? [])])
 </script>
 
 <section class="contact" class:mobile={isMobile} id="contact">
@@ -79,13 +88,19 @@
       </div>
     </div>
 
-    {#if crossLink}
-      <!-- もう一方の依頼も受けていることを、最後にもう一度知らせる -->
-      <a class="cross" href={crossLink.href}>
-        <span class="cross-label">{crossLink.label}</span>
-        <span class="cross-body">{crossLink.body}</span>
-        <span class="cross-arrow" aria-hidden="true">→</span>
-      </a>
+    {#if links.length > 0}
+      <!-- ほかの依頼も受けていることを、最後にもう一度知らせる -->
+      <ul class="crosses">
+        {#each links as link (link.href)}
+          <li>
+            <a class="cross" href={link.href}>
+              <span class="cross-label">{link.label}</span>
+              <span class="cross-body">{link.body}</span>
+              <span class="cross-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        {/each}
+      </ul>
     {/if}
   </div>
 </section>
@@ -190,6 +205,17 @@
     overflow-wrap: anywhere;
   }
 
+  .crosses {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-12;
+    width: 100%;
+    max-width: 720px;
+    margin: $space-size-16 auto 0;
+    padding: 0;
+    list-style: none;
+  }
+
   // 名前・説明・矢印を1行に並べる。3行に積むと札が無駄に高くなる
   .cross {
     display: flex;
@@ -198,8 +224,6 @@
     align-items: baseline;
     box-sizing: border-box;
     width: 100%;
-    max-width: 720px;
-    margin: $space-size-16 auto 0;
     padding: $space-size-12 $space-size-20;
     color: inherit;
     border: 1px solid map.get($gray, 100);

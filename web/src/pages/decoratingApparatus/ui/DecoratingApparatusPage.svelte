@@ -13,7 +13,8 @@
   } from '@widgets/orderService'
   import {
     CONTACT,
-    CROSS_LINK,
+    CROSS_LINK_BACKGROUND_MUSIC,
+    CROSS_LINK_COACHING,
     CROSS_LINK_PRICE_PER_MUSIC,
     FLOW_HEADING,
     FLOW_MESSAGE_LINES,
@@ -101,11 +102,20 @@
     contactLabel={m.contact_button()}
     note={CONTACT.note()}
     character={guide}
-    crossLink={{
-      label: CROSS_LINK.label(),
-      href: localizeHref(CROSS_LINK.href),
-      body: CROSS_LINK.body({ price: formatYen(CROSS_LINK_PRICE_PER_MUSIC, locale) }),
-    }}
+    crossLinks={[
+      {
+        label: CROSS_LINK_BACKGROUND_MUSIC.label(),
+        href: localizeHref(CROSS_LINK_BACKGROUND_MUSIC.href),
+        body: CROSS_LINK_BACKGROUND_MUSIC.body({
+          price: formatYen(CROSS_LINK_PRICE_PER_MUSIC, locale),
+        }),
+      },
+      {
+        label: CROSS_LINK_COACHING.label(),
+        href: localizeHref(CROSS_LINK_COACHING.href),
+        body: CROSS_LINK_COACHING.body(),
+      },
+    ]}
   />
 </article>
 
