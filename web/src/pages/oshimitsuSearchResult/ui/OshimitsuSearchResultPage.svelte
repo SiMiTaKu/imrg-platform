@@ -91,13 +91,9 @@
 </script>
 
 {#snippet keywordActions()}
-  <button type="button" class="primary" onclick={() => (keyword = '')}>
-    {m.oshimitsu_keyword_clear()}
-  </button>
+  <Button onclick={() => (keyword = '')} block>{m.oshimitsu_keyword_clear()}</Button>
   {#if hasMore}
-    <button type="button" class="secondary" onclick={getMoreVideos}>
-      {m.oshimitsu_load_more()}
-    </button>
+    <Button variant="outline" onclick={getMoreVideos} block>{m.oshimitsu_load_more()}</Button>
   {/if}
 {/snippet}
 
@@ -326,34 +322,6 @@
     flex: none;
     font-size: $font-size-12;
     color: map.get($sky-blue, text);
-  }
-
-  /* ─── 0件のときに EmptyResult へ渡すボタン ─── */
-
-  .primary,
-  .secondary {
-    display: inline-flex;
-    min-height: 48px;
-    padding: 0 $space-size-20;
-    font-size: $font-size-14;
-    font-weight: bold;
-    border: 0;
-    border-radius: 6px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  .primary {
-    color: $white;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
-  }
-
-  .secondary {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
   }
 
   /* ─── 動画の一覧 ─── */

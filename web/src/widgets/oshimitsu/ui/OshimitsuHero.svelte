@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { Character, findCharacter } from '@entities/character'
   import { GuideLead } from '@features/guideLead'
   import { m } from '$lib/paraglide/messages'
@@ -47,8 +48,10 @@
       </p>
 
       <div class="actions">
-        <a class="primary" href="#search">{m.oshimitsu_hero_action_ways()}</a>
-        <a class="secondary" href="#recommended">{m.oshimitsu_hero_action_recommended()}</a>
+        <Button href="#search" target="_self" block>{m.oshimitsu_hero_action_ways()}</Button>
+        <Button href="#recommended" target="_self" variant="outline" block>
+          {m.oshimitsu_hero_action_recommended()}
+        </Button>
       </div>
 
       <ul class="stats">
@@ -152,45 +155,17 @@
     color: map.get($sky-blue, text);
   }
 
+  // 探し方へ進む主な入口（塗り）と、おすすめを見る道（白抜き）を同じ幅で並べる。
+  // スマホでは1列に積んで、1つずつ横いっぱいにする
   .actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: $space-size-12;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-bottom: $space-size-20;
   }
 
   .mobile .actions {
-    justify-content: center;
-  }
-
-  .actions a {
-    display: inline-flex;
-    min-height: 54px;
-    padding: 0 $space-size-24;
-    font-size: $font-size-16;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: transform 0.15s ease;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-
-  .actions a:hover {
-    transform: translateY(-1px);
-  }
-
-  .primary {
-    color: $white;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
-  }
-
-  // 2つめは青の枠のボタン。主な入口（塗り）と役割を分ける
-  .secondary {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .stats {

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { isIndividualVideo, localizedName, RECOMMENDED_VIDEOS } from '@entities/oshimitsuVideo'
   import { shuffle } from '@features/oshimitsuSearch'
   import { m } from '$lib/paraglide/messages'
@@ -69,10 +70,10 @@
       {/each}
     </ul>
 
-    <a class="all" href={localizeHref(ROUTES.oshimitsu.searchResult)}>
+    <Button href={localizeHref(ROUTES.oshimitsu.searchResult)} target="_self">
       {m.oshimitsu_all_videos()}
       <span aria-hidden="true">→</span>
-    </a>
+    </Button>
   </div>
 </section>
 
@@ -164,26 +165,5 @@
     font-size: $font-size-12;
     color: map.get($gray, light-text);
     overflow-wrap: anywhere;
-  }
-
-  .all {
-    display: inline-flex;
-    gap: $space-size-8;
-    min-height: 54px;
-    padding: 0 $space-size-24;
-    font-size: $font-size-16;
-    font-weight: bold;
-    color: $white;
-    border-radius: 6px;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
-    transition: transform 0.15s ease;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-
-  .all:hover {
-    transform: translateY(-1px);
   }
 </style>

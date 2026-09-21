@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
   import { ContentType } from '@entities/oshimitsuVideo'
   import { m } from '$lib/paraglide/messages'
@@ -38,21 +39,25 @@
       {#if actions}
         {@render actions()}
       {:else}
-        <a class="primary" href={localizeHref(ROUTES.oshimitsu.searchResult)}>
+        <Button href={localizeHref(ROUTES.oshimitsu.searchResult)} target="_self" block>
           {m.oshimitsu_all_videos()}
-        </a>
-        <a
-          class="secondary"
+        </Button>
+        <Button
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.INDIVIDUAL.slug))}
+          target="_self"
+          variant="outline"
+          block
         >
           {m.oshimitsu_empty_see_individual({ contentType: ContentType.INDIVIDUAL.label() })}
-        </a>
-        <a
-          class="secondary"
+        </Button>
+        <Button
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.GROUP.slug))}
+          target="_self"
+          variant="outline"
+          block
         >
           {m.oshimitsu_empty_see_group({ contentType: ContentType.GROUP.label() })}
-        </a>
+        </Button>
       {/if}
     </div>
     <a class="back" href={localizeHref(ROUTES.oshimitsu.index)}>{m.oshimitsu_empty_back()} →</a>
@@ -113,39 +118,12 @@
     overflow-wrap: anywhere;
   }
 
+  // 次の一手は入る数だけ列を作る。狭い画面では1列に積まれ、1つずつ横いっぱいになる
   .actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: $space-size-8;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin-top: $space-size-8;
-  }
-
-  .mobile .actions {
-    justify-content: center;
-  }
-
-  .actions a {
-    display: inline-flex;
-    min-height: 48px;
-    padding: 0 $space-size-20;
-    font-size: $font-size-14;
-    font-weight: bold;
-    border-radius: 6px;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-
-  .actions .primary {
-    color: $white;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
-  }
-
-  .actions .secondary {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
   }
 
   .back {
