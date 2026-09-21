@@ -241,8 +241,12 @@
     min-width: 0;
   }
 
+  // 写真どうしの重ね順は、この層の中だけで閉じる。
+  // 閉じないと、前に出した1枚が覆いや文字の層まで越えて手前に出てしまう
   .images {
+    z-index: 0;
     display: grid;
+    isolation: isolate;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -274,8 +278,9 @@
   }
   /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 
-  // 写真の上の文字が読めるように、左から暗くする
+  // 写真の上の文字が読めるように、左から暗くする。写真より必ず手前に置く
   .veil {
+    z-index: 1;
     background: linear-gradient(to right, rgb(0 0 0 / 55%), rgb(0 0 0 / 15%) 70%, transparent);
   }
 
@@ -283,7 +288,9 @@
     background: linear-gradient(to bottom, rgb(0 0 0 / 30%), rgb(0 0 0 / 55%));
   }
 
+  // 文字はいちばん手前。写真にも覆いにも隠されない
   .inner {
+    z-index: 2;
     display: flex;
     align-items: center;
     box-sizing: border-box;
