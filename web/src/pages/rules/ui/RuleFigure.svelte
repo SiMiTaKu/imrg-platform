@@ -1,6 +1,13 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { findRuleTable, hasRowHeader, normalizeRuleTableCell } from '@entities/rule'
+  import {
+    findRuleTable,
+    findRuleTree,
+    hasRowHeader,
+    narrowColumnCount,
+    normalizeRuleTableCell,
+  } from '@entities/rule'
+  import type { RuleTreeNode } from '@entities/rule'
   import type { Image as RuleImage } from '@shared/model'
 
   const {
@@ -15,11 +22,15 @@
 
   // 文字で持ち直した表があれば、画像の代わりにそれを出す
   const table = $derived(findRuleTable(image.src))
+  // 罫線と文字だけでできた図は、入れ子の箇条書きとして出す
+  const tree = $derived(findRuleTree(image.src))
 
   /** 行の見出しの列を出すか */
   const showsRowHeader = $derived(table ? hasRowHeader(table) : false)
   /** 区分の見出しの行が、横に何列ぶん広がるか */
   const totalColumnCount = $derived(table ? table.columns.length + (showsRowHeader ? 1 : 0) : 0)
+  /** ここから右の列は、幅を詰めて折り返さない */
+  const narrowFromIndex = $derived(table ? table.columns.length - narrowColumnCount(table) : 0)
 
   /** 中身が入れ物からはみ出していて、横に送れる状態か */
   let isScrollable = $state(false)
@@ -42,7 +53,49 @@
 
     return { destroy: () => observer.disconnect() }
   }
+
+  /**
+   * 行のます目を、左から何列目に置かれるかまで含めて数え直す。
+   * 横に続けて使うます目（colSpan）があると、並び順と列の位置がずれるため
+   * @param cells - 行のます目
+   * @returns 中身・横幅・左から何列目か・幅を詰める列かどうか
+   */
+  const placeCells = (cells: readonly (string | { text: string; colSpan?: number })[]) => {
+    let column = 0
+
+    return cells.map((cell) => {
+      const { text, colSpan } = normalizeRuleTableCell(cell)
+      const startColumn = column
+      column += colSpan
+
+      return {
+        text,
+        colSpan,
+        // 幅を詰めるのは、横に続けて使っていない、右寄りの列だけ
+        isNarrow: colSpan === 1 && startColumn >= narrowFromIndex,
+      }
+    })
+  }
 </script>
+
+<!--
+  分類図の枝。自分自身を呼び出して、何段でも下りていく
+-->
+{#snippet branches(nodes: readonly RuleTreeNode[], isRoot: boolean)}
+  <ul class="tree" class:root={isRoot}>
+    {#each nodes as node (node.label)}
+      <li>
+        <div class="node" class:root-node={isRoot}>
+          <span>{node.label}</span>
+          {#if node.note}<span class="node-note">{node.note}</span>{/if}
+        </div>
+        {#if node.children && node.children.length > 0}
+          {@render branches(node.children, false)}
+        {/if}
+      </li>
+    {/each}
+  </ul>
+{/snippet}
 
 <figure class="rule-figure">
   {#if table}
@@ -65,8 +118,8 @@
             {#if showsRowHeader}
               <th scope="col" class="corner">{table.cornerLabel ?? ''}</th>
             {/if}
-            {#each table.columns as column (column)}
-              <th scope="col">{column}</th>
+            {#each table.columns as column, columnIndex (column)}
+              <th scope="col" class:narrow={columnIndex >= narrowFromIndex}>{column}</th>
             {/each}
           </tr>
         </thead>
@@ -81,9 +134,11 @@
               {#if showsRowHeader}
                 <th scope="row" class="row-header">{row.header ?? ''}</th>
               {/if}
-              {#each row.cells as cell, cellIndex (cellIndex)}
-                {@const { text, colSpan } = normalizeRuleTableCell(cell)}
-                <td colspan={colSpan === 1 ? undefined : colSpan}>{text}</td>
+              {#each placeCells(row.cells) as cell, cellIndex (cellIndex)}
+                <td
+                  colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
+                  class:narrow={cell.isNarrow}>{cell.text}</td
+                >
               {/each}
             </tr>
           {/each}
@@ -96,6 +151,19 @@
     <figcaption>
       {#if table.note}<span class="note">{table.note}</span>{/if}
       <span class="source">{m.rules_table_source({ source: table.source })}</span>
+    </figcaption>
+  {:else if tree}
+    <!--
+      罫線と文字だけでできた分類図。箱と線の絵をやめ、入れ子の箇条書きにした。
+      狭い画面では段ごとに縦へ積み直るので、横に送らずに読める
+    -->
+    <p class="title">{tree.caption}</p>
+    <div class="tree-frame">
+      {@render branches(tree.roots, true)}
+    </div>
+    <figcaption>
+      {#if tree.note}<span class="note">{tree.note}</span>{/if}
+      <span class="source">{m.rules_table_source({ source: tree.source })}</span>
     </figcaption>
   {:else}
     <!--
@@ -245,15 +313,28 @@
   }
 
   /*
-    「区分・内容・減点」のように左から右へ読む表（layout: 'list'）。
-    いちばん右の減点の列を中身の幅に詰め、残りを内容の列に回すと、
-    スマホでも横に送らずに収まる
+    「区分・内容・減点」のように左から右へ読む表の、右端に寄せた細い列。
+    減点や難度の記号しか入らないので、中身の幅まで詰めて、残りを内容の列に回す。
+    こうするとスマホでも横に送らずに収まる
   */
-  .scroller:not(.matrix) td:last-child {
+  .scroller:not(.matrix) td.narrow,
+  .scroller:not(.matrix) th.narrow {
     width: 1%;
-    white-space: nowrap;
     text-align: right;
     font-variant-numeric: tabular-nums;
+  }
+
+  // 中身は折り返さない。「その都度 0.10」が途中で割れると読みにくい
+  .scroller:not(.matrix) td.narrow {
+    white-space: nowrap;
+  }
+
+  /*
+    細い列の見出しだけは折り返させる。「団体5名実施」を1行に保つと、
+    その幅のぶん内容の列が痩せてしまうため
+  */
+  .scroller:not(.matrix) thead th.narrow {
+    white-space: normal;
   }
 
   /*
@@ -277,5 +358,83 @@
 
   .scroller.matrix .corner {
     z-index: 2;
+  }
+
+  /* ─── 文字の分類図 ─── */
+
+  .tree-frame {
+    padding: $space-size-12;
+    border: $border-size-1 solid map.get($gray, 200);
+    border-radius: $border-radius-4;
+    background: $white;
+  }
+
+  ul.tree {
+    padding: 0;
+    list-style: none;
+  }
+
+  // 2段目から下は、左に寄せて親からぶら下げる
+  ul.tree:not(.root) {
+    // 線を引く場所を空けるための下げ幅
+    padding-left: $space-size-16;
+
+    // 親から下りてくる縦の線
+    border-left: $border-size-1 solid map.get($sky-blue, border);
+  }
+
+  ul.tree > li {
+    position: relative;
+    padding: $space-size-4 0;
+  }
+
+  // 縦の線から箱へ伸びる、横の枝
+  ul.tree:not(.root) > li::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -$space-size-16;
+    width: $space-size-16;
+    border-top: $border-size-1 solid map.get($sky-blue, border);
+  }
+
+  // いちばん下の枝から先は、縦の線を残さない
+  ul.tree:not(.root) > li:last-child::after {
+    content: '';
+    position: absolute;
+    top: calc(50% + #{$border-size-1});
+    bottom: 0;
+    left: calc(-#{$space-size-16} - #{$border-size-1});
+    width: $border-size-1;
+    background: $white;
+  }
+
+  .node {
+    display: flex;
+    gap: $space-size-4 $space-size-8;
+    padding: $space-size-8 $space-size-12;
+    font-size: $font-size-12;
+    color: map.get($gray, text);
+    border: $border-size-1 solid map.get($sky-blue, border);
+    border-radius: $border-radius-4;
+    background: map.get($sky-blue, background);
+    flex-wrap: wrap;
+    align-items: baseline;
+    line-height: 1.6;
+  }
+
+  // いちばん左の箱。「難度（D）」など、採点の柱になるもの
+  .node.root-node {
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+    border-color: map.get($sky-blue, button);
+    background: map.get($sky-blue, 100);
+  }
+
+  .node-note {
+    font-size: $font-size-11;
+    font-weight: normal;
+    color: map.get($sky-blue, light-text);
   }
 </style>
