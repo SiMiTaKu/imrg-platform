@@ -349,11 +349,18 @@ export const HERO = {
     },
   ],
   priceUnit: m.coaching_hero_price_unit,
-  /** 見出しに出す「オンライン ◯◯円〜／1日 ◯◯円〜」 */
-  priceAmount: () =>
-    m.coaching_hero_price_amount({
-      online: formatYen(PRICE_YEN.onlineReviewIndividual, getLocale()),
-      onsite: formatYen(PRICE_YEN.onsiteFullDay, getLocale()),
+  /**
+   * 見出しに出す「オンライン ◯◯円〜」。
+   * 出向く場合とは分けて持ち、画面では別々の塊にして折り返しを防ぐ
+   */
+  priceOnline: () =>
+    m.coaching_hero_price_online({
+      price: formatYen(PRICE_YEN.onlineReviewIndividual, getLocale()),
+    }),
+  /** 見出しに出す「出向く場合 1日 ◯◯円〜」 */
+  priceOnsite: () =>
+    m.coaching_hero_price_onsite({
+      price: formatYen(PRICE_YEN.onsiteFullDay, getLocale()),
     }),
 } as const
 

@@ -102,7 +102,12 @@
         <div class="naming">
           <span class="eyebrow">{HERO.eyebrow()}</span>
           <h1>{m.coaching_hero_title()}</h1>
-          <p class="price"><span class="unit">{HERO.priceUnit()}</span>{HERO.priceAmount()}</p>
+          <!-- 金額は意味のまとまりごとに包む。まとまりの途中では折り返さない -->
+          <p class="price">
+            <span class="unit">{HERO.priceUnit()}</span>
+            <span class="amount">{HERO.priceOnline()}</span>
+            <span class="amount">{HERO.priceOnsite()}</span>
+          </p>
         </div>
       </div>
 
@@ -517,17 +522,23 @@
   }
 
   .price {
-    display: flex;
-    gap: $space-size-8;
-    align-items: baseline;
     margin: 0;
     font-size: $font-size-18;
     font-weight: bold;
+    line-height: 1.7;
     color: map.get($sky-blue, text);
-    flex-wrap: wrap;
+  }
+
+  // 「オンライン 2,000円〜」をひとかたまりに保つ。
+  // 途中で折り返すと、数と単位が離れて読みにくくなる
+  .amount {
+    display: inline-block;
+    margin-right: $space-size-8;
   }
 
   .unit {
+    display: inline-block;
+    margin-right: $space-size-8;
     padding: $space-size-2 $space-size-8;
     font-size: $font-size-12;
     color: $white;
