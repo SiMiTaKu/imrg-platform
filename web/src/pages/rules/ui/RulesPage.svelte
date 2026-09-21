@@ -4,6 +4,7 @@
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
+  import { RuleFigure } from '@widgets/rules'
   import {
     DEFAULT_OPEN,
     articleKey,
@@ -17,7 +18,6 @@
     withChapterOpen,
     type RuleOpenState,
   } from '../lib/openState'
-  import RuleFigure from './RuleFigure.svelte'
 
   const {
     ruleBook,
