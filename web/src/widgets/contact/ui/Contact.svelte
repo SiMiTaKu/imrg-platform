@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ButtonLink, Heading } from '@imrg-platform/design-system'
+  import { Button, Heading } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
@@ -15,14 +15,7 @@
     {m.contact_body_line1()}<br />
     {m.contact_body_line2()}<br />
     {m.contact_body_line3()}
-    <ButtonLink
-      fontSize={$pageData.isMobile ? 20 : 24}
-      width={$pageData.isMobile ? 320 : 400}
-      height={56}
-      text={m.contact_button()}
-      href={LINKS.instagram}
-      target="_blank"
-    />
+    <Button href={LINKS.instagram} target="_blank" size="large">{m.contact_button()}</Button>
   </div>
 </section>
 

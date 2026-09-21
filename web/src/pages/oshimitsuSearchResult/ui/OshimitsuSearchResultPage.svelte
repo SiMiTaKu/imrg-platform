@@ -177,13 +177,7 @@
 
       <footer class="foot">
         {#if hasMore}
-          <Button
-            fontSize={isMobile ? 20 : 24}
-            width={isMobile ? 280 : 340}
-            height={56}
-            text={m.oshimitsu_load_more()}
-            onclick={getMoreVideos}
-          />
+          <Button size="large" onclick={getMoreVideos}>{m.oshimitsu_load_more()}</Button>
         {:else}
           <p class="no-more">{m.oshimitsu_no_more_videos()}</p>
           <a class="other" href={localizeHref(ROUTES.oshimitsu.index)}>
