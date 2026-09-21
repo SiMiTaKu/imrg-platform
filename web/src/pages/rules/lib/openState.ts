@@ -13,8 +13,9 @@ export type RuleOpenState = Record<string, boolean>
  * まだ押されていないところの開閉。
  *
  * @remarks
- * 章を開くと節の見出しが並び、節を開くとその中の条は開いた状態で出る。
- * 章の中身を一度に全部出さずに済み、読みたい節に着いたら 2 回押せば本文が読める。
+ * 章・節・条のどれも閉じた状態から始める。節を開いたときに本文まで出すと
+ * 縦が長くなりすぎ、読みたい条に行き着くまで送り続けることになるため、
+ * 条の見出しが並ぶところで一度止める。押す回数は増えるが、見渡しが効く。
  */
 export const DEFAULT_OPEN = {
   /** 章 */
@@ -22,7 +23,7 @@ export const DEFAULT_OPEN = {
   /** 節（章の中の大項） */
   article: false,
   /** 条（節の中の条項） */
-  section: true,
+  section: false,
 } as const
 
 /**
@@ -122,9 +123,9 @@ const includesKeyword = (text: string, needle: string): boolean =>
  * @returns 当てはまるところを開いた開閉。言葉が空なら初めの開き方
  *
  * @remarks
- * 当てはまった条は、その章と節ごと開く。節や章の見出しだけが当てはまったときは、
- * その見出しの中身までを開く。当てはまらなかったところは閉じたままにして、
- * 探し当てた場所だけが目に入るようにする。
+ * 当てはまった条は、その章と節ごと開いて本文まで見せる。節や章の見出しだけが
+ * 当てはまったときは、その見出しの中身（条の見出しが並ぶところ）までを開く。
+ * 当てはまらなかったところは閉じたままにして、探し当てた場所だけが目に入るようにする。
  */
 export const createOpenStateForKeyword = (
   ruleBook: LocalizedRuleBook,

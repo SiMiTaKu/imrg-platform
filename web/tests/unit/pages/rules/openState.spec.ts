@@ -72,7 +72,7 @@ describe('openState', () => {
       // #endregion
     })
 
-    it('章だけを開いた場合、節は閉じたまま、節を開くとその中の条は開いた状態で出ること', () => {
+    it('章だけを開いた場合、節も条も閉じたままであること', () => {
       // #region Given
       const openState = createInitialOpenState()
       // #endregion
@@ -85,8 +85,8 @@ describe('openState', () => {
       // #region Then
       // 章を開いた時点では節の見出しだけが並ぶ
       expect(articleOpen).toBe(false)
-      // 節を開いたらそのまま本文まで読める
-      expect(sectionOpen).toBe(true)
+      // 節を開いても条は閉じたまま。縦を短く保ち、条の見出しから選べるようにする
+      expect(sectionOpen).toBe(false)
       // #endregion
     })
   })
@@ -186,7 +186,7 @@ describe('openState', () => {
       // #endregion
     })
 
-    it('節の見出しに当てはまった場合、その節が開いて中の条まで読めること', () => {
+    it('節の見出しだけに当てはまった場合、その節が開いて条の見出しが並ぶこと', () => {
       // #region Given
       const keyword = '用器具'
       // #endregion
@@ -198,8 +198,25 @@ describe('openState', () => {
       // #region Then
       expect(isOpenAt(openState, chapterKey(0), DEFAULT_OPEN.chapter)).toBe(true)
       expect(isOpenAt(openState, articleKey(0, 1), DEFAULT_OPEN.article)).toBe(true)
-      // 条は既定で開くので、節を開けばそのまま本文が読める
+      // 当てはまったのは節の見出しだけなので、中の条は閉じたまま見出しが並ぶ
+      expect(isOpenAt(openState, sectionKey(0, 1, 0), DEFAULT_OPEN.section)).toBe(false)
+      // #endregion
+    })
+
+    it('条の中身に当てはまった場合、その条だけが開いて本文まで読めること', () => {
+      // #region Given
+      const keyword = 'スティック'
+      // #endregion
+
+      // #region When
+      const openState = createOpenStateForKeyword(RULE_BOOK, keyword)
+      // #endregion
+
+      // #region Then
+      // 当てはまった条は開いたまま出す
       expect(isOpenAt(openState, sectionKey(0, 1, 0), DEFAULT_OPEN.section)).toBe(true)
+      // 当てはまらなかった条は閉じたまま
+      expect(isOpenAt(openState, sectionKey(0, 0, 0), DEFAULT_OPEN.section)).toBe(false)
       // #endregion
     })
 
