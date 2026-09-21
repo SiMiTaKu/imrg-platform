@@ -16,7 +16,7 @@ describe('Button', () => {
     it('href を渡さない場合、押しボタンになり onclick が呼ばれること', async () => {
       // #region Given
       const onclick = vi.fn()
-      render(Button, { props: { onclick, children: labelOf('もっと見る') } })
+      render(Button, { props: { width: 'auto', onclick, children: labelOf('もっと見る') } })
       // #endregion
 
       // #region When
@@ -30,7 +30,7 @@ describe('Button', () => {
 
     it('押しボタンの場合、type が button になり送信に使われないこと', () => {
       // #region Given
-      const props = { onclick: vi.fn(), children: labelOf('閉じる') }
+      const props = { width: 'auto', onclick: vi.fn(), children: labelOf('閉じる') } as const
       // #endregion
 
       // #region When
@@ -56,7 +56,12 @@ describe('Button', () => {
     ] as const)('%s', (_, target, rel) => {
       // #region Given
       // target は Svelte の設定と名前が重なるので、props にまとめて渡す
-      const props = { href: '/calendar/', target, children: labelOf('開く') }
+      const props = {
+        href: '/calendar/',
+        target,
+        width: 'auto',
+        children: labelOf('開く'),
+      } as const
       // #endregion
 
       // #region When
@@ -75,9 +80,9 @@ describe('Button', () => {
 
   // #region 見た目
   describe('正常系（見た目）', () => {
-    it('引数を省いた場合、塗り・medium・横いっぱいではない見た目になること', () => {
+    it('見た目と大きさを省いた場合、塗り・medium になること', () => {
       // #region Given
-      const props = { onclick: vi.fn(), children: labelOf('もっと見る') }
+      const props = { width: 'auto', onclick: vi.fn(), children: labelOf('もっと見る') } as const
       // #endregion
 
       // #region When
@@ -88,7 +93,6 @@ describe('Button', () => {
       const button = screen.getByRole('button', { name: 'もっと見る' })
       expect(button).toHaveClass('fill')
       expect(button).not.toHaveClass('large')
-      expect(button).not.toHaveClass('block')
       // #endregion
     })
 
@@ -98,7 +102,12 @@ describe('Button', () => {
       ['黄を選んだ場合、yellow が付くこと', 'yellow'],
     ] as const)('%s', (_, variant) => {
       // #region Given
-      const props = { variant, onclick: vi.fn(), children: labelOf('もっと見る') }
+      const props = {
+        variant,
+        width: 'auto',
+        onclick: vi.fn(),
+        children: labelOf('もっと見る'),
+      } as const
       // #endregion
 
       // #region When
@@ -112,7 +121,12 @@ describe('Button', () => {
 
     it('large を選んだ場合、large が付くこと', () => {
       // #region Given
-      const props = { size: 'large', onclick: vi.fn(), children: labelOf('もっと見る') } as const
+      const props = {
+        size: 'large',
+        width: 'auto',
+        onclick: vi.fn(),
+        children: labelOf('もっと見る'),
+      } as const
       // #endregion
 
       // #region When
@@ -128,9 +142,10 @@ describe('Button', () => {
       // #region Given
       const props = {
         label: '第1章をすべて開く',
+        width: 'auto',
         onclick: vi.fn(),
         children: labelOf('すべて開く'),
-      }
+      } as const
       // #endregion
 
       // #region When
@@ -142,9 +157,9 @@ describe('Button', () => {
       // #endregion
     })
 
-    it('block を渡した場合、block が付くこと', () => {
+    it('auto を渡した場合、横に広げず文字に合わせた幅になること', () => {
       // #region Given
-      const props = { block: true, onclick: vi.fn(), children: labelOf('もっと見る') }
+      const props = { width: 'auto', onclick: vi.fn(), children: labelOf('もっと見る') } as const
       // #endregion
 
       // #region When
@@ -152,7 +167,41 @@ describe('Button', () => {
       // #endregion
 
       // #region Then
-      expect(screen.getByRole('button', { name: 'もっと見る' })).toHaveClass('block')
+      const button = screen.getByRole('button', { name: 'もっと見る' })
+      expect(button).not.toHaveClass('stretch')
+      expect(button.style.getPropertyValue('--button-max-width')).toBe('')
+      // #endregion
+    })
+
+    it('full を渡した場合、横いっぱいに広がり最大幅を決めないこと', () => {
+      // #region Given
+      const props = { width: 'full', onclick: vi.fn(), children: labelOf('もっと見る') } as const
+      // #endregion
+
+      // #region When
+      render(Button, { props })
+      // #endregion
+
+      // #region Then
+      const button = screen.getByRole('button', { name: 'もっと見る' })
+      expect(button).toHaveClass('stretch')
+      expect(button.style.getPropertyValue('--button-max-width')).toBe('')
+      // #endregion
+    })
+
+    it('数値を渡した場合、決め打ちの幅ではなく px の最大幅になること', () => {
+      // #region Given
+      const props = { width: 240, onclick: vi.fn(), children: labelOf('もっと見る') } as const
+      // #endregion
+
+      // #region When
+      render(Button, { props })
+      // #endregion
+
+      // #region Then
+      const button = screen.getByRole('button', { name: 'もっと見る' })
+      expect(button).toHaveClass('stretch')
+      expect(button.style.getPropertyValue('--button-max-width')).toBe('240px')
       // #endregion
     })
   })

@@ -12,14 +12,30 @@ export type ButtonVariant = 'fill' | 'outline' | 'yellow'
 /** ボタンの大きさ。`medium` は最小の高さ 48px・文字 16px、`large` は 56px・18px */
 export type ButtonSize = 'medium' | 'large'
 
+/**
+ * ボタンの幅。`full` は横いっぱい、`auto` は文字に合わせた幅、数値は px の最大幅。
+ *
+ * @remarks
+ * 数値は「最大幅」として扱う。狭い画面では画面に収まるところまで縮むので、横にはみ出さない。
+ * 端末で出し分けたいときは、使う側で `width={isMobile ? 'full' : 'auto'}` のように渡す。
+ * デザインシステムの部品は端末を知らない（`.github/instructions/frontend-foundation.instructions.md`）
+ */
+export type ButtonWidth = number | 'full' | 'auto'
+
 /** リンクでも押しボタンでも同じ、見た目に関わる引数 */
 interface AppearanceProps {
   /** 見た目。省くと塗り（fill） */
   variant?: ButtonVariant
   /** 大きさ。省くと medium */
   size?: ButtonSize
-  /** 横いっぱいに広げるか。省くと PC では文字に合わせた幅になる（スマホは指定に関わらず横いっぱい） */
-  block?: boolean
+  /**
+   * 幅。`full` は横いっぱい、`auto` は文字に合わせた幅、数値は px の最大幅。
+   *
+   * @remarks
+   * 置く場所によって決まるものなので、使う側が必ず決める。
+   * 端末で変えたいときは `isMobile ? 'full' : 'auto'` のように渡す
+   */
+  width: ButtonWidth
   /**
    * 読み上げ用の名前。省くと中身の文言がそのまま名前になる。
    *
@@ -54,6 +70,6 @@ interface ActionProps extends AppearanceProps {
  *
  * @remarks
  * `href` を渡すとリンク、渡さなければ押しボタンになる。
- * リンクの `target` と押しボタンの `onclick` は動作に欠かせないので省略できない
+ * リンクの `target`、押しボタンの `onclick`、どちらでも使う `width` は省略できない
  */
 export type ButtonProps = LinkProps | ActionProps

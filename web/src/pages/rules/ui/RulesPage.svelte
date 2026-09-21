@@ -154,8 +154,12 @@
     </div>
 
     <div class="bulk">
-      <Button variant="outline" onclick={() => toggleAll(true)}>{m.rules_expand_all()}</Button>
-      <Button variant="outline" onclick={() => toggleAll(false)}>{m.rules_collapse_all()}</Button>
+      <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={() => toggleAll(true)}
+        >{m.rules_expand_all()}</Button
+      >
+      <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={() => toggleAll(false)}
+        >{m.rules_collapse_all()}</Button
+      >
     </div>
 
     {#if keyword.trim() === ''}
@@ -217,6 +221,7 @@
               <div class="bulk in-chapter">
                 <Button
                   variant="outline"
+                  width={isMobile ? 'full' : 'auto'}
                   label={m.rules_expand_chapter_label({ number: index + 1 })}
                   onclick={() => toggleChapterAll(index, true)}
                 >
@@ -224,6 +229,7 @@
                 </Button>
                 <Button
                   variant="outline"
+                  width={isMobile ? 'full' : 'auto'}
                   label={m.rules_collapse_chapter_label({ number: index + 1 })}
                   onclick={() => toggleChapterAll(index, false)}
                 >

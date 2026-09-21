@@ -91,9 +91,13 @@
 </script>
 
 {#snippet keywordActions()}
-  <Button onclick={() => (keyword = '')}>{m.oshimitsu_keyword_clear()}</Button>
+  <Button width={isMobile ? 'full' : 'auto'} onclick={() => (keyword = '')}
+    >{m.oshimitsu_keyword_clear()}</Button
+  >
   {#if hasMore}
-    <Button variant="outline" onclick={getMoreVideos}>{m.oshimitsu_load_more()}</Button>
+    <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={getMoreVideos}
+      >{m.oshimitsu_load_more()}</Button
+    >
   {/if}
 {/snippet}
 
@@ -173,7 +177,9 @@
 
       <footer class="foot">
         {#if hasMore}
-          <Button size="large" onclick={getMoreVideos}>{m.oshimitsu_load_more()}</Button>
+          <Button size="large" width={isMobile ? 'full' : 'auto'} onclick={getMoreVideos}
+            >{m.oshimitsu_load_more()}</Button
+          >
         {:else}
           <p class="no-more">{m.oshimitsu_no_more_videos()}</p>
           <a class="other" href={localizeHref(ROUTES.oshimitsu.index)}>

@@ -12,7 +12,9 @@
   <div class="inner">
     <h1>{m.rules_coming_soon_title()}</h1>
     <p>{m.rules_coming_soon_body()}</p>
-    <Button href={localizeHref(ROUTES.top)} target="_self">{m.rules_coming_soon_back()}</Button>
+    <Button href={localizeHref(ROUTES.top)} target="_self" width={isMobile ? 'full' : 'auto'}
+      >{m.rules_coming_soon_back()}</Button
+    >
   </div>
 </article>
 

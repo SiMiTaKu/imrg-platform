@@ -37,10 +37,10 @@
     </p>
 
     <div class="actions">
-      <Button href={localizeHref(ROUTES.calendar.index)} target="_self" block>
+      <Button href={localizeHref(ROUTES.calendar.index)} target="_self" width="full">
         {m.top_hero_action_calendar()}
       </Button>
-      <Button href="#services" target="_self" variant="outline" block>
+      <Button href="#services" target="_self" variant="outline" width="full">
         {m.top_hero_action_services()}
       </Button>
     </div>

@@ -62,7 +62,7 @@
         </p>
 
         <div class="contact-action">
-          <Button href={contactHref} target="_blank" variant="yellow" size="large" block>
+          <Button href={contactHref} target="_blank" variant="yellow" size="large" width="full">
             {contactLabel}
           </Button>
         </div>

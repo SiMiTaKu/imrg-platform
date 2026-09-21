@@ -100,11 +100,19 @@
   </figure>
 
   <div class="buttons">
-    <Button onclick={onshowscore}>{m.judge_result_show_score()}</Button>
+    <Button width={isMobile ? 'full' : 'auto'} onclick={onshowscore}
+      >{m.judge_result_show_score()}</Button
+    >
     <!-- Xの投稿画面を新しいタブで開く。文は得点と手具の名前が入ったもの -->
-    <Button href={shareHref} target="_blank" variant="outline">{m.judge_share_x()}</Button>
-    <Button variant="outline" onclick={saveChartImage}>{m.judge_result_chart_save()}</Button>
-    <Button variant="outline" onclick={onretry}>{m.judge_result_restart()}</Button>
+    <Button href={shareHref} target="_blank" variant="outline" width={isMobile ? 'full' : 'auto'}
+      >{m.judge_share_x()}</Button
+    >
+    <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={saveChartImage}
+      >{m.judge_result_chart_save()}</Button
+    >
+    <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={onretry}
+      >{m.judge_result_restart()}</Button
+    >
   </div>
   <p class="share-note">{m.judge_result_chart_share_note()}</p>
 

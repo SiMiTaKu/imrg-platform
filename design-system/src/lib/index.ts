@@ -5,7 +5,7 @@
 
 /** サイトで使うボタン。href を渡すとリンク、渡さなければ押しボタンになる */
 export { Button } from './Button'
-export type { ButtonProps, ButtonSize, ButtonVariant } from './Button'
+export type { ButtonProps, ButtonSize, ButtonVariant, ButtonWidth } from './Button'
 /** セクションの見出し（見出しと、その下の補助の文言） */
 export { default as Heading } from './Heading/Heading.svelte'
 /** モーダル（右上のばつで閉じる入れ物） */

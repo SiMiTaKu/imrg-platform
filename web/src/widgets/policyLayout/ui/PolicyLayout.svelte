@@ -138,11 +138,18 @@
       {m.contact_body_line2()}<br />
       {m.contact_body_line3()}
     </p>
-    <Button href={LINKS.instagram} target="_blank">{m.contact_button()}</Button>
+    <Button href={LINKS.instagram} target="_blank" width={isMobile ? 'full' : 'auto'}
+      >{m.contact_button()}</Button
+    >
   </aside>
 
   <p class="back">
-    <Button href={localizeHref(ROUTES.top)} target="_self" variant="outline">
+    <Button
+      href={localizeHref(ROUTES.top)}
+      target="_self"
+      variant="outline"
+      width={isMobile ? 'full' : 'auto'}
+    >
       {m.layout_back_to_top()}
     </Button>
   </p>

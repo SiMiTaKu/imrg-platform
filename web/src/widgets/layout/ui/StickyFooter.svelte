@@ -16,7 +16,7 @@
 {#if cta}
   <div class="sticky-cta" class:mobile={isMobile}>
     <div class="inner">
-      <Button {href} target={cta.external ? '_blank' : '_self'} size="large" block>
+      <Button {href} target={cta.external ? '_blank' : '_self'} size="large" width="full">
         {cta.label()}
       </Button>
     </div>

@@ -94,7 +94,7 @@
       </p>
 
       <div class="contact-action">
-        <Button href={contactHref} target="_blank" size="large" block>{contactLabel}</Button>
+        <Button href={contactHref} target="_blank" size="large" width="full">{contactLabel}</Button>
       </div>
     </div>
   </div>

@@ -15,7 +15,9 @@
   <div class="content">
     <div class="text">{m.error_not_found()}</div>
     <div class="link">
-      <Button href={localizeHref(ROUTES.top)} target="_self" block>{m.error_back_to_top()}</Button>
+      <Button href={localizeHref(ROUTES.top)} target="_self" width="full"
+        >{m.error_back_to_top()}</Button
+      >
     </div>
   </div>
 </article>

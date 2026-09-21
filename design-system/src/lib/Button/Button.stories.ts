@@ -17,13 +17,14 @@ const meta = {
   args: {
     variant: 'fill',
     size: 'medium',
-    block: false,
+    width: 'auto',
     onclick: fn(),
     children: labelOf('もっと見る'),
   },
   argTypes: {
     variant: { control: 'inline-radio', options: ['fill', 'outline', 'yellow'] },
     size: { control: 'inline-radio', options: ['medium', 'large'] },
+    width: { control: 'inline-radio', options: ['auto', 'full', 240] },
   },
 } satisfies Meta<typeof Button>
 
@@ -49,9 +50,14 @@ export const 大きい: Story = {
   args: { size: 'large', children: labelOf('大会カレンダーを見る') },
 }
 
-/** 横いっぱい。スマホでは block を渡さなくてもこの形になる */
+/** 横いっぱい。スマホで1つずつ縦に積むときに使う */
 export const 横いっぱい: Story = {
-  args: { block: true },
+  args: { width: 'full' },
+}
+
+/** 数値を渡すと、その px を最大幅にする。狭い画面では画面に収まるところまで縮む */
+export const 最大幅を決める: Story = {
+  args: { width: 240 },
 }
 
 // 話の引数が押しボタンではなくリンクの形になるので、meta ではなく部品の型で受ける
@@ -59,6 +65,7 @@ export const 横いっぱい: Story = {
 export const リンク: StoryObj<typeof Button> = {
   args: {
     variant: 'fill',
+    width: 'auto',
     href: 'https://www.youtube.com/',
     target: '_blank',
     children: labelOf('YouTube チャンネル'),

@@ -76,7 +76,12 @@
       </ul>
 
       <div class="search">
-        <Button href={localizeHref(ROUTES.calendar.index)} target="_self" size="large">
+        <Button
+          href={localizeHref(ROUTES.calendar.index)}
+          target="_self"
+          size="large"
+          width={isMobile ? 'full' : 'auto'}
+        >
           {m.top_upcoming_search()}
         </Button>
       </div>

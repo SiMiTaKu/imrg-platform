@@ -71,8 +71,16 @@
     </ul>
 
     <div class="actions">
-      <Button size="large" onclick={onstart}>{m.judge_intro_start()}</Button>
-      <Button href={localizeHref(ROUTES.rules)} target="_self" variant="outline" size="large">
+      <Button size="large" width={isMobile ? 'full' : 'auto'} onclick={onstart}
+        >{m.judge_intro_start()}</Button
+      >
+      <Button
+        href={localizeHref(ROUTES.rules)}
+        target="_self"
+        variant="outline"
+        size="large"
+        width={isMobile ? 'full' : 'auto'}
+      >
         {m.judge_intro_read_rules()}
       </Button>
     </div>

@@ -6,11 +6,16 @@
     target,
     variant = 'fill',
     size = 'medium',
-    block = false,
+    width,
     label,
     onclick,
     children,
   }: ButtonProps = $props()
+
+  // auto 以外は横いっぱいに広げる。数値のときは最大幅で止まる
+  const stretches = $derived(width !== 'auto')
+  // 数値は最大幅として扱う。決め打ちの幅にすると、狭い画面で横にはみ出すため
+  const maxWidth = $derived(typeof width === 'number' ? `${width}px` : undefined)
 </script>
 
 {#if href}
@@ -20,7 +25,8 @@
     class:outline={variant === 'outline'}
     class:yellow={variant === 'yellow'}
     class:large={size === 'large'}
-    class:block
+    class:stretch={stretches}
+    style:--button-max-width={maxWidth}
     {href}
     {target}
     aria-label={label}
@@ -35,7 +41,8 @@
     class:outline={variant === 'outline'}
     class:yellow={variant === 'yellow'}
     class:large={size === 'large'}
-    class:block
+    class:stretch={stretches}
+    style:--button-max-width={maxWidth}
     type="button"
     aria-label={label}
     {onclick}
@@ -73,19 +80,13 @@
     font-size: $font-size-18;
   }
 
-  .block {
+  // width が full か数値のとき。数値なら --button-max-width までで止まり、
+  // それより狭い画面では画面に収まるところまで縮む
+  .stretch {
     display: flex;
     width: 100%;
+    max-width: var(--button-max-width, none);
   }
-
-  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
-  // スマホでは block の指定が無くても横いっぱいにする。文字に合わせて縮めない。
-  // 端末の印は app.html が描画の前に html へ付けるので、:global で外から見る
-  :global(html:not([data-device='desktop'])) .button {
-    display: flex;
-    width: 100%;
-  }
-  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 
   // 塗り。そのページでいちばん進んでほしい先に使う
   .fill {

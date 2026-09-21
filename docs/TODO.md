@@ -321,10 +321,12 @@ Phase 4の進め方（2026-09-19に決めた）
 
 - [x] **5-0. サイトのボタンを1つにそろえる**（2026-09-21。運営者からの指摘）
   - 角が6px・8px・10px・全丸と散らばり、部品もdesign-systemの `Button` / `ButtonLink` とwebの `ActionButton`、ページの直書きの3系統に分かれていた
-  - design-systemの `Button` を作り直して1つにまとめ、`ActionButton` と `ButtonLink` を消した。引数は `href` `target` `variant`（fill / outline / yellow）`size`（medium / large）`block` `label`
+  - design-systemの `Button` を作り直して1つにまとめ、`ActionButton` と `ButtonLink` を消した。引数は `href` `target` `variant`（fill / outline / yellow）`size`（medium / large）`width`（full / auto / pxの数値。必須）`label`
   - **角はどのボタンも全丸（`$border-radius-64`）**。文字はmedium 16px・large 18px（これまでは14pxのところがあった）
-  - **スマホでは `block` を渡さなくても横いっぱいにする。** `html` に `data-device='desktop'` が付いていないときをスマホと見る（app.htmlが描画前に付ける印）
-  - 3-3で決めた「部品は幅・高さ・文字の大きさをpxで受け取る」はやめた。狭い画面ではみ出すため。**端末の判定は今もwebだけだが、スマホで横いっぱいにする指定だけは部品側がCSSで持つ**
+  - **【解決済み】いったんは `block` を省いてもスマホで横いっぱいになるよう、部品が `html[data-device]` を見ていた。**これは3-3の「部品は端末を知らず、pxで受け取る」に反していたため、2026-09-21に取り消した
+    - `block?: boolean` をやめ、**必須の `width`（`full` / `auto` / pxの数値）** にした。端末で変えるところは使う側が `width={isMobile ? 'full' : 'auto'}` と渡す
+    - `:global(html:not([data-device='desktop']))` の指定は消した。**端末を見るのはweb層だけ**という決まりに戻った
+    - pxの数値は**最大幅**として扱う（`max-width` + `width: 100%`）。昔の `ButtonLink` のように決め打ちにすると、狭い画面で横にはみ出すため
   - 採点の送りボタンとモーダルのボタンは、手具ごとのテーマ色で塗っていた。黄の手具では白い文字が読めない（色の決まり4に反する）ので、サイト共通の青の塗りにした。見出しの帯は手具の色のまま
   - 札（バッジ）・チップ（絞り込みの選択肢）・カード全体のリンク・目次の行・章の開け閉めの見出し・入力欄はボタンではないので触っていない
 - [ ] **5-1. 方向性を決める**（参考サイト・配色・写真の使い方・ロゴの扱い）

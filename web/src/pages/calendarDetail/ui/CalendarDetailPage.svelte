@@ -168,12 +168,12 @@
   {#if event.officialUrl || event.resultUrl}
     <p class="actions">
       {#if event.officialUrl}
-        <Button href={event.officialUrl} target="_blank" block>
+        <Button href={event.officialUrl} target="_blank" width="full">
           {@render factLabel(m.calendar_official_site)}
         </Button>
       {/if}
       {#if event.resultUrl}
-        <Button href={event.resultUrl} target="_blank" variant="outline" block>
+        <Button href={event.resultUrl} target="_blank" variant="outline" width="full">
           {@render factLabel(m.calendar_results)}
         </Button>
       {/if}

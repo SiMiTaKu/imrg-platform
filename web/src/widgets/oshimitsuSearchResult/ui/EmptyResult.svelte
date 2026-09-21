@@ -39,13 +39,18 @@
       {#if actions}
         {@render actions()}
       {:else}
-        <Button href={localizeHref(ROUTES.oshimitsu.searchResult)} target="_self">
+        <Button
+          href={localizeHref(ROUTES.oshimitsu.searchResult)}
+          target="_self"
+          width={isMobile ? 'full' : 'auto'}
+        >
           {m.oshimitsu_all_videos()}
         </Button>
         <Button
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.INDIVIDUAL.slug))}
           target="_self"
           variant="outline"
+          width={isMobile ? 'full' : 'auto'}
         >
           {m.oshimitsu_empty_see_individual({ contentType: ContentType.INDIVIDUAL.label() })}
         </Button>
@@ -53,6 +58,7 @@
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.GROUP.slug))}
           target="_self"
           variant="outline"
+          width={isMobile ? 'full' : 'auto'}
         >
           {m.oshimitsu_empty_see_group({ contentType: ContentType.GROUP.label() })}
         </Button>

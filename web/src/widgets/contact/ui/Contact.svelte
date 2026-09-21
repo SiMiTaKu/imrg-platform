@@ -15,7 +15,12 @@
     {m.contact_body_line1()}<br />
     {m.contact_body_line2()}<br />
     {m.contact_body_line3()}
-    <Button href={LINKS.instagram} target="_blank" size="large">{m.contact_button()}</Button>
+    <Button
+      href={LINKS.instagram}
+      target="_blank"
+      size="large"
+      width={$pageData.isMobile ? 'full' : 'auto'}>{m.contact_button()}</Button
+    >
   </div>
 </section>
 

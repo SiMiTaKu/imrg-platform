@@ -214,8 +214,8 @@
       </ul>
 
       <div class="actions">
-        <Button href={contactHref} target="_blank" block>{contactLabel}</Button>
-        <Button href={worksHref} target="_self" variant="outline" block>{worksLabel}</Button>
+        <Button href={contactHref} target="_blank" width="full">{contactLabel}</Button>
+        <Button href={worksHref} target="_self" variant="outline" width="full">{worksLabel}</Button>
       </div>
 
       <p class="note">{note}</p>

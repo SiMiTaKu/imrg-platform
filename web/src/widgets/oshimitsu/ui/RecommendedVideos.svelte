@@ -70,7 +70,11 @@
       {/each}
     </ul>
 
-    <Button href={localizeHref(ROUTES.oshimitsu.searchResult)} target="_self">
+    <Button
+      href={localizeHref(ROUTES.oshimitsu.searchResult)}
+      target="_self"
+      width={isMobile ? 'full' : 'auto'}
+    >
       {m.oshimitsu_all_videos()}
       <span aria-hidden="true">→</span>
     </Button>

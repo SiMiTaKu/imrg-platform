@@ -5,6 +5,7 @@
   import type { ApparatusSlug } from '@shared/model'
   import { m } from '$lib/paraglide/messages'
   import { localizeHref } from '@shared/lib/i18n'
+  import { pageData } from '@shared/lib/device'
   import { buildSearchPath } from '../lib/search'
   import type { SearchQuery } from '../model/criteria'
   import CheckBoxFieldset from './CheckBoxFieldset.svelte'
@@ -24,6 +25,8 @@
   let query = $state<SearchQuery>({ contentType: undefined, apparatuses: [] })
 
   const searchHref = $derived(localizeHref(buildSearchPath(query)))
+
+  const isMobile = $derived($pageData.isMobile)
 
   /**
    * 種類を選んだとき、条件を置き換える
@@ -64,4 +67,6 @@
     onchange={onChangeApparatus}
   />
 {/if}
-<Button href={searchHref} target="_self" size="large">{m.oshimitsu_search_button()}</Button>
+<Button href={searchHref} target="_self" size="large" width={isMobile ? 'full' : 'auto'}
+  >{m.oshimitsu_search_button()}</Button
+>
