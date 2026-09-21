@@ -7,6 +7,8 @@
 export { Button, ButtonLink } from './Button'
 /** セクションの見出し（見出しと、その下の補助の文言） */
 export { default as Heading } from './Heading/Heading.svelte'
+/** モーダル（右上のばつで閉じる入れ物） */
+export { Modal } from './Modal'
 /** ページ送り */
 export { default as Pagination } from './Pagination/Pagination.svelte'
 export { ELLIPSIS, pageNumbers } from './Pagination/lib/pageNumbers'
