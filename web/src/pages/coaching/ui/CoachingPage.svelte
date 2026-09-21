@@ -18,7 +18,47 @@
   const isMobile = $derived($pageData.isMobile)
   // 基本を誰よりも正確に、が持ち味の一徒が指導の案内役
   const guide = findCharacter(Character.KAZUTO)
+
+  /** 相場の説明を開いているか */
+  let isMarketOpen = $state(false)
+
+  /** 相場の説明を開く */
+  const openMarket = () => {
+    isMarketOpen = true
+  }
+
+  /** 相場の説明を閉じる */
+  const closeMarket = () => {
+    isMarketOpen = false
+  }
+
+  /** 押したときに開け閉めする。スマホはこれだけで動く */
+  const toggleMarket = () => {
+    isMarketOpen = !isMarketOpen
+  }
+
+  /** PC はマウスを重ねただけで開く。スマホでは重ねる動きが無いので何もしない */
+  const openOnHover = () => {
+    if (isMobile) return
+    openMarket()
+  }
+
+  /** PC はマウスが離れたら閉じる */
+  const closeOnHover = () => {
+    if (isMobile) return
+    closeMarket()
+  }
+
+  /**
+   * Esc で閉じられるようにする
+   * @param event - 押されたキー
+   */
+  const onWindowKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') closeMarket()
+  }
 </script>
+
+<svelte:window onkeydown={onWindowKeydown} />
 
 <article class="coaching" class:mobile={isMobile}>
   <!-- 何を頼めて、いくらで、どこから相談するのかを最初に出す -->
@@ -118,17 +158,76 @@
       </div>
 
       <div class="market">
-        <h3>{m.coaching_market_title()}</h3>
-        <p>
-          {m.coaching_market_lead()}
-        </p>
-        <ul>
-          {#each MARKET_POINTS as point (point.key)}
-            <li>
-              <b>{point.term()}</b>{point.body()}
-            </li>
-          {/each}
-        </ul>
+        <!-- 相場の話は読みたい人だけが読めばよいので、i のアイコンの中にしまう -->
+        <div
+          class="market-info"
+          onmouseenter={openOnHover}
+          onmouseleave={closeOnHover}
+          onfocusin={openMarket}
+          role="presentation"
+        >
+          <button
+            type="button"
+            class="market-trigger"
+            aria-expanded={isMarketOpen}
+            onclick={toggleMarket}
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="9.2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <circle cx="12" cy="7.6" r="1.2" fill="currentColor" />
+              <path
+                d="M12 11v6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+            {m.coaching_market_open()}
+          </button>
+
+          {#if isMarketOpen}
+            {#if isMobile}
+              <!-- スマホでは画面の手前に出す。背景を押しても閉じられる -->
+              <button
+                type="button"
+                class="market-backdrop"
+                aria-label={m.coaching_market_close()}
+                onclick={closeMarket}
+              ></button>
+            {/if}
+            <div
+              class="market-panel"
+              class:floating={!isMobile}
+              role="dialog"
+              aria-modal={isMobile}
+              aria-labelledby="coaching-market-title"
+            >
+              <h3 id="coaching-market-title">{m.coaching_market_title()}</h3>
+              <p>
+                {m.coaching_market_lead()}
+              </p>
+              <ul>
+                {#each MARKET_POINTS as point (point.key)}
+                  <li>
+                    <b>{point.term()}</b>{point.body()}
+                  </li>
+                {/each}
+              </ul>
+              <button type="button" class="market-close" onclick={closeMarket}>
+                {m.coaching_market_close()}
+              </button>
+            </div>
+          {/if}
+        </div>
+
         <!-- 金額を見て諦める人に、まず気づいてほしい一文。黄で目立たせる -->
         <p class="market-note">
           <svg class="bulb" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
@@ -596,6 +695,9 @@
   }
 
   .market {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-12;
     margin-top: $space-size-20;
     padding: $space-size-24;
     border-radius: 8px;
@@ -620,6 +722,85 @@
     margin: $space-size-12 0;
     padding-left: $space-size-20;
     list-style: disc;
+  }
+
+  // 重ねている間も開いたままにしたいので、i と説明を同じ入れ物に入れる
+  .market-info {
+    position: relative;
+    align-self: flex-start;
+  }
+
+  .market-trigger {
+    display: inline-flex;
+    gap: $space-size-8;
+    align-items: center;
+    padding: $space-size-8 $space-size-16;
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
+    border-radius: 999px;
+    background: $white;
+    cursor: pointer;
+  }
+
+  .market-trigger:hover {
+    background: map.get($sky-blue, background);
+  }
+
+  .market-panel {
+    display: flex;
+    flex-direction: column;
+    padding: $space-size-20;
+    text-align: left;
+    border: 1px solid map.get($gray, 100);
+    border-radius: 8px;
+    background: $white;
+    box-shadow: 0 4px 24px rgb(0 48 99 / 16%);
+  }
+
+  // PC は i の下に浮かせる。読み終わる前に閉じないよう、余白を挟まず続ける
+  .floating {
+    position: absolute;
+    z-index: 3;
+    top: calc(100% + #{$space-size-8});
+    left: 0;
+    width: min(520px, 80vw);
+  }
+
+  // スマホは画面の手前に出す
+  .mobile .market-panel {
+    position: fixed;
+    z-index: 21;
+    top: 50%;
+    left: 50%;
+    width: min(440px, calc(100vw - #{$space-size-32}));
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  .market-backdrop {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgb(0 0 0 / 45%);
+    cursor: pointer;
+  }
+
+  .market-close {
+    align-self: flex-end;
+    padding: $space-size-8 $space-size-20;
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
+    border-radius: 999px;
+    background: $white;
+    cursor: pointer;
   }
 
   .market-note {
