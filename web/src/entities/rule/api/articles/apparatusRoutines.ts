@@ -854,6 +854,9 @@ Les éléments suivants comptent comme difficultés D lorsqu'ils sont combinés 
               ru: 'Требования к кольцам',
               hi: 'रिंग (छल्ला) के विनिर्देश',
             },
+            // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+            // 1.8.2 手具の規格（10ページ）の表。
+            // 内径は 35cm〜45cm。従来の 40cm〜45cm から下限が広がった。
             element: {
               ja: `1. 素材
 木製または合成素材。
@@ -862,7 +865,7 @@ Les éléments suivants comptent comme difficultés D lorsqu'ils sont combinés 
 １つにつき最低200グラム。
 
 3. 形状
-大きさは内径40cm〜45cmとし太さ（径）は2.5cm〜3.5cmとする。または、全体あるいは一部にテープを巻いてもよい。
+大きさは内径35cm〜45cmとし太さ（径）は2.5cm〜3.5cmとする。または、全体あるいは一部にテープを巻いてもよい。
 
 4. 色彩
 自由。各輪の色を変えてもよい。`,
@@ -873,7 +876,7 @@ Wood or synthetic material.
 At least 200 g each.
 
 3. Shape
-Inner diameter 40 cm to 45 cm, thickness (diameter) 2.5 cm to 3.5 cm. The rings may be wholly or partly wrapped with tape.
+Inner diameter 35 cm to 45 cm, thickness (diameter) 2.5 cm to 3.5 cm. The rings may be wholly or partly wrapped with tape.
 
 4. Color
 Free. The two rings may be different colors.`,
@@ -884,7 +887,7 @@ Free. The two rings may be different colors.`,
 每个最低200克。
 
 3. 形状
-大小为内径40cm—45cm，粗细（直径）为2.5cm—3.5cm。此外，也可以在整体或局部缠绕胶带。
+大小为内径35cm—45cm，粗细（直径）为2.5cm—3.5cm。此外，也可以在整体或局部缠绕胶带。
 
 4. 颜色
 自由。各环的颜色可以不同。`,
@@ -895,7 +898,7 @@ Free. The two rings may be different colors.`,
 하나당 최저 200그램.
 
 3. 형상
-크기는 안지름 40cm~45cm로 하고 굵기(지름)는 2.5cm~3.5cm로 한다. 또는 전체나 일부에 테이프를 감아도 된다.
+크기는 안지름 35cm~45cm로 하고 굵기(지름)는 2.5cm~3.5cm로 한다. 또는 전체나 일부에 테이프를 감아도 된다.
 
 4. 색채
 자유. 각 링의 색을 달리해도 된다.`,
@@ -906,7 +909,7 @@ Madera o material sintético.
 Mínimo 200 gramos cada uno.
 
 3. Forma
-El tamaño será de 40cm–45cm de diámetro interior y el grosor (diámetro) de 2.5cm–3.5cm. También se puede envolver con cinta todo el aro o una parte de él.
+El tamaño será de 35cm–45cm de diámetro interior y el grosor (diámetro) de 2.5cm–3.5cm. También se puede envolver con cinta todo el aro o una parte de él.
 
 4. Color
 Libre. Cada aro puede ser de un color distinto.`,
@@ -917,7 +920,7 @@ Bois ou matériau synthétique.
 Au moins 200 g par anneau.
 
 3. Forme
-Diamètre intérieur de 40 cm à 45 cm, épaisseur (diamètre) de 2,5 cm à 3,5 cm. Les anneaux peuvent être entourés de ruban adhésif, en totalité ou en partie.
+Diamètre intérieur de 35 cm à 45 cm, épaisseur (diamètre) de 2,5 cm à 3,5 cm. Les anneaux peuvent être entourés de ruban adhésif, en totalité ou en partie.
 
 4. Couleur
 Libre. Les deux anneaux peuvent être de couleurs différentes.`,
@@ -928,7 +931,7 @@ Libre. Les deux anneaux peuvent être de couleurs différentes.`,
 Не менее 200 граммов каждое.
 
 3. Форма
-Внутренний диаметр от 40 до 45 см, толщина (диаметр) от 2,5 до 3,5 см. Кольца можно целиком или частично обмотать лентой.
+Внутренний диаметр от 35 до 45 см, толщина (диаметр) от 2,5 до 3,5 см. Кольца можно целиком или частично обмотать лентой.
 
 4. Цвет
 Свободный. Кольца могут быть разного цвета.`,
@@ -939,7 +942,7 @@ Libre. Les deux anneaux peuvent être de couleurs différentes.`,
 प्रत्येक का कम से कम 200 ग्राम।
 
 3. आकार
-आकार में आंतरिक व्यास 40cm–45cm हो और मोटाई (व्यास) 2.5cm–3.5cm हो। या, पूरे या कुछ हिस्से पर टेप लपेटा जा सकता है।
+आकार में आंतरिक व्यास 35cm–45cm हो और मोटाई (व्यास) 2.5cm–3.5cm हो। या, पूरे या कुछ हिस्से पर टेप लपेटा जा सकता है।
 
 4. रंग
 स्वतंत्र। प्रत्येक रिंग का रंग अलग हो सकता है।`,

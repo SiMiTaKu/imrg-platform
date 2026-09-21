@@ -702,23 +702,27 @@ export const COMPETITION_CONDUCT_ARTICLES: RuleArticle[] = [
           ru: 'Заявка на групповые соревнования',
           hi: 'समूह प्रतियोगिता के लिए प्रविष्टि',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 1.4.4 出場規程 1 団体競技（5ページ）。
+        // 申し込みは 8名まで（変わらず）。演技を行うのは 5名、4名でも行える。
+        // 従来の「6名が演技、5名または4名でも可」から変わった。
         content: {
           ja: `団体競技は競技者を８名まで申し込むことができる。
-団体競技者は、監督会議において承認された競技者のうち６名が演技を行う。ただし、５名または４名の競技者でも演技を行うこともできる。`,
+団体競技者は、監督会議において承認された競技者のうち５名が演技を行う。ただし、４名の競技者でも演技を行うこともできる。`,
           en: `Up to 8 gymnasts may be entered in the group competition.
-Six of the gymnasts approved at the team managers' meeting perform the group routine. A group may also perform with five or four gymnasts.`,
+Five of the gymnasts approved at the team managers' meeting perform the group routine. A group may also perform with four gymnasts.`,
           zh: `团体比赛最多可以报名８名参赛者。
-团体比赛由在领队会议上获得承认的参赛者中的６名完成成套动作。但是，由５名或４名参赛者完成成套动作也可以。`,
+团体比赛由在领队会议上获得承认的参赛者中的５名完成成套动作。但是，由４名参赛者完成成套动作也可以。`,
           ko: `단체 경기는 경기자를 8명까지 신청할 수 있다.
-단체 경기자는 감독 회의에서 승인된 경기자 중 6명이 연기를 실시한다. 다만 5명 또는 4명의 경기자로도 연기를 실시할 수 있다.`,
+단체 경기자는 감독 회의에서 승인된 경기자 중 5명이 연기를 실시한다. 다만 4명의 경기자로도 연기를 실시할 수 있다.`,
           es: `En la competición por conjuntos se pueden inscribir hasta 8 gimnastas.
-Realizan el ejercicio seis de los gimnastas aprobados en la reunión de entrenadores. No obstante, el ejercicio también puede realizarse con cinco o cuatro gimnastas.`,
+Realizan el ejercicio cinco de los gimnastas aprobados en la reunión de entrenadores. No obstante, el ejercicio también puede realizarse con cuatro gimnastas.`,
           fr: `Jusqu'à 8 gymnastes peuvent être engagés dans la compétition par ensembles.
-Six des gymnastes validés lors de la réunion des entraîneurs présentent l'exercice d'ensemble. Un ensemble peut également concourir à cinq ou à quatre gymnastes.`,
+Cinq des gymnastes validés lors de la réunion des entraîneurs présentent l'exercice d'ensemble. Un ensemble peut également concourir à quatre gymnastes.`,
           ru: `На групповые соревнования можно заявить до восьми гимнастов.
-Упражнение выполняют шесть гимнастов из числа утверждённых на совещании представителей команд. Допускается выступление и пятью или четырьмя гимнастами.`,
+Упражнение выполняют пять гимнастов из числа утверждённых на совещании представителей команд. Допускается выступление и четырьмя гимнастами.`,
           hi: `समूह प्रतियोगिता में अधिकतम 8 जिम्नास्ट की प्रविष्टि की जा सकती है।
-समूह प्रतियोगिता में, कोच बैठक में स्वीकृत जिम्नास्ट में से 6 जिम्नास्ट प्रदर्शन करते हैं। हालाँकि, 5 या 4 जिम्नास्ट के साथ भी प्रदर्शन किया जा सकता है।`,
+समूह प्रतियोगिता में, कोच बैठक में स्वीकृत जिम्नास्ट में से 5 जिम्नास्ट प्रदर्शन करते हैं। हालाँकि, 4 जिम्नास्ट के साथ भी प्रदर्शन किया जा सकता है।`,
         },
       },
       {
@@ -2082,15 +2086,19 @@ Le classement est établi d'après la note de la finale par engin ou de chaque e
           ru: 'Упражнения в художественной гимнастике',
           hi: 'लयबद्ध जिम्नास्टिक का प्रदर्शन',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 1.9.1 男子新体操の演技（11ページ）。
+        // 団体競技は 5名（従来は 6名）。「同調性」ではなく「同時性」、
+        // 「回転系要素」ではなく「転回系要素」が原文の言い方。
         content: {
-          ja: '新体操の演技は、徒手系要素と回転系要素を織り交ぜ、団体競技では６人の同調性と力強さを、個人競技では４種類の手具の特性に合わせた操作を、体を極限まで運動させながら表現する種目である。各競技に求められた要素を全て含み、高い技術的価値と各種要素の多様性音楽と動きの関係や独創性を持ち、すべての運動が合理性と安定性を持って実施されなければならない。',
-          en: "A men's rhythmic gymnastics routine combines free-hand elements and tumbling elements. In the group competition it expresses the synchronization and power of six gymnasts, and in the individual competition it expresses handling suited to the character of each of the four apparatus, while moving the body to its limits. A routine must contain all the elements required in each competition, have high technical value, a variety of elements, a good relationship between music and movement, and originality, and every movement must be performed rationally and with stability.",
-          zh: '艺术体操的成套动作，是将徒手类要素与转体类要素交织在一起，在团体比赛中表现６人的协调一致与力度，在个人比赛中表现契合４种器械特性的操作，并将身体运动到极限加以表现的项目。必须包含各项比赛所要求的全部要素，具有很高的技术价值、各类要素的多样性、音乐与动作的关系以及独创性，所有动作都必须合理、稳定地完成。',
-          ko: '리듬체조의 연기는 신체계 요소와 회전계 요소를 섞어, 단체 경기에서는 6명의 동조성과 힘찬 느낌을, 개인 경기에서는 4종류 수구의 특성에 맞춘 조작을, 몸을 극한까지 움직이면서 표현하는 종목이다. 각 경기에서 요구되는 요소를 모두 포함하고, 높은 기술적 가치와 각종 요소의 다양성, 음악과 움직임의 관계나 독창성을 갖추어야 하며, 모든 운동이 합리성과 안정성을 가지고 실시되어야 한다.',
-          es: 'El ejercicio de gimnasia rítmica es una prueba en la que se entrelazan elementos de manos libres y elementos de rotación y en la que, llevando el cuerpo al límite, se expresan la sincronización y la fuerza de los seis gimnastas en la competición por conjuntos y, en la competición individual, un manejo acorde con las características de los cuatro aparatos. El ejercicio debe contener todos los elementos exigidos en cada competición, tener un alto valor técnico, variedad de elementos, una buena relación entre la música y el movimiento y originalidad, y todos los movimientos deben ejecutarse con racionalidad y estabilidad.',
-          fr: "Un exercice de gymnastique rythmique masculine associe des éléments corporels et des éléments de tumbling. En compétition par ensembles, il exprime la synchronisation et la puissance de six gymnastes ; en compétition individuelle, il exprime un maniement adapté au caractère de chacun des quatre engins, tout en sollicitant le corps jusqu'à ses limites. L'exercice doit contenir tous les éléments exigés par chaque compétition, présenter une valeur technique élevée, une variété d'éléments, un bon rapport entre la musique et le mouvement ainsi que de l'originalité, et tous les mouvements doivent être exécutés de façon rationnelle et avec stabilité.",
-          ru: 'Упражнение в мужской художественной гимнастике сочетает элементы без предмета и акробатические элементы: в групповых соревнованиях оно выражает синхронность и силу шести гимнастов, в индивидуальных — работу с предметом, отвечающую особенностям каждого из четырёх предметов, при движении тела на пределе возможностей. Упражнение должно содержать все элементы, требуемые в данном виде соревнований, обладать высокой технической ценностью, разнообразием элементов, связью музыки и движения и оригинальностью, а все движения должны выполняться рационально и устойчиво.',
-          hi: 'लयबद्ध जिम्नास्टिक का प्रदर्शन, बिना उपकरण के तत्वों और घूर्णन वर्ग के तत्वों को मिलाकर, समूह प्रतियोगिता में 6 जिम्नास्ट के तालमेल और शक्ति को, तथा व्यक्तिगत प्रतियोगिता में 4 प्रकार के उपकरणों की विशेषताओं के अनुरूप संचालन को, शरीर को उसकी सीमा तक चलाते हुए व्यक्त करने वाली स्पर्धा है। प्रत्येक प्रतियोगिता में माँगे गए सभी तत्व शामिल होने चाहिए, उच्च तकनीकी मूल्य, तत्वों की विविधता, संगीत और गति का संबंध तथा मौलिकता होनी चाहिए, और सभी गतियाँ तर्कसंगत तथा स्थिर रूप से की जानी चाहिए।',
+          ja: '新体操の演技は、徒手系要素と転回系要素を織り交ぜ、団体競技では５名の同時性と力強さを、個人競技では４種類の手具の特性に合わせた操作を、体を極限まで運動させながら表現する種目である。各競技に求められた要素を全て含み、高い技術的価値と各種要素の多様性音楽と動きの関係や独創性を持ち、すべての運動が合理性と安定性を持って実施されなければならない。',
+          en: "A men's rhythmic gymnastics routine combines free-hand elements and tumbling elements. In the group competition it expresses the synchronization and power of five gymnasts, and in the individual competition it expresses handling suited to the character of each of the four apparatus, while moving the body to its limits. A routine must contain all the elements required in each competition, have high technical value, a variety of elements, a good relationship between music and movement, and originality, and every movement must be performed rationally and with stability.",
+          zh: '艺术体操的成套动作，是将徒手类要素与翻腾要素交织在一起，在团体比赛中表现５名的同时性与力度，在个人比赛中表现契合４种器械特性的操作，并将身体运动到极限加以表现的项目。必须包含各项比赛所要求的全部要素，具有很高的技术价值、各类要素的多样性、音乐与动作的关系以及独创性，所有动作都必须合理、稳定地完成。',
+          ko: '리듬체조의 연기는 신체계 요소와 공중돌기 계열 요소를 섞어, 단체 경기에서는 5명의 동시성과 힘찬 느낌을, 개인 경기에서는 4종류 수구의 특성에 맞춘 조작을, 몸을 극한까지 움직이면서 표현하는 종목이다. 각 경기에서 요구되는 요소를 모두 포함하고, 높은 기술적 가치와 각종 요소의 다양성, 음악과 움직임의 관계나 독창성을 갖추어야 하며, 모든 운동이 합리성과 안정성을 가지고 실시되어야 한다.',
+          es: 'El ejercicio de gimnasia rítmica es una prueba en la que se entrelazan elementos de manos libres y elementos de tumbling y en la que, llevando el cuerpo al límite, se expresan la sincronización y la fuerza de los cinco gimnastas en la competición por conjuntos y, en la competición individual, un manejo acorde con las características de los cuatro aparatos. El ejercicio debe contener todos los elementos exigidos en cada competición, tener un alto valor técnico, variedad de elementos, una buena relación entre la música y el movimiento y originalidad, y todos los movimientos deben ejecutarse con racionalidad y estabilidad.',
+          fr: "Un exercice de gymnastique rythmique masculine associe des éléments corporels et des éléments de tumbling. En compétition par ensembles, il exprime la synchronisation et la puissance de cinq gymnastes ; en compétition individuelle, il exprime un maniement adapté au caractère de chacun des quatre engins, tout en sollicitant le corps jusqu'à ses limites. L'exercice doit contenir tous les éléments exigés par chaque compétition, présenter une valeur technique élevée, une variété d'éléments, un bon rapport entre la musique et le mouvement ainsi que de l'originalité, et tous les mouvements doivent être exécutés de façon rationnelle et avec stabilité.",
+          ru: 'Упражнение в мужской художественной гимнастике сочетает элементы без предмета и акробатические элементы: в групповых соревнованиях оно выражает синхронность и силу пяти гимнастов, в индивидуальных — работу с предметом, отвечающую особенностям каждого из четырёх предметов, при движении тела на пределе возможностей. Упражнение должно содержать все элементы, требуемые в данном виде соревнований, обладать высокой технической ценностью, разнообразием элементов, связью музыки и движения и оригинальностью, а все движения должны выполняться рационально и устойчиво.',
+          hi: 'लयबद्ध जिम्नास्टिक का प्रदर्शन, बिना उपकरण के तत्वों और टम्बलिंग तत्वों को मिलाकर, समूह प्रतियोगिता में 5 जिम्नास्ट के तालमेल और शक्ति को, तथा व्यक्तिगत प्रतियोगिता में 4 प्रकार के उपकरणों की विशेषताओं के अनुरूप संचालन को, शरीर को उसकी सीमा तक चलाते हुए व्यक्त करने वाली स्पर्धा है। प्रत्येक प्रतियोगिता में माँगे गए सभी तत्व शामिल होने चाहिए, उच्च तकनीकी मूल्य, तत्वों की विविधता, संगीत और गति का संबंध तथा मौलिकता होनी चाहिए, और सभी गतियाँ तर्कसंगत तथा स्थिर रूप से की जानी चाहिए।',
         },
       },
       {
@@ -2200,38 +2208,42 @@ Le classement est établi d'après la note de la finale par engin ou de chaque e
           ru: 'Продолжительность упражнения',
           hi: 'प्रदर्शन का समय',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 1.9.6 演技時間（12ページ）。
+        // 団体競技は 2分15秒〜2分30秒。従来の 2分45秒〜3分00秒 から短くなった。
+        // 個人競技の 1分15秒〜1分30秒 は変わっていない。
         content: {
           ja: `すべての演技は演技時間が下記のとおりに定められる。団体演技ではチームのうち１人以上の動き始めからチーム全員が完全に動きを止めるまでの時間とし、個人競技では競技者の動き始めから完全に動きを止めるまでとする。
 
-1. 団体競技　２分45秒から３分00秒
+1. 団体競技　２分15秒から２分30秒
 2. 個人競技　１分15秒から１分30秒`,
           en: `The duration of every routine is set as below. In the group competition, it is measured from the moment at least one gymnast starts moving until all gymnasts have completely stopped. In the individual competition, it is measured from the moment the gymnast starts moving until the gymnast has completely stopped.
 
-1. Group competition: 2 min 45 s to 3 min 00 s
+1. Group competition: 2 min 15 s to 2 min 30 s
 2. Individual competition: 1 min 15 s to 1 min 30 s`,
           zh: `所有成套动作的成套时间规定如下。团体成套为队中１人以上开始动作起，至全队完全停止动作为止的时间；个人比赛为参赛者开始动作起，至完全停止动作为止。
 
-1. 团体比赛　２分45秒至３分00秒
+1. 团体比赛　２分15秒至２分30秒
 2. 个人比赛　１分15秒至１分30秒`,
           ko: `모든 연기는 연기 시간이 다음과 같이 정해진다. 단체 연기에서는 팀 중 1명 이상이 움직이기 시작한 때부터 팀 전원이 완전히 움직임을 멈출 때까지의 시간으로 하고, 개인 경기에서는 경기자가 움직이기 시작한 때부터 완전히 움직임을 멈출 때까지로 한다.
 
-1. 단체 경기 2분 45초부터 3분 00초
+1. 단체 경기 2분 15초부터 2분 30초
 2. 개인 경기 1분 15초부터 1분 30초`,
           es: `La duración de todos los ejercicios se establece del modo siguiente. En el ejercicio de conjunto se mide desde que al menos uno de los gimnastas del equipo empieza a moverse hasta que todos los gimnastas se detienen por completo, y en la competición individual, desde que el gimnasta empieza a moverse hasta que se detiene por completo.
 
-1. Competición por conjuntos  de 2 min 45 s a 3 min 00 s
+1. Competición por conjuntos  de 2 min 15 s a 2 min 30 s
 2. Competición individual  de 1 min 15 s a 1 min 30 s`,
           fr: `La durée de chaque exercice est fixée comme suit. En compétition par ensembles, elle est mesurée du moment où au moins un gymnaste commence à bouger jusqu'à l'arrêt complet de tous les gymnastes. En compétition individuelle, elle est mesurée du moment où le gymnaste commence à bouger jusqu'à son arrêt complet.
 
-1. Compétition par ensembles : de 2 min 45 s à 3 min 00 s
+1. Compétition par ensembles : de 2 min 15 s à 2 min 30 s
 2. Compétition individuelle : de 1 min 15 s à 1 min 30 s`,
           ru: `Продолжительность всех упражнений устанавливается следующим образом. В групповых соревнованиях она отсчитывается с момента, когда начал двигаться хотя бы один гимнаст, до момента, когда все гимнасты полностью остановились. В индивидуальных соревнованиях — с момента, когда гимнаст начал двигаться, до его полной остановки.
 
-1. Групповые соревнования: от 2 минут 45 секунд до 3 минут 00 секунд
+1. Групповые соревнования: от 2 минут 15 секунд до 2 минут 30 секунд
 2. Индивидуальные соревнования: от 1 минуты 15 секунд до 1 минуты 30 секунд`,
           hi: `सभी प्रदर्शनों का प्रदर्शन का समय नीचे दिए अनुसार निर्धारित है। समूह प्रदर्शन में यह टीम के कम से कम 1 जिम्नास्ट के चलना शुरू करने से लेकर पूरी टीम के पूरी तरह रुक जाने तक का समय है, और व्यक्तिगत प्रतियोगिता में जिम्नास्ट के चलना शुरू करने से पूरी तरह रुक जाने तक का समय है।
 
-1. समूह प्रतियोगिता  2 मिनट 45 सेकंड से 3 मिनट 00 सेकंड
+1. समूह प्रतियोगिता  2 मिनट 15 सेकंड से 2 मिनट 30 सेकंड
 2. व्यक्तिगत प्रतियोगिता  1 मिनट 15 सेकंड से 1 मिनट 30 सेकंड`,
         },
       },
@@ -2246,15 +2258,20 @@ Le classement est établi d'après la note de la finale par engin ou de chaque e
           ru: 'Число гимнастов в группе',
           hi: 'प्रदर्शन करने वाले जिम्नास्ट की संख्या',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 1.9.7 演技人数（12ページ）。
+        // 団体競技は 5名。従来の 6名 から変わった。4名でも参加できるが減点される。
+        // ※ 原文にはこのあとに「演技中に離脱者が出た場合は直ちに演技を終了
+        //    しなければならない」が続く。未反映。
         content: {
-          ja: '団体競技の演技人数は６名で行うものとする。ただし５名または４名でも競技に参加することができるが減点される。',
-          en: 'A group routine is performed by six gymnasts. A group may also compete with five or four gymnasts, but a deduction is applied.',
-          zh: '团体比赛的成套动作人数为６名。但是，５名或４名也可以参加比赛，此时予以扣分。',
-          ko: '단체 경기의 연기 인원은 6명으로 실시하는 것으로 한다. 다만 5명 또는 4명으로도 경기에 참가할 수 있으나 감점된다.',
-          es: 'El ejercicio de conjunto se realiza con seis gimnastas. No obstante, también se puede participar en la competición con cinco o cuatro gimnastas, pero se aplica una penalización.',
-          fr: "Un exercice d'ensemble est présenté par six gymnastes. Un ensemble peut également concourir à cinq ou à quatre gymnastes, mais une pénalité est alors appliquée.",
-          ru: 'Групповое упражнение выполняют шесть гимнастов. Допускается выступление пятью или четырьмя гимнастами, но с применением сбавки.',
-          hi: 'समूह प्रतियोगिता का प्रदर्शन 6 जिम्नास्ट द्वारा किया जाता है। हालाँकि 5 या 4 जिम्नास्ट के साथ भी प्रतियोगिता में भाग लिया जा सकता है, पर कटौती की जाती है।',
+          ja: '団体競技の演技人数は５名で行うものとする。ただし４名でも競技に参加することができるが減点される。',
+          en: 'A group routine is performed by five gymnasts. A group may also compete with four gymnasts, but a deduction is applied.',
+          zh: '团体比赛的成套动作人数为５名。但是，４名也可以参加比赛，此时予以扣分。',
+          ko: '단체 경기의 연기 인원은 5명으로 실시하는 것으로 한다. 다만 4명으로도 경기에 참가할 수 있으나 감점된다.',
+          es: 'El ejercicio de conjunto se realiza con cinco gimnastas. No obstante, también se puede participar en la competición con cuatro gimnastas, pero se aplica una penalización.',
+          fr: "Un exercice d'ensemble est présenté par cinq gymnastes. Un ensemble peut également concourir à quatre gymnastes, mais une pénalité est alors appliquée.",
+          ru: 'Групповое упражнение выполняют пять гимнастов. Допускается выступление четырьмя гимнастами, но с применением сбавки.',
+          hi: 'समूह प्रतियोगिता का प्रदर्शन 5 जिम्नास्ट द्वारा किया जाता है। हालाँकि 4 जिम्नास्ट के साथ भी प्रतियोगिता में भाग लिया जा सकता है, पर कटौती की जाती है।',
         },
       },
     ],
