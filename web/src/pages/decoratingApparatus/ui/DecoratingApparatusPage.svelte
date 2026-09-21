@@ -26,6 +26,7 @@
     PRICE_HEADING,
     PRICE_PER_HOUR,
   } from '../config/content'
+  import LiveNotice from './LiveNotice.svelte'
   import WorkList from './WorkList.svelte'
 
   const locale = getLocale()
@@ -56,6 +57,8 @@
     }))}
     bleed={true}
   />
+
+  <LiveNotice />
 
   <OrderPoints
     eyebrow={POINTS_HEADING.eyebrow()}
