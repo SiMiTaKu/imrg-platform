@@ -12,6 +12,7 @@
 </script>
 
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { pageData } from '@shared/lib/device'
   import { SectionHeading } from '@features/sectionHeading'
 
@@ -92,9 +93,9 @@
         {/each}
       </p>
 
-      <a class="contact" href={contactHref} target="_blank" rel="noopener noreferrer">
-        {contactLabel}
-      </a>
+      <div class="contact-action">
+        <Button href={contactHref} target="_blank" size="large" block>{contactLabel}</Button>
+      </div>
     </div>
   </div>
 </section>
@@ -208,27 +209,9 @@
   }
 
   // 料金を見た直後に相談へ進めるようにする。ボタンは青の塗り。黄はページ下の相談の節だけに残す
-  .contact {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+  .contact-action {
+    display: flex;
     width: 100%;
     max-width: 400px;
-    min-height: 56px;
-    margin-top: auto;
-    padding: 0 $space-size-20;
-    font-size: $font-size-18;
-    font-weight: bold;
-    color: $white;
-    border-radius: 6px;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 35%);
-    transition: transform 0.15s ease;
-    text-decoration: none;
-  }
-
-  .contact:hover {
-    transform: translateY(-1px);
   }
 </style>

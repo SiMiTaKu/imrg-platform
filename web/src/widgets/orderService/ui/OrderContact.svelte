@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { CharacterFigure, type CharacterProfile } from '@entities/character'
   import { CrossLinks, type CrossLink } from '@features/crossLinks'
   import { pageData } from '@shared/lib/device'
@@ -60,9 +61,11 @@
           {/each}
         </p>
 
-        <a class="button" href={contactHref} target="_blank" rel="noopener noreferrer">
-          {contactLabel}
-        </a>
+        <div class="contact-action">
+          <Button href={contactHref} target="_blank" variant="yellow" size="large" block>
+            {contactLabel}
+          </Button>
+        </div>
 
         <p class="note">{note}</p>
       </div>
@@ -142,30 +145,10 @@
   }
 
   // 連絡への一歩は黄。このページで黄を使うのはここだけ
-  .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+  .contact-action {
+    display: flex;
     width: 100%;
     max-width: 400px;
-    min-height: 56px;
-    padding: 0 $space-size-20;
-    font-size: $font-size-18;
-    font-weight: bold;
-
-    // 黄は明るいので、文字は黒にする（design-system の色の決まり 4）
-    color: $black;
-    border-radius: 6px;
-    background: map.get($yellow, 300);
-    box-shadow: 0 2px 8px rgb(240 165 0 / 35%);
-    transition: transform 0.15s ease;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .button:hover {
-    transform: translateY(-1px);
   }
 
   .note {

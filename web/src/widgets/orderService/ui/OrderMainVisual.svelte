@@ -25,6 +25,7 @@
 </script>
 
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { SLIDE_INTERVAL } from '../config/orderService'
   import { onMount } from 'svelte'
   import { CharacterFigure, type CharacterProfile } from '@entities/character'
@@ -213,10 +214,8 @@
       </ul>
 
       <div class="actions">
-        <a class="contact" href={contactHref} target="_blank" rel="noopener noreferrer">
-          {contactLabel}
-        </a>
-        <a class="works" href={worksHref}>{worksLabel}</a>
+        <Button href={contactHref} target="_blank" block>{contactLabel}</Button>
+        <Button href={worksHref} target="_self" variant="outline" block>{worksLabel}</Button>
       </div>
 
       <p class="note">{note}</p>
@@ -478,42 +477,16 @@
     background: map.get($sky-blue, background);
   }
 
+  // 相談へ進む一歩は青の塗り、作例を見に行くのは青の枠。黄はページ下の相談の節だけに残す。
+  // スマホでは1列に積んで、1つずつ横いっぱいにする
   .actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: $space-size-12;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .actions a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1 1 200px;
-    min-height: 54px;
-    padding: 0 $space-size-20;
-    font-size: $font-size-16;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: transform 0.15s ease;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .actions a:hover {
-    transform: translateY(-1px);
-  }
-
-  // 相談へ進む一歩は青の塗り。作例を見に行くのは青の枠。黄はページ下の相談の節だけに残す
-  .contact {
-    color: $white;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 35%);
-  }
-
-  .works {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
+  .mobile .actions {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .note {
@@ -586,9 +559,5 @@
 
   .full .note {
     color: rgb(255 255 255 / 80%);
-  }
-
-  .full .actions a {
-    text-shadow: none;
   }
 </style>
