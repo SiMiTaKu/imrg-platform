@@ -29,13 +29,18 @@
   import WorkList from './WorkList.svelte'
 
   const locale = getLocale()
-  // 個人と団体で長さも手数も違うので、値段を分けて出す
-  const individualPrice = formatYen(PRICE_PER_MUSIC.individual, locale)
-  const groupPrice = formatYen(PRICE_PER_MUSIC.group, locale)
-  const price = m.background_music_price_split({
-    individual: individualPrice,
-    group: groupPrice,
-  })
+  // 個人と団体で長さも手数も違うので、値段を分けて出す。
+  // 「個人 5,000円〜」「団体 10,000円〜」をひとかたまりずつ渡し、金額と単位の間で折り返させない
+  const priceParts = [
+    m.background_music_price_amount({
+      price: m.background_music_price_individual({
+        price: formatYen(PRICE_PER_MUSIC.individual, locale),
+      }),
+    }),
+    m.background_music_price_amount({
+      price: m.background_music_price_group({ price: formatYen(PRICE_PER_MUSIC.group, locale) }),
+    }),
+  ]
   // 表現・構成が得意な彩人が、曲編集の案内役
   const guide = findCharacter(Character.AYATO)
 </script>
@@ -47,7 +52,7 @@
     eyebrow={HERO.eyebrow()}
     summary={HERO.summary()}
     priceUnit={HERO.priceUnit()}
-    priceAmount={m.background_music_price_amount({ price })}
+    priceAmount={priceParts}
     points={HERO.points.map((point) => point())}
     character={guide}
     contactHref={LINKS.instagram}
@@ -74,7 +79,7 @@
     title={m.background_music_price_title()}
     lead={PRICE_HEADING.lead()}
     unit={m.background_music_price_unit()}
-    amount={m.background_music_price_amount({ price })}
+    amount={priceParts}
     notes={[m.background_music_price_note_1(), m.background_music_price_note_2()]}
     freeNote={m.order_price_free_note()}
     contactHref={LINKS.instagram}

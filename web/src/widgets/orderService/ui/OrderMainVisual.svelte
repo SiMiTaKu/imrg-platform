@@ -11,6 +11,17 @@
 
   /** キャッチコピーを消してから次を出すまでの時間（ミリ秒） */
   const SLIDE_GAP = 1250
+
+  /**
+   * 1つの文字列でも、意味のまとまりの並びでも、まとまりの配列として受け取る。
+   *
+   * @remarks
+   * まとまりを1つずつ並べて出すと、まとまりの途中では折り返さない
+   * @param value - 文字列、または意味のまとまりの配列
+   * @returns 意味のまとまりの配列
+   */
+  const toParts = (value: string | readonly string[]): readonly string[] =>
+    typeof value === 'string' ? [value] : value
 </script>
 
 <script lang="ts">
@@ -33,8 +44,13 @@
     summary: string
     /** 何に対しての金額か（例: 1曲） */
     priceUnit: string
-    /** 金額の表記（例: 5,000円〜） */
-    priceAmount: string
+    /**
+     * 金額の表記（例: 5,000円〜）。
+     *
+     * 「個人 5,000円〜」「団体 10,000円〜」のように読み手が分けて読むものは、
+     * まとまりごとの配列で渡す。まとまりの途中では折り返さずに出す
+     */
+    priceAmount: string | readonly string[]
     /** 頼めることの短い言い切り。3つまでにする */
     points: readonly string[]
     /** このページの案内役 */
@@ -83,6 +99,7 @@
   }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
+  const priceParts = $derived(toParts(priceAmount))
 
   let currentIndex = $state(0)
   let isShow = $state(false)
@@ -160,9 +177,12 @@
               <span class="subtitle" lang="en">{subtitle}</span>
             {/if}
           </h1>
+          <!-- 金額はまとまりごとに出す。金額と単位の途中では折り返さない -->
           <p class="price">
             <span class="unit">{priceUnit}</span>
-            <strong class="amount">{priceAmount}</strong>
+            {#each priceParts as part (part)}
+              <strong class="amount">{part}</strong>
+            {/each}
           </p>
         </div>
       </div>
@@ -341,14 +361,17 @@
   }
 
   // 料金は最初の画面で見せる。青で強調する
+  // 入りきらないときはまとまりごとに折り返す。まとまりの中では折り返さない
   .price {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: $space-size-8;
+    gap: $space-size-4 $space-size-8;
     margin: 0;
   }
 
   .unit {
+    flex: none;
     padding: $space-size-2 $space-size-8;
     font-size: $font-size-12;
     font-weight: bold;
@@ -357,10 +380,13 @@
     background: map.get($sky-blue, button);
   }
 
+  // 1つのまとまりは、幅に入りきらないときだけ中で折り返す
   .amount {
+    min-inline-size: 0;
     font-size: $font-size-22;
     color: map.get($sky-blue, text);
     font-variant-numeric: tabular-nums;
+    overflow-wrap: break-word;
   }
 
   .catch-slot {

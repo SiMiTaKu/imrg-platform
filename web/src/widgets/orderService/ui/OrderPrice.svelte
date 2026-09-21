@@ -1,3 +1,16 @@
+<script lang="ts" module>
+  /**
+   * 1つの文字列でも、意味のまとまりの並びでも、まとまりの配列として受け取る。
+   *
+   * @remarks
+   * まとまりを1つずつ並べて出すと、まとまりの途中では折り返さない
+   * @param value - 文字列、または意味のまとまりの配列
+   * @returns 意味のまとまりの配列
+   */
+  const toParts = (value: string | readonly string[]): readonly string[] =>
+    typeof value === 'string' ? [value] : value
+</script>
+
 <script lang="ts">
   import { pageData } from '@shared/lib/device'
   import SectionHeading from './SectionHeading.svelte'
@@ -14,8 +27,13 @@
     lead: string
     /** 何に対しての金額か（例: 1曲あたり） */
     unit: string
-    /** 金額の表記（例: 5,000円〜） */
-    amount: string
+    /**
+     * 金額の表記（例: 5,000円〜）。
+     *
+     * 「個人 5,000円〜」「団体 10,000円〜」のように読み手が分けて読むものは、
+     * まとまりごとの配列で渡す。まとまりの途中では折り返さずに出す
+     */
+    amount: string | readonly string[]
     /** 金額の下に並べる補足 */
     notes: string[]
     /** 見積もりが無料であることの言い切り。金額のすぐ下に出す */
@@ -40,6 +58,7 @@
   }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
+  const amountParts = $derived(toParts(amount))
 </script>
 
 <section class="price" class:mobile={isMobile} id="price">
@@ -48,7 +67,12 @@
 
     <div class="card">
       <p class="unit">{unit}</p>
-      <p class="amount">{amount}</p>
+      <!-- 金額はまとまりごとに出す。金額と単位の途中では折り返さない -->
+      <p class="amount">
+        {#each amountParts as part (part)}
+          <span class="amount-part">{part}</span>
+        {/each}
+      </p>
 
       <ul class="notes">
         {#each notes as note (note)}
@@ -114,14 +138,23 @@
     background: map.get($sky-blue, button);
   }
 
+  // まとまりごとに並べる。行が足りなければまとまりごと次の行へ送り、途中では折り返さない
   .amount {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 $space-size-16;
     margin: 0;
     font-size: $font-size-48;
     font-weight: bold;
-    line-height: 1.2;
+    line-height: 1.3;
     color: map.get($gray, text);
     font-variant-numeric: tabular-nums;
-    overflow-wrap: anywhere;
+  }
+
+  .amount-part {
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .mobile .amount {
