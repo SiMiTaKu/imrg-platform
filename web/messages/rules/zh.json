@@ -15,5 +15,7 @@
   "rules_expand_all": "全部展开",
   "rules_collapse_all": "全部折叠",
   "rules_expand_chapter_label": "展开第{number}章的全部内容",
-  "rules_collapse_chapter_label": "折叠第{number}章的全部内容"
+  "rules_collapse_chapter_label": "折叠第{number}章的全部内容",
+  "rules_table_source": "出处：{source}",
+  "rules_scroll_hint": "※可左右滑动查看"
 }

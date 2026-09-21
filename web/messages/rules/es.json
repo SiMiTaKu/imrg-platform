@@ -15,5 +15,7 @@
   "rules_expand_all": "Abrir todo",
   "rules_collapse_all": "Cerrar todo",
   "rules_expand_chapter_label": "Abrir todo el capítulo {number}",
-  "rules_collapse_chapter_label": "Cerrar todo el capítulo {number}"
+  "rules_collapse_chapter_label": "Cerrar todo el capítulo {number}",
+  "rules_table_source": "Fuente: {source}",
+  "rules_scroll_hint": "* Puede desplazarse horizontalmente."
 }

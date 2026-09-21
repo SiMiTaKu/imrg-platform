@@ -15,5 +15,7 @@
   "rules_expand_all": "सब खोलें",
   "rules_collapse_all": "सब बंद करें",
   "rules_expand_chapter_label": "अध्याय {number} पूरा खोलें",
-  "rules_collapse_chapter_label": "अध्याय {number} पूरा बंद करें"
+  "rules_collapse_chapter_label": "अध्याय {number} पूरा बंद करें",
+  "rules_table_source": "स्रोत: {source}",
+  "rules_scroll_hint": "* क्षैतिज रूप से स्क्रॉल करें।"
 }

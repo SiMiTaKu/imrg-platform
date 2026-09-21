@@ -15,5 +15,7 @@
   "rules_expand_all": "Раскрыть всё",
   "rules_collapse_all": "Свернуть всё",
   "rules_expand_chapter_label": "Раскрыть главу {number} целиком",
-  "rules_collapse_chapter_label": "Свернуть главу {number} целиком"
+  "rules_collapse_chapter_label": "Свернуть главу {number} целиком",
+  "rules_table_source": "Источник: {source}",
+  "rules_scroll_hint": "* Прокручивается по горизонтали."
 }

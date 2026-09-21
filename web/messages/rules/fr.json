@@ -15,5 +15,7 @@
   "rules_expand_all": "Tout ouvrir",
   "rules_collapse_all": "Tout replier",
   "rules_expand_chapter_label": "Tout ouvrir dans le chapitre {number}",
-  "rules_collapse_chapter_label": "Tout replier dans le chapitre {number}"
+  "rules_collapse_chapter_label": "Tout replier dans le chapitre {number}",
+  "rules_table_source": "Source : {source}",
+  "rules_scroll_hint": "* Faites défiler horizontalement."
 }

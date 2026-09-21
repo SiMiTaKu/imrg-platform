@@ -15,5 +15,12 @@ export type {
   RuleImage,
   RuleSection,
 } from './model/ruleBook'
-export { RULE_TABLES, findRuleTable } from './api/tables/deductionTables'
-export type { RuleTable } from './model/ruleTable'
+export { RULE_TABLES, findRuleTable } from './api/tables'
+export { hasRowHeader, normalizeRuleTableCell } from './model/ruleTable'
+export type {
+  RuleTable,
+  RuleTableCell,
+  RuleTableCellSource,
+  RuleTableLayout,
+  RuleTableRow,
+} from './model/ruleTable'

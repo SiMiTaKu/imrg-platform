@@ -15,5 +15,7 @@
   "rules_expand_all": "Expand all",
   "rules_collapse_all": "Collapse all",
   "rules_expand_chapter_label": "Expand all of Chapter {number}",
-  "rules_collapse_chapter_label": "Collapse all of Chapter {number}"
+  "rules_collapse_chapter_label": "Collapse all of Chapter {number}",
+  "rules_table_source": "Source: {source}",
+  "rules_scroll_hint": "* Scroll sideways to see the rest."
 }

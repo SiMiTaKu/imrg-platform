@@ -15,5 +15,7 @@
   "rules_expand_all": "すべて開く",
   "rules_collapse_all": "すべて閉じる",
   "rules_expand_chapter_label": "第{number}章をすべて開く",
-  "rules_collapse_chapter_label": "第{number}章をすべて閉じる"
+  "rules_collapse_chapter_label": "第{number}章をすべて閉じる",
+  "rules_table_source": "出典: {source}",
+  "rules_scroll_hint": "※横にスクロールできます"
 }
