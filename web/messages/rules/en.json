@@ -7,5 +7,13 @@
   "rules_back_to_top": "Back to top",
   "rules_coming_soon_title": "Coming soon",
   "rules_coming_soon_body": "The rulebook page is temporarily closed while we revise its contents. We will rebuild it to be easier to read and publish it again.",
-  "rules_coming_soon_back": "Back to top"
+  "rules_coming_soon_back": "Back to top",
+  "rules_intro_collapsible": "The rules are long, so each chapter, section and article is folded up.",
+  "rules_intro_guide": "Select a heading to open it. You can also type a word to search. Chapter 1 is a good place to start if you want to see how scoring works.",
+  "rules_chapter_number": "Chapter {number}",
+  "rules_article_count": "{count} sections",
+  "rules_expand_all": "Expand all",
+  "rules_collapse_all": "Collapse all",
+  "rules_expand_chapter_label": "Expand all of Chapter {number}",
+  "rules_collapse_chapter_label": "Collapse all of Chapter {number}"
 }

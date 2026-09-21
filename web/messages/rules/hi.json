@@ -7,5 +7,13 @@
   "rules_back_to_top": "मुख्य पृष्ठ पर लौटें",
   "rules_coming_soon_title": "जल्द ही आ रहा है",
   "rules_coming_soon_body": "नियम पुस्तिका का पृष्ठ अभी अस्थायी रूप से बंद है, क्योंकि हम उसकी सामग्री की समीक्षा कर रहे हैं। उसे पढ़ने में आसान बनाकर हम उसे फिर से प्रकाशित करेंगे।",
-  "rules_coming_soon_back": "मुख्य पृष्ठ पर लौटें"
+  "rules_coming_soon_back": "मुख्य पृष्ठ पर लौटें",
+  "rules_intro_collapsible": "नियम लंबे हैं, इसलिए हर अध्याय, खंड और अनुच्छेद को मोड़कर रखा गया है।",
+  "rules_intro_guide": "खोलने के लिए शीर्षक दबाएँ। शब्द लिखकर खोज भी सकते हैं। अंक देने का तरीका समझने के लिए अध्याय 1 से शुरू करें।",
+  "rules_chapter_number": "अध्याय {number}",
+  "rules_article_count": "{count} खंड",
+  "rules_expand_all": "सब खोलें",
+  "rules_collapse_all": "सब बंद करें",
+  "rules_expand_chapter_label": "अध्याय {number} पूरा खोलें",
+  "rules_collapse_chapter_label": "अध्याय {number} पूरा बंद करें"
 }

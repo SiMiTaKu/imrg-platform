@@ -7,5 +7,13 @@
   "rules_back_to_top": "TOPに戻る",
   "rules_coming_soon_title": "準備中です",
   "rules_coming_soon_body": "規則集のページは、内容を見直しているため一時的に閉じています。読みやすく作り直して、あらためて公開します。",
-  "rules_coming_soon_back": "トップへ戻る"
+  "rules_coming_soon_back": "トップへ戻る",
+  "rules_intro_collapsible": "規則集は長いので、章・節・条のそれぞれで畳んであります。",
+  "rules_intro_guide": "見出しを押すと開きます。知りたい言葉を入れて探すこともできます。まずは第1章から読むと、採点の考え方が分かります。",
+  "rules_chapter_number": "第{number}章",
+  "rules_article_count": "{count}節",
+  "rules_expand_all": "すべて開く",
+  "rules_collapse_all": "すべて閉じる",
+  "rules_expand_chapter_label": "第{number}章をすべて開く",
+  "rules_collapse_chapter_label": "第{number}章をすべて閉じる"
 }

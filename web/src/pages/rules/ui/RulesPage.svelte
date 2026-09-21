@@ -6,6 +6,19 @@
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
   import { pageData } from '@shared/lib/device'
+  import {
+    DEFAULT_OPEN,
+    articleKey,
+    chapterKey,
+    chapterMatchesKeyword,
+    createInitialOpenState,
+    createOpenStateForKeyword,
+    isOpenAt,
+    sectionKey,
+    withAllOpen,
+    withChapterOpen,
+    type RuleOpenState,
+  } from '../lib/openState'
   import RuleFigure from './RuleFigure.svelte'
 
   const {
@@ -24,8 +37,8 @@
 
   /** 探している言葉。空なら全部出す */
   let keyword = $state('')
-  /** 開いている章。null は全部閉じている */
-  let openedChapter = $state<number | null>(0)
+  /** 押して変えた開閉。載っていないところは DEFAULT_OPEN に従う */
+  let openState = $state<RuleOpenState>(createInitialOpenState())
   /** 今回の書き換えだけアニメーションを出さないか */
   let skipsAnimation = $state(false)
 
@@ -42,7 +55,7 @@
    * @param change - 開閉を書き換える処理
    *
    * @remarks
-   * 章がいくつも同時に開くと動きが重なって見づらいので、まとめて変わるときは動かさない。
+   * 見出しがいくつも同時に動くと重なって見づらいので、まとめて変わるときは動かさない。
    * 画面の描き換えが終わったらアニメーションを戻す。
    */
   const changeWithoutAnimation = (change: () => void) => {
@@ -54,49 +67,63 @@
   }
 
   /**
-   * 探している言葉を書き換える
-   * @param event - 入力の出来事
+   * そこが開いているか
+   * @param key - 開閉を見分ける名前
+   * @param defaultOpen - まだ押されていないときの開閉
+   * @returns 開いていれば true
    */
-  const handleKeywordInput = (event: Event & { currentTarget: HTMLInputElement }) => {
-    const { value } = event.currentTarget
+  const isOpen = (key: string, defaultOpen: boolean): boolean =>
+    isOpenAt(openState, key, defaultOpen)
+
+  /**
+   * そこの開閉を入れ替える
+   * @param key - 開閉を見分ける名前
+   * @param defaultOpen - まだ押されていないときの開閉
+   */
+  const toggle = (key: string, defaultOpen: boolean) => {
+    openState = { ...openState, [key]: !isOpen(key, defaultOpen) }
+  }
+
+  /**
+   * 章ひとつの中（章・節・条）をまとめて開け閉めする
+   * @param chapterIndex - 章の位置（0 始まり）
+   * @param open - 開くなら true
+   */
+  const toggleChapterAll = (chapterIndex: number, open: boolean) => {
     changeWithoutAnimation(() => {
-      keyword = value
+      openState = withChapterOpen(openState, ruleBook.chapter[chapterIndex], chapterIndex, open)
     })
   }
 
-  /** 章が探している言葉を含むか。見出しと本文の両方を見る */
-  const matches = (chapterIndex: number): boolean => {
-    if (keyword.trim() === '') return true
-
-    const chapter = ruleBook.chapter[chapterIndex]
-    const haystack = [
-      chapter.title,
-      ...chapter.article.flatMap((article) => [
-        article.title,
-        ...article.section.flatMap((section) => [
-          section.title,
-          section.content,
-          ...section.block.flatMap((block) => [block.title, block.element]),
-        ]),
-      ]),
-    ]
-      .join('\n')
-      .toLowerCase()
-
-    return haystack.includes(keyword.trim().toLowerCase())
+  /**
+   * 規則集ぜんぶをまとめて開け閉めする
+   * @param open - 開くなら true
+   */
+  const toggleAll = (open: boolean) => {
+    changeWithoutAnimation(() => {
+      openState = withAllOpen(ruleBook, open)
+    })
   }
 
   const visibleChapters = $derived(
     ruleBook.chapter
       .map((chapter, index) => ({ chapter, index }))
-      .filter(({ index }) => matches(index)),
+      .filter(({ chapter }) => chapterMatchesKeyword(chapter, keyword)),
   )
 
-  /** 探しているときは、当てはまる章をすべて開く */
-  const isOpened = (index: number): boolean => keyword.trim() !== '' || openedChapter === index
-
-  const toggle = (index: number) => {
-    openedChapter = openedChapter === index ? null : index
+  /**
+   * 探している言葉を書き換える
+   * @param event - 入力の出来事
+   *
+   * @remarks
+   * 当てはまるところが読める深さまで開いた状態にし直す。言葉を消したら初めの開き方に戻る。
+   */
+  const handleKeywordInput = (event: Event & { currentTarget: HTMLInputElement }) => {
+    const { value } = event.currentTarget
+    changeWithoutAnimation(() => {
+      keyword = value
+      openState = createOpenStateForKeyword(ruleBook, value)
+    })
   }
 </script>
 
@@ -111,8 +138,8 @@
       </p>
       <h1>{ruleBook.title}</h1>
       <p class="say">
-        規則集は長いので、<strong>章ごとに畳んであります。</strong>
-        知りたい言葉を入れて探すこともできます。 まずは第1章から読むと、採点の考え方が分かります。
+        <strong>{m.rules_intro_collapsible()}</strong>
+        {m.rules_intro_guide()}
       </p>
       <p class="caution">
         公式の規則をもとに、読みやすく並べ直したものです。訳の途中の部分があります。
@@ -138,6 +165,15 @@
     {/if}
   </div>
 
+  <div class="bulk">
+    <button type="button" class="bulk-button" onclick={() => toggleAll(true)}>
+      {m.rules_expand_all()}
+    </button>
+    <button type="button" class="bulk-button" onclick={() => toggleAll(false)}>
+      {m.rules_collapse_all()}
+    </button>
+  </div>
+
   {#if keyword.trim() === ''}
     <nav class="toc" aria-label="目次">
       <p class="toc-title">目次</p>
@@ -146,13 +182,15 @@
           <li>
             <button
               type="button"
-              onclick={() => toggle(index)}
-              class:current={openedChapter === index}
+              onclick={() => toggle(chapterKey(index), DEFAULT_OPEN.chapter)}
+              aria-expanded={isOpen(chapterKey(index), DEFAULT_OPEN.chapter)}
+              aria-controls={chapterKey(index)}
             >
-              <span class="number">第{index + 1}章</span>
+              <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
               <span class="label">{chapter.title}</span>
               {#if chapter.article.length > 0}
-                <span class="count">{chapter.article.length}節</span>
+                <span class="count">{m.rules_article_count({ count: chapter.article.length })}</span
+                >
               {/if}
             </button>
           </li>
@@ -166,53 +204,134 @@
   {/if}
 
   {#each visibleChapters as { chapter, index } (index)}
+    {@const chapterId = chapterKey(index)}
+    {@const isChapterOpen = isOpen(chapterId, DEFAULT_OPEN.chapter)}
     <section class="chapter">
       <h2>
-        <button type="button" onclick={() => toggle(index)} aria-expanded={isOpened(index)}>
-          <span class="number">第{index + 1}章</span>
+        <button
+          type="button"
+          class="toggle chapter-toggle"
+          onclick={() => toggle(chapterId, DEFAULT_OPEN.chapter)}
+          aria-expanded={isChapterOpen}
+          aria-controls={chapterId}
+        >
+          <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
           <span class="label">{chapter.title}</span>
-          <span class="mark" aria-hidden="true">{isOpened(index) ? '−' : '＋'}</span>
+          <span class="mark" aria-hidden="true"></span>
         </button>
       </h2>
 
-      {#if isOpened(index)}
-        <div class="chapter-body" transition:slide|local={{ duration: openCloseDuration }}>
-          {#each chapter.article as article, articleIndex (articleIndex)}
-            <section class="article">
-              <h3>{articleIndex + 1}. {article.title}</h3>
+      {#if isChapterOpen}
+        <div
+          class="chapter-body"
+          id={chapterId}
+          transition:slide|local={{ duration: openCloseDuration }}
+        >
+          <div class="bulk in-chapter">
+            <button
+              type="button"
+              class="bulk-button"
+              onclick={() => toggleChapterAll(index, true)}
+              aria-label={m.rules_expand_chapter_label({ number: index + 1 })}
+            >
+              {m.rules_expand_all()}
+            </button>
+            <button
+              type="button"
+              class="bulk-button"
+              onclick={() => toggleChapterAll(index, false)}
+              aria-label={m.rules_collapse_chapter_label({ number: index + 1 })}
+            >
+              {m.rules_collapse_all()}
+            </button>
+          </div>
 
-              {#each article.section as section, sectionIndex (sectionIndex)}
-                {#if section.block.length}
-                  <h4>{sectionIndex + 1} {section.title}</h4>
-                  {#each section.block as block, blockIndex (blockIndex)}
-                    <div class="item">
-                      <h5>
-                        <span class="article-number">
-                          {calculateArticleNumber(chapter, articleIndex, sectionIndex, blockIndex)}
-                        </span>
-                        {block.title}
-                      </h5>
-                      <p>{block.element}</p>
-                      {#each block.image as image, blockImageIndex (blockImageIndex)}
-                        <RuleFigure {image} />
-                      {/each}
-                    </div>
+          {#each chapter.article as article, articleIndex (articleIndex)}
+            {@const articleId = articleKey(index, articleIndex)}
+            {@const isArticleOpen = isOpen(articleId, DEFAULT_OPEN.article)}
+            <section class="article">
+              <h3>
+                <button
+                  type="button"
+                  class="toggle article-toggle"
+                  onclick={() => toggle(articleId, DEFAULT_OPEN.article)}
+                  aria-expanded={isArticleOpen}
+                  aria-controls={articleId}
+                >
+                  <span class="number">{articleIndex + 1}</span>
+                  <span class="label">{article.title}</span>
+                  <span class="mark" aria-hidden="true"></span>
+                </button>
+              </h3>
+
+              {#if isArticleOpen}
+                <div
+                  class="article-body"
+                  id={articleId}
+                  transition:slide|local={{ duration: openCloseDuration }}
+                >
+                  {#each article.section as section, sectionIndex (sectionIndex)}
+                    {@const sectionId = sectionKey(index, articleIndex, sectionIndex)}
+                    {@const isSectionOpen = isOpen(sectionId, DEFAULT_OPEN.section)}
+                    <section class="section">
+                      <h4>
+                        <button
+                          type="button"
+                          class="toggle section-toggle"
+                          onclick={() => toggle(sectionId, DEFAULT_OPEN.section)}
+                          aria-expanded={isSectionOpen}
+                          aria-controls={sectionId}
+                        >
+                          {#if section.block.length === 0}
+                            <span class="article-number">
+                              {calculateArticleNumber(chapter, articleIndex, sectionIndex)}
+                            </span>
+                          {/if}
+                          <span class="label">{section.title}</span>
+                          <span class="mark" aria-hidden="true"></span>
+                        </button>
+                      </h4>
+
+                      {#if isSectionOpen}
+                        <div
+                          class="section-body"
+                          id={sectionId}
+                          transition:slide|local={{ duration: openCloseDuration }}
+                        >
+                          {#if section.block.length > 0}
+                            {#each section.block as block, blockIndex (blockIndex)}
+                              <div class="item">
+                                <h5>
+                                  <span class="article-number">
+                                    {calculateArticleNumber(
+                                      chapter,
+                                      articleIndex,
+                                      sectionIndex,
+                                      blockIndex,
+                                    )}
+                                  </span>
+                                  {block.title}
+                                </h5>
+                                <p>{block.element}</p>
+                                {#each block.image as image, blockImageIndex (blockImageIndex)}
+                                  <RuleFigure {image} />
+                                {/each}
+                              </div>
+                            {/each}
+                          {:else}
+                            <div class="item">
+                              <p>{section.content}</p>
+                              {#each section.image as image, sectionImageIndex (sectionImageIndex)}
+                                <RuleFigure {image} />
+                              {/each}
+                            </div>
+                          {/if}
+                        </div>
+                      {/if}
+                    </section>
                   {/each}
-                {:else}
-                  <div class="item">
-                    <h5>
-                      <span class="article-number">
-                        {calculateArticleNumber(chapter, articleIndex, sectionIndex)}
-                      </span>
-                      {section.title}
-                    </h5>
-                    <p>{section.content}</p>
-                    {#each section.image as image, sectionImageIndex (sectionImageIndex)}
-                      <RuleFigure {image} />
-                    {/each}
-                  </div>
-                {/if}
-              {/each}
+                </div>
+              {/if}
             </section>
           {/each}
         </div>
@@ -331,6 +450,40 @@
     color: map.get($sky-blue, text);
   }
 
+  /* ─── すべて開く・すべて閉じる ─── */
+
+  .bulk {
+    display: flex;
+    gap: $space-size-8;
+    padding-bottom: $space-size-24;
+    flex-wrap: wrap;
+  }
+
+  /* 章の中では、章の中身の gap が下の余白になる */
+  .bulk.in-chapter {
+    padding-bottom: 0;
+  }
+
+  .bulk-button {
+    min-height: 32px;
+    padding: 0 $space-size-12;
+    font-size: $font-size-12;
+    color: map.get($sky-blue, text);
+    border: 1px solid map.get($sky-blue, border);
+    border-radius: 999px;
+    background: $white;
+    cursor: pointer;
+  }
+
+  .bulk-button:hover {
+    background: map.get($sky-blue, background);
+  }
+
+  .bulk-button:focus-visible {
+    outline: 2px solid map.get($sky-blue, button);
+    outline-offset: 1px;
+  }
+
   /* ─── 目次 ─── */
 
   .toc {
@@ -378,10 +531,16 @@
     background: map.get($sky-blue, background);
   }
 
-  .toc button.current {
+  /* 今開いている章が目次でも分かるようにする */
+  .toc button[aria-expanded='true'] {
     font-weight: bold;
     color: map.get($sky-blue, text);
     background: map.get($sky-blue, background);
+  }
+
+  .toc button:focus-visible {
+    outline: 2px solid map.get($sky-blue, button);
+    outline-offset: -2px;
   }
 
   .number {
@@ -401,6 +560,46 @@
     color: map.get($gray, light-text);
   }
 
+  /* ─── 開閉の見出し（章・節・条で共通） ─── */
+
+  .toggle {
+    display: flex;
+    gap: $space-size-12;
+    width: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    border: 0;
+    background: none;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .toggle:focus-visible {
+    outline: 2px solid map.get($sky-blue, button);
+    outline-offset: -2px;
+  }
+
+  .toggle .label {
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  /* 開いているかどうかは aria-expanded から取り、記号だけで見せる */
+  .mark {
+    flex: none;
+    color: map.get($sky-blue, button);
+  }
+
+  .toggle[aria-expanded='false'] .mark::before {
+    content: '＋';
+  }
+
+  .toggle[aria-expanded='true'] .mark::before {
+    content: '−';
+  }
+
   /* ─── 章 ─── */
 
   .chapter {
@@ -412,55 +611,87 @@
     font-size: $font-size-18;
   }
 
-  .chapter h2 button {
-    display: flex;
-    gap: $space-size-12;
-    width: 100%;
+  .chapter-toggle {
     padding: $space-size-20 $space-size-4;
-    font-size: inherit;
     font-weight: bold;
-    color: inherit;
-    border: 0;
-    background: none;
-    align-items: center;
-    cursor: pointer;
-    text-align: left;
   }
 
-  .chapter h2 .label {
-    flex: 1;
-    min-inline-size: 0;
-  }
-
-  .mark {
-    flex: none;
+  .chapter-toggle .mark {
     font-size: $font-size-18;
-    color: map.get($sky-blue, button);
   }
 
   .chapter-body {
+    display: flex;
+    gap: $space-size-20;
     padding: 0 $space-size-4 $space-size-32;
+    flex-direction: column;
   }
 
-  .article {
-    margin-bottom: $space-size-32;
-  }
+  /* ─── 節（章の中の大項） ─── */
 
   .article h3 {
-    margin: 0 0 $space-size-16;
-    padding-bottom: $space-size-8;
-    font-size: $font-size-18;
-    border-bottom: 2px solid map.get($sky-blue, border);
+    margin: 0;
+    font-size: $font-size-16;
   }
 
-  .article h4 {
-    margin: $space-size-24 0 $space-size-8;
+  .article-toggle {
+    padding: $space-size-12 $space-size-8;
+    font-weight: bold;
+    border-inline-start: 4px solid map.get($sky-blue, border);
+    border-radius: 4px;
+    background: map.get($sky-blue, background);
+  }
+
+  .article-toggle .mark {
     font-size: $font-size-16;
+  }
+
+  .article-body {
+    display: flex;
+    gap: $space-size-8;
+    padding: $space-size-12 0 $space-size-4;
+    padding-inline-start: $space-size-12;
+    border-inline-start: 2px solid map.get($sky-blue, border);
+    flex-direction: column;
+  }
+
+  .mobile .article-body {
+    padding-inline-start: $space-size-8;
+  }
+
+  /* ─── 条（節の中の条項） ─── */
+
+  .section h4 {
+    margin: 0;
+    font-size: $font-size-14;
     color: map.get($gray, 600);
   }
 
+  .section-toggle {
+    padding: $space-size-8 $space-size-4;
+    font-weight: bold;
+  }
+
+  .section-toggle .mark {
+    font-size: $font-size-14;
+  }
+
+  .section-body {
+    display: flex;
+    gap: $space-size-8;
+    padding: $space-size-4 0 $space-size-8;
+    padding-inline-start: $space-size-12;
+    border-inline-start: 2px solid map.get($gray, 100);
+    flex-direction: column;
+  }
+
+  .mobile .section-body {
+    padding-inline-start: $space-size-8;
+  }
+
+  /* ─── 条の本文 ─── */
+
   .item {
-    margin-bottom: $space-size-12;
     padding: $space-size-16;
     border-radius: 6px;
     background: map.get($gray, background);
