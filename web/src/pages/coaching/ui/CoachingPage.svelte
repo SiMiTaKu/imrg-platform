@@ -406,6 +406,7 @@
             <a href={localizeHref(service.href)}>
               <span class="other-title">{service.title()}</span>
               <span class="other-body">{service.body()}</span>
+              <span class="other-arrow" aria-hidden="true">→</span>
             </a>
           </li>
         {/each}
@@ -1109,32 +1110,35 @@
     border-radius: 6px;
   }
 
+  // 曲編集・手具装飾のページにある案内（OrderContact の .cross）と同じ見た目にそろえる。
+  // 縦に積む。数が増えても並びは変えない
   .others {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: $space-size-12;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
-    margin: $space-size-20 0 0;
+    max-width: 720px;
+    margin: $space-size-16 auto 0;
     padding: 0;
     list-style: none;
   }
 
-  .mobile .others {
-    grid-template-columns: 1fr;
-  }
-
-  // 名前と説明を1行に並べる。2行に積むと札が縦に伸びる
+  // 名前・説明・矢印を1行に並べる。3行に積むと札が無駄に高くなる
   .others a {
     display: flex;
-    gap: $space-size-8;
+    flex-wrap: wrap;
+    gap: $space-size-4 $space-size-12;
     align-items: baseline;
-    height: 100%;
-    padding: $space-size-12 $space-size-16;
+    box-sizing: border-box;
+    width: 100%;
+    padding: $space-size-12 $space-size-20;
     text-align: left;
     text-decoration: none;
     color: inherit;
     border: 1px solid map.get($gray, 100);
     border-radius: 8px;
+    background: $white;
+    transition: border-color 0.15s ease;
   }
 
   .others a:hover {
@@ -1145,11 +1149,22 @@
     flex: none;
     font-size: $font-size-16;
     font-weight: bold;
+    color: map.get($sky-blue, text);
   }
 
   .other-body {
     min-inline-size: 0;
     font-size: $font-size-14;
-    color: map.get($gray, light-text);
+    color: map.get($gray, 600);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+
+  // 同じ行の右端に送る。重ねない
+  .other-arrow {
+    flex: none;
+    margin-left: auto;
+    font-size: $font-size-18;
+    color: map.get($sky-blue, button);
   }
 </style>
