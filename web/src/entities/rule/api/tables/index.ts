@@ -2,6 +2,7 @@ import type { RuleTable } from '../../model/ruleTable'
 import { APPARATUS_TABLES } from './apparatusTables'
 import { FREE_HAND_TABLES } from './deductionTables'
 import { EXECUTION_TABLES } from './executionTables'
+import { SCORE_TABLES } from './scoreTables'
 
 /**
  * 画像で載せていた表を、文字で持ち直したもの。
@@ -15,6 +16,7 @@ export const RULE_TABLES: readonly RuleTable[] = [
   ...APPARATUS_TABLES,
   ...EXECUTION_TABLES,
   ...FREE_HAND_TABLES,
+  ...SCORE_TABLES,
 ]
 
 /** 画像のパスから表を引くための対応表 */
