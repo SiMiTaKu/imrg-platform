@@ -34,7 +34,7 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
         key: 'scoring.individual.difficulty',
         number: '3.5.5',
         page: 40,
-        figures: ['tossdifficulties'],
+        figures: ['tossdifficulties', 'tables/rope-jump-difficulty'],
       },
       {
         key: 'scoring.individual.artistry',

@@ -249,36 +249,6 @@ export const APPENDIX_JA: RuleContent = {
   },
   'appendix.judge.feeTable': {
     title: '公認審判申請料',
-    lead: '申請に関する料金は、次のとおりとする。',
-    items: [
-      {
-        label: '1.',
-        text: '認定申請料',
-        items: [
-          { text: '1種　5,000円' },
-          { text: '2種　2,000円' },
-          { text: '3種　1,500円' },
-          { text: '名誉　15,000円' },
-        ],
-      },
-      {
-        label: '2.',
-        text: '継続申請料',
-        items: [
-          { text: '1種　2,000円' },
-          { text: '2種　2,000円' },
-          { text: '3種　2,000円' },
-          {
-            text: '（備考）複数の資格認定を取得し、これを継続する場合、主たる種別以外の申請料は、無料とする',
-          },
-        ],
-      },
-      { label: '3.', text: '申請手数料　加盟団体が別に定める。' },
-      { label: '4.', text: '認定証再発行料　各種 1,000円' },
-      {
-        text: '※1種公認審判員の認定講習会および研修会の予定表は加盟団体に対し文書または本会ホームページをもって伝達する。',
-      },
-    ],
   },
 
   // ───── 付録2 登録規程（89〜94ページ）─────
@@ -482,50 +452,6 @@ export const APPENDIX_JA: RuleContent = {
   },
   'appendix.registration.feeTable': {
     title: '別表',
-    lead: '登録料（単位 ：円／1人あたり1年間）',
-    items: [
-      { label: '1.', text: '名誉会員　無料' },
-      {
-        label: '2.',
-        text: '役　員',
-        items: [
-          { label: '（1）', text: '本会の理事・監事　10,000' },
-          { label: '（2）', text: '本会の委員会委員　5,000' },
-          { label: '（3）', text: '加盟団体役員・評議員　2,000' },
-          { label: '（4）', text: '評議員(外部有識者)・業務執行役・専門職　無料' },
-        ],
-      },
-      {
-        label: '3.',
-        text: '指導者',
-        items: [
-          { label: '（1）', text: '選手、愛好者の指導者　2,500' },
-          { label: '（2）', text: 'その他（トレーナーなど）　2,500' },
-        ],
-      },
-      {
-        label: '4.',
-        text: '選手、愛好者',
-        items: [
-          { label: '（1）', text: '社会人・大学生　1,500' },
-          { label: '（2）', text: '高校生　1,200' },
-          { label: '（3）', text: '中学生・小学生　1,000' },
-        ],
-      },
-      {
-        label: '5.',
-        text: '一般体操',
-        items: [
-          { text: '※「日本体操祭」に出場する愛好者のみ登録' },
-          { label: '（1）', text: '団体（1団体につき）　5,000' },
-          { label: '（2）', text: '社会人・大学生　1,000' },
-          { label: '（3）', text: '高校生　700' },
-          { label: '（4）', text: '中学生・小学生　500' },
-          { label: '（5）', text: '幼児　500' },
-          { label: '（6）', text: '乳児　無料' },
-        ],
-      },
-    ],
   },
   'appendix.registration.memberCode': {
     title: '登録会員コード',

@@ -283,6 +283,19 @@
                             <div class="collapsible" id={sectionId} data-open={isSectionOpen}>
                               <div class="collapsible-inner">
                                 <div class="section-body">
+                                  <!--
+                                    条の本文と図は、中に項があっても出す。
+                                    冊子では「導入の文があって、そのあとに項が並ぶ」条がある
+                                  -->
+                                  {#if section.content || section.image.length > 0}
+                                    <div class="item">
+                                      {#if section.content}<p>{section.content}</p>{/if}
+                                      {#each section.image as image, sectionImageIndex (sectionImageIndex)}
+                                        <RuleFigure {image} />
+                                      {/each}
+                                    </div>
+                                  {/if}
+
                                   {#if section.block.length > 0}
                                     {#each section.block as block, blockIndex (blockIndex)}
                                       <div class="item">
@@ -303,13 +316,6 @@
                                         {/each}
                                       </div>
                                     {/each}
-                                  {:else}
-                                    <div class="item">
-                                      <p>{section.content}</p>
-                                      {#each section.image as image, sectionImageIndex (sectionImageIndex)}
-                                        <RuleFigure {image} />
-                                      {/each}
-                                    </div>
                                   {/if}
                                 </div>
                               </div>
