@@ -53,6 +53,7 @@
       image: slide.image,
       description: slide.description(),
     }))}
+    bleed={true}
   />
 
   <OrderPoints

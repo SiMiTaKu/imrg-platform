@@ -55,6 +55,11 @@
     slides: OrderMainVisualSlide[]
     /** 切り替えずに出したままにする背景画像 */
     backgroundImage?: ImageSourceMeta[]
+    /**
+     * 中身を白い札に載せずに、背景の写真の上へ直に置くか。
+     * 既定（false）は白い札に載せる
+     */
+    bleed?: boolean
   }
 
   const {
@@ -74,6 +79,7 @@
     imageAlt,
     slides,
     backgroundImage,
+    bleed = false,
   }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
@@ -107,7 +113,7 @@
 </script>
 
 <!-- 背景・影・中身は position ではなく grid の同じマス目に重ねる。高さは中身で決まる -->
-<section class="main-visual" class:mobile={isMobile}>
+<section class="main-visual" class:mobile={isMobile} class:bleed>
   <div class="layer images">
     {#if backgroundImage}
       <div class="image">
@@ -448,5 +454,58 @@
     color: map.get($gray, light-text);
     line-height: 1.8;
     overflow-wrap: anywhere;
+  }
+
+  // 白い札をやめて、背景の写真を画面の端まで見せる（トップページのヒーローと同じ立て付け）。
+  // 文字は写真の上に直に載るので、白く抜いて影で読めるようにする
+  .bleed .panel {
+    max-width: 680px;
+    padding: 0;
+    border-top: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .bleed.mobile .panel {
+    padding: 0;
+  }
+
+  .bleed .inner {
+    padding-top: $space-size-80;
+    padding-bottom: $space-size-80;
+  }
+
+  .bleed.mobile .inner {
+    padding-top: $space-size-48;
+    padding-bottom: $space-size-48;
+  }
+
+  // 写真の明暗に負けないよう、veil を全体に一段濃くする
+  .bleed .veil {
+    background: linear-gradient(to right, rgb(0 0 0 / 70%), rgb(0 0 0 / 45%) 70%, rgb(0 0 0 / 30%));
+  }
+
+  .bleed.mobile .veil {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 50%), rgb(0 0 0 / 70%));
+  }
+
+  .bleed h1,
+  .bleed .catch,
+  .bleed .summary,
+  .bleed .amount {
+    color: $white;
+    text-shadow: 0 1px 6px rgb(0 0 0 / 55%);
+  }
+
+  .bleed .subtitle,
+  .bleed .note {
+    color: rgb(255 255 255 / 80%);
+    text-shadow: 0 1px 4px rgb(0 0 0 / 55%);
+  }
+
+  // 丸い札は地の色を持っているので、写真の上でもそのまま読める
+  .bleed .points li {
+    color: map.get($gray, text);
   }
 </style>
