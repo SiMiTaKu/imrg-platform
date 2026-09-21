@@ -1,6 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { CharacterFigure, Character, findCharacter } from '@entities/character'
+  import { Character, findCharacter } from '@entities/character'
+  import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
@@ -45,20 +46,14 @@
 <section class="intro" class:mobile={isMobile}>
   <div class="inner">
     <header class="lead">
-      <div class="guide">
-        <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
-      </div>
-      <div class="words">
-        <p class="speaker">
-          {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-        </p>
+      <GuideLead character={guide}>
         <h1>{m.judge_intro_title()}</h1>
         <p class="say">
           {m.judge_intro_lead_1()}<strong>{m.judge_intro_lead_emphasis()}</strong
           >{m.judge_intro_lead_2()}<strong class="accent">{m.judge_intro_lead_accent()}</strong
           >{m.judge_intro_lead_3()}
         </p>
-      </div>
+      </GuideLead>
     </header>
 
     <ul class="points">
@@ -111,32 +106,7 @@
   /* ─── 案内役のひとこと ─── */
 
   .lead {
-    display: flex;
-    gap: $space-size-24;
-    align-items: flex-start;
     margin-bottom: $space-size-32;
-  }
-
-  .mobile .lead {
-    flex-direction: column;
-    align-items: center;
-    gap: $space-size-12;
-    text-align: center;
-  }
-
-  .guide {
-    flex: none;
-  }
-
-  .words {
-    min-inline-size: 0;
-  }
-
-  .speaker {
-    margin: 0 0 $space-size-4;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
   }
 
   h1 {

@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { m } from '$lib/paraglide/messages'
-  import { Character, CharacterFigure, findCharacter } from '@entities/character'
+  import { Character, findCharacter } from '@entities/character'
+  import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
 
   /** ページの冒頭の案内の引数 */
@@ -26,34 +27,25 @@
 <!-- 何ができるページかを、いちばん上で言い切る。背景は画面の端まで広げ、中身だけをコンテンツ幅に収める -->
 <header class="intro" class:mobile={isMobile}>
   <div class="inner">
-    <div class="lead">
-      <div class="figure">
-        <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
-      </div>
+    <GuideLead character={guide} mobileLayout="stretch">
+      <h1>{m.calendar_title()}</h1>
+      <!-- 使い方の説明は置かない。押せば分かることを読ませるより、すぐ探せる方がよい -->
+      <p class="say">{m.calendar_lead()}</p>
 
-      <div class="words">
-        <p class="speaker">
-          {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-        </p>
-        <h1>{m.calendar_title()}</h1>
-        <!-- 使い方の説明は置かない。押せば分かることを読ませるより、すぐ探せる方がよい -->
-        <p class="say">{m.calendar_lead()}</p>
+      <dl class="numbers">
+        <div class="number">
+          <dt>{m.calendar_intro_stat_total()}</dt>
+          <dd>{total}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
+        </div>
+        <div class="number upcoming">
+          <dt>{m.calendar_period_upcoming()}</dt>
+          <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
+        </div>
+      </dl>
 
-        <dl class="numbers">
-          <div class="number">
-            <dt>{m.calendar_intro_stat_total()}</dt>
-            <dd>{total}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
-          </div>
-          <div class="number upcoming">
-            <dt>{m.calendar_period_upcoming()}</dt>
-            <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
-          </div>
-        </dl>
-
-        <!-- 「情報の新しさ」という言い換えは置かない。最終更新の日付だけで伝わる -->
-        <p class="updated">{updatedAtText}</p>
-      </div>
-    </div>
+      <!-- 「情報の新しさ」という言い換えは置かない。最終更新の日付だけで伝わる -->
+      <p class="updated">{updatedAtText}</p>
+    </GuideLead>
 
     <!-- 大会をさがす欄は、最初に目に入るここへ置く -->
     {#if children}
@@ -91,38 +83,6 @@
     gap: $space-size-16;
     padding: $space-size-24 var(--content-padding-inline);
     text-align: left;
-  }
-
-  .lead {
-    display: flex;
-    gap: $space-size-24;
-    align-items: flex-start;
-  }
-
-  .mobile .lead {
-    flex-direction: column;
-    align-items: stretch;
-    gap: $space-size-12;
-  }
-
-  // 案内役だけは真ん中に置く
-  .mobile .figure {
-    align-self: center;
-  }
-
-  .figure {
-    flex: none;
-  }
-
-  .words {
-    min-inline-size: 0;
-  }
-
-  .speaker {
-    margin: 0 0 $space-size-4;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
   }
 
   h1 {

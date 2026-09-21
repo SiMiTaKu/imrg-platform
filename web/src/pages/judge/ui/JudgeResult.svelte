@@ -2,7 +2,8 @@
   import { PUBLIC_BASE_URL } from '$env/static/public'
   import { m } from '$lib/paraglide/messages'
   import type { Chart } from 'chart.js/auto'
-  import { CharacterFigure, Character, findCharacter } from '@entities/character'
+  import { Character, findCharacter } from '@entities/character'
+  import { GuideLead } from '@features/guideLead'
   import {
     JudgeThemeColor,
     POINT_A_ITEMS,
@@ -78,20 +79,14 @@
 
 <!-- 採点を終えたあとの行き先。決定点そのものは結果の画面が受け持つ -->
 <section class="result" class:mobile={isMobile}>
-  <header class="head">
-    <div class="guide">
-      <CharacterFigure character={guide} size={isMobile ? 80 : 100} />
-    </div>
-    <div class="words">
-      <p class="speaker">
-        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-      </p>
+  <header>
+    <GuideLead character={guide} size={100} mobileSize={80}>
       <h2>{m.judge_result_thanks_title()}</h2>
       <p class="say">
         {m.judge_result_thanks_1()}<strong>{m.judge_result_thanks_emphasis()}</strong
         >{m.judge_result_thanks_2()}
       </p>
-    </div>
+    </GuideLead>
   </header>
 
   <!-- 決定点の画面を閉じたあとも内訳が見えるように、ここにもグラフを置く -->
@@ -138,34 +133,6 @@
   .mobile.result {
     gap: $space-size-20;
     padding: $space-size-20 $space-size-16;
-  }
-
-  .head {
-    display: flex;
-    align-items: flex-start;
-    gap: $space-size-24;
-  }
-
-  .mobile .head {
-    flex-direction: column;
-    align-items: center;
-    gap: $space-size-12;
-    text-align: center;
-  }
-
-  .guide {
-    flex: none;
-  }
-
-  .words {
-    min-inline-size: 0;
-  }
-
-  .speaker {
-    margin: 0 0 $space-size-4;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
   }
 
   h2 {

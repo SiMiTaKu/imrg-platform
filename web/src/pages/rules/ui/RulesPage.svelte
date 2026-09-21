@@ -1,7 +1,8 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { CharacterFigure, Character, findCharacter } from '@entities/character'
+  import { Character, findCharacter } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
+  import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
   import {
     DEFAULT_OPEN,
@@ -93,20 +94,14 @@
   <!-- ファーストビジュアル。背景は画面の端まで、中身だけをコンテンツ幅に収める -->
   <header class="hero">
     <div class="inner">
-      <div class="guide">
-        <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
-      </div>
-      <div class="words">
-        <p class="speaker">
-          {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-        </p>
+      <GuideLead character={guide}>
         <h1>{ruleBook.title}</h1>
         <p class="say">
           <strong>{m.rules_intro_collapsible()}</strong>
           {m.rules_intro_guide()}
         </p>
         <p class="caution">{m.rules_caution()}</p>
-      </div>
+      </GuideLead>
     </div>
   </header>
 
@@ -339,37 +334,15 @@
 
   // 中身だけをコンテンツ幅に収める
   .hero .inner {
-    display: flex;
-    gap: $space-size-24;
     box-sizing: border-box;
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
     padding: $space-size-48 var(--content-padding-inline);
-    align-items: flex-start;
   }
 
   .mobile .hero .inner {
-    flex-direction: column;
-    align-items: center;
-    gap: $space-size-12;
     padding: $space-size-32 var(--content-padding-inline);
-    text-align: center;
-  }
-
-  .guide {
-    flex: none;
-  }
-
-  .words {
-    min-inline-size: 0;
-  }
-
-  .speaker {
-    margin: 0 0 $space-size-4;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
   }
 
   h1 {

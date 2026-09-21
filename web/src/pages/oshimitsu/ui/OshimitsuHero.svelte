@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Character, CharacterFigure, findCharacter } from '@entities/character'
+  import { Character, findCharacter } from '@entities/character'
+  import { GuideLead } from '@features/guideLead'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { VIDEO_COUNTS } from '../lib/entries'
@@ -28,15 +29,7 @@
 
 <section class="hero" class:mobile={isMobile}>
   <div class="inner">
-    <div class="figure">
-      <CharacterFigure character={guide} size={isMobile ? 104 : 148} />
-    </div>
-
-    <div class="words">
-      <p class="speaker">
-        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-      </p>
-
+    <GuideLead character={guide} size={148} mobileSize={104} gap="wide" align="center">
       <!-- 名前の下に「何ができる場所か」を必ず置く。「推しミツ！」だけでは伝わらないため -->
       <h1 class="title">
         <span class="name">{m.oshimitsu_title()}</span>
@@ -72,7 +65,7 @@
           <span class="unit">{groupUnit}</span>
         </li>
       </ul>
-    </div>
+    </GuideLead>
   </div>
 </section>
 
@@ -88,39 +81,14 @@
   }
 
   .inner {
-    display: flex;
-    gap: $space-size-32;
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
     padding: $space-size-56 var(--content-padding-inline) $space-size-48;
-    align-items: center;
   }
 
   .mobile .inner {
-    flex-direction: column;
-    gap: $space-size-16;
     padding: $space-size-32 var(--content-padding-inline) $space-size-40;
-    text-align: center;
-    align-items: center;
-  }
-
-  .figure {
-    display: flex;
-    flex: none;
-    align-items: flex-end;
-  }
-
-  .words {
-    // 長い文字列があっても、親より広がらないようにする
-    min-inline-size: 0;
-  }
-
-  .speaker {
-    margin: 0 0 $space-size-4;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
   }
 
   .title {
