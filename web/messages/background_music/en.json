@@ -47,7 +47,7 @@
   "background_music_point_4_body": "If your routine changes, we can swap sections or fine-tune the length. We tell you up front whether it counts as a rebuild.",
   "background_music_works_eyebrow": "Examples",
   "background_music_works_lead": "These pieces were used at real competitions. Tap a name to open the YouTube video of that routine.",
-  "background_music_works_count": "We have edited {count} pieces so far.",
+  "background_music_works_total": "We have edited more than {count} pieces of music so far.",
   "background_music_price_eyebrow": "Pricing",
   "background_music_price_lead": "The price depends on the length of the piece and how much editing it needs. Talk to us first; we start work only after you have the quote.",
   "background_music_flow_eyebrow": "How it works",

@@ -47,7 +47,7 @@
   "background_music_point_4_body": "构成有变动时的替换、长度的微调，都可以商量。是否算重做，我们会先告知。",
   "background_music_works_eyebrow": "作品实例",
   "background_music_works_lead": "这些都是在实际比赛中使用过的曲子。点击名字，就会打开用这首曲子完成成套的视频（YouTube）。",
-  "background_music_works_count": "至今已经剪辑了 {count} 首曲子。",
+  "background_music_works_total": "至今已经剪辑了 {count} 首以上的曲子。",
   "background_music_price_eyebrow": "费用",
   "background_music_price_lead": "费用会因曲子的长度和剪辑的内容而变化。请先与我们沟通，我们给出报价后再开始作业。",
   "background_music_flow_eyebrow": "进行方式",

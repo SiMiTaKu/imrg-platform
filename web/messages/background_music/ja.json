@@ -47,7 +47,7 @@
   "background_music_point_4_body": "構成が変わったときの差し替えや、長さの微調整も相談できます。作り直しになるかどうかは、先にお伝えします。",
   "background_music_works_eyebrow": "作例",
   "background_music_works_lead": "実際の大会で使われた曲です。名前を押すと、その曲で演技した動画（YouTube）が開きます。",
-  "background_music_works_count": "これまでに {count} 曲を編集しました。",
+  "background_music_works_total": "これまで {count} 曲以上を編集しました。",
   "background_music_price_eyebrow": "料金",
   "background_music_price_lead": "曲の長さと編集する内容で変わります。まず相談してもらって、見積もりをお伝えしてから作業に入ります。",
   "background_music_flow_eyebrow": "進め方",

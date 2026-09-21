@@ -47,7 +47,7 @@
   "background_music_point_4_body": "Если построение изменилось, заменим фрагмент или подправим длительность. Заранее скажем, считается ли это новой работой.",
   "background_music_works_eyebrow": "Примеры работ",
   "background_music_works_lead": "Эти композиции звучали на настоящих соревнованиях. Нажмите на имя, чтобы открыть видео упражнения на YouTube.",
-  "background_music_works_count": "На сегодня смонтировано композиций: {count}.",
+  "background_music_works_total": "На сегодня смонтировано более {count} композиций.",
   "background_music_price_eyebrow": "Стоимость",
   "background_music_price_lead": "Зависит от длины композиции и объёма монтажа. Сначала обсудим, затем пришлём смету — и только потом возьмёмся за работу.",
   "background_music_flow_eyebrow": "Как это устроено",

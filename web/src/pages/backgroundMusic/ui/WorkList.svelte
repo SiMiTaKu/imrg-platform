@@ -7,7 +7,7 @@
   import { AutoPlayWatcher, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { SectionHeading } from '@widgets/orderService'
   import { WORK_LIST } from '../config/workList'
-  import { WORKS_HEADING, WORK_VIDEO_ASPECT_RATIO } from '../config/content'
+  import { EDITED_MUSIC_TOTAL, WORKS_HEADING, WORK_VIDEO_ASPECT_RATIO } from '../config/content'
 
   const locale = getLocale() as SiteLocale
   const isMobile = $derived($pageData.isMobile)
@@ -64,7 +64,7 @@
       {/each}
     </ul>
 
-    <p class="count">{m.background_music_works_count({ count: WORK_LIST.length })}</p>
+    <p class="count">{m.background_music_works_total({ count: EDITED_MUSIC_TOTAL })}</p>
   </div>
 </section>
 

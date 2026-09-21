@@ -47,7 +47,7 @@
   "background_music_point_4_body": "구성이 바뀌었을 때의 교체나 길이의 미세 조정도 상담할 수 있습니다. 다시 만드는 작업이 되는지 여부는 먼저 알려드립니다.",
   "background_music_works_eyebrow": "작업 사례",
   "background_music_works_lead": "실제 대회에서 사용된 곡입니다. 이름을 누르면 그 곡으로 연기한 영상(YouTube)이 열립니다.",
-  "background_music_works_count": "지금까지 {count}곡을 편집했습니다.",
+  "background_music_works_total": "지금까지 {count}곡 이상을 편집했습니다.",
   "background_music_price_eyebrow": "요금",
   "background_music_price_lead": "곡의 길이와 편집 내용에 따라 달라집니다. 먼저 상담해 주시면 견적을 알려드린 뒤에 작업에 들어갑니다.",
   "background_music_flow_eyebrow": "진행 방식",

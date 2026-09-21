@@ -47,7 +47,7 @@
   "background_music_point_4_body": "Si l’exercice évolue, nous pouvons remplacer des passages ou ajuster la durée. Nous vous disons à l’avance si cela compte comme un nouveau montage.",
   "background_music_works_eyebrow": "Exemples",
   "background_music_works_lead": "Ces morceaux ont été utilisés en compétition. Appuyez sur un nom pour ouvrir la vidéo YouTube de cet exercice.",
-  "background_music_works_count": "Nous avons monté {count} morceaux à ce jour.",
+  "background_music_works_total": "Nous avons monté plus de {count} morceaux à ce jour.",
   "background_music_price_eyebrow": "Tarifs",
   "background_music_price_lead": "Le tarif dépend de la durée du morceau et du travail de montage. Contactez-nous d’abord : nous commençons seulement après le devis.",
   "background_music_flow_eyebrow": "Comment ça se passe",

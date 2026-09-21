@@ -47,7 +47,7 @@
   "background_music_point_4_body": "संरचना बदलने पर हिस्से बदलना या अवधि में बारीक फेरबदल भी करवा सकते हैं। यह दोबारा बनाने जैसा होगा या नहीं, हम पहले बता देते हैं।",
   "background_music_works_eyebrow": "नमूने",
   "background_music_works_lead": "ये गाने असली प्रतियोगिताओं में इस्तेमाल हुए हैं। नाम दबाने पर उस गाने पर किए प्रदर्शन का वीडियो (YouTube) खुलता है।",
-  "background_music_works_count": "अब तक हमने {count} गाने संपादित किए हैं।",
+  "background_music_works_total": "अब तक हमने {count} से अधिक गाने संपादित किए हैं।",
   "background_music_price_eyebrow": "शुल्क",
   "background_music_price_lead": "शुल्क गाने की लंबाई और संपादन की मात्रा पर निर्भर करता है। पहले बात करें; अनुमान बताने के बाद ही हम काम शुरू करते हैं।",
   "background_music_flow_eyebrow": "कैसे होता है",
