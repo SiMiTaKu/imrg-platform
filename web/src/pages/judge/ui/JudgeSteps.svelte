@@ -99,9 +99,11 @@
     box-shadow: 0 0 0 3px rgb(240 165 0 / 20%);
   }
 
+  // 黄の地に白い文字は読めない（差 3.2）。
+  // 決まりどおり「300 の地に黒の文字」にする（差 17.3）
   .current .number {
-    color: $white;
-    background: map.get($amber, button);
+    color: $black;
+    background: map.get($amber, 300);
   }
 
   .current .label {

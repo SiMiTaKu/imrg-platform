@@ -184,9 +184,10 @@
     background: $white;
   }
 
-  // 相談への一歩は黄。青（情報を見る）と役割を分ける
+  // 相談への一歩は黄。青（情報を見る）と役割を分ける。
+  // 黄は明るいので、文字は黒にする（design-system の色の決まり 4）
   .order {
-    color: map.get($amber, 900);
+    color: $black;
     background: map.get($amber, 300);
   }
 </style>
