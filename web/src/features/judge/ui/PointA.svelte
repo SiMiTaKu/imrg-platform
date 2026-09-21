@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { JudgeThemeColor } from '../config/themeColor'
+  import { Button } from '@imrg-platform/design-system'
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { POINT_A_ITEMS } from '../config/pointAItems'
   import type { PointAKey, PointAOption } from '../model/executionDeduct'
-  import { judgementApparatus } from '../store/apparatus'
   import { executionDeduct } from '../store/executionDeduct'
   import Radio from './Radio.svelte'
 
@@ -21,8 +20,6 @@
   let openKey: PointAKey | undefined = $state(POINT_A_ITEMS[0]?.key)
   /** もう選んだ項目。選んだ順に増える */
   let answeredKeys: PointAKey[] = $state([])
-
-  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 
   /**
    * 選んだあとに次へ開く項目を探す。
@@ -102,10 +99,8 @@
     </div>
   </div>
   {#if !submitted}
-    <div class="submit {color}">
-      <button class="submit-button" type="submit" onclick={handleSubmit}>
-        {m.judge_submit()}
-      </button>
+    <div class="submit">
+      <Button size="large" onclick={handleSubmit} block>{m.judge_submit()}</Button>
     </div>
   {/if}
 </div>
@@ -123,26 +118,6 @@
     --header-gap: 8px;
     --section-font-size: 24px;
     --question-list-gap: 8px;
-  }
-
-  .gray {
-    --submit-button-background: #{map.get($theme, gray)};
-  }
-
-  .blue {
-    --submit-button-background: #{map.get($theme, blue)};
-  }
-
-  .red {
-    --submit-button-background: #{map.get($theme, red)};
-  }
-
-  .yellow {
-    --submit-button-background: #{map.get($theme, yellow)};
-  }
-
-  .green {
-    --submit-button-background: #{map.get($theme, green)};
   }
 
   .point-a {
@@ -188,24 +163,14 @@
     font-size: var(--section-font-size);
   }
 
+  // 送るボタンは中央に置く。スマホでは横いっぱいにする
   .submit {
-    text-align: center;
+    display: grid;
+    grid-template-columns: min(260px, 100%);
+    justify-content: center;
   }
 
-  .submit-button {
-    width: 200px;
-    height: 56px;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    border: unset;
-    border-radius: 8px;
-    background: var(--submit-button-background);
-    transition: 0.3s;
-
-    &:hover {
-      cursor: pointer;
-      opacity: 0.5;
-    }
+  .mobile .submit {
+    grid-template-columns: minmax(0, 1fr);
   }
 </style>

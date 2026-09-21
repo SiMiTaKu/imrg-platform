@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { Character, findCharacter } from '@entities/character'
   import { GuideLead } from '@features/guideLead'
@@ -70,8 +71,10 @@
     </ul>
 
     <div class="actions">
-      <button class="start" type="button" onclick={onstart}>{m.judge_intro_start()}</button>
-      <a class="sub" href={localizeHref(ROUTES.rules)}>{m.judge_intro_read_rules()}</a>
+      <Button size="large" onclick={onstart} block>{m.judge_intro_start()}</Button>
+      <Button href={localizeHref(ROUTES.rules)} target="_self" variant="outline" size="large" block>
+        {m.judge_intro_read_rules()}
+      </Button>
     </div>
     <p class="note">{m.judge_intro_note()}</p>
   </div>
@@ -198,48 +201,17 @@
 
   /* ─── 始める ─── */
 
+  // いちばん押してほしい「始める」は青の塗り、規則を読む道は白抜き。
+  // 2つを同じ幅で並べ、スマホでは1列に積んでそれぞれ横いっぱいにする
   .actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    display: grid;
     gap: $space-size-12;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-bottom: $space-size-12;
   }
 
-  .start,
-  .sub {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 54px;
-    padding: 0 $space-size-32;
-    font-family: inherit;
-    font-size: $font-size-16;
-    font-weight: bold;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: transform 0.15s ease;
-    cursor: pointer;
-  }
-
-  .start:hover,
-  .sub:hover {
-    transform: translateY(-1px);
-  }
-
-  // いちばん押してほしいところは青で塗る
-  .start {
-    color: $white;
-    border: none;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 40%);
-  }
-
-  .sub {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
+  .mobile .actions {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .note {

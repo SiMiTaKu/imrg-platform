@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { JudgeThemeColor } from '../config/themeColor'
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
@@ -74,8 +75,8 @@
     />
   </div>
 
-  <div class="submit {color}">
-    <button class="submit-button" type="submit" onclick={onsubmit}>{m.judge_submit()}</button>
+  <div class="submit">
+    <Button size="large" onclick={onsubmit} block>{m.judge_submit()}</Button>
   </div>
 </div>
 
@@ -91,27 +92,22 @@
   }
 
   .gray {
-    --submit-button-background: #{map.get($theme, gray)};
     --forcus-border-color: #{map.get($theme, gray)};
   }
 
   .blue {
-    --submit-button-background: #{map.get($theme, blue)};
     --forcus-border-color: #{map.get($theme, blue)};
   }
 
   .red {
-    --submit-button-background: #{map.get($theme, red)};
     --forcus-border-color: #{map.get($theme, red)};
   }
 
   .yellow {
-    --submit-button-background: #{map.get($theme, yellow)};
     --forcus-border-color: #{map.get($theme, yellow)};
   }
 
   .green {
-    --submit-button-background: #{map.get($theme, green)};
     --forcus-border-color: #{map.get($theme, green)};
   }
 
@@ -181,24 +177,14 @@
     }
   }
 
+  // 送るボタンは中央に置く。スマホでは横いっぱいにする
   .submit {
-    text-align: center;
+    display: grid;
+    grid-template-columns: min(260px, 100%);
+    justify-content: center;
   }
 
-  .submit-button {
-    width: 200px;
-    height: 56px;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    border: unset;
-    border-radius: 8px;
-    background: var(--submit-button-background);
-    transition: 0.3s;
-
-    &:hover {
-      cursor: pointer;
-      opacity: 0.5;
-    }
+  .mobile .submit {
+    grid-template-columns: minmax(0, 1fr);
   }
 </style>

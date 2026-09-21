@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { PUBLIC_BASE_URL } from '$env/static/public'
   import { m } from '$lib/paraglide/messages'
   import type { Chart } from 'chart.js/auto'
@@ -99,15 +100,13 @@
   </figure>
 
   <div class="buttons">
-    <button class="again" type="button" onclick={onshowscore}>{m.judge_result_show_score()}</button>
+    <Button onclick={onshowscore} block>{m.judge_result_show_score()}</Button>
     <!-- Xの投稿画面を新しいタブで開く。文は得点と手具の名前が入ったもの -->
-    <a class="share" href={shareHref} rel="noopener noreferrer" target="_blank">
-      {m.judge_share_x()}
-    </a>
-    <button class="save-chart" type="button" onclick={saveChartImage}>
+    <Button href={shareHref} target="_blank" variant="outline" block>{m.judge_share_x()}</Button>
+    <Button variant="outline" onclick={saveChartImage} block>
       {m.judge_result_chart_save()}
-    </button>
-    <button class="retry" type="button" onclick={onretry}>{m.judge_result_restart()}</button>
+    </Button>
+    <Button variant="outline" onclick={onretry} block>{m.judge_result_restart()}</Button>
   </div>
   <p class="share-note">{m.judge_result_chart_share_note()}</p>
 
@@ -156,11 +155,11 @@
     color: map.get($sky-blue, text);
   }
 
+  // 入る数だけ列を作る。狭い画面では1列に積まれ、1つずつ横いっぱいになる
   .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
     gap: $space-size-12;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 
   .chart-figure {
@@ -196,41 +195,5 @@
     font-size: $font-size-12;
     color: map.get($gray, light-text);
     text-align: center;
-  }
-
-  .again,
-  .share,
-  .save-chart,
-  .retry {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 0 $space-size-24;
-    font-family: inherit;
-    font-size: $font-size-14;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  .again {
-    color: $white;
-    border: none;
-    background: map.get($sky-blue, button);
-  }
-
-  .share {
-    color: $white;
-    border: none;
-    background: map.get($gray, text);
-    text-decoration: none;
-  }
-
-  .save-chart,
-  .retry {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
   }
 </style>

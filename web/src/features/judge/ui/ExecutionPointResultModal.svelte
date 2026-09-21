@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Chart } from 'chart.js/auto'
   import { m } from '$lib/paraglide/messages'
-  import { Modal, ThemeColor } from '@imrg-platform/design-system'
+  import { Button, Modal, ThemeColor } from '@imrg-platform/design-system'
   import { getLocale } from '@shared/lib/i18n'
   import { formatNumber } from '@shared/lib/number'
   import { POINT_A_ITEMS } from '../config/pointAItems'
@@ -105,10 +105,12 @@
     {onclose}
     labels={{ close: m.modal_close() }}
   >
-    <div class:mobile={isMobile} style:--theme-color={THEME_COLORS[color]}>
-      <button class="detail-switch" type="button" onclick={switchShowPointADetail}>
-        {isPointDetailShown ? m.judge_result_hide_detail() : m.judge_result_show_detail()}
-      </button>
+    <div class:mobile={isMobile}>
+      <div class="detail-switch">
+        <Button variant="outline" onclick={switchShowPointADetail}>
+          {isPointDetailShown ? m.judge_result_hide_detail() : m.judge_result_show_detail()}
+        </Button>
+      </div>
 
       <div
         style:opacity={pointDetailOpacity}
@@ -155,9 +157,7 @@
         {formatNumber(decisionPoints, locale)}
       </div>
       <div class="footer">
-        <button class="footer-button" type="button" onclick={onretry}>
-          {m.judge_result_retry()}
-        </button>
+        <Button onclick={onretry} block>{m.judge_result_retry()}</Button>
       </div>
     </div>
   </Modal>
@@ -165,17 +165,7 @@
 
 <style lang="scss">
   .detail-switch {
-    display: inline-block;
-    width: 120px;
-    height: 32px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: bold;
-    color: #555;
-    border: 2px solid #555;
-    border-radius: 4px;
-    background: white;
-    cursor: pointer;
+    display: flex;
   }
 
   /** ポイントA 内訳のプルダウン ------------------------- */
@@ -267,22 +257,15 @@
     padding-left: 70px;
   }
 
+  // もう一度のボタンは中央に置く。スマホでは横いっぱいにする
   .footer {
+    display: grid;
+    grid-template-columns: min(260px, 100%);
+    justify-content: center;
     padding-top: 24px;
-    text-align: center;
   }
 
-  .footer-button {
-    width: 200px;
-    max-width: 100%;
-    height: 48px;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    background: var(--theme-color);
-    cursor: pointer;
+  .mobile .footer {
+    grid-template-columns: minmax(0, 1fr);
   }
 </style>
