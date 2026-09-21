@@ -45,5 +45,6 @@
   "character_yawana_role": "D’une souplesse hors du commun. Il s’y connaît aussi en soins du corps",
   "video_card_title": "Exercice de {name}",
   "video_card_play": "Lire l’exercice de {name}",
-  "video_card_again": "Revoir"
+  "video_card_again": "Revoir",
+  "modal_close": "Fermer"
 }

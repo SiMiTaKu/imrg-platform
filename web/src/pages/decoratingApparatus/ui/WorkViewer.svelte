@@ -1,5 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
+  import { Modal } from '@imrg-platform/design-system'
   import { ImageAssets } from '@shared/ui'
   import type { ImageSourceMeta } from '@shared/ui'
 
@@ -18,11 +19,6 @@
 
   // 開いたときは1枚目から見せる
   let index = $state(0)
-  let dialog = $state<HTMLDialogElement>()
-
-  $effect(() => {
-    dialog?.showModal()
-  })
 
   /**
    * 写真を送る。端まで行ったら反対の端へ回り、終わりなく送れる
@@ -45,7 +41,8 @@
     sources.reduce((max, source) => (source.width > max.width ? source : max), sources[0])
 
   /**
-   * 左右の矢印の鍵で写真を送る
+   * 左右の矢印の鍵で写真を送る。
+   * この部品は開いている間だけ置かれるので、窓ごと見ていてもほかの画面には効かない
    * @param event - 鍵の出来事
    */
   const onKeydown = (event: KeyboardEvent) => {
@@ -64,21 +61,19 @@
   }
 </script>
 
-<dialog bind:this={dialog} class="viewer" onclose={onClose} onkeydown={onKeydown}>
-  <div class="inner">
-    <header>
-      <button type="button" class="close" onclick={() => dialog?.close()}>
-        {m.decorating_apparatus_viewer_close()}
-      </button>
-    </header>
+<svelte:window onkeydown={onKeydown} />
 
-    <div
-      class="stage"
-      ontouchstart={onTouchStart}
-      ontouchend={onTouchEnd}
-      role="group"
-      aria-label={m.decorating_apparatus_viewer_stage_label()}
-    >
+<!-- 見出しは読み上げにだけ残す。写真そのものが中身なので、画面には出さない -->
+<Modal
+  title={m.decorating_apparatus_viewer_stage_label()}
+  titleHidden={true}
+  width={1100}
+  onclose={onClose}
+  labels={{ close: m.modal_close() }}
+>
+  <div class="viewer">
+    <!-- 名前はモーダルの見出しが持つので、ここはひとまとまりであることだけを伝える -->
+    <div class="stage" ontouchstart={onTouchStart} ontouchend={onTouchEnd} role="group">
       {#if images.length > 1}
         <button
           type="button"
@@ -134,46 +129,14 @@
       </ol>
     {/if}
   </div>
-</dialog>
+</Modal>
 
 <style lang="scss">
   .viewer {
-    width: min(96vw, 1100px);
-    max-width: none;
-    max-height: 94vh;
-    padding: 0;
-    border: 0;
-    border-radius: 10px;
-    background: $white;
-  }
-
-  .viewer::backdrop {
-    background: rgb(0 0 0 / 80%);
-  }
-
-  .inner {
     display: flex;
-    flex-direction: column;
     gap: $space-size-12;
-    max-height: 94vh;
-    padding: $space-size-16;
-  }
-
-  header {
-    display: flex;
-    gap: $space-size-16;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .close {
-    min-height: 40px;
-    padding: 0 $space-size-20;
-    font-size: $font-size-14;
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    border-radius: 6px;
-    background: $white;
+    flex-direction: column;
+    min-height: 0;
   }
 
   .stage {

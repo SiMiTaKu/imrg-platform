@@ -45,5 +45,6 @@
   "character_yawana_role": "몸의 유연함이 발군입니다. 몸 관리에도 밝습니다",
   "video_card_title": "{name} 선수의 연기",
   "video_card_play": "{name} 선수의 연기 재생",
-  "video_card_again": "다시 보기"
+  "video_card_again": "다시 보기",
+  "modal_close": "닫기"
 }

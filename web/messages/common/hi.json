@@ -45,5 +45,6 @@
   "character_yawana_role": "शरीर का लचीलापन सबसे ज़्यादा। देखभाल की भी अच्छी समझ",
   "video_card_title": "{name} का प्रदर्शन",
   "video_card_play": "{name} का प्रदर्शन चलाएँ",
-  "video_card_again": "फिर देखें"
+  "video_card_again": "फिर देखें",
+  "modal_close": "बंद करें"
 }

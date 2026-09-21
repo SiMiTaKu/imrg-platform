@@ -45,5 +45,6 @@
   "character_yawana_role": "Гибкость — выше всяких похвал. Хорошо разбирается в восстановлении",
   "video_card_title": "Упражнение: {name}",
   "video_card_play": "Воспроизвести упражнение: {name}",
-  "video_card_again": "Ещё раз"
+  "video_card_again": "Ещё раз",
+  "modal_close": "Закрыть"
 }

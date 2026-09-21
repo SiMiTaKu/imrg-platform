@@ -45,5 +45,6 @@
   "character_yawana_role": "Su flexibilidad destaca sobre el resto. También sabe mucho de cuidado corporal",
   "video_card_title": "Ejercicio de {name}",
   "video_card_play": "Reproducir el ejercicio de {name}",
-  "video_card_again": "Ver de nuevo"
+  "video_card_again": "Ver de nuevo",
+  "modal_close": "Cerrar"
 }

@@ -45,5 +45,6 @@
   "character_yawana_role": "身体柔韧性出类拔萃。对身体养护也很在行",
   "video_card_title": "{name}的成套动作",
   "video_card_play": "播放{name}的成套动作",
-  "video_card_again": "再看一次"
+  "video_card_again": "再看一次",
+  "modal_close": "关闭"
 }
