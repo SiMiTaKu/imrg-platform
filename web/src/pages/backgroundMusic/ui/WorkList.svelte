@@ -82,18 +82,20 @@
     padding: $space-size-48 var(--content-padding-inline);
   }
 
+  // 1列に縦に積む。横に並べると動画が小さくなり、演技が見えない
   .cards {
-    display: grid;
-    gap: $space-size-16;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-24;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
     padding: 0;
     list-style: none;
   }
 
   .mobile .cards {
-    gap: $space-size-12;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-size-16;
   }
 
   // 手具・名前・見るボタンを縦に積むだけ。重ねない
