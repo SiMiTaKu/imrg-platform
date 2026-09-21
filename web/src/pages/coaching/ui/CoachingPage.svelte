@@ -93,36 +93,34 @@
   <!-- 何を頼めて、いくらで、どこから相談するのかを最初に出す -->
   <section class="hero">
     <div class="inner">
-      <div class="panel">
-        <div class="head">
-          <CharacterFigure character={guide} size={isMobile ? 84 : 112} />
-          <div class="naming">
-            <span class="eyebrow">{HERO.eyebrow()}</span>
-            <h1>{m.coaching_hero_title()}</h1>
-            <p class="price"><span class="unit">{HERO.priceUnit()}</span>{HERO.priceAmount()}</p>
-          </div>
+      <div class="head">
+        <CharacterFigure character={guide} size={isMobile ? 84 : 112} />
+        <div class="naming">
+          <span class="eyebrow">{HERO.eyebrow()}</span>
+          <h1>{m.coaching_hero_title()}</h1>
+          <p class="price"><span class="unit">{HERO.priceUnit()}</span>{HERO.priceAmount()}</p>
         </div>
-
-        <p class="summary">{HERO.summary()}</p>
-        <!-- 断られるのではと身構えずに済むよう、summary のすぐあとで声をかける -->
-        <p class="welcome">{HERO.welcome()}</p>
-
-        <ul class="tags">
-          {#each HERO.points as point (point.key)}
-            <li>{point.text()}</li>
-          {/each}
-        </ul>
-
-        <div class="actions">
-          <a class="contact" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
-            {m.coaching_contact_button()}
-          </a>
-          <a class="secondary" href="#prices">{m.coaching_hero_price_link()}</a>
-        </div>
-        <p class="note">
-          {m.coaching_hero_note()}
-        </p>
       </div>
+
+      <p class="summary">{HERO.summary()}</p>
+      <!-- 断られるのではと身構えずに済むよう、summary のすぐあとで声をかける -->
+      <p class="welcome">{HERO.welcome()}</p>
+
+      <ul class="tags">
+        {#each HERO.points as point (point.key)}
+          <li>{point.text()}</li>
+        {/each}
+      </ul>
+
+      <div class="actions">
+        <a class="contact" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
+          {m.coaching_contact_button()}
+        </a>
+        <a class="secondary" href="#prices">{m.coaching_hero_price_link()}</a>
+      </div>
+      <p class="note">
+        {m.coaching_hero_note()}
+      </p>
     </div>
   </section>
 
@@ -460,24 +458,25 @@
 
   /* ─── 最初の画面 ─── */
 
+  // トップと同じく、札に収めず画面の端まで背景を行き渡らせる
   .hero {
+    width: 100%;
     background:
-      radial-gradient(circle at 10% 0%, rgb(0 111 230 / 10%), transparent 45%), map.get($gray, 50);
+      radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
+      radial-gradient(circle at 92% 6%, rgb(25 134 255 / 14%), transparent 42%), $white;
+    border-bottom: 1px solid map.get($gray, 100);
   }
 
-  .panel {
+  .hero .inner {
     display: flex;
     flex-direction: column;
-    gap: $space-size-12;
-    padding: $space-size-32;
-    border-top: 4px solid map.get($sky-blue, button);
-    border-radius: 10px;
-    background: $white;
-    box-shadow: 0 2px 16px rgb(0 48 99 / 8%);
+    gap: $space-size-16;
+    padding-block: $space-size-48;
   }
 
-  .mobile .panel {
-    padding: $space-size-20;
+  .mobile .hero .inner {
+    gap: $space-size-12;
+    padding-block: $space-size-32;
   }
 
   .head {
