@@ -81,16 +81,17 @@
 <!--
   分類図の枝。自分自身を呼び出して、何段でも下りていく
 -->
-{#snippet branches(nodes: readonly RuleTreeNode[], isRoot: boolean)}
-  <ul class="tree" class:root={isRoot}>
+{#snippet branches(nodes: readonly RuleTreeNode[], depth: number)}
+  <!-- 上・中・下の3段階で色を変える。線も、上から中・中から下と色を受け継ぐ -->
+  <ul class="tree" class:root={depth === 0} class:middle={depth === 1} class:leaf={depth >= 2}>
     {#each nodes as node (node.label)}
       <li>
-        <div class="node" class:root-node={isRoot}>
+        <div class="node" class:upper={depth === 0} class:middle={depth === 1}>
           <span>{node.label}</span>
           {#if node.note}<span class="node-note">{node.note}</span>{/if}
         </div>
         {#if node.children && node.children.length > 0}
-          {@render branches(node.children, false)}
+          {@render branches(node.children, depth + 1)}
         {/if}
       </li>
     {/each}
@@ -163,7 +164,7 @@
     -->
     <p class="title">{tree.caption}</p>
     <div class="tree-frame">
-      {@render branches(tree.roots, true)}
+      {@render branches(tree.roots, 0)}
     </div>
     <figcaption>
       {#if tree.note}<span class="note">{tree.note}</span>{/if}
@@ -400,8 +401,14 @@
   ul.tree:not(.root) {
     // 線を引く場所を空けるための下げ幅
     padding-left: $space-size-16;
+  }
 
-    // 親から下りてくる縦の線
+  // 上の段から中の段へ下りる線は紺。中の段から下は淡い青にして、深さが分かるようにする
+  ul.tree.middle {
+    border-left: $border-size-2 solid map.get($sky-blue, 900);
+  }
+
+  ul.tree.leaf {
     border-left: $border-size-1 solid map.get($sky-blue, border);
   }
 
@@ -417,6 +424,13 @@
     top: 50%;
     left: -$space-size-16;
     width: $space-size-16;
+  }
+
+  ul.tree.middle > li::before {
+    border-top: $border-size-2 solid map.get($sky-blue, 900);
+  }
+
+  ul.tree.leaf > li::before {
     border-top: $border-size-1 solid map.get($sky-blue, border);
   }
 
@@ -426,11 +440,12 @@
     position: absolute;
     top: calc(50% + #{$border-size-1});
     bottom: 0;
-    left: calc(-#{$space-size-16} - #{$border-size-1});
-    width: $border-size-1;
+    left: calc(-#{$space-size-16} - #{$border-size-2});
+    width: $border-size-2;
     background: $white;
   }
 
+  // いちばん下の段。淡い青の地に、濃い青の文字
   .node {
     display: flex;
     gap: $space-size-4 $space-size-8;
@@ -445,9 +460,17 @@
     line-height: 1.6;
   }
 
-  // いちばん左の箱。「難度（D）」など、採点の柱になるもの
-  .node.root-node {
+  // いちばん上の段。「難度（D）」など、採点の柱になるもの。紺の地に白い文字
+  .node.upper {
     font-size: $font-size-14;
+    font-weight: bold;
+    color: $white;
+    border-color: map.get($sky-blue, 900);
+    background: map.get($sky-blue, 900);
+  }
+
+  // 中の段。これまでいちばん上に使っていた色合いを、ここへ下ろした
+  .node.middle {
     font-weight: bold;
     color: map.get($sky-blue, text);
     border-color: map.get($sky-blue, button);
@@ -458,5 +481,10 @@
     font-size: $font-size-11;
     font-weight: normal;
     color: map.get($sky-blue, light-text);
+  }
+
+  // 紺の地の上では、添え書きも白寄りにしないと読めない
+  .node.upper .node-note {
+    color: map.get($sky-blue, 200);
   }
 </style>
