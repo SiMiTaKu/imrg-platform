@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, findCharacter } from '@entities/character'
   import { pageData } from '@shared/lib/device'
@@ -37,8 +38,12 @@
             {#each service.body as phrase (phrase)}<span class="phrase">{phrase()}</span>{/each}
           </p>
           <div class="actions">
-            <a class="detail" href={localizeHref(service.href)}>{service.action()}</a>
-            <a class="order" href="#contact">{m.top_services_order()}</a>
+            <Button href={localizeHref(service.href)} target="_self" variant="outline" block>
+              {service.action()}
+            </Button>
+            <Button href="#contact" target="_self" variant="yellow" block>
+              {m.top_services_order()}
+            </Button>
           </div>
         </li>
       {/each}
@@ -161,33 +166,15 @@
     margin-inline-start: 0.25em;
   }
 
+  // 「くわしく見る」と「相談する」を同じ幅で並べる。
+  // 相談への一歩だけ黄にして、情報を見る側（白抜き）と役割を分ける
   .actions {
-    display: flex;
+    display: grid;
     gap: $space-size-8;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .actions a {
-    display: inline-flex;
-    min-height: 46px;
-    font-size: $font-size-14;
-    font-weight: bold;
-    border-radius: 6px;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    text-decoration: none;
-  }
-
-  .detail {
-    color: map.get($gray, text);
-    border: 1px solid map.get($gray, 200);
-    background: $white;
-  }
-
-  // 相談への一歩は黄。青（情報を見る）と役割を分ける。
-  // 黄は明るいので、文字は黒にする（design-system の色の決まり 4）
-  .order {
-    color: $black;
-    background: map.get($yellow, 300);
+  .mobile .actions {
+    grid-template-columns: minmax(0, 1fr);
   }
 </style>

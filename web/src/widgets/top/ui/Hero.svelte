@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { CHARACTERS, CharacterFigure } from '@entities/character'
   import { pageData } from '@shared/lib/device'
@@ -36,10 +37,12 @@
     </p>
 
     <div class="actions">
-      <a class="primary" href={localizeHref(ROUTES.calendar.index)}
-        >{m.top_hero_action_calendar()}</a
-      >
-      <a class="secondary" href="#services">{m.top_hero_action_services()}</a>
+      <Button href={localizeHref(ROUTES.calendar.index)} target="_self" block>
+        {m.top_hero_action_calendar()}
+      </Button>
+      <Button href="#services" target="_self" variant="outline" block>
+        {m.top_hero_action_services()}
+      </Button>
     </div>
 
     <!-- 5人が並ぶ。競技が「団体5人」であることを、言葉より先に見せる -->
@@ -141,51 +144,18 @@
     color: map.get($sky-blue, text);
   }
 
+  // 2つとも同じ重みの入口なので、幅をそろえて並べる。
+  // スマホは1列にして、1つずつ横いっぱいにする
   .actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
     gap: $space-size-12;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     max-width: 540px;
   }
 
-  .actions a {
-    display: inline-flex;
-    min-height: 54px;
-    padding: 0 $space-size-24;
-    font-size: $font-size-16;
-    font-weight: bold;
-    border-radius: 6px;
-    transition:
-      transform 0.15s ease,
-      box-shadow 0.15s ease;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-
-  .actions a:hover {
-    transform: translateY(-1px);
-  }
-
-  // 2つとも同じ重みの入口なので、大きさをそろえて並べる
-  .primary,
-  .secondary {
-    flex: 1 1 240px;
-  }
-
-  .primary {
-    color: $white;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(0 89 184 / 25%);
-  }
-
-  // 依頼の入口は白抜き。押す先が違うことを見た目でも分ける
-  .secondary {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
+  .mobile .actions {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .team {
