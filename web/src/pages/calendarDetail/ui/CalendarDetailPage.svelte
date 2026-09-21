@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { afterNavigate } from '$app/navigation'
   import { m } from '$lib/paraglide/messages'
   import {
@@ -167,17 +168,14 @@
   {#if event.officialUrl || event.resultUrl}
     <p class="actions">
       {#if event.officialUrl}
-        <a class="action primary" href={event.officialUrl} rel="noopener noreferrer" target="_blank"
-          >{@render factLabel(m.calendar_official_site)}</a
-        >
+        <Button href={event.officialUrl} target="_blank" block>
+          {@render factLabel(m.calendar_official_site)}
+        </Button>
       {/if}
       {#if event.resultUrl}
-        <a
-          class="action result-action"
-          href={event.resultUrl}
-          rel="noopener noreferrer"
-          target="_blank">{@render factLabel(m.calendar_results)}</a
-        >
+        <Button href={event.resultUrl} target="_blank" variant="outline" block>
+          {@render factLabel(m.calendar_results)}
+        </Button>
       {/if}
     </p>
   {/if}
@@ -413,48 +411,13 @@
 
   /* ─── 外部への入口 ─── */
 
+  // 公式サイトと結果を同じ幅で並べる。入る数だけ列を作るので、
+  // 片方しか無いときは1つで横いっぱい、狭い画面では縦に積まれる
   .actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: $space-size-12;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin: $space-size-32 0 0;
-  }
-
-  .action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 200px;
-    min-height: 52px;
-    padding: 0 $space-size-24;
-    font-size: $font-size-16;
-    font-weight: bold;
-    border-radius: 6px;
-    line-height: 1.3;
-    transition: transform 0.15s ease;
-  }
-
-  .mobile .action {
-    min-width: 100%;
-  }
-
-  .action:hover {
-    transform: translateY(-1px);
-  }
-
-  // 主な入口は青（信頼）
-  .primary {
-    color: $white;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
-  }
-
-  // 結果を見に行くのは別の行動。青の枠のボタンにして、主な入口と役割を分ける
-  .result-action {
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    background: $white;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   }
 
   /* ─── 出典と注意書き ─── */

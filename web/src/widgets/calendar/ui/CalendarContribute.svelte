@@ -37,10 +37,10 @@
         target="_blank">{m.calendar_contribute_link()}</a
       >{m.calendar_contribute_after_link()}
     </p>
-    <!-- 下にそろえる。重ねずに、余った高さを margin で押し下げる -->
-    <a class="contribute-button" href={LINKS.instagram} rel="noopener noreferrer" target="_blank"
-      >{m.calendar_contribute_button()}</a
-    >
+    <!-- 下にそろえる。重ねずに、余った高さをこの箱で受ける -->
+    <div class="contribute-action">
+      <Button href={LINKS.instagram} target="_blank">{m.calendar_contribute_button()}</Button>
+    </div>
   </div>
 </section>
 
@@ -126,24 +126,11 @@
     color: map.get($sky-blue, text);
   }
 
-  .contribute-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    align-self: flex-start;
-    min-height: 44px;
-    margin-top: auto;
-    padding: 0 $space-size-24;
-    font-size: $font-size-14;
-    font-weight: bold;
-    color: $white;
-    border-radius: 6px;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(25 134 255 / 30%);
-  }
-
-  .contribute-button:hover {
-    background: map.get($sky-blue, text);
+  // 高さの違う札でもボタンの位置がそろうよう、余った高さをこの箱で受ける
+  .contribute-action {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
   }
 
   .back {
