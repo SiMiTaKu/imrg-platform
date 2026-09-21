@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { m } from '$lib/paraglide/messages'
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
   import { pageData } from '@shared/lib/device'
@@ -11,9 +12,11 @@
     upcoming: number
     /** 「最終更新: 2026年9月16日」の文言 */
     updatedAtText: string
+    /** 案内の下、ファーストビジュアルの中に並べるもの（大会をさがす欄） */
+    children?: Snippet
   }
 
-  const { total, upcoming, updatedAtText }: Props = $props()
+  const { total, upcoming, updatedAtText, children }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
   /** カレンダーの案内役。大会へ跳び込む人 */
@@ -23,41 +26,48 @@
 <!-- 何ができるページかを、いちばん上で言い切る。背景は画面の端まで広げ、中身だけをコンテンツ幅に収める -->
 <header class="intro" class:mobile={isMobile}>
   <div class="inner">
-    <div class="figure">
-      <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
+    <div class="lead">
+      <div class="figure">
+        <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
+      </div>
+
+      <div class="words">
+        <p class="speaker">
+          {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+        </p>
+        <h1>{m.calendar_title()}</h1>
+        <p class="say">{m.calendar_lead()}</p>
+        <p class="how">
+          <strong>{m.calendar_view_calendar()}</strong>{m.calendar_intro_how_calendar()}<strong
+            >{m.calendar_view_list()}</strong
+          >{m.calendar_intro_how_list()}
+          {m.calendar_intro_how_detail_before()}<strong class="accent"
+            >{m.calendar_intro_how_detail_strong()}</strong
+          >{m.calendar_intro_how_detail_after()}
+        </p>
+
+        <dl class="numbers">
+          <div class="number">
+            <dt>{m.calendar_intro_stat_total()}</dt>
+            <dd>{total}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
+          </div>
+          <div class="number upcoming">
+            <dt>{m.calendar_period_upcoming()}</dt>
+            <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
+          </div>
+        </dl>
+
+        <!-- 「情報の新しさ」という言い換えは置かない。最終更新の日付だけで伝わる -->
+        <p class="updated">{updatedAtText}</p>
+
+        <p class="caution">{m.calendar_intro_sources_note()}</p>
+      </div>
     </div>
 
-    <div class="words">
-      <p class="speaker">
-        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-      </p>
-      <h1>{m.calendar_title()}</h1>
-      <p class="say">{m.calendar_lead()}</p>
-      <p class="how">
-        <strong>{m.calendar_view_calendar()}</strong>{m.calendar_intro_how_calendar()}<strong
-          >{m.calendar_view_list()}</strong
-        >{m.calendar_intro_how_list()}
-        {m.calendar_intro_how_detail_before()}<strong class="accent"
-          >{m.calendar_intro_how_detail_strong()}</strong
-        >{m.calendar_intro_how_detail_after()}
-      </p>
-
-      <dl class="numbers">
-        <div class="number">
-          <dt>{m.calendar_intro_stat_total()}</dt>
-          <dd>{total}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
-        </div>
-        <div class="number upcoming">
-          <dt>{m.calendar_period_upcoming()}</dt>
-          <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
-        </div>
-      </dl>
-
-      <!-- 「情報の新しさ」という言い換えは置かない。最終更新の日付だけで伝わる -->
-      <p class="updated">{updatedAtText}</p>
-
-      <p class="caution">{m.calendar_intro_sources_note()}</p>
-    </div>
+    <!-- 大会をさがす欄は、最初に目に入るここへ置く -->
+    {#if children}
+      {@render children()}
+    {/if}
   </div>
 </header>
 
@@ -76,22 +86,32 @@
   // 中身だけをコンテンツ幅に収める
   .inner {
     display: flex;
+    flex-direction: column;
     gap: $space-size-24;
-    align-items: flex-start;
     box-sizing: border-box;
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: $space-size-40 var(--content-padding-inline) $space-size-32;
+    padding: $space-size-32 var(--content-padding-inline);
   }
 
   // スマホでも文章は左寄せ。中央寄せは行の始まりがそろわず、日本語だと読みにくい
   .intro.mobile .inner {
+    gap: $space-size-16;
+    padding: $space-size-24 var(--content-padding-inline);
+    text-align: left;
+  }
+
+  .lead {
+    display: flex;
+    gap: $space-size-24;
+    align-items: flex-start;
+  }
+
+  .mobile .lead {
     flex-direction: column;
     align-items: stretch;
     gap: $space-size-12;
-    padding: $space-size-24 var(--content-padding-inline);
-    text-align: left;
   }
 
   // 案内役だけは真ん中に置く

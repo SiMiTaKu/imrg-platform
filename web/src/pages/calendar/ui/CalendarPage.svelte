@@ -63,7 +63,6 @@
   let refine: CalendarRefine = $state.raw(defaultRefine())
   let ready = $state(false)
   let resultsTop: HTMLElement | undefined = $state()
-  let finderTop: HTMLElement | undefined = $state()
 
   // 条件は URL に書き戻さない。書き戻すと、アクセス解析が絞り込みのたびに
   // 1回の閲覧として数えてしまうため。代わりにタブの中に覚えておく
@@ -199,11 +198,11 @@
     calendarState = defaultState(toMonthKey(today))
   }
 
-  /** 「これから」の一覧へ切り替え、絞り込みの欄まで移動する */
+  /** 「これから」の一覧へ切り替え、結果の先頭まで移動する */
   const showUpcomingList = async () => {
     update({ view: 'list', period: EventPeriod.UPCOMING.key, day: null })
     await tick()
-    finderTop?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    resultsTop?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 </script>
 
@@ -224,13 +223,12 @@
 {/snippet}
 
 <article class="calendar" class:mobile={$pageData.isMobile}>
-  <CalendarIntro total={EVENTS.length} upcoming={upcomingAll.length} {updatedAtText} />
-
-  <div class="body">
-    <CalendarUpcoming events={upcomingPicks} {today} onseeall={showUpcomingList} />
-
-    <!-- 探すための道具をひとまとめにする。キーワード・種類・年・地域・表示の切り替えを続けて置く -->
-    <section bind:this={finderTop} class="finder" aria-label={m.calendar_search_label()}>
+  <CalendarIntro total={EVENTS.length} upcoming={upcomingAll.length} {updatedAtText}>
+    <!--
+        探すための道具をひとまとめにして、ページの先頭に置く。
+        キーワード・種類・年・地域・表示の切り替えを続けて並べる
+      -->
+    <section class="finder" aria-label={m.calendar_search_label()}>
       <h2 class="finder-title">{m.calendar_finder_title()}</h2>
 
       <CalendarSearchPanel
@@ -315,6 +313,10 @@
         </p>
       {/if}
     </section>
+  </CalendarIntro>
+
+  <div class="body">
+    <CalendarUpcoming events={upcomingPicks} {today} onseeall={showUpcomingList} />
 
     {#if calendarState.view === 'calendar'}
       {#if calendarState.keyword}
@@ -442,15 +444,15 @@
 
   /* ─── 探すための道具 ─── */
 
+  // ファーストビジュアルの中に置くので、上の余白は要らない
   .finder {
     display: grid;
     gap: $space-size-12;
-    margin-top: $space-size-40;
     padding: $space-size-20;
     border: $border-size-1 solid map.get($gray, 100);
     border-radius: 10px;
     background: $white;
-    scroll-margin-top: calc(var(--header-height) + 16px);
+    box-shadow: 0 2px 12px rgb(0 89 184 / 8%);
   }
 
   .mobile .finder {
