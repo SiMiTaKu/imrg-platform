@@ -2040,12 +2040,16 @@ Pour exécuter les éléments caractéristiques de la corde, celle-ci doit être
               ru: 'Требования к композиции',
               hi: 'संरचना के लिए आवश्यकताएँ',
             },
+            // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+            // 3.5.2 個人競技の要求要素 3 手具操作の要求要素（3）ロープ（37ページ）。
+            // 「6m以上の移動を伴う連続とび」は 3回以上。2回以上 は間違い。
+            // 投げ上げ 3回以上・最低2m以上、ころがしの規定は資料と一致していた。
             element: {
               ja: `1. とび
 下記の①〜④のとびを入れなければならない。ただし、転回系のロープのとびは除く。
   a. その場での２回以上の連続前回しとび（例：前回しの１重とびや２重とびを２回以上行う。）
   b. その場での２回以上の連続後ろ回しとび（例：後ろ回しの１重とびや２重とびを２回以上行う。）
-  c. ６m以上の移動を伴う２回以上の連続とび（例：移動をしながら回転とびを２回以上行う。）
+  c. ６m以上の移動を伴う３回以上の連続とび（例：移動をしながら回転とびを３回以上行う。）
   d. ３重とび（例：前回しの３重とびを１回以上行う。）
   ※　a〜dの中でdを行った場合はそれぞれの要素として数える。（例：前回しの３重とびを組み合わせて行いながら６m以上移動した場合。）
 
@@ -2070,7 +2074,7 @@ Pour exécuter les éléments caractéristiques de la corde, celle-ci doit être
 The jumps a to d below must be included. Rope jumps within tumbling do not count.
   a. At least two consecutive forward jumps on the spot (e.g. two or more forward single or double unders.)
   b. At least two consecutive backward jumps on the spot (e.g. two or more backward single or double unders.)
-  c. At least two consecutive jumps traveling at least 6 m (e.g. two or more jumps while traveling.)
+  c. At least three consecutive jumps traveling at least 6 m (e.g. three or more jumps while traveling.)
   d. A triple under (e.g. one or more forward triple unders.)
   * Among a to d, when d is performed together with another element, each counts as its own element. (e.g. traveling at least 6 m while performing forward triple unders.)
 
@@ -2095,7 +2099,7 @@ The jumps a to d below must be included. Rope jumps within tumbling do not count
 必须编入下列 a—d 的跳。但翻腾中的绳跳除外。
   a. 原地２次以上的连续向前摇跳（例：做２次以上向前摇的单摇跳或双摇跳。）
   b. 原地２次以上的连续向后摇跳（例：做２次以上向后摇的单摇跳或双摇跳。）
-  c. 伴随６m 以上移动的２次以上的连续跳（例：一边移动一边做２次以上的转体跳。）
+  c. 伴随６m 以上移动的３次以上的连续跳（例：一边移动一边做３次以上的转体跳。）
   d. 三摇跳（例：做１次以上向前摇的三摇跳。）
   ※　在 a—d 中做了 d 时，分别计为各自的要素。（例：一边组合做向前摇的三摇跳一边移动６m 以上的情况。）
 
@@ -2120,7 +2124,7 @@ The jumps a to d below must be included. Rope jumps within tumbling do not count
 아래의 ①~④의 뛰기를 넣어야 한다. 다만 공중돌기 계열의 줄 뛰기는 제외한다.
   a. 제자리에서의 2회 이상의 연속 앞돌리기 뛰기(예: 앞돌리기의 1중 뛰기나 2중 뛰기를 2회 이상 실시한다.)
   b. 제자리에서의 2회 이상의 연속 뒤돌리기 뛰기(예: 뒤돌리기의 1중 뛰기나 2중 뛰기를 2회 이상 실시한다.)
-  c. 6m 이상의 이동을 동반한 2회 이상의 연속 뛰기(예: 이동하면서 회전 뛰기를 2회 이상 실시한다.)
+  c. 6m 이상의 이동을 동반한 3회 이상의 연속 뛰기(예: 이동하면서 회전 뛰기를 3회 이상 실시한다.)
   d. 3중 뛰기(예: 앞돌리기의 3중 뛰기를 1회 이상 실시한다.)
   ※ a~d 중에서 d를 실시한 경우에는 각각의 요소로 센다.(예: 앞돌리기의 3중 뛰기를 조합하여 실시하면서 6m 이상 이동한 경우.)
 
@@ -2145,7 +2149,7 @@ The jumps a to d below must be included. Rope jumps within tumbling do not count
 Se deben incluir los saltos ①–④ que se indican a continuación. No obstante, no se cuentan los saltos con la cuerda dentro de los elementos de tumbling.
   a. Dos o más saltos consecutivos en el sitio con la cuerda hacia delante (Ejemplo: ejecutar dos o más saltos simples o dobles con la cuerda hacia delante.)
   b. Dos o más saltos consecutivos en el sitio con la cuerda hacia atrás (Ejemplo: ejecutar dos o más saltos simples o dobles con la cuerda hacia atrás.)
-  c. Dos o más saltos consecutivos con un desplazamiento de 6m o más (Ejemplo: ejecutar dos o más saltos con la cuerda mientras se desplaza.)
+  c. Tres o más saltos consecutivos con un desplazamiento de 6m o más (Ejemplo: ejecutar tres o más saltos con la cuerda mientras se desplaza.)
   d. Salto triple (Ejemplo: ejecutar uno o más saltos triples con la cuerda hacia delante.)
   * Entre a y d, cuando se ejecuta d, cada uno se cuenta como un elemento propio. (Ejemplo: cuando se recorren 6m o más combinando saltos triples con la cuerda hacia delante.)
 
@@ -2170,7 +2174,7 @@ Se deben incluir los saltos ①–④ que se indican a continuación. No obstant
 Les sauts a à d ci-dessous doivent figurer dans l'exercice. Les sauts à la corde réalisés dans le tumbling ne comptent pas.
   a. Au moins deux sauts enchaînés en rotation avant sur place (ex. : au moins deux sauts simples ou doubles en rotation avant.)
   b. Au moins deux sauts enchaînés en rotation arrière sur place (ex. : au moins deux sauts simples ou doubles en rotation arrière.)
-  c. Au moins deux sauts enchaînés sur un déplacement d'au moins 6 m (ex. : au moins deux sauts en se déplaçant.)
+  c. Au moins trois sauts enchaînés sur un déplacement d'au moins 6 m (ex. : au moins trois sauts en se déplaçant.)
   d. Un triple saut (ex. : au moins un triple saut en rotation avant.)
   * Parmi a à d, lorsque d est exécuté conjointement à un autre élément, chacun compte séparément. (ex. : se déplacer d'au moins 6 m en enchaînant des triples sauts en rotation avant.)
 
@@ -2195,7 +2199,7 @@ Les sauts a à d ci-dessous doivent figurer dans l'exercice. Les sauts à la cor
 Необходимо включить прыжки a–d, указанные ниже. Прыжки через скакалку внутри акробатики не засчитываются.
   a. не менее двух прыжков подряд на месте с вращением скакалки вперёд (например: два и более одинарных или двойных прыжка с вращением вперёд);
   b. не менее двух прыжков подряд на месте с вращением скакалки назад (например: два и более одинарных или двойных прыжка с вращением назад);
-  c. не менее двух прыжков подряд с перемещением не менее 6 м (например: два и более прыжка с вращением при перемещении);
+  c. не менее трёх прыжков подряд с перемещением не менее 6 м (например: три и более прыжка с вращением при перемещении);
   d. тройной прыжок (например: один и более тройной прыжок с вращением вперёд).
   ※ Если пункт d выполняется вместе с другим из пунктов a–c, каждый засчитывается как свой элемент. (Например: перемещение не менее чем на 6 м с одновременным исполнением тройных прыжков с вращением вперёд.)
 
@@ -2220,7 +2224,7 @@ Les sauts a à d ci-dessous doivent figurer dans l'exercice. Les sauts à la cor
 नीचे दी गई ①–④ की छलांगें डालना आवश्यक है। परंतु, टम्बलिंग में की गई रस्सी की छलांगें इसमें शामिल नहीं हैं।
   a. एक ही स्थान पर 2 या अधिक लगातार आगे घुमाते हुए छलांग (उदाहरण: आगे घुमाते हुए एकहरी छलांग या दोहरी छलांग 2 या अधिक बार करना।)
   b. एक ही स्थान पर 2 या अधिक लगातार पीछे घुमाते हुए छलांग (उदाहरण: पीछे घुमाते हुए एकहरी छलांग या दोहरी छलांग 2 या अधिक बार करना।)
-  c. 6m या अधिक स्थान परिवर्तन के साथ 2 या अधिक लगातार छलांगें (उदाहरण: स्थान परिवर्तन करते हुए घूमने वाली छलांग 2 या अधिक बार करना।)
+  c. 6m या अधिक स्थान परिवर्तन के साथ 3 या अधिक लगातार छलांगें (उदाहरण: स्थान परिवर्तन करते हुए घूमने वाली छलांग 3 या अधिक बार करना।)
   d. तिहरी छलांग (उदाहरण: आगे घुमाते हुए तिहरी छलांग 1 या अधिक बार करना।)
   ※ a–d में से d को करने की स्थिति में उन्हें अलग-अलग तत्वों के रूप में गिना जाता है। (उदाहरण: आगे घुमाते हुए तिहरी छलांग को संयुक्त करते हुए 6m या अधिक स्थान परिवर्तन करने की स्थिति में।)
 

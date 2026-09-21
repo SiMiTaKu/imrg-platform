@@ -688,8 +688,13 @@ export const COMPETITION_ORGANIZATION_ARTICLES: RuleArticle[] = [
           ru: 'Соревновательный зал и ковёр',
           hi: 'प्रतियोगिता स्थल और फ़्लोर',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 1.3.14 競技場（3ページ）。
+        // 寸法はすべて資料と一致していた（50m×30m／高さ12m／演技面 内側13m×13m／
+        // 安全地帯2m・演技台のときは3m／2面のときの距離4m／審判の位置4m）。
+        // 「演技代」は「演技台」の誤字だったので直した。
         content: {
-          ja: '競技場は、約50m×30mの面積を競技エリアとし、最低12m以上の高さがなければならない。競技エリアには競技関係者以外の立ち入りを禁止する。演技面は内側13m×13mとする。その周りには２m以上の安全地帯を設ける。なお、演技代を設ける場合の安全地帯は３m以上とする。演技面を２面（男女）設置する場合は、その間の距離を４m以上とする。審判の位置は演技面より４m以上離れた場所に設置する。',
+          ja: '競技場は、約50m×30mの面積を競技エリアとし、最低12m以上の高さがなければならない。競技エリアには競技関係者以外の立ち入りを禁止する。演技面は内側13m×13mとする。その周りには２m以上の安全地帯を設ける。なお、演技台を設ける場合の安全地帯は３m以上とする。演技面を２面（男女）設置する場合は、その間の距離を４m以上とする。審判の位置は演技面より４m以上離れた場所に設置する。',
           en: "The competition hall must have a competition area of about 50 m × 30 m and a height of at least 12 m. Only people involved in the competition may enter the competition area. The floor area is 13 m × 13 m (inside measurement), surrounded by a safety zone of at least 2 m. If a podium is used, the safety zone must be at least 3 m. If two floor areas (men's and women's) are set up, they must be at least 4 m apart. The judges are seated at least 4 m from the floor area.",
           zh: '比赛场以约50m×30m的面积作为比赛区域，高度必须在12m以上。比赛区域禁止比赛相关人员以外的人进入。场地为内侧13m×13m。其周围设置２m以上的安全地带。另外，设置比赛台时，安全地带为３m以上。设置２块场地（男女）时，其间距离为４m以上。裁判的位置设在距场地４m以上的地方。',
           ko: '경기장은 약 50m×30m의 면적을 경기 구역으로 하고, 최저 12m 이상의 높이가 있어야 한다. 경기 구역에는 경기 관계자 이외의 출입을 금지한다. 연기 면은 안쪽 13m×13m로 한다. 그 주위에는 2m 이상의 안전 지대를 둔다. 또한 연기대를 설치하는 경우의 안전 지대는 3m 이상으로 한다. 연기 면을 2면(남녀) 설치하는 경우에는 그 사이의 거리를 4m 이상으로 한다. 심판의 위치는 연기 면에서 4m 이상 떨어진 곳에 설치한다.',
