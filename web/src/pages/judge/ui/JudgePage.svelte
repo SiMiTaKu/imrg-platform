@@ -10,12 +10,15 @@
     judgementApparatus,
   } from '@features/judge'
   import { pageData } from '@shared/lib/device'
-  import { JUDGE_STEPS, getStepState } from '../config/steps'
-  import JudgeIntro from './JudgeIntro.svelte'
-  import JudgeResult from './JudgeResult.svelte'
-  import JudgeSteps from './JudgeSteps.svelte'
-  import NextActions from './NextActions.svelte'
-  import StepPanel from './StepPanel.svelte'
+  import {
+    JUDGE_STEPS,
+    JudgeIntro,
+    JudgeResult,
+    JudgeSteps,
+    NextActions,
+    StepPanel,
+    getStepState,
+  } from '@widgets/judge'
 
   /** 採点表の先頭の id。案内から飛ばすために使う */
   const FORM_ID = 'judge-form'
