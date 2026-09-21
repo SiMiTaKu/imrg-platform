@@ -5,14 +5,11 @@
 
   const {
     images,
-    workNumber,
     alt,
     onClose,
   }: {
     /** 見せる作品の写真 */
     images: ImageSourceMeta[][]
-    /** 何番目の作品か（1 始まり） */
-    workNumber: number
     /** 写真の代わりに読む文 */
     alt: string
     /** 閉じるときに呼ぶ */
@@ -70,13 +67,6 @@
 <dialog bind:this={dialog} class="viewer" onclose={onClose} onkeydown={onKeydown}>
   <div class="inner">
     <header>
-      <p class="count">
-        {m.decorating_apparatus_viewer_count({
-          work: workNumber,
-          index: index + 1,
-          total: images.length,
-        })}
-      </p>
       <button type="button" class="close" onclick={() => dialog?.close()}>
         {m.decorating_apparatus_viewer_close()}
       </button>
@@ -171,16 +161,9 @@
 
   header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     gap: $space-size-16;
-  }
-
-  .count {
-    margin: 0;
-    font-size: $font-size-14;
-    color: map.get($gray, light-text);
-    font-variant-numeric: tabular-nums;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   .close {

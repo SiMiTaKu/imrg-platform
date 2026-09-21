@@ -36,7 +36,6 @@
   {#if openedIndex !== null}
     <WorkViewer
       images={WORK_LIST[openedIndex].images}
-      workNumber={openedIndex + 1}
       alt={m.decorating_apparatus_work_image_alt({ work: openedIndex + 1, image: 1 })}
       onClose={() => (openedIndex = null)}
     />
