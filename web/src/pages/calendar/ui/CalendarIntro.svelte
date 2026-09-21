@@ -36,15 +36,8 @@
           {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
         </p>
         <h1>{m.calendar_title()}</h1>
+        <!-- 使い方の説明は置かない。押せば分かることを読ませるより、すぐ探せる方がよい -->
         <p class="say">{m.calendar_lead()}</p>
-        <p class="how">
-          <strong>{m.calendar_view_calendar()}</strong>{m.calendar_intro_how_calendar()}<strong
-            >{m.calendar_view_list()}</strong
-          >{m.calendar_intro_how_list()}
-          {m.calendar_intro_how_detail_before()}<strong class="accent"
-            >{m.calendar_intro_how_detail_strong()}</strong
-          >{m.calendar_intro_how_detail_after()}
-        </p>
 
         <dl class="numbers">
           <div class="number">
@@ -59,8 +52,6 @@
 
         <!-- 「情報の新しさ」という言い換えは置かない。最終更新の日付だけで伝わる -->
         <p class="updated">{updatedAtText}</p>
-
-        <p class="caution">{m.calendar_intro_sources_note()}</p>
       </div>
     </div>
 
@@ -144,21 +135,11 @@
     font-size: $font-size-22;
   }
 
-  .say,
-  .how {
+  .say {
     margin: 0 0 $space-size-12;
     font-size: $font-size-16;
     color: map.get($gray, text);
     line-height: 1.9;
-  }
-
-  .how strong {
-    color: map.get($sky-blue, text);
-  }
-
-  // 行動の入口も青でそろえる
-  .how .accent {
-    color: map.get($sky-blue, text);
   }
 
   .numbers {
@@ -212,16 +193,9 @@
   }
 
   .updated {
-    margin: 0 0 $space-size-12;
+    margin: 0;
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, 600);
-  }
-
-  .caution {
-    margin: 0;
-    font-size: $font-size-12;
-    color: map.get($gray, light-text);
-    line-height: 1.8;
   }
 </style>
