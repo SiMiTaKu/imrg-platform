@@ -13,7 +13,7 @@ import { ROUTES } from '@shared/routes'
  */
 const PRICES = {
   /** 指導：オンラインの添削から／会場へ出向く1日 */
-  coaching: { online: 2000, daily: 30000 },
+  coaching: { online: 2000, daily: 20000 },
   /** 曲編集：個人の1曲／団体の1曲 */
   backgroundMusic: { individual: 5000, group: 10000 },
   /** 手具装飾：作業1時間 */
@@ -85,7 +85,7 @@ export const SERVICES = [
         }),
       /**
        * 会場へ出向くときの1日の値段
-       * @returns 「1日 30,000円〜」
+       * @returns 「1日 20,000円〜」
        */
       () =>
         m.top_service_coaching_price_daily({
