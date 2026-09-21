@@ -152,6 +152,24 @@ export const MARKET_POINTS = [
   },
 ] as const
 
+/** 実績に紐づく演技の動画 */
+type ResultVideo = {
+  /** リンクに出す名前。手具の名前か「演技を見る」 */
+  readonly label: Text
+  /** YouTube の URL */
+  readonly href: string
+  /**
+   * 画面に入ったら自動で再生するか。
+   *
+   * @remarks
+   * 見てほしい演技だけに付ける。付けなければリンクのまま。
+   * 勝手に始めるので音は消える
+   */
+  readonly autoPlay?: true
+  /** 自動再生のカードに出す札。無いときは年を出す */
+  readonly cardLabel?: Text
+}
+
 /** 実績の1件（年は訳さずそのまま、チーム名と補足は言語ごとに変わる） */
 type Result = {
   /** 演技を作った年 */
@@ -161,7 +179,7 @@ type Result = {
   /** 補足。無いときは `null` */
   detail: Text | null
   /** 演技の動画。無いときは空 */
-  videos: readonly { readonly label: Text; readonly href: string }[]
+  videos: readonly ResultVideo[]
 }
 
 /** 過去に作った演技・みてきたチーム */
@@ -197,6 +215,7 @@ export const RESULTS: readonly Result[] = [
       {
         label: m.coaching_result_video_label,
         href: 'https://youtu.be/VMqFFgMmjWI',
+        autoPlay: true,
       },
     ],
   },
@@ -208,6 +227,7 @@ export const RESULTS: readonly Result[] = [
       {
         label: m.coaching_result_video_label,
         href: 'https://youtu.be/RpHN_kcQTvs',
+        autoPlay: true,
       },
     ],
   },
@@ -238,6 +258,8 @@ export const RESULTS: readonly Result[] = [
       {
         label: m.apparatus_rope,
         href: 'https://youtu.be/WcCA_SDdi_o',
+        autoPlay: true,
+        cardLabel: m.apparatus_rope,
       },
       {
         label: m.apparatus_club,

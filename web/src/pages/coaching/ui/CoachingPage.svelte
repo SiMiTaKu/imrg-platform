@@ -1,6 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
+  import { AutoPlayWatcher, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -55,6 +56,34 @@
    */
   const onWindowKeydown = (event: KeyboardEvent) => {
     if (event.key === 'Escape') closeMarket()
+  }
+
+  // 自動で再生する動画に、実績をまたいだ通し番号を振る。AutoPlayWatcher はこの番号で見張る
+  const autoPlayHrefs = RESULTS.flatMap((result) =>
+    result.videos.filter((video) => video.autoPlay).map((video) => video.href),
+  )
+
+  /** いま鳴っているカードの番号。-1 は何も鳴っていない */
+  let playingIndex = $state(-1)
+  /** 一度でも再生したカードの番号 */
+  let playedIndexes = $state<ReadonlySet<number>>(new Set())
+
+  const watcher = new AutoPlayWatcher((playing, played) => {
+    playingIndex = playing
+    playedIndexes = new Set(played)
+  })
+
+  $effect(() => () => watcher.destroy())
+
+  /**
+   * カードを見張りに加える。画面の真ん中に来たら1つだけ鳴る
+   * @param element - カードの要素
+   * @param index - カードの通し番号
+   * @returns 片づけの手続き
+   */
+  const watch = (element: HTMLElement, index: number) => {
+    const unwatch = watcher.watch(element, index)
+    return { destroy: unwatch }
   }
 </script>
 
@@ -263,6 +292,8 @@
 
       <ol class="timeline">
         {#each RESULTS as result, index (index)}
+          {@const autoVideos = result.videos.filter((video) => video.autoPlay)}
+          {@const linkVideos = result.videos.filter((video) => !video.autoPlay)}
           <li>
             <div class="result-head">
               <span class="year">{result.year}</span>
@@ -271,9 +302,24 @@
                 <span class="detail">{result.detail()}</span>
               {/if}
             </div>
-            {#if result.videos.length > 0}
+            <!-- 見てほしい演技だけ、画面に入ったら自動で始まるカードにする -->
+            {#each autoVideos as video (video.href)}
+              {@const cardIndex = autoPlayHrefs.indexOf(video.href)}
+              <div class="auto-video" use:watch={cardIndex}>
+                <VideoCard
+                  videoId={youtubeVideoId(video.href)}
+                  title={result.name()}
+                  label={video.cardLabel ? video.cardLabel() : result.year}
+                  playing={playingIndex === cardIndex}
+                  played={playedIndexes.has(cardIndex)}
+                  onRequestPlay={() => watcher.play(cardIndex)}
+                />
+              </div>
+            {/each}
+
+            {#if linkVideos.length > 0}
               <ul class="videos">
-                {#each result.videos as video (video.href)}
+                {#each linkVideos as video (video.href)}
                   <li>
                     <a href={video.href} target="_blank" rel="noopener noreferrer">
                       <svg viewBox="0 0 68 48" width="18" height="13" aria-hidden="true">
@@ -858,6 +904,11 @@
     gap: $space-size-12;
     align-items: baseline;
     flex-wrap: wrap;
+  }
+
+  // 自動で再生するカード。札の幅いっぱいに広げる
+  .auto-video {
+    width: 100%;
   }
 
   // 動画があるものは、そのまま見に行けるようにする
