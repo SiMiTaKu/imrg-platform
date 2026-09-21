@@ -8,6 +8,7 @@
     label,
     playing,
     played,
+    startedByUser = false,
     onRequestPlay,
   }: {
     /** 動画の ID */
@@ -21,6 +22,14 @@
     /** 一度でも再生したか。したものは、画面に入っても勝手に始めない */
     played: boolean
     /**
+     * 人が押して始めたか。
+     *
+     * @remarks
+     * 音を出してよいのは押して始めたときだけ。勝手に始めたのに音を出すと、
+     * ブラウザーが再生そのものを止めてしまう
+     */
+    startedByUser?: boolean
+    /**
      * 再生を頼む
      * @param byUser - 押して頼んだか。押したときだけ音を出す
      */
@@ -33,7 +42,7 @@
     {#if playing}
       <!-- 勝手に始まるときは音を消す。消さないと、ブラウザーが再生を止める -->
       <iframe
-        src={youtubeEmbedUrl(videoId, !played)}
+        src={youtubeEmbedUrl(videoId, !startedByUser)}
         title={m.video_card_title({ name: title })}
         loading="lazy"
         allow="autoplay; encrypted-media; picture-in-picture"

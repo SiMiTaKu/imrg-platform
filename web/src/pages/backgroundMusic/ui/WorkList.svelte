@@ -16,10 +16,13 @@
   let playingIndex = $state(-1)
   /** 一度でも再生したカードの番号 */
   let playedIndexes = $state<ReadonlySet<number>>(new Set())
+  /** 人が押して始めたカードの番号。音を出してよいのはこれだけ */
+  let userStartedIndexes = $state<ReadonlySet<number>>(new Set())
 
-  const watcher = new AutoPlayWatcher((playing, played) => {
+  const watcher = new AutoPlayWatcher((playing, played, userStarted) => {
     playingIndex = playing
     playedIndexes = new Set(played)
+    userStartedIndexes = new Set(userStarted)
   })
 
   $effect(() => () => watcher.destroy())
@@ -53,6 +56,7 @@
             label={apparatusOfSlug(work.apparatus).label()}
             playing={playingIndex === index}
             played={playedIndexes.has(index)}
+            startedByUser={userStartedIndexes.has(index)}
             onRequestPlay={() => watcher.play(index)}
           />
         </li>

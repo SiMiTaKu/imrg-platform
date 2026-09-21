@@ -6,21 +6,35 @@
  * - 同時に鳴るのは1つだけ。別のカードが始まったら、前のカードは止める
  * - 一度再生したカードは、画面に入っても勝手に始めない（押したときだけ再生する）
  * - 画面の真ん中にいちばん近いカードを選ぶ。上下に複数入っていても迷わない
+ * - **勝手に始めたときは音を消す。** 消さないとブラウザーが再生そのものを止める。
+ *   音を出してよいのは、人が押して始めたときだけ
  */
 export class AutoPlayWatcher {
   /** いま再生しているカードの番号。-1 は何も再生していない */
   #playingIndex = -1
   /** 一度でも再生したカードの番号 */
   readonly #playedIndexes = new Set<number>()
+  /** 人が押して始めたカードの番号。音を出してよいのはこれだけ */
+  readonly #userStartedIndexes = new Set<number>()
   /** 画面に入っているカードの、真ん中からの距離 */
   readonly #visible = new Map<number, number>()
   readonly #observer: IntersectionObserver | undefined
-  readonly #notify: (playingIndex: number, playedIndexes: ReadonlySet<number>) => void
+  readonly #notify: (
+    playingIndex: number,
+    playedIndexes: ReadonlySet<number>,
+    userStartedIndexes: ReadonlySet<number>,
+  ) => void
 
   /**
    * @param notify - 再生の状態が変わったときに呼ぶ
    */
-  constructor(notify: (playingIndex: number, playedIndexes: ReadonlySet<number>) => void) {
+  constructor(
+    notify: (
+      playingIndex: number,
+      playedIndexes: ReadonlySet<number>,
+      userStartedIndexes: ReadonlySet<number>,
+    ) => void,
+  ) {
     this.#notify = notify
 
     // ブラウザーの外（書き出しのとき）では動かさない
@@ -67,7 +81,8 @@ export class AutoPlayWatcher {
   play(index: number): void {
     this.#playingIndex = index
     this.#playedIndexes.add(index)
-    this.#notify(this.#playingIndex, this.#playedIndexes)
+    this.#userStartedIndexes.add(index)
+    this.#notify(this.#playingIndex, this.#playedIndexes, this.#userStartedIndexes)
   }
 
   /** 見張りをやめる */
@@ -89,18 +104,18 @@ export class AutoPlayWatcher {
     }
 
     if (next === undefined) {
-      this.#notify(this.#playingIndex, this.#playedIndexes)
+      this.#notify(this.#playingIndex, this.#playedIndexes, this.#userStartedIndexes)
       return
     }
 
     // すでに何か再生しているなら、そのままにする（勝手に切り替えない）
     if (this.#playingIndex !== -1) {
-      this.#notify(this.#playingIndex, this.#playedIndexes)
+      this.#notify(this.#playingIndex, this.#playedIndexes, this.#userStartedIndexes)
       return
     }
 
     this.#playingIndex = next
     this.#playedIndexes.add(next)
-    this.#notify(this.#playingIndex, this.#playedIndexes)
+    this.#notify(this.#playingIndex, this.#playedIndexes, this.#userStartedIndexes)
   }
 }

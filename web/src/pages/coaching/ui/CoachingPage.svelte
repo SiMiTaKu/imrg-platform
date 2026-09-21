@@ -67,10 +67,13 @@
   let playingIndex = $state(-1)
   /** 一度でも再生したカードの番号 */
   let playedIndexes = $state<ReadonlySet<number>>(new Set())
+  /** 人が押して始めたカードの番号。音を出してよいのはこれだけ */
+  let userStartedIndexes = $state<ReadonlySet<number>>(new Set())
 
-  const watcher = new AutoPlayWatcher((playing, played) => {
+  const watcher = new AutoPlayWatcher((playing, played, userStarted) => {
     playingIndex = playing
     playedIndexes = new Set(played)
+    userStartedIndexes = new Set(userStarted)
   })
 
   $effect(() => () => watcher.destroy())
@@ -310,6 +313,7 @@
                   label={video.cardLabel ? video.cardLabel() : result.year}
                   playing={playingIndex === cardIndex}
                   played={playedIndexes.has(cardIndex)}
+                  startedByUser={userStartedIndexes.has(cardIndex)}
                   onRequestPlay={() => watcher.play(cardIndex)}
                 />
               </div>

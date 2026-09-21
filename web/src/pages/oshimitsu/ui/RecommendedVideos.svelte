@@ -21,12 +21,13 @@
   let playingIndex = $state(-1)
   /** 一度でも再生したカードの番号 */
   let playedIndexes = $state<ReadonlySet<number>>(new Set())
-  /** 押して再生を頼んだカードの番号。押したときだけ音を出す */
-  let userStartedIndex = $state(-1)
+  /** 人が押して始めたカードの番号。音を出してよいのはこれだけ */
+  let userStartedIndexes = $state<ReadonlySet<number>>(new Set())
 
-  const watcher = new AutoPlayWatcher((playing, played) => {
+  const watcher = new AutoPlayWatcher((playing, played, userStarted) => {
     playingIndex = playing
     playedIndexes = new Set(played)
+    userStartedIndexes = new Set(userStarted)
   })
 
   $effect(() => () => watcher.destroy())
@@ -45,15 +46,6 @@
     const unwatch = watcher.watch(element, index)
     return { destroy: unwatch }
   }
-
-  /**
-   * 押して再生を頼まれたとき。押したときだけ音を出す
-   * @param index - カードの番号
-   */
-  const requestPlay = (index: number) => {
-    userStartedIndex = index
-    watcher.play(index)
-  }
 </script>
 
 <section class="recommended" class:mobile={isMobile} id="recommended">
@@ -70,8 +62,8 @@
             {video}
             playing={playingIndex === index}
             played={playedIndexes.has(index)}
-            muted={userStartedIndex !== index}
-            onRequestPlay={() => requestPlay(index)}
+            muted={!userStartedIndexes.has(index)}
+            onRequestPlay={() => watcher.play(index)}
           />
         </li>
       {/each}
