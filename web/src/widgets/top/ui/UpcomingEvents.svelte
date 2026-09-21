@@ -17,7 +17,7 @@
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { ActionButton } from '@shared/ui'
+  import { Button } from '@imrg-platform/design-system'
   import { UPCOMING_EVENT_COUNT } from '../config/sections'
 
   const locale = getLocale() as SiteLocale
@@ -76,9 +76,9 @@
       </ul>
 
       <div class="search">
-        <ActionButton href={localizeHref(ROUTES.calendar.index)} variant="fill" size="large">
+        <Button href={localizeHref(ROUTES.calendar.index)} target="_self" size="large">
           {m.top_upcoming_search()}
-        </ActionButton>
+        </Button>
       </div>
     </div>
   </section>

@@ -1,12 +1,12 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { ActionButton } from '@shared/ui'
   import { policyLabels } from '../config/policyLabels'
 
   /** 文章だけのページの枠の引数 */
@@ -144,7 +144,9 @@
   </aside>
 
   <p class="back">
-    <ActionButton href={localizeHref(ROUTES.top)}>{m.layout_back_to_top()}</ActionButton>
+    <Button href={localizeHref(ROUTES.top)} target="_self" variant="outline">
+      {m.layout_back_to_top()}
+    </Button>
   </p>
 </article>
 

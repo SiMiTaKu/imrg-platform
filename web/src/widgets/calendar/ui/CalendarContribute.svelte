@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { LINKS } from '@shared/config/links'
   import { m } from '$lib/paraglide/messages'
   import { UPDATED_AT } from '@entities/calendarEvent'
@@ -7,7 +8,6 @@
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { ActionButton } from '@shared/ui'
 
   const locale = getLocale() as SiteLocale
   const isMobile = $derived($pageData.isMobile)
@@ -45,7 +45,9 @@
 </section>
 
 <p class="back">
-  <ActionButton href={localizeHref(ROUTES.top)}>{m.calendar_back_to_top()}</ActionButton>
+  <Button href={localizeHref(ROUTES.top)} target="_self" variant="outline">
+    {m.calendar_back_to_top()}
+  </Button>
 </p>
 
 <style lang="scss">
