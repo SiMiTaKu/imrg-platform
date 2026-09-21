@@ -17,5 +17,11 @@
   "rules_expand_chapter_label": "Expand all of Chapter {number}",
   "rules_collapse_chapter_label": "Collapse all of Chapter {number}",
   "rules_table_source": "Source: {source}",
-  "rules_scroll_hint": "* Scroll sideways to see the rest."
+  "rules_scroll_hint": "* Scroll sideways to see the rest.",
+  "rules_caution": "Rearranged from the official rules for easier reading. Some parts are still being translated. For official decisions, refer to the rulebook of the governing body.",
+  "rules_search_label": "Search by word",
+  "rules_search_placeholder": "e.g. deduction, stick, formation",
+  "rules_search_result": "Found in {found} of {total} chapters",
+  "rules_search_empty": "“{keyword}” was not found. Try another word.",
+  "rules_toc": "Contents"
 }

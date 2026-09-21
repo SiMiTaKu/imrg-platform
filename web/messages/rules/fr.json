@@ -17,5 +17,11 @@
   "rules_expand_chapter_label": "Tout ouvrir dans le chapitre {number}",
   "rules_collapse_chapter_label": "Tout replier dans le chapitre {number}",
   "rules_table_source": "Source : {source}",
-  "rules_scroll_hint": "* Faites défiler horizontalement."
+  "rules_scroll_hint": "* Faites défiler horizontalement.",
+  "rules_caution": "Réorganisé à partir du règlement officiel pour en faciliter la lecture. Certaines parties sont encore en cours de traduction. Pour les décisions officielles, référez-vous au règlement de la fédération concernée.",
+  "rules_search_label": "Rechercher par mot",
+  "rules_search_placeholder": "ex. pénalité, bâton, formation",
+  "rules_search_result": "Trouvé dans {found} chapitres sur {total}",
+  "rules_search_empty": "« {keyword} » est introuvable. Essayez un autre mot.",
+  "rules_toc": "Sommaire"
 }

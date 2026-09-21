@@ -17,5 +17,11 @@
   "rules_expand_chapter_label": "Abrir todo el capítulo {number}",
   "rules_collapse_chapter_label": "Cerrar todo el capítulo {number}",
   "rules_table_source": "Fuente: {source}",
-  "rules_scroll_hint": "* Puede desplazarse horizontalmente."
+  "rules_scroll_hint": "* Puede desplazarse horizontalmente.",
+  "rules_caution": "Reorganizado a partir del reglamento oficial para facilitar la lectura. Algunas partes siguen en traducción. Para decisiones oficiales, consulta el reglamento de la federación correspondiente.",
+  "rules_search_label": "Buscar por palabra",
+  "rules_search_placeholder": "p. ej. penalización, palo, formación",
+  "rules_search_result": "Encontrado en {found} de {total} capítulos",
+  "rules_search_empty": "No se encontró «{keyword}». Prueba con otra palabra.",
+  "rules_toc": "Índice"
 }

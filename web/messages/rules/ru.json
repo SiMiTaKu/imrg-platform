@@ -17,5 +17,11 @@
   "rules_expand_chapter_label": "Раскрыть главу {number} целиком",
   "rules_collapse_chapter_label": "Свернуть главу {number} целиком",
   "rules_table_source": "Источник: {source}",
-  "rules_scroll_hint": "* Прокручивается по горизонтали."
+  "rules_scroll_hint": "* Прокручивается по горизонтали.",
+  "rules_caution": "Составлено на основе официальных правил и переупорядочено для удобства чтения. Часть текста ещё переводится. Официальные решения принимаются по правилам соответствующей федерации.",
+  "rules_search_label": "Поиск по слову",
+  "rules_search_placeholder": "напр. сбавка, палочка, построение",
+  "rules_search_result": "Найдено в {found} из {total} глав",
+  "rules_search_empty": "«{keyword}» не найдено. Попробуйте другое слово.",
+  "rules_toc": "Содержание"
 }

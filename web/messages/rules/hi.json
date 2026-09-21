@@ -17,5 +17,11 @@
   "rules_expand_chapter_label": "अध्याय {number} पूरा खोलें",
   "rules_collapse_chapter_label": "अध्याय {number} पूरा बंद करें",
   "rules_table_source": "स्रोत: {source}",
-  "rules_scroll_hint": "* क्षैतिज रूप से स्क्रॉल करें।"
+  "rules_scroll_hint": "* क्षैतिज रूप से स्क्रॉल करें।",
+  "rules_caution": "आधिकारिक नियमों के आधार पर पढ़ने में आसान क्रम में रखा गया है। कुछ हिस्सों का अनुवाद अभी जारी है। आधिकारिक निर्णय के लिए संबंधित संघ की नियमावली देखें।",
+  "rules_search_label": "शब्द से खोजें",
+  "rules_search_placeholder": "जैसे कटौती, स्टिक, संरचना",
+  "rules_search_result": "{total} में से {found} अध्यायों में मिला",
+  "rules_search_empty": "«{keyword}» नहीं मिला। कोई और शब्द आज़माएँ।",
+  "rules_toc": "विषय-सूची"
 }

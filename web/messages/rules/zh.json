@@ -17,5 +17,11 @@
   "rules_expand_chapter_label": "展开第{number}章的全部内容",
   "rules_collapse_chapter_label": "折叠第{number}章的全部内容",
   "rules_table_source": "出处：{source}",
-  "rules_scroll_hint": "※可左右滑动查看"
+  "rules_scroll_hint": "※可左右滑动查看",
+  "rules_caution": "根据正式规则重新整理，以便阅读。部分内容仍在翻译中。正式判定以各竞技团体的规则集为准。",
+  "rules_search_label": "按关键词查找",
+  "rules_search_placeholder": "例：扣分、短棒、队形",
+  "rules_search_result": "在 {total} 章中找到 {found} 章",
+  "rules_search_empty": "未找到“{keyword}”。请换个词试试。",
+  "rules_toc": "目录"
 }

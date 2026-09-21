@@ -141,26 +141,26 @@
         <strong>{m.rules_intro_collapsible()}</strong>
         {m.rules_intro_guide()}
       </p>
-      <p class="caution">
-        公式の規則をもとに、読みやすく並べ直したものです。訳の途中の部分があります。
-        正式な判断は各競技団体の規則集によります。
-      </p>
+      <p class="caution">{m.rules_caution()}</p>
     </div>
   </header>
 
   <div class="search">
-    <label for="rule-keyword">言葉で探す</label>
+    <label for="rule-keyword">{m.rules_search_label()}</label>
     <input
       id="rule-keyword"
       type="search"
       value={keyword}
       oninput={handleKeywordInput}
-      placeholder="例：減点、スティック、隊形"
+      placeholder={m.rules_search_placeholder()}
       autocomplete="off"
     />
     {#if keyword.trim() !== ''}
       <span class="result"
-        >{visibleChapters.length} / {ruleBook.chapter.length} 章に見つかりました</span
+        >{m.rules_search_result({
+          found: visibleChapters.length,
+          total: ruleBook.chapter.length,
+        })}</span
       >
     {/if}
   </div>
@@ -175,8 +175,8 @@
   </div>
 
   {#if keyword.trim() === ''}
-    <nav class="toc" aria-label="目次">
-      <p class="toc-title">目次</p>
+    <nav class="toc" aria-label={m.rules_toc()}>
+      <p class="toc-title">{m.rules_toc()}</p>
       <ol>
         {#each ruleBook.chapter as chapter, index (index)}
           <li>
@@ -200,7 +200,7 @@
   {/if}
 
   {#if visibleChapters.length === 0}
-    <p class="empty">「{keyword}」は見つかりませんでした。別の言葉で探してみてください。</p>
+    <p class="empty">{m.rules_search_empty({ keyword })}</p>
   {/if}
 
   {#each visibleChapters as { chapter, index } (index)}

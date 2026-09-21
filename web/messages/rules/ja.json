@@ -17,5 +17,11 @@
   "rules_expand_chapter_label": "第{number}章をすべて開く",
   "rules_collapse_chapter_label": "第{number}章をすべて閉じる",
   "rules_table_source": "出典: {source}",
-  "rules_scroll_hint": "※横にスクロールできます"
+  "rules_scroll_hint": "※横にスクロールできます",
+  "rules_caution": "公式の規則をもとに、読みやすく並べ直したものです。訳の途中の部分があります。正式な判断は各競技団体の規則集によります。",
+  "rules_search_label": "言葉で探す",
+  "rules_search_placeholder": "例：減点、スティック、隊形",
+  "rules_search_result": "{found} / {total} 章に見つかりました",
+  "rules_search_empty": "「{keyword}」は見つかりませんでした。別の言葉で探してみてください。",
+  "rules_toc": "目次"
 }
