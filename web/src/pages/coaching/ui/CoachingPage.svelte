@@ -58,9 +58,10 @@
     if (event.key === 'Escape') closeMarket()
   }
 
-  // 自動で再生する動画に、実績をまたいだ通し番号を振る。AutoPlayWatcher はこの番号で見張る
-  const autoPlayHrefs = RESULTS.flatMap((result) =>
-    result.videos.filter((video) => video.autoPlay).map((video) => video.href),
+  // 自動で再生する動画を実績の並びから取り出して、先にまとめて見せる。
+  // 並んだ順の番号がそのままカードの番号になり、AutoPlayWatcher はこの番号で見張る
+  const autoPlayVideos = RESULTS.flatMap((result) =>
+    result.videos.filter((video) => video.autoPlay).map((video) => ({ result, video })),
   )
 
   /** いま鳴っているカードの番号。-1 は何も鳴っていない */
@@ -291,9 +292,26 @@
         <p>{m.coaching_results_lead()}</p>
       </header>
 
+      <!-- 見てほしい演技を先にまとめる。ここだけ、画面に入ったら自動で始まる -->
+      <ul class="picks">
+        {#each autoPlayVideos as pick, cardIndex (pick.video.href)}
+          <li use:watch={cardIndex}>
+            <VideoCard
+              videoId={youtubeVideoId(pick.video.href)}
+              title={pick.result.name()}
+              label={pick.video.cardLabel ? pick.video.cardLabel() : pick.result.year}
+              playing={playingIndex === cardIndex}
+              played={playedIndexes.has(cardIndex)}
+              startedByUser={userStartedIndexes.has(cardIndex)}
+              onRequestPlay={() => watcher.play(cardIndex)}
+            />
+          </li>
+        {/each}
+      </ul>
+
+      <!-- 残りは年の並びのまま、動画があるものはリンクで見に行ける -->
       <ol class="timeline">
         {#each RESULTS as result, index (index)}
-          {@const autoVideos = result.videos.filter((video) => video.autoPlay)}
           {@const linkVideos = result.videos.filter((video) => !video.autoPlay)}
           <li>
             <div class="result-head">
@@ -303,21 +321,6 @@
                 <span class="detail">{result.detail()}</span>
               {/if}
             </div>
-            <!-- 見てほしい演技だけ、画面に入ったら自動で始まるカードにする -->
-            {#each autoVideos as video (video.href)}
-              {@const cardIndex = autoPlayHrefs.indexOf(video.href)}
-              <div class="auto-video" use:watch={cardIndex}>
-                <VideoCard
-                  videoId={youtubeVideoId(video.href)}
-                  title={result.name()}
-                  label={video.cardLabel ? video.cardLabel() : result.year}
-                  playing={playingIndex === cardIndex}
-                  played={playedIndexes.has(cardIndex)}
-                  startedByUser={userStartedIndexes.has(cardIndex)}
-                  onRequestPlay={() => watcher.play(cardIndex)}
-                />
-              </div>
-            {/each}
 
             {#if linkVideos.length > 0}
               <ul class="videos">
@@ -880,6 +883,23 @@
     background: $white;
   }
 
+  // 見てほしい演技は1列に積む。横に並べると動画が小さくなり、演技が見えない
+  .picks {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-24;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto $space-size-32;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mobile .picks {
+    gap: $space-size-16;
+    margin-bottom: $space-size-24;
+  }
+
   .timeline {
     display: grid;
     gap: $space-size-8;
@@ -907,11 +927,6 @@
     gap: $space-size-12;
     align-items: baseline;
     flex-wrap: wrap;
-  }
-
-  // 自動で再生するカード。札の幅いっぱいに広げる
-  .auto-video {
-    width: 100%;
   }
 
   // 動画があるものは、そのまま見に行けるようにする
