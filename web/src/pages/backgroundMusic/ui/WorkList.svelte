@@ -5,7 +5,7 @@
   import { getLocale, localizedText } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { createAutoPlayGroup, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
-  import { SectionHeading } from '@widgets/orderService'
+  import { SectionHeading } from '@features/sectionHeading'
   import { WORK_LIST } from '../config/workList'
   import { EDITED_MUSIC_TOTAL, WORKS_HEADING, WORK_VIDEO_ASPECT_RATIO } from '../config/content'
 

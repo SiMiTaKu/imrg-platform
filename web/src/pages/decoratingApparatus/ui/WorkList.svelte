@@ -1,7 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
-  import { SectionHeading } from '@widgets/orderService'
+  import { SectionHeading } from '@features/sectionHeading'
   import { WORKS_HEADING } from '../config/content'
   import { WORK_LIST } from '../config/workList'
   import WorkTile from './WorkTile.svelte'

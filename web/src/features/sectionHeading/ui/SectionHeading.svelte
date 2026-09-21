@@ -6,7 +6,7 @@
 <script lang="ts">
   import { pageData } from '@shared/lib/device'
 
-  /** 依頼を受け付けるページ（曲編集・手具装飾）で共通の、節の見出しの引数 */
+  /** 節の見出し（ラベル＋見出し＋補足の組）の引数 */
   interface Props {
     /** 見出しの上に出す小さなラベル。省くと出さない */
     eyebrow?: string

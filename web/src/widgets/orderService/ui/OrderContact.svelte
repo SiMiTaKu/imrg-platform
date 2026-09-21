@@ -2,7 +2,7 @@
   import { CharacterFigure, type CharacterProfile } from '@entities/character'
   import { CrossLinks, type CrossLink } from '@features/crossLinks'
   import { pageData } from '@shared/lib/device'
-  import SectionHeading from './SectionHeading.svelte'
+  import { SectionHeading } from '@features/sectionHeading'
 
   /** 依頼を受け付けるページ（曲編集・手具装飾）の「相談する」の引数 */
   interface Props {

@@ -10,7 +10,7 @@
 
 <script lang="ts">
   import { pageData } from '@shared/lib/device'
-  import SectionHeading from './SectionHeading.svelte'
+  import { SectionHeading } from '@features/sectionHeading'
 
   /** 依頼を受け付けるページ（曲編集・手具装飾）の「依頼の流れ」の引数 */
   interface Props {
