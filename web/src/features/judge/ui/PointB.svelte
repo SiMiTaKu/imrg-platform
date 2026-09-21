@@ -3,10 +3,13 @@
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
-  import { normalizeMiss } from '../lib/calculator'
+  import { getLocale } from '@shared/lib/i18n'
+  import { formatNumber } from '@shared/lib/number'
+  import { POINT_B_GROUPS } from '../config/pointB'
+  import { getAmountOfCountedFaults, normalizeMiss } from '../lib/calculator'
   import { judgementApparatus } from '../store/apparatus'
   import { executionDeduct } from '../store/executionDeduct'
-  import TimesCounter from './TimesCounter.svelte'
+  import PointBGroup from './PointBGroup.svelte'
 
   type Props = {
     /** 決定ボタンを押したときに呼ぶ */
@@ -15,7 +18,10 @@
 
   const { onsubmit }: Props = $props()
 
+  const locale = getLocale()
   const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
+  /** 数えた欠点の減点の合計 */
+  const counted = $derived(getAmountOfCountedFaults($executionDeduct))
 
   // 入力中の値を書き換えないように、入力欄には最初の値だけを渡す
   const initialMiss = $executionDeduct.pointB.miss
@@ -39,27 +45,22 @@
     <h2>{m.judge_point_b_heading()}</h2>
     <div>{m.judge_point_b_note()}</div>
   </header>
+
   <div class="section {color}">
-    <h3>{m.judge_point_b_dropped_section()}</h3>
-    <div class="section-container">
-      <div class="dropped-apparatus">
-        <h4>{m.judge_point_b_dropped_single()}</h4>
-        <TimesCounter
-          count={$executionDeduct.pointB.droppedApparatus.single}
-          onchange={(count) => executionDeduct.setDroppedCount('single', count)}
-        />
-      </div>
-      {#if $judgementApparatus?.isDouble}
-        <div class="dropped-apparatus">
-          <h4>{m.judge_point_b_dropped_double()}</h4>
-          <TimesCounter
-            count={$executionDeduct.pointB.droppedApparatus.double}
-            onchange={(count) => executionDeduct.setDroppedCount('double', count)}
-          />
-        </div>
-      {/if}
+    <div class="section-head">
+      <h3>{m.judge_point_b_counted_section()}</h3>
+      <p class="total">
+        {m.judge_point_b_counted_total()}
+        <span class="total-value">{formatNumber(counted, locale, 2)}</span>
+      </p>
+    </div>
+    <div class="groups">
+      {#each POINT_B_GROUPS as group (group.key)}
+        <PointBGroup {group} />
+      {/each}
     </div>
   </div>
+
   <div class="section {color}">
     <h3>{m.judge_point_b_miss()}</h3>
     <input
@@ -72,6 +73,7 @@
       oninput={handleMissInput}
     />
   </div>
+
   <div class="submit {color}">
     <button class="submit-button" type="submit" onclick={onsubmit}>{m.judge_submit()}</button>
   </div>
@@ -81,15 +83,11 @@
   .desktop {
     --header-flex-direction: row;
     --gap: 16px;
-    --dropped-apparatus-flex-direction: row;
-    --dropped-apparatus-gap: 32px;
   }
 
   .mobile {
     --header-flex-direction: column;
     --gap: 8px;
-    --dropped-apparatus-flex-direction: column;
-    --dropped-apparatus-gap: 8px;
   }
 
   .gray {
@@ -136,18 +134,33 @@
     gap: 16px;
   }
 
-  .section-container {
+  .section-head {
     display: flex;
-    flex-direction: var(--dropped-apparatus-flex-direction);
-    gap: var(--dropped-apparatus-gap);
-    width: 100%;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: $space-size-12;
   }
 
-  .dropped-apparatus {
+  .total {
+    margin: 0;
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: map.get($gray, light-text);
+  }
+
+  .total-value {
+    display: inline-block;
+    font-size: $font-size-16;
+    color: var(--forcus-border-color);
+
+    // 数と見出しは意味のまとまりなので、数の途中では折り返さない
+    white-space: nowrap;
+  }
+
+  .groups {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    gap: $space-size-8;
   }
 
   .miss-point {

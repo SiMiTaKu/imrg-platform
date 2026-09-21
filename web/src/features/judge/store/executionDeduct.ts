@@ -1,6 +1,11 @@
 import { writable } from 'svelte/store'
 import { createExecutionDeduct } from '../lib/calculator'
-import type { ExecutionDeduct, PointAKey, PointAOption } from '../model/executionDeduct'
+import type {
+  ExecutionDeduct,
+  PointAKey,
+  PointAOption,
+  PointBCountKey,
+} from '../model/executionDeduct'
 
 /**
  * 採点項目の入力値を持つストアを作る
@@ -19,16 +24,16 @@ const createExecutionDeductStore = () => {
     selectPointA: (key: PointAKey, option: PointAOption) =>
       update((data) => ({ ...data, pointA: { ...data.pointA, [key]: option } })),
     /**
-     * 手具を落とした回数を変える
-     * @param kind - `single`（1つの手具）か `double`（2つの手具を同時に）
-     * @param count - 回数
+     * 数える欠点の数を変える。0 未満にはしない
+     * @param key - 項目のキー
+     * @param count - 数えた数
      */
-    setDroppedCount: (kind: keyof ExecutionDeduct['pointB']['droppedApparatus'], count: number) =>
+    setCount: (key: PointBCountKey, count: number) =>
       update((data) => ({
         ...data,
         pointB: {
           ...data.pointB,
-          droppedApparatus: { ...data.pointB.droppedApparatus, [kind]: count },
+          counts: { ...data.pointB.counts, [key]: Math.max(0, count) },
         },
       })),
     /**

@@ -36,9 +36,3 @@ export const POINT_A_FINE_OPTIONS: readonly PointAOption[] = [
 
 /** 選択肢のコードの最大値。グラフの目盛りの外側になる */
 export const POINT_A_MAX_CODE = 5.5
-
-/** 1つの手具を落としたときの1回の減点 */
-export const DEDUCTION_SINGLE_DROP = 0.3
-
-/** 2つの手具を同時に落としたときの1回の減点 */
-export const DEDUCTION_DOUBLE_DROP = 0.4

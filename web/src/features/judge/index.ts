@@ -8,12 +8,15 @@ export { executionDeduct } from './store/executionDeduct'
 export { JUDGE_APPARATUSES } from './config/apparatus'
 export { JudgeThemeColor } from './config/themeColor'
 export { POINT_A_FINE_OPTIONS, POINT_A_MAX_CODE, POINT_A_OPTIONS } from './config/pointA'
+export { POINT_B_DROP_KEYS, POINT_B_GROUPS, POINT_B_ITEMS } from './config/pointB'
 export { findApparatus } from './lib/apparatus'
 export {
   createExecutionDeduct,
+  getAmountOfCountedFaults,
   getAmountOfPointA,
   getAmountOfPointB,
   getDecisionPoints,
+  getDeductionOfCounts,
   getDeductionOfDroppedApparatus,
   getMaxPointB,
   normalizeMiss,
@@ -21,4 +24,11 @@ export {
 export { buildScoreFormula } from './lib/scoreFormula'
 export { wrapChartLabel } from './lib/wrapChartLabel'
 export type { JudgeApparatus } from './model/apparatus'
-export type { ExecutionDeduct, PointALevel, PointAOption } from './model/executionDeduct'
+export type {
+  ExecutionDeduct,
+  PointALevel,
+  PointAOption,
+  PointBCountKey,
+  PointBGroup,
+  PointBItem,
+} from './model/executionDeduct'

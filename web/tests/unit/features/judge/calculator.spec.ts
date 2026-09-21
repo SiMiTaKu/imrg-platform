@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest'
 import {
   POINT_A_FINE_OPTIONS,
   POINT_A_OPTIONS,
+  POINT_B_ITEMS,
   createExecutionDeduct,
+  getAmountOfCountedFaults,
   getAmountOfPointA,
   getAmountOfPointB,
   getDecisionPoints,
@@ -33,7 +35,8 @@ const makeDeduct = ({
   const pointA = Object.fromEntries(
     Object.keys(base.pointA).map((key) => [key, option]),
   ) as ExecutionDeduct['pointA']
-  return { pointA, pointB: { droppedApparatus: { single, double }, miss } }
+  const counts = { ...base.pointB.counts, droppedSingle: single, droppedDouble: double }
+  return { pointA, pointB: { counts, miss } }
 }
 
 /**
@@ -95,7 +98,9 @@ describe('createExecutionDeduct', () => {
       // #region Then
       expect(Object.keys(result.pointA)).toHaveLength(11)
       expect(Object.values(result.pointA).every((option) => option.code === 1)).toBe(true)
-      expect(result.pointB).toEqual({ droppedApparatus: { single: 0, double: 0 }, miss: 0 })
+      expect(Object.values(result.pointB.counts).every((count) => count === 0)).toBe(true)
+      expect(Object.keys(result.pointB.counts)).toHaveLength(POINT_B_ITEMS.length)
+      expect(result.pointB.miss).toBe(0)
       // #endregion
     })
   })
@@ -142,6 +147,71 @@ describe('getDeductionOfDroppedApparatus', () => {
 
       // #region Then
       expect(result).toBeCloseTo(expected, 10)
+      // #endregion
+    })
+  })
+})
+
+describe('getAmountOfCountedFaults', () => {
+  describe('正常系', () => {
+    it('区分の違う欠点を数えた場合、小数の誤差なく合計になること', () => {
+      // #region Given
+      const base = makeDeduct({ single: 1 })
+      const data: ExecutionDeduct = {
+        ...base,
+        pointB: {
+          ...base.pointB,
+          // 手具の技術 0.05 ×2、転回系 0.30 ×1、その他 0.10 ×3、音楽 0.10 ×1
+          counts: {
+            ...base.pointB.counts,
+            catchPlaceChanged: 2,
+            landingFall: 1,
+            stagger: 3,
+            musicRhythm: 1,
+          },
+        },
+      }
+      // #endregion
+
+      // #region When
+      const result = getAmountOfCountedFaults(data)
+      // #endregion
+
+      // #region Then
+      // 落下 0.30 + 0.10 + 0.30 + 0.30 + 0.10
+      expect(result).toBe(1.1)
+      // #endregion
+    })
+  })
+})
+
+describe('POINT_B_ITEMS', () => {
+  describe('正常系', () => {
+    it('規則の実施欠点表どおり、数える欠点が 26 項目あること', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = POINT_B_ITEMS.length
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(26)
+      // #endregion
+    })
+
+    it('項目のキーが重複していないこと', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = new Set(POINT_B_ITEMS.map((item) => item.key)).size
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(POINT_B_ITEMS.length)
       // #endregion
     })
   })
