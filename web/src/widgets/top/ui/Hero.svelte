@@ -91,17 +91,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $space-size-16;
+    gap: $space-size-24;
     margin: 0;
 
-    // ヘッダーの直下にロゴが詰まって見えないよう、節の余白とは別に上を空ける
+    // ロゴとキャッチコピーの組を、上下に余白を取ってゆったり据える。
+    // 上はヘッダーの直下に詰まって見えないよう、下は続く説明文と離してキャッチコピーを立たせるため
     padding-top: $space-size-24;
+    padding-bottom: $space-size-24;
     font-size: inherit;
     font-weight: normal;
   }
 
   .mobile .logo {
+    gap: $space-size-16;
     padding-top: $space-size-16;
+    padding-bottom: $space-size-16;
   }
 
   .catchphrase {
