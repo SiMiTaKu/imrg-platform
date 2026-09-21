@@ -13,11 +13,10 @@
   import { pageData } from '@shared/lib/device'
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
+  import { EmptyResult, FilterNav } from '@widgets/oshimitsuSearchResult'
   import { onMount } from 'svelte'
   import { filterByName } from '../lib/keyword'
   import { searchResultTitle } from '../lib/title'
-  import EmptyResult from './EmptyResult.svelte'
-  import FilterNav from './FilterNav.svelte'
 
   interface Props {
     /**

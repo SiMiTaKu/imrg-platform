@@ -1,7 +1,5 @@
 <script lang="ts">
-  import OshimitsuHero from './OshimitsuHero.svelte'
-  import RecommendedVideos from './RecommendedVideos.svelte'
-  import SearchWays from './SearchWays.svelte'
+  import { OshimitsuHero, RecommendedVideos, SearchWays } from '@widgets/oshimitsu'
 </script>
 
 <!--
