@@ -41,9 +41,9 @@
 <section class="work-list" class:mobile={isMobile} id="works">
   <div class="inner">
     <SectionHeading
-      eyebrow={WORKS_HEADING.eyebrow}
+      eyebrow={WORKS_HEADING.eyebrow()}
       title={m.background_music_work_list_title()}
-      lead={WORKS_HEADING.lead}
+      lead={WORKS_HEADING.lead()}
     />
 
     <ul class="cards">
@@ -61,7 +61,7 @@
       {/each}
     </ul>
 
-    <p class="count">これまでに {WORK_LIST.length} 曲を編集しました。</p>
+    <p class="count">{m.background_music_works_count({ count: WORK_LIST.length })}</p>
   </div>
 </section>
 

@@ -1,3 +1,4 @@
+import { m } from '$lib/paraglide/messages'
 import type { CalendarEvent } from '@entities/calendarEvent'
 
 /**
@@ -32,8 +33,8 @@ export type CalendarRegionKey = (typeof CalendarRegion)[keyof typeof CalendarReg
 export interface CalendarRegionDefinition {
   /** 地域の key */
   readonly key: CalendarRegionKey
-  /** 絞り込みボタンに出す名前 */
-  readonly label: string
+  /** 絞り込みボタンに出す名前。表示中の言語で返すため、読み込んだときではなく呼ばれたときに決める */
+  readonly label: () => string
   /** この地域に含まれる都道府県名。会場名との突き合わせに使う */
   readonly prefectures: readonly string[]
 }
@@ -48,17 +49,26 @@ export interface CalendarRegionDefinition {
 export const CALENDAR_REGIONS: readonly CalendarRegionDefinition[] = [
   {
     key: CalendarRegion.HOKKAIDO_TOHOKU,
-    label: '北海道・東北',
+    /**
+     *
+     */
+    label: () => m.calendar_region_hokkaido_tohoku(),
     prefectures: ['北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県'],
   },
   {
     key: CalendarRegion.KANTO,
-    label: '関東',
+    /**
+     *
+     */
+    label: () => m.calendar_region_kanto(),
     prefectures: ['茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県'],
   },
   {
     key: CalendarRegion.CHUBU,
-    label: '中部',
+    /**
+     *
+     */
+    label: () => m.calendar_region_chubu(),
     prefectures: [
       '新潟県',
       '富山県',
@@ -73,12 +83,18 @@ export const CALENDAR_REGIONS: readonly CalendarRegionDefinition[] = [
   },
   {
     key: CalendarRegion.KINKI,
-    label: '近畿',
+    /**
+     *
+     */
+    label: () => m.calendar_region_kinki(),
     prefectures: ['三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県'],
   },
   {
     key: CalendarRegion.CHUGOKU_SHIKOKU,
-    label: '中国・四国',
+    /**
+     *
+     */
+    label: () => m.calendar_region_chugoku_shikoku(),
     prefectures: [
       '鳥取県',
       '島根県',
@@ -93,12 +109,18 @@ export const CALENDAR_REGIONS: readonly CalendarRegionDefinition[] = [
   },
   {
     key: CalendarRegion.KYUSHU_OKINAWA,
-    label: '九州・沖縄',
+    /**
+     *
+     */
+    label: () => m.calendar_region_kyushu_okinawa(),
     prefectures: ['福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'],
   },
   {
     key: CalendarRegion.OVERSEAS,
-    label: '海外・その他',
+    /**
+     *
+     */
+    label: () => m.calendar_region_overseas(),
     prefectures: [],
   },
 ]
@@ -121,7 +143,9 @@ export const regionOfEvent = (event: CalendarEvent): CalendarRegionKey => {
 /**
  * 地域の表示名を返す
  * @param key - 地域の key
- * @returns 「関東」などの表示名。分からない key は「海外・その他」
+ * @returns 表示中の言語での「関東」などの表示名。分からない key は「海外・その他」
  */
-export const regionLabel = (key: CalendarRegionKey): string =>
-  CALENDAR_REGIONS.find((region) => region.key === key)?.label ?? '海外・その他'
+export const regionLabel = (key: CalendarRegionKey): string => {
+  const label = CALENDAR_REGIONS.find((region) => region.key === key)?.label
+  return label ? label() : m.calendar_region_overseas()
+}

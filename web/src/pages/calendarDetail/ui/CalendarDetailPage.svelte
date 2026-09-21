@@ -21,7 +21,7 @@
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
   import { NEARBY_COUNT } from '../config/detailConfig'
-  import { buildSportsEventJsonLd, countdownText, nearbyEvents } from '../lib/detail'
+  import { buildSportsEventJsonLd, eventCountdown, nearbyEvents } from '../lib/detail'
   import RelatedEvents from './RelatedEvents.svelte'
 
   /** 大会の詳細ページの引数 */
@@ -60,9 +60,8 @@
     event.sourceUrl !== event.officialUrl && event.sourceUrl !== event.resultUrl,
   )
   const categoryText = $derived(categoryLabel(event.category))
-  const countdown = $derived(countdownText(event, today))
-  // 「終了」は済んだことなので、青で目立たせない
-  const isComingSoon = $derived(countdown !== undefined && countdown !== '終了')
+  // 「終了」は済んだことなので、青で目立たせない。訳した文字ではなく finished で見分ける
+  const countdown = $derived(eventCountdown(event, today))
   const nearby = $derived(nearbyEvents(event, NEARBY_COUNT))
 
   // 検索結果に日程と会場を出すための構造化データ。表示中の言語の値にする
@@ -102,7 +101,7 @@
   <header class="head">
     <p class="badges">
       {#if countdown}
-        <span class="countdown" class:soon={isComingSoon}>{countdown}</span>
+        <span class="countdown" class:soon={!countdown.finished}>{countdown.text}</span>
       {/if}
       <span class="category">{categoryText}</span>
       {#if isTentative(event)}
@@ -140,7 +139,7 @@
         {#if localized.venue}
           <span class="fact-main">{localized.venue}</span>
         {:else}
-          <span class="fact-empty">未定・未発表</span>
+          <span class="fact-empty">{m.calendar_detail_venue_tbd()}</span>
         {/if}
       </dd>
     </div>
@@ -151,8 +150,8 @@
         {#if localized.streaming}
           <span class="fact-text">{localized.streaming}</span>
         {:else}
-          <span class="fact-empty">情報なし</span>
-          <span class="fact-note">公式サイトでご確認ください</span>
+          <span class="fact-empty">{m.calendar_detail_streaming_none()}</span>
+          <span class="fact-note">{m.calendar_detail_streaming_check()}</span>
         {/if}
       </dd>
     </div>
@@ -185,7 +184,7 @@
 
   <!-- どこから取った情報かを、注意書きと同じ場所にまとめて出す -->
   <section class="source-panel">
-    <h2 class="source-title">この情報について</h2>
+    <h2 class="source-title">{m.calendar_about_title()}</h2>
     {#if showSource}
       <dl class="source-list">
         <div class="source-row">

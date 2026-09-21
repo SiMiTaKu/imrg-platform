@@ -1,5 +1,6 @@
 <script lang="ts">
   import { OshimitsuSearchForm } from '@features/oshimitsuSearch'
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { apparatusEntries, contentTypeEntries } from '../lib/entries'
@@ -9,18 +10,26 @@
   const contentTypes = $derived(contentTypeEntries())
   /** 手具の入口 */
   const apparatuses = $derived(apparatusEntries())
+
+  /**
+   * 本数の表記を返す
+   * @param count - 動画の本数
+   * @returns 表示中の言語での本数の表記（1本のときの言い方が別にある言語に合わせる）
+   */
+  const videoCount = (count: number): string =>
+    count === 1 ? m.oshimitsu_ways_count_one({ count }) : m.oshimitsu_ways_count_other({ count })
 </script>
 
 <section class="ways" class:mobile={isMobile} id="search">
   <div class="inner">
     <header class="head">
-      <h2>どうやって探しますか？</h2>
-      <p>入口は3つ。上の2つは1回押すだけで、動画の一覧に進みます。</p>
+      <h2>{m.oshimitsu_ways_title()}</h2>
+      <p>{m.oshimitsu_ways_lead()}</p>
     </header>
 
     <h3 class="label">
       <span class="step">1</span>
-      <span class="text">個人（選手）か、団体（チーム）か</span>
+      <span class="text">{m.oshimitsu_ways_step_content_type()}</span>
     </h3>
     <ul class="types">
       {#each contentTypes as entry (entry.id)}
@@ -36,7 +45,7 @@
             <span class="description">{entry.description}</span>
             <!-- 本数と矢印は、本文の下に置く。重ねない -->
             <span class="foot">
-              <span class="count">{entry.count}本</span>
+              <span class="count">{videoCount(entry.count)}</span>
               <span class="arrow" aria-hidden="true">→</span>
             </span>
           </a>
@@ -46,7 +55,7 @@
 
     <h3 class="label">
       <span class="step">2</span>
-      <span class="text">手具でえらぶ（個人の演技）</span>
+      <span class="text">{m.oshimitsu_ways_step_apparatus()}</span>
     </h3>
     <ul class="apparatuses">
       {#each apparatuses as entry (entry.id)}
@@ -55,7 +64,7 @@
             <!-- 名前・本数・矢印を1行に。行が減った分だけ card が縮む -->
             <span class="card-head">
               <span class="name">{entry.label}</span>
-              <span class="count">{entry.count}本</span>
+              <span class="count">{videoCount(entry.count)}</span>
               <span class="arrow" aria-hidden="true">→</span>
             </span>
             <span class="description">{entry.description}</span>
@@ -66,10 +75,10 @@
 
     <h3 class="label">
       <span class="step">3</span>
-      <span class="text">条件を組み合わせてから進む</span>
+      <span class="text">{m.oshimitsu_ways_step_form()}</span>
     </h3>
     <div class="form">
-      <p class="form-note">手具は、個人をえらぶといくつでも付けられます。</p>
+      <p class="form-note">{m.oshimitsu_ways_form_note()}</p>
       <div class="form-body">
         <OshimitsuSearchForm />
       </div>

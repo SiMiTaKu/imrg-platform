@@ -1,3 +1,4 @@
+import { m } from '$lib/paraglide/messages'
 import { AccentColor } from '@imrg-platform/design-system'
 
 /** 団体競技と同じ5人。得意分野で描き分ける */
@@ -48,15 +49,29 @@ export const Pose = {
 /** 姿勢のどれか1つ */
 export type Pose = (typeof Pose)[keyof typeof Pose]
 
-/** 1人分の設定 */
+/**
+ * 1人分の設定。
+ *
+ * @remarks
+ * 文言は関数で持つ。読み込んだ瞬間に評価すると、言語が決まる前の文言で固まってしまう
+ */
 export type CharacterProfile = {
   readonly id: Character
-  /** 表示する名前 */
-  readonly name: string
-  /** ふりがな */
-  readonly reading: string
-  /** 得意分野。ひと言で */
-  readonly specialty: string
+  /**
+   * 表示する名前。表示中の言語で返す
+   * @returns 名前
+   */
+  readonly name: () => string
+  /**
+   * 名前の読み。日本語はふりがな、ほかの言語は日本語の表記
+   * @returns 読み
+   */
+  readonly reading: () => string
+  /**
+   * 得意分野。ひと言で
+   * @returns 得意分野
+   */
+  readonly specialty: () => string
   /** 身長（cm）。5人の描き分けに使う */
   readonly heightCentimeter: number
   /** この人を表す色 */
@@ -64,8 +79,11 @@ export type CharacterProfile = {
   readonly hair: HairStyle
   /** 既定の姿勢 */
   readonly pose: Pose
-  /** どんな役回りか */
-  readonly role: string
+  /**
+   * どんな役回りか
+   * @returns 役回り
+   */
+  readonly role: () => string
 }
 
 /**
@@ -78,58 +96,58 @@ export type CharacterProfile = {
 export const CHARACTERS: readonly CharacterProfile[] = [
   {
     id: Character.SORA,
-    name: '高梨 翔宙',
-    reading: 'たかなし そら',
-    specialty: 'タンブリング',
+    name: m.character_sora_name,
+    reading: m.character_sora_reading,
+    specialty: m.character_sora_specialty,
     heightCentimeter: 165,
     color: AccentColor.RED,
     hair: HairStyle.SPIKY,
     pose: Pose.LEAP,
-    role: '跳ぶこと、回ることの担当。小柄だが体幹が一番強い',
+    role: m.character_sora_role,
   },
   {
     id: Character.KAZUTO,
-    name: '元木 一徒',
-    reading: 'もとき かずと',
-    specialty: '徒手・基本',
+    name: m.character_kazuto_name,
+    reading: m.character_kazuto_reading,
+    specialty: m.character_kazuto_specialty,
     heightCentimeter: 180,
     color: AccentColor.AMBER,
     hair: HairStyle.BUZZ,
     pose: Pose.STAND,
-    role: '組の土台。基本の動きは誰よりも正確',
+    role: m.character_kazuto_role,
   },
   {
     id: Character.AYATO,
-    name: '華魅 彩人',
-    reading: 'はなみ あやと',
-    specialty: '表現・構成',
+    name: m.character_ayato_name,
+    reading: m.character_ayato_reading,
+    specialty: m.character_ayato_specialty,
     heightCentimeter: 172,
     color: AccentColor.PINK,
     hair: HairStyle.WAVE,
     pose: Pose.HOLD,
-    role: '構成を作るアイデアマン。一つ一つの動きに花がある',
+    role: m.character_ayato_role,
   },
   {
     id: Character.OSAMU,
-    name: '則武 理',
-    reading: 'のりたけ おさむ',
-    specialty: 'ルール・採点',
+    name: m.character_osamu_name,
+    reading: m.character_osamu_reading,
+    specialty: m.character_osamu_specialty,
     heightCentimeter: 168,
     color: AccentColor.GREEN,
     hair: HairStyle.NEAT,
     pose: Pose.POINT,
-    role: '規則を熟知している。このサイトのルール解説の案内役',
+    role: m.character_osamu_role,
   },
   {
     id: Character.YAWANA,
-    name: '青柳 柔凪',
-    reading: 'あおやぎ やわな',
-    specialty: '柔軟',
+    name: m.character_yawana_name,
+    reading: m.character_yawana_reading,
+    specialty: m.character_yawana_specialty,
     heightCentimeter: 175,
     color: AccentColor.BLUE,
     hair: HairStyle.TIED,
     pose: Pose.SPLIT,
-    role: '体の柔らかさは群を抜く。ケアにも詳しい',
+    role: m.character_yawana_role,
   },
 ]
 

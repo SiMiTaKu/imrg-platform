@@ -27,5 +27,6 @@
   "error_title": "कोई त्रुटि हुई",
   "error_not_found": "* माँगा गया पृष्ठ मौजूद नहीं है।",
   "error_back_to_top": "मुख्य पृष्ठ पर लौटें",
-  "layout_locale_switch_label": "भाषा"
+  "layout_locale_switch_label": "भाषा",
+  "layout_nav_coaching": "प्रशिक्षण का अनुरोध करें"
 }

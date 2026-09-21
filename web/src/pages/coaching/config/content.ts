@@ -1,141 +1,330 @@
+import { m } from '$lib/paraglide/messages'
 import { Character } from '@entities/character'
+import { getLocale } from '@shared/lib/i18n'
+import { formatYen } from '@shared/lib/number'
 import { ROUTES } from '@shared/routes'
 
 /**
- * 指導の受け方。オンラインと会場へ出向く場合で、できることが変わる。
+ * 表示するときに文言を取りに行く関数。
  *
  * @remarks
- * デザイン案のため日本語で直書きしている。採用するときに messages へ移す
+ * 設定は import した時点で評価される。`m.xxx()` と書いて値を持たせると、言語が決まる前の
+ * 日本語で固まってしまうため、呼ばれたときの言語で返る関数にしておく
  */
+type Text = () => string
+
+/** 料金の目安（円）。表示するときに `formatYen` で言語ごとの書き方にする */
+const PRICE_YEN = {
+  /** オンラインの添削（個人） */
+  onlineReviewIndividual: 2000,
+  /** オンラインの添削（団体） */
+  onlineReviewGroup: 4000,
+  /** オンラインの構成作成（個人） */
+  onlineCreateIndividual: 10000,
+  /** 会場へ出向く指導（1日） */
+  onsiteFullDay: 30000,
+  /** 会場へ出向く指導（半日） */
+  onsiteHalfDay: 15000,
+} as const
+
+/**
+ * 金額を「◯◯円〜」の形にする
+ * @param yen - 金額（円）
+ * @returns 表示中の言語での言い方（日本語なら「30,000円〜」、英語なら "From ¥30,000"）
+ */
+const fromPrice = (yen: number): string =>
+  m.coaching_price_from({ price: formatYen(yen, getLocale()) })
+
+/** 指導の受け方。オンラインと会場へ出向く場合で、できることが変わる */
 export const COACHING_WAYS = [
   {
     key: 'online',
-    label: 'オンライン',
-    summary: '動画を送ってもらう／画面ごしに話す',
+    label: m.coaching_way_online_label,
+    summary: m.coaching_way_online_summary,
     character: Character.OSAMU,
     points: [
-      '演技の動画を見て、直すところを伝える',
-      '個人の演技構成を作る',
-      '構成の相談に乗る（手具の使い方、音との合わせ方）',
+      m.coaching_way_online_point_review,
+      m.coaching_way_online_point_composition,
+      m.coaching_way_online_point_advice,
     ],
-    note: '団体の演技を一から作るのは、実際に動きを見ないと難しいため会場へ出向く形だけで受けています。',
+    note: m.coaching_way_online_note,
   },
   {
     key: 'offline',
-    label: '会場へ出向く',
-    summary: '練習場に行って、直接みる',
+    label: m.coaching_way_offline_label,
+    summary: m.coaching_way_offline_summary,
     character: Character.SORA,
     points: [
-      '団体の演技を一から作る',
-      '個人の演技を作る・直す',
-      '基本の動き、タンブリング、手具の扱いをみる',
+      m.coaching_way_offline_point_group,
+      m.coaching_way_offline_point_individual,
+      m.coaching_way_offline_point_basics,
     ],
-    note: '交通費と宿泊費は別に実費でお願いしています。',
+    note: m.coaching_way_offline_note,
   },
 ] as const
 
 /** 料金の目安 */
 export const PRICES = [
   {
-    way: 'オンライン',
+    key: 'online',
+    way: m.coaching_way_online_label,
     items: [
       {
-        name: '演技構成の添削（個人）',
-        price: '2,000円〜',
-        note: '動画を見て、直すところを伝える',
+        key: 'review-individual',
+        name: m.coaching_price_online_review_individual_name,
+        /** 個人の添削の「◯◯円〜」。表示中の言語の書き方で返す */
+        price: () => fromPrice(PRICE_YEN.onlineReviewIndividual),
+        note: m.coaching_price_online_review_individual_note,
       },
       {
-        name: '演技構成の添削（団体）',
-        price: '4,000円〜',
-        note: '人数分の動きを見るので個人より高い',
+        key: 'review-group',
+        name: m.coaching_price_online_review_group_name,
+        /** 団体の添削の「◯◯円〜」 */
+        price: () => fromPrice(PRICE_YEN.onlineReviewGroup),
+        note: m.coaching_price_online_review_group_note,
       },
-      { name: '演技構成の作成（個人）', price: '10,000円〜', note: '1演技を一から組み立てる' },
-      { name: '演技構成の作成（団体）', price: '—', note: '会場へ出向く形でのみ受けています' },
+      {
+        key: 'create-individual',
+        name: m.coaching_price_online_create_individual_name,
+        /** 個人の構成作成の「◯◯円〜」 */
+        price: () => fromPrice(PRICE_YEN.onlineCreateIndividual),
+        note: m.coaching_price_online_create_individual_note,
+      },
+      {
+        key: 'create-group',
+        name: m.coaching_price_online_create_group_name,
+        /** 会場へ出向く形でのみ受けているので、金額の代わりに出す横棒 */
+        price: () => '—',
+        note: m.coaching_price_online_create_group_note,
+      },
     ],
   },
   {
-    way: '会場へ出向く',
+    key: 'offline',
+    way: m.coaching_way_offline_label,
     items: [
-      { name: '指導（1日）', price: '30,000円〜', note: '実働5〜6時間。相談できます' },
-      { name: '指導（半日）', price: '15,000円〜', note: '実働2〜3時間。相談できます' },
-      { name: '交通費', price: '実費', note: '切符・航空券は事前に手配をお願いしています' },
-      { name: '宿泊費', price: '実費', note: '部屋の予約も事前にお願いしています' },
+      {
+        key: 'full-day',
+        name: m.coaching_price_onsite_full_day_name,
+        /** 会場へ出向く1日の「◯◯円〜」 */
+        price: () => fromPrice(PRICE_YEN.onsiteFullDay),
+        note: m.coaching_price_onsite_full_day_note,
+      },
+      {
+        key: 'half-day',
+        name: m.coaching_price_onsite_half_day_name,
+        /** 会場へ出向く半日の「◯◯円〜」 */
+        price: () => fromPrice(PRICE_YEN.onsiteHalfDay),
+        note: m.coaching_price_onsite_half_day_note,
+      },
+      {
+        key: 'travel',
+        name: m.coaching_price_travel_name,
+        price: m.coaching_price_actual_cost,
+        note: m.coaching_price_travel_note,
+      },
+      {
+        key: 'lodging',
+        name: m.coaching_price_lodging_name,
+        price: m.coaching_price_actual_cost,
+        note: m.coaching_price_lodging_note,
+      },
     ],
   },
 ] as const
 
+/** 相場の説明。太字にする言葉と、それに続く文をひと組で持つ */
+export const MARKET_POINTS = [
+  {
+    key: 'onsite',
+    term: m.coaching_market_onsite_term,
+    body: m.coaching_market_onsite_body,
+  },
+  {
+    key: 'create',
+    term: m.coaching_market_create_term,
+    body: m.coaching_market_create_body,
+  },
+  {
+    key: 'review',
+    term: m.coaching_market_review_term,
+    body: m.coaching_market_review_body,
+  },
+] as const
+
+/** 実績の1件（年は訳さずそのまま、チーム名と補足は言語ごとに変わる） */
+type Result = {
+  /** 演技を作った年 */
+  year: string
+  /** チーム名・選手名 */
+  name: Text
+  /** 補足。無いときは `null` */
+  detail: Text | null
+  /** 演技の動画。無いときは空 */
+  videos: readonly { readonly label: Text; readonly href: string }[]
+}
+
 /** 過去に作った演技・みてきたチーム */
-export const RESULTS = [
-  { year: '2016', name: '青森山田高校 団体', detail: '構成のおよそ半分', videos: [] },
+export const RESULTS: readonly Result[] = [
+  {
+    year: '2016',
+    name: m.coaching_result_aomori_yamada_group,
+    detail: m.coaching_result_detail_half_composition,
+    videos: [],
+  },
   {
     year: '2019',
-    name: '青森大学 1部',
-    detail: '',
+    name: m.coaching_result_aomori_university_first,
+    detail: null,
     // 推しミツ！に載せている動画から、同じ演技のものをつないでいる
-    videos: [{ label: '演技を見る', href: 'https://youtu.be/N654qFg2HSg' }],
-  },
-  { year: '2020', name: '青森山田高校 団体', detail: '', videos: [] },
-  {
-    year: '2021',
-    name: '青森大学 1部',
-    detail: '',
-    videos: [{ label: '演技を見る', href: 'https://youtu.be/RpHN_kcQTvs' }],
-  },
-  { year: '2021', name: '青森山田高校 団体', detail: '', videos: [] },
-  {
-    year: '2021',
-    name: '清水 琢巳（個人）',
-    detail: '4種目すべての構成',
     videos: [
-      { label: 'スティック', href: 'https://youtu.be/tssu0o5sG10' },
-      { label: 'リング', href: 'https://youtu.be/X9_KpzsYl7k' },
-      { label: 'ロープ', href: 'https://youtu.be/WcCA_SDdi_o' },
-      { label: 'クラブ', href: 'https://youtu.be/4r6JlP3m2Uc' },
+      {
+        label: m.coaching_result_video_label,
+        href: 'https://youtu.be/N654qFg2HSg',
+      },
     ],
   },
-  { year: '2024', name: '青森山田高校 団体', detail: '', videos: [] },
-  { year: '2025', name: '神埼ジュニア 団体', detail: '', videos: [] },
-  { year: '2026', name: '華舞翔 団体', detail: '', videos: [] },
-] as const
+  {
+    year: '2020',
+    name: m.coaching_result_aomori_yamada_group,
+    detail: null,
+    videos: [],
+  },
+  {
+    year: '2021',
+    name: m.coaching_result_aomori_university_first,
+    detail: null,
+    videos: [
+      {
+        label: m.coaching_result_video_label,
+        href: 'https://youtu.be/RpHN_kcQTvs',
+      },
+    ],
+  },
+  {
+    year: '2021',
+    name: m.coaching_result_aomori_yamada_group,
+    detail: null,
+    videos: [],
+  },
+  {
+    year: '2021',
+    name: m.coaching_result_takumi_shimizu_individual,
+    detail: m.coaching_result_detail_all_apparatus,
+    videos: [
+      {
+        label: m.apparatus_stick,
+        href: 'https://youtu.be/tssu0o5sG10',
+      },
+      {
+        label: m.apparatus_ring,
+        href: 'https://youtu.be/X9_KpzsYl7k',
+      },
+      {
+        label: m.apparatus_rope,
+        href: 'https://youtu.be/WcCA_SDdi_o',
+      },
+      {
+        label: m.apparatus_club,
+        href: 'https://youtu.be/4r6JlP3m2Uc',
+      },
+    ],
+  },
+  {
+    year: '2024',
+    name: m.coaching_result_aomori_yamada_group,
+    detail: null,
+    videos: [],
+  },
+  {
+    year: '2025',
+    name: m.coaching_result_kanzaki_junior_group,
+    detail: null,
+    videos: [],
+  },
+  {
+    year: '2026',
+    name: m.coaching_result_kabusho_group,
+    detail: null,
+    videos: [],
+  },
+]
 
 /** 年ではくくれない実績 */
 export const CONTINUOUS_RESULTS = [
-  '華舞翔新体操倶楽部 発表会（第13回〜第22回）の OB・OG 演技',
-  'そのほか、個人の選手を数名',
+  {
+    key: 'kabusho',
+    text: m.coaching_continuous_kabusho,
+  },
+  {
+    key: 'others',
+    text: m.coaching_continuous_others,
+  },
 ] as const
 
 /** 依頼の流れ */
 export const FLOW = [
   {
-    title: '相談する',
-    description: 'いつ・どこで・何人を・どこまで、を教えてください。DM で受け付けています。',
+    key: 'consult',
+    title: m.coaching_flow_consult_title,
+    description: m.coaching_flow_consult_description,
   },
   {
-    title: '決める',
-    description: '受け方（オンラインか会場か）と料金、日程を決めます。見積もりまで無料です。',
+    key: 'decide',
+    title: m.coaching_flow_decide_title,
+    description: m.coaching_flow_decide_description,
   },
   {
-    title: 'みる・作る',
-    description: '動画を見て直しを伝える、または会場で直接みます。構成は作りながら相談します。',
+    key: 'work',
+    title: m.coaching_flow_work_title,
+    description: m.coaching_flow_work_description,
   },
   {
-    title: '渡す',
-    description: '構成は動画と書き起こしで渡します。あとからの手直しも相談できます。',
+    key: 'deliver',
+    title: m.coaching_flow_deliver_title,
+    description: m.coaching_flow_deliver_description,
   },
 ] as const
 
 /** ページの上のほうに出す案内 */
 export const HERO = {
-  eyebrow: '指導を承っています',
-  summary:
-    '演技の構成を作る、いまの演技を直す、基本からみる。オンラインでも、会場へ出向く形でも受けています。全日本や全国大会で使われた構成を作ってきました。',
-  points: ['団体の演技を作る', '個人の構成を作る', '動画を見て直す'],
-  priceUnit: '相談できます',
-  priceAmount: 'オンライン 2,000円〜／出向く場合 1日 30,000円〜',
+  eyebrow: m.coaching_hero_eyebrow,
+  summary: m.coaching_hero_summary,
+  points: [
+    {
+      key: 'group',
+      text: m.coaching_hero_point_group,
+    },
+    {
+      key: 'individual',
+      text: m.coaching_hero_point_individual,
+    },
+    {
+      key: 'review',
+      text: m.coaching_hero_point_review,
+    },
+  ],
+  priceUnit: m.coaching_hero_price_unit,
+  /** 見出しに出す「オンライン ◯◯円〜／1日 ◯◯円〜」 */
+  priceAmount: () =>
+    m.coaching_hero_price_amount({
+      online: formatYen(PRICE_YEN.onlineReviewIndividual, getLocale()),
+      onsite: formatYen(PRICE_YEN.onsiteFullDay, getLocale()),
+    }),
 } as const
 
 /** ほかの依頼ページへの案内 */
 export const OTHER_SERVICES = [
-  { title: '曲編集', body: '演技に合わせて曲を組み上げます。', href: ROUTES.backgroundMusic },
-  { title: '手具装飾', body: '手具をチームの色に仕上げます。', href: ROUTES.decoratingApparatus },
+  {
+    key: 'background-music',
+    title: m.coaching_other_background_music_title,
+    body: m.coaching_other_background_music_body,
+    href: ROUTES.backgroundMusic,
+  },
+  {
+    key: 'decorating-apparatus',
+    title: m.coaching_other_decorating_apparatus_title,
+    body: m.coaching_other_decorating_apparatus_body,
+    href: ROUTES.decoratingApparatus,
+  },
 ] as const

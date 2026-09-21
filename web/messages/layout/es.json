@@ -27,5 +27,6 @@
   "error_title": "Se ha producido un error",
   "error_not_found": "* La página solicitada no existe.",
   "error_back_to_top": "Volver al inicio",
-  "layout_locale_switch_label": "Idioma"
+  "layout_locale_switch_label": "Idioma",
+  "layout_nav_coaching": "Entrenamiento"
 }

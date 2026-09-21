@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import {
     ExecutionPointResultModalDesktop,
     ExecutionPointResultModalMobile,
@@ -110,8 +111,8 @@
     <section class="before-next">
       <div class="inner">
         <NextActions
-          title="採点の前に知りたいときは"
-          description="ルールや演技の動画から入っても、同じところへたどり着きます。"
+          title={m.judge_before_next_title()}
+          description={m.judge_before_next_description()}
         />
       </div>
     </section>
@@ -127,7 +128,7 @@
 
 {#if resultShown}
   <button class="close-result" class:mobile={isMobile} type="button" onclick={closeResult}>
-    閉じて次へ進む
+    {m.judge_result_close()}
   </button>
 {/if}
 

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { ContentType } from '@entities/oshimitsuVideo'
   import type { Criteria } from '@features/oshimitsuSearch'
+  import { m } from '$lib/paraglide/messages'
   import { APPARATUSES } from '@shared/config/apparatus'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -28,9 +29,9 @@
 </script>
 
 <!-- いまの条件を示しつつ、ここから別の条件へ移れるようにする。0件のときの逃げ道にもなる -->
-<nav class="filters" class:mobile={isMobile} aria-label="絞り込み">
+<nav class="filters" class:mobile={isMobile} aria-label={m.oshimitsu_filter_nav_label()}>
   <div class="row">
-    <span class="row-label">種類</span>
+    <span class="row-label">{m.oshimitsu_filter_row_content_type()}</span>
     <ul>
       <li>
         <a
@@ -39,7 +40,7 @@
           aria-current={isAll ? 'page' : undefined}
           href={localizeHref(ROUTES.oshimitsu.searchResult)}
         >
-          すべて
+          {m.oshimitsu_filter_all()}
         </a>
       </li>
       {#each Object.values(ContentType) as contentType (contentType.slug)}
@@ -53,7 +54,9 @@
           >
             {contentType.label()}
             <span class="hint">
-              {contentType.slug === ContentType.INDIVIDUAL.slug ? '選手' : 'チーム'}
+              {contentType.slug === ContentType.INDIVIDUAL.slug
+                ? m.oshimitsu_word_player()
+                : m.oshimitsu_word_team()}
             </span>
           </a>
         </li>
@@ -62,7 +65,7 @@
   </div>
 
   <div class="row">
-    <span class="row-label">手具</span>
+    <span class="row-label">{m.oshimitsu_apparatus_legend()}</span>
     <ul>
       {#each APPARATUSES as apparatus (apparatus.slug)}
         {@const current = selectedApparatus === apparatus.slug}

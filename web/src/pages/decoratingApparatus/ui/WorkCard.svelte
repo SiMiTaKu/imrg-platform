@@ -65,7 +65,7 @@
   <!-- 押せることが分かるように、何枚目かを写真の下に置く。写真には重ねない -->
   <p class="hint">
     <span class="counter">{currentNumber} / {images.length}</span>
-    押すと別の角度
+    {m.decorating_apparatus_work_flip_hint()}
   </p>
 </div>
 

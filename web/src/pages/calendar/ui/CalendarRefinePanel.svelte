@@ -31,7 +31,7 @@
 <!-- 種類とキーワードに続けて、年と地域でも絞り込めるようにする -->
 <div class="refine">
   <div class="row">
-    <span class="row-label" id="calendar-refine-year">開催年</span>
+    <span class="row-label" id="calendar-refine-year">{m.calendar_refine_year_label()}</span>
     <div class="chips" aria-labelledby="calendar-refine-year" role="group">
       <button
         class="chip"
@@ -57,7 +57,7 @@
   </div>
 
   <div class="row">
-    <span class="row-label" id="calendar-refine-region">地域</span>
+    <span class="row-label" id="calendar-refine-region">{m.calendar_refine_region_label()}</span>
     <div class="chips" aria-labelledby="calendar-refine-region" role="group">
       <button
         class="chip"
@@ -76,7 +76,7 @@
           aria-pressed={refine.region === region.key}
           onclick={() => onregionchange(region.key)}
         >
-          {region.label}<span class="count">{regionCounts.get(region.key) ?? 0}</span>
+          {region.label()}<span class="count">{regionCounts.get(region.key) ?? 0}</span>
         </button>
       {/each}
     </div>

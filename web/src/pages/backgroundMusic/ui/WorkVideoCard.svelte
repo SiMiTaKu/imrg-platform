@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { youtubeEmbedUrl, youtubeThumbnail } from '../lib/youtube'
 
   const {
@@ -33,7 +34,7 @@
       <!-- 勝手に始まるときは音を消す。消さないと、ブラウザーが再生を止める -->
       <iframe
         src={youtubeEmbedUrl(videoId, !played)}
-        title="{title}の演技"
+        title={m.background_music_video_title({ name: title })}
         loading="lazy"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen
@@ -42,7 +43,7 @@
       <button
         type="button"
         onclick={() => onRequestPlay(true)}
-        aria-label="{title}の演技を再生する"
+        aria-label={m.background_music_video_play({ name: title })}
       >
         <img src={youtubeThumbnail(videoId)} alt="" loading="lazy" />
         <!-- 止まっているカードには、押せば見られることが分かる印を出す -->
@@ -56,7 +57,7 @@
           </svg>
         </span>
         {#if played}
-          <span class="again">もう一度見る</span>
+          <span class="again">{m.background_music_video_again()}</span>
         {/if}
       </button>
     {/if}

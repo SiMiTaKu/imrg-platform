@@ -1,28 +1,60 @@
+import { m } from '$lib/paraglide/messages'
 import { ROUTES } from '@shared/routes'
 
 /**
  * 採点を終えたあとに進んでほしい先。
  *
  * @remarks
- * デザイン案のため文言は日本語で直書きしている。採用するときに messages へ移す
+ * 文言は言語が決まってから取り出したいので、関数にして遅らせている。
+ * `id` は並べ替えても変わらない目印で、一覧を描くときの key に使う
  */
 export const JUDGE_NEXT_ACTIONS = [
   {
-    title: 'ルールを読む',
-    body: '減点の決まりは規則集にある。自分が引いた点と見くらべると意味が分かる。',
+    id: 'rules',
+    /**
+     *
+     */
+    title: () => m.judge_next_rules_title(),
+    /**
+     *
+     */
+    body: () => m.judge_next_rules_body(),
     href: ROUTES.rules,
-    action: '規則集を開く',
+    /**
+     *
+     */
+    action: () => m.judge_next_rules_action(),
   },
   {
-    title: '演技の動画を見る',
-    body: '同じ目で本物の演技を見てみる。選手・チーム・手具から探せる。',
+    id: 'oshimitsu',
+    /**
+     *
+     */
+    title: () => m.judge_next_videos_title(),
+    /**
+     *
+     */
+    body: () => m.judge_next_videos_body(),
     href: ROUTES.oshimitsu.index,
-    action: '推しミツ！へ',
+    /**
+     *
+     */
+    action: () => m.judge_next_videos_action(),
   },
   {
-    title: '会場で見る',
-    body: '次の大会を探す。日程・会場・配信の有無まで載せている。',
+    id: 'calendar',
+    /**
+     *
+     */
+    title: () => m.judge_next_calendar_title(),
+    /**
+     *
+     */
+    body: () => m.judge_next_calendar_body(),
     href: ROUTES.calendar.index,
-    action: '大会を探す',
+    /**
+     *
+     */
+    action: () => m.judge_next_calendar_action(),
   },
 ] as const

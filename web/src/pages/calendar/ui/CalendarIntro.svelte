@@ -27,32 +27,36 @@
   </div>
 
   <div class="words">
-    <p class="speaker">{guide.name}（{guide.specialty}）</p>
+    <p class="speaker">
+      {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+    </p>
     <h1>{m.calendar_title()}</h1>
     <p class="say">{m.calendar_lead()}</p>
     <p class="how">
-      <strong>カレンダー</strong>は日付から、<strong>リスト</strong>は年・地域・種類から探せます。
-      大会を押すと、<strong class="accent">日程・会場・配信</strong>がまとめて分かります。
+      <strong>{m.calendar_view_calendar()}</strong>{m.calendar_intro_how_calendar()}<strong
+        >{m.calendar_view_list()}</strong
+      >{m.calendar_intro_how_list()}
+      {m.calendar_intro_how_detail_before()}<strong class="accent"
+        >{m.calendar_intro_how_detail_strong()}</strong
+      >{m.calendar_intro_how_detail_after()}
     </p>
 
     <dl class="numbers">
       <div class="number">
-        <dt>掲載</dt>
+        <dt>{m.calendar_intro_stat_total()}</dt>
         <dd>{total}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
       </div>
       <div class="number upcoming">
-        <dt>これから</dt>
+        <dt>{m.calendar_period_upcoming()}</dt>
         <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
       </div>
       <div class="number updated">
-        <dt>情報の新しさ</dt>
+        <dt>{m.calendar_intro_stat_freshness()}</dt>
         <dd class="updated-text">{updatedAtText}</dd>
       </div>
     </dl>
 
-    <p class="caution">
-      主催者の発表と各団体のサイトを1件ずつ確かめて載せています。出典は大会ごとの詳細ページに書いています。
-    </p>
+    <p class="caution">{m.calendar_intro_sources_note()}</p>
   </div>
 </header>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
   import { ContentType } from '@entities/oshimitsuVideo'
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
@@ -28,29 +29,33 @@
     <CharacterFigure character={guide} size={isMobile ? 88 : 112} />
   </div>
   <div class="words">
-    <p class="speaker">{guide.name}（{guide.specialty}）</p>
+    <p class="speaker">
+      {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+    </p>
     <h2>{title}</h2>
     <p class="description">{description}</p>
     <div class="actions">
       {#if actions}
         {@render actions()}
       {:else}
-        <a class="primary" href={localizeHref(ROUTES.oshimitsu.searchResult)}>すべての動画を見る</a>
+        <a class="primary" href={localizeHref(ROUTES.oshimitsu.searchResult)}>
+          {m.oshimitsu_all_videos()}
+        </a>
         <a
           class="secondary"
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.INDIVIDUAL.slug))}
         >
-          {ContentType.INDIVIDUAL.label()}（選手）を見る
+          {m.oshimitsu_empty_see_individual({ contentType: ContentType.INDIVIDUAL.label() })}
         </a>
         <a
           class="secondary"
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.GROUP.slug))}
         >
-          {ContentType.GROUP.label()}（チーム）を見る
+          {m.oshimitsu_empty_see_group({ contentType: ContentType.GROUP.label() })}
         </a>
       {/if}
     </div>
-    <a class="back" href={localizeHref(ROUTES.oshimitsu.index)}>探し方をもう一度えらぶ →</a>
+    <a class="back" href={localizeHref(ROUTES.oshimitsu.index)}>{m.oshimitsu_empty_back()} →</a>
   </div>
 </section>
 

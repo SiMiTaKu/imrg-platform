@@ -194,7 +194,7 @@
     <!-- 今日の印は黄。種類の色（青系・緑系…）と役割が違うことが分かるようにする -->
     <li class="legend-item">
       <span class="today-dot"></span>
-      今日
+      {m.calendar_legend_today()}
     </li>
     {#each EVENT_CATEGORIES as category (category.slug)}
       <li class="legend-item">

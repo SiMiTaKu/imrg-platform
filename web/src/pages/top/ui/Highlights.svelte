@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, findCharacter } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { HIGHLIGHTS } from '../config/sections'
@@ -9,24 +10,24 @@
 <section class="highlights" class:mobile={isMobile} id="about">
   <div class="inner">
     <header>
-      <h2>男子新体操とは</h2>
-      <p>床の上で、跳んで、回して、5人で揃える。3つ知れば見方が変わります。</p>
+      <h2>{m.top_highlights_title()}</h2>
+      <p>{m.top_highlights_lead()}</p>
     </header>
 
     <ul class="cards">
-      {#each HIGHLIGHTS as highlight (highlight.title)}
+      {#each HIGHLIGHTS as highlight (highlight.id)}
         {@const character = findCharacter(highlight.character)}
         <li style:--accent={character.color}>
           <div class="figure">
             <CharacterFigure
               {character}
               size={isMobile ? 84 : 96}
-              showApparatus={highlight.title === '手具'}
+              showApparatus={highlight.showApparatus}
             />
           </div>
-          <h3>{highlight.title}</h3>
-          <p class="summary">{highlight.summary}</p>
-          <p class="body">{highlight.body}</p>
+          <h3>{highlight.title()}</h3>
+          <p class="summary">{highlight.summary()}</p>
+          <p class="body">{highlight.body()}</p>
         </li>
       {/each}
     </ul>

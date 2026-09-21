@@ -7,6 +7,23 @@
   const isMobile = $derived($pageData.isMobile)
   /** 推しミツ！の案内役。表現・構成の担当なので、演技を見る楽しさを案内してもらう */
   const guide = findCharacter(Character.AYATO)
+
+  // 本数の単位は言語で付け方が変わる。1本のときだけ言い方が変わる言語があるので、数で出し分ける
+  const totalUnit = $derived(
+    VIDEO_COUNTS.total === 1
+      ? m.oshimitsu_hero_stat_total_one()
+      : m.oshimitsu_hero_stat_total_other(),
+  )
+  const individualUnit = $derived(
+    VIDEO_COUNTS.individual === 1
+      ? m.oshimitsu_hero_stat_individual_one()
+      : m.oshimitsu_hero_stat_individual_other(),
+  )
+  const groupUnit = $derived(
+    VIDEO_COUNTS.group === 1
+      ? m.oshimitsu_hero_stat_group_one()
+      : m.oshimitsu_hero_stat_group_other(),
+  )
 </script>
 
 <section class="hero" class:mobile={isMobile}>
@@ -16,12 +33,14 @@
     </div>
 
     <div class="words">
-      <p class="speaker">{guide.name}（{guide.specialty}）</p>
+      <p class="speaker">
+        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+      </p>
 
       <!-- 名前の下に「何ができる場所か」を必ず置く。「推しミツ！」だけでは伝わらないため -->
       <h1 class="title">
         <span class="name">{m.oshimitsu_title()}</span>
-        <span class="what">男子新体操の演技動画をさがす</span>
+        <span class="what">{m.oshimitsu_hero_what()}</span>
       </h1>
 
       <p class="lead">
@@ -30,27 +49,27 @@
       </p>
 
       <p class="say">
-        <strong>選手</strong>・<strong>チーム</strong>・<strong class="accent">手具</strong>
-        からしぼると、その場で演技が見られます。まずは気になるものを1つ押してみてください。
+        <strong class="accent">{m.oshimitsu_hero_say_axes()}</strong>
+        {m.oshimitsu_hero_say_body()}
       </p>
 
       <div class="actions">
-        <a class="primary" href="#search">探し方をえらぶ</a>
-        <a class="secondary" href="#recommended">おすすめの演技を見る</a>
+        <a class="primary" href="#search">{m.oshimitsu_hero_action_ways()}</a>
+        <a class="secondary" href="#recommended">{m.oshimitsu_hero_action_recommended()}</a>
       </div>
 
       <ul class="stats">
         <li>
           <span class="number">{VIDEO_COUNTS.total}</span>
-          <span class="unit">本の演技</span>
+          <span class="unit">{totalUnit}</span>
         </li>
         <li>
           <span class="number">{VIDEO_COUNTS.individual}</span>
-          <span class="unit">本 個人（選手）</span>
+          <span class="unit">{individualUnit}</span>
         </li>
         <li>
           <span class="number">{VIDEO_COUNTS.group}</span>
-          <span class="unit">本 団体（チーム）</span>
+          <span class="unit">{groupUnit}</span>
         </li>
       </ul>
     </div>

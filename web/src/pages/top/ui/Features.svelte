@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { FEATURES } from '../config/sections'
@@ -9,21 +10,21 @@
 <section class="features" class:mobile={isMobile}>
   <div class="inner">
     <header>
-      <h2>このサイトでできること</h2>
-      <p>大会を探す、ルールを知る、採点を体験する、演技を見る。</p>
+      <h2>{m.top_features_title()}</h2>
+      <p>{m.top_features_lead()}</p>
     </header>
 
     <ul class="cards">
-      {#each FEATURES as feature (feature.title)}
+      {#each FEATURES as feature (feature.id)}
         <li>
           <a href={localizeHref(feature.href)}>
             <!-- 印・見出し・矢印を1行に並べる。縦に積むと card が間延びする -->
             <span class="head">
-              <span class="badge">{feature.badge}</span>
-              <h3>{feature.title}</h3>
+              <span class="badge">{feature.badge()}</span>
+              <h3>{feature.title()}</h3>
               <span class="arrow" aria-hidden="true">→</span>
             </span>
-            <p>{feature.body}</p>
+            <p>{feature.body()}</p>
           </a>
         </li>
       {/each}

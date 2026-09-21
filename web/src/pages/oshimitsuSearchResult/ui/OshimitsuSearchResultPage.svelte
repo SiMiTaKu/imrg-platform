@@ -46,6 +46,30 @@
   /** まだ読み込んでいない動画が残っているか */
   const hasMore = $derived(totalVideos !== undefined && totalVideos > videos.length)
 
+  // 本数の言い方は言語で変わる。1本のときだけ別の言い方をする言語があるので、数で出し分ける
+  /** 見つかった本数の後ろに続く言葉 */
+  const foundText = $derived(
+    totalVideos === 1 ? m.oshimitsu_result_found_one() : m.oshimitsu_result_found_other(),
+  )
+  /** いま何本を出しているかの一文 */
+  const showingText = $derived(
+    videos.length === 1
+      ? m.oshimitsu_result_showing_one({ count: videos.length })
+      : m.oshimitsu_result_showing_other({ count: videos.length }),
+  )
+  /** 言葉を入れていないときの、名前でしぼる欄の注記 */
+  const visibleNote = $derived(
+    videos.length === 1
+      ? m.oshimitsu_narrow_note_visible_one({ count: videos.length })
+      : m.oshimitsu_narrow_note_visible_other({ count: videos.length }),
+  )
+  /** 言葉を入れたときの、名前でしぼる欄の注記 */
+  const matchedNote = $derived(
+    visibleVideos.length === 1
+      ? m.oshimitsu_narrow_note_matched_one({ count: visibleVideos.length })
+      : m.oshimitsu_narrow_note_matched_other({ count: visibleVideos.length }),
+  )
+
   // 並べ替えに乱数を使うので、一覧はブラウザーでだけ作る
   onMount(() => {
     const query = initialQuery ?? parseSearchQuery(new URL(location.href).searchParams)
@@ -68,7 +92,9 @@
 </script>
 
 {#snippet keywordActions()}
-  <button type="button" class="primary" onclick={() => (keyword = '')}>言葉を消して戻す</button>
+  <button type="button" class="primary" onclick={() => (keyword = '')}>
+    {m.oshimitsu_keyword_clear()}
+  </button>
   {#if hasMore}
     <button type="button" class="secondary" onclick={getMoreVideos}>
       {m.oshimitsu_load_more()}
@@ -77,7 +103,7 @@
 {/snippet}
 
 <article class="result" class:mobile={isMobile}>
-  <nav class="breadcrumb" aria-label="現在地">
+  <nav class="breadcrumb" aria-label={m.oshimitsu_result_breadcrumb_label()}>
     <a href={localizeHref(ROUTES.oshimitsu.index)}>
       <span aria-hidden="true">←</span>
       {m.oshimitsu_title()}
@@ -86,11 +112,12 @@
 
   <header class="head">
     <!-- 見出しだけでは何の一覧か分からないので、上に一言置く -->
-    <p class="kicker">男子新体操の演技動画</p>
+    <p class="kicker">{m.oshimitsu_result_kicker()}</p>
     <h1>{title}</h1>
     {#if isLaunched && totalVideos !== undefined && totalVideos > 0}
       <p class="count">
-        <strong>{totalVideos}</strong>本の動画が見つかりました。 いま{videos.length}本を表示しています。
+        <strong>{totalVideos}</strong>{foundText}
+        {showingText}
       </p>
     {/if}
   </header>
@@ -106,33 +133,33 @@
     </ul>
   {:else if totalVideos === 0}
     <EmptyResult
-      title="この条件の動画は、まだありません"
-      description="動画は少しずつ足しています。上の「手具」を変えるか、下から選び直せます。"
+      title={m.oshimitsu_empty_filter_title()}
+      description={m.oshimitsu_empty_filter_description()}
     />
   {:else}
     <div class="narrow">
-      <label class="narrow-label" for="oshimitsu-keyword">選手・チーム名でしぼる</label>
+      <label class="narrow-label" for="oshimitsu-keyword">{m.oshimitsu_narrow_label()}</label>
       <input
         id="oshimitsu-keyword"
         class="narrow-input"
         type="search"
         bind:value={keyword}
-        placeholder="例：青森大学、清水"
+        placeholder={m.oshimitsu_narrow_placeholder()}
         autocomplete="off"
       />
       <span class="narrow-note">
         {#if keyword.trim() === ''}
-          表示中の{videos.length}本から探します
+          {visibleNote}
         {:else}
-          {visibleVideos.length}本が一致しました
+          {matchedNote}
         {/if}
       </span>
     </div>
 
     {#if visibleVideos.length === 0}
       <EmptyResult
-        title="「{keyword}」は、表示中の動画にありません"
-        description="名字だけ、学校名だけでも探せます。「もっと見る」で増やしてからも探せます。"
+        title={m.oshimitsu_empty_keyword_title({ keyword })}
+        description={m.oshimitsu_empty_keyword_description()}
         actions={keywordActions}
       />
     {:else}
@@ -154,7 +181,9 @@
         />
       {:else}
         <p class="no-more">{m.oshimitsu_no_more_videos()}</p>
-        <a class="other" href={localizeHref(ROUTES.oshimitsu.index)}>ほかの探し方を見る →</a>
+        <a class="other" href={localizeHref(ROUTES.oshimitsu.index)}>
+          {m.oshimitsu_other_ways()} →
+        </a>
       {/if}
     </footer>
   {/if}

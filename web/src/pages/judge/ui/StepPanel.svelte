@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { JudgeStepState, type JudgeStep } from '../config/steps'
 
@@ -22,13 +23,13 @@
   <header class="head">
     <span class="number" aria-hidden="true">{step.number}</span>
     <div class="words">
-      <h2>{step.title}</h2>
-      <p class="note">{state === JudgeStepState.WAITING ? step.waiting : step.note}</p>
+      <h2>{step.title()}</h2>
+      <p class="note">{state === JudgeStepState.WAITING ? step.waiting() : step.note()}</p>
     </div>
     {#if state === JudgeStepState.CURRENT}
-      <span class="badge">いまここ</span>
+      <span class="badge">{m.judge_step_badge_current()}</span>
     {:else if state === JudgeStepState.DONE}
-      <span class="badge filled">入力ずみ</span>
+      <span class="badge filled">{m.judge_step_badge_done()}</span>
     {/if}
   </header>
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import NextActions from './NextActions.svelte'
@@ -24,21 +25,26 @@
       <CharacterFigure character={guide} size={isMobile ? 80 : 100} />
     </div>
     <div class="words">
-      <p class="speaker">{guide.name}（ルール・採点）</p>
-      <h2>採点おつかれさま。</h2>
+      <p class="speaker">
+        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+      </p>
+      <h2>{m.judge_result_thanks_title()}</h2>
       <p class="say">
-        いま出た点が、あなたの決定点です。<strong>正解と見くらべる必要はありません。</strong>
-        同じ演技でも、審判によって点は少しずつ違います。次はこの点の意味をたどってみてください。
+        {m.judge_result_thanks_1()}<strong>{m.judge_result_thanks_emphasis()}</strong
+        >{m.judge_result_thanks_2()}
       </p>
     </div>
   </header>
 
   <div class="buttons">
-    <button class="again" type="button" onclick={onshowscore}>決定点をもう一度見る</button>
-    <button class="retry" type="button" onclick={onretry}>最初から採点し直す</button>
+    <button class="again" type="button" onclick={onshowscore}>{m.judge_result_show_score()}</button>
+    <button class="retry" type="button" onclick={onretry}>{m.judge_result_restart()}</button>
   </div>
 
-  <NextActions title="次にすること" description="点を付けたあとに読むと、いちばん入ってきます。" />
+  <NextActions
+    title={m.judge_next_actions_title()}
+    description={m.judge_next_actions_description()}
+  />
 </section>
 
 <style lang="scss">

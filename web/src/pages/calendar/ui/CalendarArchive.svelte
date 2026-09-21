@@ -29,10 +29,7 @@
 -->
 <section class="archive" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
   <h2 class="archive-title">{m.calendar_archive_title()}</h2>
-  <p class="archive-lead">
-    年を開くと、その年に載せている大会・発表会・講習会がすべて並びます。
-    過去の大会からも、その年の出典と結果ページをたどれます。
-  </p>
+  <p class="archive-lead">{m.calendar_archive_lead()}</p>
   {#each eventsByYear as [year, events] (year)}
     <details class="year">
       <summary class="year-summary">

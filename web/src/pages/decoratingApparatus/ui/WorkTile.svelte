@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { ImageAssets } from '@shared/ui'
   import type { ImageSourceMeta } from '@shared/ui'
 
@@ -20,7 +21,11 @@
 </script>
 
 <li class="tile">
-  <button type="button" onclick={onOpen} aria-label="{alt}を大きく見る">
+  <button
+    type="button"
+    onclick={onOpen}
+    aria-label={m.decorating_apparatus_work_zoom_label({ alt })}
+  >
     <span class="photo">
       <ImageAssets
         width="100%"
@@ -32,11 +37,11 @@
       />
     </span>
     <span class="foot">
-      <span class="number">作品 {workNumber}</span>
+      <span class="number">{m.decorating_apparatus_work_number({ number: workNumber })}</span>
       {#if images.length > 1}
-        <span class="sheets">{images.length} 枚</span>
+        <span class="sheets">{m.decorating_apparatus_work_sheets({ count: images.length })}</span>
       {/if}
-      <span class="zoom" aria-hidden="true">＋ 大きく見る</span>
+      <span class="zoom" aria-hidden="true">{m.decorating_apparatus_work_zoom()}</span>
     </span>
   </button>
 </li>

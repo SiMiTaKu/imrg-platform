@@ -22,12 +22,12 @@
   </header>
 
   <ul class="cards">
-    {#each JUDGE_NEXT_ACTIONS as next (next.title)}
+    {#each JUDGE_NEXT_ACTIONS as next (next.id)}
       <li>
         <a href={localizeHref(next.href)}>
-          <h3>{next.title}</h3>
-          <p>{next.body}</p>
-          <span class="action">{next.action} →</span>
+          <h3>{next.title()}</h3>
+          <p>{next.body()}</p>
+          <span class="action">{next.action()} →</span>
         </a>
       </li>
     {/each}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { CONTACTS } from '../config/sections'
 
@@ -8,11 +9,11 @@
 <section class="contact" class:mobile={isMobile} id="contact">
   <div class="inner">
     <header>
-      <h2>連絡する</h2>
+      <h2>{m.top_contact_title()}</h2>
       <p>
-        曲編集や手具装飾の相談、大会情報の訂正、取材や講習の依頼まで。
-        <strong>Instagram のメッセージがいちばん早く届きます。</strong>
-        返事は数日いただくことがあります。
+        {m.top_contact_body_1()}
+        <strong>{m.top_contact_body_strong()}</strong>
+        {m.top_contact_body_2()}
       </p>
     </header>
 
@@ -21,15 +22,13 @@
         <li>
           <a href={contact.href} target="_blank" rel="noopener noreferrer">
             <span class="label">{contact.label}</span>
-            <span class="description">{contact.description}</span>
+            <span class="description">{contact.description()}</span>
           </a>
         </li>
       {/each}
     </ul>
 
-    <p class="operator">
-      運営：男子新体操国際化プロジェクト（清水 拓海）／2022年から活動しています
-    </p>
+    <p class="operator">{m.top_contact_operator()}</p>
   </div>
 </section>
 

@@ -35,10 +35,12 @@
   「次はこれ」が最初に目に入るようにするための区画
 -->
 {#if events.length}
-  <section class="upcoming" class:mobile={isMobile} aria-label="次にある大会">
+  <section class="upcoming" class:mobile={isMobile} aria-label={m.calendar_upcoming_title()}>
     <div class="head">
-      <h2>次にある大会</h2>
-      <button class="see-all" type="button" onclick={onseeall}>これから の一覧を見る ›</button>
+      <h2>{m.calendar_upcoming_title()}</h2>
+      <button class="see-all" type="button" onclick={onseeall}
+        >{m.calendar_upcoming_see_all()} ›</button
+      >
     </div>
 
     <ul class="cards">
@@ -65,7 +67,7 @@
             {/if}
 
             <!-- 下に置きたいものは重ねず、余った高さを margin で押し下げる -->
-            <span class="more">詳しく見る ›</span>
+            <span class="more">{m.calendar_upcoming_more()} ›</span>
           </a>
         </li>
       {/each}

@@ -27,5 +27,6 @@
   "error_title": "오류가 발생했습니다",
   "error_not_found": "※요청하신 페이지는 존재하지 않습니다.",
   "error_back_to_top": "홈으로 돌아가기",
-  "layout_locale_switch_label": "표시 언어"
+  "layout_locale_switch_label": "표시 언어",
+  "layout_nav_coaching": "지도 의뢰하기"
 }

@@ -16,9 +16,9 @@
 <section class="work-list" class:mobile={isMobile} id="works">
   <div class="inner">
     <SectionHeading
-      eyebrow={WORKS_HEADING.eyebrow}
+      eyebrow={WORKS_HEADING.eyebrow()}
       title={m.decorating_apparatus_work_list_title()}
-      lead={WORKS_HEADING.lead}
+      lead={WORKS_HEADING.lead()}
     />
 
     <ul class="list">
@@ -41,7 +41,7 @@
       />
     {/if}
 
-    <p class="count">これまでに {WORK_LIST.length} 本の手具を仕上げました。</p>
+    <p class="count">{m.decorating_apparatus_works_count({ count: WORK_LIST.length })}</p>
   </div>
 </section>
 

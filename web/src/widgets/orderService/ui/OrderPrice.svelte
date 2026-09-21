@@ -18,14 +18,26 @@
     amount: string
     /** 金額の下に並べる補足 */
     notes: string[]
+    /** 見積もりが無料であることの言い切り。金額のすぐ下に出す */
+    freeNote: string
     /** 相談の窓口（Instagram） */
     contactHref: string
     /** 相談のボタンの文言 */
     contactLabel: string
   }
 
-  const { eyebrow, title, subtitle, lead, unit, amount, notes, contactHref, contactLabel }: Props =
-    $props()
+  const {
+    eyebrow,
+    title,
+    subtitle,
+    lead,
+    unit,
+    amount,
+    notes,
+    freeNote,
+    contactHref,
+    contactLabel,
+  }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
 </script>
@@ -45,7 +57,7 @@
       </ul>
 
       <!-- 見積もりは無料であることを、金額のすぐ下で言い切る -->
-      <p class="free">見積もりまでは無料です。金額を聞いてから決めてもらって構いません。</p>
+      <p class="free">{freeNote}</p>
 
       <a class="contact" href={contactHref} target="_blank" rel="noopener noreferrer">
         {contactLabel}

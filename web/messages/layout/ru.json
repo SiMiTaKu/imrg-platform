@@ -27,5 +27,6 @@
   "error_title": "Произошла ошибка",
   "error_not_found": "※ Запрошенная страница не существует.",
   "error_back_to_top": "На главную",
-  "layout_locale_switch_label": "Язык"
+  "layout_locale_switch_label": "Язык",
+  "layout_nav_coaching": "Заказать тренировку"
 }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { JUDGE_STEPS, JudgeStepState, getStepState } from '../config/steps'
 
@@ -13,13 +14,13 @@
 </script>
 
 <!-- いまどこを採点しているかを、常に上に出しておく -->
-<nav class="steps" class:mobile={isMobile} aria-label="採点の進み方">
+<nav class="steps" class:mobile={isMobile} aria-label={m.judge_steps_nav_label()}>
   <ol>
     {#each JUDGE_STEPS as step (step.number)}
       {@const state = getStepState(step.number, current)}
       <li class="step {state}" aria-current={state === JudgeStepState.CURRENT ? 'step' : undefined}>
         <span class="number" aria-hidden="true">{step.number}</span>
-        <span class="label">{step.short}</span>
+        <span class="label">{step.short()}</span>
       </li>
     {/each}
   </ol>

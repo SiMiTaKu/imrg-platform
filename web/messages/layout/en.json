@@ -27,5 +27,6 @@
   "error_title": "An error occurred",
   "error_not_found": "* The requested page does not exist.",
   "error_back_to_top": "Back to home",
-  "layout_locale_switch_label": "Language"
+  "layout_locale_switch_label": "Language",
+  "layout_nav_coaching": "Order coaching"
 }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
   import { pageData } from '@shared/lib/device'
@@ -62,7 +63,9 @@
       <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
     </div>
     <div class="words">
-      <p class="speaker">{guide.name}（ルール・採点）</p>
+      <p class="speaker">
+        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+      </p>
       <h1>{ruleBook.title}</h1>
       <p class="say">
         規則集は長いので、<strong>章ごとに畳んであります。</strong>

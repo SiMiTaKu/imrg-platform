@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { NUMBERS } from '../config/sections'
 
@@ -7,19 +8,16 @@
 
 <section class="numbers" class:mobile={isMobile}>
   <div class="inner">
-    <h2>数字で見る</h2>
+    <h2>{m.top_numbers_title()}</h2>
     <ul>
-      {#each NUMBERS as number (number.label)}
+      {#each NUMBERS as number (number.id)}
         <li>
-          <span class="value">{number.value}<span class="unit">{number.unit}</span></span>
-          <span class="label">{number.label}</span>
+          <span class="value">{number.value}<span class="unit">{number.unit()}</span></span>
+          <span class="label">{number.label()}</span>
         </li>
       {/each}
     </ul>
-    <p class="source">
-      掲載している大会は、主催団体の発表と公式の要項を確かめて載せています。
-      誤りを見つけたら知らせてください。直します。
-    </p>
+    <p class="source">{m.top_numbers_source()}</p>
   </div>
 </section>
 

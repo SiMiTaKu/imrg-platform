@@ -10,6 +10,7 @@ export const ALL_PAGES: readonly string[] = [
   `${ROUTES.oshimitsu.index}*`,
   ROUTES.decoratingApparatus,
   ROUTES.backgroundMusic,
+  ROUTES.coaching,
   ROUTES.judge,
   ROUTES.rules,
   ROUTES.privacy,

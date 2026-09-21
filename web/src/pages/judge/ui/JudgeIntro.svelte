@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -15,22 +16,28 @@
   /** 採点の案内役。ルールのページと同じ人が案内する */
   const guide = findCharacter(Character.OSAMU)
 
-  /** 採点をやってみる前に伝えること。身構えずに1つ試せることを先に言う */
+  /**
+   * 採点をやってみる前に伝えること。身構えずに1つ試せることを先に言う。
+   * 文言は言語が決まってから取り出したいので、関数にして遅らせている
+   */
   const POINTS = [
     {
-      label: '3分',
-      title: '知識はいらない',
-      body: '見た演技を思い出して、つまみを動かすだけ。専門の言葉は出てこない。',
+      id: 'time',
+      label: () => m.judge_intro_point_time_label({ minutes: 3 }),
+      title: () => m.judge_intro_point_time_title(),
+      body: () => m.judge_intro_point_time_body(),
     },
     {
-      label: '11項目',
-      title: '審判と同じ項目',
-      body: '実際の採点で見ている項目をそのまま使う。姿勢、柔軟性、跳躍の高さ……。',
+      id: 'items',
+      label: () => m.judge_intro_point_items_label({ count: 11 }),
+      title: () => m.judge_intro_point_items_title(),
+      body: () => m.judge_intro_point_items_body(),
     },
     {
-      label: '10点満点',
-      title: 'あなたの点が出る',
-      body: '決定点と、どの項目でいくつ引いたかの内訳が出る。演技の見方が変わる。',
+      id: 'score',
+      label: () => m.judge_intro_point_score_label({ score: 10 }),
+      title: () => m.judge_intro_point_score_title(),
+      body: () => m.judge_intro_point_score_body(),
     },
   ]
 </script>
@@ -42,34 +49,36 @@
         <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
       </div>
       <div class="words">
-        <p class="speaker">{guide.name}（ルール・採点）</p>
-        <h1>審判をやってみる</h1>
+        <p class="speaker">
+          {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+        </p>
+        <h1>{m.judge_intro_title()}</h1>
         <p class="say">
-          男子新体操の個人競技を、<strong>審判と同じ採点表で</strong>採点してみるページです。 最後に<strong
-            class="accent">あなたが付けた決定点</strong
-          >と、その内訳が出ます。 採点の記録は残らないので、気楽に試してください。
+          {m.judge_intro_lead_1()}<strong>{m.judge_intro_lead_emphasis()}</strong
+          >{m.judge_intro_lead_2()}<strong class="accent">{m.judge_intro_lead_accent()}</strong
+          >{m.judge_intro_lead_3()}
         </p>
       </div>
     </header>
 
     <ul class="points">
-      {#each POINTS as point (point.title)}
+      {#each POINTS as point (point.id)}
         <li>
           <!-- 数と見出しは1行に並べる。札を上に積むと card が縦に伸びる -->
           <div class="point-head">
-            <span class="label">{point.label}</span>
-            <h2>{point.title}</h2>
+            <span class="label">{point.label()}</span>
+            <h2>{point.title()}</h2>
           </div>
-          <p>{point.body}</p>
+          <p>{point.body()}</p>
         </li>
       {/each}
     </ul>
 
     <div class="actions">
-      <button class="start" type="button" onclick={onstart}>まず手具を1つ選ぶ</button>
-      <a class="sub" href={localizeHref(ROUTES.rules)}>先にルールを読む</a>
+      <button class="start" type="button" onclick={onstart}>{m.judge_intro_start()}</button>
+      <a class="sub" href={localizeHref(ROUTES.rules)}>{m.judge_intro_read_rules()}</a>
     </div>
-    <p class="note">途中でやめても大丈夫です。何度でもやり直せます。</p>
+    <p class="note">{m.judge_intro_note()}</p>
   </div>
 </section>
 

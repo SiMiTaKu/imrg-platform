@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { ImageAssets } from '@shared/ui'
   import type { ImageSourceMeta } from '@shared/ui'
 
@@ -53,8 +54,16 @@
 <dialog bind:this={dialog} class="viewer" onclose={onClose} onkeydown={onKeydown}>
   <div class="inner">
     <header>
-      <p class="count">作品 {workNumber}／{index + 1} 枚目（全 {images.length} 枚）</p>
-      <button type="button" class="close" onclick={() => dialog?.close()}>閉じる</button>
+      <p class="count">
+        {m.decorating_apparatus_viewer_count({
+          work: workNumber,
+          index: index + 1,
+          total: images.length,
+        })}
+      </p>
+      <button type="button" class="close" onclick={() => dialog?.close()}>
+        {m.decorating_apparatus_viewer_close()}
+      </button>
     </header>
 
     <div
@@ -62,10 +71,15 @@
       ontouchstart={onTouchStart}
       ontouchend={onTouchEnd}
       role="group"
-      aria-label="作品の写真"
+      aria-label={m.decorating_apparatus_viewer_stage_label()}
     >
       {#if images.length > 1}
-        <button type="button" class="step back" onclick={() => move(-1)} aria-label="前の写真">
+        <button
+          type="button"
+          class="step back"
+          onclick={() => move(-1)}
+          aria-label={m.decorating_apparatus_viewer_prev()}
+        >
           ‹
         </button>
       {/if}
@@ -82,7 +96,12 @@
       </div>
 
       {#if images.length > 1}
-        <button type="button" class="step next" onclick={() => move(1)} aria-label="次の写真">
+        <button
+          type="button"
+          class="step next"
+          onclick={() => move(1)}
+          aria-label={m.decorating_apparatus_viewer_next()}
+        >
           ›
         </button>
       {/if}
@@ -96,7 +115,7 @@
               type="button"
               class:current={dotIndex === index}
               onclick={() => (index = dotIndex)}
-              aria-label="{dotIndex + 1} 枚目を見る"
+              aria-label={m.decorating_apparatus_viewer_dot_label({ index: dotIndex + 1 })}
               aria-current={dotIndex === index}
             ></button>
           </li>

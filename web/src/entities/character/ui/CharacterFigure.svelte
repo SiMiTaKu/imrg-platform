@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { HairStyle, Pose, type CharacterProfile } from '../model/character'
 
   const {
@@ -52,7 +53,10 @@
   height={size}
   viewBox="0 0 120 160"
   role="img"
-  aria-label="{character.name}（{character.specialty}）"
+  aria-label={m.character_figure_label({
+    name: character.name(),
+    specialty: character.specialty(),
+  })}
 >
   <!-- 足元の影。浮いている人は小さく薄い -->
   <ellipse

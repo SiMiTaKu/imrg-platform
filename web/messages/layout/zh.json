@@ -27,5 +27,6 @@
   "error_title": "发生了错误",
   "error_not_found": "※请求的页面不存在。",
   "error_back_to_top": "返回首页",
-  "layout_locale_switch_label": "显示语言"
+  "layout_locale_switch_label": "显示语言",
+  "layout_nav_coaching": "委托指导"
 }

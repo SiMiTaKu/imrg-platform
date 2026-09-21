@@ -18,10 +18,10 @@
 -->
 <section class="footer-cards" class:mobile={isMobile}>
   <div class="card trust">
-    <h3 class="card-title">この情報について</h3>
+    <h3 class="card-title">{m.calendar_about_title()}</h3>
     <ul class="points">
-      <li>主催者の発表と競技団体のサイトを1件ずつ確かめて載せています。</li>
-      <li>大会ごとの詳細ページに、日程の出典を書いています。</li>
+      <li>{m.calendar_trust_verified()}</li>
+      <li>{m.calendar_trust_source()}</li>
       <li>{m.calendar_updated_at({ date: formatDay(UPDATED_AT, locale) })}</li>
     </ul>
     <p class="caution">{m.calendar_caution()}</p>
@@ -38,7 +38,7 @@
     </p>
     <!-- 下にそろえる。重ねずに、余った高さを margin で押し下げる -->
     <a class="contribute-button" href={LINKS.instagram} rel="noopener noreferrer" target="_blank"
-      >Instagram で知らせる</a
+      >{m.calendar_contribute_button()}</a
     >
   </div>
 </section>

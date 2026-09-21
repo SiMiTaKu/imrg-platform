@@ -6,6 +6,7 @@ import {
   localizeEvent,
   type CalendarEvent,
 } from '@entities/calendarEvent'
+import { m } from '$lib/paraglide/messages'
 import type { CalendarDetailMetaInput } from '@shared/config/meta'
 import { NotFoundError } from '@shared/errors'
 import { parseDate } from '@shared/lib/date'
@@ -79,17 +80,26 @@ export const buildSportsEventJsonLd = (
   }
 }
 
+/** 開催までの近さ1つ分 */
+export interface EventCountdown {
+  /** 画面に出す文言。表示中の言語で返す */
+  readonly text: string
+  /** もう終わった大会か。終わったものは青で目立たせない */
+  readonly finished: boolean
+}
+
 /**
- * 開催までの近さを短い日本語にする
+ * 開催までの近さを、表示中の言語の短い文言にする
  * @param event - 大会
  * @param today - 今日の日付 "YYYY-MM-DD"
- * @returns 「今日」「明日」「あと5日」「開催中」「終了」。日付が未定なら undefined
+ * @returns 「今日」「明日」「あと5日」「開催中」「終了」と、終わったかどうか。日付が未定なら undefined
  *
  * @remarks
  * 同じ考え方の関数がカレンダー一覧のページにもある。ページをまたいで共有せず、
- * それぞれのページの中で完結させている（一覧は「終了」を出さないなど、出し分けが違うため）
+ * それぞれのページの中で完結させている（一覧は「終了」を出さないなど、出し分けが違うため）。
+ * 終わったかどうかは文言で見分けない。訳した文字と見比べると、言語を変えたとたんに外れるため
  */
-export const countdownText = (event: CalendarEvent, today: string): string | undefined => {
+export const eventCountdown = (event: CalendarEvent, today: string): EventCountdown | undefined => {
   if (event.schedule === EventSchedule.MONTH_ONLY) return undefined
 
   const start = parseDate(event.startDate)
@@ -101,10 +111,12 @@ export const countdownText = (event: CalendarEvent, today: string): string | und
       Date.UTC(base.year, base.month - 1, base.day)) /
       DAY_MS,
   )
-  if (left > 1) return `あと${left}日`
-  if (left === 1) return '明日'
-  if (left === 0) return '今日'
-  return (event.endDate ?? event.startDate) >= today ? '開催中' : '終了'
+  if (left > 1) return { text: m.calendar_countdown_days_left({ days: left }), finished: false }
+  if (left === 1) return { text: m.calendar_countdown_tomorrow(), finished: false }
+  if (left === 0) return { text: m.calendar_countdown_today(), finished: false }
+  return (event.endDate ?? event.startDate) >= today
+    ? { text: m.calendar_countdown_ongoing(), finished: false }
+    : { text: m.calendar_countdown_finished(), finished: true }
 }
 
 /**

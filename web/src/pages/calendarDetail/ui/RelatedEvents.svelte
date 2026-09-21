@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import {
     categoryColor,
     categoryLabel,
@@ -24,7 +25,7 @@
 <!-- 行き先を1つに絞らせない。この日に見に行ける別の大会へも移れるようにする -->
 {#if events.length}
   <section class="related">
-    <h2 class="related-title">同じころに開かれる大会</h2>
+    <h2 class="related-title">{m.calendar_related_title()}</h2>
     <ul class="list">
       {#each events as event (event.id)}
         <li style:--color={categoryColor(event.category)}>

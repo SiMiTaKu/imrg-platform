@@ -7,15 +7,15 @@ describe('トップページの構成', () => {
   describe('正常系', () => {
     it('頼めることを並べた場合、いちばん推したい指導が先頭に来ること', () => {
       // #region Given
-      // トップに来た人へ最初に見せたいのは指導
+      // トップに来た人へ最初に見せたいのは指導。文言は言語で変わるので id で見る
       // #endregion
 
       // #region When
-      const first = SERVICES[0].title
+      const first = SERVICES[0].id
       // #endregion
 
       // #region Then
-      expect(first).toBe('指導・演技構成')
+      expect(first).toBe('coaching')
       // #endregion
     })
 
@@ -35,11 +35,11 @@ describe('トップページの構成', () => {
 
     it('頼めることを並べた場合、料金が必ず書かれていること', () => {
       // #region Given
-      // 依頼の入口で金額が分かることが、このセクションの目的
+      // 依頼の入口で金額が分かることが、このセクションの目的。既定の言語は日本語なので円で出る
       // #endregion
 
       // #region When
-      const prices = SERVICES.map((service) => service.price)
+      const prices = SERVICES.map((service) => service.price())
       // #endregion
 
       // #region Then

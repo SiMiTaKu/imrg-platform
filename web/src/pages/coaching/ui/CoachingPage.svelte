@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { Character, CharacterFigure, findCharacter } from '@entities/character'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
@@ -8,6 +9,7 @@
     CONTINUOUS_RESULTS,
     FLOW,
     HERO,
+    MARKET_POINTS,
     OTHER_SERVICES,
     PRICES,
     RESULTS,
@@ -26,28 +28,28 @@
         <div class="head">
           <CharacterFigure character={guide} size={isMobile ? 84 : 112} />
           <div class="naming">
-            <span class="eyebrow">{HERO.eyebrow}</span>
-            <h1>指導・演技構成</h1>
-            <p class="price"><span class="unit">{HERO.priceUnit}</span>{HERO.priceAmount}</p>
+            <span class="eyebrow">{HERO.eyebrow()}</span>
+            <h1>{m.coaching_hero_title()}</h1>
+            <p class="price"><span class="unit">{HERO.priceUnit()}</span>{HERO.priceAmount()}</p>
           </div>
         </div>
 
-        <p class="summary">{HERO.summary}</p>
+        <p class="summary">{HERO.summary()}</p>
 
         <ul class="tags">
-          {#each HERO.points as point (point)}
-            <li>{point}</li>
+          {#each HERO.points as point (point.key)}
+            <li>{point.text()}</li>
           {/each}
         </ul>
 
         <div class="actions">
           <a class="contact" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
-            DM で相談する
+            {m.coaching_contact_button()}
           </a>
-          <a class="secondary" href="#prices">料金を見る</a>
+          <a class="secondary" href="#prices">{m.coaching_hero_price_link()}</a>
         </div>
         <p class="note">
-          Instagram のダイレクトメッセージがいちばん早く届きます。見積もりまで無料です。
+          {m.coaching_hero_note()}
         </p>
       </div>
     </div>
@@ -57,9 +59,9 @@
   <section class="ways">
     <div class="inner">
       <header>
-        <span class="label">受け方</span>
-        <h2>オンラインと、会場へ出向く形があります</h2>
-        <p>できることが変わるので、目的に合うほうを選んでください。</p>
+        <span class="label">{m.coaching_ways_label()}</span>
+        <h2>{m.coaching_ways_title()}</h2>
+        <p>{m.coaching_ways_lead()}</p>
       </header>
 
       <ul class="way-cards">
@@ -69,16 +71,16 @@
             <div class="way-head">
               <CharacterFigure {character} size={isMobile ? 72 : 88} />
               <div>
-                <h3>{way.label}</h3>
-                <p class="way-summary">{way.summary}</p>
+                <h3>{way.label()}</h3>
+                <p class="way-summary">{way.summary()}</p>
               </div>
             </div>
             <ul class="points">
-              {#each way.points as point (point)}
-                <li>{point}</li>
+              {#each way.points as point, pointIndex (pointIndex)}
+                <li>{point()}</li>
               {/each}
             </ul>
-            <p class="way-note">{way.note}</p>
+            <p class="way-note">{way.note()}</p>
           </li>
         {/each}
       </ul>
@@ -89,23 +91,23 @@
   <section class="prices" id="prices">
     <div class="inner">
       <header>
-        <span class="label">料金</span>
-        <h2>料金の目安</h2>
-        <p>内容と人数で変わります。まず相談してもらって、見積もりをお伝えします。</p>
+        <span class="label">{m.coaching_prices_label()}</span>
+        <h2>{m.coaching_prices_title()}</h2>
+        <p>{m.coaching_prices_lead()}</p>
       </header>
 
       <div class="price-tables">
-        {#each PRICES as group (group.way)}
+        {#each PRICES as group (group.key)}
           <div class="price-table">
-            <h3>{group.way}</h3>
+            <h3>{group.way()}</h3>
             <dl>
-              {#each group.items as item (item.name)}
+              {#each group.items as item (item.key)}
                 <div class="row">
                   <dt>
-                    {item.name}
-                    <span class="row-note">{item.note}</span>
+                    {item.name()}
+                    <span class="row-note">{item.note()}</span>
                   </dt>
-                  <dd>{item.price}</dd>
+                  <dd>{item.price()}</dd>
                 </div>
               {/each}
             </dl>
@@ -114,26 +116,19 @@
       </div>
 
       <div class="market">
-        <h3>相場について</h3>
+        <h3>{m.coaching_market_title()}</h3>
         <p>
-          男子新体操は競技人口が少なく、指導や構成作成の相場が決まっていません。
-          頼む側も「いくらが普通なのか」が分からないと思うので、考え方を書いておきます。
+          {m.coaching_market_lead()}
         </p>
         <ul>
-          <li>
-            <b>会場へ出向く場合</b>は、丸1日を空けて移動します。1日 10,000円は、
-            スポーツの個人指導の相場（1時間 3,000〜5,000円）から見ると低めの設定です。
-          </li>
-          <li>
-            <b>構成の作成</b>は、曲を聴いて組み立て、動画を作り、書き起こす作業が入ります。
-            1演技あたり数日かかります。
-          </li>
-          <li>
-            <b>添削</b>は動画を見て直しを伝えるだけなので、いちばん頼みやすい入口です。
-          </li>
+          {#each MARKET_POINTS as point (point.key)}
+            <li>
+              <b>{point.term()}</b>{point.body()}
+            </li>
+          {/each}
         </ul>
         <p class="market-note">
-          予算に合わせて内容を調整できます。「この金額でどこまでできるか」という相談でも構いません。
+          {m.coaching_market_note()}
         </p>
       </div>
     </div>
@@ -143,9 +138,9 @@
   <section class="results">
     <div class="inner">
       <header>
-        <span class="label">実績</span>
-        <h2>これまでに作った演技</h2>
-        <p>全日本・全国大会で使われた構成を含みます。</p>
+        <span class="label">{m.coaching_results_label()}</span>
+        <h2>{m.coaching_results_title()}</h2>
+        <p>{m.coaching_results_lead()}</p>
       </header>
 
       <ol class="timeline">
@@ -153,9 +148,9 @@
           <li>
             <div class="result-head">
               <span class="year">{result.year}</span>
-              <span class="name">{result.name}</span>
+              <span class="name">{result.name()}</span>
               {#if result.detail}
-                <span class="detail">{result.detail}</span>
+                <span class="detail">{result.detail()}</span>
               {/if}
             </div>
             {#if result.videos.length > 0}
@@ -170,7 +165,7 @@
                         />
                         <path d="M45 24 27 14v20" fill="#fff" />
                       </svg>
-                      {video.label}
+                      {video.label()}
                     </a>
                   </li>
                 {/each}
@@ -181,8 +176,8 @@
       </ol>
 
       <ul class="continuous">
-        {#each CONTINUOUS_RESULTS as item (item)}
-          <li>{item}</li>
+        {#each CONTINUOUS_RESULTS as item (item.key)}
+          <li>{item.text()}</li>
         {/each}
       </ul>
     </div>
@@ -192,12 +187,12 @@
   <section class="flow">
     <div class="inner">
       <header>
-        <span class="label">流れ</span>
-        <h2>相談から渡すまで</h2>
+        <span class="label">{m.coaching_flow_label()}</span>
+        <h2>{m.coaching_flow_title()}</h2>
       </header>
 
       <ol class="steps">
-        {#each FLOW as step, index (index)}
+        {#each FLOW as step, index (step.key)}
           {#if index > 0}
             <li class="arrow" aria-hidden="true">
               <svg viewBox="0 0 24 28" width="22" height="26">
@@ -214,8 +209,8 @@
           <li class="step">
             <span class="index">{index + 1}</span>
             <div class="words">
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
+              <h3>{step.title()}</h3>
+              <p>{step.description()}</p>
             </div>
           </li>
         {/each}
@@ -227,22 +222,21 @@
   <section class="contact-panel">
     <div class="inner">
       <CharacterFigure character={guide} size={isMobile ? 84 : 104} />
-      <h2>まずは相談してください</h2>
+      <h2>{m.coaching_contact_title()}</h2>
       <p>
-        いつ・どこで・何人を・どこまで。決まっていないことがあっても構いません。
-        予算に合わせて内容を調整できます。
+        {m.coaching_contact_lead()}
       </p>
       <a class="contact" href={LINKS.instagram} target="_blank" rel="noopener noreferrer">
-        DM で相談する
+        {m.coaching_contact_button()}
       </a>
-      <p class="note">返事に数日いただくことがあります。見積もりまで無料です。</p>
+      <p class="note">{m.coaching_contact_note()}</p>
 
       <ul class="others">
-        {#each OTHER_SERVICES as service (service.title)}
+        {#each OTHER_SERVICES as service (service.key)}
           <li>
             <a href={localizeHref(service.href)}>
-              <span class="other-title">{service.title}</span>
-              <span class="other-body">{service.body}</span>
+              <span class="other-title">{service.title()}</span>
+              <span class="other-body">{service.body()}</span>
             </a>
           </li>
         {/each}

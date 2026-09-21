@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, findCharacter } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -10,28 +11,26 @@
 <section class="services" class:mobile={isMobile} id="services">
   <div class="inner">
     <header>
-      <p class="eyebrow">依頼できます</p>
-      <h2>指導・曲編集・手具装飾を承っています</h2>
-      <p class="description">
-        選手・指導者の方から直接お受けしています。まずは相談だけでも構いません。
-      </p>
+      <p class="eyebrow">{m.top_services_eyebrow()}</p>
+      <h2>{m.top_services_title()}</h2>
+      <p class="description">{m.top_services_description()}</p>
     </header>
 
     <ul class="cards">
-      {#each SERVICES as service (service.title)}
+      {#each SERVICES as service (service.id)}
         {@const character = findCharacter(service.character)}
         <li style:--accent={character.color}>
           <div class="head">
             <CharacterFigure {character} size={isMobile ? 84 : 100} />
             <div class="naming">
-              <h3>{service.title}</h3>
-              <p class="price">{service.price}</p>
+              <h3>{service.title()}</h3>
+              <p class="price">{service.price()}</p>
             </div>
           </div>
-          <p class="body">{service.body}</p>
+          <p class="body">{service.body()}</p>
           <div class="actions">
-            <a class="detail" href={localizeHref(service.href)}>{service.action}</a>
-            <a class="order" href="#contact">相談する</a>
+            <a class="detail" href={localizeHref(service.href)}>{service.action()}</a>
+            <a class="order" href="#contact">{m.top_services_order()}</a>
           </div>
         </li>
       {/each}

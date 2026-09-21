@@ -1,4 +1,5 @@
 import { ContentType, VIDEOS, isIndividualVideo } from '@entities/oshimitsuVideo'
+import { m } from '$lib/paraglide/messages'
 import { APPARATUSES } from '@shared/config/apparatus'
 import { ROUTES } from '@shared/routes'
 
@@ -16,7 +17,7 @@ export interface SearchEntry {
   label: string
   /** 名前の前に出す小さな印。無ければ出さない */
   badge?: string
-  /** 何が見られるかのひと言（日本語の直書き。採用が決まってから多言語化する） */
+  /** 何が見られるかのひと言（表示中の言語） */
   description: string
   /** 行き先のパス（言語の接頭辞なし。`localizeHref` に通して使う） */
   href: string
@@ -51,12 +52,18 @@ export const VIDEO_COUNTS = {
 const countByApparatus = (slug: string): number =>
   VIDEOS.filter((video) => isIndividualVideo(video) && video.apparatus.slug === slug).length
 
-/** 手具ごとの見どころ（日本語の直書き。採用が決まってから多言語化する） */
-const APPARATUS_DESCRIPTIONS: Record<string, string> = {
-  stick: '細い棒をあやつる。手先の速さが見どころ',
-  ring: '輪をくぐり、回す。体の柔らかさが出る',
-  rope: '縄を跳び、回す。テンポの良さが気持ちいい',
-  club: 'こん棒をあやつる。投げと受けの正確さ',
+/**
+ * 手具ごとの見どころ。
+ *
+ * @remarks
+ * 表示中の言語の表記を返す関数を持つ。読み込んだ時点で文字列にすると、
+ * 言語が決まる前の表記で固まってしまうため
+ */
+const APPARATUS_DESCRIPTIONS: Record<string, () => string> = {
+  stick: m.oshimitsu_way_stick_description,
+  ring: m.oshimitsu_way_ring_description,
+  rope: m.oshimitsu_way_rope_description,
+  club: m.oshimitsu_way_club_description,
 }
 
 /**
@@ -67,16 +74,16 @@ export const contentTypeEntries = (): SearchEntry[] => [
   {
     id: ContentType.INDIVIDUAL.slug,
     label: ContentType.INDIVIDUAL.label(),
-    badge: '選手',
-    description: 'ひとりの選手が手具を持って演じる。選手ごとの個性が出る',
+    badge: m.oshimitsu_word_player(),
+    description: m.oshimitsu_way_individual_description(),
     href: ROUTES.oshimitsu.contentType(ContentType.INDIVIDUAL.slug),
     count: VIDEO_COUNTS.individual,
   },
   {
     id: ContentType.GROUP.slug,
     label: ContentType.GROUP.label(),
-    badge: 'チーム',
-    description: '5人が手具を持たずに、そろえて跳ぶ。男子新体操の花形',
+    badge: m.oshimitsu_word_team(),
+    description: m.oshimitsu_way_group_description(),
     href: ROUTES.oshimitsu.contentType(ContentType.GROUP.slug),
     count: VIDEO_COUNTS.group,
   },
@@ -90,7 +97,7 @@ export const apparatusEntries = (): SearchEntry[] =>
   APPARATUSES.map((apparatus) => ({
     id: apparatus.slug,
     label: apparatus.label(),
-    description: APPARATUS_DESCRIPTIONS[apparatus.slug] ?? '',
+    description: APPARATUS_DESCRIPTIONS[apparatus.slug]?.() ?? '',
     href: ROUTES.oshimitsu.apparatus(apparatus.slug),
     count: countByApparatus(apparatus.slug),
   }))

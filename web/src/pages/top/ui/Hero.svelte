@@ -29,15 +29,17 @@
     </h1>
 
     <p class="summary">
-      <strong class="accent">大会・ルール・演技の動画・依頼の窓口</strong
-      >が集まる、男子新体操のためのサイトです。 日本で生まれたこの競技を<strong
-        >オリンピックスポーツ</strong
-      >にするため、その魅力を<strong>全世界</strong>へ発信しています。
+      <strong class="accent">{m.top_hero_summary_accent()}</strong
+      >{m.top_hero_summary_body_1()}<strong>{m.top_hero_summary_emphasis_olympic()}</strong
+      >{m.top_hero_summary_body_2()}<strong>{m.top_hero_summary_emphasis_world()}</strong
+      >{m.top_hero_summary_body_3()}
     </p>
 
     <div class="actions">
-      <a class="primary" href={localizeHref(ROUTES.calendar.index)}>大会・イベントを探す</a>
-      <a class="secondary" href="#services">指導・曲編集を頼む</a>
+      <a class="primary" href={localizeHref(ROUTES.calendar.index)}
+        >{m.top_hero_action_calendar()}</a
+      >
+      <a class="secondary" href="#services">{m.top_hero_action_services()}</a>
     </div>
 
     <!-- 5人が並ぶ。競技が「団体5人」であることを、言葉より先に見せる -->
@@ -50,7 +52,7 @@
     </ul>
 
     <p class="note">
-      個人で運営しています。連絡は <a href="#contact">Instagram</a> がいちばん早く届きます。
+      {m.top_hero_note_lead()}<a href="#contact">Instagram</a>{m.top_hero_note_tail()}
     </p>
   </div>
 </section>

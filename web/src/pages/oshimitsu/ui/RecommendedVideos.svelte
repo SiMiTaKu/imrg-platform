@@ -24,7 +24,7 @@
   <div class="inner">
     <header class="head">
       <h2>{m.oshimitsu_recommended_title()}</h2>
-      <p>どれを見ればいいか迷ったら、ここから。開くたびに並びが変わります。</p>
+      <p>{m.oshimitsu_recommended_lead()}</p>
     </header>
 
     <ul class="cards">
@@ -34,7 +34,7 @@
     </ul>
 
     <a class="all" href={localizeHref(ROUTES.oshimitsu.searchResult)}>
-      すべての動画を見る
+      {m.oshimitsu_all_videos()}
       <span aria-hidden="true">→</span>
     </a>
   </div>

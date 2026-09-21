@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages'
   import { CHARACTERS, CharacterFigure } from '@entities/character'
   import { pageData } from '@shared/lib/device'
 
@@ -8,11 +9,8 @@
 <section class="team" class:mobile={isMobile}>
   <div class="inner">
     <header>
-      <h2>案内役の5人</h2>
-      <p>
-        団体競技と同じ5人組です。得意分野が違うので、ページごとに担当が変わります。 LINE
-        スタンプとしても準備中です。
-      </p>
+      <h2>{m.top_team_title()}</h2>
+      <p>{m.top_team_lead()}</p>
     </header>
 
     <ul class="members">
@@ -21,10 +19,15 @@
           <div class="figure">
             <CharacterFigure {character} size={isMobile ? 96 : 108} />
           </div>
-          <p class="specialty">{character.specialty}</p>
-          <h3>{character.name}</h3>
-          <p class="reading">{character.reading}／{character.heightCentimeter}cm</p>
-          <p class="role">{character.role}</p>
+          <p class="specialty">{character.specialty()}</p>
+          <h3>{character.name()}</h3>
+          <p class="reading">
+            {m.top_team_profile({
+              reading: character.reading(),
+              height: character.heightCentimeter,
+            })}
+          </p>
+          <p class="role">{character.role()}</p>
         </li>
       {/each}
     </ul>

@@ -230,7 +230,7 @@
 
   <!-- 探すための道具をひとまとめにする。キーワード・種類・年・地域・表示の切り替えを続けて置く -->
   <section bind:this={finderTop} class="finder" aria-label={m.calendar_search_label()}>
-    <h2 class="finder-title">大会をさがす</h2>
+    <h2 class="finder-title">{m.calendar_finder_title()}</h2>
 
     <CalendarSearchPanel
       keyword={calendarState.keyword}
@@ -292,9 +292,9 @@
     {#if isFiltered}
       <!-- 何で絞っているかを言葉で出す。押した覚えのない条件で0件になるのを防ぐ -->
       <p class="active-filters">
-        <span class="active-label">絞り込み中</span>
+        <span class="active-label">{m.calendar_active_filters_label()}</span>
         {#if calendarState.keyword}
-          <span class="pill">「{calendarState.keyword}」</span>
+          <span class="pill">{m.calendar_keyword_pill({ keyword: calendarState.keyword })}</span>
         {/if}
         {#if yearPill}
           <span class="pill">{yearPill}</span>
@@ -310,7 +310,7 @@
         {#if calendarState.day}
           <span class="pill">{formatDay(calendarState.day, locale)}</span>
         {/if}
-        <button class="clear" type="button" onclick={clearAll}>条件をすべて解除</button>
+        <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
       </p>
     {/if}
   </section>
@@ -364,7 +364,7 @@
         <p class="empty">
           {m.calendar_empty_month()}
           {#if isFiltered}
-            <button class="clear" type="button" onclick={clearAll}>条件をすべて解除</button>
+            <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
           {/if}
         </p>
       {/if}
@@ -384,7 +384,7 @@
         <p class="empty">
           {m.calendar_empty_filter()}
           {#if isFiltered}
-            <button class="clear" type="button" onclick={clearAll}>条件をすべて解除</button>
+            <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
           {/if}
         </p>
       {/each}

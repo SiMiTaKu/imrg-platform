@@ -62,82 +62,89 @@ export const FLOW_STEPS = [
 /** 手具装飾の料金（作業1時間あたり、円） */
 export const PRICE_PER_HOUR = 1500
 
-/**
- * ページの上のほうに出す案内の文言。
- *
- * @remarks
- * デザイン案のため日本語で直書きしている。採用するときに messages へ移す
- */
+/** ページの上のほうに出す案内の文言 */
 export const HERO = {
   /** 見出しの上の小さなラベル */
-  eyebrow: '手具装飾を承っています',
+  eyebrow: m.decorating_apparatus_hero_eyebrow,
   /** 何を頼めるのかの説明 */
-  summary:
-    'スティック・クラブ・リング・ロープを、チームの色や演技のイメージに合わせて仕上げます。デザインが決まっていなくても、色の相談から一緒に考えます。手具の持ち込みにも対応します。',
+  summary: m.decorating_apparatus_hero_summary,
   /** 頼めることの短い言い切り */
-  points: ['デザインの相談から', '4種類の手具に対応', '持ち込みもできる'],
+  points: [
+    m.decorating_apparatus_hero_point_1,
+    m.decorating_apparatus_hero_point_2,
+    m.decorating_apparatus_hero_point_3,
+  ],
   /** 料金のラベル（金額の前に出す） */
-  priceUnit: '作業1時間',
+  priceUnit: m.decorating_apparatus_hero_price_unit,
   /** ボタンの下に小さく出す補足 */
-  note: 'Instagram のダイレクトメッセージがいちばん早く届きます。見積もりまでは無料です。',
+  note: m.decorating_apparatus_hero_note,
 } as const
 
 /** 「手具装飾で頼めること」の見出しまわり */
 export const POINTS_HEADING = {
-  eyebrow: '頼めること',
-  title: '手具装飾でできること',
-  lead: '装飾にルールはありません。色を変えるだけの依頼から、丸ごと作り替える依頼まで受けています。',
+  eyebrow: m.decorating_apparatus_points_eyebrow,
+  title: m.decorating_apparatus_points_title,
+  lead: m.decorating_apparatus_points_lead,
 } as const
 
 /** 手具装飾で頼めること */
 export const ORDER_POINTS = [
   {
-    title: 'デザインから一緒に考える',
-    body: 'チームの色、曲の雰囲気、大会の空気。言葉だけの相談からデザインを起こします。見本を見てもらってから装飾に入ります。',
+    title: m.decorating_apparatus_point_1_title,
+    body: m.decorating_apparatus_point_1_body,
   },
   {
-    title: '4種類の手具に対応',
-    body: 'スティック・クラブ・リング・ロープ。どの手具でも受け付けます。団体で色をそろえたい、といった依頼も相談してください。',
+    title: m.decorating_apparatus_point_2_title,
+    body: m.decorating_apparatus_point_2_body,
   },
   {
-    title: '持ち込みの手具を装飾する',
-    body: '使い慣れた手具をそのまま活かせます。手元の手具を送ってもらう形でも、直接渡してもらう形でも構いません。',
+    title: m.decorating_apparatus_point_3_title,
+    body: m.decorating_apparatus_point_3_body,
   },
   {
-    title: '持ち心地まで相談する',
-    body: 'テープの重ね方は、持ったときの太さや滑りに関わります。実際に使う人の感覚を聞きながら決めます。',
+    title: m.decorating_apparatus_point_4_title,
+    body: m.decorating_apparatus_point_4_body,
   },
 ] as const
 
 /** 「過去の作品」の見出しまわり */
 export const WORKS_HEADING = {
-  eyebrow: '作例',
-  lead: 'これまでに仕上げた手具です。写真を押すと、同じ手具の別の角度が見られます。',
+  eyebrow: m.decorating_apparatus_works_eyebrow,
+  lead: m.decorating_apparatus_works_lead,
 } as const
 
 /** 「料金」の見出しまわり */
 export const PRICE_HEADING = {
-  eyebrow: '料金',
-  lead: 'デザインと装飾する範囲でかかる時間が変わります。まず相談してもらって、見積もりをお伝えしてから作業に入ります。',
+  eyebrow: m.decorating_apparatus_price_eyebrow,
+  lead: m.decorating_apparatus_price_lead,
 } as const
 
 /** 「装飾の流れ」の見出しまわり */
 export const FLOW_HEADING = {
-  eyebrow: '進め方',
-  lead: '相談から納品まで5つの段階で進みます。デザインを見てから決めてもらって構いません。',
+  eyebrow: m.decorating_apparatus_flow_eyebrow,
+  lead: m.decorating_apparatus_flow_lead,
 } as const
 
 /** 「相談する」の見出しまわり */
 export const CONTACT = {
-  eyebrow: '相談する',
-  lead: 'デザインが決まっていなくても、大会までの日程だけでも構いません。まずは声をかけてください。',
+  eyebrow: m.decorating_apparatus_contact_eyebrow,
+  lead: m.decorating_apparatus_contact_lead,
   /** ボタンの下に小さく出す補足 */
-  note: '個人で運営しているため、返事に数日いただくことがあります。見積もりまでは無料です。',
+  note: m.decorating_apparatus_contact_note,
 } as const
+
+/**
+ * 曲編集の料金（1曲あたり、円）。
+ *
+ * @remarks
+ * もう一方の依頼への案内に金額を出すためだけに持つ。
+ * ページ同士は参照し合わないので、曲編集のページと同じ値をここにも置く
+ */
+export const CROSS_LINK_PRICE_PER_MUSIC = 5000
 
 /** もう一方の依頼（曲編集）への案内 */
 export const CROSS_LINK = {
-  label: '曲編集も承っています',
+  label: m.decorating_apparatus_cross_link_label,
   href: ROUTES.backgroundMusic,
-  body: '演技の構成に合わせて、好きな曲を1曲に組み上げます。1曲 5,000円〜。',
+  body: m.decorating_apparatus_cross_link_body,
 } as const

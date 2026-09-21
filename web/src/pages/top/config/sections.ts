@@ -1,102 +1,178 @@
+import { m } from '$lib/paraglide/messages'
 import { Character } from '@entities/character'
 import { LINKS } from '@shared/config/links'
+import { getLocale } from '@shared/lib/i18n'
+import { formatYen } from '@shared/lib/number'
 import { ROUTES } from '@shared/routes'
+
+/**
+ * いちばん安く頼める値段（円）。
+ *
+ * @remarks
+ * 表示では `formatYen` で言語ごとの書き方に直す。構造化データでは数字のまま使う
+ */
+const PRICES = {
+  /** 指導：オンラインの添削から／会場へ出向く1日 */
+  coaching: { online: 2000, daily: 30000 },
+  /** 曲編集：個人の1曲／団体の1曲 */
+  backgroundMusic: { individual: 5000, group: 10000 },
+  /** 手具装飾：作業1時間 */
+  decoratingApparatus: { hourly: 1500 },
+} as const
+
+/** 掲載している大会の数。できることの印に出す */
+const LISTED_EVENT_COUNT = 312
 
 /**
  * 競技の見どころ。3つに絞る。
  *
  * @remarks
- * デザイン案のため文言は日本語で直書きしている。採用するときに messages へ移す
+ * 文言は関数で持つ。読み込んだ瞬間に評価すると、言語が決まる前の文言で固まってしまう
  */
 export const HIGHLIGHTS = [
   {
+    id: 'tumbling',
     character: Character.SORA,
-    title: 'タンブリング',
-    summary: '床を蹴って宙を舞う',
-    body: '助走から連続で宙返りを重ねる。5人が同時に跳ぶ姿がいちばんの見どころ。',
+    title: m.top_highlight_tumbling_title,
+    summary: m.top_highlight_tumbling_summary,
+    body: m.top_highlight_tumbling_body,
+    /** 絵に手具（スティック）を持たせるか */
+    showApparatus: false,
   },
   {
+    id: 'apparatus',
     character: Character.AYATO,
-    title: '手具',
-    summary: 'スティック・リング・ロープ・クラブ',
-    body: '個人競技は4種類の手具を扱う。投げて受け、体の動きと一体にする。落とせば減点。',
+    title: m.top_highlight_apparatus_title,
+    summary: m.top_highlight_apparatus_summary,
+    body: m.top_highlight_apparatus_body,
+    showApparatus: true,
   },
   {
+    id: 'group',
     character: Character.KAZUTO,
-    title: '団体',
-    summary: '5人が2分半を揃える',
-    body: '団体は5人で動きを揃える。倒立や組、隊形の変化を音楽に合わせて作り上げる。',
+    title: m.top_highlight_group_title,
+    summary: m.top_highlight_group_summary,
+    body: m.top_highlight_group_body,
+    showApparatus: false,
   },
 ] as const
 
 /** 頼めること。料金の入口を分かりやすくする */
 export const SERVICES = [
   {
+    id: 'coaching',
     character: Character.KAZUTO,
-    title: '指導・演技構成',
-    price: 'オンライン 2,000円〜／1日 30,000円〜',
-    body: '演技の構成を作る、いまの演技を直す、基本からみる。オンラインでも、会場へ出向く形でも受けています。',
+    title: m.top_service_coaching_title,
+    /**
+     *
+     */
+    price: () =>
+      m.top_service_coaching_price({
+        online: formatYen(PRICES.coaching.online, getLocale()),
+        daily: formatYen(PRICES.coaching.daily, getLocale()),
+      }),
+    body: m.top_service_coaching_body,
     href: ROUTES.coaching,
-    action: '実績を見る',
+    action: m.top_service_coaching_action,
+    /** いちばん安く頼める値段（円）。構造化データの Offer に出す */
+    lowestPrice: PRICES.coaching.online,
   },
   {
+    id: 'background_music',
     character: Character.AYATO,
-    title: '曲編集',
-    price: '個人 5,000円〜／団体 10,000円〜',
-    body: '競技時間に合わせて曲を組み、構成に合う展開を作る。原曲の指定からでも、任せてもらっても。',
+    title: m.top_service_background_music_title,
+    /**
+     *
+     */
+    price: () =>
+      m.top_service_background_music_price({
+        individual: formatYen(PRICES.backgroundMusic.individual, getLocale()),
+        group: formatYen(PRICES.backgroundMusic.group, getLocale()),
+      }),
+    body: m.top_service_background_music_body,
     href: ROUTES.backgroundMusic,
-    action: '作例を見る',
+    action: m.top_service_background_music_action,
+    lowestPrice: PRICES.backgroundMusic.individual,
   },
   {
+    id: 'decorating_apparatus',
     character: Character.YAWANA,
-    title: '手具装飾',
-    price: '作業1時間 1,500円〜',
-    body: 'スティックやクラブを、チームの色や大会の雰囲気に合わせて仕上げる。持ち込みにも対応する。',
+    title: m.top_service_decorating_apparatus_title,
+    /**
+     *
+     */
+    price: () =>
+      m.top_service_decorating_apparatus_price({
+        hourly: formatYen(PRICES.decoratingApparatus.hourly, getLocale()),
+      }),
+    body: m.top_service_decorating_apparatus_body,
     href: ROUTES.decoratingApparatus,
-    action: '作例を見る',
+    action: m.top_service_decorating_apparatus_action,
+    lowestPrice: PRICES.decoratingApparatus.hourly,
   },
 ] as const
 
 /** サイトの中でできること */
 export const FEATURES = [
   {
-    title: '大会・イベントを探す',
-    body: '全国の大会を年ごとに一覧で。日程・会場・配信の有無まで載せている。',
+    id: 'calendar',
+    title: m.top_feature_calendar_title,
+    body: m.top_feature_calendar_body,
     href: ROUTES.calendar.index,
-    badge: '312件',
+    /**
+     *
+     */
+    badge: () => m.top_feature_calendar_badge({ count: LISTED_EVENT_COUNT }),
   },
   {
-    title: 'ルールを知る',
-    body: '規則集を読みやすく並べ直した。採点の考え方から、手具ごとの決まりまで。',
+    id: 'rules',
+    title: m.top_feature_rules_title,
+    body: m.top_feature_rules_body,
     href: ROUTES.rules,
-    badge: '全文',
+    badge: m.top_feature_rules_badge,
   },
   {
-    title: '審判を体験する',
-    body: '実際の採点表と同じ形で点を付けてみる。見る目が変わる。',
+    id: 'judge',
+    title: m.top_feature_judge_title,
+    body: m.top_feature_judge_body,
     href: ROUTES.judge,
-    badge: '体験',
+    badge: m.top_feature_judge_badge,
   },
   {
-    title: '推しミツ！',
-    body: '演技の動画を選手・チーム・手具から探せる。推しの演技をまとめて見る。',
+    id: 'oshimitsu',
+    title: m.top_feature_oshimitsu_title,
+    body: m.top_feature_oshimitsu_body,
     href: ROUTES.oshimitsu.index,
-    badge: '動画',
+    badge: m.top_feature_oshimitsu_badge,
   },
 ] as const
 
-/** 信頼の裏づけになる数字 */
+/**
+ * 信頼の裏づけになる数字。
+ *
+ * @remarks
+ * 数字そのものは言語で変えない。単位と説明だけ訳す
+ */
 export const NUMBERS = [
-  { value: '312', unit: '件', label: '掲載した大会' },
-  { value: '8', unit: '言語', label: '対応する言語' },
-  { value: '2,568', unit: 'ページ', label: '公開しているページ' },
-  { value: '2022', unit: '年〜', label: '活動を続けている' },
+  {
+    id: 'competitions',
+    value: '312',
+    unit: m.top_number_competitions_unit,
+    label: m.top_number_competitions_label,
+  },
+  { id: 'locales', value: '8', unit: m.top_number_locales_unit, label: m.top_number_locales_label },
+  { id: 'pages', value: '2,568', unit: m.top_number_pages_unit, label: m.top_number_pages_label },
+  { id: 'since', value: '2022', unit: m.top_number_since_unit, label: m.top_number_since_label },
 ] as const
 
-/** 連絡の取り方 */
+/** 連絡の取り方。サービス名はどの言語でもそのまま出す */
 export const CONTACTS = [
-  { label: 'Instagram', description: '普段の発信。連絡もここが早い', href: LINKS.instagram },
-  { label: 'YouTube', description: '演技動画と解説', href: LINKS.youtube },
-  { label: 'X', description: '大会の速報', href: LINKS.x },
-  { label: 'TikTok', description: '短い動画', href: LINKS.tiktok },
+  {
+    label: 'Instagram',
+    description: m.top_contact_instagram_description,
+    href: LINKS.instagram,
+  },
+  { label: 'YouTube', description: m.top_contact_youtube_description, href: LINKS.youtube },
+  { label: 'X', description: m.top_contact_x_description, href: LINKS.x },
+  { label: 'TikTok', description: m.top_contact_tiktok_description, href: LINKS.tiktok },
 ] as const
