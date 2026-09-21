@@ -124,6 +124,24 @@ describe('Button', () => {
       // #endregion
     })
 
+    it('読み上げ用の名前を渡した場合、その名前で見つかること', () => {
+      // #region Given
+      const props = {
+        label: '第1章をすべて開く',
+        onclick: vi.fn(),
+        children: labelOf('すべて開く'),
+      }
+      // #endregion
+
+      // #region When
+      render(Button, { props })
+      // #endregion
+
+      // #region Then
+      expect(screen.getByRole('button', { name: '第1章をすべて開く' })).toBeInTheDocument()
+      // #endregion
+    })
+
     it('block を渡した場合、block が付くこと', () => {
       // #region Given
       const props = { block: true, onclick: vi.fn(), children: labelOf('もっと見る') }

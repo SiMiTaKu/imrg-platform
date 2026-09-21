@@ -20,6 +20,14 @@ interface AppearanceProps {
   size?: ButtonSize
   /** 横いっぱいに広げるか。省くと PC では文字に合わせた幅になる（スマホは指定に関わらず横いっぱい） */
   block?: boolean
+  /**
+   * 読み上げ用の名前。省くと中身の文言がそのまま名前になる。
+   *
+   * @remarks
+   * 同じ文言のボタンが1つの画面に並ぶとき（章ごとの「すべて開く」など）に、
+   * どれのことか分かる名前を使う側の言語で渡す
+   */
+  label?: string
   /** ボタンに出す中身 */
   children: Snippet
 }

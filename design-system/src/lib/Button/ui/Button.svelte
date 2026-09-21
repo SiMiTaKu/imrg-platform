@@ -7,6 +7,7 @@
     variant = 'fill',
     size = 'medium',
     block = false,
+    label,
     onclick,
     children,
   }: ButtonProps = $props()
@@ -22,6 +23,7 @@
     class:block
     {href}
     {target}
+    aria-label={label}
     rel={target === '_blank' ? 'noopener noreferrer' : ''}
   >
     {@render children()}
@@ -35,6 +37,7 @@
     class:large={size === 'large'}
     class:block
     type="button"
+    aria-label={label}
     {onclick}
   >
     {@render children()}

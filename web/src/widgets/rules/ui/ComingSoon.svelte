@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -11,7 +12,7 @@
   <div class="inner">
     <h1>{m.rules_coming_soon_title()}</h1>
     <p>{m.rules_coming_soon_body()}</p>
-    <a href={localizeHref(ROUTES.top)}>{m.rules_coming_soon_back()}</a>
+    <Button href={localizeHref(ROUTES.top)} target="_self">{m.rules_coming_soon_back()}</Button>
   </div>
 </article>
 
@@ -46,19 +47,5 @@
     font-size: $font-size-16;
     line-height: 1.9;
     color: map.get($gray, light-text);
-  }
-
-  a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 0 $space-size-24;
-    font-size: $font-size-16;
-    font-weight: bold;
-    color: $white;
-    text-decoration: none;
-    border-radius: 6px;
-    background: map.get($sky-blue, button);
   }
 </style>

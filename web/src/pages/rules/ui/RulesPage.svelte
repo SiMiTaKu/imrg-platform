@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { Character, findCharacter } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
@@ -153,12 +154,12 @@
     </div>
 
     <div class="bulk">
-      <button type="button" class="bulk-button" onclick={() => toggleAll(true)}>
+      <Button variant="outline" onclick={() => toggleAll(true)} block>
         {m.rules_expand_all()}
-      </button>
-      <button type="button" class="bulk-button" onclick={() => toggleAll(false)}>
+      </Button>
+      <Button variant="outline" onclick={() => toggleAll(false)} block>
         {m.rules_collapse_all()}
-      </button>
+      </Button>
     </div>
 
     {#if keyword.trim() === ''}
@@ -218,22 +219,22 @@
           <div class="collapsible-inner">
             <div class="chapter-body">
               <div class="bulk in-chapter">
-                <button
-                  type="button"
-                  class="bulk-button"
+                <Button
+                  variant="outline"
+                  label={m.rules_expand_chapter_label({ number: index + 1 })}
                   onclick={() => toggleChapterAll(index, true)}
-                  aria-label={m.rules_expand_chapter_label({ number: index + 1 })}
+                  block
                 >
                   {m.rules_expand_all()}
-                </button>
-                <button
-                  type="button"
-                  class="bulk-button"
+                </Button>
+                <Button
+                  variant="outline"
+                  label={m.rules_collapse_chapter_label({ number: index + 1 })}
                   onclick={() => toggleChapterAll(index, false)}
-                  aria-label={m.rules_collapse_chapter_label({ number: index + 1 })}
+                  block
                 >
                   {m.rules_collapse_all()}
-                </button>
+                </Button>
               </div>
 
               {#each chapter.article as article, articleIndex (articleIndex)}
@@ -447,36 +448,21 @@
 
   /* ─── すべて開く・すべて閉じる ─── */
 
+  // 2つを同じ幅で並べる。スマホでは1列に積んで、1つずつ横いっぱいにする
   .bulk {
-    display: flex;
+    display: grid;
     gap: $space-size-8;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding-bottom: $space-size-24;
-    flex-wrap: wrap;
+  }
+
+  .mobile .bulk {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   /* 章の中では、章の中身の gap が下の余白になる */
   .bulk.in-chapter {
     padding-bottom: 0;
-  }
-
-  .bulk-button {
-    min-height: 32px;
-    padding: 0 $space-size-12;
-    font-size: $font-size-12;
-    color: map.get($sky-blue, text);
-    border: 1px solid map.get($sky-blue, border);
-    border-radius: 999px;
-    background: $white;
-    cursor: pointer;
-  }
-
-  .bulk-button:hover {
-    background: map.get($sky-blue, background);
-  }
-
-  .bulk-button:focus-visible {
-    outline: 2px solid map.get($sky-blue, button);
-    outline-offset: 1px;
   }
 
   /* ─── 目次 ─── */
