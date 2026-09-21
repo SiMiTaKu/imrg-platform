@@ -36,10 +36,13 @@
     bottom: 0;
     left: 0;
     z-index: 900;
-    padding: $space-size-8 var(--content-padding-inline);
-    background: rgb(255 255 255 / 92%);
-    border-top: 1px solid map.get($gray, 100);
-    backdrop-filter: blur(6px);
+    padding: $space-size-12 var(--content-padding-inline);
+
+    // 白い帯は敷くが、下の中身がうっすら透けるくらいに薄くする。
+    // ぼかしを入れて、透けても文字が読みにくくならないようにする
+    background: rgb(255 255 255 / 70%);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgb(255 255 255 / 60%);
     transform: translateY(100%);
     animation: sticky-cta-rise 0.35s 1.2s ease-out forwards;
   }
@@ -81,7 +84,7 @@
     text-decoration: none;
     border-radius: $border-radius-64;
     background: map.get($sky-blue, button);
-    box-shadow: 0 2px 8px rgb(0 89 184 / 25%);
+    box-shadow: 0 4px 16px rgb(0 48 99 / 30%);
   }
 
   .mobile .button {
