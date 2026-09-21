@@ -7,6 +7,7 @@
     PointA,
     PointB,
     SelectApparatus,
+    executionDeduct,
     judgementApparatus,
   } from '@features/judge'
   import { pageData } from '@shared/lib/device'
@@ -32,6 +33,14 @@
   let judged = $state(false)
   /** 決定点の画面を出しているか */
   let resultShown = $state(false)
+  /**
+   * 何回目の採点か。
+   *
+   * @remarks
+   * 採点し直すときに1つ増やす。増やすと採点表がまるごと描き直され、
+   * 手具の選択欄や入力欄が持っている入力途中の値まで初期値に戻る
+   */
+  let attempt = $state(0)
 
   /**
    * いま何番目の段階にいるか。段階の表示と、各段階の枠の見た目に使う
@@ -67,10 +76,17 @@
   }
 
   /**
-   * 最初から採点し直す。入力をすべて消すために読み込み直す
+   * 最初から採点し直す。
+   * 読み込み直さずに、採点の値と画面の進み具合を初期値へ戻して段階1まで運ぶ
    */
   const retry = () => {
-    location.reload()
+    judgementApparatus.reset()
+    executionDeduct.reset()
+    submittedPointA = false
+    judged = false
+    resultShown = false
+    attempt += 1
+    scrollTo(FORM_ID)
   }
 </script>
 
@@ -81,29 +97,32 @@
     <div class="inner">
       <JudgeSteps current={currentStep} />
 
-      <div class="panels">
-        <StepPanel step={JUDGE_STEPS[0]} state={getStepState(1, currentStep)}>
-          <SelectApparatus />
-        </StepPanel>
+      <!-- 採点し直すと attempt が変わり、この中がまるごと描き直されて入力が消える -->
+      {#key attempt}
+        <div class="panels">
+          <StepPanel step={JUDGE_STEPS[0]} state={getStepState(1, currentStep)}>
+            <SelectApparatus />
+          </StepPanel>
 
-        <!-- 中身は段階に着いてから描かれる。手具を選ぶ前は案内だけが出る -->
-        <StepPanel step={JUDGE_STEPS[1]} state={getStepState(2, currentStep)}>
-          <PointA onsubmit={() => (submittedPointA = true)} />
-        </StepPanel>
+          <!-- 中身は段階に着いてから描かれる。手具を選ぶ前は案内だけが出る -->
+          <StepPanel step={JUDGE_STEPS[1]} state={getStepState(2, currentStep)}>
+            <PointA onsubmit={() => (submittedPointA = true)} />
+          </StepPanel>
 
-        <StepPanel step={JUDGE_STEPS[2]} state={getStepState(3, currentStep)}>
-          <PointB onsubmit={handleJudged} />
-        </StepPanel>
+          <StepPanel step={JUDGE_STEPS[2]} state={getStepState(3, currentStep)}>
+            <PointB onsubmit={handleJudged} />
+          </StepPanel>
 
-        <div class="result-slot" id={RESULT_ID}>
-          {#if judged}
-            <JudgeResult onshowscore={() => (resultShown = true)} onretry={retry} />
-          {:else}
-            <!-- 段階4の中身は決定点の画面が受け持つので、枠だけ置いて先を見せる -->
-            <StepPanel step={JUDGE_STEPS[3]} state={getStepState(4, currentStep)} />
-          {/if}
+          <div class="result-slot" id={RESULT_ID}>
+            {#if judged}
+              <JudgeResult onshowscore={() => (resultShown = true)} onretry={retry} />
+            {:else}
+              <!-- 段階4の中身は決定点の画面が受け持つので、枠だけ置いて先を見せる -->
+              <StepPanel step={JUDGE_STEPS[3]} state={getStepState(4, currentStep)} />
+            {/if}
+          </div>
         </div>
-      </div>
+      {/key}
     </div>
   </section>
 
@@ -121,9 +140,9 @@
 
 <!-- 決定点の画面。画面いっぱいに出るので、閉じる手だてを上に重ねて置く -->
 {#if isMobile}
-  <ExecutionPointResultModalMobile show={resultShown} />
+  <ExecutionPointResultModalMobile show={resultShown} onretry={retry} />
 {:else}
-  <ExecutionPointResultModalDesktop show={resultShown} />
+  <ExecutionPointResultModalDesktop show={resultShown} onretry={retry} />
 {/if}
 
 {#if resultShown}

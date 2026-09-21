@@ -7,7 +7,7 @@ import type { ExecutionDeduct, PointAKey, PointAOption } from '../model/executio
  * @returns 採点項目のストア
  */
 const createExecutionDeductStore = () => {
-  const { subscribe, update } = writable<ExecutionDeduct>(createExecutionDeduct())
+  const { subscribe, set, update } = writable<ExecutionDeduct>(createExecutionDeduct())
 
   return {
     subscribe,
@@ -36,6 +36,10 @@ const createExecutionDeductStore = () => {
      * @param miss - 減点
      */
     setMiss: (miss: number) => update((data) => ({ ...data, pointB: { ...data.pointB, miss } })),
+    /**
+     * 採点を始める前の値へ戻す
+     */
+    reset: () => set(createExecutionDeduct()),
   }
 }
 

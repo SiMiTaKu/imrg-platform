@@ -20,9 +20,11 @@
   type Props = {
     /** 結果を出すか */
     show: boolean
+    /** 最初から採点し直すときに呼ぶ */
+    onretry: () => void
   }
 
-  const { show }: Props = $props()
+  const { show, onretry }: Props = $props()
 
   const locale = getLocale()
   const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
@@ -79,13 +81,6 @@
       pointDetailHeight = 0
     }, 100)
   }
-
-  /**
-   * ページを読み込み直して、最初から採点する
-   */
-  const oneMoreJudge = () => {
-    location.reload()
-  }
 </script>
 
 {#if show}
@@ -138,7 +133,7 @@
         {formatNumber(decisionPoints, locale)}
       </div>
       <div class="footer">
-        <button class="footer-button {color}" type="button" onclick={oneMoreJudge}
+        <button class="footer-button {color}" type="button" onclick={onretry}
           >{m.judge_result_retry()}</button
         >
       </div>
