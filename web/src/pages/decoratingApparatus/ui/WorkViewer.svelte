@@ -27,9 +27,25 @@
     dialog?.showModal()
   })
 
+  /**
+   * 写真を送る。端まで行ったら反対の端へ回り、終わりなく送れる
+   * @param step - 送る枚数（戻るときは負の数）
+   */
   const move = (step: number) => {
     index = (index + step + images.length) % images.length
   }
+
+  /**
+   * いちばん大きい変換結果を返す
+   * @param sources - 1枚の写真の、大きさ違いの変換結果
+   * @returns いちばん幅の広い変換結果
+   *
+   * @remarks
+   * 写真そのものの縦横の比を `width` と `height` に渡すために使う。
+   * 枠の比に合わせて引き伸ばさないようにする
+   */
+  const largest = (sources: ImageSourceMeta[]) =>
+    sources.reduce((max, source) => (source.width > max.width ? source : max), sources[0])
 
   /**
    * 左右の矢印の鍵で写真を送る
@@ -84,16 +100,21 @@
         </button>
       {/if}
 
-      <div class="photo">
-        <ImageAssets
-          width="100%"
-          height="100%"
-          {alt}
-          lazy={false}
-          imageSourceMeta={images[index]}
-          objectFit="fill"
-        />
-      </div>
+      <!--
+        写真は全部を同じ場所に重ねて置き、いま見せる1枚だけを前に出して透過を解く。
+        最後の次が最初に戻るときも、入れ替わりの合間に中が白く抜けない
+      -->
+      {#each images as image, photoIndex (photoIndex)}
+        <div class="photo" class:showing={photoIndex === index}>
+          <ImageAssets
+            width={largest(image).width}
+            height={largest(image).height}
+            alt={photoIndex === index ? alt : ''}
+            lazy={photoIndex !== 0}
+            imageSourceMeta={image}
+          />
+        </div>
+      {/each}
 
       {#if images.length > 1}
         <button
@@ -181,14 +202,31 @@
 
   .photo {
     display: flex;
+    grid-area: 1 / 1;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-height: 74vh;
     overflow: hidden;
     border-radius: 6px;
 
-    // 写真の縦横の比を保ったまま、入る大きさで見せる
-    aspect-ratio: 1;
+    // 送るたびに写真を入れ替える。下の写真は消さずに残す
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
+
+  .photo.showing {
+    opacity: 1;
+  }
+
+  // 写真の縦横の比は変えない。枠に入る大きさまで縮めるだけにする
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+  .photo :global(img) {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 74vh;
+  }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 
   // 送る矢印は写真の左右に浮かせる
   .step {
