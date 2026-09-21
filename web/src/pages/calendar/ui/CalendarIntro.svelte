@@ -86,12 +86,18 @@
     padding: $space-size-40 var(--content-padding-inline) $space-size-32;
   }
 
+  // スマホでも文章は左寄せ。中央寄せは行の始まりがそろわず、日本語だと読みにくい
   .intro.mobile .inner {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: $space-size-12;
     padding: $space-size-24 var(--content-padding-inline);
-    text-align: center;
+    text-align: left;
+  }
+
+  // 案内役だけは真ん中に置く
+  .mobile .figure {
+    align-self: center;
   }
 
   .figure {
@@ -141,10 +147,6 @@
     flex-wrap: wrap;
     gap: $space-size-8;
     margin: 0 0 $space-size-12;
-  }
-
-  .mobile .numbers {
-    justify-content: center;
   }
 
   .number {
