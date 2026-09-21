@@ -1,14 +1,16 @@
 <script lang="ts">
   import { PUBLIC_BASE_URL } from '$env/static/public'
+  import {
+    CharacterTeam,
+    ContactPanel,
+    Features,
+    Hero,
+    Highlights,
+    Numbers,
+    Services,
+    UpcomingEvents,
+  } from '@widgets/top'
   import { buildTopJsonLd } from '../lib/structuredData'
-  import CharacterTeam from './CharacterTeam.svelte'
-  import ContactPanel from './ContactPanel.svelte'
-  import Features from './Features.svelte'
-  import Hero from './Hero.svelte'
-  import Highlights from './Highlights.svelte'
-  import Numbers from './Numbers.svelte'
-  import Services from './Services.svelte'
-  import UpcomingEvents from './UpcomingEvents.svelte'
 
   const jsonLd = JSON.stringify(buildTopJsonLd(PUBLIC_BASE_URL))
   // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる

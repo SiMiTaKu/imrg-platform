@@ -1,6 +1,6 @@
 import { m } from '$lib/paraglide/messages'
 import { LINKS } from '@shared/config/links'
-import { SERVICES } from '../config/sections'
+import { SERVICES } from '@widgets/top'
 import { joinPhrases, joinPrices } from './phrase'
 
 /**

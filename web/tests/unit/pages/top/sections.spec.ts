@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { CHARACTERS, findCharacter } from '@entities/character'
-import { FEATURES, HIGHLIGHTS, SERVICES } from '@pages/top/config/sections'
 import { joinPrices } from '@pages/top/lib/phrase'
 import { buildTopJsonLd } from '@pages/top/lib/structuredData'
+import { FEATURES, HIGHLIGHTS, SERVICES } from '@widgets/top'
 
 describe('トップページの構成', () => {
   describe('正常系', () => {
