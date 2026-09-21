@@ -135,6 +135,8 @@
   "judge_result_thanks_2": " Even for the same routine, judges give slightly different scores. Now follow what your score means.",
   "judge_result_show_score": "See the final score again",
   "judge_result_restart": "Start judging over",
+  "judge_share_x": "Share on X",
+  "judge_share_x_text": "I scored a men's rhythmic gymnastics {apparatus} routine on the same sheet the judges use. My final score was {score}.",
   "judge_next_actions_title": "What to do next",
   "judge_next_actions_description": "It all makes the most sense right after you have given a score.",
   "judge_next_rules_title": "Read the rules",

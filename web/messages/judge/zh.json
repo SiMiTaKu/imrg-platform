@@ -135,6 +135,8 @@
   "judge_result_thanks_2": " 同样的演技，不同裁判给出的分数也会略有差别。接下来，试着追寻这个分数的含义。",
   "judge_result_show_score": "再看一次最后得分",
   "judge_result_restart": "从头重新评分",
+  "judge_share_x": "分享到 X",
+  "judge_share_x_text": "我用裁判同款的评分表为男子艺术体操的{apparatus}成套打了分，我给出的最后得分是 {score} 分。",
   "judge_next_actions_title": "接下来做什么",
   "judge_next_actions_description": "打完分之后再看，最容易理解。",
   "judge_next_rules_title": "了解规则",

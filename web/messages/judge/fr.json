@@ -135,6 +135,8 @@
   "judge_result_thanks_2": " Pour un même exercice, les juges donnent des notes légèrement différentes. À vous d'explorer ce que signifie la vôtre.",
   "judge_result_show_score": "Revoir la note finale",
   "judge_result_restart": "Recommencer la notation",
+  "judge_share_x": "Partager sur X",
+  "judge_share_x_text": "J'ai noté un exercice de {apparatus} en gymnastique rythmique masculine avec la feuille des juges. Ma note finale est de {score}.",
   "judge_next_actions_title": "Et maintenant",
   "judge_next_actions_description": "C'est juste après avoir noté que cela parle le plus.",
   "judge_next_rules_title": "Lire les règles",

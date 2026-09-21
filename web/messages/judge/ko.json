@@ -135,6 +135,8 @@
   "judge_result_thanks_2": " 같은 연기라도 심판에 따라 점수는 조금씩 다릅니다. 이제 이 점수의 의미를 따라가 보세요.",
   "judge_result_show_score": "최종 점수 다시 보기",
   "judge_result_restart": "처음부터 다시 채점하기",
+  "judge_share_x": "X에 공유하기",
+  "judge_share_x_text": "남자 리듬체조 {apparatus} 연기를 심판과 같은 채점표로 채점해 봤습니다. 제가 준 최종 점수는 {score}점입니다.",
   "judge_next_actions_title": "다음에 할 일",
   "judge_next_actions_description": "점수를 매긴 뒤에 읽으면 가장 잘 이해됩니다.",
   "judge_next_rules_title": "규칙 읽기",

@@ -135,6 +135,8 @@
   "judge_result_thanks_2": " Incluso con el mismo ejercicio, cada juez puntúa de forma algo distinta. Ahora descubre qué significa tu nota.",
   "judge_result_show_score": "Ver otra vez la nota final",
   "judge_result_restart": "Empezar a puntuar de nuevo",
+  "judge_share_x": "Compartir en X",
+  "judge_share_x_text": "He puntuado un ejercicio de {apparatus} de gimnasia rítmica masculina con la misma hoja que usan los jueces. Mi nota final ha sido {score}.",
   "judge_next_actions_title": "Qué hacer ahora",
   "judge_next_actions_description": "Se entiende mejor justo después de haber puntuado.",
   "judge_next_rules_title": "Leer las reglas",

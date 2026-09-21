@@ -135,6 +135,8 @@
   "judge_result_thanks_2": " 同じ演技でも、審判によって点は少しずつ違います。次はこの点の意味をたどってみてください。",
   "judge_result_show_score": "決定点をもう一度見る",
   "judge_result_restart": "最初から採点し直す",
+  "judge_share_x": "Xで共有する",
+  "judge_share_x_text": "男子新体操の{apparatus}の演技を、審判と同じ採点表で採点してみました。わたしが付けた決定点は {score} 点です。",
   "judge_next_actions_title": "次にすること",
   "judge_next_actions_description": "点を付けたあとに読むと、いちばん入ってきます。",
   "judge_next_rules_title": "ルールを読む",

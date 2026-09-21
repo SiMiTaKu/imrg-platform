@@ -22,6 +22,7 @@ export {
   normalizeMiss,
 } from './lib/calculator'
 export { buildScoreFormula } from './lib/scoreFormula'
+export { buildShareUrl } from './lib/share'
 export { wrapChartLabel } from './lib/wrapChartLabel'
 export type { JudgeApparatus } from './model/apparatus'
 export type {
