@@ -583,9 +583,9 @@
     border-radius: 6px;
   }
 
-  // 連絡への一歩だけ黄にする
+  // 連絡への一歩だけ黄にする。黄の地に載せる文字は黒（色の決まり 4）
   .contact {
-    color: map.get($amber, 900);
+    color: $black;
     background: map.get($amber, 300);
   }
 
