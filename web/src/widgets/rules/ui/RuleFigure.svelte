@@ -187,7 +187,14 @@
 </figure>
 
 <style lang="scss">
+  /*
+    位置の基準をここに置く。下の読み上げ用の見出し（.visually-hidden）は
+    position: absolute で浮かせてあり、基準になる親がないと画面のいちばん外を
+    基準にしてしまう。そうなると、閉じた章の overflow: hidden に切られず、
+    ページのずっと下に居座り、何も無いところを延々と送れてしまう
+  */
   .rule-figure {
+    position: relative;
     margin: 0;
     padding: $space-size-16 0 0;
   }

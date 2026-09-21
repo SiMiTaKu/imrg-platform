@@ -183,108 +183,117 @@
           </button>
         </h2>
 
-        <!-- 中身は閉じていても置いたままにして、data-open の付け外しだけで高さを変える -->
+        <!--
+          中身は閉じていても置いたままにして、data-open の付け外しだけで高さを変える。
+          余白は .collapsible-inner の中へ入れ子にして持たせる（閉じたときに残らないように）
+        -->
         <div class="collapsible" id={chapterId} data-open={isChapterOpen}>
-          <div class="collapsible-inner chapter-body">
-            <div class="bulk in-chapter">
-              <button
-                type="button"
-                class="bulk-button"
-                onclick={() => toggleChapterAll(index, true)}
-                aria-label={m.rules_expand_chapter_label({ number: index + 1 })}
-              >
-                {m.rules_expand_all()}
-              </button>
-              <button
-                type="button"
-                class="bulk-button"
-                onclick={() => toggleChapterAll(index, false)}
-                aria-label={m.rules_collapse_chapter_label({ number: index + 1 })}
-              >
-                {m.rules_collapse_all()}
-              </button>
-            </div>
+          <div class="collapsible-inner">
+            <div class="chapter-body">
+              <div class="bulk in-chapter">
+                <button
+                  type="button"
+                  class="bulk-button"
+                  onclick={() => toggleChapterAll(index, true)}
+                  aria-label={m.rules_expand_chapter_label({ number: index + 1 })}
+                >
+                  {m.rules_expand_all()}
+                </button>
+                <button
+                  type="button"
+                  class="bulk-button"
+                  onclick={() => toggleChapterAll(index, false)}
+                  aria-label={m.rules_collapse_chapter_label({ number: index + 1 })}
+                >
+                  {m.rules_collapse_all()}
+                </button>
+              </div>
 
-            {#each chapter.article as article, articleIndex (articleIndex)}
-              {@const articleId = articleKey(index, articleIndex)}
-              {@const isArticleOpen = isOpen(articleId, DEFAULT_OPEN.article)}
-              <section class="article">
-                <h3>
-                  <button
-                    type="button"
-                    class="toggle article-toggle"
-                    onclick={() => toggle(articleId, DEFAULT_OPEN.article)}
-                    aria-expanded={isArticleOpen}
-                    aria-controls={articleId}
-                  >
-                    <span class="number">{articleIndex + 1}</span>
-                    <span class="label">{article.title}</span>
-                    <span class="mark" aria-hidden="true"></span>
-                  </button>
-                </h3>
+              {#each chapter.article as article, articleIndex (articleIndex)}
+                {@const articleId = articleKey(index, articleIndex)}
+                {@const isArticleOpen = isOpen(articleId, DEFAULT_OPEN.article)}
+                <section class="article">
+                  <h3>
+                    <button
+                      type="button"
+                      class="toggle article-toggle"
+                      onclick={() => toggle(articleId, DEFAULT_OPEN.article)}
+                      aria-expanded={isArticleOpen}
+                      aria-controls={articleId}
+                    >
+                      <span class="number">{articleIndex + 1}</span>
+                      <span class="label">{article.title}</span>
+                      <span class="mark" aria-hidden="true"></span>
+                    </button>
+                  </h3>
 
-                <div class="collapsible" id={articleId} data-open={isArticleOpen}>
-                  <div class="collapsible-inner article-body">
-                    {#each article.section as section, sectionIndex (sectionIndex)}
-                      {@const sectionId = sectionKey(index, articleIndex, sectionIndex)}
-                      {@const isSectionOpen = isOpen(sectionId, DEFAULT_OPEN.section)}
-                      <section class="section">
-                        <h4>
-                          <button
-                            type="button"
-                            class="toggle section-toggle"
-                            onclick={() => toggle(sectionId, DEFAULT_OPEN.section)}
-                            aria-expanded={isSectionOpen}
-                            aria-controls={sectionId}
-                          >
-                            {#if section.block.length === 0}
-                              <span class="article-number">
-                                {calculateArticleNumber(chapter, articleIndex, sectionIndex)}
-                              </span>
-                            {/if}
-                            <span class="label">{section.title}</span>
-                            <span class="mark" aria-hidden="true"></span>
-                          </button>
-                        </h4>
+                  <div class="collapsible" id={articleId} data-open={isArticleOpen}>
+                    <div class="collapsible-inner">
+                      <div class="article-body">
+                        {#each article.section as section, sectionIndex (sectionIndex)}
+                          {@const sectionId = sectionKey(index, articleIndex, sectionIndex)}
+                          {@const isSectionOpen = isOpen(sectionId, DEFAULT_OPEN.section)}
+                          <section class="section">
+                            <h4>
+                              <button
+                                type="button"
+                                class="toggle section-toggle"
+                                onclick={() => toggle(sectionId, DEFAULT_OPEN.section)}
+                                aria-expanded={isSectionOpen}
+                                aria-controls={sectionId}
+                              >
+                                {#if section.block.length === 0}
+                                  <span class="article-number">
+                                    {calculateArticleNumber(chapter, articleIndex, sectionIndex)}
+                                  </span>
+                                {/if}
+                                <span class="label">{section.title}</span>
+                                <span class="mark" aria-hidden="true"></span>
+                              </button>
+                            </h4>
 
-                        <div class="collapsible" id={sectionId} data-open={isSectionOpen}>
-                          <div class="collapsible-inner section-body">
-                            {#if section.block.length > 0}
-                              {#each section.block as block, blockIndex (blockIndex)}
-                                <div class="item">
-                                  <h5>
-                                    <span class="article-number">
-                                      {calculateArticleNumber(
-                                        chapter,
-                                        articleIndex,
-                                        sectionIndex,
-                                        blockIndex,
-                                      )}
-                                    </span>
-                                    {block.title}
-                                  </h5>
-                                  <p>{block.element}</p>
-                                  {#each block.image as image, blockImageIndex (blockImageIndex)}
-                                    <RuleFigure {image} />
-                                  {/each}
+                            <div class="collapsible" id={sectionId} data-open={isSectionOpen}>
+                              <div class="collapsible-inner">
+                                <div class="section-body">
+                                  {#if section.block.length > 0}
+                                    {#each section.block as block, blockIndex (blockIndex)}
+                                      <div class="item">
+                                        <h5>
+                                          <span class="article-number">
+                                            {calculateArticleNumber(
+                                              chapter,
+                                              articleIndex,
+                                              sectionIndex,
+                                              blockIndex,
+                                            )}
+                                          </span>
+                                          {block.title}
+                                        </h5>
+                                        <p>{block.element}</p>
+                                        {#each block.image as image, blockImageIndex (blockImageIndex)}
+                                          <RuleFigure {image} />
+                                        {/each}
+                                      </div>
+                                    {/each}
+                                  {:else}
+                                    <div class="item">
+                                      <p>{section.content}</p>
+                                      {#each section.image as image, sectionImageIndex (sectionImageIndex)}
+                                        <RuleFigure {image} />
+                                      {/each}
+                                    </div>
+                                  {/if}
                                 </div>
-                              {/each}
-                            {:else}
-                              <div class="item">
-                                <p>{section.content}</p>
-                                {#each section.image as image, sectionImageIndex (sectionImageIndex)}
-                                  <RuleFigure {image} />
-                                {/each}
                               </div>
-                            {/if}
-                          </div>
-                        </div>
-                      </section>
-                    {/each}
+                            </div>
+                          </section>
+                        {/each}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </section>
-            {/each}
+                </section>
+              {/each}
+            </div>
           </div>
         </div>
       </section>
@@ -584,7 +593,10 @@
   }
 
   // 行が 0fr のあいだ、中身をはみ出させない。
-  // min-height はグリッドの中身が持つ既定の下限を外すために要る
+  // min-height はグリッドの中身が持つ既定の下限を外すために要る。
+  // そのうえで、この入れ物には余白も枠も持たせない。高さ 0 に潰されても余白と枠の分だけは
+  // 残ってしまい、閉じているのに数十 px が居座る。章・節・条ぶんが積もると
+  // 何も無いところをずっと送れてしまうため、余白は中の .chapter-body などに寄せる
   .collapsible-inner {
     min-height: 0;
     overflow: hidden;
