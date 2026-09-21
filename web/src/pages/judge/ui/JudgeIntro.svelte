@@ -90,9 +90,14 @@
     background:
       radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
       radial-gradient(circle at 92% 6%, rgb(25 134 255 / 16%), transparent 42%), $white;
+
+    // ここまでがファーストビジュアルだと分かるよう、下に線を引く
+    border-bottom: 1px solid map.get($gray, 100);
   }
 
+  // 中身だけをコンテンツ幅に収める
   .inner {
+    box-sizing: border-box;
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;

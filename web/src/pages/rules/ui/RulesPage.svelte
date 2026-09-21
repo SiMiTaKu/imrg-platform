@@ -90,208 +90,211 @@
 </script>
 
 <article class="rules" class:mobile={isMobile}>
-  <header class="intro">
-    <div class="guide">
-      <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
-    </div>
-    <div class="words">
-      <p class="speaker">
-        {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
-      </p>
-      <h1>{ruleBook.title}</h1>
-      <p class="say">
-        <strong>{m.rules_intro_collapsible()}</strong>
-        {m.rules_intro_guide()}
-      </p>
-      <p class="caution">{m.rules_caution()}</p>
+  <!-- ファーストビジュアル。背景は画面の端まで、中身だけをコンテンツ幅に収める -->
+  <header class="hero">
+    <div class="inner">
+      <div class="guide">
+        <CharacterFigure character={guide} size={isMobile ? 96 : 124} />
+      </div>
+      <div class="words">
+        <p class="speaker">
+          {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
+        </p>
+        <h1>{ruleBook.title}</h1>
+        <p class="say">
+          <strong>{m.rules_intro_collapsible()}</strong>
+          {m.rules_intro_guide()}
+        </p>
+        <p class="caution">{m.rules_caution()}</p>
+      </div>
     </div>
   </header>
 
-  <div class="search">
-    <label for="rule-keyword">{m.rules_search_label()}</label>
-    <input
-      id="rule-keyword"
-      type="search"
-      value={keyword}
-      oninput={handleKeywordInput}
-      placeholder={m.rules_search_placeholder()}
-      autocomplete="off"
-    />
-    {#if keyword.trim() !== ''}
-      <span class="result"
-        >{m.rules_search_result({
-          found: visibleChapters.length,
-          total: ruleBook.chapter.length,
-        })}</span
-      >
-    {/if}
-  </div>
-
-  <div class="bulk">
-    <button type="button" class="bulk-button" onclick={() => toggleAll(true)}>
-      {m.rules_expand_all()}
-    </button>
-    <button type="button" class="bulk-button" onclick={() => toggleAll(false)}>
-      {m.rules_collapse_all()}
-    </button>
-  </div>
-
-  {#if keyword.trim() === ''}
-    <nav class="toc" aria-label={m.rules_toc()}>
-      <p class="toc-title">{m.rules_toc()}</p>
-      <ol>
-        {#each ruleBook.chapter as chapter, index (index)}
-          <li>
-            <button
-              type="button"
-              onclick={() => toggle(chapterKey(index), DEFAULT_OPEN.chapter)}
-              aria-expanded={isOpen(chapterKey(index), DEFAULT_OPEN.chapter)}
-              aria-controls={chapterKey(index)}
-            >
-              <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
-              <span class="label">{chapter.title}</span>
-              {#if chapter.article.length > 0}
-                <span class="count">{m.rules_article_count({ count: chapter.article.length })}</span
-                >
-              {/if}
-            </button>
-          </li>
-        {/each}
-      </ol>
-    </nav>
-  {/if}
-
-  {#if visibleChapters.length === 0}
-    <p class="empty">{m.rules_search_empty({ keyword })}</p>
-  {/if}
-
-  {#each visibleChapters as { chapter, index } (index)}
-    {@const chapterId = chapterKey(index)}
-    {@const isChapterOpen = isOpen(chapterId, DEFAULT_OPEN.chapter)}
-    <section class="chapter">
-      <h2>
-        <button
-          type="button"
-          class="toggle chapter-toggle"
-          onclick={() => toggle(chapterId, DEFAULT_OPEN.chapter)}
-          aria-expanded={isChapterOpen}
-          aria-controls={chapterId}
+  <div class="body">
+    <div class="search">
+      <label for="rule-keyword">{m.rules_search_label()}</label>
+      <input
+        id="rule-keyword"
+        type="search"
+        value={keyword}
+        oninput={handleKeywordInput}
+        placeholder={m.rules_search_placeholder()}
+        autocomplete="off"
+      />
+      {#if keyword.trim() !== ''}
+        <span class="result"
+          >{m.rules_search_result({
+            found: visibleChapters.length,
+            total: ruleBook.chapter.length,
+          })}</span
         >
-          <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
-          <span class="label">{chapter.title}</span>
-          <span class="mark" aria-hidden="true"></span>
-        </button>
-      </h2>
+      {/if}
+    </div>
 
-      <!--
-        開いていても閉じていても置いたままにして、data-open の付け外しだけで高さを変える。
-        こうすると開くときも閉じるときも、いくつ同時に変わっても同じように動く
-      -->
-      <div class="collapsible" id={chapterId} data-open={isChapterOpen}>
-        <div class="collapsible-inner chapter-body">
-          <div class="bulk in-chapter">
-            <button
-              type="button"
-              class="bulk-button"
-              onclick={() => toggleChapterAll(index, true)}
-              aria-label={m.rules_expand_chapter_label({ number: index + 1 })}
-            >
-              {m.rules_expand_all()}
-            </button>
-            <button
-              type="button"
-              class="bulk-button"
-              onclick={() => toggleChapterAll(index, false)}
-              aria-label={m.rules_collapse_chapter_label({ number: index + 1 })}
-            >
-              {m.rules_collapse_all()}
-            </button>
-          </div>
+    <div class="bulk">
+      <button type="button" class="bulk-button" onclick={() => toggleAll(true)}>
+        {m.rules_expand_all()}
+      </button>
+      <button type="button" class="bulk-button" onclick={() => toggleAll(false)}>
+        {m.rules_collapse_all()}
+      </button>
+    </div>
 
-          {#each chapter.article as article, articleIndex (articleIndex)}
-            {@const articleId = articleKey(index, articleIndex)}
-            {@const isArticleOpen = isOpen(articleId, DEFAULT_OPEN.article)}
-            <section class="article">
-              <h3>
-                <button
-                  type="button"
-                  class="toggle article-toggle"
-                  onclick={() => toggle(articleId, DEFAULT_OPEN.article)}
-                  aria-expanded={isArticleOpen}
-                  aria-controls={articleId}
-                >
-                  <span class="number">{articleIndex + 1}</span>
-                  <span class="label">{article.title}</span>
-                  <span class="mark" aria-hidden="true"></span>
-                </button>
-              </h3>
+    {#if keyword.trim() === ''}
+      <nav class="toc" aria-label={m.rules_toc()}>
+        <p class="toc-title">{m.rules_toc()}</p>
+        <ol>
+          {#each ruleBook.chapter as chapter, index (index)}
+            <li>
+              <button
+                type="button"
+                onclick={() => toggle(chapterKey(index), DEFAULT_OPEN.chapter)}
+                aria-expanded={isOpen(chapterKey(index), DEFAULT_OPEN.chapter)}
+                aria-controls={chapterKey(index)}
+              >
+                <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
+                <span class="label">{chapter.title}</span>
+                {#if chapter.article.length > 0}
+                  <span class="count"
+                    >{m.rules_article_count({ count: chapter.article.length })}</span
+                  >
+                {/if}
+              </button>
+            </li>
+          {/each}
+        </ol>
+      </nav>
+    {/if}
 
-              <div class="collapsible" id={articleId} data-open={isArticleOpen}>
-                <div class="collapsible-inner article-body">
-                  {#each article.section as section, sectionIndex (sectionIndex)}
-                    {@const sectionId = sectionKey(index, articleIndex, sectionIndex)}
-                    {@const isSectionOpen = isOpen(sectionId, DEFAULT_OPEN.section)}
-                    <section class="section">
-                      <h4>
-                        <button
-                          type="button"
-                          class="toggle section-toggle"
-                          onclick={() => toggle(sectionId, DEFAULT_OPEN.section)}
-                          aria-expanded={isSectionOpen}
-                          aria-controls={sectionId}
-                        >
-                          {#if section.block.length === 0}
-                            <span class="article-number">
-                              {calculateArticleNumber(chapter, articleIndex, sectionIndex)}
-                            </span>
-                          {/if}
-                          <span class="label">{section.title}</span>
-                          <span class="mark" aria-hidden="true"></span>
-                        </button>
-                      </h4>
+    {#if visibleChapters.length === 0}
+      <p class="empty">{m.rules_search_empty({ keyword })}</p>
+    {/if}
 
-                      <div class="collapsible" id={sectionId} data-open={isSectionOpen}>
-                        <div class="collapsible-inner section-body">
-                          {#if section.block.length > 0}
-                            {#each section.block as block, blockIndex (blockIndex)}
+    {#each visibleChapters as { chapter, index } (index)}
+      {@const chapterId = chapterKey(index)}
+      {@const isChapterOpen = isOpen(chapterId, DEFAULT_OPEN.chapter)}
+      <section class="chapter">
+        <h2>
+          <button
+            type="button"
+            class="toggle chapter-toggle"
+            onclick={() => toggle(chapterId, DEFAULT_OPEN.chapter)}
+            aria-expanded={isChapterOpen}
+            aria-controls={chapterId}
+          >
+            <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
+            <span class="label">{chapter.title}</span>
+            <span class="mark" aria-hidden="true"></span>
+          </button>
+        </h2>
+
+        <!-- 中身は閉じていても置いたままにして、data-open の付け外しだけで高さを変える -->
+        <div class="collapsible" id={chapterId} data-open={isChapterOpen}>
+          <div class="collapsible-inner chapter-body">
+            <div class="bulk in-chapter">
+              <button
+                type="button"
+                class="bulk-button"
+                onclick={() => toggleChapterAll(index, true)}
+                aria-label={m.rules_expand_chapter_label({ number: index + 1 })}
+              >
+                {m.rules_expand_all()}
+              </button>
+              <button
+                type="button"
+                class="bulk-button"
+                onclick={() => toggleChapterAll(index, false)}
+                aria-label={m.rules_collapse_chapter_label({ number: index + 1 })}
+              >
+                {m.rules_collapse_all()}
+              </button>
+            </div>
+
+            {#each chapter.article as article, articleIndex (articleIndex)}
+              {@const articleId = articleKey(index, articleIndex)}
+              {@const isArticleOpen = isOpen(articleId, DEFAULT_OPEN.article)}
+              <section class="article">
+                <h3>
+                  <button
+                    type="button"
+                    class="toggle article-toggle"
+                    onclick={() => toggle(articleId, DEFAULT_OPEN.article)}
+                    aria-expanded={isArticleOpen}
+                    aria-controls={articleId}
+                  >
+                    <span class="number">{articleIndex + 1}</span>
+                    <span class="label">{article.title}</span>
+                    <span class="mark" aria-hidden="true"></span>
+                  </button>
+                </h3>
+
+                <div class="collapsible" id={articleId} data-open={isArticleOpen}>
+                  <div class="collapsible-inner article-body">
+                    {#each article.section as section, sectionIndex (sectionIndex)}
+                      {@const sectionId = sectionKey(index, articleIndex, sectionIndex)}
+                      {@const isSectionOpen = isOpen(sectionId, DEFAULT_OPEN.section)}
+                      <section class="section">
+                        <h4>
+                          <button
+                            type="button"
+                            class="toggle section-toggle"
+                            onclick={() => toggle(sectionId, DEFAULT_OPEN.section)}
+                            aria-expanded={isSectionOpen}
+                            aria-controls={sectionId}
+                          >
+                            {#if section.block.length === 0}
+                              <span class="article-number">
+                                {calculateArticleNumber(chapter, articleIndex, sectionIndex)}
+                              </span>
+                            {/if}
+                            <span class="label">{section.title}</span>
+                            <span class="mark" aria-hidden="true"></span>
+                          </button>
+                        </h4>
+
+                        <div class="collapsible" id={sectionId} data-open={isSectionOpen}>
+                          <div class="collapsible-inner section-body">
+                            {#if section.block.length > 0}
+                              {#each section.block as block, blockIndex (blockIndex)}
+                                <div class="item">
+                                  <h5>
+                                    <span class="article-number">
+                                      {calculateArticleNumber(
+                                        chapter,
+                                        articleIndex,
+                                        sectionIndex,
+                                        blockIndex,
+                                      )}
+                                    </span>
+                                    {block.title}
+                                  </h5>
+                                  <p>{block.element}</p>
+                                  {#each block.image as image, blockImageIndex (blockImageIndex)}
+                                    <RuleFigure {image} />
+                                  {/each}
+                                </div>
+                              {/each}
+                            {:else}
                               <div class="item">
-                                <h5>
-                                  <span class="article-number">
-                                    {calculateArticleNumber(
-                                      chapter,
-                                      articleIndex,
-                                      sectionIndex,
-                                      blockIndex,
-                                    )}
-                                  </span>
-                                  {block.title}
-                                </h5>
-                                <p>{block.element}</p>
-                                {#each block.image as image, blockImageIndex (blockImageIndex)}
+                                <p>{section.content}</p>
+                                {#each section.image as image, sectionImageIndex (sectionImageIndex)}
                                   <RuleFigure {image} />
                                 {/each}
                               </div>
-                            {/each}
-                          {:else}
-                            <div class="item">
-                              <p>{section.content}</p>
-                              {#each section.image as image, sectionImageIndex (sectionImageIndex)}
-                                <RuleFigure {image} />
-                              {/each}
-                            </div>
-                          {/if}
+                            {/if}
+                          </div>
                         </div>
-                      </div>
-                    </section>
-                  {/each}
+                      </section>
+                    {/each}
+                  </div>
                 </div>
-              </div>
-            </section>
-          {/each}
+              </section>
+            {/each}
+          </div>
         </div>
-      </div>
-    </section>
-  {/each}
+      </section>
+    {/each}
+  </div>
 </article>
 
 <style lang="scss">
@@ -300,9 +303,6 @@
     --rule-open-close-duration: 240ms;
 
     width: 100%;
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: $space-size-40 var(--content-padding-inline) $space-size-80;
   }
 
   // 動きを減らす設定の人には、間を置かずに切り替える
@@ -312,27 +312,49 @@
     }
   }
 
-  .mobile {
+  // 規則の本文はコンテンツ幅に収める
+  .body {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: $space-size-40 var(--content-padding-inline) $space-size-80;
+  }
+
+  .mobile .body {
     padding: $space-size-24 var(--content-padding-inline) $space-size-48;
   }
 
-  /* ─── 案内役のひとこと ─── */
+  /* ─── 案内役のひとこと（ファーストビジュアル） ─── */
 
-  .intro {
+  .hero {
+    width: 100%;
+
+    // 青（信頼）を両端から差す。トップページと同じ作り
+    background:
+      radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
+      radial-gradient(circle at 92% 6%, rgb(25 134 255 / 16%), transparent 42%), $white;
+    border-bottom: 1px solid map.get($gray, 100);
+  }
+
+  // 中身だけをコンテンツ幅に収める
+  .hero .inner {
     display: flex;
     gap: $space-size-24;
-    margin-bottom: $space-size-32;
-    padding: $space-size-24;
-    border-radius: 10px;
-    background: map.get($gray, background);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: $space-size-48 var(--content-padding-inline);
     align-items: flex-start;
   }
 
-  .mobile .intro {
+  .mobile .hero .inner {
     flex-direction: column;
     align-items: center;
-    text-align: center;
     gap: $space-size-12;
+    padding: $space-size-32 var(--content-padding-inline);
+    text-align: center;
   }
 
   .guide {
