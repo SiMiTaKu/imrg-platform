@@ -12,6 +12,7 @@
     OrderPrice,
     splitSentences,
   } from '@widgets/orderService'
+  import { WorkList } from '@widgets/backgroundMusic'
   import {
     CONTACT,
     CROSS_LINK_COACHING,
@@ -28,7 +29,6 @@
     PRICE_PER_MUSIC,
   } from '../config/content'
   import MainVisualImage from '../images/main-visual.png?w=1024;2048&format=webp&as=meta'
-  import WorkList from './WorkList.svelte'
 
   const locale = getLocale()
   // 個人と団体で長さも手数も違うので、値段を分けて出す。
