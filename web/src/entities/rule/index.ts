@@ -27,3 +27,17 @@ export type {
   RuleTree,
   RuleTreeNode,
 } from './model/ruleTable'
+
+// 骨格と本文を分けて持つための仕組み
+export { buildRuleBook } from './lib/buildRuleBook'
+export { fingerprint, isFresh } from './lib/fingerprint'
+export { checkTranslations, formatTranslationStatus } from './lib/translationStatus'
+export type {
+  RuleContent,
+  RuleEntry,
+  RuleItem,
+  RuleKey,
+  RuleNode,
+  RuleStructure,
+  TranslationStatus,
+} from './model/ruleSource'
