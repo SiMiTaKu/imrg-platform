@@ -35,6 +35,8 @@
         </div>
 
         <p class="summary">{HERO.summary()}</p>
+        <!-- 断られるのではと身構えずに済むよう、summary のすぐあとで声をかける -->
+        <p class="welcome">{HERO.welcome()}</p>
 
         <ul class="tags">
           {#each HERO.points as point (point.key)}
@@ -369,6 +371,15 @@
     font-size: $font-size-16;
     line-height: 1.9;
     color: map.get($gray, 600);
+  }
+
+  // 頼みやすさを伝える一言。本文より一段だけ強くする
+  .welcome {
+    margin: 0;
+    font-size: $font-size-16;
+    font-weight: bold;
+    line-height: 1.8;
+    color: map.get($sky-blue, text);
   }
 
   .tags {

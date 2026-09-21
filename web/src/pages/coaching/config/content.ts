@@ -290,6 +290,8 @@ export const FLOW = [
 export const HERO = {
   eyebrow: m.coaching_hero_eyebrow,
   summary: m.coaching_hero_summary,
+  /** 頼みやすさが伝わるように、案内のあとに添える一言 */
+  welcome: m.coaching_hero_welcome,
   points: [
     {
       key: 'group',
