@@ -1,6 +1,7 @@
 import { m } from '$lib/paraglide/messages'
 import { LINKS } from '@shared/config/links'
 import { SERVICES } from '../config/sections'
+import { joinPhrases, joinPrices } from './phrase'
 
 /**
  * トップページの構造化データ（schema.org）。
@@ -38,7 +39,8 @@ export const buildTopJsonLd = (baseUrl: string): Record<string, unknown> => ({
     ...SERVICES.map((service) => ({
       '@type': 'Service',
       name: service.title(),
-      description: service.body(),
+      // 画面ではまとまりごとに分けて出しているので、検索向けには文に戻す
+      description: joinPhrases(service.body),
       url: `${baseUrl}${service.href}`,
       provider: { '@id': `${baseUrl}/#organization` },
       areaServed: 'JP',
@@ -47,7 +49,7 @@ export const buildTopJsonLd = (baseUrl: string): Record<string, unknown> => ({
         // いちばん安く頼める値段。曲編集は個人の1曲、指導はオンラインの添削から
         price: String(service.lowestPrice),
         priceCurrency: 'JPY',
-        description: service.price(),
+        description: joinPrices(service.price),
       },
     })),
   ],

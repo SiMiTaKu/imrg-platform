@@ -57,21 +57,45 @@ export const HIGHLIGHTS = [
   },
 ] as const
 
-/** 頼めること。料金の入口を分かりやすくする */
+/**
+ * 頼めること。料金の入口を分かりやすくする。
+ *
+ * @remarks
+ * `price` と `body` は、意味のまとまりごとに分けて並びで持つ。
+ * 日本語は単語の切れ目が無いため、1つの文にしてしまうとスマホで
+ * 「2,000円〜」の途中や文の意味の途中で折り返してしまう。
+ * 画面ではまとまりごとに `<span>` で包み、まとまりの中では折り返さないようにする
+ */
 export const SERVICES = [
   {
     id: 'coaching',
     character: Character.KAZUTO,
     title: m.top_service_coaching_title,
-    /**
-     *
-     */
-    price: () =>
-      m.top_service_coaching_price({
-        online: formatYen(PRICES.coaching.online, getLocale()),
-        daily: formatYen(PRICES.coaching.daily, getLocale()),
-      }),
-    body: m.top_service_coaching_body,
+    price: [
+      /**
+       * オンラインで受けるときの値段
+       * @returns 「オンライン 2,000円〜」
+       */
+      () =>
+        m.top_service_coaching_price_online({
+          online: formatYen(PRICES.coaching.online, getLocale()),
+        }),
+      /**
+       * 会場へ出向くときの1日の値段
+       * @returns 「1日 30,000円〜」
+       */
+      () =>
+        m.top_service_coaching_price_daily({
+          daily: formatYen(PRICES.coaching.daily, getLocale()),
+        }),
+    ],
+    body: [
+      m.top_service_coaching_body_1,
+      m.top_service_coaching_body_2,
+      m.top_service_coaching_body_3,
+      m.top_service_coaching_body_4,
+      m.top_service_coaching_body_5,
+    ],
     href: ROUTES.coaching,
     action: m.top_service_coaching_action,
     /** いちばん安く頼める値段（円）。構造化データの Offer に出す */
@@ -81,15 +105,30 @@ export const SERVICES = [
     id: 'background_music',
     character: Character.AYATO,
     title: m.top_service_background_music_title,
-    /**
-     *
-     */
-    price: () =>
-      m.top_service_background_music_price({
-        individual: formatYen(PRICES.backgroundMusic.individual, getLocale()),
-        group: formatYen(PRICES.backgroundMusic.group, getLocale()),
-      }),
-    body: m.top_service_background_music_body,
+    price: [
+      /**
+       * 個人の1曲の値段
+       * @returns 「個人 5,000円〜」
+       */
+      () =>
+        m.top_service_background_music_price_individual({
+          individual: formatYen(PRICES.backgroundMusic.individual, getLocale()),
+        }),
+      /**
+       * 団体の1曲の値段
+       * @returns 「団体 10,000円〜」
+       */
+      () =>
+        m.top_service_background_music_price_group({
+          group: formatYen(PRICES.backgroundMusic.group, getLocale()),
+        }),
+    ],
+    body: [
+      m.top_service_background_music_body_1,
+      m.top_service_background_music_body_2,
+      m.top_service_background_music_body_3,
+      m.top_service_background_music_body_4,
+    ],
     href: ROUTES.backgroundMusic,
     action: m.top_service_background_music_action,
     lowestPrice: PRICES.backgroundMusic.individual,
@@ -98,14 +137,21 @@ export const SERVICES = [
     id: 'decorating_apparatus',
     character: Character.YAWANA,
     title: m.top_service_decorating_apparatus_title,
-    /**
-     *
-     */
-    price: () =>
-      m.top_service_decorating_apparatus_price({
-        hourly: formatYen(PRICES.decoratingApparatus.hourly, getLocale()),
-      }),
-    body: m.top_service_decorating_apparatus_body,
+    price: [
+      /**
+       * 作業1時間あたりの値段
+       * @returns 「作業1時間 1,500円〜」
+       */
+      () =>
+        m.top_service_decorating_apparatus_price_hourly({
+          hourly: formatYen(PRICES.decoratingApparatus.hourly, getLocale()),
+        }),
+    ],
+    body: [
+      m.top_service_decorating_apparatus_body_1,
+      m.top_service_decorating_apparatus_body_2,
+      m.top_service_decorating_apparatus_body_3,
+    ],
     href: ROUTES.decoratingApparatus,
     action: m.top_service_decorating_apparatus_action,
     lowestPrice: PRICES.decoratingApparatus.hourly,

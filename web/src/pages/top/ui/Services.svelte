@@ -24,10 +24,18 @@
             <CharacterFigure {character} size={isMobile ? 84 : 100} />
             <div class="naming">
               <h3>{service.title()}</h3>
-              <p class="price">{service.price()}</p>
+              <!-- 金額と単位のあいだで折り返さないよう、値段は1つずつ箱にする -->
+              <p class="price">
+                {#each service.price as part, index (part)}{#if index > 0}{m.top_service_price_separator()}{/if}<span
+                    class="phrase">{part()}</span
+                  >{/each}
+              </p>
             </div>
           </div>
-          <p class="body">{service.body()}</p>
+          <!-- 意味のまとまりごとに箱にする。まとまりの途中では折り返さない -->
+          <p class="body">
+            {#each service.body as phrase (phrase)}<span class="phrase">{phrase()}</span>{/each}
+          </p>
           <div class="actions">
             <a class="detail" href={localizeHref(service.href)}>{service.action()}</a>
             <a class="order" href="#contact">{m.top_services_order()}</a>
@@ -140,6 +148,17 @@
     color: map.get($gray, 600);
     line-height: 1.9;
     flex: 1;
+  }
+
+  // 日本語・中国語は単語の切れ目が無く、金額や文の意味の途中で折り返してしまう。
+  // 意味のまとまりを箱にすると、まとまりごと次の行へ送られる
+  .phrase {
+    display: inline-block;
+  }
+
+  // 単語を空白で区切る言語では、まとまりのあいだに空白1つぶんを置く
+  .body:not(:lang(ja), :lang(zh)) .phrase + .phrase {
+    margin-inline-start: 0.25em;
   }
 
   .actions {
