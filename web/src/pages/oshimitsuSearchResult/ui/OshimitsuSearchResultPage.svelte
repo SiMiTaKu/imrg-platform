@@ -103,94 +103,135 @@
 {/snippet}
 
 <article class="result" class:mobile={isMobile}>
-  <nav class="breadcrumb" aria-label={m.oshimitsu_result_breadcrumb_label()}>
-    <a href={localizeHref(ROUTES.oshimitsu.index)}>
-      <span aria-hidden="true">←</span>
-      {m.oshimitsu_title()}
-    </a>
-  </nav>
+  <!-- ページの顔。囲いの中に閉じ込めず、背景を画面の端まで行き渡らせる -->
+  <header class="hero">
+    <div class="hero-inner">
+      <nav class="breadcrumb" aria-label={m.oshimitsu_result_breadcrumb_label()}>
+        <a href={localizeHref(ROUTES.oshimitsu.index)}>
+          <span aria-hidden="true">←</span>
+          {m.oshimitsu_title()}
+        </a>
+      </nav>
 
-  <header class="head">
-    <!-- 見出しだけでは何の一覧か分からないので、上に一言置く -->
-    <p class="kicker">{m.oshimitsu_result_kicker()}</p>
-    <h1>{title}</h1>
-    {#if isLaunched && totalVideos !== undefined && totalVideos > 0}
-      <p class="count">
-        <strong>{totalVideos}</strong>{foundText}
-        {showingText}
-      </p>
-    {/if}
+      <div class="head">
+        <!-- 見出しだけでは何の一覧か分からないので、上に一言置く -->
+        <p class="kicker">{m.oshimitsu_result_kicker()}</p>
+        <h1>{title}</h1>
+        {#if isLaunched && totalVideos !== undefined && totalVideos > 0}
+          <p class="count">
+            <strong>{totalVideos}</strong>{foundText}
+            {showingText}
+          </p>
+        {/if}
+      </div>
+    </div>
   </header>
 
-  <FilterNav {criteria} />
+  <div class="body">
+    <FilterNav {criteria} />
 
-  {#if !isLaunched}
-    <p class="loading">{m.oshimitsu_loading()}</p>
-    <ul class="cards" aria-hidden="true">
-      {#each [0, 1, 2] as placeholder (placeholder)}
-        <li><span class="skeleton"></span></li>
-      {/each}
-    </ul>
-  {:else if totalVideos === 0}
-    <EmptyResult
-      title={m.oshimitsu_empty_filter_title()}
-      description={m.oshimitsu_empty_filter_description()}
-    />
-  {:else}
-    <div class="narrow">
-      <label class="narrow-label" for="oshimitsu-keyword">{m.oshimitsu_narrow_label()}</label>
-      <input
-        id="oshimitsu-keyword"
-        class="narrow-input"
-        type="search"
-        bind:value={keyword}
-        placeholder={m.oshimitsu_narrow_placeholder()}
-        autocomplete="off"
-      />
-      <span class="narrow-note">
-        {#if keyword.trim() === ''}
-          {visibleNote}
-        {:else}
-          {matchedNote}
-        {/if}
-      </span>
-    </div>
-
-    {#if visibleVideos.length === 0}
-      <EmptyResult
-        title={m.oshimitsu_empty_keyword_title({ keyword })}
-        description={m.oshimitsu_empty_keyword_description()}
-        actions={keywordActions}
-      />
-    {:else}
-      <ul class="cards">
-        {#each visibleVideos as video, index (index)}
-          <li><VideoCard {video} /></li>
+    {#if !isLaunched}
+      <p class="loading">{m.oshimitsu_loading()}</p>
+      <ul class="cards" aria-hidden="true">
+        {#each [0, 1, 2] as placeholder (placeholder)}
+          <li><span class="skeleton"></span></li>
         {/each}
       </ul>
-    {/if}
+    {:else if totalVideos === 0}
+      <EmptyResult
+        title={m.oshimitsu_empty_filter_title()}
+        description={m.oshimitsu_empty_filter_description()}
+      />
+    {:else}
+      <div class="narrow">
+        <label class="narrow-label" for="oshimitsu-keyword">{m.oshimitsu_narrow_label()}</label>
+        <input
+          id="oshimitsu-keyword"
+          class="narrow-input"
+          type="search"
+          bind:value={keyword}
+          placeholder={m.oshimitsu_narrow_placeholder()}
+          autocomplete="off"
+        />
+        <span class="narrow-note">
+          {#if keyword.trim() === ''}
+            {visibleNote}
+          {:else}
+            {matchedNote}
+          {/if}
+        </span>
+      </div>
 
-    <footer class="foot">
-      {#if hasMore}
-        <Button
-          fontSize={isMobile ? 20 : 24}
-          width={isMobile ? 280 : 340}
-          height={56}
-          text={m.oshimitsu_load_more()}
-          onclick={getMoreVideos}
+      {#if visibleVideos.length === 0}
+        <EmptyResult
+          title={m.oshimitsu_empty_keyword_title({ keyword })}
+          description={m.oshimitsu_empty_keyword_description()}
+          actions={keywordActions}
         />
       {:else}
-        <p class="no-more">{m.oshimitsu_no_more_videos()}</p>
-        <a class="other" href={localizeHref(ROUTES.oshimitsu.index)}>
-          {m.oshimitsu_other_ways()} →
-        </a>
+        <ul class="cards">
+          {#each visibleVideos as video, index (index)}
+            <li><VideoCard {video} /></li>
+          {/each}
+        </ul>
       {/if}
-    </footer>
-  {/if}
+
+      <footer class="foot">
+        {#if hasMore}
+          <Button
+            fontSize={isMobile ? 20 : 24}
+            width={isMobile ? 280 : 340}
+            height={56}
+            text={m.oshimitsu_load_more()}
+            onclick={getMoreVideos}
+          />
+        {:else}
+          <p class="no-more">{m.oshimitsu_no_more_videos()}</p>
+          <a class="other" href={localizeHref(ROUTES.oshimitsu.index)}>
+            {m.oshimitsu_other_ways()} →
+          </a>
+        {/if}
+      </footer>
+    {/if}
+  </div>
 </article>
 
 <style lang="scss">
   .result {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* ─── ページの顔。背景は画面の端まで、中身だけコンテンツ幅で止める ─── */
+
+  .hero {
+    width: 100%;
+
+    // 青（信頼）を両端から差す。トップページ・推しミツ！のトップと同じ作り
+    background:
+      radial-gradient(circle at 10% 0%, rgb(25 134 255 / 10%), transparent 45%),
+      radial-gradient(circle at 90% 8%, rgb(25 134 255 / 16%), transparent 44%), $white;
+    border-bottom: 1px solid map.get($gray, 100);
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-12;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: $space-size-24 var(--content-padding-inline) $space-size-32;
+    box-sizing: border-box;
+  }
+
+  .mobile .hero-inner {
+    gap: $space-size-8;
+    padding: $space-size-16 var(--content-padding-inline) $space-size-24;
+  }
+
+  .body {
     display: flex;
     flex-direction: column;
     gap: $space-size-24;
@@ -201,7 +242,7 @@
     box-sizing: border-box;
   }
 
-  .mobile.result {
+  .mobile .body {
     gap: $space-size-16;
     padding: $space-size-16 var(--content-padding-inline) $space-size-48;
   }
