@@ -5,14 +5,11 @@
 
   const {
     images,
-    workNumber,
     alt,
     onOpen,
   }: {
     /** 作品の写真 */
     images: ImageSourceMeta[][]
-    /** 何番目の作品か（1 始まり） */
-    workNumber: number
     /** 写真の代わりに読む文 */
     alt: string
     /** 押して大きく見るときに呼ぶ */
@@ -36,12 +33,15 @@
         objectFit="cover"
       />
     </span>
-    <span class="foot">
-      <span class="number">{m.decorating_apparatus_work_number({ number: workNumber })}</span>
-      {#if images.length > 1}
-        <span class="sheets">{m.decorating_apparatus_work_sheets({ count: images.length })}</span>
-      {/if}
-      <span class="zoom" aria-hidden="true">{m.decorating_apparatus_work_zoom()}</span>
+
+    <!-- 押せることが分かるように、指でタップする印を写真の上部に重ねる -->
+    <span class="tap" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+        <path
+          fill="currentColor"
+          d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"
+        />
+      </svg>
     </span>
   </button>
 </li>
@@ -49,62 +49,58 @@
 <style lang="scss">
   .tile {
     display: flex;
+    min-width: 0;
   }
 
+  // 写真と印は grid の同じマス目に重ねる。position: absolute で重ねない
   button {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     width: 100%;
+    margin: 0;
     padding: 0;
     overflow: hidden;
-    border: 1px solid map.get($gray, 100);
-    border-radius: 8px;
-    background: $white;
+    border: 0;
+    border-radius: 0;
+    background: map.get($gray, 50);
     cursor: zoom-in;
-    transition:
-      border-color 0.15s ease,
-      transform 0.15s ease;
-  }
 
-  button:hover {
-    border-color: map.get($sky-blue, border);
-    transform: translateY(-2px);
+    // 隣とぴったり並ぶよう、どのタイルも同じ正方形にする
+    aspect-ratio: 1;
   }
 
   .photo {
     display: block;
+    grid-area: 1 / 1;
     width: 100%;
-
-    // 手具の写真は正方形に近い。切り取らずに並べる
-    aspect-ratio: 1;
+    height: 100%;
     overflow: hidden;
-    background: map.get($gray, 50);
+    transition: transform 0.2s ease;
   }
 
-  .foot {
-    display: flex;
-    align-items: center;
-    gap: $space-size-8;
-    padding: $space-size-12 $space-size-16;
+  button:hover .photo {
+    transform: scale(1.04);
   }
 
-  .number {
-    font-size: $font-size-14;
-    font-weight: bold;
-    color: map.get($gray, text);
+  // ImageAssets の img は高さが auto になるので、ここで枠いっぱいに伸ばす
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+  .photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 
-  .sheets {
-    padding: $space-size-2 $space-size-8;
-    font-size: $font-size-12;
+  .tap {
+    display: grid;
+    grid-area: 1 / 1;
+    place-items: center;
+    place-self: start end;
+    width: 30px;
+    height: 30px;
+    margin: $space-size-8;
     color: map.get($sky-blue, text);
     border-radius: 999px;
-    background: map.get($sky-blue, background);
-  }
-
-  .zoom {
-    margin-left: auto;
-    font-size: $font-size-12;
-    color: map.get($gray, light-text);
+    background: rgb(255 255 255 / 88%);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
   }
 </style>
