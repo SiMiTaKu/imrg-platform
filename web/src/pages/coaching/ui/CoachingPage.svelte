@@ -129,8 +129,25 @@
             </li>
           {/each}
         </ul>
+        <!-- 金額を見て諦める人に、まず気づいてほしい一文。黄で目立たせる -->
         <p class="market-note">
-          {m.coaching_market_note()}
+          <svg class="bulb" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path
+              d="M12 2.5a6.5 6.5 0 0 0-3.9 11.7c.62.47.9 1.1.9 1.8h6c0-.7.28-1.33.9-1.8A6.5 6.5 0 0 0 12 2.5Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9.4 18.3h5.2M10.6 21h2.8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span>{m.coaching_market_note()}</span>
         </p>
       </div>
     </div>
@@ -606,10 +623,25 @@
   }
 
   .market-note {
+    display: flex;
+    gap: $space-size-8;
+    align-items: flex-start;
     margin: 0;
-    padding: $space-size-12;
+    padding: $space-size-12 $space-size-16;
+    border: 1px solid map.get($amber, border);
     border-radius: 6px;
-    background: map.get($sky-blue, background);
+    background: map.get($amber, background);
+  }
+
+  // 電球は文の1行目の高さに合わせる。縮ませない
+  .bulb {
+    flex: none;
+    margin-top: 2px;
+    color: map.get($amber, button);
+  }
+
+  .market-note span {
+    min-inline-size: 0;
   }
 
   /* ─── 実績 ─── */
