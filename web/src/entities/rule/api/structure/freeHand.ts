@@ -21,16 +21,36 @@ export const FREE_HAND_STRUCTURE: RuleNode[] = [
     page: 63,
     children: [
       { key: 'scoring.freeHand.rules', number: '3.8.1', page: 63 },
-      { key: 'scoring.freeHand.allocation', number: '3.8.2', page: 63 },
-      { key: 'scoring.freeHand.judges', number: '3.8.3', page: 64 },
-      { key: 'scoring.freeHand.judgeRoles', number: '3.8.4', page: 64 },
+      {
+        key: 'scoring.freeHand.allocation',
+        number: '3.8.2',
+        page: 63,
+        figures: ['trees/free-hand-allocation'],
+      },
+      {
+        key: 'scoring.freeHand.judges',
+        number: '3.8.3',
+        page: 64,
+        figures: ['tables/free-hand-judges'],
+      },
+      {
+        key: 'scoring.freeHand.judgeRoles',
+        number: '3.8.4',
+        page: 64,
+        figures: ['seats/free-hand-judge-seats'],
+      },
       {
         key: 'scoring.freeHand.composition',
         number: '3.8.5',
         page: 64,
         children: [
           { key: 'scoring.freeHand.composition.routine', number: '1', page: 64 },
-          { key: 'scoring.freeHand.composition.requirements', number: '3.8.5.2', page: 65 },
+          {
+            key: 'scoring.freeHand.composition.requirements',
+            number: '3.8.5.2',
+            page: 65,
+            figures: ['tables/free-hand-requirements', 'tables/free-hand-combined'],
+          },
           { key: 'scoring.freeHand.composition.acrobatic', number: '3', page: 66 },
         ],
       },
@@ -48,17 +68,25 @@ export const FREE_HAND_STRUCTURE: RuleNode[] = [
           },
         ],
       },
-      { key: 'scoring.freeHand.artistry', number: '3.8.7', page: 68 },
+      {
+        key: 'scoring.freeHand.artistry',
+        number: '3.8.7',
+        page: 68,
+        figures: ['tables/free-hand-artistry-levels'],
+      },
       {
         key: 'scoring.freeHand.execution',
         number: '3.8.8',
         page: 69,
         children: [
           {
+            // 69ページの実施欠点基準は、70ページの実施欠点表で「欠点基準に準じる」と
+            // 書かれているときに引く4段階の表。画面では欠点表と並べたほうが読みやすいので、
+            // 3.8.8.4 にまとめてつないである
             key: 'scoring.freeHand.execution.deductionTable',
             number: '3.8.8.4',
             page: 70,
-            figures: ['tosyukettenhyou'],
+            figures: ['tables/free-hand-execution-levels', 'tosyukettenhyou'],
           },
         ],
       },

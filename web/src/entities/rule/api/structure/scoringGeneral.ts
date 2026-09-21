@@ -25,10 +25,13 @@ export const SCORING_GENERAL_STRUCTURE: readonly RuleNode[] = [
       { key: 'scoring.judges.regulations', number: '3.2.2', page: 19 },
       { key: 'scoring.judges.meeting', number: '3.2.3', page: 20 },
       { key: 'scoring.judges.oath', number: '3.2.4', page: 20 },
-      // 冊子には審判団の構成表がある（api/tables には無いため figures でつないでいない）。
-      // 難度（D）審判 2名／芸術と多様性（A）審判 4名／実施（E）審判 4名／
-      // 線審 2名／計時審 1名／補審 1名
-      { key: 'scoring.judges.panel', number: '3.2.5', page: 20 },
+      // 審判団の構成表（api/tables/judgeTables.ts）
+      {
+        key: 'scoring.judges.panel',
+        number: '3.2.5',
+        page: 20,
+        figures: ['tables/judge-panel'],
+      },
       { key: 'scoring.judges.superior', number: '3.2.6', page: 20 },
       { key: 'scoring.judges.president', number: '3.2.7', page: 20 },
       { key: 'scoring.judges.difficulty', number: '3.2.8', page: 21 },
@@ -37,10 +40,13 @@ export const SCORING_GENERAL_STRUCTURE: readonly RuleNode[] = [
       { key: 'scoring.judges.line', number: '3.2.11', page: 21 },
       { key: 'scoring.judges.time', number: '3.2.12', page: 21 },
       { key: 'scoring.judges.reserve', number: '3.2.13', page: 21 },
-      // 目次に載っていない節。冊子には座席の表がある（api/tables には無い）。
-      // 前列 E4／A3／E2／A1／セクレタリー／E1／A2／E3／A4、
-      // 後列 D1／D2／審判長／補審（←1段高くする）
-      { key: 'scoring.judges.seating', number: '3.2.14', page: 21 },
+      // 目次に載っていない節。座席図は api/tables/judgeSeating.ts に持つ
+      {
+        key: 'scoring.judges.seating',
+        number: '3.2.14',
+        page: 21,
+        figures: ['seats/judge-seats'],
+      },
     ],
   },
   {

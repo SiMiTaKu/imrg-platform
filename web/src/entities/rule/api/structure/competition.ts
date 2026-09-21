@@ -85,7 +85,12 @@ export const COMPETITION_STRUCTURE: RuleNode = {
         { key: 'competition.gymnast.duties', number: '1.6.4', page: 7 },
         { key: 'competition.gymnast.events', number: '1.6.5', page: 7 },
         { key: 'competition.gymnast.attire', number: '1.6.6', page: 7 },
-        { key: 'competition.gymnast.clubMark', number: '1.6.7', page: 8 },
+        {
+          key: 'competition.gymnast.clubMark',
+          number: '1.6.7',
+          page: 8,
+          figures: ['shapes/club-mark'],
+        },
         { key: 'competition.gymnast.discipline', number: '1.6.8', page: 9 },
       ],
     },

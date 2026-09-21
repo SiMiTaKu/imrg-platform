@@ -83,6 +83,7 @@ export const GROUP_SCORING_STRUCTURE: RuleNode[] = [
             key: 'scoring.group.difficulty.value',
             number: '3.4.4.2',
             page: 28,
+            figures: ['tables/difficulty-value'],
           },
           {
             key: 'scoring.group.difficulty.freeHand',
@@ -90,9 +91,16 @@ export const GROUP_SCORING_STRUCTURE: RuleNode[] = [
             page: 28,
           },
           {
+            // 交差技の難度（29ページ）とシリーズの難度の判定（30ページ）は、
+            // どちらも冊子では 3.4.4.4 の中にある
             key: 'scoring.group.difficulty.acrobatic',
             number: '3.4.4.4',
             page: 28,
+            figures: [
+              'tables/group-cross-two',
+              'tables/group-cross-three',
+              'tables/group-series-difficulty',
+            ],
           },
           {
             key: 'scoring.group.difficulty.bonus',

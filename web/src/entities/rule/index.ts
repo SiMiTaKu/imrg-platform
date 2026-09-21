@@ -16,9 +16,25 @@ export type {
   RuleImage,
   RuleSection,
 } from './model/ruleBook'
-export { RULE_FORMS, RULE_TABLES, RULE_TREES, findRuleTable, findRuleTree } from './api/tables'
+export {
+  RULE_FORMS,
+  RULE_SEATINGS,
+  RULE_SHAPE_FIGURES,
+  RULE_TABLES,
+  RULE_TREES,
+  findRuleSeating,
+  findRuleShapeFigure,
+  findRuleTable,
+  findRuleTree,
+} from './api/tables'
 export { hasRowHeader, narrowColumnCount, normalizeRuleTableCell } from './model/ruleTable'
 export type {
+  RuleSeat,
+  RuleSeatRow,
+  RuleSeating,
+  RuleShape,
+  RuleShapeFigure,
+  RuleShapeKind,
   RuleTable,
   RuleTableCell,
   RuleTableCellSource,

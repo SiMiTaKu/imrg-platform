@@ -31,7 +31,12 @@ export const APPENDIX_STRUCTURE: RuleNode = {
         { key: 'appendix.judge.fee', number: '第12条', page: 87 },
         { key: 'appendix.judge.card', number: '第13条', page: 87 },
         { key: 'appendix.judge.supplementary', number: '', page: 87 },
-        { key: 'appendix.judge.feeTable', number: '', page: 88 },
+        {
+          key: 'appendix.judge.feeTable',
+          number: '',
+          page: 88,
+          figures: ['tables/judge-application-fee'],
+        },
       ],
     },
     {
@@ -46,7 +51,12 @@ export const APPENDIX_STRUCTURE: RuleNode = {
         { key: 'appendix.registration.dualAffiliation', number: '第5条', page: 90 },
         { key: 'appendix.registration.delegation', number: '第6条', page: 90 },
         { key: 'appendix.registration.fee', number: '第7条', page: 91 },
-        { key: 'appendix.registration.feeTable', number: '', page: 92 },
+        {
+          key: 'appendix.registration.feeTable',
+          number: '',
+          page: 92,
+          figures: ['tables/registration-fee'],
+        },
         { key: 'appendix.registration.memberCode', number: '第8条', page: 92 },
         { key: 'appendix.registration.applicationPeriod', number: '第9条', page: 92 },
         { key: 'appendix.registration.validity', number: '第10条', page: 92 },

@@ -1,13 +1,15 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
   import {
+    findRuleSeating,
+    findRuleShapeFigure,
     findRuleTable,
     findRuleTree,
     hasRowHeader,
     narrowColumnCount,
     normalizeRuleTableCell,
   } from '@entities/rule'
-  import type { RuleTreeNode } from '@entities/rule'
+  import type { RuleShape, RuleShapeKind, RuleTreeNode } from '@entities/rule'
   import type { Image as RuleImage } from '@shared/model'
 
   const {
@@ -24,6 +26,10 @@
   const table = $derived(findRuleTable(image.src))
   // 罫線と文字だけでできた図は、入れ子の箇条書きとして出す
   const tree = $derived(findRuleTree(image.src))
+  // 審判席の並びは、箱を横に並べた図として出す
+  const seating = $derived(findRuleSeating(image.src))
+  // 寸法だけでできた図は、図形を描き直して出す
+  const shapeFigure = $derived(findRuleShapeFigure(image.src))
 
   /** 行の見出しの列を出すか */
   const showsRowHeader = $derived(table ? hasRowHeader(table) : false)
@@ -76,6 +82,216 @@
       }
     })
   }
+
+  /*
+    寸法図の描き方。
+    冊子の図は直線と寸法の引き出し線だけでできているので、画像をやめて描き直す。
+    1cm を 12 の長さに決め、どの図形も同じ物差しで描くので、大きさを見比べられる。
+    枠は 150 × 106 で、左と下に寸法を書き込む余白を取ってある
+  */
+
+  /** 1cm ぶんの長さ */
+  const CM = 12
+  /** 図形の底辺を置く高さ */
+  const BASE = 80
+  /** 枠の真ん中 */
+  const MIDDLE = 75
+
+  /** 描くときに必要な位置。図形の種類から決まる */
+  interface ShapeDrawing {
+    /** 多角形の頂点。円のときだけ空 */
+    readonly polygon: string
+    /** 円。半径と中心 */
+    readonly circle?: { cx: number; cy: number; r: number }
+    /** 下に引く寸法線と、その文字の置き場所 */
+    readonly bottom?: { x1: number; x2: number; y: number; textY: number }
+    /**
+     * 左に引く寸法線と、その文字の置き場所。
+     * 菱形は左の辺が斜めなので、辺と平行に引けるよう両端の座標で持つ
+     */
+    readonly side?: {
+      x1: number
+      y1: number
+      x2: number
+      y2: number
+      textX: number
+      textY: number
+    }
+    /** 角度を書き込む場所。`angleLabels` と同じ順 */
+    readonly angles: readonly { x: number; y: number }[]
+  }
+
+  /**
+   * 多角形の頂点を、SVG に渡せる文字列にする
+   * @param points - 頂点の並び
+   * @returns 「x,y x,y」の形にした頂点
+   */
+  const toPolygon = (points: readonly [number, number][]): string =>
+    points.map(([x, y]) => `${x},${y}`).join(' ')
+
+  /**
+   * 図形の種類から、描くときの位置を決める
+   * @param kind - 図形の種類
+   * @returns 頂点・寸法線・角度の置き場所
+   */
+  const drawingOf = (kind: RuleShapeKind): ShapeDrawing => {
+    switch (kind) {
+      // 4.5cm×4.5cm の正方形
+      case 'square': {
+        const side = 4.5 * CM
+        const left = MIDDLE - side / 2
+        const right = left + side
+        const top = BASE - side
+        return {
+          polygon: toPolygon([
+            [left, top],
+            [right, top],
+            [right, BASE],
+            [left, BASE],
+          ]),
+          bottom: { x1: left, x2: right, y: BASE + 8, textY: BASE + 20 },
+          side: {
+            x1: left - 8,
+            y1: top,
+            x2: left - 8,
+            y2: BASE,
+            textX: left - 12,
+            textY: (top + BASE) / 2 + 3,
+          },
+          angles: [],
+        }
+      }
+      // 4.0cm×5.0cm の長方形。横が 5.0cm、縦が 4.0cm
+      case 'rectangle': {
+        const width = 5 * CM
+        const height = 4 * CM
+        const left = MIDDLE - width / 2
+        const right = left + width
+        const top = BASE - height
+        return {
+          polygon: toPolygon([
+            [left, top],
+            [right, top],
+            [right, BASE],
+            [left, BASE],
+          ]),
+          bottom: { x1: left, x2: right, y: BASE + 8, textY: BASE + 20 },
+          side: {
+            x1: left - 8,
+            y1: top,
+            x2: left - 8,
+            y2: BASE,
+            textX: left - 12,
+            textY: (top + BASE) / 2 + 3,
+          },
+          angles: [],
+        }
+      }
+      // 一辺 5.0cm の正三角形。高さは一辺の √3/2
+      case 'triangle': {
+        const side = 5 * CM
+        const left = MIDDLE - side / 2
+        const right = left + side
+        const top = BASE - (side * Math.sqrt(3)) / 2
+        return {
+          polygon: toPolygon([
+            [MIDDLE, top],
+            [right, BASE],
+            [left, BASE],
+          ]),
+          bottom: { x1: left, x2: right, y: BASE + 8, textY: BASE + 20 },
+          // 左下の角（60度）の内側に書き込む
+          angles: [{ x: left + 7, y: BASE - 5 }],
+        }
+      }
+      // 直径 4.5cm の円。寸法は直径の線の上に書き込む
+      case 'circle': {
+        const radius = (4.5 * CM) / 2
+        const centerY = BASE - radius
+        return {
+          polygon: '',
+          circle: { cx: MIDDLE, cy: centerY, r: radius },
+          bottom: {
+            x1: MIDDLE - radius,
+            x2: MIDDLE + radius,
+            y: centerY,
+            textY: centerY - 5,
+          },
+          angles: [],
+        }
+      }
+      // 一辺 4.5cm、辺の交わる角度が 60度と 120度の菱形
+      case 'rhombus': {
+        const side = 4.5 * CM
+        // 60度ぶん右上にずれる。横の広がりは一辺＋ずれ、高さは一辺の sin60
+        const shift = side * Math.cos(Math.PI / 3)
+        const height = side * Math.sin(Math.PI / 3)
+        const left = MIDDLE - (side + shift) / 2
+        const top = BASE - height
+        return {
+          polygon: toPolygon([
+            [left + shift, top],
+            [left + shift + side, top],
+            [left + side, BASE],
+            [left, BASE],
+          ]),
+          bottom: { x1: left, x2: left + side, y: BASE + 8, textY: BASE + 20 },
+          // 寸法は一辺の長さなので、斜めの辺と平行に引く
+          side: {
+            x1: left + shift - 9,
+            y1: top,
+            x2: left - 9,
+            y2: BASE,
+            textX: left + shift / 2 - 13,
+            textY: (top + BASE) / 2 + 3,
+          },
+          // 左下の角（60度）と、左上の角（120度）の内側
+          angles: [
+            { x: left + 9, y: BASE - 5 },
+            { x: left + shift + 6, y: top + 11 },
+          ],
+        }
+      }
+    }
+  }
+
+  /**
+   * 寸法線の両端に付ける、直角の目印。
+   * 菱形の辺は斜めなので、線の向きから直角の向きを出す
+   * @param line - 寸法線の両端
+   * @returns 両端に引く短い線
+   */
+  const endTicks = (line: { x1: number; y1: number; x2: number; y2: number }) => {
+    const dx = line.x2 - line.x1
+    const dy = line.y2 - line.y1
+    const length = Math.hypot(dx, dy) || 1
+    // 線に対して直角の向きに 3 だけ伸ばす
+    const offsetX = (-dy / length) * 3
+    const offsetY = (dx / length) * 3
+
+    return [
+      {
+        x1: line.x1 - offsetX,
+        y1: line.y1 - offsetY,
+        x2: line.x1 + offsetX,
+        y2: line.y1 + offsetY,
+      },
+      {
+        x1: line.x2 - offsetX,
+        y1: line.y2 - offsetY,
+        x2: line.x2 + offsetX,
+        y2: line.y2 + offsetY,
+      },
+    ]
+  }
+
+  /**
+   * 図形と、描くときの位置をひとまとめにする
+   * @param shapes - 図形
+   * @returns 図形と、その描き方
+   */
+  const withDrawings = (shapes: readonly RuleShape[]) =>
+    shapes.map((shape) => ({ shape, drawing: drawingOf(shape.kind) }))
 </script>
 
 <!--
@@ -169,6 +385,122 @@
     <figcaption>
       {#if tree.note}<span class="note">{tree.note}</span>{/if}
       <span class="source">{m.rules_table_source({ source: tree.source })}</span>
+    </figcaption>
+  {:else if seating}
+    <!--
+      審判席の並び。前列と後列で席の数が違い、列の見出しも無いので表にならない。
+      箱を横に並べ、狭い画面では折り返して縦に積み直す
+    -->
+    <p class="title">{seating.caption}</p>
+    <div class="seating-frame">
+      {#each seating.rows as row (row.label)}
+        <div>
+          <p class="seat-row-label">
+            {row.label}{#if row.note}<span class="seat-row-note">{row.note}</span>{/if}
+          </p>
+          <ul class="seats">
+            {#each row.seats as seat, seatIndex (seatIndex)}
+              <li class="seat">
+                <span class="seat-label">{seat.label}</span>
+                {#if seat.note}<span class="seat-note">{seat.note}</span>{/if}
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/each}
+    </div>
+    <figcaption>
+      {#if seating.note}<span class="note">{seating.note}</span>{/if}
+      <span class="source">{m.rules_table_source({ source: seating.source })}</span>
+    </figcaption>
+  {:else if shapeFigure}
+    <!--
+      寸法だけでできた図。線画をやめ、図形と寸法の書き込みとして描き直した。
+      どの図形も同じ物差しで描いてあるので、大きさを見比べられる
+    -->
+    <p class="title">{shapeFigure.caption}</p>
+    <ul class="shapes">
+      {#each withDrawings(shapeFigure.shapes) as { shape, drawing } (shape.kind)}
+        <li class="shape">
+          <svg class="shape-drawing" viewBox="0 0 150 106" role="img" aria-label={shape.label}>
+            <title>{shape.label}</title>
+            {#if drawing.circle}
+              <circle
+                class="outline"
+                cx={drawing.circle.cx}
+                cy={drawing.circle.cy}
+                r={drawing.circle.r}
+              />
+            {:else}
+              <polygon class="outline" points={drawing.polygon} />
+            {/if}
+
+            {#if shape.bottomLabel && drawing.bottom}
+              <line
+                class="measure-line"
+                x1={drawing.bottom.x1}
+                y1={drawing.bottom.y}
+                x2={drawing.bottom.x2}
+                y2={drawing.bottom.y}
+              />
+              {#if !drawing.circle}
+                <!-- 寸法線の両端の目印。円は直径の線そのものなので付けない -->
+                <line
+                  class="measure-line"
+                  x1={drawing.bottom.x1}
+                  y1={drawing.bottom.y - 3}
+                  x2={drawing.bottom.x1}
+                  y2={drawing.bottom.y + 3}
+                />
+                <line
+                  class="measure-line"
+                  x1={drawing.bottom.x2}
+                  y1={drawing.bottom.y - 3}
+                  x2={drawing.bottom.x2}
+                  y2={drawing.bottom.y + 3}
+                />
+              {/if}
+              <text
+                class="measure"
+                x={(drawing.bottom.x1 + drawing.bottom.x2) / 2}
+                y={drawing.bottom.textY}
+                text-anchor="middle">{shape.bottomLabel}</text
+              >
+            {/if}
+
+            {#if shape.sideLabel && drawing.side}
+              <line
+                class="measure-line"
+                x1={drawing.side.x1}
+                y1={drawing.side.y1}
+                x2={drawing.side.x2}
+                y2={drawing.side.y2}
+              />
+              {#each endTicks(drawing.side) as tick, tickIndex (tickIndex)}
+                <line class="measure-line" x1={tick.x1} y1={tick.y1} x2={tick.x2} y2={tick.y2} />
+              {/each}
+              <text class="measure" x={drawing.side.textX} y={drawing.side.textY} text-anchor="end"
+                >{shape.sideLabel}</text
+              >
+            {/if}
+
+            {#each shape.angleLabels ?? [] as angleLabel, angleIndex (angleLabel)}
+              {#if drawing.angles[angleIndex]}
+                <text
+                  class="measure"
+                  x={drawing.angles[angleIndex].x}
+                  y={drawing.angles[angleIndex].y}>{angleLabel}</text
+                >
+              {/if}
+            {/each}
+          </svg>
+          <p class="shape-label">{shape.label}</p>
+        </li>
+      {/each}
+    </ul>
+    <figcaption>
+      {#if shapeFigure.note}<span class="note">{shapeFigure.note}</span>{/if}
+      <span class="source">{m.rules_table_source({ source: shapeFigure.source })}</span>
     </figcaption>
   {:else}
     <!--
@@ -493,5 +825,129 @@
   // 紺の地の上では、添え書きも白寄りにしないと読めない
   .node.upper .node-note {
     color: map.get($sky-blue, 200);
+  }
+
+  /* ─── 審判席の並び ─── */
+
+  .seating-frame {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-12;
+    padding: $space-size-12;
+    border: $border-size-1 solid map.get($gray, 200);
+    border-radius: $border-radius-4;
+    background: $white;
+  }
+
+  .seat-row-label {
+    display: flex;
+    gap: $space-size-8;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin: 0 0 $space-size-4;
+    font-size: $font-size-11;
+    font-weight: bold;
+    color: map.get($gray, light-text);
+  }
+
+  // 「1段高くする」のような、紙面で矢印を引いてある添え書き
+  .seat-row-note {
+    font-weight: normal;
+    color: map.get($sky-blue, text);
+  }
+
+  .seats {
+    display: flex;
+    gap: $space-size-4;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    // 席は減らさず、狭い画面では折り返して縦に積み直す
+    flex-wrap: wrap;
+  }
+
+  .seat {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-2;
+    align-items: center;
+    justify-content: center;
+
+    // どの席も同じ幅にそろえ、名前が長いものだけ伸びる
+    min-width: 3.5em;
+    padding: $space-size-8;
+    font-size: $font-size-12;
+    line-height: 1.4;
+    color: map.get($gray, text);
+    text-align: center;
+    border: $border-size-1 solid map.get($sky-blue, border);
+    border-radius: $border-radius-4;
+    background: map.get($sky-blue, background);
+  }
+
+  .seat-label {
+    font-weight: bold;
+  }
+
+  .seat-note {
+    font-size: $font-size-10;
+    color: map.get($sky-blue, light-text);
+  }
+
+  /* ─── 寸法図 ─── */
+
+  .shapes {
+    display: grid;
+    gap: $space-size-12;
+
+    // 狭い画面では1列ずつ、広い画面では並べて見比べられるようにする
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    margin: 0;
+    padding: $space-size-12;
+    border: $border-size-1 solid map.get($gray, 200);
+    border-radius: $border-radius-4;
+    background: $white;
+    list-style: none;
+  }
+
+  .shape {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-4;
+    align-items: center;
+  }
+
+  .shape-drawing {
+    display: block;
+    width: 100%;
+    max-width: 176px;
+    height: auto;
+  }
+
+  // 図形の線。中は塗らない
+  .shape-drawing .outline {
+    fill: none;
+    stroke: map.get($sky-blue, 900);
+    stroke-width: 1.5;
+  }
+
+  // 寸法と角度の引き出し線。図形の線より細くして区別する
+  .shape-drawing .measure-line {
+    stroke: map.get($gray, light-text);
+    stroke-width: 0.8;
+  }
+
+  .shape-drawing .measure {
+    font-size: 9px;
+    fill: map.get($gray, text);
+  }
+
+  .shape-label {
+    margin: 0;
+    font-size: $font-size-11;
+    line-height: 1.6;
+    color: map.get($gray, text);
+    text-align: center;
   }
 </style>
