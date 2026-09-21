@@ -4,6 +4,7 @@ import { ARTISTRY_TABLES } from './artistryTables'
 import { FREE_HAND_TABLES } from './deductionTables'
 import { DIFFICULTY_TABLES } from './difficultyTables'
 import { EXECUTION_TABLES } from './executionTables'
+import { FORM_TABLES } from './formTables'
 import { REQUIREMENT_TABLES } from './requirementTables'
 import { SCORE_TABLES } from './scoreTables'
 import { SCORING_TREES } from './scoringTrees'
@@ -21,6 +22,7 @@ export const RULE_TABLES: readonly RuleTable[] = [
   ...ARTISTRY_TABLES,
   ...DIFFICULTY_TABLES,
   ...EXECUTION_TABLES,
+  ...FORM_TABLES,
   ...FREE_HAND_TABLES,
   ...REQUIREMENT_TABLES,
   ...SCORE_TABLES,
@@ -34,6 +36,16 @@ export const RULE_TABLES: readonly RuleTable[] = [
  * 人の動きの絵（難度の姿勢など）は文字にできないので、画像のまま出す
  */
 export const RULE_TREES: readonly RuleTree[] = [...SCORING_TREES]
+
+/**
+ * 審判が書き込む様式（採点票・減点票・審判メモ）。
+ *
+ * @remarks
+ * 規則集のページからはまだ参照されていない。
+ * `imageSource` は差し替えの鍵として使うだけで、同じ名前の画像は置いていない。
+ * 条文側でこの鍵を指すと、画像を読みに行かずにこの表が出る
+ */
+export const RULE_FORMS: readonly RuleTable[] = [...FORM_TABLES]
 
 /** 画像のパスから表を引くための対応表 */
 const TABLE_BY_IMAGE_SOURCE = new Map(RULE_TABLES.map((table) => [table.imageSource, table]))

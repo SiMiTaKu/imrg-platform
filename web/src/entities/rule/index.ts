@@ -15,13 +15,14 @@ export type {
   RuleImage,
   RuleSection,
 } from './model/ruleBook'
-export { RULE_TABLES, RULE_TREES, findRuleTable, findRuleTree } from './api/tables'
+export { RULE_FORMS, RULE_TABLES, RULE_TREES, findRuleTable, findRuleTree } from './api/tables'
 export { hasRowHeader, narrowColumnCount, normalizeRuleTableCell } from './model/ruleTable'
 export type {
   RuleTable,
   RuleTableCell,
   RuleTableCellSource,
   RuleTableLayout,
+  RuleTablePurpose,
   RuleTableRow,
   RuleTree,
   RuleTreeNode,

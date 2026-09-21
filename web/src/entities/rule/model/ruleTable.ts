@@ -41,6 +41,15 @@ export interface RuleTableRow {
   readonly cells: readonly RuleTableCellSource[]
 }
 
+/**
+ * 表の役目。
+ *
+ * - `reference` … 読むための表。規則の中身が全部書いてある
+ * - `form` … 書き込むための様式（採点票・減点票など）。
+ *   空欄は書き込む場所なので、印刷して使えるよう高さを持たせて出す
+ */
+export type RuleTablePurpose = 'reference' | 'form'
+
 /** 画像の代わりに出す、文字で持ち直した表 */
 export interface RuleTable {
   /** 置き換える画像のパス（`/images/rules/....png`） */
@@ -49,6 +58,8 @@ export interface RuleTable {
   readonly caption: string
   /** 表の組み方。既定は `list` */
   readonly layout?: RuleTableLayout
+  /** 表の役目。既定は `reference` */
+  readonly purpose?: RuleTablePurpose
   /** 左上の見出し。行の見出しが何を表すかを書く。無い表もある */
   readonly cornerLabel?: string
   /** 列の見出し */

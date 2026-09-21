@@ -18,6 +18,7 @@
   "rules_collapse_chapter_label": "Cerrar todo el capítulo {number}",
   "rules_table_source": "Fuente: {source}",
   "rules_scroll_hint": "* Puede desplazarse horizontalmente.",
+  "rules_form_hint": "* Hoja para que la rellenen los jueces. Las casillas vacías son para escribir.",
   "rules_caution": "Reorganizado a partir del reglamento oficial para facilitar la lectura. Algunas partes siguen en traducción. Para decisiones oficiales, consulta el reglamento de la federación correspondiente.",
   "rules_search_label": "Buscar por palabra",
   "rules_search_placeholder": "p. ej. penalización, palo, formación",

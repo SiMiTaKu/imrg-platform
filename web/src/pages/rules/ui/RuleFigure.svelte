@@ -101,11 +101,15 @@
   {#if table}
     <!-- 文字の表。言葉で探せて、訳せて、スマホでも読める -->
     <p class="title">{table.caption}</p>
+    {#if table.purpose === 'form'}
+      <p class="hint">{m.rules_form_hint()}</p>
+    {/if}
     <!-- 横に送れるときだけキーボードでも送れるようにする（tabindex） -->
     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     <div
       class="scroller"
       class:matrix={table.layout === 'matrix'}
+      class:form={table.purpose === 'form'}
       use:watchOverflow
       role={isScrollable ? 'region' : undefined}
       tabindex={isScrollable ? 0 : undefined}
@@ -335,6 +339,24 @@
   */
   .scroller:not(.matrix) thead th.narrow {
     white-space: normal;
+  }
+
+  /*
+    採点票・減点票などの用紙（purpose: 'form'）。
+    空のます目は書き込む場所なので、潰れないように高さを持たせる
+  */
+  .scroller.form td:empty::after {
+    content: '';
+    display: block;
+    min-height: $space-size-24;
+  }
+
+  /*
+    用紙は欄が潰れると書き込めない。狭い画面では詰めずに、
+    入れ物の中で横に送って、欄の幅を保つ
+  */
+  .scroller.form table {
+    min-width: 34em;
   }
 
   /*

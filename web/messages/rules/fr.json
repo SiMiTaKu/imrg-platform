@@ -18,6 +18,7 @@
   "rules_collapse_chapter_label": "Tout replier dans le chapitre {number}",
   "rules_table_source": "Source : {source}",
   "rules_scroll_hint": "* Faites défiler horizontalement.",
+  "rules_form_hint": "* Feuille à remplir par les juges. Les cases vides sont à compléter.",
   "rules_caution": "Réorganisé à partir du règlement officiel pour en faciliter la lecture. Certaines parties sont encore en cours de traduction. Pour les décisions officielles, référez-vous au règlement de la fédération concernée.",
   "rules_search_label": "Rechercher par mot",
   "rules_search_placeholder": "ex. pénalité, bâton, formation",

@@ -18,6 +18,7 @@
   "rules_collapse_chapter_label": "第{number}章をすべて閉じる",
   "rules_table_source": "出典: {source}",
   "rules_scroll_hint": "※横にスクロールできます",
+  "rules_form_hint": "※審判が書き込む用紙です。空欄は書き込む場所です。",
   "rules_caution": "公式の規則をもとに、読みやすく並べ直したものです。訳の途中の部分があります。正式な判断は各競技団体の規則集によります。",
   "rules_search_label": "言葉で探す",
   "rules_search_placeholder": "例：減点、スティック、隊形",
