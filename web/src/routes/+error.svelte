@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -13,7 +14,9 @@
   <h1 class="title">{m.error_title()}</h1>
   <div class="content">
     <div class="text">{m.error_not_found()}</div>
-    <a class="link" href={localizeHref(ROUTES.top)}>{m.error_back_to_top()}</a>
+    <div class="link">
+      <Button href={localizeHref(ROUTES.top)} target="_self" block>{m.error_back_to_top()}</Button>
+    </div>
   </div>
 </article>
 
@@ -54,11 +57,10 @@
   .link {
     display: grid;
     width: 300px;
-    height: 48px;
-    font-weight: bold;
-    color: white;
-    border-radius: 8px;
-    background-color: #555;
-    place-items: center center;
+    max-width: 100%;
+  }
+
+  .mobile .link {
+    width: 100%;
   }
 </style>

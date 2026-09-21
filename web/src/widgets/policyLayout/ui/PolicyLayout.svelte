@@ -138,9 +138,7 @@
       {m.contact_body_line2()}<br />
       {m.contact_body_line3()}
     </p>
-    <a class="contact-button" href={LINKS.instagram} rel="noopener noreferrer" target="_blank">
-      {m.contact_button()}
-    </a>
+    <Button href={LINKS.instagram} target="_blank">{m.contact_button()}</Button>
   </aside>
 
   <p class="back">
@@ -301,26 +299,6 @@
     margin: 0 0 $space-size-20;
     font-size: $font-size-16;
     line-height: 1.9;
-  }
-
-  .contact-button {
-    display: inline-flex;
-    box-sizing: border-box;
-    max-width: 100%;
-    min-height: 44px;
-    padding: 0 $space-size-24;
-    font-size: $font-size-16;
-    font-weight: bold;
-    color: $white;
-    border-radius: 22px;
-    background: map.get($sky-blue, button);
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-
-  .contact-button:hover {
-    background: map.get($sky-blue, text);
   }
 
   .back {

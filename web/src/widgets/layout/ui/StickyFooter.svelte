@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { page } from '$app/state'
   import { pageData } from '@shared/lib/device'
   import { deLocalizeHref, localizeHref } from '@shared/lib/i18n'
@@ -15,14 +16,9 @@
 {#if cta}
   <div class="sticky-cta" class:mobile={isMobile}>
     <div class="inner">
-      <a
-        class="button"
-        {href}
-        target={cta.external ? '_blank' : '_self'}
-        rel={cta.external ? 'noopener noreferrer' : undefined}
-      >
+      <Button {href} target={cta.external ? '_blank' : '_self'} size="large" block>
         {cta.label()}
-      </a>
+      </Button>
     </div>
   </div>
 {/if}
@@ -61,35 +57,15 @@
     }
   }
 
+  // PC では帯の真ん中に置く。スマホでは画面の端から端まで広げる
   .inner {
     display: flex;
-    justify-content: center;
     width: 100%;
-    max-width: var(--content-max-width);
+    max-width: 400px;
     margin: 0 auto;
   }
 
-  .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 400px;
-    min-height: 52px;
-    padding: 0 $space-size-24;
-    font-size: $font-size-16;
-    font-weight: bold;
-    color: $white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: $border-radius-64;
-    background: map.get($sky-blue, button);
-    box-shadow: 0 4px 16px rgb(0 48 99 / 30%);
-  }
-
-  .mobile .button {
+  .mobile .inner {
     max-width: none;
-    min-height: 48px;
-    font-size: $font-size-14;
   }
 </style>
