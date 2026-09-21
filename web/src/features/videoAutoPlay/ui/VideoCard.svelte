@@ -9,6 +9,7 @@
     playing,
     played,
     startedByUser = false,
+    aspectRatio = '16 / 9',
     onRequestPlay,
   }: {
     /** 動画の ID */
@@ -30,6 +31,16 @@
      */
     startedByUser?: boolean
     /**
+     * 動画を映す枠の縦横比（CSS の `aspect-ratio` に渡す形）。
+     *
+     * @remarks
+     * 枠と動画の比がずれると、YouTube の再生機が動画を枠の内側に収めるため、
+     * 余った側が黒く残る（横に広い枠なら左右、縦に長い枠なら上下）。
+     * 横向きの動画は `16 / 9`、縦型のショート動画は `9 / 16`。
+     * 使う側のページが載せている動画に合わせて渡す。既定は横向き
+     */
+    aspectRatio?: string
+    /**
      * 再生を頼む
      * @param byUser - 押して頼んだか。押したときだけ音を出す
      */
@@ -38,7 +49,7 @@
 </script>
 
 <article class="card" class:playing>
-  <div class="screen">
+  <div class="screen" style:aspect-ratio={aspectRatio}>
     {#if playing}
       <!-- 勝手に始まるときは音を消す。消さないと、ブラウザーが再生を止める -->
       <iframe
@@ -96,10 +107,13 @@
     border-color: map.get($sky-blue, border);
   }
 
+  // 縦横比は aspectRatio から差し込む。動画に合わない比にすると黒い余白が出る
+  // flex: none を外すと、card の高さが足りないときに枠だけ縦に潰れ、
+  // 動画が枠の内側に収まりきらずに左右が黒くなる
   .screen {
     position: relative;
+    flex: none;
     width: 100%;
-    aspect-ratio: 16 / 9;
     background: map.get($gray, 900);
   }
 

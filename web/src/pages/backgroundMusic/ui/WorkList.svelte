@@ -7,7 +7,7 @@
   import { AutoPlayWatcher, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { SectionHeading } from '@widgets/orderService'
   import { WORK_LIST } from '../config/workList'
-  import { WORKS_HEADING } from '../config/content'
+  import { WORKS_HEADING, WORK_VIDEO_ASPECT_RATIO } from '../config/content'
 
   const locale = getLocale() as SiteLocale
   const isMobile = $derived($pageData.isMobile)
@@ -57,6 +57,7 @@
             playing={playingIndex === index}
             played={playedIndexes.has(index)}
             startedByUser={userStartedIndexes.has(index)}
+            aspectRatio={WORK_VIDEO_ASPECT_RATIO}
             onRequestPlay={() => watcher.play(index)}
           />
         </li>
