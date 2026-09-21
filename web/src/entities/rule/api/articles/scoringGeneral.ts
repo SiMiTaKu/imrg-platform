@@ -1005,54 +1005,62 @@ Pour la composition et l'exécution séparément, la note la plus haute et la no
           ru: 'Продолжительность упражнения',
           hi: 'प्रदर्शन का समय',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 3.3.3 演技時間（22ページ）。
+        // 1秒につきの減点は 0.05点。0.005点 は 10分の1 で間違っていた。
+        // 得点が 0.00点 になる下限は 団体競技 2分00秒（従来は 2分30秒）、
+        // 個人競技 1分00秒（変わらず）。参照先も 2025年版の節番号 1.9.6 に直した。
+        // ※ 原文では減点の主体が「決定点より減点」（＝審判長）。ここに残る
+        //    「構成主任審判より減点」は旧制度の言い方。審判の枠組み（D/A/E）
+        //    への移行は未着手。
         content: {
-          ja: `1. 競技規則47条の時間に違反した場合は、長すぎても短すぎても減点とする。
-【構成主任審判より減点：１秒につき・・・0.005点】
+          ja: `1. 競技規則1.9.6の時間に違反した場合は、長すぎても短すぎても減点とする。
+【構成主任審判より減点：１秒につき・・・0.05点】
 
 2. 演技時間が下記に満たなかった場合は得点を次の通りにする。
-団体競技　２分３０秒　　　個人競技　１分００秒
+団体競技　２分００秒　　　個人競技　１分００秒
 【得点：構成・実施とも0.00点】`,
-          en: `1. If the duration in Article 47 of the competition rules is not respected, a deduction is applied whether the routine is too long or too short.
-[Deduction by the composition chief judge: 0.005 points per second]
+          en: `1. If the duration in 1.9.6 of the competition rules is not respected, a deduction is applied whether the routine is too long or too short.
+[Deduction by the composition chief judge: 0.05 points per second]
 
 2. If the routine is shorter than the following, the score is as follows.
-Group competition: 2 min 30 s    Individual competition: 1 min 00 s
+Group competition: 2 min 00 s    Individual competition: 1 min 00 s
 [Score: 0.00 points for both composition and execution]`,
-          zh: `1. 违反竞赛规则第47条的时间时，无论过长还是过短均予以扣分。
-【由编排主裁判扣分：每1秒……0.005分】
+          zh: `1. 违反竞赛规则1.9.6的时间时，无论过长还是过短均予以扣分。
+【由编排主裁判扣分：每1秒……0.05分】
 
 2. 成套时间未达到下列时间时，得分按如下处理。
-团体比赛　2分30秒　　　个人比赛　1分00秒
+团体比赛　2分00秒　　　个人比赛　1分00秒
 【得分：编排、完成均为0.00分】`,
-          ko: `1. 경기 규칙 제47조의 시간을 위반한 경우에는 너무 길어도 너무 짧아도 감점한다.
-【구성 주임 심판으로부터 감점: 1초당…0.005점】
+          ko: `1. 경기 규칙 1.9.6의 시간을 위반한 경우에는 너무 길어도 너무 짧아도 감점한다.
+【구성 주임 심판으로부터 감점: 1초당…0.05점】
 
 2. 연기 시간이 아래에 미치지 못한 경우에는 득점을 다음과 같이 한다.
-단체 경기 2분 30초   개인 경기 1분 00초
+단체 경기 2분 00초   개인 경기 1분 00초
 【득점: 구성·실시 모두 0.00점】`,
-          es: `1. Si no se respeta el tiempo establecido en el artículo 47 del reglamento de competición, se penaliza tanto el exceso como el defecto.
-[Penalización del juez principal de composición: por cada segundo...0.005 puntos]
+          es: `1. Si no se respeta el tiempo establecido en el punto 1.9.6 del reglamento de competición, se penaliza tanto el exceso como el defecto.
+[Penalización del juez principal de composición: por cada segundo...0.05 puntos]
 
 2. Si el ejercicio no alcanza la duración indicada a continuación, la puntuación será la siguiente.
-Competición por conjuntos 2 min 30 s   Competición individual 1 min 00 s
+Competición por conjuntos 2 min 00 s   Competición individual 1 min 00 s
 [Puntuación: 0.00 puntos tanto en composición como en ejecución]`,
-          fr: `1. Si la durée prévue à l'article 47 du règlement des compétitions n'est pas respectée, une pénalité est appliquée, que l'exercice soit trop long ou trop court.
-[Pénalité du juge-arbitre de composition : 0,005 point par seconde]
+          fr: `1. Si la durée prévue au point 1.9.6 du règlement des compétitions n'est pas respectée, une pénalité est appliquée, que l'exercice soit trop long ou trop court.
+[Pénalité du juge-arbitre de composition : 0,05 point par seconde]
 
 2. Si l'exercice est plus court que la durée ci-dessous, la note est la suivante.
-Compétition par ensembles : 2 min 30 s    Compétition individuelle : 1 min 00 s
+Compétition par ensembles : 2 min 00 s    Compétition individuelle : 1 min 00 s
 [Note : 0,00 point en composition comme en exécution]`,
-          ru: `1. Нарушение времени, установленного статьёй 47 Правил соревнований, влечёт сбавку как при слишком длинном, так и при слишком коротком упражнении.
-[Сбавка старшего судьи композиции: 0,005 балла за каждую секунду]
+          ru: `1. Нарушение времени, установленного пунктом 1.9.6 Правил соревнований, влечёт сбавку как при слишком длинном, так и при слишком коротком упражнении.
+[Сбавка старшего судьи композиции: 0,05 балла за каждую секунду]
 
 2. Если упражнение короче указанного ниже, оценка выставляется так:
-групповые соревнования — 2 минуты 30 секунд; индивидуальные соревнования — 1 минута 00 секунд
+групповые соревнования — 2 минуты 00 секунд; индивидуальные соревнования — 1 минута 00 секунд
 [Оценка: 0,00 балла и за композицию, и за исполнение]`,
-          hi: `1. प्रतियोगिता नियमों के अनुच्छेद 47 के समय का उल्लंघन होने पर, प्रदर्शन बहुत लंबा हो या बहुत छोटा, कटौती की जाती है।
-[संरचना के प्रधान निर्णायक से कटौती: प्रति 1 सेकंड ... 0.005 अंक]
+          hi: `1. प्रतियोगिता नियमों के 1.9.6 के समय का उल्लंघन होने पर, प्रदर्शन बहुत लंबा हो या बहुत छोटा, कटौती की जाती है।
+[संरचना के प्रधान निर्णायक से कटौती: प्रति 1 सेकंड ... 0.05 अंक]
 
 2. यदि प्रदर्शन का समय नीचे दिए गए समय से कम हो, तो अंक इस प्रकार होंगे।
-समूह प्रतियोगिता 2 मिनट 30 सेकंड    व्यक्तिगत प्रतियोगिता 1 मिनट 00 सेकंड
+समूह प्रतियोगिता 2 मिनट 00 सेकंड    व्यक्तिगत प्रतियोगिता 1 मिनट 00 सेकंड
 [अंक: संरचना और निष्पादन दोनों 0.00 अंक]`,
         },
       },
@@ -1135,6 +1143,12 @@ Compétition par ensembles : 30 s    Compétition individuelle : 20 s
           ru: 'Выход за пределы ковра',
           hi: 'सीमा से बाहर',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 3.3.6 場外（23ページ）。
+        // 3〜6 の減点はいずれも 0.20点。0.10点 は半分で間違っていた。
+        // 5 の単位も「1名につき」ではなく「各手具1回につき」。
+        // ※ 原文では減点の主体が「決定点より審判長が減点」。ここに残る
+        //    「実施主任審判より減点」は旧制度の言い方。未移行。
         content: {
           ja: `場外の扱いは以下のとおりとし、実施主任審判より減点する。
 ＊５、６の各種具とは２つ組の手具のそれぞれを指す。
@@ -1144,16 +1158,16 @@ Compétition par ensembles : 30 s    Compétition individuelle : 20 s
 
 2. 保持された手具がラインオーバーした場合は、身体の一部として扱い減点する。" +
 
-3. 片足、両足または身体の一部がラインオーバーをした場合。【減点：１回につき・・・0.10点】" +
+3. 片足、両足または身体の一部がラインオーバーをした場合。【減点：１回につき・・・0.20点】" +
 
 4. 団体競技について、何人かの競技者が同時にラインオーバーをした場合。
-【減点：１名につき・・・0.10点】
+【減点：１名につき・・・0.20点】
 
 5. 手具が身体から離れてラインオーバーした場合。
-【減点：１名につき・・・0.10点】
+【減点：各手具１回につき・・・0.20点】
 
 6. １回の過失により身体や手具が、繰り返しラインオーバーをした場合。
-【減点：身体または各手具１回につき・・・0.10点】`,
+【減点：身体または各手具１回につき・・・0.20点】`,
           en: `Out of bounds is treated as follows, and the deduction is applied by the execution chief judge.
 * In items 5 and 6, "each apparatus" means each of the two apparatus in a set.
 
@@ -1162,16 +1176,16 @@ Crossing the line in the air is not penalized.
 
 2. An apparatus held by the gymnast that crosses the line is treated as part of the body and penalized.
 
-3. One foot, both feet or another part of the body crosses the line. [Deduction: 0.10 points each time]
+3. One foot, both feet or another part of the body crosses the line. [Deduction: 0.20 points each time]
 
 4. In the group competition, several gymnasts cross the line at the same time.
-[Deduction: 0.10 points per gymnast]
+[Deduction: 0.20 points per gymnast]
 
 5. An apparatus that has left the body crosses the line.
-[Deduction: 0.10 points per gymnast]
+[Deduction: 0.20 points each time for each apparatus]
 
 6. The body or apparatus crosses the line repeatedly because of a single error.
-[Deduction: 0.10 points each time for the body or for each apparatus]`,
+[Deduction: 0.20 points each time for the body or for each apparatus]`,
           zh: `出界的处理如下，由完成主裁判扣分。
 ＊5、6中所说的各器械，是指成对的两件器械中的每一件。
 
@@ -1180,16 +1194,16 @@ Crossing the line in the air is not penalized.
 
 2. 持握的器械越过界线时，视为身体的一部分予以扣分。
 
-3. 单脚、双脚或身体的一部分越过界线的情况。【扣分：每1次……0.10分】
+3. 单脚、双脚或身体的一部分越过界线的情况。【扣分：每1次……0.20分】
 
 4. 关于团体比赛，数名参赛者同时越过界线的情况。
-【扣分：每1名……0.10分】
+【扣分：每1名……0.20分】
 
 5. 器械脱离身体越过界线的情况。
-【扣分：每1名……0.10分】
+【扣分：各器械每1次……0.20分】
 
 6. 因1次失误导致身体或器械反复越过界线的情况。
-【扣分：身体或各器械每1次……0.10分】`,
+【扣分：身体或各器械每1次……0.20分】`,
           ko: `장외의 취급은 다음과 같이 하며, 실시 주임 심판으로부터 감점한다.
 * 5, 6의 각 수구란 2개 한 벌의 수구 각각을 가리킨다.
 
@@ -1198,16 +1212,16 @@ Crossing the line in the air is not penalized.
 
 2. 보유한 수구가 라인 오버한 경우에는 신체의 일부로 취급하여 감점한다.
 
-3. 한 발, 두 발 또는 신체의 일부가 라인 오버를 한 경우. 【감점: 1회당…0.10점】
+3. 한 발, 두 발 또는 신체의 일부가 라인 오버를 한 경우. 【감점: 1회당…0.20점】
 
 4. 단체 경기에 대하여, 여러 명의 경기자가 동시에 라인 오버를 한 경우.
-【감점: 1명당…0.10점】
+【감점: 1명당…0.20점】
 
 5. 수구가 신체에서 떨어져 라인 오버한 경우.
-【감점: 1명당…0.10점】
+【감점: 각 수구 1회당…0.20점】
 
 6. 1회의 과실로 신체나 수구가 반복하여 라인 오버를 한 경우.
-【감점: 신체 또는 각 수구 1회당…0.10점】`,
+【감점: 신체 또는 각 수구 1회당…0.20점】`,
           es: `La salida del practicable se trata como sigue y la penalización la aplica el juez principal de ejecución.
 *En los puntos 5 y 6, «cada aparato» se refiere a cada uno de los dos aparatos del par.
 
@@ -1216,16 +1230,16 @@ Sobrepasar la línea en el aire no es motivo de penalización.
 
 2. Cuando un aparato sostenido por el gimnasta sobrepasa la línea, se trata como una parte del cuerpo y se penaliza.
 
-3. Cuando un pie, ambos pies o una parte del cuerpo sobrepasan la línea. [Penalización: por cada vez...0.10 puntos]
+3. Cuando un pie, ambos pies o una parte del cuerpo sobrepasan la línea. [Penalización: por cada vez...0.20 puntos]
 
 4. En la competición por conjuntos, cuando varios gimnastas sobrepasan la línea a la vez.
-[Penalización: por cada gimnasta...0.10 puntos]
+[Penalización: por cada gimnasta...0.20 puntos]
 
 5. Cuando el aparato se separa del cuerpo y sobrepasa la línea.
-[Penalización: por cada gimnasta...0.10 puntos]
+[Penalización: por cada vez de cada aparato...0.20 puntos]
 
 6. Cuando, por un mismo error, el cuerpo o el aparato sobrepasan la línea repetidamente.
-[Penalización: por cada vez del cuerpo o de cada aparato...0.10 puntos]`,
+[Penalización: por cada vez del cuerpo o de cada aparato...0.20 puntos]`,
           fr: `Les sorties du praticable sont traitées comme suit, et la pénalité est appliquée par le juge-arbitre d'exécution.
 * Aux points 5 et 6, « chaque engin » désigne chacun des deux engins d'une paire.
 
@@ -1234,16 +1248,16 @@ Franchir la ligne en l'air n'est pas pénalisé.
 
 2. Un engin tenu par le gymnaste qui franchit la ligne est assimilé à une partie du corps et pénalisé.
 
-3. Un pied, les deux pieds ou une autre partie du corps franchit la ligne. [Pénalité : 0,10 point par sortie]
+3. Un pied, les deux pieds ou une autre partie du corps franchit la ligne. [Pénalité : 0,20 point par sortie]
 
 4. En compétition par ensembles, plusieurs gymnastes franchissent la ligne en même temps.
-[Pénalité : 0,10 point par gymnaste]
+[Pénalité : 0,20 point par gymnaste]
 
 5. Un engin qui a quitté le corps franchit la ligne.
-[Pénalité : 0,10 point par gymnaste]
+[Pénalité : 0,20 point par sortie et par engin]
 
 6. Le corps ou l'engin franchit la ligne à plusieurs reprises à la suite d'une seule faute.
-[Pénalité : 0,10 point par sortie, pour le corps comme pour chaque engin]`,
+[Pénalité : 0,20 point par sortie, pour le corps comme pour chaque engin]`,
           ru: `Выход за пределы ковра учитывается так, сбавку применяет старший судья исполнения.
 * В пунктах 5 и 6 «каждый предмет» означает каждый из двух предметов пары.
 
@@ -1252,16 +1266,16 @@ Franchir la ligne en l'air n'est pas pénalisé.
 
 2. Предмет, который гимнаст держит в руках и который пересёк линию, рассматривается как часть тела и наказывается сбавкой.
 
-3. Одна стопа, обе стопы или иная часть тела пересекли линию. [Сбавка: 0,10 балла за каждый раз]
+3. Одна стопа, обе стопы или иная часть тела пересекли линию. [Сбавка: 0,20 балла за каждый раз]
 
 4. В групповых соревнованиях линию одновременно пересекли несколько гимнастов.
-[Сбавка: 0,10 балла за каждого гимнаста]
+[Сбавка: 0,20 балла за каждого гимнаста]
 
 5. Линию пересёк предмет, отделившийся от тела.
-[Сбавка: 0,10 балла за каждого гимнаста]
+[Сбавка: 0,20 балла за каждый раз для каждого предмета]
 
 6. Из-за одной ошибки тело или предмет пересекали линию неоднократно.
-[Сбавка: 0,10 балла за каждый раз — за тело и за каждый предмет]`,
+[Сбавка: 0,20 балла за каждый раз — за тело и за каждый предмет]`,
           hi: `सीमा से बाहर जाने का निपटारा इस प्रकार होता है, और कटौती निष्पादन का प्रधान निर्णायक करता है।
 * बिंदु 5 और 6 में "प्रत्येक उपकरण" का अर्थ 2 के जोड़े वाले उपकरणों में से हर एक है।
 
@@ -1270,16 +1284,16 @@ Franchir la ligne en l'air n'est pas pénalisé.
 
 2. जिम्नास्ट के हाथ में पकड़ा हुआ उपकरण लाइन पार करे, तो उसे शरीर का भाग मानकर कटौती की जाती है।
 
-3. एक पैर, दोनों पैर या शरीर का कोई भाग लाइन पार करे। [कटौती: प्रति बार ... 0.10 अंक]
+3. एक पैर, दोनों पैर या शरीर का कोई भाग लाइन पार करे। [कटौती: प्रति बार ... 0.20 अंक]
 
 4. समूह प्रतियोगिता में कई जिम्नास्ट एक साथ लाइन पार करें।
-[कटौती: प्रति जिम्नास्ट ... 0.10 अंक]
+[कटौती: प्रति जिम्नास्ट ... 0.20 अंक]
 
 5. उपकरण शरीर से अलग होकर लाइन पार करे।
-[कटौती: प्रति जिम्नास्ट ... 0.10 अंक]
+[कटौती: प्रत्येक उपकरण के लिए प्रति बार ... 0.20 अंक]
 
 6. एक ही गलती से शरीर या उपकरण बार-बार लाइन पार करे।
-[कटौती: शरीर या प्रत्येक उपकरण के लिए प्रति बार ... 0.10 अंक]`,
+[कटौती: शरीर या प्रत्येक उपकरण के लिए प्रति बार ... 0.20 अंक]`,
         },
       },
       {
@@ -1387,82 +1401,90 @@ Franchir la ligne en l'air n'est pas pénalisé.
           ru: 'Музыкальное сопровождение',
           hi: 'संगत संगीत',
         },
+        // 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』
+        // 3.3.8 伴奏音楽（23ページ）。
+        // 2「入退場に伴奏音楽をつけた場合」は 0.50点。0.20点 は間違い。
+        // 1「伴奏音楽がなかった場合」0.50点 と、3「3秒以上の停止」0.20点 は
+        // 資料と一致していたので触っていない。参照先も 1.9.4 に直した。
+        // ※ 原文にはこのほかに、不適切な伴奏音楽の使用（A得点 0.00点）、
+        //    10秒以上の停止（0.50点）、音楽が演技を妨害（0.20点）、
+        //    音量が著しく大きい（0.20点）がある。未反映。
         content: {
-          ja: `競技規則第45条に基づき、１から４の減点をする。
+          ja: `競技規則1.9.4に基づき、１から４の減点をする。
 
 1. 伴奏音楽がなかった場合。　【構成主任審判より減点：0.50点】
 
-2. 入退場に伴奏音楽をつけた場合。　【構成主任審判員より減点：0.20点】
+2. 入退場に伴奏音楽をつけた場合。　【構成主任審判員より減点：0.50点】
 
 3. 音楽に３秒以上の停止があった場合　【構成審判より減点：0.20点】
 
 4. 組織者側に責任のない理由で音楽が中断された場合は、原則として復行できない。
 中断があった場合、審判長と競技部長は原因を速やかに確認し処理に当たる。`,
-          en: `Under Article 45 of the competition rules, deductions 1 to 4 are applied.
+          en: `Under 1.9.4 of the competition rules, deductions 1 to 4 are applied.
 
 1. No accompanying music.  [Deduction by the composition chief judge: 0.50 points]
 
-2. Music played while entering or leaving the floor area.  [Deduction by the composition chief judge: 0.20 points]
+2. Music played while entering or leaving the floor area.  [Deduction by the composition chief judge: 0.50 points]
 
 3. A pause of 3 seconds or more in the music.  [Deduction by the composition judges: 0.20 points]
 
 4. If the music stops for a reason for which the organizers are not responsible, as a rule the routine may not be repeated.
 If the music stops, the Jury President and the Competition Director promptly determine the cause and deal with it.`,
-          zh: `依据竞赛规则第45条，作1至4的扣分。
+          zh: `依据竞赛规则1.9.4，作1至4的扣分。
 
 1. 没有伴奏音乐的情况。　【由编排主裁判扣分：0.50分】
 
-2. 进出场时配有伴奏音乐的情况。　【由编排主裁判员扣分：0.20分】
+2. 进出场时配有伴奏音乐的情况。　【由编排主裁判员扣分：0.50分】
 
 3. 音乐出现3秒以上停止的情况　【由编排裁判扣分：0.20分】
 
 4. 因组织者方面不负责任的原因导致音乐中断时，原则上不能重做。
 出现中断时，裁判长和竞赛部长应迅速确认原因并进行处理。`,
-          ko: `경기 규칙 제45조에 근거하여 1부터 4의 감점을 한다.
+          ko: `경기 규칙 1.9.4에 근거하여 1부터 4의 감점을 한다.
 
 1. 반주 음악이 없었던 경우.  【구성 주임 심판으로부터 감점: 0.50점】
 
-2. 입퇴장에 반주 음악을 붙인 경우.  【구성 주임 심판원으로부터 감점: 0.20점】
+2. 입퇴장에 반주 음악을 붙인 경우.  【구성 주임 심판원으로부터 감점: 0.50점】
 
 3. 음악에 3초 이상의 정지가 있었던 경우  【구성 심판으로부터 감점: 0.20점】
 
 4. 주최자 측에 책임이 없는 이유로 음악이 중단된 경우에는 원칙적으로 다시 할 수 없다.
 중단이 있었던 경우, 심판장과 경기부장은 원인을 신속히 확인하여 처리에 임한다.`,
-          es: `Conforme al artículo 45 del reglamento de competición, se aplican las penalizaciones 1 a 4.
+          es: `Conforme al punto 1.9.4 del reglamento de competición, se aplican las penalizaciones 1 a 4.
 
 1. Ausencia de música de acompañamiento. [Penalización del juez principal de composición: 0.50 puntos]
 
-2. Uso de música de acompañamiento en la entrada o en la salida. [Penalización del juez principal de composición: 0.20 puntos]
+2. Uso de música de acompañamiento en la entrada o en la salida. [Penalización del juez principal de composición: 0.50 puntos]
 
 3. Interrupción de la música de 3 segundos o más [Penalización de los jueces de composición: 0.20 puntos]
 
 4. Cuando la música se interrumpe por causas no imputables a la organización, por regla general el ejercicio no puede repetirse.
 Si se produce una interrupción, el juez árbitro y el director de competición determinan sin demora la causa y resuelven la situación.`,
-          fr: `En application de l'article 45 du règlement des compétitions, les pénalités 1 à 4 sont appliquées.
+          fr: `En application du point 1.9.4 du règlement des compétitions, les pénalités 1 à 4 sont appliquées.
 
 1. Absence de musique d'accompagnement.  [Pénalité du juge-arbitre de composition : 0,50 point]
 
-2. Musique diffusée pendant l'entrée ou la sortie du praticable.  [Pénalité du juge-arbitre de composition : 0,20 point]
+2. Musique diffusée pendant l'entrée ou la sortie du praticable.  [Pénalité du juge-arbitre de composition : 0,50 point]
 
 3. Interruption de la musique de 3 secondes ou plus.  [Pénalité des juges de composition : 0,20 point]
 
 4. Si la musique s'interrompt pour une cause non imputable aux organisateurs, l'exercice ne peut en principe pas être repris.
 En cas d'interruption, le président du jury et le directeur de la compétition en déterminent rapidement la cause et y remédient.`,
-          ru: `На основании статьи 45 Правил соревнований применяются сбавки 1–4.
+          ru: `На основании пункта 1.9.4 Правил соревнований применяются сбавки 1–4.
 
 1. Музыкальное сопровождение отсутствовало.  [Сбавка старшего судьи композиции: 0,50 балла]
 
-2. Музыка звучала при выходе на ковёр или уходе с него.  [Сбавка старшего судьи композиции: 0,20 балла]
+2. Музыка звучала при выходе на ковёр или уходе с него.  [Сбавка старшего судьи композиции: 0,50 балла]
 
 3. Пауза в музыке 3 секунды и более.  [Сбавка судей композиции: 0,20 балла]
 
 4. Если музыка прервалась по причине, за которую организаторы не отвечают, упражнение, как правило, не повторяется.
 При остановке музыки главный судья и директор соревнований незамедлительно выясняют причину и принимают меры.`,
-          hi: `प्रतियोगिता नियमों के अनुच्छेद 45 के आधार पर 1 से 4 तक की कटौती की जाती है।
+          hi: `प्रतियोगिता नियमों के 1.9.4 के आधार पर 1 से 4 तक की कटौती की जाती है।
 
 1. संगत संगीत न होना।  [संरचना के प्रधान निर्णायक से कटौती: 0.50 अंक]
 
-2. प्रवेश और निकास के समय संगत संगीत बजाना।  [संरचना के प्रधान निर्णायक से कटौती: 0.20 अंक]
+2. प्रवेश और निकास के समय संगत संगीत बजाना।  [संरचना के प्रधान निर्णायक से कटौती: 0.50 अंक]
 
 3. संगीत में 3 सेकंड या उससे अधिक की रुकावट होना  [संरचना निर्णायकों से कटौती: 0.20 अंक]
 
