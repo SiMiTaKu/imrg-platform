@@ -241,10 +241,12 @@
     height: 44px;
     font-size: $font-size-30;
     line-height: 1;
-    color: map.get($gray, text);
-    border: 1px solid map.get($gray, 200);
+
+    // 写真を隠しすぎないよう地を透かす。矢印は白にして、透けた青の上でも読めるようにする
+    color: $white;
+    border: none;
     border-radius: 999px;
-    background: rgb(255 255 255 / 92%);
+    background: rgba(map.get($sky-blue, button), 0.7);
     transform: translateY(-50%);
   }
 
