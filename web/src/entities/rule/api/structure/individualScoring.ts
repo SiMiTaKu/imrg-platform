@@ -8,8 +8,12 @@ import type { RuleNode } from '../../model/ruleSource'
  * `figures` の鍵は `entities/rule/api/tables` の `imageSource` から
  * `/images/rules/` と `.png` を取り除いたもの。
  *
- * 3.6.3 図解（52〜60ページ）は人の動きの絵が並ぶだけで本文が無い。
- * その絵はまだ画像として取り込んでいないため、節だけを置いて `figures` は付けていない
+ * 3.6.3 図解（52〜60ページ）は、技ごとの枠に「通し番号・技の名前・線画・難度」が入っている。
+ * 線画はまだ画像として取り込んでいないので、名前と難度だけを文字で持ち直した表
+ * （`api/tables/difficultyFigures.ts`）を `figures` でつないである。
+ *
+ * 画面に出るのは 章→条→節→項 の4段まで。3.6.3.1.1 以下は5段目で出ないため、
+ * 図解の表は項にあたる 3.6.3.1（徒手系）と 3.6.3.2（転回系）にまとめてぶら下げてある
  */
 export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
   {
@@ -128,6 +132,12 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
             key: 'scoring.difficultyTable.illustrations.freeHand',
             number: '3.6.3.1',
             page: 52,
+            figures: [
+              'figures/free-hand-jump',
+              'figures/free-hand-balance',
+              'figures/free-hand-handstand',
+              'figures/free-hand-flexibility',
+            ],
             children: [
               {
                 key: 'scoring.difficultyTable.illustrations.freeHand.jump',
@@ -155,6 +165,12 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
             key: 'scoring.difficultyTable.illustrations.acrobatic',
             number: '3.6.3.2',
             page: 55,
+            figures: [
+              'figures/acrobatic-forward',
+              'figures/acrobatic-backward',
+              'figures/acrobatic-sideward',
+              'figures/acrobatic-connected-series',
+            ],
             children: [
               {
                 key: 'scoring.difficultyTable.illustrations.acrobatic.forward',

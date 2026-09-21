@@ -2,6 +2,7 @@ import type { RuleTable, RuleTree } from '../../model/ruleTable'
 import { APPARATUS_TABLES } from './apparatusTables'
 import { ARTISTRY_TABLES } from './artistryTables'
 import { FREE_HAND_TABLES } from './deductionTables'
+import { DIFFICULTY_FIGURE_TABLES } from './difficultyFigures'
 import { DIFFICULTY_TABLES } from './difficultyTables'
 import { EXECUTION_TABLES } from './executionTables'
 import { FORM_TABLES } from './formTables'
@@ -20,6 +21,7 @@ import { SCORING_TREES } from './scoringTrees'
 export const RULE_TABLES: readonly RuleTable[] = [
   ...APPARATUS_TABLES,
   ...ARTISTRY_TABLES,
+  ...DIFFICULTY_FIGURE_TABLES,
   ...DIFFICULTY_TABLES,
   ...EXECUTION_TABLES,
   ...FORM_TABLES,
