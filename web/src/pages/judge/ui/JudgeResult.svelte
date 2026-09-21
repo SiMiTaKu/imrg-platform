@@ -1,12 +1,18 @@
 <script lang="ts">
   import { PUBLIC_BASE_URL } from '$env/static/public'
   import { m } from '$lib/paraglide/messages'
+  import type { Chart } from 'chart.js/auto'
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import {
+    JudgeThemeColor,
+    POINT_A_ITEMS,
     buildShareUrl,
+    downloadImage,
     executionDeduct,
     getDecisionPoints,
     judgementApparatus,
+    renderDetailChart,
+    toChartImageUrl,
   } from '@features/judge'
   import { pageData } from '@shared/lib/device'
   import { getLocale, localizeHref } from '@shared/lib/i18n'
@@ -38,6 +44,36 @@
       `${PUBLIC_BASE_URL}${localizeHref(ROUTES.judge)}`,
     ),
   )
+
+  /** グラフの画像を保存するときのファイル名 */
+  const CHART_FILE_NAME = 'imrg-judge-score.png'
+
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
+  let canvas: HTMLCanvasElement | undefined = $state()
+  let chart: Chart | undefined = undefined
+
+  // 採点の値や手具の色が変わるたびに、結果の中のグラフを描き直す
+  $effect(() => {
+    const values = POINT_A_ITEMS.map((item) => $executionDeduct.pointA[item.key].code)
+    const current = color
+    const showsPointLabels = !isMobile
+    if (!canvas) return undefined
+    chart = renderDetailChart(canvas, {
+      labels: POINT_A_ITEMS.map((item) => item.title()),
+      values,
+      color: current,
+      showsPointLabels,
+    })
+    return () => chart?.destroy()
+  })
+
+  /**
+   * いま描かれているグラフを PNG にして保存させる
+   */
+  const saveChartImage = () => {
+    if (!canvas) return
+    downloadImage(toChartImageUrl(canvas), CHART_FILE_NAME)
+  }
 </script>
 
 <!-- 採点を終えたあとの行き先。決定点そのものは結果の画面が受け持つ -->
@@ -58,14 +94,27 @@
     </div>
   </header>
 
+  <!-- 決定点の画面を閉じたあとも内訳が見えるように、ここにもグラフを置く -->
+  <figure class="chart-figure">
+    <figcaption class="chart-title">{m.judge_result_chart_title()}</figcaption>
+    <div class="chart">
+      <!-- canvas の中身は、グラフを描けないときの代わりとして読み上げられる -->
+      <canvas width="320" height="320" bind:this={canvas}>{m.judge_result_chart_alt()}</canvas>
+    </div>
+  </figure>
+
   <div class="buttons">
     <button class="again" type="button" onclick={onshowscore}>{m.judge_result_show_score()}</button>
     <!-- Xの投稿画面を新しいタブで開く。文は得点と手具の名前が入ったもの -->
     <a class="share" href={shareHref} rel="noopener noreferrer" target="_blank">
       {m.judge_share_x()}
     </a>
+    <button class="save-chart" type="button" onclick={saveChartImage}>
+      {m.judge_result_chart_save()}
+    </button>
     <button class="retry" type="button" onclick={onretry}>{m.judge_result_restart()}</button>
   </div>
+  <p class="share-note">{m.judge_result_chart_share_note()}</p>
 
   <NextActions
     title={m.judge_next_actions_title()}
@@ -147,8 +196,44 @@
     gap: $space-size-12;
   }
 
+  .chart-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-size-12;
+    margin: 0;
+    padding: $space-size-20;
+    border-radius: 10px;
+    background: $white;
+  }
+
+  .chart-title {
+    font-size: $font-size-16;
+    font-weight: bold;
+    color: map.get($gray, text);
+  }
+
+  // グラフは正方形。狭い画面では画面の幅に収める
+  .chart {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .chart canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  .share-note {
+    margin: 0;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+    text-align: center;
+  }
+
   .again,
   .share,
+  .save-chart,
   .retry {
     display: inline-flex;
     align-items: center;
@@ -175,6 +260,7 @@
     text-decoration: none;
   }
 
+  .save-chart,
   .retry {
     color: map.get($sky-blue, text);
     border: 1px solid map.get($sky-blue, border);

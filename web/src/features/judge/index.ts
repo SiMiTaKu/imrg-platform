@@ -23,6 +23,9 @@ export {
 } from './lib/calculator'
 export { buildScoreFormula } from './lib/scoreFormula'
 export { buildShareUrl } from './lib/share'
+export { downloadImage, toChartImageUrl } from './lib/chartImage'
+export { renderDetailChart } from './lib/detailChart'
+export { POINT_A_ITEMS } from './config/pointAItems'
 export { wrapChartLabel } from './lib/wrapChartLabel'
 export type { JudgeApparatus } from './model/apparatus'
 export type {
