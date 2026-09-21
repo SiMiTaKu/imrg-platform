@@ -7,6 +7,7 @@
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
+  import { ActionButton } from '@shared/ui'
 
   const locale = getLocale() as SiteLocale
   const isMobile = $derived($pageData.isMobile)
@@ -43,7 +44,9 @@
   </div>
 </section>
 
-<p class="back"><a href={localizeHref(ROUTES.top)}>{m.calendar_back_to_top()}</a></p>
+<p class="back">
+  <ActionButton href={localizeHref(ROUTES.top)}>{m.calendar_back_to_top()}</ActionButton>
+</p>
 
 <style lang="scss">
   .footer-cards {
@@ -145,9 +148,5 @@
     margin-top: $space-size-64;
     font-size: $font-size-16;
     text-align: center;
-  }
-
-  .back a {
-    color: map.get($sky-blue, text);
   }
 </style>

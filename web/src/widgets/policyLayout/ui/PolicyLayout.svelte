@@ -6,6 +6,7 @@
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
+  import { ActionButton } from '@shared/ui'
   import { policyLabels } from '../config/policyLabels'
 
   /** 文章だけのページの枠の引数 */
@@ -142,7 +143,9 @@
     </a>
   </aside>
 
-  <p class="back"><a href={localizeHref(ROUTES.top)}>{m.layout_back_to_top()}</a></p>
+  <p class="back">
+    <ActionButton href={localizeHref(ROUTES.top)}>{m.layout_back_to_top()}</ActionButton>
+  </p>
 </article>
 
 <style lang="scss">
@@ -322,10 +325,6 @@
     margin-top: $space-size-48;
     font-size: $font-size-14;
     text-align: center;
-  }
-
-  .back a {
-    color: map.get($sky-blue, text);
   }
 
   // 本文は各ページから children で渡すため、ここから :global で体裁を当てる。
