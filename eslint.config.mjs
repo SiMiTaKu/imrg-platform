@@ -35,6 +35,8 @@ export default [
       '**/coverage/**',
       '**/node_modules/**',
       '**/storybook-static/**',
+      // 作業を分けるために作った一時の作業場。中に依存が入っていないので読ませない
+      '.claude/worktrees/**',
       // Paraglide JS が生成するファイル
       'web/src/lib/paraglide/**',
     ],

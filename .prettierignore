@@ -1,4 +1,6 @@
 node_modules
+# 作業を分けるために作った一時の作業場
+.claude/worktrees
 build
 .svelte-kit
 coverage
