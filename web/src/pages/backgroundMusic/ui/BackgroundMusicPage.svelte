@@ -10,6 +10,7 @@
     OrderMainVisual,
     OrderPoints,
     OrderPrice,
+    splitSentences,
   } from '@widgets/orderService'
   import {
     CONTACT,
@@ -81,7 +82,7 @@
     unit={m.background_music_price_unit()}
     amount={priceParts}
     notes={[m.background_music_price_note_1(), m.background_music_price_note_2()]}
-    freeNote={m.order_price_free_note()}
+    freeNote={splitSentences(m.order_price_free_note())}
     contactHref={LINKS.instagram}
     contactLabel={m.order_price_contact()}
   />

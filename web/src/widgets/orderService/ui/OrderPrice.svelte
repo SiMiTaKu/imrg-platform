@@ -36,8 +36,12 @@
     amount: string | readonly string[]
     /** 金額の下に並べる補足 */
     notes: string[]
-    /** 見積もりが無料であることの言い切り。金額のすぐ下に出す */
-    freeNote: string
+    /**
+     * 見積もりが無料であることの言い切り。金額のすぐ下に出す。
+     *
+     * 文ごとに分けて渡すと、文の途中では折り返さずに出す（`splitSentences` を使う）
+     */
+    freeNote: string | readonly string[]
     /** 相談の窓口（Instagram） */
     contactHref: string
     /** 相談のボタンの文言 */
@@ -59,6 +63,7 @@
 
   const isMobile = $derived($pageData.isMobile)
   const amountParts = $derived(toParts(amount))
+  const freeNoteParts = $derived(toParts(freeNote))
 </script>
 
 <section class="price" class:mobile={isMobile} id="price">
@@ -80,8 +85,12 @@
         {/each}
       </ul>
 
-      <!-- 見積もりは無料であることを、金額のすぐ下で言い切る -->
-      <p class="free">{freeNote}</p>
+      <!-- 見積もりは無料であることを、金額のすぐ下で言い切る。文の途中では折り返さない -->
+      <p class="free">
+        {#each freeNoteParts as part (part)}
+          <span class="free-part">{part}</span>
+        {/each}
+      </p>
 
       <a class="contact" href={contactHref} target="_blank" rel="noopener noreferrer">
         {contactLabel}
@@ -177,7 +186,12 @@
     overflow-wrap: anywhere;
   }
 
+  // 文ごとに並べる。行が足りなければ文のまとまりごと次の行へ送り、文の途中では折り返さない
   .free {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 0.4em;
     margin: 0;
     padding: $space-size-12 $space-size-16;
     font-size: $font-size-16;
@@ -186,7 +200,11 @@
     border-radius: 8px;
     background: map.get($gray, background);
     line-height: 1.8;
-    overflow-wrap: anywhere;
+  }
+
+  .free-part {
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   // 料金を見た直後に相談へ進めるようにする。ボタンは青の塗り。黄はページ下の相談の節だけに残す

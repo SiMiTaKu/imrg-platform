@@ -1,4 +1,5 @@
 // 依頼を受け付けるページ（曲編集・手具装飾）で共通の UI ブロック
+export { splitSentences } from './lib/sentences'
 export { default as OrderContact } from './ui/OrderContact.svelte'
 export type { OrderContactCrossLink } from './ui/OrderContact.svelte'
 export { default as OrderFlow } from './ui/OrderFlow.svelte'
