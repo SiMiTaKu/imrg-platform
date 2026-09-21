@@ -20,9 +20,9 @@
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
+  import { RelatedEvents } from '@widgets/calendarDetail'
   import { NEARBY_COUNT } from '../config/detailConfig'
   import { buildSportsEventJsonLd, eventCountdown, nearbyEvents } from '../lib/detail'
-  import RelatedEvents from './RelatedEvents.svelte'
 
   /** 大会の詳細ページの引数 */
   interface Props {
