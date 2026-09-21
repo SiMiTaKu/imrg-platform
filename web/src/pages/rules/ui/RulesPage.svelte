@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { tick } from 'svelte'
-  import { prefersReducedMotion } from 'svelte/motion'
-  import { slide } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { CharacterFigure, Character, findCharacter } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
@@ -32,39 +29,10 @@
   /** ルールの案内役 */
   const guide = findCharacter(Character.OSAMU)
 
-  /** 開閉のアニメーションの長さ（ミリ秒） */
-  const OPEN_CLOSE_DURATION = 240
-
   /** 探している言葉。空なら全部出す */
   let keyword = $state('')
   /** 押して変えた開閉。載っていないところは DEFAULT_OPEN に従う */
   let openState = $state<RuleOpenState>(createInitialOpenState())
-  /** 今回の書き換えだけアニメーションを出さないか */
-  let skipsAnimation = $state(false)
-
-  /**
-   * 開閉のアニメーションの長さ。
-   * 動きを減らす設定の人と、一度にたくさん開け閉めするときは 0 にして、すぐ切り替える
-   */
-  const openCloseDuration = $derived(
-    prefersReducedMotion.current || skipsAnimation ? 0 : OPEN_CLOSE_DURATION,
-  )
-
-  /**
-   * 一度にたくさん開け閉めするあいだだけ、アニメーションを止める
-   * @param change - 開閉を書き換える処理
-   *
-   * @remarks
-   * 見出しがいくつも同時に動くと重なって見づらいので、まとめて変わるときは動かさない。
-   * 画面の描き換えが終わったらアニメーションを戻す。
-   */
-  const changeWithoutAnimation = (change: () => void) => {
-    skipsAnimation = true
-    change()
-    void tick().then(() => {
-      skipsAnimation = false
-    })
-  }
 
   /**
    * そこが開いているか
@@ -90,9 +58,7 @@
    * @param open - 開くなら true
    */
   const toggleChapterAll = (chapterIndex: number, open: boolean) => {
-    changeWithoutAnimation(() => {
-      openState = withChapterOpen(openState, ruleBook.chapter[chapterIndex], chapterIndex, open)
-    })
+    openState = withChapterOpen(openState, ruleBook.chapter[chapterIndex], chapterIndex, open)
   }
 
   /**
@@ -100,9 +66,7 @@
    * @param open - 開くなら true
    */
   const toggleAll = (open: boolean) => {
-    changeWithoutAnimation(() => {
-      openState = withAllOpen(ruleBook, open)
-    })
+    openState = withAllOpen(ruleBook, open)
   }
 
   const visibleChapters = $derived(
@@ -120,10 +84,8 @@
    */
   const handleKeywordInput = (event: Event & { currentTarget: HTMLInputElement }) => {
     const { value } = event.currentTarget
-    changeWithoutAnimation(() => {
-      keyword = value
-      openState = createOpenStateForKeyword(ruleBook, value)
-    })
+    keyword = value
+    openState = createOpenStateForKeyword(ruleBook, value)
   }
 </script>
 
@@ -221,12 +183,12 @@
         </button>
       </h2>
 
-      {#if isChapterOpen}
-        <div
-          class="chapter-body"
-          id={chapterId}
-          transition:slide|local={{ duration: openCloseDuration }}
-        >
+      <!--
+        開いていても閉じていても置いたままにして、data-open の付け外しだけで高さを変える。
+        こうすると開くときも閉じるときも、いくつ同時に変わっても同じように動く
+      -->
+      <div class="collapsible" id={chapterId} data-open={isChapterOpen}>
+        <div class="collapsible-inner chapter-body">
           <div class="bulk in-chapter">
             <button
               type="button"
@@ -264,12 +226,8 @@
                 </button>
               </h3>
 
-              {#if isArticleOpen}
-                <div
-                  class="article-body"
-                  id={articleId}
-                  transition:slide|local={{ duration: openCloseDuration }}
-                >
+              <div class="collapsible" id={articleId} data-open={isArticleOpen}>
+                <div class="collapsible-inner article-body">
                   {#each article.section as section, sectionIndex (sectionIndex)}
                     {@const sectionId = sectionKey(index, articleIndex, sectionIndex)}
                     {@const isSectionOpen = isOpen(sectionId, DEFAULT_OPEN.section)}
@@ -292,12 +250,8 @@
                         </button>
                       </h4>
 
-                      {#if isSectionOpen}
-                        <div
-                          class="section-body"
-                          id={sectionId}
-                          transition:slide|local={{ duration: openCloseDuration }}
-                        >
+                      <div class="collapsible" id={sectionId} data-open={isSectionOpen}>
+                        <div class="collapsible-inner section-body">
                           {#if section.block.length > 0}
                             {#each section.block as block, blockIndex (blockIndex)}
                               <div class="item">
@@ -327,25 +281,35 @@
                             </div>
                           {/if}
                         </div>
-                      {/if}
+                      </div>
                     </section>
                   {/each}
                 </div>
-              {/if}
+              </div>
             </section>
           {/each}
         </div>
-      {/if}
+      </div>
     </section>
   {/each}
 </article>
 
 <style lang="scss">
   .rules {
+    // 開閉にかかる時間。章・節・条のどれも同じ間で動かす
+    --rule-open-close-duration: 240ms;
+
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
     padding: $space-size-40 var(--content-padding-inline) $space-size-80;
+  }
+
+  // 動きを減らす設定の人には、間を置かずに切り替える
+  @media (prefers-reduced-motion: reduce) {
+    .rules {
+      --rule-open-close-duration: 0ms;
+    }
   }
 
   .mobile {
@@ -598,6 +562,36 @@
 
   .toggle[aria-expanded='true'] .mark::before {
     content: '−';
+  }
+
+  /* ─── 開閉する中身（章・節・条で共通） ─── */
+
+  // 行の高さを 0fr と 1fr のあいだで渡し、高さを決め打ちせずに開け閉めする。
+  // 中身は閉じていても置いたままなので、開くときも閉じるときも、
+  // 1つだけ動かすときもまとめて動かすときも、同じように動く。
+  // fr の補間に対応していないブラウザーでは 0fr と 1fr に飛ぶだけで、
+  // 開閉そのものは正しく効く（アニメーションが出ないだけ）。
+  // visibility も一緒に渡す。こうすると閉じているあいだは読み上げにも
+  // タブ移動にも出てこなくなり、閉じる動きのあいだは最後まで見えたままになる
+  .collapsible {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows var(--rule-open-close-duration) ease,
+      visibility var(--rule-open-close-duration);
+  }
+
+  .collapsible[data-open='true'] {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+
+  // 行が 0fr のあいだ、中身をはみ出させない。
+  // min-height はグリッドの中身が持つ既定の下限を外すために要る
+  .collapsible-inner {
+    min-height: 0;
+    overflow: hidden;
   }
 
   /* ─── 章 ─── */
