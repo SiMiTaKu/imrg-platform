@@ -39,14 +39,13 @@
       {#if actions}
         {@render actions()}
       {:else}
-        <Button href={localizeHref(ROUTES.oshimitsu.searchResult)} target="_self" block>
+        <Button href={localizeHref(ROUTES.oshimitsu.searchResult)} target="_self">
           {m.oshimitsu_all_videos()}
         </Button>
         <Button
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.INDIVIDUAL.slug))}
           target="_self"
           variant="outline"
-          block
         >
           {m.oshimitsu_empty_see_individual({ contentType: ContentType.INDIVIDUAL.label() })}
         </Button>
@@ -54,7 +53,6 @@
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.GROUP.slug))}
           target="_self"
           variant="outline"
-          block
         >
           {m.oshimitsu_empty_see_group({ contentType: ContentType.GROUP.label() })}
         </Button>
@@ -118,12 +116,16 @@
     overflow-wrap: anywhere;
   }
 
-  // 次の一手は入る数だけ列を作る。狭い画面では1列に積まれ、1つずつ横いっぱいになる
+  // PC では文言の幅のまま横に並べ、スマホでは縦に積んで1つずつ横いっぱいにする
   .actions {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: $space-size-8;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin-top: $space-size-8;
+  }
+
+  .mobile .actions {
+    flex-direction: column;
   }
 
   .back {

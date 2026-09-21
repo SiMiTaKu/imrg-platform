@@ -91,9 +91,9 @@
 </script>
 
 {#snippet keywordActions()}
-  <Button onclick={() => (keyword = '')} block>{m.oshimitsu_keyword_clear()}</Button>
+  <Button onclick={() => (keyword = '')}>{m.oshimitsu_keyword_clear()}</Button>
   {#if hasMore}
-    <Button variant="outline" onclick={getMoreVideos} block>{m.oshimitsu_load_more()}</Button>
+    <Button variant="outline" onclick={getMoreVideos}>{m.oshimitsu_load_more()}</Button>
   {/if}
 {/snippet}
 

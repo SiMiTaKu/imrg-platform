@@ -71,8 +71,8 @@
     </ul>
 
     <div class="actions">
-      <Button size="large" onclick={onstart} block>{m.judge_intro_start()}</Button>
-      <Button href={localizeHref(ROUTES.rules)} target="_self" variant="outline" size="large" block>
+      <Button size="large" onclick={onstart}>{m.judge_intro_start()}</Button>
+      <Button href={localizeHref(ROUTES.rules)} target="_self" variant="outline" size="large">
         {m.judge_intro_read_rules()}
       </Button>
     </div>
@@ -202,16 +202,16 @@
   /* ─── 始める ─── */
 
   // いちばん押してほしい「始める」は青の塗り、規則を読む道は白抜き。
-  // 2つを同じ幅で並べ、スマホでは1列に積んでそれぞれ横いっぱいにする
+  // PC では中央にそろえて横に並べ、スマホでは縦に積んでそれぞれ横いっぱいにする
   .actions {
-    display: grid;
+    display: flex;
     gap: $space-size-12;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
     margin-bottom: $space-size-12;
   }
 
   .mobile .actions {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
   }
 
   .note {

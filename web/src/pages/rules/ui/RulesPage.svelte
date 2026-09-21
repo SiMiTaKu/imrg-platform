@@ -154,12 +154,8 @@
     </div>
 
     <div class="bulk">
-      <Button variant="outline" onclick={() => toggleAll(true)} block>
-        {m.rules_expand_all()}
-      </Button>
-      <Button variant="outline" onclick={() => toggleAll(false)} block>
-        {m.rules_collapse_all()}
-      </Button>
+      <Button variant="outline" onclick={() => toggleAll(true)}>{m.rules_expand_all()}</Button>
+      <Button variant="outline" onclick={() => toggleAll(false)}>{m.rules_collapse_all()}</Button>
     </div>
 
     {#if keyword.trim() === ''}
@@ -223,7 +219,6 @@
                   variant="outline"
                   label={m.rules_expand_chapter_label({ number: index + 1 })}
                   onclick={() => toggleChapterAll(index, true)}
-                  block
                 >
                   {m.rules_expand_all()}
                 </Button>
@@ -231,7 +226,6 @@
                   variant="outline"
                   label={m.rules_collapse_chapter_label({ number: index + 1 })}
                   onclick={() => toggleChapterAll(index, false)}
-                  block
                 >
                   {m.rules_collapse_all()}
                 </Button>
@@ -448,16 +442,16 @@
 
   /* ─── すべて開く・すべて閉じる ─── */
 
-  // 2つを同じ幅で並べる。スマホでは1列に積んで、1つずつ横いっぱいにする
+  // 読むのを助けるボタンなので、PC では文言の幅のまま横に並べる。
+  // スマホでは縦に積んで、1つずつ横いっぱいにする
   .bulk {
-    display: grid;
+    display: flex;
     gap: $space-size-8;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding-bottom: $space-size-24;
   }
 
   .mobile .bulk {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
   }
 
   /* 章の中では、章の中身の gap が下の余白になる */

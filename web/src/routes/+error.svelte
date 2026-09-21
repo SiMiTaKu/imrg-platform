@@ -34,6 +34,8 @@
     gap: 40px;
     grid-template-rows: 1fr auto auto 1fr;
     height: 75dvh;
+    padding: 0 var(--content-padding-inline);
+    box-sizing: border-box;
     place-items: center center;
   }
 
@@ -43,10 +45,14 @@
     color: #555;
   }
 
+  // ボタンをスマホで横いっぱいにするため、この箱を幅いっぱいに広げる。
+  // PC ではボタン側の 300px で止まるので、間延びしない
   .content {
     display: grid;
     gap: 24px;
     grid-row: 3 / 4;
+    width: 100%;
+    max-width: var(--content-max-width);
     justify-items: center;
   }
 

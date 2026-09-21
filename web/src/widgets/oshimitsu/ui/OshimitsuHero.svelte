@@ -48,8 +48,8 @@
       </p>
 
       <div class="actions">
-        <Button href="#search" target="_self" block>{m.oshimitsu_hero_action_ways()}</Button>
-        <Button href="#recommended" target="_self" variant="outline" block>
+        <Button href="#search" target="_self">{m.oshimitsu_hero_action_ways()}</Button>
+        <Button href="#recommended" target="_self" variant="outline">
           {m.oshimitsu_hero_action_recommended()}
         </Button>
       </div>
@@ -155,17 +155,16 @@
     color: map.get($sky-blue, text);
   }
 
-  // 探し方へ進む主な入口（塗り）と、おすすめを見る道（白抜き）を同じ幅で並べる。
-  // スマホでは1列に積んで、1つずつ横いっぱいにする
+  // 探し方へ進む主な入口（塗り）と、おすすめを見る道（白抜き）を横に並べる。
+  // スマホでは縦に積んで、1つずつ横いっぱいにする
   .actions {
-    display: grid;
+    display: flex;
     gap: $space-size-12;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-bottom: $space-size-20;
   }
 
   .mobile .actions {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
   }
 
   .stats {

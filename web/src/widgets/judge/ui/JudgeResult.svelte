@@ -100,13 +100,11 @@
   </figure>
 
   <div class="buttons">
-    <Button onclick={onshowscore} block>{m.judge_result_show_score()}</Button>
+    <Button onclick={onshowscore}>{m.judge_result_show_score()}</Button>
     <!-- Xの投稿画面を新しいタブで開く。文は得点と手具の名前が入ったもの -->
-    <Button href={shareHref} target="_blank" variant="outline" block>{m.judge_share_x()}</Button>
-    <Button variant="outline" onclick={saveChartImage} block>
-      {m.judge_result_chart_save()}
-    </Button>
-    <Button variant="outline" onclick={onretry} block>{m.judge_result_restart()}</Button>
+    <Button href={shareHref} target="_blank" variant="outline">{m.judge_share_x()}</Button>
+    <Button variant="outline" onclick={saveChartImage}>{m.judge_result_chart_save()}</Button>
+    <Button variant="outline" onclick={onretry}>{m.judge_result_restart()}</Button>
   </div>
   <p class="share-note">{m.judge_result_chart_share_note()}</p>
 
@@ -155,11 +153,16 @@
     color: map.get($sky-blue, text);
   }
 
-  // 入る数だけ列を作る。狭い画面では1列に積まれ、1つずつ横いっぱいになる
+  // PC では中央にそろえて横に並べ、スマホでは縦に積んで1つずつ横いっぱいにする
   .buttons {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: $space-size-12;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    justify-content: center;
+  }
+
+  .mobile .buttons {
+    flex-direction: column;
   }
 
   .chart-figure {
