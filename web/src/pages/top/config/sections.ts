@@ -23,6 +23,9 @@ const PRICES = {
 /** 掲載している大会の数。できることの印に出す */
 const LISTED_EVENT_COUNT = 312
 
+/** トップに出す直近の大会の数。多いと選べなくなるので3件まで */
+export const UPCOMING_EVENT_COUNT = 3
+
 /**
  * 競技の見どころ。3つに絞る。
  *
