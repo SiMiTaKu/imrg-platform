@@ -135,7 +135,8 @@
 <section class="main-visual" class:mobile={isMobile} class:full={layout === 'full'}>
   <div class="layer images">
     {#if backgroundImage}
-      <div class="image">
+      <!-- 切り替えずに出したままにする1枚。いちばん下に敷いて、ずっと見えたままにする -->
+      <div class="image base">
         <ImageAssets
           width="100%"
           height="100%"
@@ -266,6 +267,13 @@
 
   .image.showing {
     z-index: 2;
+    opacity: 1;
+  }
+
+  // 出したままにする背景は、切り替える写真の下でずっと見せる。
+  // 透過したままだと地の色だけが残り、背景が真っ黒になる
+  .image.base {
+    z-index: 0;
     opacity: 1;
   }
 
