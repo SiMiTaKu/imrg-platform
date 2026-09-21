@@ -27,7 +27,6 @@
 <script lang="ts">
   import { SLIDE_INTERVAL } from '../config/orderService'
   import { onMount } from 'svelte'
-  import { fly } from 'svelte/transition'
   import { CharacterFigure, type CharacterProfile } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { ImageAssets } from '@shared/ui'
@@ -106,8 +105,6 @@
   let currentIndex = $state(0)
   let isShow = $state(false)
   let initialized = $state(false)
-
-  const currentSlide = $derived(slides[currentIndex % slides.length])
 
   onMount(() => {
     // 最初に見せる1枚は、開くたびに変える。表示はマウント後なので、書き出した HTML とずれない
@@ -190,17 +187,21 @@
         </div>
       </div>
 
-      <!-- キャッチコピーは入れ替わる。抜けたときに高さが縮まないよう置き場所の高さを決めておく -->
+      <!--
+        キャッチコピーは入れ替わる。長さがまちまちなので、高さを決め打ちにすると
+        行数が変わるたびに下の中身が動いてしまう。全部を同じ場所に重ねて置き、
+        いちばん高いものに合わせて場所を取っておく（見せるのは1つだけ）
+      -->
       <div class="catch-slot">
-        {#if initialized && isShow}
+        {#each slides as slide, index (index)}
           <p
             class="catch"
-            in:fly={{ duration: 800, delay: 100, y: 16 }}
-            out:fly={{ duration: 300, y: -16 }}
+            class:showing={initialized && isShow && index === currentIndex % slides.length}
+            aria-hidden={index !== currentIndex % slides.length}
           >
-            {currentSlide.description}
+            {slide.description}
           </p>
-        {/if}
+        {/each}
       </div>
 
       <p class="summary">{summary}</p>
@@ -406,13 +407,15 @@
     overflow-wrap: break-word;
   }
 
+  // 重ねた中でいちばん高いものが、この場所の高さを決める
   .catch-slot {
-    display: flex;
+    display: grid;
     align-items: center;
-    min-height: 3.4em;
   }
 
   .catch {
+    // 全部を同じますに重ねる
+    grid-area: 1 / 1;
     margin: 0;
     font-size: $font-size-20;
     font-weight: bold;
@@ -420,6 +423,28 @@
     color: map.get($sky-blue, text);
     white-space: pre-line;
     overflow-wrap: anywhere;
+
+    // 出ていないものは見せない。場所だけ取っておく
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .catch.showing {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.8s ease 0.1s,
+      transform 0.8s ease 0.1s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .catch {
+      transform: none;
+      transition: none;
+    }
   }
 
   .mobile .catch {
