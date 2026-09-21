@@ -51,11 +51,10 @@
           <dt>{m.calendar_period_upcoming()}</dt>
           <dd>{upcoming}<span class="unit">{m.calendar_count_unit_other()}</span></dd>
         </div>
-        <div class="number updated">
-          <dt>{m.calendar_intro_stat_freshness()}</dt>
-          <dd class="updated-text">{updatedAtText}</dd>
-        </div>
       </dl>
+
+      <!-- 「情報の新しさ」という言い換えは置かない。最終更新の日付だけで伝わる -->
+      <p class="updated">{updatedAtText}</p>
 
       <p class="caution">{m.calendar_intro_sources_note()}</p>
     </div>
@@ -193,10 +192,7 @@
   }
 
   .updated {
-    justify-content: center;
-  }
-
-  .updated-text {
+    margin: 0 0 $space-size-12;
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, 600);
