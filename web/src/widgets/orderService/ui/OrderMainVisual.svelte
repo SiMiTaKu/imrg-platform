@@ -72,10 +72,12 @@
     /** 切り替えずに出したままにする背景画像 */
     backgroundImage?: ImageSourceMeta[]
     /**
-     * 中身を白い札に載せずに、背景の写真の上へ直に置くか。
-     * 既定（false）は白い札に載せる
+     * 見せ方。省くと `card`。
+     *
+     * - `card`: 写真の上に白い札を置き、その中に文字を出す
+     * - `full`: 札を置かず、画面の端まで行き渡らせた写真の上に直に文字を出す（トップページと同じ）
      */
-    bleed?: boolean
+    layout?: 'card' | 'full'
   }
 
   const {
@@ -95,7 +97,7 @@
     imageAlt,
     slides,
     backgroundImage,
-    bleed = false,
+    layout = 'card',
   }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
@@ -130,7 +132,7 @@
 </script>
 
 <!-- 背景・影・中身は position ではなく grid の同じマス目に重ねる。高さは中身で決まる -->
-<section class="main-visual" class:mobile={isMobile} class:bleed>
+<section class="main-visual" class:mobile={isMobile} class:full={layout === 'full'}>
   <div class="layer images">
     {#if backgroundImage}
       <div class="image">
@@ -482,56 +484,71 @@
     overflow-wrap: anywhere;
   }
 
-  // 白い札をやめて、背景の写真を画面の端まで見せる（トップページのヒーローと同じ立て付け）。
-  // 文字は写真の上に直に載るので、白く抜いて影で読めるようにする
-  .bleed .panel {
+  // ここから下は layout="full" のとき。
+  // 白い札を外し、画面の端まで行き渡らせた写真の上に直に文字を出す。
+  // 写真の上でも読めるように、覆いを濃くして文字を白くする
+  .full.main-visual {
+    min-height: 640px;
+  }
+
+  .full.mobile.main-visual {
+    min-height: 0;
+  }
+
+  .full .veil {
+    background: linear-gradient(to right, rgb(0 0 0 / 70%), rgb(0 0 0 / 45%) 70%, rgb(0 0 0 / 25%));
+  }
+
+  .full.mobile .veil {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 45%), rgb(0 0 0 / 70%));
+  }
+
+  .full .panel {
     max-width: 680px;
     padding: 0;
-    border-top: 0;
+    border: 0;
     border-radius: 0;
     background: none;
     box-shadow: none;
+    text-shadow: 0 1px 3px rgb(0 0 0 / 45%);
   }
 
-  .bleed.mobile .panel {
-    padding: 0;
+  .full .eyebrow {
+    color: map.get($sky-blue, text);
+    background: $white;
+    text-shadow: none;
   }
 
-  .bleed .inner {
-    padding-top: $space-size-80;
-    padding-bottom: $space-size-80;
-  }
-
-  .bleed.mobile .inner {
-    padding-top: $space-size-48;
-    padding-bottom: $space-size-48;
-  }
-
-  // 写真の明暗に負けないよう、veil を全体に一段濃くする
-  .bleed .veil {
-    background: linear-gradient(to right, rgb(0 0 0 / 70%), rgb(0 0 0 / 45%) 70%, rgb(0 0 0 / 30%));
-  }
-
-  .bleed.mobile .veil {
-    background: linear-gradient(to bottom, rgb(0 0 0 / 50%), rgb(0 0 0 / 70%));
-  }
-
-  .bleed h1,
-  .bleed .catch,
-  .bleed .summary,
-  .bleed .amount {
+  .full h1 {
     color: $white;
-    text-shadow: 0 1px 6px rgb(0 0 0 / 55%);
   }
 
-  .bleed .subtitle,
-  .bleed .note {
+  .full .subtitle {
+    color: rgb(255 255 255 / 75%);
+  }
+
+  // 淡い青。白の見出しの中でも、金額とキャッチコピーだけは色で分ける
+  .full .catch,
+  .full .amount {
+    color: map.get($sky-blue, 100);
+  }
+
+  .full .summary {
+    color: rgb(255 255 255 / 88%);
+  }
+
+  .full .points li {
+    color: $white;
+    border-color: rgb(255 255 255 / 45%);
+    background: rgb(255 255 255 / 15%);
+    text-shadow: none;
+  }
+
+  .full .note {
     color: rgb(255 255 255 / 80%);
-    text-shadow: 0 1px 4px rgb(0 0 0 / 55%);
   }
 
-  // 丸い札は地の色を持っているので、写真の上でもそのまま読める
-  .bleed .points li {
-    color: map.get($gray, text);
+  .full .actions a {
+    text-shadow: none;
   }
 </style>

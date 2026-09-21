@@ -65,6 +65,7 @@
     imageAlt={m.background_music_main_visual_alt()}
     slides={MAIN_VISUAL_DESCRIPTIONS.map((description) => ({ description: description() }))}
     backgroundImage={MainVisualImage}
+    layout="full"
   />
 
   <OrderPoints

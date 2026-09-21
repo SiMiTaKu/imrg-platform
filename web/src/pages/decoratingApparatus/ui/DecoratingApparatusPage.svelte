@@ -55,7 +55,7 @@
       image: slide.image,
       description: slide.description(),
     }))}
-    bleed={true}
+    layout="full"
   />
 
   <LiveNotice />
