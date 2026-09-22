@@ -30,7 +30,10 @@ export const SCORING_GENERAL_STRUCTURE: readonly RuleNode[] = [
         key: 'scoring.judges.panel',
         number: '3.2.5',
         page: 20,
-        figures: ['tables/judge-panel'],
+        // 冊子20ページは「1 …下表のとおり配置する」の直後に表があり、そのあとに「2」が続く
+        figures: [
+          { figure: 'tables/judge-panel', after: '審判団は原則として上級審判員と審判長を置き' },
+        ],
       },
       { key: 'scoring.judges.superior', number: '3.2.6', page: 20 },
       { key: 'scoring.judges.president', number: '3.2.7', page: 20 },
@@ -45,7 +48,8 @@ export const SCORING_GENERAL_STRUCTURE: readonly RuleNode[] = [
         key: 'scoring.judges.seating',
         number: '3.2.14',
         page: 21,
-        figures: ['seats/judge-seats'],
+        // 冊子21ページは導入の文の直後に座席図があり、そのあとに※の但し書きが続く
+        figures: [{ figure: 'seats/judge-seats', after: '審判の配置は以下のとおりとする。' }],
       },
     ],
   },
@@ -58,7 +62,14 @@ export const SCORING_GENERAL_STRUCTURE: readonly RuleNode[] = [
         key: 'scoring.common.method',
         number: '3.3.1',
         page: 22,
-        figures: ['yuukouten', 'tennsuu'],
+        // 冊子22ページは「5」の直後に有効点の開きの表、「6」の直後に得点の開きの表がある
+        figures: [
+          { figure: 'yuukouten', after: '有効点の開きは以下の点数より大きくてはならない' },
+          {
+            figure: 'tennsuu',
+            after: '全審判員の採点の最高点と最低点の開きは以下の点数より大きくてはならない',
+          },
+        ],
       },
       { key: 'scoring.common.baseScore', number: '3.3.2', page: 22 },
       { key: 'scoring.common.time', number: '3.3.3', page: 22 },

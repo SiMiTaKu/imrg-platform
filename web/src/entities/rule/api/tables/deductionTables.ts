@@ -27,13 +27,18 @@ export const FREE_HAND_TABLES: readonly RuleTable[] = [
     // あるが、列を増やさず、細目は具体的な内容に丸括弧で添えている
     imageSource: '/images/rules/tosyukettenhyou.png',
     caption: '個人徒手 実施（E）欠点表',
-    // 紙面は左に分類と内容の欄があり、そこから右に具体的な内容と減点が並ぶ
-    headerColumns: 2,
+    // 紙面は左に分類と内容の欄があり、そこから右に具体的な内容と減点が並ぶ。
+    // 行の見出しにするのはいちばん左の分類の列だけ。内容の列まで見出しにすると、
+    // 分類が縦につながった行では内容が行の先頭に来て縦書きになり、
+    // 縦書きの行と横書きの行が混ざってしまう（冊子は分類だけが縦書き）
+    headerColumns: 1,
     mergeEmptyCells: true,
     verticalHeader: true,
-    // 分類と内容は縦書きなので、見出しの「分類」「内容」の2文字が収まるだけでよい。
-    // 減点は「欠点基準に準じる」が折り返さないだけ取り、残りを具体的な内容に回す
-    columnWidths: ['9%', '9%', '61%', '21%'],
+    // 分類は縦書きなので、見出しの「分類」の2文字ぶん 8%（50em のとき 48px）。
+    // 内容は「リズミカルな実施」の8文字が1行に収まる 21%（126px）、
+    // 減点は折り返さない列なので「その都度 0.10点」がはみ出さない 24%（144px）を取り、
+    // 残りの 47%（282px）を具体的な内容に回す
+    columnWidths: ['8%', '21%', '47%', '24%'],
     layout: 'list',
     columns: ['分類', '内容', '具体的な内容', '減点'],
     rows: [
@@ -84,12 +89,12 @@ export const FREE_HAND_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/tables/free-hand-execution-levels.png',
     caption: '個人徒手 実施欠点基準',
     layout: 'list',
-    narrowColumns: 1,
+    // 中身は「著しくかけている」の8文字が最長で、どの列も短い。
+    // 列の幅を書くと表に 50em の下限が付いてスマホでは横に送ることになるので、
+    // 幅は書かず compact に任せて3列を等分し、狭い画面でも横に送らずに収める
+    compact: true,
+    narrowColumns: 0,
     cornerLabel: '欠点',
-    // 幅を決めないと、左の「欠点」の列が内容の列と同じくらい広がって釣り合いが悪い。
-    // columnWidths は列の見出し（内容・減点）のぶんだけ書き、行の見出しの列には
-    // 残りが回る。ここでは「微小欠点」の4文字が収まる 14% が残るようにしてある
-    columnWidths: ['74%', '12%'],
     columns: ['内容', '減点'],
     rows: [
       { header: '大欠点', cells: ['著しくかけている', '0.50点'] },

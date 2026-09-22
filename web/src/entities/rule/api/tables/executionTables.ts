@@ -45,7 +45,10 @@ export const EXECUTION_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/(E)kettenhyou(S).png',
     caption: '個人競技 実施（E）欠点表',
     mergeEmptyCells: true,
-    headerColumns: 2,
+    // 行の見出しにするのは、いちばん左の分類の列だけ。
+    // 内容の列まで見出しにすると、分類が縦につながった行では内容の列が行の先頭に来てしまい、
+    // 縦書きが効く行と効かない行が混ざる（冊子は分類だけが縦書きで、内容は横書き）
+    headerColumns: 1,
     verticalHeader: true,
     // 分類は縦書きで1行ぶん、内容は「振りや回しの技術」が1行に収まるだけ、
     // 減点は「上記欠点基準に準じる」が折り返さないだけ取り、残りを具体的な内容に回す
@@ -162,7 +165,9 @@ export const EXECUTION_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/(E)kettenhyou1.png',
     caption: '団体競技 実施（E）欠点表',
     mergeEmptyCells: true,
-    headerColumns: 2,
+    // 個人競技の表と同じく、行の見出しはいちばん左の分類の列だけにする。
+    // 冊子でも縦書きは分類の列だけで、内容の列は横書き
+    headerColumns: 1,
     verticalHeader: true,
     // 分類は見出しの「分類」の2文字が収まるだけ、内容は「個人および全体の欠点」が
     // 一字だけの行で折れないだけ、減点は「1名につき その都度 0.10点」が
@@ -267,7 +272,10 @@ export const EXECUTION_TABLES: readonly RuleTable[] = [
     headerColumns: 1,
     mergeEmptyCells: true,
     verticalHeader: true,
-    columnWidths: ['6%', '66%', '28%'],
+    // 種類の列は見出しの「種類」が見切れていた。2文字ぶんの 8%（50em のとき 48px）まで広げる。
+    // 内容はいちばん長い「腕の曲り（頭が肘よりも下がらない場合）」の19文字が収まればよく、
+    // 減点は折り返さない列なので「1名1歩につき 0.05点」がはみ出さないだけ取る
+    columnWidths: ['8%', '60%', '32%'],
     layout: 'list',
     columns: ['種類', '内容', '減点'],
     rows: [

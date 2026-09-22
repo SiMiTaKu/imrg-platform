@@ -115,6 +115,10 @@
     2行目から先が番号のぶんだけ字下げされたままになる
   -->
   {#each lines as line, lineIndex (lineIndex)}
+    <!-- 冊子で本文の頭に置かれている表や図は、その行の手前に出す -->
+    {#each line.imageBefore ?? [] as image, beforeIndex (beforeIndex)}
+      <RuleFigure {image} />
+    {/each}
     <p class="line" style:--rule-line-depth={line.depth}>
       {#if line.label}<span class="line-label">{line.label}</span>{/if}
       <span class="line-text">{line.text}</span>

@@ -34,7 +34,11 @@ export const GROUP_SCORING_STRUCTURE: RuleNode[] = [
             key: 'scoring.group.requirements.acrobatic',
             number: '3.4.2.2',
             page: 25,
-            figures: ['(AM)requirement'],
+            // 冊子25ページは「転回系基礎要素群3は1回入れることができる」の直後に表があり、
+            // そのあとに「※組・組立運動または接触でのスタートは3群の扱いとする」が続く
+            figures: [
+              { figure: '(AM)requirement', after: '転回系基礎要素群3は1回入れることができる' },
+            ],
           },
           {
             key: 'scoring.group.requirements.acrobaticCount',
@@ -96,10 +100,16 @@ export const GROUP_SCORING_STRUCTURE: RuleNode[] = [
             key: 'scoring.group.difficulty.acrobatic',
             number: '3.4.4.4',
             page: 28,
+            // 冊子29ページは「C 2段交差の難度」「D 3段交差の難度」の直後にそれぞれの表があり、
+            // 3段交差の表のあとに「※2段の交差の難度と…」が続く。
+            // シリーズの難度の判定の表は30ページの「原則として、3名以上が…」の直後
             figures: [
-              'tables/group-cross-two',
-              'tables/group-cross-three',
-              'tables/group-series-difficulty',
+              { figure: 'tables/group-cross-two', after: '2段交差の難度' },
+              { figure: 'tables/group-cross-three', after: '3段交差の難度' },
+              {
+                figure: 'tables/group-series-difficulty',
+                after: '原則として、3名以上が実施したグループの難度を採用するが',
+              },
             ],
           },
           {

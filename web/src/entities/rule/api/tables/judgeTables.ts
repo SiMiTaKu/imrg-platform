@@ -50,6 +50,9 @@ export const JUDGE_TABLES: readonly RuleTable[] = [
     // 2列とも短いので、幅を詰める列は作らない（等分の指定とぶつかる）
     narrowColumns: 0,
     columns: ['審判の役目', '人数'],
+    // 紙面は「D／A／E…」と人数を横に並べた表で、どの欄も真ん中に寄っている。
+    // 縦に開いても寄せ方は変えず、役目・人数の両方を真ん中にそろえる
+    columnAligns: ['center', 'center'],
     rows: [
       { cells: ['D', '2名'] },
       { cells: ['A', '2名'] },

@@ -16,6 +16,9 @@ export const SCORE_TABLES: readonly RuleTable[] = [
     headerColumns: 1,
     layout: 'list',
     columns: ['最終得点', '有効点の開き'],
+    // 最終得点の列は、見出しだけ左に寄って値が真ん中という食い違いが出ていた。
+    // 冊子の紙面と同じく、どちらの列も見出しと値を真ん中にそろえる
+    columnAligns: ['center', 'center'],
     rows: [
       { cells: ['9.500〜10.000', '0.10'] },
       { cells: ['9.000〜 9.500 未満', '0.20'] },
@@ -33,6 +36,8 @@ export const SCORE_TABLES: readonly RuleTable[] = [
     headerColumns: 1,
     layout: 'list',
     columns: ['最終得点', '得点の開き'],
+    // 上の表と同じく、見出しと値の寄せ方をそろえる
+    columnAligns: ['center', 'center'],
     rows: [
       { cells: ['9.000〜10.000', '0.60'] },
       { cells: ['8.000〜 9.000 未満', '0.80'] },

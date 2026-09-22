@@ -80,6 +80,8 @@ export interface LocalizedRuleLine {
   text: string
   /** この行の直後に差し込む図や表。冊子で本文の途中に挟まっているもの */
   image?: Image[]
+  /** この行の手前に差し込む図や表 */
+  imageBefore?: Image[]
 }
 
 /**

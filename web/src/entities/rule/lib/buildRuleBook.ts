@@ -23,6 +23,20 @@ const figureKey = (reference: RuleFigureRef): string =>
   typeof reference === 'string' ? reference : reference.figure
 
 /**
+ * 図を差し込む場所を探す
+ * @param lines - 本文の行
+ * @param reference - 図の置き場所の指定
+ * @returns 差し込む行と、その行の手前か後ろか
+ */
+const anchorOf = (lines: LocalizedRuleLine[], reference: RuleFigureRef) => {
+  if (typeof reference === 'string') return undefined
+  const needle = 'after' in reference ? reference.after : reference.before
+  const line = lines.find((candidate) => candidate.text.startsWith(needle))
+  if (!line) return undefined
+  return { line, before: 'before' in reference }
+}
+
+/**
  * 本文の行に、その直後へ差し込む図を割り当てる。
  *
  * @remarks
@@ -44,14 +58,13 @@ const placeFigures = (
 
   for (const reference of references) {
     const image = { src: figureSource(figureKey(reference)), alt }
-    const anchor =
-      typeof reference === 'string'
-        ? undefined
-        : placed.find((line) => line.text.startsWith(reference.after))
-    if (anchor) {
-      anchor.image = [...(anchor.image ?? []), image]
-    } else {
+    const anchor = anchorOf(placed, reference)
+    if (!anchor) {
       trailing.push(image)
+    } else if (anchor.before) {
+      anchor.line.imageBefore = [...(anchor.line.imageBefore ?? []), image]
+    } else {
+      anchor.line.image = [...(anchor.line.image ?? []), image]
     }
   }
 

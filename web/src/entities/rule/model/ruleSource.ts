@@ -57,9 +57,13 @@ export type RuleContent = Readonly<Record<RuleKey, RuleEntry>>
  * @remarks
  * 文字列だけを書くと、その節点の本文をすべて出したあとに続けて出す。
  * 冊子では本文の途中に表が挟まっていることがあるので、そのときは
- * `after` に手前の行の書き出しを入れて、その行の直後に差し込む
+ * `after` に手前の行の書き出しを入れて、その行の直後に差し込む。
+ * 本文のいちばん上に置きたいときは `before` に、すぐ下に来る行の書き出しを入れる
  */
-export type RuleFigureRef = string | { readonly figure: string; readonly after: string }
+export type RuleFigureRef =
+  | string
+  | { readonly figure: string; readonly after: string }
+  | { readonly figure: string; readonly before: string }
 
 /**
  * 骨格の節点。章・節・項のどれにもなる。

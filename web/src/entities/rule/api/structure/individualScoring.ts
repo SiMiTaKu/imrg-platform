@@ -35,8 +35,17 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
         key: 'scoring.individual.difficulty',
         number: '3.5.5',
         page: 40,
-        // 冊子40ページの並びどおり、価値点・ロープの跳び・投げ受けの順
-        figures: ['tables/difficulty-value', 'tables/rope-jump-difficulty', 'tossdifficulties'],
+        // 冊子40ページは「難度には次の価値点が与えられる」「跳びの難度は以下のとおりとする」
+        // 「ただし、転回系が含まれていた場合は…」のそれぞれ直後に表がある。
+        // 投げ受けの表のあとには「※ここでの徒手系は…」が続く
+        figures: [
+          { figure: 'tables/difficulty-value', after: '難度には次の価値点が与えられる' },
+          { figure: 'tables/rope-jump-difficulty', after: '跳びの難度は以下のとおりとする' },
+          {
+            figure: 'tossdifficulties',
+            after: 'ただし、転回系が含まれていた場合は採点規則 3.5.5.4 の条件と比較して',
+          },
+        ],
       },
       {
         key: 'scoring.individual.artistry',

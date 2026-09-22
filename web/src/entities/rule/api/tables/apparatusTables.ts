@@ -17,6 +17,10 @@ export const APPARATUS_TABLES: readonly RuleTable[] = [
     // - その他の条件 … 画像はスティックのみ、2025年版はロープにも同じ条件がある
     imageSource: '/images/rules/syugukikakuhyou.png',
     caption: '手具の規格',
+    // 規格の列（行の見出し）に入るのは、いちばん長くて「その他の条件」の6文字。
+    // 行の見出しの列には自動で 16%（50em のとき 96px ＝ 6文字×12px＋左右の余白24px）が
+    // 入るので、手具の4列には残りがちょうど 84% になるよう 25% ずつ配る
+    columnWidths: ['25%', '25%', '25%', '25%'],
     layout: 'matrix',
     cornerLabel: '手具の規格',
     columns: ['スティック', 'リング', 'ロープ', 'クラブ'],
@@ -69,9 +73,9 @@ export const APPARATUS_TABLES: readonly RuleTable[] = [
     // - クラブの胴の長さ … 画像 12cm〜18cm / 2025年版 18cm 以内
     imageSource: '/images/rules/syugukikaku(J).png',
     caption: 'ジュニアの手具の規格',
-    // 「規格」の列に入るのは、いちばん長くて「その他の条件」の6文字。
-    // 手具の4列に 20.75% ずつ配り、残りの 17%（50em のとき約102px）を規格の列に充てる
-    columnWidths: ['20.75%', '20.75%', '20.75%', '20.75%'],
+    // 規格の列は 2025年版の表と同じ。行の見出しの列に自動で入る 16%（50em のとき 96px）が
+    // 「その他の条件」の6文字ぶんなので、手具の4列には 25% ずつ配る
+    columnWidths: ['25%', '25%', '25%', '25%'],
     layout: 'matrix',
     cornerLabel: '手具の規格',
     columns: ['スティック', 'リング', 'ロープ', 'クラブ'],

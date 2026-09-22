@@ -45,12 +45,27 @@ export const FREE_HAND_STRUCTURE: RuleNode[] = [
         number: '3.8.5',
         page: 64,
         children: [
-          { key: 'scoring.freeHand.composition.routine', number: '1', page: 64 },
+          {
+            key: 'scoring.freeHand.composition.routine',
+            number: '1',
+            page: 64,
+          },
           {
             key: 'scoring.freeHand.composition.requirements',
             number: '3.8.5.2',
             page: 65,
-            figures: ['tables/free-hand-requirements', 'tables/free-hand-combined'],
+            // 冊子65ページは「（1）転回系を除く各要素は…」の手前に要求要素の表があり、
+            // 複合的な徒手体操の表は「以下のものを複合的な徒手体操として扱うが…」の直後にある
+            figures: [
+              {
+                figure: 'tables/free-hand-requirements',
+                before: '転回系を除く各要素は要求数を超えて実施してもよい',
+              },
+              {
+                figure: 'tables/free-hand-combined',
+                after: '以下のものを複合的な徒手体操として扱うが',
+              },
+            ],
           },
           { key: 'scoring.freeHand.composition.acrobatic', number: '3', page: 66 },
         ],

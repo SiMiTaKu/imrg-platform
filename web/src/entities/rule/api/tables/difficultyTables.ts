@@ -25,6 +25,27 @@ const FREE_HAND_ALIGNS: readonly RuleTableAlign[] = ['start', 'center', 'center'
 /** 転回系難度の列の寄せ方。難度の記号だけが入る列は真ん中にそろえる */
 const ACROBATIC_ALIGNS: readonly RuleTableAlign[] = ['start', 'center']
 
+/*
+  難度表の列の幅。
+
+  どの表も左に通し番号の列（行の見出し）がある。幅を書いた表では、その列に
+  自動で 8%（50em のとき 48px ＝「24」の2文字×12px＋左右の余白24px）が入り、
+  残りの 92% をここに書いた比で割り直す。番号が改行も見切れもしないぎりぎりの幅。
+
+  ここに書く数字は通し番号の列を抜いた 92% を割る比なので、画面に出る幅は
+  0.92 を掛けたものになる。見積もりは「文字数×12px＋左右24px」で、50em（約600px）で見て、
+  - 個人 … 見出しの「個人」2文字ぶん（10% → 実際 9.2% ＝ 約55px）
+  - 団体5名実施 … 見出しの6文字が折り返さないぶん（18% → 実際 16.6% ＝ 約99px）
+  - 基礎難度 … 見出しの4文字が折り返さないぶん（14% → 実際 12.9% ＝ 約77px）
+  を取り、残りを種目・技名の列に回している
+*/
+
+/** 徒手系難度の列の幅。種目／個人／団体5名実施 */
+const FREE_HAND_WIDTHS: readonly string[] = ['72%', '10%', '18%']
+
+/** 転回系難度の列の幅。技名／基礎難度 */
+const ACROBATIC_WIDTHS: readonly string[] = ['86%', '14%']
+
 export const DIFFICULTY_TABLES: readonly RuleTable[] = [
   {
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.1「1 跳躍」（48ページ）
@@ -40,6 +61,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
     columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['閉脚から大の字とび', 'A', 'A'] },
@@ -73,6 +95,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
     columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['正面水平立ち', 'A', 'B'] },
@@ -103,6 +126,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
     columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['閉脚（開脚）倒立', 'A', 'B'] },
@@ -128,6 +152,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
     columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['長座になり体前屈（頭が足につく）', 'A', 'B'] },
@@ -154,6 +179,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
     columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['首はねおき（直立・膝立ち）、頭はねおき（直立・膝立ち）', 'A'] },
@@ -193,6 +219,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
     columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['後ろとび正面支持臥', 'A'] },
@@ -220,6 +247,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
     columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '5', cells: ['後ろ首はねおき（直立・膝立ち）', 'A'] },
@@ -259,6 +287,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
     columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['側方倒立回転1／4ひねり（ロンダード）', 'A'] },
@@ -278,6 +307,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
     columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['B難度の宙返り直ちにB難度の宙返り', 'C'] },
@@ -305,6 +335,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
     columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['後転とびから後方伸身宙返り', 'B'] },
