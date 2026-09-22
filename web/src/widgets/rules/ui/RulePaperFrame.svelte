@@ -44,13 +44,16 @@
    * @remarks
    * 冊子は、はがき大の用紙を「採点票」、1ページ大の用紙を「採点表」「減点表」と書き分けている。
    * 1ページ大のほうは記入欄が枠で囲まれていて、はがき大のほうは線を引いてあるだけ、
-   * というように紙面の作りそのものが違う
+   * というように紙面の作りそのものが違う。
+   *
+   * ただし個人徒手の3枚（77・78・79ページ）は、79ページだけが「E採点票」という名前でも
+   * 1ページを丸ごと使い、記入欄も枠で囲んである。名前ではなく紙面に合わせて数える
    *
    * @param name - 用紙の名前
    * @returns 1ページ大の用紙なら true
    */
   const isFullPagePaper = (name: string): boolean =>
-    name.includes('採点表') || name.includes('減点表')
+    name.includes('採点表') || name.includes('減点表') || name.startsWith('個人徒手')
 
   /** 1ページ大の用紙か */
   const fullPage = $derived(isFullPagePaper(caption))
@@ -201,8 +204,9 @@
       <!-- 合計の欄。冊子では名前の枠と、書き込む広い枠が横に並ぶ -->
       <dl class="totals">
         {#each bottomTotals as total (total)}
-          <dt>{total}</dt>
-          <dd></dd>
+          <!-- 名前の無い欄は、冊子79ページのいちばん下にある空白の枠。審判が自由に書き込む場所 -->
+          <dt class:memo={total === ''}>{total}</dt>
+          <dd class:memo={total === ''}></dd>
         {/each}
       </dl>
     {/if}
@@ -518,5 +522,18 @@
   .totals dt:not(:first-of-type),
   .totals dd:not(:first-of-type) {
     border-top: $border-size-1 solid map.get($gray, 300);
+  }
+
+  /*
+    名前の無い合計の欄。冊子79ページのいちばん下にある、何も刷っていない四角い枠で、
+    審判が自由に書き込む場所。名前の列を作らず、1行を丸ごと使う
+  */
+  .totals dt.memo {
+    display: none;
+  }
+
+  .totals dd.memo {
+    grid-column: 1 / -1;
+    min-height: $space-size-120;
   }
 </style>
