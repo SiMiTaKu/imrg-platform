@@ -67,9 +67,14 @@ export const isOpenAt = (openState: RuleOpenState, key: string, defaultOpen: boo
 
 /**
  * 初めて開いたときの開閉
- * @returns 第1章だけを開いた開閉
+ *
+ * @remarks
+ * どの章も閉じた状態から始める。章の一覧が一目で見渡せるほうが、
+ * 読みたいところへ早く行き着く
+ *
+ * @returns すべて閉じた開閉
  */
-export const createInitialOpenState = (): RuleOpenState => ({ [chapterKey(0)]: true })
+export const createInitialOpenState = (): RuleOpenState => ({})
 
 /**
  * 章ひとつの中（章・節・条）をまとめて開け閉めする

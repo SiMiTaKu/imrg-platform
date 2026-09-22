@@ -611,6 +611,11 @@
 
   th,
   td {
+    /*
+      狭い画面で列が潰れると読めない。1列あたりの最小の幅を決めておき、
+      収まらないときは入れ物の中で横に送る（表を縮めない）
+    */
+    min-width: 12em;
     padding: $space-size-8 $space-size-12;
     border: $border-size-1 solid map.get($gray, 100);
     line-height: 1.7;
@@ -646,6 +651,7 @@
   }
 
   .row-header {
+    min-width: 7em;
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, text);
@@ -664,6 +670,9 @@
   .scroller:not(.matrix) td.narrow,
   .scroller:not(.matrix) th.narrow {
     width: 1%;
+
+    // 減点や難度の記号しか入らないので、本文の列ほどの幅は要らない
+    min-width: 5em;
     text-align: right;
     font-variant-numeric: tabular-nums;
   }

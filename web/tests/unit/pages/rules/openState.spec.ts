@@ -56,7 +56,7 @@ const RULE_BOOK: LocalizedRuleBook = {
 describe('openState', () => {
   // #region 初めの開き方
   describe('正常系: createInitialOpenState', () => {
-    it('開いた直後の場合、第1章だけが開いていること', () => {
+    it('開いた直後の場合、どの章も閉じていること', () => {
       // #region Given
       const openState = createInitialOpenState()
       // #endregion
@@ -67,7 +67,7 @@ describe('openState', () => {
       // #endregion
 
       // #region Then
-      expect(first).toBe(true)
+      expect(first).toBe(false)
       expect(second).toBe(false)
       // #endregion
     })
