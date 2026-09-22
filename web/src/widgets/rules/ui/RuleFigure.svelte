@@ -134,7 +134,9 @@
    * @param cells - 行のます目
    * @returns 中身・横幅・左から何列目か・幅を詰める列かどうか
    */
-  const placeCells = (cells: readonly { text: string; colSpan: number; rowSpan: number }[]) => {
+  const placeCells = (
+    cells: readonly { text: string; colSpan: number; rowSpan: number; slash: boolean }[],
+  ) => {
     let column = 0
 
     return cells.map((cell) => {
@@ -509,6 +511,7 @@
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}
                       class:narrow={cell.isNarrow}
                       class:figure-cell={table.stickFigures?.figureColumn === cell.startColumn}
+                      class:slashed={cell.slash}
                       style:text-align={table.columnAligns?.[cell.startColumn]}
                     >
                       {#if table.stickFigures?.figureColumn === cell.startColumn}
@@ -708,6 +711,20 @@
 </figure>
 
 <style lang="scss">
+  /*
+    斜線を引いたます目。冊子の採点票で「ここには書かない」ことを示している。
+    空のまま置くと書き込む場所に見えてしまう
+  */
+  .slashed {
+    background-image: linear-gradient(
+      to top right,
+      transparent calc(50% - 0.5px),
+      map.get($gray, 300) calc(50% - 0.5px),
+      map.get($gray, 300) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+  }
+
   // 仮の棒人間だけが入る列。絵のぶんだけの幅で足りる
   .figure-cell {
     min-width: 0;

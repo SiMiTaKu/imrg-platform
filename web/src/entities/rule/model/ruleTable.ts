@@ -23,6 +23,16 @@ export interface RuleTableCell {
   readonly text: string
   /** 横に何列ぶん使うか。既定は 1 */
   readonly colSpan?: number
+  /** 縦に何行ぶん使うか。既定は 1 */
+  readonly rowSpan?: number
+  /**
+   * 斜線を引くか。
+   *
+   * @remarks
+   * 冊子の採点票では「ここには書かない」ます目に斜線が引いてある。
+   * 空のまま置くと書き込む場所に見えてしまうので、同じように斜線で示す
+   */
+  readonly slash?: boolean
 }
 
 /** ます目の書き方。ただの文字列でも、`colSpan` 付きでも書ける */
@@ -342,8 +352,13 @@ export const narrowColumnCount = (table: RuleTable): number =>
  */
 export const normalizeRuleTableCell = (cell: RuleTableCellSource): Required<RuleTableCell> =>
   typeof cell === 'string'
-    ? { text: cell, colSpan: 1 }
-    : { text: cell.text, colSpan: cell.colSpan ?? 1 }
+    ? { text: cell, colSpan: 1, rowSpan: 1, slash: false }
+    : {
+        text: cell.text,
+        colSpan: cell.colSpan ?? 1,
+        rowSpan: cell.rowSpan ?? 1,
+        slash: cell.slash ?? false,
+      }
 
 /**
  * 行の見出しの列が要るか。見出しの付いた行が1つでもあれば要る
@@ -386,6 +401,8 @@ export interface MergedRuleTableCell {
   readonly colSpan: number
   /** 縦にいくつ分か。0 なら上に呑まれたので出さない */
   readonly rowSpan: number
+  /** 斜線を引くか */
+  readonly slash: boolean
 }
 
 /**
@@ -406,7 +423,12 @@ export const mergeEmptyCellsDownward = (
 ): readonly (readonly MergedRuleTableCell[])[] => {
   const rows = table.rows.map((row) => row.cells.map(normalizeRuleTableCell))
   const merged: MergedRuleTableCell[][] = rows.map((cells) =>
-    cells.map((cell) => ({ text: cell.text, colSpan: cell.colSpan, rowSpan: 1 })),
+    cells.map((cell) => ({
+      text: cell.text,
+      colSpan: cell.colSpan,
+      rowSpan: cell.rowSpan,
+      slash: cell.slash,
+    })),
   )
 
   if (!table.mergeEmptyCells) return merged
