@@ -111,6 +111,7 @@ export const APPENDIX_STRUCTURE: RuleNode = {
         { key: 'appendix.antiDoping.appeal', number: '第9条', page: 100 },
         { key: 'appendix.antiDoping.review', number: '第10条', page: 100 },
         { key: 'appendix.antiDoping.interpretation', number: '第11条', page: 100 },
+        { key: 'appendix.antiDoping.dates', number: '', page: 100 },
       ],
     },
   ],

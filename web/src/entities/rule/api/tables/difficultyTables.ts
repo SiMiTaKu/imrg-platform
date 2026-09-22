@@ -241,9 +241,6 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
   },
   {
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.2「3 側方系」（50ページ）
-    //
-    // この表に当たる画像は、いまのところ規則集のページから参照されていない。
-    // 参照が足された時点で、画像の代わりにこの表が出る
     imageSource: '/images/rules/sidewardjumpdifficulties.png',
     caption: '転回系難度（側方系）',
     layout: 'list',

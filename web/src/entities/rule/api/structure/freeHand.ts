@@ -64,7 +64,7 @@ export const FREE_HAND_STRUCTURE: RuleNode[] = [
             key: 'scoring.freeHand.difficulty.table',
             number: '4',
             page: 67,
-            figures: ['forms/free-hand-d-grid'],
+            figures: ['tables/free-hand-difficulty'],
           },
         ],
       },
