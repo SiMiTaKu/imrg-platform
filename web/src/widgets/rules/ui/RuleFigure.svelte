@@ -1024,19 +1024,17 @@
     list-style: none;
   }
 
-  // 2段目から下は、左に寄せて親からぶら下げる
+  /*
+    2段目から下は、左に寄せて親からぶら下げる。
+
+    線は「ぶら下がっている一覧」ではなく「子ひとつずつ」に引く。
+    一覧の左端に1本の線を引くと、その線が子のさらに下の段の並びを
+    縦に貫いてしまい、親から出た線が孫の線へ合流しているように見える。
+    子ごとに引けば、線は親と子の間だけを結び、最後の子のところで止まる
+  */
   ul.tree:not(.root) {
     // 線を引く場所を空けるための下げ幅
-    padding-left: $space-size-16;
-  }
-
-  // 上の段から中の段へ下りる線は紺。中の段から下は淡い青にして、深さが分かるようにする
-  ul.tree.middle {
-    border-left: $border-size-2 solid map.get($sky-blue, 900);
-  }
-
-  ul.tree.leaf {
-    border-left: $border-size-1 solid map.get($sky-blue, border);
+    padding-left: $space-size-24;
   }
 
   ul.tree > li {
@@ -1044,32 +1042,45 @@
     padding: $space-size-4 0;
   }
 
+  // 親から下りてくる縦の線。最後の子では、その子の高さの半分で止める
+  ul.tree:not(.root) > li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 50%;
+    left: -$space-size-24;
+    width: 0;
+  }
+
+  // 途中の子では、次の子へ渡すために下まで引く
+  ul.tree:not(.root) > li:not(:last-child)::after {
+    bottom: 0;
+  }
+
   // 縦の線から箱へ伸びる、横の枝
   ul.tree:not(.root) > li::before {
     content: '';
     position: absolute;
     top: 50%;
-    left: -$space-size-16;
-    width: $space-size-16;
+    left: -$space-size-24;
+    width: $space-size-24;
   }
 
+  // 上の段から中の段へ下りる線は紺。中の段から下は淡い青にして、深さが分かるようにする
   ul.tree.middle > li::before {
     border-top: $border-size-2 solid map.get($sky-blue, 900);
+  }
+
+  ul.tree.middle > li::after {
+    border-left: $border-size-2 solid map.get($sky-blue, 900);
   }
 
   ul.tree.leaf > li::before {
     border-top: $border-size-1 solid map.get($sky-blue, border);
   }
 
-  // いちばん下の枝から先は、縦の線を残さない
-  ul.tree:not(.root) > li:last-child::after {
-    content: '';
-    position: absolute;
-    top: calc(50% + #{$border-size-1});
-    bottom: 0;
-    left: calc(-#{$space-size-16} - #{$border-size-2});
-    width: $border-size-2;
-    background: $white;
+  ul.tree.leaf > li::after {
+    border-left: $border-size-1 solid map.get($sky-blue, border);
   }
 
   // いちばん下の段。淡い青の地に、濃い青の文字

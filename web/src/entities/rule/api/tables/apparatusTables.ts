@@ -69,6 +69,9 @@ export const APPARATUS_TABLES: readonly RuleTable[] = [
     // - クラブの胴の長さ … 画像 12cm〜18cm / 2025年版 18cm 以内
     imageSource: '/images/rules/syugukikaku(J).png',
     caption: 'ジュニアの手具の規格',
+    // 「規格」の列に入るのは、いちばん長くて「その他の条件」の6文字。
+    // 手具の4列に 20.75% ずつ配り、残りの 17%（50em のとき約102px）を規格の列に充てる
+    columnWidths: ['20.75%', '20.75%', '20.75%', '20.75%'],
     layout: 'matrix',
     cornerLabel: '手具の規格',
     columns: ['スティック', 'リング', 'ロープ', 'クラブ'],

@@ -1,4 +1,4 @@
-import type { RuleTable } from '../../model/ruleTable'
+import type { RuleTable, RuleTableAlign } from '../../model/ruleTable'
 
 /**
  * 難度表。
@@ -19,6 +19,12 @@ const FREE_HAND_COLUMNS = ['種目', '個人', '団体5名実施']
 /** 転回系難度の列。2025年版は個人・団体で分かれず「基礎難度」1列のみ */
 const ACROBATIC_COLUMNS = ['技名', '基礎難度']
 
+/** 徒手系難度の列の寄せ方。難度の記号だけが入る列は真ん中にそろえる */
+const FREE_HAND_ALIGNS: readonly RuleTableAlign[] = ['start', 'center', 'center']
+
+/** 転回系難度の列の寄せ方。難度の記号だけが入る列は真ん中にそろえる */
+const ACROBATIC_ALIGNS: readonly RuleTableAlign[] = ['start', 'center']
+
 export const DIFFICULTY_TABLES: readonly RuleTable[] = [
   {
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.1「1 跳躍」（48ページ）
@@ -34,6 +40,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['閉脚から大の字とび', 'A', 'A'] },
       { header: '2', cells: ['とびあがって1回以上のひねり（片足・両足）', 'A', 'B'] },
@@ -66,6 +73,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['正面水平立ち', 'A', 'B'] },
       { header: '2', cells: ['側面水平立ち', 'A', 'B'] },
@@ -95,6 +103,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['閉脚（開脚）倒立', 'A', 'B'] },
       { header: '2', cells: ['前後開脚倒立（片足屈膝を含む）', 'A', 'B'] },
@@ -119,6 +128,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
+    columnAligns: FREE_HAND_ALIGNS,
     rows: [
       { header: '1', cells: ['長座になり体前屈（頭が足につく）', 'A', 'B'] },
       { header: '2', cells: ['左右開脚座で体前屈（胸が床面につく）', 'A', 'B'] },
@@ -144,6 +154,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['首はねおき（直立・膝立ち）、頭はねおき（直立・膝立ち）', 'A'] },
       { header: '2', cells: ['前転とび、両足踏切前転とび', 'A'] },
@@ -182,6 +193,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['後ろとび正面支持臥', 'A'] },
       { header: '2', cells: ['後ろとび正面支持臥回転', 'A'] },
@@ -208,6 +220,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '5', cells: ['後ろ首はねおき（直立・膝立ち）', 'A'] },
       { header: '6', cells: ['後転とび', 'A'] },
@@ -246,6 +259,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['側方倒立回転1／4ひねり（ロンダード）', 'A'] },
       { header: '2', cells: ['アラビア宙返り', 'B'] },
@@ -264,6 +278,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['B難度の宙返り直ちにB難度の宙返り', 'C'] },
       { header: '2', cells: ['C難度の宙返り直ちにB難度の宙返り', 'D'] },
@@ -290,6 +305,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
+    columnAligns: ACROBATIC_ALIGNS,
     rows: [
       { header: '1', cells: ['後転とびから後方伸身宙返り', 'B'] },
       {
@@ -321,6 +337,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 1,
     columns: ['間に実施した徒手系または転回系の数', '難度'],
+    columnAligns: ['start', 'center'],
     rows: [
       { cells: ['0回', 'A'] },
       { cells: ['1回', 'B'] },
@@ -344,6 +361,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 0,
     columns: ['難度', '価値点'],
+    columnAligns: ['center', 'center'],
     rows: [
       { cells: ['A', '0.1'] },
       { cells: ['B', '0.2'] },
@@ -363,6 +381,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 0,
     columns: ['転回系1', '転回系2', '難度'],
+    columnAligns: ['center', 'center', 'center'],
     rows: [
       { cells: ['A', 'A', 'A'] },
       { cells: ['A', 'B', 'B'] },
@@ -392,6 +411,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 0,
     columns: ['2段交差の難度', '3段目の難度', '難度'],
+    columnAligns: ['center', 'center', 'center'],
     rows: [
       { cells: ['A', 'A', 'A'] },
       { cells: ['A', 'B', 'B'] },
