@@ -114,10 +114,6 @@
     <div class="inner">
       <GuideLead character={guide}>
         <h1>{ruleBook.title}</h1>
-        <p class="say">
-          <strong>{m.rules_intro_collapsible()}</strong>
-          {m.rules_intro_guide()}
-        </p>
         <p class="caution">{m.rules_caution()}</p>
       </GuideLead>
     </div>
@@ -379,17 +375,6 @@
     font-size: $font-size-20;
   }
 
-  .say {
-    margin: 0 0 $space-size-12;
-    font-size: $font-size-16;
-    color: map.get($gray, text);
-    line-height: 1.9;
-  }
-
-  .say strong {
-    color: map.get($sky-blue, text);
-  }
-
   .caution {
     margin: 0;
     font-size: $font-size-12;
@@ -467,17 +452,13 @@
     color: map.get($gray, light-text);
   }
 
+  // 章の並びは上から下へ読むものなので、どの幅でも縦に並べる
   .toc ol {
     display: grid;
     gap: $space-size-4;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  .mobile .toc ol {
-    grid-template-columns: 1fr;
   }
 
   .toc button {

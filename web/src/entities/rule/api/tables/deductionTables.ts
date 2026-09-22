@@ -21,6 +21,7 @@ export const FREE_HAND_TABLES: readonly RuleTable[] = [
     // 欠点基準は同 3.8.8「3 実施欠点基準」（69ページ）
     imageSource: '/images/rules/tosyukettenhyou.png',
     caption: '個人徒手 実施（E）欠点表',
+    firstColumnIsHeader: true,
     layout: 'list',
     columns: ['内容', '減点'],
     rows: [

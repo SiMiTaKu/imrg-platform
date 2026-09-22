@@ -8,8 +8,6 @@
   "rules_coming_soon_title": "正在准备中",
   "rules_coming_soon_body": "规则集页面正在修订内容，暂时关闭。我们会重新整理成更易读的形式后再次公开。",
   "rules_coming_soon_back": "返回首页",
-  "rules_intro_collapsible": "规则很长，因此按章、节、条分别折叠。",
-  "rules_intro_guide": "点击标题即可展开。也可以输入关键词查找。想了解评分思路，建议从第1章读起。",
   "rules_chapter_number": "第{number}章",
   "rules_article_count": "{count}节",
   "rules_expand_all": "全部展开",

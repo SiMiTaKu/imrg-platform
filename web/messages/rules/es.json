@@ -8,8 +8,6 @@
   "rules_coming_soon_title": "Próximamente",
   "rules_coming_soon_body": "La página del reglamento está cerrada temporalmente mientras revisamos su contenido. La reconstruiremos para que sea más fácil de leer y la publicaremos de nuevo.",
   "rules_coming_soon_back": "Volver al inicio",
-  "rules_intro_collapsible": "El reglamento es largo, así que cada capítulo, sección y artículo está plegado.",
-  "rules_intro_guide": "Pulsa un título para abrirlo. También puedes escribir una palabra para buscar. Si quieres entender cómo se puntúa, empieza por el capítulo 1.",
   "rules_chapter_number": "Capítulo {number}",
   "rules_article_count": "{count} secciones",
   "rules_expand_all": "Abrir todo",

@@ -22,6 +22,7 @@ export const EXECUTION_TABLES: readonly RuleTable[] = [
     // - 画像の中区分は「徒手系の技術」、2025年版の個人競技は「徒手の技術」
     imageSource: '/images/rules/(E)kettenhyou(S).png',
     caption: '個人競技 実施（E）欠点表',
+    firstColumnIsHeader: true,
     layout: 'list',
     columns: ['内容', '減点'],
     rows: [
@@ -109,6 +110,7 @@ export const EXECUTION_TABLES: readonly RuleTable[] = [
     //       3.4.6「6 実施の欠点」＜実施欠点表＞のうち「身体の動きの技術」（35〜36ページ）
     imageSource: '/images/rules/(E)kettenhyou1.png',
     caption: '団体競技 実施（E）欠点表 ①身体の動きの技術',
+    firstColumnIsHeader: true,
     layout: 'list',
     columns: ['内容', '減点'],
     rows: [
@@ -161,6 +163,7 @@ export const EXECUTION_TABLES: readonly RuleTable[] = [
     //       3.4.6「6 実施の欠点」＜実施欠点表＞のうち「全体の調和」「その他の調和」（36ページ）
     imageSource: '/images/rules/(E)kettenhyou2.png',
     caption: '団体競技 実施（E）欠点表 ②全体の調和',
+    firstColumnIsHeader: true,
     layout: 'list',
     columns: ['内容', '減点'],
     rows: [
@@ -198,6 +201,7 @@ export const EXECUTION_TABLES: readonly RuleTable[] = [
     //       ＜柔軟　バランス　倒立の実施欠点表＞（36ページ）
     imageSource: '/images/rules/(E)kettenhyou3.png',
     caption: '団体競技 柔軟・バランス・倒立の実施欠点表',
+    firstColumnIsHeader: true,
     layout: 'list',
     columns: ['内容', '減点'],
     rows: [

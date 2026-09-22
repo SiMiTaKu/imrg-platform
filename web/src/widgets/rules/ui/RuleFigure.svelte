@@ -327,6 +327,7 @@
       class="scroller"
       class:matrix={table.layout === 'matrix'}
       class:form={table.purpose === 'form'}
+      class:compact={table.compact}
       use:watchOverflow
       role={isScrollable ? 'region' : undefined}
       tabindex={isScrollable ? 0 : undefined}
@@ -340,7 +341,11 @@
               <th scope="col" class="corner">{table.cornerLabel ?? ''}</th>
             {/if}
             {#each table.columns as column, columnIndex (column)}
-              <th scope="col" class:narrow={columnIndex >= narrowFromIndex}>{column}</th>
+              <th
+                scope="col"
+                class:corner={table.firstColumnIsHeader && columnIndex === 0}
+                class:narrow={columnIndex >= narrowFromIndex}>{column}</th
+              >
             {/each}
           </tr>
         </thead>
@@ -356,10 +361,15 @@
                 <th scope="row" class="row-header">{row.header ?? ''}</th>
               {/if}
               {#each placeCells(row.cells) as cell, cellIndex (cellIndex)}
-                <td
-                  colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
-                  class:narrow={cell.isNarrow}>{cell.text}</td
-                >
+                {#if table.firstColumnIsHeader && cellIndex === 0}
+                  <!-- いちばん左がその行の名前になっている表。読み上げに伝わるよう th で出す -->
+                  <th scope="row" class="row-header">{cell.text}</th>
+                {:else}
+                  <td
+                    colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
+                    class:narrow={cell.isNarrow}>{cell.text}</td
+                  >
+                {/if}
               {/each}
             </tr>
           {/each}
@@ -688,6 +698,20 @@
   */
   .scroller:not(.matrix) thead th.narrow {
     white-space: normal;
+  }
+
+  /*
+    中身が「A」「0.1」しか入らない表。最小の幅を外して中身の幅に任せ、
+    折り返しもしない。狭い画面でも収まるので、横へ送らせずに済む
+  */
+  .scroller.compact th,
+  .scroller.compact td {
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  .scroller.compact table {
+    width: auto;
   }
 
   /*

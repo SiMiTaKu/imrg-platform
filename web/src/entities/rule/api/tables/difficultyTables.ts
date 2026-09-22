@@ -320,6 +320,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     // - 画像は「3回以上 D」で終わるが、2025年版は「3回 D」と「4回以上 E」に分かれる
     imageSource: '/images/rules/tossdifficulties.png',
     caption: '投げ受けを伴った徒手系難度',
+    firstColumnIsHeader: true,
     layout: 'list',
     narrowColumns: 1,
     columns: ['間に実施した徒手系または転回系の数', '難度'],
@@ -341,6 +342,8 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     // E 難度（0.7）は2025年版で新しく入ったもの
     imageSource: '/images/rules/tables/difficulty-value.png',
     caption: '難度の価値点',
+    firstColumnIsHeader: true,
+    compact: true,
     layout: 'list',
     narrowColumns: 0,
     columns: ['難度', '価値点'],
@@ -358,6 +361,8 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.4.4「(4)② C 2段交差の難度」（29ページ）
     imageSource: '/images/rules/tables/group-cross-two.png',
     caption: '2段交差の難度',
+    firstColumnIsHeader: true,
+    compact: true,
     layout: 'list',
     narrowColumns: 0,
     columns: ['転回系1', '転回系2', '難度'],
@@ -385,6 +390,8 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.4.4「(4)② D 3段交差の難度」（29ページ）
     imageSource: '/images/rules/tables/group-cross-three.png',
     caption: '3段交差の難度',
+    firstColumnIsHeader: true,
+    compact: true,
     layout: 'list',
     narrowColumns: 0,
     columns: ['2段交差の難度', '3段目の難度', '難度'],
@@ -415,6 +422,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     // 言葉で探せるよう「第1グループ」に直した
     imageSource: '/images/rules/tables/group-series-difficulty.png',
     caption: 'シリーズの難度の判定（3・2または4・1で分かれた場合）',
+    firstColumnIsHeader: true,
     layout: 'list',
     narrowColumns: 0,
     columns: ['第1グループ', '第2グループ', '難度'],

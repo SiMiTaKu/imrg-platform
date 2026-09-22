@@ -8,8 +8,6 @@
   "rules_coming_soon_title": "Bientôt disponible",
   "rules_coming_soon_body": "La page du règlement est temporairement fermée pendant que nous en révisons le contenu. Nous la reconstruirons pour la rendre plus lisible et la publierons de nouveau.",
   "rules_coming_soon_back": "Retour à l'accueil",
-  "rules_intro_collapsible": "Le règlement est long : chaque chapitre, section et article est replié.",
-  "rules_intro_guide": "Appuyez sur un titre pour l'ouvrir. Vous pouvez aussi saisir un mot pour chercher. Pour comprendre la notation, commencez par le chapitre 1.",
   "rules_chapter_number": "Chapitre {number}",
   "rules_article_count": "{count} sections",
   "rules_expand_all": "Tout ouvrir",

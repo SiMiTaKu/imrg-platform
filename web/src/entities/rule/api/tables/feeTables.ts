@@ -18,6 +18,7 @@ export const FEE_TABLES: readonly RuleTable[] = [
     // 紙面は「種類／料金／備考」の3列。備考は2番の継続申請料にだけ付いている
     imageSource: '/images/rules/tables/judge-application-fee.png',
     caption: '公認審判申請料',
+    firstColumnIsHeader: true,
     layout: 'list',
     narrowColumns: 1,
     columns: ['種類', '料金'],
@@ -42,6 +43,7 @@ export const FEE_TABLES: readonly RuleTable[] = [
     // 単位は列の見出しに書き込んだ
     imageSource: '/images/rules/tables/registration-fee.png',
     caption: '登録料（別表）',
+    firstColumnIsHeader: true,
     layout: 'list',
     narrowColumns: 1,
     columns: ['会員区分', '登録料'],
