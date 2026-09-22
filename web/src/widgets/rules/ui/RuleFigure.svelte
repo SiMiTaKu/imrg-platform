@@ -57,11 +57,11 @@
     if (!showsRowHeader) return table.columnWidths
     // 通し番号だけの見出しは狭く、言葉が入る見出しは広めに取る
     const headerShare = shortRowHeader ? 8 : 16
-    const scale = (100 - headerShare) / 100
-    return [
-      `${headerShare}%`,
-      ...table.columnWidths.map((width) => `${Number.parseFloat(width) * scale}%`),
-    ]
+    const shares = table.columnWidths.map((width) => Number.parseFloat(width))
+    const total = shares.reduce((sum, share) => sum + share, 0)
+    // 書いてある割り当ての合計が 100 でなくても、残りをその比で埋める
+    const scale = total > 0 ? (100 - headerShare) / total : 0
+    return [`${headerShare}%`, ...shares.map((share) => `${share * scale}%`)]
   })
 
   /** ます目が左から何列目に出るか。行の見出しの列があれば1つずれる */

@@ -20,8 +20,8 @@ export const REQUIREMENT_TABLES: readonly RuleTable[] = [
     //   2025年版「片足支持で上体と下肢が水平を越えて静止するもの」（超→越）
     imageSource: '/images/rules/(BM)requirement.png',
     caption: '徒手系基礎要素群（団体競技）',
-    // 「群」の列には番号しか入らない。ここで割り当てた残り（7%）がその列の幅になる
-    columnWidths: ['23%', '70%'],
+    // 「群」の列には番号しか入らない。仕組みが先頭に 8% を足すので、ここは残りの比で書く
+    columnWidths: ['25%', '75%'],
     layout: 'list',
     narrowColumns: 0,
     cornerLabel: '群',
@@ -59,8 +59,8 @@ export const REQUIREMENT_TABLES: readonly RuleTable[] = [
     // - 表の下の但し書き「※組・組立運動または接触でのスタートは3群の扱いとする」は画像に無い
     imageSource: '/images/rules/(AM)requirement.png',
     caption: '転回系基礎要素群（団体競技）',
-    // 「群」の列には番号しか入らない。ここで割り当てた残り（7%）がその列の幅になる
-    columnWidths: ['93%'],
+    // 「群」の列には番号しか入らない。仕組みが先頭に 8% を足すので、ここは残りの比で書く
+    columnWidths: ['100%'],
     layout: 'list',
     narrowColumns: 0,
     cornerLabel: '群',
