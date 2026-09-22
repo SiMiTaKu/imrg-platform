@@ -465,9 +465,13 @@
     border: $border-size-1 solid map.get($gray, 300);
   }
 
+  /*
+    欄の幅は、名前が折り返さないだけ取る。
+    幅の起点を 0 にすると「減点前得点」の5文字が 4em に押し込まれ、枠からはみ出す
+  */
   .score-cell {
     min-width: 4em;
-    flex: 1;
+    flex: 1 1 auto;
   }
 
   .score-cell + .score-cell {

@@ -19,9 +19,13 @@ export const FEE_TABLES: readonly RuleTable[] = [
     // 紙面は「種類／料金／備考」の3列。備考は2番の継続申請料にだけ付いている
     imageSource: '/images/rules/tables/judge-application-fee.png',
     caption: '公認審判申請料',
-    mergeEmptyCells: true,
     headerColumns: 1,
-    columnWidths: ['26%', '30%', '44%'],
+    // 備考は長い一文なので、右端の列を詰めない。詰めると折り返さない列になり、
+    // 「複数の資格認定を取得し…」がます目からはみ出す
+    narrowColumns: 0,
+    // 種類は「4. 認定証再発行料」、料金は「加盟団体が別に定める。」が
+    // 折り返さないだけ取り、残りを備考に回す
+    columnWidths: ['24%', '26%', '50%'],
     layout: 'list',
     columns: ['種類', '料金', '備考'],
     rows: [
