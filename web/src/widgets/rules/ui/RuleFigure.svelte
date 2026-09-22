@@ -44,6 +44,29 @@
   const headerColumns = $derived(table ? headerColumnCount(table) : 0)
   /** 行の見出しが番号のように短いものばかりか。幅を詰めてよい */
   const shortRowHeader = $derived(table ? hasShortRowHeader(table) : false)
+  /**
+   * 列ごとの幅の割り当て。行の見出しの列がある表では、その列のぶんを先頭に足す。
+   *
+   * @remarks
+   * 割り当ては columns の数だけ書いてあるので、行の見出しの列には何も当たらない。
+   * 列の幅を割り当てどおりに並べる表では、当たらなかった列が幅 0 になり、
+   * 中身だけが宙に浮いて見えてしまう
+   */
+  const resolvedWidths = $derived.by(() => {
+    if (!table?.columnWidths) return undefined
+    if (!showsRowHeader) return table.columnWidths
+    // 通し番号だけの見出しは狭く、言葉が入る見出しは広めに取る
+    const headerShare = shortRowHeader ? 8 : 16
+    const scale = (100 - headerShare) / 100
+    return [
+      `${headerShare}%`,
+      ...table.columnWidths.map((width) => `${Number.parseFloat(width) * scale}%`),
+    ]
+  })
+
+  /** ます目が左から何列目に出るか。行の見出しの列があれば1つずれる */
+  const visualColumn = $derived(showsRowHeader ? 1 : 0)
+
   /** どの列も幅を詰める表か。見出しを折り返す意味が無い */
   const allColumnsNarrow = $derived(
     table ? narrowColumnCount(table) >= table.columns.length : false,
@@ -57,6 +80,34 @@
 
   /** 中身が入れ物からはみ出していて、横に送れる状態か */
   let isScrollable = $state(false)
+
+  /**
+   * 左に貼り付ける1列目の幅を測る。
+   *
+   * @remarks
+   * 2列目を貼り付けるには、1列目の幅だけ右へずらす必要がある。
+   * 幅は百分率で決まるので、画面の幅が変わるたびに測り直す
+   *
+   * @param element - 表を包む入れ物
+   * @returns 片付けの手順
+   */
+  const watchHeaderWidth = (element: HTMLElement) => {
+    const measure = () => {
+      const first = element.querySelector('tbody th.sticky-0')
+      element.style.setProperty(
+        '--rule-first-header-width',
+        `${first instanceof HTMLElement ? first.offsetWidth : 0}px`,
+      )
+    }
+
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(element)
+    const first = element.querySelector('tbody th.sticky-0')
+    if (first instanceof HTMLElement) observer.observe(first)
+
+    return { destroy: () => observer.disconnect() }
+  }
 
   /**
    * 横に送れるかを見張る。入れ物や画面の幅が変わるたびに測り直す
@@ -395,17 +446,17 @@
       class:short-row-header={shortRowHeader}
       class:uniform={allColumnsNarrow}
       use:watchOverflow
+      use:watchHeaderWidth
       role={isScrollable ? 'region' : undefined}
       tabindex={isScrollable ? 0 : undefined}
       aria-label={isScrollable ? table.caption : undefined}
     >
-      <table class:sized={table.columnWidths}>
+      <table class:sized={resolvedWidths}>
         <caption class="visually-hidden">{table.caption}</caption>
-        {#if table.columnWidths}
+        {#if resolvedWidths}
           <!-- 書くことが多い列は広く、数字だけの列は狭くする -->
           <colgroup>
-            {#if showsRowHeader}<col />{/if}
-            {#each table.columnWidths as width, widthIndex (widthIndex)}
+            {#each resolvedWidths as width, widthIndex (widthIndex)}
               <col style:width />
             {/each}
           </colgroup>
@@ -413,13 +464,16 @@
         <thead>
           <tr>
             {#if showsRowHeader}
-              <th scope="col" class="corner">{table.cornerLabel ?? ''}</th>
+              <th scope="col" class="corner sticky-0">{table.cornerLabel ?? ''}</th>
             {/if}
             {#each table.columns as column, columnIndex (column)}
               <th
                 scope="col"
                 class:corner={columnIndex < headerColumns}
                 class:narrow={columnIndex >= narrowFromIndex}
+                class:sticky-0={columnIndex + visualColumn === 0}
+                class:sticky-1={headerColumns + visualColumn > 1 &&
+                  columnIndex + visualColumn === 1}
                 style:text-align={table.columnAligns?.[columnIndex]}>{column}</th
               >
             {/each}
@@ -434,7 +488,7 @@
             {/if}
             <tr>
               {#if showsRowHeader}
-                <th scope="row" class="row-header">{row.header ?? ''}</th>
+                <th scope="row" class="row-header sticky-0">{row.header ?? ''}</th>
               {/if}
               {#each placeCells(mergedRows[rowIndex] ?? []) as cell, cellIndex (cellIndex)}
                 <!-- 上のます目に呑まれたものは出さない -->
@@ -444,6 +498,8 @@
                     <th
                       scope="row"
                       class="row-header"
+                      class:sticky-0={cell.startColumn + visualColumn === 0}
+                      class:sticky-1={cell.startColumn + visualColumn === 1}
                       colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}>{cell.text}</th
                     >
@@ -523,22 +579,24 @@
       箱を横に並べ、狭い画面では折り返して縦に積み直す
     -->
     <p class="title">{seating.caption}</p>
-    <div class="seating-frame">
-      {#each seating.rows as row (row.label)}
-        <div>
-          <p class="seat-row-label">
-            {row.label}{#if row.note}<span class="seat-row-note">{row.note}</span>{/if}
-          </p>
-          <ul class="seats">
-            {#each row.seats as seat, seatIndex (seatIndex)}
-              <li class="seat">
-                <span class="seat-label">{seat.label}</span>
-                {#if seat.note}<span class="seat-note">{seat.note}</span>{/if}
-              </li>
-            {/each}
-          </ul>
-        </div>
-      {/each}
+    <div class="seating-scroller">
+      <div class="seating-frame">
+        {#each seating.rows as row (row.label)}
+          <div>
+            <p class="seat-row-label">
+              {row.label}{#if row.note}<span class="seat-row-note">{row.note}</span>{/if}
+            </p>
+            <ul class="seats">
+              {#each row.seats as seat, seatIndex (seatIndex)}
+                <li class="seat">
+                  <span class="seat-label">{seat.label}</span>
+                  {#if seat.note}<span class="seat-note">{seat.note}</span>{/if}
+                </li>
+              {/each}
+            </ul>
+          </div>
+        {/each}
+      </div>
     </div>
     <figcaption>
       {#if seating.note}<span class="note">{seating.note}</span>{/if}
@@ -845,19 +903,30 @@
 
   /*
     行の見出しは左に貼り付けて、横へ送っても残るようにする。
-    貼り付けるのはいちばん左の1列だけ。2列目から先は、左の列の幅が
-    百分率で決まるため、貼り付ける位置を決められない
+
+    どのます目を貼り付けるかは「並び順の何番目か」ではなく「左から何列目か」で
+    決める。縦にまとめたます目があると、行によって並び順がずれるため、
+    並び順で見ると2列目が1列目の場所に貼り付いて、上に重なってしまう
   */
-  tbody th.row-header:first-child,
-  thead th:first-child {
+  th.sticky-0,
+  th.sticky-1 {
     position: sticky;
-    left: 0;
     z-index: 1;
     box-shadow: inset -#{$border-size-1} 0 0 map.get($gray, 200);
   }
 
+  th.sticky-0 {
+    left: 0;
+  }
+
+  // 2列目は、1列目の幅だけ右へずらす。幅は use:watchHeaderWidth が測って入れる
+  th.sticky-1 {
+    left: var(--rule-first-header-width, 0);
+  }
+
   // 見出し行と行の見出しが重なる角は、どちらよりも手前に置く
-  thead th:first-child {
+  thead th.sticky-0,
+  thead th.sticky-1 {
     z-index: 2;
   }
 
@@ -865,8 +934,8 @@
     見出しの言葉は、途中で折らない。「徒手系の技」で改行されると読みにくい。
     どうしても収まらないときだけ折る（overflow-wrap: break-word が効く）
   */
-  .row-header,
-  thead th {
+  th,
+  td {
     word-break: keep-all;
   }
 
@@ -1130,6 +1199,11 @@
 
   /* ─── 審判席の並び ─── */
 
+  // 席が画面に収まらないときは、この中だけで横に送る
+  .seating-scroller {
+    overflow-x: auto;
+  }
+
   .seating-frame {
     display: flex;
     flex-direction: column;
@@ -1159,7 +1233,9 @@
 
   /*
     席の並び。紙面では前列の真ん中に後列が並ぶので、数の少ない列は真ん中に寄せる。
-    席は減らさず、狭い画面では折り返して縦に積み直す
+
+    折り返さない。折り返すと1つの列が2列に見えてしまい、
+    どの席がどの列なのかが読めなくなる。狭い画面では入れ物の中で横に送る
   */
   .seats {
     display: flex;
@@ -1168,7 +1244,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+  }
+
+  .seat {
+    flex: none;
   }
 
   .seat {

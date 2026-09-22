@@ -1,10 +1,62 @@
+import type { Image } from '@shared/model'
 import type { SiteLocale } from '@shared/lib/i18n'
 import type { LocalizedRuleBook, LocalizedRuleLine, LocalizedRuleSection } from '../model/ruleBook'
-import type { RuleContent, RuleEntry, RuleItem, RuleNode, RuleStructure } from '../model/ruleSource'
+import type {
+  RuleContent,
+  RuleEntry,
+  RuleFigureRef,
+  RuleItem,
+  RuleNode,
+  RuleStructure,
+} from '../model/ruleSource'
 import { isFresh } from './fingerprint'
 
 /** 図を引くための、鍵と画像の対応。`api/tables` の `imageSource` に合わせる */
 const figureSource = (figure: string): string => `/images/rules/${figure}.png`
+
+/**
+ * 図の置き場所の指定から、鍵だけを取り出す
+ * @param reference - 図の置き場所の指定
+ * @returns 図の鍵
+ */
+const figureKey = (reference: RuleFigureRef): string =>
+  typeof reference === 'string' ? reference : reference.figure
+
+/**
+ * 本文の行に、その直後へ差し込む図を割り当てる。
+ *
+ * @remarks
+ * 冊子では本文の途中に表が挟まっていることがある。`after` に書いた書き出しで
+ * 手前の行を探し、その行に図を持たせる。見つからなかったものは末尾に回す
+ *
+ * @param lines - 本文の行
+ * @param references - 図の置き場所の指定
+ * @param alt - 図の代わりに読む文字
+ * @returns 図を割り当てた行と、末尾に出す図
+ */
+const placeFigures = (
+  lines: LocalizedRuleLine[],
+  references: readonly RuleFigureRef[],
+  alt: string,
+): { lines: LocalizedRuleLine[]; trailing: Image[] } => {
+  const placed = lines.map((line) => ({ ...line }))
+  const trailing: Image[] = []
+
+  for (const reference of references) {
+    const image = { src: figureSource(figureKey(reference)), alt }
+    const anchor =
+      typeof reference === 'string'
+        ? undefined
+        : placed.find((line) => line.text.startsWith(reference.after))
+    if (anchor) {
+      anchor.image = [...(anchor.image ?? []), image]
+    } else {
+      trailing.push(image)
+    }
+  }
+
+  return { lines: placed, trailing }
+}
 
 /**
  * 番号の付いた項目を、画面に出す1本の文にする
@@ -108,27 +160,27 @@ export const buildRuleBook = (
    */
   const toSection = (node: RuleNode): LocalizedRuleSection => {
     const entry = pickEntry(node.key, locale, content)
+    const placed = placeFigures(bodyLines(entry), node.figures ?? [], entry.title)
     return {
       number: node.number,
       page: node.page,
       title: entry.title,
       content: renderBody(entry),
-      lines: bodyLines(entry),
-      image: (node.figures ?? []).map((figure) => ({
-        src: figureSource(figure),
-        alt: entry.title,
-      })),
+      lines: placed.lines,
+      image: placed.trailing,
       block: (node.children ?? []).map((child) => {
         const childEntry = pickEntry(child.key, locale, content)
+        const childPlaced = placeFigures(
+          bodyLines(childEntry),
+          child.figures ?? [],
+          childEntry.title,
+        )
         return {
           number: child.number,
           title: childEntry.title,
           element: renderBody(childEntry),
-          lines: bodyLines(childEntry),
-          image: (child.figures ?? []).map((figure) => ({
-            src: figureSource(figure),
-            alt: childEntry.title,
-          })),
+          lines: childPlaced.lines,
+          image: childPlaced.trailing,
         }
       }),
     }
@@ -139,11 +191,18 @@ export const buildRuleBook = (
     chapter: structure.map((chapter) => ({
       number: chapter.number,
       title: pickEntry(chapter.key, locale, content).title,
-      article: (chapter.children ?? []).map((article) => ({
-        number: article.number,
-        title: pickEntry(article.key, locale, content).title,
-        section: (article.children ?? []).map(toSection),
-      })),
+      article: (chapter.children ?? []).map((article) => {
+        const entry = pickEntry(article.key, locale, content)
+        const articlePlaced = placeFigures(bodyLines(entry), article.figures ?? [], entry.title)
+        return {
+          number: article.number,
+          title: entry.title,
+          // 節そのものの本文と図。条を持たない節（2.1 新体操の特性）があるため
+          lines: articlePlaced.lines,
+          image: articlePlaced.trailing,
+          section: (article.children ?? []).map(toSection),
+        }
+      }),
     })),
   }
 }

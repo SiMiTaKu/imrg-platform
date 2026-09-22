@@ -16,7 +16,10 @@ import type { RuleNode } from '@entities/rule'
  * @returns 図や表の鍵の一覧
  */
 const collectFigures = (nodes: readonly RuleNode[]): string[] =>
-  nodes.flatMap((node) => [...(node.figures ?? []), ...collectFigures(node.children ?? [])])
+  nodes.flatMap((node) => [
+    ...(node.figures ?? []).map((figure) => (typeof figure === 'string' ? figure : figure.figure)),
+    ...collectFigures(node.children ?? []),
+  ])
 
 const figures = collectFigures(RULE_STRUCTURE)
 

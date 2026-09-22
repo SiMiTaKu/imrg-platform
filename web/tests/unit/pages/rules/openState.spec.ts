@@ -24,6 +24,8 @@ const RULE_BOOK: LocalizedRuleBook = {
         {
           number: '1.1',
           title: '演技の時間',
+          lines: [],
+          image: [],
           section: [
             {
               number: '1.1.1',
@@ -63,6 +65,8 @@ const RULE_BOOK: LocalizedRuleBook = {
         {
           number: '1.2',
           title: '用器具',
+          lines: [],
+          image: [],
           section: [
             {
               number: '1.2.1',
@@ -84,6 +88,8 @@ const RULE_BOOK: LocalizedRuleBook = {
         {
           number: '2.1',
           title: '審判員の構成',
+          lines: [],
+          image: [],
           section: [
             {
               number: '2.1.1',

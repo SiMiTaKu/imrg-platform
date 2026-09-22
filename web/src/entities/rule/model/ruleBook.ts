@@ -78,6 +78,8 @@ export interface LocalizedRuleLine {
   label: string
   /** 本文 */
   text: string
+  /** この行の直後に差し込む図や表。冊子で本文の途中に挟まっているもの */
+  image?: Image[]
 }
 
 /**
@@ -124,6 +126,10 @@ export interface LocalizedRuleArticle {
   number: string
   /** 見出し */
   title: string
+  /** 節そのものの本文。条を持たない節や、条の前に置かれた文がある節で使う */
+  lines: LocalizedRuleLine[]
+  /** 節そのものに付く図 */
+  image: Image[]
   /** 条項 */
   section: LocalizedRuleSection[]
 }

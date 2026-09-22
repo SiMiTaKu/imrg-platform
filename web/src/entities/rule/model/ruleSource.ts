@@ -52,6 +52,16 @@ export interface RuleEntry {
 export type RuleContent = Readonly<Record<RuleKey, RuleEntry>>
 
 /**
+ * 図や表の置き場所。
+ *
+ * @remarks
+ * 文字列だけを書くと、その節点の本文をすべて出したあとに続けて出す。
+ * 冊子では本文の途中に表が挟まっていることがあるので、そのときは
+ * `after` に手前の行の書き出しを入れて、その行の直後に差し込む
+ */
+export type RuleFigureRef = string | { readonly figure: string; readonly after: string }
+
+/**
  * 骨格の節点。章・節・項のどれにもなる。
  *
  * @remarks
@@ -72,8 +82,16 @@ export interface RuleNode {
    * 最大値を取っても、最後の節点が続いているぶんだけ短く出てしまう
    */
   endPage?: number
-  /** この節点に載せる図や表の鍵。`entities/rule/api/tables` の `imageSource` と同じ */
-  figures?: readonly string[]
+  /**
+   * この節点に載せる図や表。
+   *
+   * @remarks
+   * 鍵は `entities/rule/api/tables` の `imageSource` から `/images/rules/` と
+   * `.png` を取り除いたもの。文字列で書くと本文のいちばん後ろに出る。
+   * 冊子のように本文の途中へ差し込みたいときは `{ figure, after }` の形で書き、
+   * `after` にその図の手前に来る行の書き出しを入れる
+   */
+  figures?: readonly RuleFigureRef[]
   /** 中に入る節点 */
   children?: readonly RuleNode[]
 }

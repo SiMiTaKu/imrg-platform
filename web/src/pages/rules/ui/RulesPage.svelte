@@ -119,6 +119,10 @@
       {#if line.label}<span class="line-label">{line.label}</span>{/if}
       <span class="line-text">{line.text}</span>
     </p>
+    <!-- 冊子で本文の途中に挟まっている表や図は、その行のすぐ下に出す -->
+    {#each line.image ?? [] as image, lineImageIndex (lineImageIndex)}
+      <RuleFigure {image} />
+    {/each}
   {/each}
 {/snippet}
 
@@ -250,6 +254,15 @@
                   <div class="collapsible" id={articleId} data-open={isArticleOpen}>
                     <div class="collapsible-inner">
                       <div class="article-body">
+                        <!-- 節そのものの本文。条を持たない節や、条の前に文がある節で出る -->
+                        {#if article.lines.length > 0 || article.image.length > 0}
+                          <div class="item">
+                            {@render bodyLines(article.lines)}
+                            {#each article.image as image, articleImageIndex (articleImageIndex)}
+                              <RuleFigure {image} />
+                            {/each}
+                          </div>
+                        {/if}
                         {#each article.section as section, sectionIndex (sectionIndex)}
                           {@const sectionId = sectionKey(index, articleIndex, sectionIndex)}
                           {@const isSectionOpen = isOpen(sectionId, DEFAULT_OPEN.section)}
@@ -667,6 +680,25 @@
     flex-direction: column;
   }
 
+  /*
+    押せるところに触れたときの地の色。どこを押そうとしているかが分かる。
+    指で触る端末では触れた状態が残ってしまうので、PC のときだけ
+  */
+  @media (hover: hover) {
+    .chapter-toggle:hover {
+      background: map.get($sky-blue, 100);
+    }
+
+    .article-toggle:hover {
+      background: map.get($sky-blue, 100);
+    }
+
+    .section-toggle:hover {
+      border-radius: $border-radius-4;
+      background: map.get($gray, 50);
+    }
+  }
+
   /* ─── 節（章の中の大項） ─── */
 
   .article h3 {
@@ -708,8 +740,8 @@
 
   .section h4 {
     margin: 0;
-    font-size: $font-size-14;
-    color: map.get($gray, 600);
+    font-size: $font-size-16;
+    color: map.get($gray, text);
   }
 
   .section-toggle {
