@@ -15,7 +15,6 @@
     createOpenStateForKeyword,
     isOpenAt,
     sectionKey,
-    withAllOpen,
     withChapterOpen,
     type RuleOpenState,
   } from '../lib/openState'
@@ -89,14 +88,6 @@
     openState = withChapterOpen(openState, ruleBook.chapter[chapterIndex], chapterIndex, open)
   }
 
-  /**
-   * 規則集ぜんぶをまとめて開け閉めする
-   * @param open - 開くなら true
-   */
-  const toggleAll = (open: boolean) => {
-    openState = withAllOpen(ruleBook, open)
-  }
-
   const visibleChapters = $derived(
     ruleBook.chapter
       .map((chapter, index) => ({ chapter, index }))
@@ -151,15 +142,6 @@
           })}</span
         >
       {/if}
-    </div>
-
-    <div class="bulk">
-      <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={() => toggleAll(true)}
-        >{m.rules_expand_all()}</Button
-      >
-      <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={() => toggleAll(false)}
-        >{m.rules_collapse_all()}</Button
-      >
     </div>
 
     {#if keyword.trim() === ''}
@@ -218,7 +200,7 @@
         <div class="collapsible" id={chapterId} data-open={isChapterOpen}>
           <div class="collapsible-inner">
             <div class="chapter-body">
-              <div class="bulk in-chapter">
+              <div class="bulk">
                 <Button
                   variant="outline"
                   width={isMobile ? 'full' : 'auto'}
@@ -454,12 +436,10 @@
 
   /* ─── すべて開く・すべて閉じる ─── */
 
-  // 読むのを助けるボタンなので、PC では文言の幅のまま横に並べる。
-  // スマホでは縦に積んで、1つずつ横いっぱいにする
+  // 章の中に置く「すべて開く・すべて閉じる」。どの幅でも横に並べる
   .bulk {
     display: flex;
     gap: $space-size-8;
-    padding-bottom: $space-size-24;
   }
 
   /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
@@ -470,11 +450,6 @@
     min-width: 0;
   }
   /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
-
-  /* 章の中では、章の中身の gap が下の余白になる */
-  .bulk.in-chapter {
-    padding-bottom: 0;
-  }
 
   /* ─── 目次 ─── */
 

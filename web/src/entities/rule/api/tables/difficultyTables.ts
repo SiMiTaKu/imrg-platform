@@ -342,7 +342,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/tables/difficulty-value.png',
     caption: '難度の価値点',
     layout: 'list',
-    narrowColumns: 1,
+    narrowColumns: 0,
     columns: ['難度', '価値点'],
     rows: [
       { cells: ['A', '0.1'] },
@@ -359,7 +359,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/tables/group-cross-two.png',
     caption: '2段交差の難度',
     layout: 'list',
-    narrowColumns: 1,
+    narrowColumns: 0,
     columns: ['転回系1', '転回系2', '難度'],
     rows: [
       { cells: ['A', 'A', 'A'] },
@@ -386,7 +386,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/tables/group-cross-three.png',
     caption: '3段交差の難度',
     layout: 'list',
-    narrowColumns: 1,
+    narrowColumns: 0,
     columns: ['2段交差の難度', '3段目の難度', '難度'],
     rows: [
       { cells: ['A', 'A', 'A'] },
@@ -416,7 +416,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/tables/group-series-difficulty.png',
     caption: 'シリーズの難度の判定（3・2または4・1で分かれた場合）',
     layout: 'list',
-    narrowColumns: 1,
+    narrowColumns: 0,
     columns: ['第1グループ', '第2グループ', '難度'],
     rows: [
       { cells: ['3名がA', '2名がC', 'A'] },
