@@ -153,7 +153,12 @@ export const FREE_HAND_STRUCTURE: RuleNode[] = [
         key: 'scoring.freeHand.scoreForms',
         number: '3.8.10',
         page: 77,
-        figures: ['forms/free-hand-da', 'forms/free-hand-d-grid', 'forms/free-hand-e'],
+        // 冊子は用紙の名前を並べ、それぞれの下に用紙が続く。同じ並びで出す
+        figures: [
+          { figure: 'forms/free-hand-da', after: 'D・A共通採点表' },
+          { figure: 'forms/free-hand-d-grid', after: 'D採点表' },
+          { figure: 'forms/free-hand-e', after: 'E採点票' },
+        ],
       },
     ],
   },
