@@ -22,5 +22,17 @@
   "rules_search_placeholder": "例：扣分、短棒、队形",
   "rules_search_result": "在 {total} 章中找到 {found} 章",
   "rules_search_empty": "未找到“{keyword}”。请换个词试试。",
-  "rules_toc": "目录"
+  "rules_toc": "目录",
+  "rules_source_heading": "出处",
+  "rules_source_lead": "本页是依据以下规则书重新编排、便于阅读的版本。",
+  "rules_source_book": "男子艺术体操规则 2025年版",
+  "rules_source_publisher_label": "发行",
+  "rules_source_publisher": "公益财团法人日本体操协会",
+  "rules_source_editor_label": "编辑",
+  "rules_source_editor": "男子艺术体操委员会",
+  "rules_source_published_label": "规则书发行日",
+  "rules_source_published": "2024年11月15日",
+  "rules_source_site_label": "发行方网站",
+  "rules_source_note": "正文、表格和图示的内容均出自上述规则书。引用时尽量保留条文的顺序和措辞。各表格的出处写在该表下方。",
+  "rules_source_authority": "正式判定以各竞技团体的规则书为准。"
 }

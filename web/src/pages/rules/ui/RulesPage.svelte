@@ -5,7 +5,7 @@
   import type { LocalizedRuleBook } from '@entities/rule'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
-  import { RuleFigure } from '@widgets/rules'
+  import { RuleFigure, RuleSource } from '@widgets/rules'
   import {
     DEFAULT_OPEN,
     articleKey,
@@ -303,6 +303,8 @@
         </div>
       </section>
     {/each}
+
+    <RuleSource />
   </div>
 </article>
 

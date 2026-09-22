@@ -22,5 +22,17 @@
   "rules_search_placeholder": "напр. сбавка, палочка, построение",
   "rules_search_result": "Найдено в {found} из {total} глав",
   "rules_search_empty": "«{keyword}» не найдено. Попробуйте другое слово.",
-  "rules_toc": "Содержание"
+  "rules_toc": "Содержание",
+  "rules_source_heading": "Источник",
+  "rules_source_lead": "Эта страница — тот же свод правил, переставленный для удобства чтения.",
+  "rules_source_book": "Правила мужской художественной гимнастики, издание 2025 года",
+  "rules_source_publisher_label": "Издатель",
+  "rules_source_publisher": "Японская федерация гимнастики",
+  "rules_source_editor_label": "Редакция",
+  "rules_source_editor": "Комитет мужской художественной гимнастики",
+  "rules_source_published_label": "Дата издания свода правил",
+  "rules_source_published": "15 ноября 2024 года",
+  "rules_source_site_label": "Сайт издателя",
+  "rules_source_note": "Текст, таблицы и рисунки взяты из указанного свода правил. В цитатах по возможности сохранены порядок и формулировки статей. Источник каждой таблицы указан под ней.",
+  "rules_source_authority": "Официальное решение остаётся за сводом правил соответствующей федерации."
 }

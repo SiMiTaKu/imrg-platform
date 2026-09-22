@@ -22,5 +22,17 @@
   "rules_search_placeholder": "예: 감점, 스틱, 대형",
   "rules_search_result": "{total}장 중 {found}장에서 찾았습니다",
   "rules_search_empty": "「{keyword}」을(를) 찾지 못했습니다. 다른 단어로 찾아보세요.",
-  "rules_toc": "목차"
+  "rules_toc": "목차",
+  "rules_source_heading": "출처",
+  "rules_source_lead": "이 페이지는 다음 규칙집을 읽기 쉽게 다시 정리한 것입니다.",
+  "rules_source_book": "남자 리듬체조 규칙 2025년판",
+  "rules_source_publisher_label": "발행",
+  "rules_source_publisher": "공익재단법인 일본체조협회",
+  "rules_source_editor_label": "편집",
+  "rules_source_editor": "남자 리듬체조 위원회",
+  "rules_source_published_label": "규칙집 발행일",
+  "rules_source_published": "2024년 11월 15일",
+  "rules_source_site_label": "발행처 사이트",
+  "rules_source_note": "본문·표·그림의 내용은 위 규칙집에 따릅니다. 인용할 때는 조문의 순서와 표현을 가능한 한 그대로 남겼습니다. 표별 출처는 각 표 아래에 적혀 있습니다.",
+  "rules_source_authority": "공식적인 판단은 각 경기 단체의 규칙집에 따릅니다."
 }

@@ -22,5 +22,17 @@
   "rules_search_placeholder": "例：減点、スティック、隊形",
   "rules_search_result": "{found} / {total} 章に見つかりました",
   "rules_search_empty": "「{keyword}」は見つかりませんでした。別の言葉で探してみてください。",
-  "rules_toc": "目次"
+  "rules_toc": "目次",
+  "rules_source_heading": "出典",
+  "rules_source_lead": "このページは、次の規則集をもとに読みやすく並べ直したものです。",
+  "rules_source_book": "新体操男子規則 2025年版",
+  "rules_source_publisher_label": "発行",
+  "rules_source_publisher": "公益財団法人日本体操協会",
+  "rules_source_editor_label": "編集",
+  "rules_source_editor": "男子新体操委員会",
+  "rules_source_published_label": "規則集の発行日",
+  "rules_source_published": "2024年11月15日（令和6年11月15日）",
+  "rules_source_site_label": "発行元のサイト",
+  "rules_source_note": "本文・表・図の中身は上記の規則集によります。引用にあたっては、条文の並びと文言をできるだけそのまま残しています。表ごとの出典は、それぞれの表の下に書いてあります。",
+  "rules_source_authority": "正式な判断は各競技団体の規則集によります。"
 }
