@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { Character, CharacterFigure, findCharacter } from '@entities/character'
-  import { CrossLinks } from '@features/crossLinks'
+  import { CHARACTERS, Character, CharacterFigure } from '@entities/character'
+  import { CrossLinks, type CrossLink, type CrossLinkList } from '@features/crossLinks'
   import { createAutoPlayGroup, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { LINKS } from '@shared/config/links'
   import { pageData } from '@shared/lib/device'
@@ -20,16 +20,27 @@
 
   const isMobile = $derived($pageData.isMobile)
   // 基本を誰よりも正確に、が持ち味の一徒が指導の案内役
-  const guide = findCharacter(Character.KAZUTO)
+  const guide = CHARACTERS[Character.KAZUTO]
+
+  // 先頭と残りに分けて持つ。案内が必ず1つ以上あることを、型のまま保ったまま組み立てられる
+  const [firstService, ...restServices] = OTHER_SERVICES
+
+  /**
+   * ほかの依頼1つを、案内1つ分に直す
+   * @param service - ほかの依頼
+   * @returns 案内1つ分
+   */
+  const toCrossLink = (service: (typeof OTHER_SERVICES)[number]): CrossLink => ({
+    label: service.title(),
+    href: localizeHref(service.href),
+    body: service.body(),
+  })
 
   /** ページの下に置く、ほかの依頼（曲編集・手具装飾）への案内 */
-  const otherServiceLinks = $derived(
-    OTHER_SERVICES.map((service) => ({
-      label: service.title(),
-      href: localizeHref(service.href),
-      body: service.body(),
-    })),
-  )
+  const otherServiceLinks: CrossLinkList = $derived([
+    toCrossLink(firstService),
+    ...restServices.map(toCrossLink),
+  ])
 
   /** 相場の説明を開いているか */
   let isMarketOpen = $state(false)
@@ -134,7 +145,7 @@
 
       <ul class="way-cards">
         {#each COACHING_WAYS as way (way.key)}
-          {@const character = findCharacter(way.character)}
+          {@const character = CHARACTERS[way.character]}
           <li style:--accent={character.color}>
             <div class="way-head">
               <CharacterFigure {character} size={isMobile ? 72 : 88} />

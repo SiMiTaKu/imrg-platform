@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { CharacterFigure, type CharacterProfile } from '@entities/character'
-  import { CrossLinks, type CrossLink } from '@features/crossLinks'
+  import { CrossLinks, type CrossLinkList } from '@features/crossLinks'
   import { pageData } from '@shared/lib/device'
   import { SectionHeading } from '@features/sectionHeading'
 
@@ -25,8 +25,8 @@
     note: string
     /** このページの案内役 */
     character: CharacterProfile
-    /** ほかの依頼への案内。1つでも、複数並べても出せる。省くと出さない */
-    crossLink?: CrossLink | readonly CrossLink[]
+    /** ほかの依頼への案内。渡すなら1つ以上。省くと出さない */
+    crossLink?: CrossLinkList
   }
 
   const {

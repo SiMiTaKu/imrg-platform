@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { Character, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character } from '@entities/character'
   import { LINKS } from '@shared/config/links'
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import { formatYen } from '@shared/lib/number'
@@ -31,7 +31,7 @@
   const locale = getLocale()
   const price = formatYen(PRICE_PER_HOUR, locale)
   // 手具の手入れにも詳しい柔凪が、手具装飾の案内役
-  const guide = findCharacter(Character.YAWANA)
+  const guide = CHARACTERS[Character.YAWANA]
 </script>
 
 <article>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { CharacterFigure, findCharacter } from '@entities/character'
+  import { CHARACTERS, CharacterFigure } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { SERVICES } from '../config/sections'
@@ -19,7 +19,7 @@
 
     <ul class="cards">
       {#each SERVICES as service (service.id)}
-        {@const character = findCharacter(service.character)}
+        {@const character = CHARACTERS[service.character]}
         <li style:--accent={character.color}>
           <div class="head">
             <CharacterFigure {character} size={isMobile ? 84 : 100} />

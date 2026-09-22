@@ -3,7 +3,7 @@
   import { PUBLIC_BASE_URL } from '$env/static/public'
   import { m } from '$lib/paraglide/messages'
   import type { Chart } from 'chart.js/auto'
-  import { Character, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character } from '@entities/character'
   import { GuideLead } from '@features/guideLead'
   import {
     JudgeThemeColor,
@@ -34,7 +34,7 @@
   const locale = getLocale()
   const isMobile = $derived($pageData.isMobile)
   /** 採点の案内役 */
-  const guide = findCharacter(Character.OSAMU)
+  const guide = CHARACTERS[Character.OSAMU]
 
   /** 得点と手具の名前を入れた、Xへの共有のリンク */
   const shareHref = $derived(

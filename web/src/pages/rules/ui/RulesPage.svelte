@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { Character, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character } from '@entities/character'
   import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
@@ -28,7 +28,7 @@
 
   const isMobile = $derived($pageData.isMobile)
   /** ルールの案内役 */
-  const guide = findCharacter(Character.OSAMU)
+  const guide = CHARACTERS[Character.OSAMU]
 
   /** 探している言葉。空なら全部出す */
   let keyword = $state('')

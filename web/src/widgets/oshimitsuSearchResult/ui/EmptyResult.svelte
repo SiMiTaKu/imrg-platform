@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
-  import { Character, CharacterFigure, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character, CharacterFigure } from '@entities/character'
   import { ContentType } from '@entities/oshimitsuVideo'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
@@ -21,7 +21,7 @@
 
   const isMobile = $derived($pageData.isMobile)
   /** 推しミツ！の案内役 */
-  const guide = findCharacter(Character.AYATO)
+  const guide = CHARACTERS[Character.AYATO]
 </script>
 
 <!-- 0件で行き止まりにしない。必ず次の一手を並べる -->

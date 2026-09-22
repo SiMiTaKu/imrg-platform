@@ -93,8 +93,8 @@ export type CharacterProfile = {
  * 絵はまだ描き上がっていないため、`CharacterFigure` が身長・髪・色・姿勢から形を組み立てる。
  * 絵ができたら、この設定はそのままに `CharacterFigure` の中身だけを差し替える
  */
-export const CHARACTERS: readonly CharacterProfile[] = [
-  {
+export const CHARACTERS: Readonly<Record<Character, CharacterProfile>> = {
+  [Character.SORA]: {
     id: Character.SORA,
     name: m.character_sora_name,
     reading: m.character_sora_reading,
@@ -105,7 +105,7 @@ export const CHARACTERS: readonly CharacterProfile[] = [
     pose: Pose.LEAP,
     role: m.character_sora_role,
   },
-  {
+  [Character.KAZUTO]: {
     id: Character.KAZUTO,
     name: m.character_kazuto_name,
     reading: m.character_kazuto_reading,
@@ -116,7 +116,7 @@ export const CHARACTERS: readonly CharacterProfile[] = [
     pose: Pose.STAND,
     role: m.character_kazuto_role,
   },
-  {
+  [Character.AYATO]: {
     id: Character.AYATO,
     name: m.character_ayato_name,
     reading: m.character_ayato_reading,
@@ -127,7 +127,7 @@ export const CHARACTERS: readonly CharacterProfile[] = [
     pose: Pose.HOLD,
     role: m.character_ayato_role,
   },
-  {
+  [Character.OSAMU]: {
     id: Character.OSAMU,
     name: m.character_osamu_name,
     reading: m.character_osamu_reading,
@@ -138,7 +138,7 @@ export const CHARACTERS: readonly CharacterProfile[] = [
     pose: Pose.POINT,
     role: m.character_osamu_role,
   },
-  {
+  [Character.YAWANA]: {
     id: Character.YAWANA,
     name: m.character_yawana_name,
     reading: m.character_yawana_reading,
@@ -149,12 +149,13 @@ export const CHARACTERS: readonly CharacterProfile[] = [
     pose: Pose.SPLIT,
     role: m.character_yawana_role,
   },
-]
+}
 
 /**
- * id から1人を引く
- * @param id - 探す人の id
- * @returns 見つかった1人。見つからないときは先頭の人
+ * 5人を並び順のまま取り出したもの。
+ *
+ * @remarks
+ * 一覧として並べる場所（トップページの紹介など）で使う。
+ * 1人だけ要るときは `CHARACTERS[Character.SORA]` のように id で引く
  */
-export const findCharacter = (id: Character): CharacterProfile =>
-  CHARACTERS.find((character) => character.id === id) ?? CHARACTERS[0]
+export const CHARACTER_LIST: readonly CharacterProfile[] = Object.values(CHARACTERS)

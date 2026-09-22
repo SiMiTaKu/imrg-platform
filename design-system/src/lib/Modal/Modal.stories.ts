@@ -24,6 +24,8 @@ const meta = {
   tags: ['autodocs'],
   args: {
     title: '過去の作品',
+    titleVariant: 'plain',
+    width: 720,
     onclose: fn(),
     labels: { close: '閉じる' },
     children: bodyOf(3),
@@ -37,11 +39,11 @@ type Story = StoryObj<typeof meta>
 export const 基本: Story = {}
 
 export const 見出しを色の帯にする: Story = {
-  args: { title: '決定点', titleBackground: '#0065a4' },
+  args: { title: '決定点', titleVariant: 'tinted', titleBackground: '#0065a4' },
 }
 
 export const 見出しを読み上げにだけ残す: Story = {
-  args: { title: '作品の写真', titleHidden: true },
+  args: { title: '作品の写真', titleVariant: 'hidden' },
 }
 
 export const 中身が長い: Story = {

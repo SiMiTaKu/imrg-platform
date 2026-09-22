@@ -66,7 +66,7 @@
 <!-- 見出しは読み上げにだけ残す。写真そのものが中身なので、画面には出さない -->
 <Modal
   title={m.decorating_apparatus_viewer_stage_label()}
-  titleHidden={true}
+  titleVariant="hidden"
   width={1100}
   onclose={onClose}
   labels={{ close: m.modal_close() }}

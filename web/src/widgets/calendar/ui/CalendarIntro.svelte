@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { m } from '$lib/paraglide/messages'
-  import { Character, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character } from '@entities/character'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
 
@@ -21,7 +21,7 @@
 
   const isMobile = $derived($pageData.isMobile)
   /** カレンダーの案内役。大会へ跳び込む人 */
-  const guide = findCharacter(Character.SORA)
+  const guide = CHARACTERS[Character.SORA]
 </script>
 
 <!-- 何ができるページかを、いちばん上で言い切る。背景は画面の端まで広げ、中身だけをコンテンツ幅に収める -->

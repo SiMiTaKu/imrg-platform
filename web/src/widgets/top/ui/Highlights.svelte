@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { CharacterFigure, findCharacter } from '@entities/character'
+  import { CHARACTERS, CharacterFigure } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { HIGHLIGHTS } from '../config/sections'
 
@@ -16,7 +16,7 @@
 
     <ul class="cards">
       {#each HIGHLIGHTS as highlight (highlight.id)}
-        {@const character = findCharacter(highlight.character)}
+        {@const character = CHARACTERS[highlight.character]}
         <li style:--accent={character.color}>
           <div class="figure">
             <CharacterFigure

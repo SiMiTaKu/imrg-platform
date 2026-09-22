@@ -18,6 +18,8 @@ const renderModal = (props: Record<string, unknown> = {}) => {
   const onclose = vi.fn()
   const result = render(Modal, {
     title: '過去の作品',
+    titleVariant: 'plain',
+    width: 720,
     onclose,
     labels: LABELS,
     children: CHILDREN,
@@ -138,16 +140,14 @@ describe('Modal', () => {
 
     it('見出しを隠した場合でも、モーダルの名前は引けること', () => {
       // #region Given / When
-      renderModal({ title: '作品の写真', titleHidden: true })
+      renderModal({ title: '作品の写真', titleVariant: 'hidden' })
       // #endregion
 
       // #region Then
       expect(screen.getByRole('dialog', { name: '作品の写真' })).toBeInTheDocument()
       // #endregion
     })
-  })
 
-  describe('異常系', () => {
     it('中身の上で押し始めて背景で離した場合、閉じないこと', async () => {
       // #region Given
       const { onclose } = renderModal()

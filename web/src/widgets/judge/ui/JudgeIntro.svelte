@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { Character, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character } from '@entities/character'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -16,7 +16,7 @@
 
   const isMobile = $derived($pageData.isMobile)
   /** 採点の案内役。ルールのページと同じ人が案内する */
-  const guide = findCharacter(Character.OSAMU)
+  const guide = CHARACTERS[Character.OSAMU]
 
   /**
    * 採点をやってみる前に伝えること。身構えずに1つ試せることを先に言う。

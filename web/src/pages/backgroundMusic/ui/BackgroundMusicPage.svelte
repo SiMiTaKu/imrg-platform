@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { Character, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character } from '@entities/character'
   import { LINKS } from '@shared/config/links'
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import { formatYen } from '@shared/lib/number'
@@ -44,7 +44,7 @@
     }),
   ]
   // 表現・構成が得意な彩人が、曲編集の案内役
-  const guide = findCharacter(Character.AYATO)
+  const guide = CHARACTERS[Character.AYATO]
 </script>
 
 <article>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CHARACTERS, findCharacter } from '@entities/character'
+import { CHARACTERS, CHARACTER_LIST } from '@entities/character'
 import { joinPrices } from '@pages/top/lib/phrase'
 import { buildTopJsonLd } from '@pages/top/lib/structuredData'
 import { FEATURES, HIGHLIGHTS, SERVICES } from '@widgets/top'
@@ -50,11 +50,11 @@ describe('トップページの構成', () => {
 
     it('見どころと依頼の担当を引いた場合、5人の誰かに当たること', () => {
       // #region Given
-      const ids = CHARACTERS.map((character) => character.id)
+      const ids = CHARACTER_LIST.map((character) => character.id)
       // #endregion
 
       // #region When
-      const used = [...HIGHLIGHTS, ...SERVICES].map((item) => findCharacter(item.character).id)
+      const used = [...HIGHLIGHTS, ...SERVICES].map((item) => CHARACTERS[item.character].id)
       // #endregion
 
       // #region Then

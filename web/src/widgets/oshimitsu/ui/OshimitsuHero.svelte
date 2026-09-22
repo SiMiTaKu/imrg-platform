@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
-  import { Character, findCharacter } from '@entities/character'
+  import { CHARACTERS, Character } from '@entities/character'
   import { GuideLead } from '@features/guideLead'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
@@ -8,7 +8,7 @@
 
   const isMobile = $derived($pageData.isMobile)
   /** 推しミツ！の案内役。表現・構成の担当なので、演技を見る楽しさを案内してもらう */
-  const guide = findCharacter(Character.AYATO)
+  const guide = CHARACTERS[Character.AYATO]
 
   // 本数の単位は言語で付け方が変わる。1本のときだけ言い方が変わる言語があるので、数で出し分ける
   const totalUnit = $derived(

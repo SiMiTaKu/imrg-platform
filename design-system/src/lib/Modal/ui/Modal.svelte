@@ -1,41 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import type { Snippet } from 'svelte'
   import XIcon from '../../Icons/components/XIcon.svelte'
+  import type { ModalProps } from '../model/props'
 
-  /** 読み上げ用の名前。画面には出さない */
-  interface Labels {
-    /** 閉じるボタン（右上のばつ） */
-    close: string
-  }
-
-  /** モーダルの引数 */
-  interface Props {
-    /** 見出し。読み上げのときのモーダルの名前にもなる */
-    title: string
-    /** 見出しを目で見えなくするか。読み上げには残る */
-    titleHidden?: boolean
-    /** 見出しの地の色。渡すと見出しを色の帯にする。省くと文字だけ */
-    titleBackground?: string
-    /** 中身の幅（px）。狭い画面では画面に収まるところまで縮む */
-    width?: number
-    /** 閉じたときに呼ぶ。ばつ・Esc・背景を押したときのどれでも呼ばれる */
-    onclose: () => void
-    /** 読み上げ用の名前。アイコンだけのボタンにも名前が要るため、使う側の言語で渡す */
-    labels: Labels
-    /** モーダルの中身 */
-    children: Snippet
-  }
-
-  const {
-    title,
-    titleHidden = false,
-    titleBackground,
-    width = 720,
-    onclose,
-    labels,
-    children,
-  }: Props = $props()
+  const { title, titleVariant, titleBackground, width, onclose, labels, children }: ModalProps =
+    $props()
 
   // 見出しと dialog をつなぐ id。同じ画面に2つ出しても重ならないよう Svelte に振ってもらう
   const titleId = $props.id()
@@ -101,27 +70,26 @@
   {onpointerdown}
   {onclick}
 >
-  <div class="panel">
-    <div class="head">
-      <h2
-        class="title"
-        class:hidden={titleHidden}
-        class:tinted={titleBackground !== undefined}
-        style:--modal-title-background={titleBackground}
-        id={titleId}
-      >
-        {title}
-      </h2>
-      <button
-        bind:this={closeButton}
-        class="close"
-        type="button"
-        aria-label={labels.close}
-        onclick={close}
-      >
-        <XIcon size={24} color="gray" />
-      </button>
-    </div>
+  <div class="panel" class:untitled={titleVariant === 'hidden'}>
+    <h2
+      class="title"
+      class:hidden={titleVariant === 'hidden'}
+      class:tinted={titleVariant === 'tinted'}
+      style:--modal-title-background={titleBackground}
+      id={titleId}
+    >
+      {title}
+    </h2>
+
+    <button
+      bind:this={closeButton}
+      class="close"
+      type="button"
+      aria-label={labels.close}
+      onclick={close}
+    >
+      <XIcon size={24} color="gray" />
+    </button>
 
     <div class="body">
       {@render children()}
@@ -146,35 +114,35 @@
     background: rgb(0 0 0 / 70%);
   }
 
+  // ばつを角に置くための基準。中身が長いときは .body だけが動く
   .panel {
+    position: relative;
     display: flex;
     flex-direction: column;
     max-height: calc(100vh - #{$space-size-32});
   }
 
-  // 見出しは左、閉じるばつは右上。見出しを隠したときもばつは右上のまま
-  .head {
-    display: flex;
-    gap: $space-size-16;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: $space-size-16 $space-size-16 0;
+  // 見出しを出さないときも、ばつと中身が重ならないだけの高さを空ける
+  .panel.untitled {
+    padding-top: $space-size-40;
   }
 
   .title {
-    flex: 1;
-    min-width: 0;
     margin: 0;
+
+    // 右上のばつに掛からないところで折り返す
+    padding: $space-size-16 $space-size-56 0 $space-size-16;
     font-size: $font-size-20;
     color: map.get($gray, text);
   }
 
   .title.tinted {
-    flex: 0 0 auto;
+    margin: $space-size-16 $space-size-56 0 $space-size-16;
     padding: $space-size-4 $space-size-20;
     color: $white;
     border-radius: $border-radius-8;
     background: var(--modal-title-background);
+    align-self: flex-start;
   }
 
   // 目には見せず、読み上げにだけ残す
@@ -182,16 +150,20 @@
     position: absolute;
     width: 1px;
     height: 1px;
+    margin: 0;
     padding: 0;
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
   }
 
+  // 見出しの長さや有無に関わらず、いつもモーダルの右上角に置く
   .close {
+    position: absolute;
+    top: $space-size-8;
+    right: $space-size-8;
     display: grid;
     place-items: center;
-    flex: 0 0 auto;
     width: 40px;
     height: 40px;
     padding: 0;

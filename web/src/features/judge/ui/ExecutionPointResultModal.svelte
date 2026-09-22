@@ -100,6 +100,7 @@
 {#if show}
   <Modal
     title={m.judge_result_title()}
+    titleVariant="tinted"
     titleBackground={THEME_COLORS[color]}
     width={isMobile ? 480 : 800}
     {onclose}

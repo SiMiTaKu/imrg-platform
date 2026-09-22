@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { CHARACTERS, CharacterFigure } from '@entities/character'
+  import { CHARACTER_LIST, CharacterFigure } from '@entities/character'
   import { pageData } from '@shared/lib/device'
 
   const isMobile = $derived($pageData.isMobile)
@@ -14,7 +14,7 @@
     </header>
 
     <ul class="members">
-      {#each CHARACTERS as character (character.id)}
+      {#each CHARACTER_LIST as character (character.id)}
         <li style:--accent={character.color}>
           <div class="figure">
             <CharacterFigure {character} size={isMobile ? 96 : 108} />

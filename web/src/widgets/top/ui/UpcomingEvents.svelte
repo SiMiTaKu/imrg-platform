@@ -69,7 +69,7 @@
               {/if}
 
               <!-- 下に置きたいものは重ねず、余った高さで押し下げる -->
-              <span class="arrow" aria-hidden="true">→</span>
+              <span class="arrow" aria-hidden="true"></span>
             </a>
           </li>
         {/each}
@@ -214,12 +214,15 @@
     overflow-wrap: anywhere;
   }
 
+  // 右を向いた三角。枠線だけで描くので、字体によって形が変わらない
   .arrow {
+    width: 0;
+    height: 0;
     margin-top: auto;
-    padding-top: $space-size-4;
-    font-size: $font-size-18;
-    color: map.get($sky-blue, button);
-    text-align: right;
+    align-self: flex-end;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid map.get($sky-blue, button);
   }
 
   .search {

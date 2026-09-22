@@ -22,7 +22,7 @@
             <span class="head">
               <span class="badge">{feature.badge()}</span>
               <h3>{feature.title()}</h3>
-              <span class="arrow" aria-hidden="true">→</span>
+              <span class="arrow" aria-hidden="true"></span>
             </span>
             <p>{feature.body()}</p>
           </a>
@@ -135,10 +135,15 @@
   }
 
   // 見出しと同じ行の右端。重ねない
+  // 右を向いた三角。枠線だけで描くので、字体によって形が変わらない
   .arrow {
-    flex: none;
+    width: 0;
+    height: 0;
     margin-left: auto;
-    font-size: $font-size-18;
-    color: map.get($sky-blue, button);
+    flex: none;
+    align-self: center;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid map.get($sky-blue, button);
   }
 </style>

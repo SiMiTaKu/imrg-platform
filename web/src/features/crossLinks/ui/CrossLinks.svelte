@@ -10,40 +10,37 @@
   }
 
   /**
-   * 1つでも複数でも、案内の配列として受け取る
-   * @param value - 案内1つ、または案内の配列
-   * @returns 案内の配列
+   * 1つ以上の案内。
+   *
+   * @remarks
+   * 空の配列を渡せない形にして、「案内が無いときは出さない」を使う側で決めさせる。
+   * こちらは必ず1つ以上あるものとして描ける
    */
-  const toLinks = (value: CrossLink | readonly CrossLink[]): readonly CrossLink[] =>
-    'href' in value ? [value] : value
+  export type CrossLinkList = readonly [CrossLink, ...CrossLink[]]
 </script>
 
 <script lang="ts">
   /** ほかのページへの案内の引数 */
   interface Props {
-    /** ほかのページへの案内。1つでも、複数並べても出せる */
-    links: CrossLink | readonly CrossLink[]
+    /** ほかのページへの案内。1つ以上渡す */
+    links: CrossLinkList
   }
 
   const { links }: Props = $props()
-
-  const items = $derived(toLinks(links))
 </script>
 
-{#if items.length > 0}
-  <!-- ほかのページでも受けていることを、最後にもう一度知らせる -->
-  <ul class="links">
-    {#each items as link (link.href)}
-      <li>
-        <a class="link" href={link.href}>
-          <span class="label">{link.label}</span>
-          <span class="body">{link.body}</span>
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
-      </li>
-    {/each}
-  </ul>
-{/if}
+<!-- ほかのページでも受けていることを、最後にもう一度知らせる -->
+<ul class="links">
+  {#each links as link (link.href)}
+    <li>
+      <a class="link" href={link.href}>
+        <span class="label">{link.label}</span>
+        <span class="body">{link.body}</span>
+        <span class="arrow" aria-hidden="true"></span>
+      </a>
+    </li>
+  {/each}
+</ul>
 
 <style lang="scss">
   // 案内は縦に積む。数が増えても並びは変えない
@@ -92,16 +89,20 @@
   .body {
     min-inline-size: 0;
     font-size: $font-size-14;
-    color: map.get($gray, 600);
+    color: map.get($gray, light-text);
     line-height: 1.7;
     overflow-wrap: anywhere;
   }
 
-  // 同じ行の右端に送る。重ねない
+  // 右を向いた三角。枠線だけで描くので、字体によって形が変わらない
   .arrow {
     flex: none;
+    align-self: center;
+    width: 0;
+    height: 0;
     margin-left: auto;
-    font-size: $font-size-18;
-    color: map.get($sky-blue, button);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid map.get($sky-blue, button);
   }
 </style>

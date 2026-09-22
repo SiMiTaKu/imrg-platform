@@ -5,7 +5,7 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { CHARACTERS, CharacterFigure } from '@entities/character'
+  import { CHARACTER_LIST, CharacterFigure } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
@@ -47,7 +47,7 @@
 
     <!-- 5人が並ぶ。競技が「団体5人」であることを、言葉より先に見せる -->
     <ul class="team">
-      {#each CHARACTERS as character (character.id)}
+      {#each CHARACTER_LIST as character (character.id)}
         <li>
           <CharacterFigure {character} size={isMobile ? 56 : 76} />
         </li>

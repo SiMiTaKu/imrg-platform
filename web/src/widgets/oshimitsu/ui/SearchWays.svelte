@@ -46,7 +46,7 @@
             <!-- 本数と矢印は、本文の下に置く。重ねない -->
             <span class="foot">
               <span class="count">{videoCount(entry.count)}</span>
-              <span class="arrow" aria-hidden="true">→</span>
+              <span class="arrow" aria-hidden="true"></span>
             </span>
           </a>
         </li>
@@ -65,7 +65,7 @@
             <span class="card-head">
               <span class="name">{entry.label}</span>
               <span class="count">{videoCount(entry.count)}</span>
-              <span class="arrow" aria-hidden="true">→</span>
+              <span class="arrow" aria-hidden="true"></span>
             </span>
             <span class="description">{entry.description}</span>
           </a>
@@ -302,9 +302,15 @@
     color: map.get($gray, light-text);
   }
 
+  // 右を向いた三角。枠線だけで描くので、字体によって形が変わらない
   .arrow {
-    font-size: $font-size-18;
-    color: map.get($sky-blue, button);
+    flex: none;
+    align-self: center;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid map.get($sky-blue, button);
   }
 
   /* ─── 条件を組み合わせるフォーム ─── */
