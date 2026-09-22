@@ -462,9 +462,14 @@
     padding-bottom: $space-size-24;
   }
 
-  .mobile .bulk {
-    flex-direction: column;
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+  // 狭い画面では、ボタンが横いっぱいになるので、2つで分け合う。
+  // 中身はデザインシステムのボタンなので、外から当てるには :global が要る
+  .mobile .bulk > :global(*) {
+    flex: 1;
+    min-width: 0;
   }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 
   /* 章の中では、章の中身の gap が下の余白になる */
   .bulk.in-chapter {
@@ -652,7 +657,7 @@
 
   .chapter-body {
     display: flex;
-    gap: $space-size-20;
+    gap: $space-size-8;
     padding: 0 $space-size-4 $space-size-32;
     flex-direction: column;
   }
