@@ -15,14 +15,14 @@ import type { RuleTree } from '../../model/ruleTable'
  * 2025年版は「難度（D）（加点法）」「芸術と多様性（A）10点満点（減点法）」
  * 「実施（E）10点満点（減点法）」の3本立てで、枝の中身も違う。
  *
- * 画像の差し替え先は2枚しかないので、
- * `SK(D)*.png` に「難度（D）」と「芸術と多様性（A）」、`SK(E)*.png` に「実施（E）」を割り当てた
+ * 冊子は 難度（D）・芸術と多様性（A）・実施（E）を1枚の図にまとめているので、こちらも1つで持つ。
+ * 画像の差し替え先は `SK(D)*.png` を使う（`SK(E)*.png` は使わない）
  */
 export const SCORING_TREES: readonly RuleTree[] = [
   {
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.5.4 配点と採点項目（39ページ・個人競技）
     imageSource: '/images/rules/SK(D)single.png',
-    caption: '個人競技の配点と採点項目（難度・芸術と多様性）',
+    caption: '個人競技の配点と採点項目',
     roots: [
       {
         label: '難度（D）',
@@ -55,15 +55,7 @@ export const SCORING_TREES: readonly RuleTree[] = [
           },
         ],
       },
-    ],
-    note: '「手具操作化の多様性と価値」は紙面のままの表記。実施（E）の枝は次の図にある。',
-    source: '新体操男子規則 2025年版 3 採点規則 3.5.4 配点と採点項目（39ページ）',
-  },
-  {
-    // 出典: 新体操男子規則 2025年版 3 採点規則 3.5.4 配点と採点項目（39ページ・個人競技）
-    imageSource: '/images/rules/SK(E)single.png',
-    caption: '個人競技の配点と採点項目（実施）',
-    roots: [
+
       {
         label: '実施（E）',
         note: '10点満点（減点法）',
@@ -83,13 +75,12 @@ export const SCORING_TREES: readonly RuleTree[] = [
         ],
       },
     ],
-    note: '難度（D）と芸術と多様性（A）の枝は前の図にある。',
     source: '新体操男子規則 2025年版 3 採点規則 3.5.4 配点と採点項目（39ページ）',
   },
   {
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.3 配点と採点項目（27ページ・団体競技）
     imageSource: '/images/rules/SK(D)group.png',
-    caption: '団体競技の配点と採点項目（難度・芸術と多様性）',
+    caption: '団体競技の配点と採点項目',
     roots: [
       {
         label: '難度（D）',
@@ -128,15 +119,7 @@ export const SCORING_TREES: readonly RuleTree[] = [
           },
         ],
       },
-    ],
-    note: '実施（E）の枝は次の図にある。',
-    source: '新体操男子規則 2025年版 3 採点規則 3.4.3 配点と採点項目（27ページ）',
-  },
-  {
-    // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.3 配点と採点項目（27ページ・団体競技）
-    imageSource: '/images/rules/SK(E)group.png',
-    caption: '団体競技の配点と採点項目（実施）',
-    roots: [
+
       {
         label: '実施（E）',
         note: '10点満点（減点法）',
@@ -160,7 +143,6 @@ export const SCORING_TREES: readonly RuleTree[] = [
         ],
       },
     ],
-    note: '難度（D）と芸術と多様性（A）の枝は前の図にある。',
     source: '新体操男子規則 2025年版 3 採点規則 3.4.3 配点と採点項目（27ページ）',
   },
   {

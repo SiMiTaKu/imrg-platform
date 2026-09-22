@@ -72,7 +72,7 @@ export const GROUP_SCORING_STRUCTURE: RuleNode[] = [
         key: 'scoring.group.scoreAllocation',
         number: '3.4.3',
         page: 27,
-        figures: ['SK(D)group', 'SK(E)group'],
+        figures: ['SK(D)group'],
       },
       {
         key: 'scoring.group.difficulty',

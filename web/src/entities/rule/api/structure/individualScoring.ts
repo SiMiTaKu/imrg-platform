@@ -29,7 +29,7 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
         key: 'scoring.individual.scoreAllocation',
         number: '3.5.4',
         page: 39,
-        figures: ['SK(D)single', 'SK(E)single'],
+        figures: ['SK(D)single'],
       },
       {
         key: 'scoring.individual.difficulty',

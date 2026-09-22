@@ -1108,6 +1108,14 @@
     padding-left: $space-size-24;
   }
 
+  /*
+    段が下がるほど、親の箱の右寄りから線が出るようにする。
+    左端から出すと、どの段の線も同じ位置から始まり、段が下がったことが分からない
+  */
+  ul.tree.leaf {
+    margin-left: $space-size-24;
+  }
+
   ul.tree > li {
     position: relative;
     padding: $space-size-4 0;
