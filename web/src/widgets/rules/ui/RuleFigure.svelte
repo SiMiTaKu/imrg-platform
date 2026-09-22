@@ -706,12 +706,15 @@
   */
   .scroller.compact th,
   .scroller.compact td {
+    // 1列あたりの最小の幅は決めない。横へ送らずに収めるため
     min-width: 0;
     white-space: nowrap;
   }
 
+  // 中身が短いぶん、列を等分して表を入れ物いっぱいに広げる。
+  // 中身の幅で止めると、右に白い余白が残って落ち着かない
   .scroller.compact table {
-    width: auto;
+    table-layout: fixed;
   }
 
   /*
