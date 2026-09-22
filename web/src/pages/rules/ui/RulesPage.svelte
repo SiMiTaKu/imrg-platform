@@ -120,7 +120,11 @@
       <RuleFigure {image} />
     {/each}
     <p class="line" style:--rule-line-depth={line.depth}>
-      {#if line.label}<span class="line-label">{line.label}</span>{/if}
+      {#if line.label}
+        <span class="line-label">{line.label}</span>
+      {:else if line.bullet}
+        <span class="line-label" aria-hidden="true">・</span>
+      {/if}
       <span class="line-text">{line.text}</span>
     </p>
     <!-- 冊子で本文の途中に挟まっている表や図は、その行のすぐ下に出す -->

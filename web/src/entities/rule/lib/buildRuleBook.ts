@@ -104,7 +104,8 @@ const renderBody = (entry: RuleEntry): string =>
  */
 const toLines = (items: readonly RuleItem[] = [], depth = 0): LocalizedRuleLine[] =>
   items.flatMap((item) => [
-    { depth, label: item.label ?? '', text: item.text },
+    // 番号の無い項目は、冊子と同じように中黒で並べる
+    { depth, label: item.label ?? '', text: item.text, bullet: item.label === undefined },
     ...toLines(item.items, depth + 1),
   ])
 
@@ -114,8 +115,9 @@ const toLines = (items: readonly RuleItem[] = [], depth = 0): LocalizedRuleLine[
  * @returns 行の並び。導入の文は番号の無い行になる
  */
 const bodyLines = (entry: RuleEntry): LocalizedRuleLine[] => [
-  ...(entry.lead ? [{ depth: 0, label: '', text: entry.lead }] : []),
-  ...toLines(entry.items),
+  ...(entry.lead ? [{ depth: 0, label: '', text: entry.lead, bullet: false }] : []),
+  // 導入の文がある条では、項目を1段下げる。冊子も導入の文より内側に置いている
+  ...toLines(entry.items, entry.lead ? 1 : 0),
 ]
 
 /**

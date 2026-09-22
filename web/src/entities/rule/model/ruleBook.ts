@@ -76,6 +76,14 @@ export interface LocalizedRuleLine {
   depth: number
   /** 番号。「（1）」「①」など。番号が無い行では空 */
   label: string
+  /**
+   * 中黒（・）を付けるか。
+   *
+   * @remarks
+   * 冊子で番号を振らずに並べてある項目は、中黒で箇条書きにしてある。
+   * 印を付けないと、導入の文と見分けが付かず、ひと続きの文章に見えてしまう
+   */
+  bullet: boolean
   /** 本文 */
   text: string
   /** この行の直後に差し込む図や表。冊子で本文の途中に挟まっているもの */
