@@ -59,21 +59,33 @@
     印刷のボタンが body に印を付け、印刷する用紙に data-printing を立てる。
     ページの外にある要素まで届かせる必要があるので :global で書く
   */
+  @page {
+    size: a4 portrait;
+    margin: 10mm;
+  }
+
   @media print {
-    :global(body[data-printing] *) {
-      visibility: hidden;
+    /*
+      用紙までの道すじにある要素の、ほかの子を消す。
+      隠す（visibility: hidden）だけだと場所が残り、白紙が何十枚も続いてしまう
+    */
+    :global(body[data-printing] [data-print-path] > *:not([data-print-path], [data-printing])) {
+      display: none;
     }
 
-    :global(body[data-printing] [data-printing='true']),
-    :global(body[data-printing] [data-printing='true'] *) {
-      visibility: visible;
+    :global(body[data-printing] [data-print-path]) {
+      display: block;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      overflow: visible;
     }
 
+    // 1枚に収まるよう、紙に出すときだけ字を小さくする
     :global(body[data-printing] [data-printing='true']) {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+      font-size: 8pt;
     }
 
     main {

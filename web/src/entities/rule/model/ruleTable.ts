@@ -75,6 +75,23 @@ export interface RulePaper {
   readonly signatures?: readonly string[]
 }
 
+/** ます目の文字の寄せ方 */
+export type RuleTableAlign = 'start' | 'center' | 'end'
+
+/**
+ * 棒人間を出す列の指定。
+ *
+ * @remarks
+ * 技の名前から姿勢を選ぶので、名前の列と絵の列の両方を指す。
+ * 絵の列のます目は空のままにしておく
+ */
+export interface StickFigureColumns {
+  /** 技の名前が入っている列（0 から数える） */
+  readonly nameColumn: number
+  /** 絵を出す列（0 から数える）。ます目は空にしておく */
+  readonly figureColumn: number
+}
+
 /** 手具の種類。冊子の採点票に絵で並んでいる4つ */
 export const ApparatusKind = {
   /** スティック */
@@ -172,14 +189,22 @@ export interface RuleTable {
    */
   readonly paper?: RulePaper
   /**
-   * 技名のます目に、仮の棒人間を添えるか。
+   * 仮の棒人間を出す列。
    *
    * @remarks
    * 冊子の図解は枠の中に線画が入っているが、線画は文字にできず画像も無い。
-   * 技の名前から姿勢を選んで棒人間を描き、絵の位置に添える。
+   * 技の名前から姿勢を選んで棒人間を描き、絵の列に出す。
    * いずれプロジェクトのキャラクターのイラストに差し替える
    */
-  readonly stickFigures?: boolean
+  readonly stickFigures?: StickFigureColumns
+  /**
+   * 列ごとの文字の寄せ方。列の数だけ並べる。
+   *
+   * @remarks
+   * 難度や減点のように記号や数字しか入らない列は真ん中に寄せる。
+   * 書かないときは左に寄せる
+   */
+  readonly columnAligns?: readonly RuleTableAlign[]
   /** 表の下に置く補足 */
   readonly note?: string
   /**

@@ -110,14 +110,42 @@
    * @remarks
    * 紙に出すのはブラウザーに任せる。PDF として残したい人は、印刷の窓から保存できる
    */
+  let figure = $state<HTMLElement>()
+
+  /**
+   * 紙に出す用紙までの道すじに印を付ける
+   * @param element - 用紙の要素
+   * @returns 印を消す手順
+   */
+  const markPrintPath = (element: HTMLElement) => {
+    const marked: HTMLElement[] = []
+    for (let node = element.parentElement; node; node = node.parentElement) {
+      node.dataset.printPath = 'true'
+      marked.push(node)
+    }
+    return () => {
+      for (const node of marked) delete node.dataset.printPath
+    }
+  }
+
+  /**
+   * この用紙だけを印刷する。
+   *
+   * @remarks
+   * 紙に出すのはブラウザーに任せる。PDF として残したい人は、印刷の窓から保存できる。
+   * ほかの中身は「隠す」のではなく「消す」。隠すだけだと場所が残り、白紙が何十枚も続く
+   */
   const print = () => {
+    if (!figure) return
     printing = true
     document.body.dataset.printing = 'true'
+    const clear = markPrintPath(figure)
     // 印刷の目印が画面に行き渡ってから窓を開く
     requestAnimationFrame(() => {
       globalThis.print()
       printing = false
       delete document.body.dataset.printing
+      clear()
     })
   }
 
@@ -389,7 +417,8 @@
               <th
                 scope="col"
                 class:corner={columnIndex < headerColumns}
-                class:narrow={columnIndex >= narrowFromIndex}>{column}</th
+                class:narrow={columnIndex >= narrowFromIndex}
+                style:text-align={table.columnAligns?.[columnIndex]}>{column}</th
               >
             {/each}
           </tr>
@@ -421,13 +450,17 @@
                       colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}
                       class:narrow={cell.isNarrow}
-                      class:with-figure={table.stickFigures && cellIndex === headerColumns}
+                      class:figure-cell={table.stickFigures?.figureColumn === cellIndex}
+                      style:text-align={table.columnAligns?.[cellIndex]}
                     >
-                      {#if table.stickFigures && cellIndex === headerColumns}
+                      {#if table.stickFigures?.figureColumn === cellIndex}
                         <!-- 冊子の線画の代わりに出す、仮の棒人間 -->
-                        <StickFigure pose={poseOf(cell.text)} label={cell.text} />
+                        {@const name = row.cells[table.stickFigures.nameColumn]}
+                        {@const label = typeof name === 'string' ? name : (name?.text ?? '')}
+                        <StickFigure pose={poseOf(label)} {label} />
+                      {:else}
+                        {cell.text}
                       {/if}
-                      <span class="cell-text">{cell.text}</span>
                     </td>
                   {/if}
                 {/if}
@@ -440,7 +473,7 @@
   {/if}
 {/snippet}
 
-<figure class="rule-figure" data-printing={printing ? 'true' : undefined}>
+<figure bind:this={figure} class="rule-figure" data-printing={printing ? 'true' : undefined}>
   {#if table}
     <!-- 文字の表。言葉で探せて、訳せて、スマホでも読める -->
     {#if !table.paper}
@@ -615,14 +648,11 @@
 </figure>
 
 <style lang="scss">
-  // 技名と仮の棒人間を横に並べる
-  .with-figure {
-    white-space: normal;
-  }
-
-  .with-figure .cell-text {
-    display: inline-block;
-    vertical-align: middle;
+  // 仮の棒人間だけが入る列。絵のぶんだけの幅で足りる
+  .figure-cell {
+    min-width: 0;
+    padding: $space-size-4;
+    text-align: center;
   }
 
   // 印刷のボタン。用紙の下に置く

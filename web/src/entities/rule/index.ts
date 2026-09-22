@@ -29,6 +29,8 @@ export {
 } from './model/ruleTable'
 export type {
   RulePaper,
+  RuleTableAlign,
+  StickFigureColumns,
   RuleSeat,
   RuleSeatRow,
   RuleSeating,
