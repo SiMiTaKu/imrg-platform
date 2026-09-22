@@ -92,6 +92,8 @@
 
       return {
         ...cell,
+        // 左から何列目に置かれるか。横に続けて使うます目があると、並び順とずれる
+        startColumn,
         // 幅を詰めるのは、横に続けて使っていない、右寄りの列だけ
         isNarrow: cell.colSpan === 1 && startColumn >= narrowFromIndex,
       }
@@ -437,7 +439,7 @@
               {#each placeCells(mergedRows[rowIndex] ?? []) as cell, cellIndex (cellIndex)}
                 <!-- 上のます目に呑まれたものは出さない -->
                 {#if cell.rowSpan > 0}
-                  {#if cellIndex < headerColumns}
+                  {#if cell.startColumn < headerColumns}
                     <!-- いちばん左がその行の名前になっている表。読み上げに伝わるよう th で出す -->
                     <th
                       scope="row"
@@ -450,10 +452,10 @@
                       colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}
                       class:narrow={cell.isNarrow}
-                      class:figure-cell={table.stickFigures?.figureColumn === cellIndex}
-                      style:text-align={table.columnAligns?.[cellIndex]}
+                      class:figure-cell={table.stickFigures?.figureColumn === cell.startColumn}
+                      style:text-align={table.columnAligns?.[cell.startColumn]}
                     >
-                      {#if table.stickFigures?.figureColumn === cellIndex}
+                      {#if table.stickFigures?.figureColumn === cell.startColumn}
                         <!-- 冊子の線画の代わりに出す、仮の棒人間 -->
                         {@const name = row.cells[table.stickFigures.nameColumn]}
                         {@const label = typeof name === 'string' ? name : (name?.text ?? '')}
@@ -873,7 +875,7 @@
     縦に書くと1行ぶんの幅で済み、残りを本文の列に回せる。
     縦書きでは text-align が上下方向の揃えになるので、中央は center で指定する
   */
-  .scroller.vertical-header .row-header {
+  .scroller.vertical-header .row-header:first-child {
     min-width: 0;
 
     // 縦書きでは行の高さが横幅になる。1.7 のままだと列に収まらず、字が切れる

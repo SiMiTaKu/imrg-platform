@@ -42,9 +42,9 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
     mergeEmptyCells: true,
     headerColumns: 1,
     verticalHeader: true,
-    // 分類は縦書きで1行ぶん、幅は「1.00」が折り返さないだけ、
-    // 減点は「0.1 ／ 0.2 ／ 0.3」が収まるだけ取り、残りを具体的な内容に回す
-    columnWidths: ['5%', '22%', '9%', '46%', '18%'],
+    // 分類は見出しの「分類」の2文字が収まるだけ、幅は「1.00」が折り返さないだけ、
+    // 減点は「0.1 ／ 0.2 ／ 0.3」がはみ出さないだけ取り、残りを具体的な内容に回す
+    columnWidths: ['9%', '20%', '9%', '41%', '21%'],
     layout: 'list',
     columns: COLUMNS,
     rows: [
@@ -176,9 +176,9 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
     mergeEmptyCells: true,
     headerColumns: 1,
     verticalHeader: true,
-    // 分類は縦書きで1行ぶん、幅は「1.00」が折り返さないだけ、
-    // 減点は「0.1 ／ 0.2 ／ 0.3」が収まるだけ取り、残りを具体的な内容に回す
-    columnWidths: ['5%', '22%', '9%', '46%', '18%'],
+    // 分類は見出しの「分類」の2文字が収まるだけ、幅は「1.00」が折り返さないだけ、
+    // 減点は「0.1 ／ 0.2 ／ 0.3」がはみ出さないだけ取り、残りを具体的な内容に回す
+    columnWidths: ['9%', '20%', '9%', '41%', '21%'],
     layout: 'list',
     columns: COLUMNS,
     rows: [
