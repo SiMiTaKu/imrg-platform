@@ -12,8 +12,9 @@ import type { RuleNode } from '../../model/ruleSource'
  * 線画はまだ画像として取り込んでいないので、名前と難度だけを文字で持ち直した表
  * （`api/tables/difficultyFigures.ts`）を `figures` でつないである。
  *
- * 画面に出るのは 章→条→節→項 の4段まで。3.6.3.1.1 以下は5段目で出ないため、
- * 図解の表は項にあたる 3.6.3.1（徒手系）と 3.6.3.2（転回系）にまとめてぶら下げてある
+ * 画面に出るのは 章→条→節→項 の4段まで。図解の表は項にあたる 3.6.3.1（徒手系）と
+ * 3.6.3.2（転回系）にまとめてぶら下げてある。冊子がその下に置いている小見出し
+ * （1 跳躍系・2 バランスなど）は、5段目にあたるのでふしにはせず、表の題に入れてある
  */
 export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
   {
@@ -34,7 +35,8 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
         key: 'scoring.individual.difficulty',
         number: '3.5.5',
         page: 40,
-        figures: ['tossdifficulties', 'tables/rope-jump-difficulty'],
+        // 冊子40ページの並びどおり、価値点・ロープの跳び・投げ受けの順
+        figures: ['tables/difficulty-value', 'tables/rope-jump-difficulty', 'tossdifficulties'],
       },
       {
         key: 'scoring.individual.artistry',
@@ -138,28 +140,6 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
               'figures/free-hand-handstand',
               'figures/free-hand-flexibility',
             ],
-            children: [
-              {
-                key: 'scoring.difficultyTable.illustrations.freeHand.jump',
-                number: '3.6.3.1.1',
-                page: 52,
-              },
-              {
-                key: 'scoring.difficultyTable.illustrations.freeHand.balance',
-                number: '3.6.3.1.2',
-                page: 53,
-              },
-              {
-                key: 'scoring.difficultyTable.illustrations.freeHand.handstand',
-                number: '3.6.3.1.3',
-                page: 53,
-              },
-              {
-                key: 'scoring.difficultyTable.illustrations.freeHand.flexibility',
-                number: '3.6.3.1.4',
-                page: 54,
-              },
-            ],
           },
           {
             key: 'scoring.difficultyTable.illustrations.acrobatic',
@@ -171,33 +151,6 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
               'figures/acrobatic-sideward',
               'figures/acrobatic-connected-series',
             ],
-            children: [
-              {
-                key: 'scoring.difficultyTable.illustrations.acrobatic.forward',
-                number: '3.6.3.2.1',
-                page: 55,
-              },
-              {
-                key: 'scoring.difficultyTable.illustrations.acrobatic.backward',
-                number: '3.6.3.2.2',
-                page: 56,
-              },
-              {
-                key: 'scoring.difficultyTable.illustrations.acrobatic.sideward',
-                number: '3.6.3.2.3',
-                page: 58,
-              },
-              {
-                key: 'scoring.difficultyTable.illustrations.acrobatic.saltoSeries',
-                number: '3.6.3.2.4',
-                page: 58,
-              },
-              {
-                key: 'scoring.difficultyTable.illustrations.acrobatic.connectedSeries',
-                number: '3.6.3.2.5',
-                page: 59,
-              },
-            ],
           },
         ],
       },
@@ -207,12 +160,22 @@ export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
     key: 'scoring.forms',
     number: '3.7',
     page: 61,
-    figures: [
-      'forms/score-d',
-      'forms/score-a',
-      'forms/score-e',
-      'forms/score-line-time',
-      'forms/chief-judge-deduction',
+    // 用紙そのものは子のふしにぶら下げる。
+    // 大項（3.7 のような段）に付けた図は画面に出ない作りのため
+    children: [
+      {
+        key: 'scoring.forms.sheets',
+        // 冊子は 3.7 の下に用紙を並べているだけで、用紙ごとの番号は振っていない
+        number: '',
+        page: 61,
+        figures: ['forms/score-d', 'forms/score-a', 'forms/score-e', 'forms/score-line-time'],
+      },
+      {
+        key: 'scoring.forms.chiefJudge',
+        number: '',
+        page: 62,
+        figures: ['forms/chief-judge-deduction'],
+      },
     ],
   },
 ]

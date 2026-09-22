@@ -248,7 +248,9 @@
                                 aria-expanded={isSectionOpen}
                                 aria-controls={sectionId}
                               >
-                                <span class="article-number">{section.number}</span>
+                                {#if section.number}
+                                  <span class="article-number">{section.number}</span>
+                                {/if}
                                 <span class="label">{section.title}</span>
                                 <span class="mark" aria-hidden="true"></span>
                               </button>
@@ -274,7 +276,9 @@
                                     {#each section.block as block, blockIndex (blockIndex)}
                                       <div class="item">
                                         <h5>
-                                          <span class="article-number">{block.number}</span>
+                                          {#if block.number}
+                                            <span class="article-number">{block.number}</span>
+                                          {/if}
                                           {block.title}
                                         </h5>
                                         <p>{block.element}</p>

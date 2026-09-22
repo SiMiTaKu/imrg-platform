@@ -661,38 +661,17 @@ export const INDIVIDUAL_SCORING_JA: RuleContent = {
     title: '徒手系難度',
     lead: '※団体での採用条件 3.4.4.3　個人での採用条件 3.5.5.3',
   },
-  'scoring.difficultyTable.illustrations.freeHand.jump': {
-    title: '跳躍系',
-  },
-  'scoring.difficultyTable.illustrations.freeHand.balance': {
-    title: 'バランス',
-  },
-  'scoring.difficultyTable.illustrations.freeHand.handstand': {
-    title: '倒立',
-  },
-  'scoring.difficultyTable.illustrations.freeHand.flexibility': {
-    title: '柔軟',
-  },
   'scoring.difficultyTable.illustrations.acrobatic': {
     title: '転回系難度',
     lead: '※団体競技での採用条件 3.4.4.4 個人競技での採用条件 3.5.5.4',
   },
-  'scoring.difficultyTable.illustrations.acrobatic.forward': {
-    title: '前方系',
-  },
-  'scoring.difficultyTable.illustrations.acrobatic.backward': {
-    title: '後方系',
-  },
-  'scoring.difficultyTable.illustrations.acrobatic.sideward': {
-    title: '側方系',
-  },
-  'scoring.difficultyTable.illustrations.acrobatic.saltoSeries': {
-    title: '宙返りの連続（図解なし）',
-  },
-  'scoring.difficultyTable.illustrations.acrobatic.connectedSeries': {
-    title: '連続した転回',
-  },
   'scoring.forms': {
     title: '採点票等',
+  },
+  'scoring.forms.sheets': {
+    title: '採点票',
+  },
+  'scoring.forms.chiefJudge': {
+    title: '審判長減点表（男子）',
   },
 }
