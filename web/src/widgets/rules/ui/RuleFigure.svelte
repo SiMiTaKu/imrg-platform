@@ -6,8 +6,8 @@
     findRuleTable,
     findRuleTree,
     hasRowHeader,
+    mergeEmptyCellsDownward,
     narrowColumnCount,
-    normalizeRuleTableCell,
   } from '@entities/rule'
   import type { RuleShape, RuleShapeKind, RuleTreeNode } from '@entities/rule'
   import type { Image as RuleImage } from '@shared/model'
@@ -66,22 +66,23 @@
    * @param cells - 行のます目
    * @returns 中身・横幅・左から何列目か・幅を詰める列かどうか
    */
-  const placeCells = (cells: readonly (string | { text: string; colSpan?: number })[]) => {
+  const placeCells = (cells: readonly { text: string; colSpan: number; rowSpan: number }[]) => {
     let column = 0
 
     return cells.map((cell) => {
-      const { text, colSpan } = normalizeRuleTableCell(cell)
       const startColumn = column
-      column += colSpan
+      column += cell.colSpan
 
       return {
-        text,
-        colSpan,
+        ...cell,
         // 幅を詰めるのは、横に続けて使っていない、右寄りの列だけ
-        isNarrow: colSpan === 1 && startColumn >= narrowFromIndex,
+        isNarrow: cell.colSpan === 1 && startColumn >= narrowFromIndex,
       }
     })
   }
+
+  // 縦に続く空のます目は、上のます目にまとめてから出す
+  const mergedRows = $derived(table ? mergeEmptyCellsDownward(table) : [])
 
   /*
     寸法図の描き方。
@@ -333,8 +334,17 @@
       tabindex={isScrollable ? 0 : undefined}
       aria-label={isScrollable ? table.caption : undefined}
     >
-      <table>
+      <table class:sized={table.columnWidths}>
         <caption class="visually-hidden">{table.caption}</caption>
+        {#if table.columnWidths}
+          <!-- 書くことが多い列は広く、数字だけの列は狭くする -->
+          <colgroup>
+            {#if showsRowHeader}<col />{/if}
+            {#each table.columnWidths as width, widthIndex (widthIndex)}
+              <col style:width />
+            {/each}
+          </colgroup>
+        {/if}
         <thead>
           <tr>
             {#if showsRowHeader}
@@ -360,15 +370,23 @@
               {#if showsRowHeader}
                 <th scope="row" class="row-header">{row.header ?? ''}</th>
               {/if}
-              {#each placeCells(row.cells) as cell, cellIndex (cellIndex)}
-                {#if table.firstColumnIsHeader && cellIndex === 0}
-                  <!-- いちばん左がその行の名前になっている表。読み上げに伝わるよう th で出す -->
-                  <th scope="row" class="row-header">{cell.text}</th>
-                {:else}
-                  <td
-                    colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
-                    class:narrow={cell.isNarrow}>{cell.text}</td
-                  >
+              {#each placeCells(mergedRows[rowIndex] ?? []) as cell, cellIndex (cellIndex)}
+                <!-- 上のます目に呑まれたものは出さない -->
+                {#if cell.rowSpan > 0}
+                  {#if table.firstColumnIsHeader && cellIndex === 0}
+                    <!-- いちばん左がその行の名前になっている表。読み上げに伝わるよう th で出す -->
+                    <th
+                      scope="row"
+                      class="row-header"
+                      rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}>{cell.text}</th
+                    >
+                  {:else}
+                    <td
+                      colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
+                      rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}
+                      class:narrow={cell.isNarrow}>{cell.text}</td
+                    >
+                  {/if}
                 {/if}
               {/each}
             </tr>
@@ -714,6 +732,11 @@
   // 中身が短いぶん、列を等分して表を入れ物いっぱいに広げる。
   // 中身の幅で止めると、右に白い余白が残って落ち着かない
   .scroller.compact table {
+    table-layout: fixed;
+  }
+
+  // 列ごとの幅を決めた表は、その割り当てどおりに並べる
+  table.sized {
     table-layout: fixed;
   }
 

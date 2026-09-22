@@ -119,6 +119,8 @@ export const REQUIREMENT_TABLES: readonly RuleTable[] = [
     // 内容の列を痩せさせてしまうため
     imageSource: '/images/rules/tables/free-hand-requirements.png',
     caption: '個人徒手の要求要素と数',
+    mergeEmptyCells: true,
+    columnWidths: ['20%', '46%', '11%', '11%', '12%'],
     layout: 'list',
     narrowColumns: 3,
     columns: ['要素', '主な内容', 'シニア', 'ジュニア', 'キッズ'],
@@ -174,6 +176,7 @@ export const REQUIREMENT_TABLES: readonly RuleTable[] = [
     // 3つ目が空いている行があるので、組み合わせを3つの列に分けて持った
     imageSource: '/images/rules/tables/free-hand-combined.png',
     caption: '複合的な徒手体操の組み合わせ',
+    mergeEmptyCells: true,
     layout: 'list',
     narrowColumns: 0,
     cornerLabel: '名称',

@@ -93,6 +93,26 @@ export interface RuleTable {
    * ます目の中身は書き換えず、出し方だけを変える
    */
   readonly firstColumnIsHeader?: boolean
+  /**
+   * 縦に続く空のます目を、上のます目にまとめるか。
+   *
+   * @remarks
+   * 欠点表のように「分類」「内容」が何行かにわたって同じ表では、
+   * 2行目から先を空にして書いてある。そのまま出すと空の枠が並んで
+   * 読みにくいので、上のます目を縦に伸ばして1つにする。
+   *
+   * 書き込むための様式（`purpose: 'form'`）では、空のます目は
+   * 書き込む場所なので、この指定を立てない
+   */
+  readonly mergeEmptyCells?: boolean
+  /**
+   * 列ごとの幅の割り当て。列の数だけ、百分率で並べる。
+   *
+   * @remarks
+   * 「具体的な内容」のように書くことが多い列は広く、「減点」のように
+   * 数字だけの列は狭くする。書かないときは、中身に応じて振り分けられる
+   */
+  readonly columnWidths?: readonly string[]
   /** 表の下に置く補足 */
   readonly note?: string
   /**
@@ -240,3 +260,67 @@ export const normalizeRuleTableCell = (cell: RuleTableCellSource): Required<Rule
  */
 export const hasRowHeader = (table: RuleTable): boolean =>
   table.cornerLabel !== undefined || table.rows.some((row) => row.header !== undefined)
+
+/**
+ * 縦に続く空のます目を、上のます目にまとめた結果。
+ *
+ * @remarks
+ * `rowSpan` が 0 のます目は、上のます目に呑まれたので出さない
+ */
+export interface MergedRuleTableCell {
+  /** ます目の中身 */
+  readonly text: string
+  /** 横にいくつ分か */
+  readonly colSpan: number
+  /** 縦にいくつ分か。0 なら上に呑まれたので出さない */
+  readonly rowSpan: number
+}
+
+/**
+ * 縦に続く空のます目を、上のます目にまとめる。
+ *
+ * @remarks
+ * 欠点表のように「分類」「内容」が何行かにわたって同じ表では、2行目から先を
+ * 空にして書いてある。そのまま出すと空の枠が並んで読みにくいので、上のます目を
+ * 縦に伸ばして1つにする。
+ *
+ * 区分の見出し（`group`）をまたいでは、まとめない。区分が変われば別のかたまりになる
+ *
+ * @param table - 表
+ * @returns 行ごと・ます目ごとの、まとめた結果
+ */
+export const mergeEmptyCellsDownward = (
+  table: RuleTable,
+): readonly (readonly MergedRuleTableCell[])[] => {
+  const rows = table.rows.map((row) => row.cells.map(normalizeRuleTableCell))
+  const merged: MergedRuleTableCell[][] = rows.map((cells) =>
+    cells.map((cell) => ({ text: cell.text, colSpan: cell.colSpan, rowSpan: 1 })),
+  )
+
+  if (!table.mergeEmptyCells) return merged
+
+  const columnCount = Math.max(...rows.map((cells) => cells.length), 0)
+
+  for (let column = 0; column < columnCount; column += 1) {
+    let anchor = -1
+    for (let row = 0; row < merged.length; row += 1) {
+      // 区分の見出しで区切る。区分が変われば、まとめ直す
+      if (table.rows[row].group !== undefined) anchor = -1
+
+      const cell = merged[row][column]
+      if (cell === undefined) continue
+
+      if (cell.text === '' && anchor >= 0) {
+        merged[anchor][column] = {
+          ...merged[anchor][column],
+          rowSpan: merged[anchor][column].rowSpan + 1,
+        }
+        merged[row][column] = { ...cell, rowSpan: 0 }
+      } else if (cell.text !== '') {
+        anchor = row
+      }
+    }
+  }
+
+  return merged
+}

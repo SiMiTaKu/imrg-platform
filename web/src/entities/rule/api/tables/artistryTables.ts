@@ -39,6 +39,8 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
     //   「芸術性と技術価値」「その他の技術的価値」の中に入った
     imageSource: '/images/rules/(D)kettenhyou.png',
     caption: '芸術性と多様性（A）欠点表（団体競技）',
+    mergeEmptyCells: true,
+    columnWidths: ['14%', '20%', '8%', '42%', '16%'],
     layout: 'list',
     narrowColumns: 1,
     columns: COLUMNS,
@@ -171,6 +173,8 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
     //   「転回中の操作」の3つに分かれている
     imageSource: '/images/rules/(D)kettenhyou(S).png',
     caption: '芸術性と多様性（A）欠点表（個人競技）',
+    mergeEmptyCells: true,
+    columnWidths: ['14%', '20%', '8%', '42%', '16%'],
     layout: 'list',
     narrowColumns: 1,
     columns: COLUMNS,

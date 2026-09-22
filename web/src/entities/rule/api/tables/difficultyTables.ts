@@ -422,6 +422,7 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     // 言葉で探せるよう「第1グループ」に直した
     imageSource: '/images/rules/tables/group-series-difficulty.png',
     caption: 'シリーズの難度の判定（3・2または4・1で分かれた場合）',
+    compact: true,
     firstColumnIsHeader: true,
     layout: 'list',
     narrowColumns: 0,

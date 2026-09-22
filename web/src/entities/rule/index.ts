@@ -27,7 +27,12 @@ export {
   findRuleTable,
   findRuleTree,
 } from './api/tables'
-export { hasRowHeader, narrowColumnCount, normalizeRuleTableCell } from './model/ruleTable'
+export {
+  hasRowHeader,
+  mergeEmptyCellsDownward,
+  narrowColumnCount,
+  normalizeRuleTableCell,
+} from './model/ruleTable'
 export type {
   RuleSeat,
   RuleSeatRow,
