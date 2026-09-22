@@ -58,3 +58,7 @@ export type {
   RuleStructure,
   TranslationStatus,
 } from './model/ruleSource'
+
+// 冊子の線画の代わりに出す、仮の棒人間。いずれキャラクターのイラストに差し替える
+export { STICK_SKELETONS, StickPose, poseOf } from './model/stickFigure'
+export type { StickPoint, StickSkeleton } from './model/stickFigure'

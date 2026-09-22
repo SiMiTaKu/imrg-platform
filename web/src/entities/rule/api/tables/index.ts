@@ -7,6 +7,7 @@ import { DIFFICULTY_TABLES } from './difficultyTables'
 import { EXECUTION_TABLES } from './executionTables'
 import { FEE_TABLES } from './feeTables'
 import { FORM_TABLES } from './formTables'
+import { FREE_HAND_FIGURE_TABLES } from './freeHandFigures'
 import { JUDGE_SEATINGS } from './judgeSeating'
 import { JUDGE_TABLES } from './judgeTables'
 import { REQUIREMENT_TABLES } from './requirementTables'
@@ -30,6 +31,7 @@ export const RULE_TABLES: readonly RuleTable[] = [
   ...EXECUTION_TABLES,
   ...FEE_TABLES,
   ...FORM_TABLES,
+  ...FREE_HAND_FIGURE_TABLES,
   ...FREE_HAND_TABLES,
   ...JUDGE_TABLES,
   ...REQUIREMENT_TABLES,

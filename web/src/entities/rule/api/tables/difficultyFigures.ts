@@ -42,6 +42,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/free-hand-jump.png',
     caption: '図解 徒手系難度（1 跳躍系）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     rows: [
@@ -78,6 +79,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/free-hand-balance.png',
     caption: '図解 徒手系難度（2 バランス）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     rows: [
@@ -104,6 +106,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/free-hand-handstand.png',
     caption: '図解 徒手系難度（3 倒立）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     rows: [
@@ -136,6 +139,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/free-hand-flexibility.png',
     caption: '図解 徒手系難度（4 柔軟）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     rows: [
@@ -160,6 +164,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/acrobatic-forward.png',
     caption: '図解 転回系難度（1 前方系）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     rows: [
@@ -197,6 +202,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/acrobatic-backward.png',
     caption: '図解 転回系難度（2 後方系）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     rows: [
@@ -249,6 +255,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/acrobatic-sideward.png',
     caption: '図解 転回系難度（3 側方系）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     rows: [
@@ -274,6 +281,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/figures/acrobatic-connected-series.png',
     caption: '図解 転回系難度（5 連続した転回）',
     layout: 'list',
+    stickFigures: true,
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     rows: [

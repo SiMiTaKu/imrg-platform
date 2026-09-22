@@ -171,6 +171,15 @@ export interface RuleTable {
    * `purpose: 'form'` の表にだけ書く
    */
   readonly paper?: RulePaper
+  /**
+   * 技名のます目に、仮の棒人間を添えるか。
+   *
+   * @remarks
+   * 冊子の図解は枠の中に線画が入っているが、線画は文字にできず画像も無い。
+   * 技の名前から姿勢を選んで棒人間を描き、絵の位置に添える。
+   * いずれプロジェクトのキャラクターのイラストに差し替える
+   */
+  readonly stickFigures?: boolean
   /** 表の下に置く補足 */
   readonly note?: string
   /**

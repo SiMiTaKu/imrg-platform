@@ -12,7 +12,8 @@ import type { RuleNode } from '../../model/ruleSource'
  * `number` は冊子に印刷されているとおりに持たせたので、兄弟どうしで桁が揃わない。
  *
  * 3.8.9 難度表（図解）は人の動きの線画が並ぶだけの6ページで、本文は無い。
- * 節として置くだけにしてある（差し替える図のデータは `api/tables` にまだ無い）
+ * 線画は文字にできないので、枠に印刷されている通し番号・技名・難度だけを
+ * `api/tables/freeHandFigures.ts` に写し、節ごとの `figures` からつないである
  */
 export const FREE_HAND_STRUCTURE: RuleNode[] = [
   {
@@ -95,12 +96,42 @@ export const FREE_HAND_STRUCTURE: RuleNode[] = [
         number: '3.8.9',
         page: 71,
         children: [
-          { key: 'scoring.freeHand.difficultyFigures.jump', number: '1', page: 71 },
-          { key: 'scoring.freeHand.difficultyFigures.flexibility', number: '2', page: 72 },
-          { key: 'scoring.freeHand.difficultyFigures.balance', number: '3', page: 72 },
-          { key: 'scoring.freeHand.difficultyFigures.handstand', number: '4', page: 73 },
-          { key: 'scoring.freeHand.difficultyFigures.turn', number: '5', page: 74 },
-          { key: 'scoring.freeHand.difficultyFigures.acrobatic', number: '6', page: 76 },
+          {
+            key: 'scoring.freeHand.difficultyFigures.jump',
+            number: '1',
+            page: 71,
+            figures: ['figures/free-hand-figure-jump'],
+          },
+          {
+            key: 'scoring.freeHand.difficultyFigures.flexibility',
+            number: '2',
+            page: 72,
+            figures: ['figures/free-hand-figure-flexibility'],
+          },
+          {
+            key: 'scoring.freeHand.difficultyFigures.balance',
+            number: '3',
+            page: 72,
+            figures: ['figures/free-hand-figure-balance'],
+          },
+          {
+            key: 'scoring.freeHand.difficultyFigures.handstand',
+            number: '4',
+            page: 73,
+            figures: ['figures/free-hand-figure-handstand'],
+          },
+          {
+            key: 'scoring.freeHand.difficultyFigures.turn',
+            number: '5',
+            page: 74,
+            figures: ['figures/free-hand-figure-turn'],
+          },
+          {
+            key: 'scoring.freeHand.difficultyFigures.acrobatic',
+            number: '6',
+            page: 76,
+            figures: ['figures/free-hand-figure-acrobatic'],
+          },
         ],
       },
       {

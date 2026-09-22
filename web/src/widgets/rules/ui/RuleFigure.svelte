@@ -8,6 +8,7 @@
     findRuleTree,
     hasRowHeader,
     hasShortRowHeader,
+    poseOf,
     headerColumnCount,
     mergeEmptyCellsDownward,
     narrowColumnCount,
@@ -16,6 +17,7 @@
   import type { Image as RuleImage } from '@shared/model'
   import { pageData } from '@shared/lib/device'
   import RulePaperFrame from './RulePaperFrame.svelte'
+  import StickFigure from './StickFigure.svelte'
 
   const {
     image,
@@ -418,8 +420,15 @@
                     <td
                       colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}
-                      class:narrow={cell.isNarrow}>{cell.text}</td
+                      class:narrow={cell.isNarrow}
+                      class:with-figure={table.stickFigures && cellIndex === headerColumns}
                     >
+                      {#if table.stickFigures && cellIndex === headerColumns}
+                        <!-- 冊子の線画の代わりに出す、仮の棒人間 -->
+                        <StickFigure pose={poseOf(cell.text)} label={cell.text} />
+                      {/if}
+                      <span class="cell-text">{cell.text}</span>
+                    </td>
                   {/if}
                 {/if}
               {/each}
@@ -606,6 +615,16 @@
 </figure>
 
 <style lang="scss">
+  // 技名と仮の棒人間を横に並べる
+  .with-figure {
+    white-space: normal;
+  }
+
+  .with-figure .cell-text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   // 印刷のボタン。用紙の下に置く
   .print-action {
     display: flex;
