@@ -329,6 +329,7 @@
       class:matrix={table.layout === 'matrix'}
       class:form={table.purpose === 'form'}
       class:compact={table.compact}
+      class:vertical-header={table.verticalHeader}
       use:watchOverflow
       role={isScrollable ? 'region' : undefined}
       tabindex={isScrollable ? 0 : undefined}
@@ -378,6 +379,7 @@
                     <th
                       scope="row"
                       class="row-header"
+                      colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}>{cell.text}</th
                     >
                   {:else}
@@ -567,9 +569,17 @@
     color: map.get($gray, text);
   }
 
-  // 表と図を横に送る入れ物。ページ全体は広げず、この中だけで送る
+  /*
+    表と図を横に送る入れ物。ページ全体は広げず、この中だけで送る。
+
+    縦にも高さの上限を決めてあるのは、見出し行を追従させるため。
+    横に送るために overflow を持たせると、この入れ物が送りの基準になるので、
+    ここが縦にも送れないと position: sticky が効かない。
+    上限に届かない短い表は、これまでどおりページごと送られる
+  */
   .scroller {
-    overflow-x: auto;
+    max-height: 70vh;
+    overflow: auto;
     border: $border-size-1 solid map.get($gray, 200);
     border-radius: $border-radius-4;
     background: $white;
@@ -648,7 +658,9 @@
     border: $border-size-1 solid map.get($gray, 100);
     line-height: 1.7;
     text-align: left;
-    vertical-align: top;
+
+    // 行の高さが中身でまちまちになるので、どのます目も縦の中央にそろえる
+    vertical-align: middle;
 
     // 表のデータは改行をそのまま出す（手具の形状など、箇条書きになっているもの）
     white-space: pre-line;
@@ -657,10 +669,19 @@
     overflow-wrap: break-word;
   }
 
+  /*
+    見出し行は上に貼り付けて、下へ送っても残るようにする。
+    罫線をまとめる（border-collapse: collapse）と貼り付けた行の線が置き去りに
+    なるので、影で下の縁を引き直している
+  */
   thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     font-size: $font-size-12;
     color: map.get($gray, 700);
     background: map.get($gray, background);
+    box-shadow: inset 0 -#{$border-size-1} 0 map.get($gray, 200);
     white-space: nowrap;
   }
 
@@ -676,6 +697,20 @@
   .corner,
   .row-header {
     background: map.get($gray, background);
+  }
+
+  /*
+    分類のように、同じ言葉が何行にもまたがる列。
+    縦に書くと1行ぶんの幅で済み、残りを本文の列に回せる。
+    縦書きでは text-align が上下方向の揃えになるので、中央は center で指定する
+  */
+  .scroller.vertical-header .row-header {
+    min-width: 0;
+    padding: $space-size-12 $space-size-4;
+    writing-mode: vertical-rl;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
   }
 
   .row-header {
@@ -735,8 +770,15 @@
     table-layout: fixed;
   }
 
-  // 列ごとの幅を決めた表は、その割り当てどおりに並べる
+  /*
+    列ごとの幅を決めた表は、その割り当てどおりに並べる。
+
+    割り当てどおりに並べると、ます目ごとの最小の幅は効かなくなる。
+    そのままだと狭い画面で列がどれも潰れるので、表そのものに最小の幅を決めて、
+    入らないときは入れ物の中で横に送る
+  */
   table.sized {
+    min-width: 50em;
     table-layout: fixed;
   }
 

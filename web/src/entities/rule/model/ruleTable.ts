@@ -113,6 +113,15 @@ export interface RuleTable {
    * 数字だけの列は狭くする。書かないときは、中身に応じて振り分けられる
    */
   readonly columnWidths?: readonly string[]
+  /**
+   * 行の見出しの列を縦書きにするか。
+   *
+   * @remarks
+   * 分類のように、同じ言葉が何行にもまたがる列に使う。
+   * 縦に書くと列が1行ぶんの幅で済み、そのぶんを本文の列に回せる。
+   * `firstColumnIsHeader` と合わせて使う
+   */
+  readonly verticalHeader?: boolean
   /** 表の下に置く補足 */
   readonly note?: string
   /**

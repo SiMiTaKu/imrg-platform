@@ -40,13 +40,15 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/(D)kettenhyou.png',
     caption: '芸術性と多様性（A）欠点表（団体競技）',
     mergeEmptyCells: true,
-    columnWidths: ['14%', '20%', '8%', '42%', '16%'],
+    firstColumnIsHeader: true,
+    verticalHeader: true,
+    // 分類は縦書きで1行ぶん、幅は「1.00」が折り返さないだけ、
+    // 減点は「0.1 ／ 0.2 ／ 0.3」が収まるだけ取り、残りを具体的な内容に回す
+    columnWidths: ['5%', '22%', '9%', '46%', '18%'],
     layout: 'list',
-    narrowColumns: 1,
     columns: COLUMNS,
     rows: [
       {
-        group: '多様性と技術価値',
         cells: [
           '多様性と技術価値',
           '徒手系の種類・組み合わせの多様性',
@@ -87,7 +89,6 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
       { cells: ['', '', '', '組・組立運動の技術価値', '0〜0.40'] },
       { cells: ['', '', '', '組・組立運動の割合のバランスに欠ける', '0.1'] },
       {
-        group: '芸術性と技術価値',
         cells: [
           '芸術性と技術価値',
           'リズム変化・ダイナミズムによる表現',
@@ -141,7 +142,6 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
       { cells: ['', '', '', '独創性の高い転回の組み合わせに欠ける', `0.1${STEP}0.2`] },
       { cells: ['', '', '', 'その他の独創的な内容に欠ける', '0.1'] },
       {
-        group: 'その他の技術的価値',
         cells: [
           'その他の技術的価値',
           '難度の配分・競技者に応じた構成',
@@ -174,13 +174,15 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/(D)kettenhyou(S).png',
     caption: '芸術性と多様性（A）欠点表（個人競技）',
     mergeEmptyCells: true,
-    columnWidths: ['14%', '20%', '8%', '42%', '16%'],
+    firstColumnIsHeader: true,
+    verticalHeader: true,
+    // 分類は縦書きで1行ぶん、幅は「1.00」が折り返さないだけ、
+    // 減点は「0.1 ／ 0.2 ／ 0.3」が収まるだけ取り、残りを具体的な内容に回す
+    columnWidths: ['5%', '22%', '9%', '46%', '18%'],
     layout: 'list',
-    narrowColumns: 1,
     columns: COLUMNS,
     rows: [
       {
-        group: '多様性と技術価値',
         cells: [
           '多様性と技術価値',
           '徒手系の種類・組み合わせの多様性',
@@ -248,7 +250,6 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
       },
       { cells: ['', '', '', '2種類以上の転回中の手具操作に欠ける', '0.1'] },
       {
-        group: '芸術性と技術価値',
         cells: [
           '芸術性と技術価値',
           'リズム変化・ダイナミズムによる表現',
@@ -282,7 +283,6 @@ export const ARTISTRY_TABLES: readonly RuleTable[] = [
       { cells: ['', '', '', '独創性の高い手具操作の組み合わせに欠ける', `0.1${STEP}0.2`] },
       { cells: ['', '', '', 'その他の独創的な内容に欠ける', '0.1'] },
       {
-        group: 'その他技術的価値',
         cells: [
           'その他技術的価値',
           '徒手の割合',

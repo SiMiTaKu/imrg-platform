@@ -171,7 +171,7 @@ export const GROUP_SCORING_STRUCTURE: RuleNode[] = [
             key: 'scoring.group.execution.deductions',
             number: '3.4.6.6',
             page: 35,
-            figures: ['(E)kettenhyou1', '(E)kettenhyou2', '(E)kettenhyou3'],
+            figures: ['(E)kettenhyou1', '(E)kettenhyou3'],
           },
         ],
       },
