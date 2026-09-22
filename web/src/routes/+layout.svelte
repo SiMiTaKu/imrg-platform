@@ -52,5 +52,33 @@
   :global(html[data-device='desktop']) main {
     padding-top: 80px;
   }
+
+  /*
+    採点票の印刷。押した用紙だけを紙に出す。
+
+    印刷のボタンが body に印を付け、印刷する用紙に data-printing を立てる。
+    ページの外にある要素まで届かせる必要があるので :global で書く
+  */
+  @media print {
+    :global(body[data-printing] *) {
+      visibility: hidden;
+    }
+
+    :global(body[data-printing] [data-printing='true']),
+    :global(body[data-printing] [data-printing='true'] *) {
+      visibility: visible;
+    }
+
+    :global(body[data-printing] [data-printing='true']) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    main {
+      padding-top: 0;
+    }
+  }
   /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
 </style>

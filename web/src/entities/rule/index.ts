@@ -18,6 +18,7 @@ export {
   findRuleTable,
   findRuleTree,
 } from './api/tables'
+export { ApparatusKind } from './model/ruleTable'
 export {
   hasRowHeader,
   hasShortRowHeader,
@@ -27,6 +28,7 @@ export {
   normalizeRuleTableCell,
 } from './model/ruleTable'
 export type {
+  RulePaper,
   RuleSeat,
   RuleSeatRow,
   RuleSeating,

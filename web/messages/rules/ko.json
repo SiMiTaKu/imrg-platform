@@ -35,5 +35,11 @@
   "rules_source_site_label": "발행처 사이트",
   "rules_source_note": "본문·표·그림의 내용은 위 규칙집에 따릅니다. 인용할 때는 조문의 순서와 표현을 가능한 한 그대로 남겼습니다. 표별 출처는 각 표 아래에 적혀 있습니다.",
   "rules_source_authority": "공식적인 판단은 각 경기 단체의 규칙집에 따릅니다.",
-  "rules_chapter_source": "출처: 남자 리듬체조 규칙 2025년판 {from}〜{to}쪽"
+  "rules_chapter_source": "출처: 남자 리듬체조 규칙 2025년판 {from}〜{to}쪽",
+  "rules_apparatus_stick": "스틱",
+  "rules_apparatus_ring": "링",
+  "rules_apparatus_rope": "로프",
+  "rules_apparatus_clubs": "클럽",
+  "rules_print": "이 용지 인쇄",
+  "rules_print_hint": "브라우저의 인쇄 창에서 PDF로 저장할 수 있습니다."
 }

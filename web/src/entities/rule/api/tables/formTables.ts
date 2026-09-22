@@ -1,3 +1,4 @@
+import { ApparatusKind } from '../../model/ruleTable'
 import type { RuleTable, RuleTableRow } from '../../model/ruleTable'
 
 /**
@@ -120,6 +121,18 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.7 採点票等「難度（D）採点票」（61ページ）
     imageSource: '/images/rules/forms/score-d.png',
     caption: '難度（D）採点票',
+    // 冊子61ページの紙面。左上に「難度 D」の枠、右に手具の絵、
+    // 下に最終採点と署名の欄がある
+    paper: {
+      event: '（　　　　　　）大会',
+      categories: ['団体', '個人'],
+      apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
+      mark: 'D',
+      markLabel: '難度',
+      fields: ['選手名・団体名', 'No.'],
+      totals: ['最終採点'],
+      signatures: ['審判No.', '署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -143,6 +156,17 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 2段で書いてある。ここでは1つのます目に改行で入れてある
     imageSource: '/images/rules/forms/score-a.png',
     caption: '芸術と多様性（A）採点票',
+    // 冊子61ページの紙面
+    paper: {
+      event: '（　　　　　　）大会',
+      categories: ['団体', '個人'],
+      apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
+      mark: 'A',
+      markLabel: '芸術と多様性',
+      fields: ['選手名・団体名', 'No.'],
+      totals: ['最終採点'],
+      signatures: ['審判No.', '署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -169,6 +193,17 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 出典: 新体操男子規則 2025年版 3 採点規則 3.7 採点票等「実施（E）採点票」（61ページ）
     imageSource: '/images/rules/forms/score-e.png',
     caption: '実施（E）採点票',
+    // 冊子61ページの紙面
+    paper: {
+      event: '（　　　　　　）大会',
+      categories: ['団体', '個人'],
+      apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
+      mark: 'E',
+      markLabel: '実施',
+      fields: ['選手名・団体名', 'No.'],
+      totals: ['最終採点'],
+      signatures: ['審判No.', '署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -195,6 +230,15 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 署名欄は「線審 No.1．2」「計時」の2つ
     imageSource: '/images/rules/forms/score-line-time.png',
     caption: 'line / time 採点票（線審・計時）',
+    // 冊子61ページの紙面。印の欄は「line」と「time」が上下2段に入る
+    paper: {
+      event: '（　　　　　　）大会',
+      categories: ['団体', '個人'],
+      apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
+      mark: 'line / time',
+      fields: ['選手名・団体名', 'No.'],
+      signatures: ['線審No. 1・2', '計時', '署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -223,6 +267,15 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // D・A・E・減点前得点の欄がある
     imageSource: '/images/rules/forms/chief-judge-deduction.png',
     caption: '審判長減点表（男子）',
+    // 冊子62ページの紙面。左にチーム・選手の番号、右に種別と手具、
+    // その下に D・A・E・減点前得点の欄がある
+    paper: {
+      categories: ['団体競技', '個人競技'],
+      apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
+      fields: ['チーム・番号', '選手・番号'],
+      totals: ['D', 'A', 'E', '減点前得点', '減点合計', '最終得点'],
+      signatures: ['署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 1,
@@ -295,6 +348,14 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // A 欄はレベル5〜1 の価値点から選ぶ
     imageSource: '/images/rules/forms/free-hand-da.png',
     caption: '個人徒手 D・A共通採点表',
+    // 冊子77ページの紙面。左半分が演技の記録、右半分が D と A の採点欄
+    paper: {
+      event: '（　　　　　　）大会',
+      mark: 'D / A',
+      fields: ['選手名', 'No.'],
+      totals: ['最終採点'],
+      signatures: ['審判No.', '署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -342,6 +403,15 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // B（ミスによる減点）の欄。A の減点は合計で最大 5.5
     imageSource: '/images/rules/forms/free-hand-e.png',
     caption: '個人徒手 E採点票',
+    // 冊子79ページの紙面
+    paper: {
+      event: '（　　　　　　）大会',
+      mark: 'E',
+      markLabel: '実施',
+      fields: ['選手名', 'No.'],
+      totals: ['最終採点'],
+      signatures: ['審判No.', '署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 1,
@@ -401,6 +471,14 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 技の表は67ページの難度表と同じもので、こちらには加点・要素減点・得点の3段が付く
     imageSource: '/images/rules/forms/free-hand-d-grid.png',
     caption: '個人徒手 D採点表（難度の確認表）',
+    // 冊子78ページの紙面
+    paper: {
+      event: '（　　　　　　）大会',
+      mark: 'D',
+      markLabel: '難度',
+      fields: ['選手名', 'No.'],
+      signatures: ['審判No.', '署名'],
+    },
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,

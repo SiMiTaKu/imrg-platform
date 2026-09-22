@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import {
     findRuleSeating,
@@ -13,6 +14,8 @@
   } from '@entities/rule'
   import type { RuleShape, RuleShapeKind, RuleTreeNode } from '@entities/rule'
   import type { Image as RuleImage } from '@shared/model'
+  import { pageData } from '@shared/lib/device'
+  import RulePaperFrame from './RulePaperFrame.svelte'
 
   const {
     image,
@@ -47,6 +50,8 @@
   const totalColumnCount = $derived(table ? table.columns.length + (showsRowHeader ? 1 : 0) : 0)
   /** ここから右の列は、幅を詰めて折り返さない */
   const narrowFromIndex = $derived(table ? table.columns.length - narrowColumnCount(table) : 0)
+
+  const isMobile = $derived($pageData.isMobile)
 
   /** 中身が入れ物からはみ出していて、横に送れる状態か */
   let isScrollable = $state(false)
@@ -93,6 +98,26 @@
 
   // 縦に続く空のます目は、上のます目にまとめてから出す
   const mergedRows = $derived(table ? mergeEmptyCellsDownward(table) : [])
+
+  /** 印刷したい用紙。押されたものだけを紙に出す */
+  let printing = $state(false)
+
+  /**
+   * この用紙だけを印刷する。
+   *
+   * @remarks
+   * 紙に出すのはブラウザーに任せる。PDF として残したい人は、印刷の窓から保存できる
+   */
+  const print = () => {
+    printing = true
+    document.body.dataset.printing = 'true'
+    // 印刷の目印が画面に行き渡ってから窓を開く
+    requestAnimationFrame(() => {
+      globalThis.print()
+      printing = false
+      delete document.body.dataset.printing
+    })
+  }
 
   /*
     寸法図の描き方。
@@ -325,13 +350,8 @@
   </ul>
 {/snippet}
 
-<figure class="rule-figure">
+{#snippet formTable()}
   {#if table}
-    <!-- 文字の表。言葉で探せて、訳せて、スマホでも読める -->
-    <p class="title">{table.caption}</p>
-    {#if table.purpose === 'form'}
-      <p class="hint">{m.rules_form_hint()}</p>
-    {/if}
     <!-- 横に送れるときだけキーボードでも送れるようにする（tabindex） -->
     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     <div
@@ -408,6 +428,31 @@
         </tbody>
       </table>
     </div>
+  {/if}
+{/snippet}
+
+<figure class="rule-figure" data-printing={printing ? 'true' : undefined}>
+  {#if table}
+    <!-- 文字の表。言葉で探せて、訳せて、スマホでも読める -->
+    {#if !table.paper}
+      <p class="title">{table.caption}</p>
+    {/if}
+    {#if table.purpose === 'form'}
+      <p class="hint">{m.rules_form_hint()}</p>
+    {/if}
+    {#if table.paper}
+      <RulePaperFrame paper={table.paper} caption={table.caption}>
+        {@render formTable()}
+      </RulePaperFrame>
+      <div class="print-action no-print">
+        <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={print}>
+          {m.rules_print()}
+        </Button>
+        <span class="hint">{m.rules_print_hint()}</span>
+      </div>
+    {:else}
+      {@render formTable()}
+    {/if}
     {#if isScrollable}
       <p class="hint">{m.rules_scroll_hint()}</p>
     {/if}
@@ -561,6 +606,42 @@
 </figure>
 
 <style lang="scss">
+  // 印刷のボタン。用紙の下に置く
+  .print-action {
+    display: flex;
+    gap: $space-size-8;
+    align-items: center;
+    margin-top: $space-size-8;
+    flex-wrap: wrap;
+  }
+
+  /*
+    印刷。押した用紙だけを紙に出す。
+
+    ページ全体に「印刷中の図がある」という目印を付け、その図以外を隠す。
+    用紙は罫線で読ませるものなので、地の色と線はそのまま出す
+  */
+  @media print {
+    .no-print {
+      display: none;
+    }
+
+    .rule-figure {
+      margin: 0;
+      padding: 0;
+    }
+
+    .rule-figure .scroller {
+      max-height: none;
+      overflow: visible;
+      border: 0;
+    }
+
+    .rule-figure table {
+      min-width: 0;
+    }
+  }
+
   /*
     位置の基準をここに置く。下の読み上げ用の見出し（.visually-hidden）は
     position: absolute で浮かせてあり、基準になる親がないと画面のいちばん外を

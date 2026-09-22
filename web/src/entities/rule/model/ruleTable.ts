@@ -50,6 +50,46 @@ export interface RuleTableRow {
  */
 export type RuleTablePurpose = 'reference' | 'form'
 
+/**
+ * 採点票の、表のまわりにある欄。
+ *
+ * @remarks
+ * 冊子の用紙をなぞる。どれも書き込む場所なので、中身は空のまま枠だけを出す
+ */
+export interface RulePaper {
+  /** 右上に書く種別。冊子では「団体競技・個人競技」のように枠で囲んである */
+  readonly categories?: readonly string[]
+  /** 手具の欄。冊子では絵と名前が横に並ぶ */
+  readonly apparatus?: readonly ApparatusKind[]
+  /** 左上の印。難度なら `D`、実施なら `E` */
+  readonly mark?: string
+  /** 印の上に小さく添える言葉。「難度」「芸術と多様性」など */
+  readonly markLabel?: string
+  /** 大会名を書く欄の文言 */
+  readonly event?: string
+  /** 表の上に置く、書き込みの欄（選手名・団体名など） */
+  readonly fields?: readonly string[]
+  /** 表の下に置く、合計の欄（最終採点・減点合計など） */
+  readonly totals?: readonly string[]
+  /** いちばん下に置く、署名の欄 */
+  readonly signatures?: readonly string[]
+}
+
+/** 手具の種類。冊子の採点票に絵で並んでいる4つ */
+export const ApparatusKind = {
+  /** スティック */
+  STICK: 'stick',
+  /** リング */
+  RING: 'ring',
+  /** ロープ */
+  ROPE: 'rope',
+  /** クラブ */
+  CLUBS: 'clubs',
+} as const
+
+/** 手具の種類のどれか1つ */
+export type ApparatusKind = (typeof ApparatusKind)[keyof typeof ApparatusKind]
+
 /** 画像の代わりに出す、文字で持ち直した表 */
 export interface RuleTable {
   /** 置き換える画像のパス（`/images/rules/....png`） */
@@ -121,6 +161,16 @@ export interface RuleTable {
    * `headerColumns` と合わせて使う
    */
   readonly verticalHeader?: boolean
+  /**
+   * 審判が書き込む用紙の、表のまわりにある欄。
+   *
+   * @remarks
+   * 冊子の採点票は、表の上に大会名・種別・手具・選手名の欄があり、
+   * 下に合計と署名の欄がある。表だけを出すと紙面と別物になるので、
+   * まわりの欄もここに持たせて、用紙の形に組み立てる。
+   * `purpose: 'form'` の表にだけ書く
+   */
+  readonly paper?: RulePaper
   /** 表の下に置く補足 */
   readonly note?: string
   /**
