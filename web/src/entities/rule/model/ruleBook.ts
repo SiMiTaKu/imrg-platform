@@ -68,6 +68,8 @@ export interface RuleBook {
  * 表示する言語に絞った小項
  */
 export interface LocalizedRuleBlock {
+  /** 冊子の番号（例: `3.4.2.1`） */
+  number: string
   /** 見出し */
   title: string
   /** 本文 */
@@ -80,6 +82,8 @@ export interface LocalizedRuleBlock {
  * 表示する言語に絞った条項
  */
 export interface LocalizedRuleSection {
+  /** 冊子の番号（例: `3.5.7`） */
+  number: string
   /** 見出し */
   title: string
   /** 本文（小項を持たないときだけ使う） */
@@ -94,6 +98,8 @@ export interface LocalizedRuleSection {
  * 表示する言語に絞った大項
  */
 export interface LocalizedRuleArticle {
+  /** 冊子の番号（例: `3.5`） */
+  number: string
   /** 見出し */
   title: string
   /** 条項 */
@@ -104,6 +110,8 @@ export interface LocalizedRuleArticle {
  * 表示する言語に絞った章
  */
 export interface LocalizedRuleChapter {
+  /** 冊子の番号（例: `3`） */
+  number: string
   /** 見出し */
   title: string
   /** 大項 */

@@ -2,7 +2,7 @@
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { CHARACTERS, Character } from '@entities/character'
-  import { calculateArticleNumber, type LocalizedRuleBook } from '@entities/rule'
+  import type { LocalizedRuleBook } from '@entities/rule'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
   import { RuleFigure } from '@widgets/rules'
@@ -153,7 +153,7 @@
                 onclick={() => jumpToChapter(index)}
                 aria-controls={chapterKey(index)}
               >
-                <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
+                <span class="number">{m.rules_chapter_number({ number: chapter.number })}</span>
                 <span class="label">{chapter.title}</span>
                 {#if chapter.article.length > 0}
                   <span class="count"
@@ -183,7 +183,7 @@
             aria-expanded={isChapterOpen}
             aria-controls={chapterId}
           >
-            <span class="number">{m.rules_chapter_number({ number: index + 1 })}</span>
+            <span class="number">{m.rules_chapter_number({ number: chapter.number })}</span>
             <span class="label">{chapter.title}</span>
             <span class="mark" aria-hidden="true"></span>
           </button>
@@ -200,7 +200,7 @@
                 <Button
                   variant="outline"
                   width={isMobile ? 'full' : 'auto'}
-                  label={m.rules_expand_chapter_label({ number: index + 1 })}
+                  label={m.rules_expand_chapter_label({ number: chapter.number })}
                   onclick={() => toggleChapterAll(index, true)}
                 >
                   {m.rules_expand_all()}
@@ -208,7 +208,7 @@
                 <Button
                   variant="outline"
                   width={isMobile ? 'full' : 'auto'}
-                  label={m.rules_collapse_chapter_label({ number: index + 1 })}
+                  label={m.rules_collapse_chapter_label({ number: chapter.number })}
                   onclick={() => toggleChapterAll(index, false)}
                 >
                   {m.rules_collapse_all()}
@@ -227,7 +227,7 @@
                       aria-expanded={isArticleOpen}
                       aria-controls={articleId}
                     >
-                      <span class="number">{articleIndex + 1}</span>
+                      <span class="number">{article.number}</span>
                       <span class="label">{article.title}</span>
                       <span class="mark" aria-hidden="true"></span>
                     </button>
@@ -248,11 +248,7 @@
                                 aria-expanded={isSectionOpen}
                                 aria-controls={sectionId}
                               >
-                                {#if section.block.length === 0}
-                                  <span class="article-number">
-                                    {calculateArticleNumber(chapter, articleIndex, sectionIndex)}
-                                  </span>
-                                {/if}
+                                <span class="article-number">{section.number}</span>
                                 <span class="label">{section.title}</span>
                                 <span class="mark" aria-hidden="true"></span>
                               </button>
@@ -278,14 +274,7 @@
                                     {#each section.block as block, blockIndex (blockIndex)}
                                       <div class="item">
                                         <h5>
-                                          <span class="article-number">
-                                            {calculateArticleNumber(
-                                              chapter,
-                                              articleIndex,
-                                              sectionIndex,
-                                              blockIndex,
-                                            )}
-                                          </span>
+                                          <span class="article-number">{block.number}</span>
                                           {block.title}
                                         </h5>
                                         <p>{block.element}</p>

@@ -62,7 +62,10 @@ const pickEntry = (
  *
  * @remarks
  * 骨格（どこに何があるか）と本文（何が書いてあるか）は別々に持っている。
- * 画面に渡すときだけ、この関数で1つにまとめる
+ * 画面に渡すときだけ、この関数で1つにまとめる。
+ *
+ * 番号は骨格が持つ冊子どおりの表記（`3.5.7` など）をそのまま渡す。
+ * 画面の側で数え直すと、冊子と対応しない通し番号になってしまう
  *
  * @param structure - 骨格
  * @param content - 言語ごとの本文
@@ -84,6 +87,7 @@ export const buildRuleBook = (
   const toSection = (node: RuleNode): LocalizedRuleSection => {
     const entry = pickEntry(node.key, locale, content)
     return {
+      number: node.number,
       title: entry.title,
       content: renderBody(entry),
       image: (node.figures ?? []).map((figure) => ({
@@ -93,6 +97,7 @@ export const buildRuleBook = (
       block: (node.children ?? []).map((child) => {
         const childEntry = pickEntry(child.key, locale, content)
         return {
+          number: child.number,
           title: childEntry.title,
           element: renderBody(childEntry),
           image: (child.figures ?? []).map((figure) => ({
@@ -107,8 +112,10 @@ export const buildRuleBook = (
   return {
     title,
     chapter: structure.map((chapter) => ({
+      number: chapter.number,
       title: pickEntry(chapter.key, locale, content).title,
       article: (chapter.children ?? []).map((article) => ({
+        number: article.number,
         title: pickEntry(article.key, locale, content).title,
         section: (article.children ?? []).map(toSection),
       })),

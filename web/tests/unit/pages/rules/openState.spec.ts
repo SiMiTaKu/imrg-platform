@@ -18,35 +18,57 @@ const RULE_BOOK: LocalizedRuleBook = {
   title: '試しの規則集',
   chapter: [
     {
+      number: '1',
       title: '競技規則',
       article: [
         {
+          number: '1.1',
           title: '演技の時間',
           section: [
-            { title: '時間の計り方', content: '合図から始める', block: [], image: [] },
             {
+              number: '1.1.1',
+              title: '時間の計り方',
+              content: '合図から始める',
+              block: [],
+              image: [],
+            },
+            {
+              number: '1.1.2',
               title: '超過の減点',
               content: '',
               image: [],
               block: [
-                { title: '2秒まで', element: '0.05 の減点', image: [] },
-                { title: '2秒を超える', element: '0.10 の減点', image: [] },
+                { number: '1.1.2.1', title: '2秒まで', element: '0.05 の減点', image: [] },
+                { number: '1.1.2.2', title: '2秒を超える', element: '0.10 の減点', image: [] },
               ],
             },
           ],
         },
         {
+          number: '1.2',
           title: '用器具',
-          section: [{ title: 'スティックの長さ', content: '45cm 以上', block: [], image: [] }],
+          section: [
+            {
+              number: '1.2.1',
+              title: 'スティックの長さ',
+              content: '45cm 以上',
+              block: [],
+              image: [],
+            },
+          ],
         },
       ],
     },
     {
+      number: '2',
       title: '審判規程',
       article: [
         {
+          number: '2.1',
           title: '審判員の構成',
-          section: [{ title: '人数', content: '実施は 4 名', block: [], image: [] }],
+          section: [
+            { number: '2.1.1', title: '人数', content: '実施は 4 名', block: [], image: [] },
+          ],
         },
       ],
     },
