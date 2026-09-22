@@ -1,5 +1,5 @@
 import type { SiteLocale } from '@shared/lib/i18n'
-import type { LocalizedRuleBook, LocalizedRuleSection } from '../model/ruleBook'
+import type { LocalizedRuleBook, LocalizedRuleLine, LocalizedRuleSection } from '../model/ruleBook'
 import type { RuleContent, RuleEntry, RuleItem, RuleNode, RuleStructure } from '../model/ruleSource'
 import { isFresh } from './fingerprint'
 
@@ -32,6 +32,28 @@ const renderBody = (entry: RuleEntry): string =>
   [entry.lead, renderItems(entry.items)].filter((part) => part).join('\n')
 
 /**
+ * 項目を、番号と本文に分けた行の並びにする
+ * @param items - 項目
+ * @param depth - 入れ子の深さ
+ * @returns 行の並び
+ */
+const toLines = (items: readonly RuleItem[] = [], depth = 0): LocalizedRuleLine[] =>
+  items.flatMap((item) => [
+    { depth, label: item.label ?? '', text: item.text },
+    ...toLines(item.items, depth + 1),
+  ])
+
+/**
+ * 条文の本文を、番号と本文に分けた行の並びにする
+ * @param entry - 条文
+ * @returns 行の並び。導入の文は番号の無い行になる
+ */
+const bodyLines = (entry: RuleEntry): LocalizedRuleLine[] => [
+  ...(entry.lead ? [{ depth: 0, label: '', text: entry.lead }] : []),
+  ...toLines(entry.items),
+]
+
+/**
  * 表示する言語の条文を選ぶ。
  *
  * @remarks
@@ -56,16 +78,6 @@ const pickEntry = (
   if (locale !== 'en' && isFresh(japanese, english)) return english as RuleEntry
   return japanese
 }
-
-/**
- * その節点と、その下にぶら下がるすべての節点のページ番号を集める
- * @param node - 節点
- * @returns ページ番号の一覧
- */
-const collectPages = (node: RuleNode): number[] => [
-  node.page,
-  ...(node.children ?? []).flatMap(collectPages),
-]
 
 /**
  * 骨格と本文から、表示する言語の規則集を組み立てる。
@@ -98,8 +110,10 @@ export const buildRuleBook = (
     const entry = pickEntry(node.key, locale, content)
     return {
       number: node.number,
+      page: node.page,
       title: entry.title,
       content: renderBody(entry),
+      lines: bodyLines(entry),
       image: (node.figures ?? []).map((figure) => ({
         src: figureSource(figure),
         alt: entry.title,
@@ -110,6 +124,7 @@ export const buildRuleBook = (
           number: child.number,
           title: childEntry.title,
           element: renderBody(childEntry),
+          lines: bodyLines(childEntry),
           image: (child.figures ?? []).map((figure) => ({
             src: figureSource(figure),
             alt: childEntry.title,
@@ -121,20 +136,14 @@ export const buildRuleBook = (
 
   return {
     title,
-    chapter: structure.map((chapter) => {
-      const pages = collectPages(chapter)
-      return {
-        number: chapter.number,
-        firstPage: Math.min(...pages),
-        // 終わりのページが書いてあればそれを使う。書いていなければ、いちばん後ろの節点の始まり
-        lastPage: chapter.endPage ?? Math.max(...pages),
-        title: pickEntry(chapter.key, locale, content).title,
-        article: (chapter.children ?? []).map((article) => ({
-          number: article.number,
-          title: pickEntry(article.key, locale, content).title,
-          section: (article.children ?? []).map(toSection),
-        })),
-      }
-    }),
+    chapter: structure.map((chapter) => ({
+      number: chapter.number,
+      title: pickEntry(chapter.key, locale, content).title,
+      article: (chapter.children ?? []).map((article) => ({
+        number: article.number,
+        title: pickEntry(article.key, locale, content).title,
+        section: (article.children ?? []).map(toSection),
+      })),
+    })),
   }
 }

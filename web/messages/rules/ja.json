@@ -35,11 +35,11 @@
   "rules_source_site_label": "発行元のサイト",
   "rules_source_note": "本文・表・図の中身は上記の規則集によります。引用にあたっては、条文の並びと文言をできるだけそのまま残しています。表ごとの出典は、それぞれの表の下に書いてあります。",
   "rules_source_authority": "正式な判断は各競技団体の規則集によります。",
-  "rules_chapter_source": "出典: 新体操男子規則 2025年版 {from}〜{to}ページ",
   "rules_apparatus_stick": "スティック",
   "rules_apparatus_ring": "リング",
   "rules_apparatus_rope": "ロープ",
   "rules_apparatus_clubs": "クラブ",
   "rules_print": "この用紙を印刷",
-  "rules_print_hint": "※ブラウザーの印刷から PDF として保存できます"
+  "rules_print_hint": "※ブラウザーの印刷から PDF として保存できます",
+  "rules_section_source": "出典: 新体操男子規則 2025年版 {page}ページ"
 }

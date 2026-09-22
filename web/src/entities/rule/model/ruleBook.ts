@@ -65,6 +65,22 @@ export interface RuleBook {
 }
 
 /**
+ * 本文の1行。番号と本文を分けて持つ。
+ *
+ * @remarks
+ * 「（1） …」のような番号付きの行は、折り返したときに2行目も番号のぶんだけ
+ * 字下げしたい。1本の文字列にしてしまうと、番号と本文の境目が分からなくなる
+ */
+export interface LocalizedRuleLine {
+  /** 入れ子の深さ。0 がいちばん外 */
+  depth: number
+  /** 番号。「（1）」「①」など。番号が無い行では空 */
+  label: string
+  /** 本文 */
+  text: string
+}
+
+/**
  * 表示する言語に絞った小項
  */
 export interface LocalizedRuleBlock {
@@ -72,8 +88,10 @@ export interface LocalizedRuleBlock {
   number: string
   /** 見出し */
   title: string
-  /** 本文 */
+  /** 本文。言葉で探すときに使う */
   element: string
+  /** 本文を行ごとに分けたもの。画面に出すときに使う */
+  lines: LocalizedRuleLine[]
   /** 図 */
   image: Image[]
 }
@@ -84,10 +102,14 @@ export interface LocalizedRuleBlock {
 export interface LocalizedRuleSection {
   /** 冊子の番号（例: `3.5.7`） */
   number: string
+  /** 冊子で、この条が載っているページ */
+  page: number
   /** 見出し */
   title: string
-  /** 本文（小項を持たないときだけ使う） */
+  /** 本文。言葉で探すときに使う */
   content: string
+  /** 本文を行ごとに分けたもの。画面に出すときに使う */
+  lines: LocalizedRuleLine[]
   /** 小項 */
   block: LocalizedRuleBlock[]
   /** 図 */
@@ -112,10 +134,6 @@ export interface LocalizedRuleArticle {
 export interface LocalizedRuleChapter {
   /** 冊子の番号（例: `3`） */
   number: string
-  /** 冊子で、この章が載っている最初のページ */
-  firstPage: number
-  /** 冊子で、この章が載っている最後のページ */
-  lastPage: number
   /** 見出し */
   title: string
   /** 大項 */

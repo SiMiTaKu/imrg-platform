@@ -3,7 +3,7 @@
   import { m } from '$lib/paraglide/messages'
   import { CHARACTERS, Character } from '@entities/character'
   import { leafNumber } from '@entities/rule'
-  import type { LocalizedRuleBook } from '@entities/rule'
+  import type { LocalizedRuleBook, LocalizedRuleLine } from '@entities/rule'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
   import { RuleFigure, RuleSource } from '@widgets/rules'
@@ -108,6 +108,19 @@
     openState = createOpenStateForKeyword(ruleBook, value)
   }
 </script>
+
+{#snippet bodyLines(lines: readonly LocalizedRuleLine[])}
+  <!--
+    本文。番号と本文を分けて並べるので、狭い画面で折り返しても
+    2行目から先が番号のぶんだけ字下げされたままになる
+  -->
+  {#each lines as line, lineIndex (lineIndex)}
+    <p class="line" style:--rule-line-depth={line.depth}>
+      {#if line.label}<span class="line-label">{line.label}</span>{/if}
+      <span class="line-text">{line.text}</span>
+    </p>
+  {/each}
+{/snippet}
 
 <article class="rules" class:mobile={isMobile}>
   <!-- ファーストビジュアル。背景は画面の端まで、中身だけをコンテンツ幅に収める -->
@@ -264,9 +277,9 @@
                                     条の本文と図は、中に項があっても出す。
                                     冊子では「導入の文があって、そのあとに項が並ぶ」条がある
                                   -->
-                                  {#if section.content || section.image.length > 0}
+                                  {#if section.lines.length > 0 || section.image.length > 0}
                                     <div class="item">
-                                      {#if section.content}<p>{section.content}</p>{/if}
+                                      {@render bodyLines(section.lines)}
                                       {#each section.image as image, sectionImageIndex (sectionImageIndex)}
                                         <RuleFigure {image} />
                                       {/each}
@@ -284,13 +297,18 @@
                                           {/if}
                                           {block.title}
                                         </h5>
-                                        <p>{block.element}</p>
+                                        {@render bodyLines(block.lines)}
                                         {#each block.image as image, blockImageIndex (blockImageIndex)}
                                           <RuleFigure {image} />
                                         {/each}
                                       </div>
                                     {/each}
                                   {/if}
+
+                                  <!-- 条ごとに、冊子のどのページを写したものかを示す -->
+                                  <p class="section-source">
+                                    {m.rules_section_source({ page: section.page })}
+                                  </p>
                                 </div>
                               </div>
                             </div>
@@ -301,11 +319,6 @@
                   </div>
                 </section>
               {/each}
-
-              <!-- 章ごとに、冊子のどこを写したものかを示す -->
-              <p class="chapter-source">
-                {m.rules_chapter_source({ from: chapter.firstPage, to: chapter.lastPage })}
-              </p>
             </div>
           </div>
         </div>
@@ -614,8 +627,33 @@
     font-size: $font-size-18;
   }
 
-  // 章の終わりに置く出典。本文より小さく、控えめに
-  .chapter-source {
+  /*
+    本文の1行。番号と本文を横に並べ、本文だけを折り返す。
+    こうすると折り返した2行目も番号のぶんだけ下がり、番号の下に本文が回り込まない
+  */
+  .line {
+    display: flex;
+    gap: $space-size-4;
+    margin: 0;
+    padding-left: calc(var(--rule-line-depth) * #{$space-size-16});
+    align-items: baseline;
+  }
+
+  .line + .line {
+    margin-top: $space-size-4;
+  }
+
+  // 番号は縮めない。「（1）」が折り返すと行の頭がそろわなくなる
+  .line-label {
+    flex: none;
+  }
+
+  .line-text {
+    min-width: 0;
+  }
+
+  // 条の終わりに置く出典。本文より小さく、控えめに
+  .section-source {
     margin: $space-size-8 0 0;
     font-size: $font-size-11;
     line-height: 1.7;

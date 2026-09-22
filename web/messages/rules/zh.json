@@ -35,11 +35,11 @@
   "rules_source_site_label": "发行方网站",
   "rules_source_note": "正文、表格和图示的内容均出自上述规则书。引用时尽量保留条文的顺序和措辞。各表格的出处写在该表下方。",
   "rules_source_authority": "正式判定以各竞技团体的规则书为准。",
-  "rules_chapter_source": "出处：男子艺术体操规则 2025年版 第{from}〜{to}页",
   "rules_apparatus_stick": "棒",
   "rules_apparatus_ring": "环",
   "rules_apparatus_rope": "绳",
   "rules_apparatus_clubs": "棍",
   "rules_print": "打印此表",
-  "rules_print_hint": "可在浏览器的打印窗口中保存为 PDF。"
+  "rules_print_hint": "可在浏览器的打印窗口中保存为 PDF。",
+  "rules_section_source": "出处：男子艺术体操规则 2025年版 第{page}页"
 }

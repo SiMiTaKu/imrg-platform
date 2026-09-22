@@ -19,8 +19,6 @@ const RULE_BOOK: LocalizedRuleBook = {
   chapter: [
     {
       number: '1',
-      firstPage: 1,
-      lastPage: 12,
       title: '競技規則',
       article: [
         {
@@ -29,19 +27,35 @@ const RULE_BOOK: LocalizedRuleBook = {
           section: [
             {
               number: '1.1.1',
+              page: 1,
               title: '時間の計り方',
               content: '合図から始める',
+              lines: [{ depth: 0, label: '', text: '合図から始める' }],
               block: [],
               image: [],
             },
             {
               number: '1.1.2',
+              page: 1,
               title: '超過の減点',
               content: '',
+              lines: [],
               image: [],
               block: [
-                { number: '1.1.2.1', title: '2秒まで', element: '0.05 の減点', image: [] },
-                { number: '1.1.2.2', title: '2秒を超える', element: '0.10 の減点', image: [] },
+                {
+                  number: '1.1.2.1',
+                  title: '2秒まで',
+                  element: '0.05 の減点',
+                  lines: [{ depth: 0, label: '', text: '0.05 の減点' }],
+                  image: [],
+                },
+                {
+                  number: '1.1.2.2',
+                  title: '2秒を超える',
+                  element: '0.10 の減点',
+                  lines: [{ depth: 0, label: '', text: '0.10 の減点' }],
+                  image: [],
+                },
               ],
             },
           ],
@@ -52,8 +66,10 @@ const RULE_BOOK: LocalizedRuleBook = {
           section: [
             {
               number: '1.2.1',
+              page: 1,
               title: 'スティックの長さ',
               content: '45cm 以上',
+              lines: [{ depth: 0, label: '', text: '45cm 以上' }],
               block: [],
               image: [],
             },
@@ -63,15 +79,21 @@ const RULE_BOOK: LocalizedRuleBook = {
     },
     {
       number: '2',
-      firstPage: 15,
-      lastPage: 16,
       title: '審判規程',
       article: [
         {
           number: '2.1',
           title: '審判員の構成',
           section: [
-            { number: '2.1.1', title: '人数', content: '実施は 4 名', block: [], image: [] },
+            {
+              number: '2.1.1',
+              page: 1,
+              title: '人数',
+              content: '実施は 4 名',
+              lines: [{ depth: 0, label: '', text: '実施は 4 名' }],
+              block: [],
+              image: [],
+            },
           ],
         },
       ],

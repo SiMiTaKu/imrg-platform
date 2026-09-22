@@ -5,6 +5,7 @@ export type {
   LocalizedRuleBlock,
   LocalizedRuleBook,
   LocalizedRuleChapter,
+  LocalizedRuleLine,
   LocalizedRuleSection,
 } from './model/ruleBook'
 export {
