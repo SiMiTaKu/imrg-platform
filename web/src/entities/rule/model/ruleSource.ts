@@ -64,6 +64,14 @@ export interface RuleNode {
   number: string
   /** 冊子のページ。出典をたどれるようにする */
   page: number
+  /**
+   * 冊子で、この節点の中身が終わるページ。
+   *
+   * @remarks
+   * 章の出典を出すときに使う。`page` は始まりのページなので、下にぶら下がる節点の
+   * 最大値を取っても、最後の節点が続いているぶんだけ短く出てしまう
+   */
+  endPage?: number
   /** この節点に載せる図や表の鍵。`entities/rule/api/tables` の `imageSource` と同じ */
   figures?: readonly string[]
   /** 中に入る節点 */

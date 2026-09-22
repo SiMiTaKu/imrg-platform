@@ -22,7 +22,7 @@ export const JUDGE_TABLES: readonly RuleTable[] = [
     // 左右で人数の意味が変わるわけではないので、1本の「役目・人数」の表に開いた
     imageSource: '/images/rules/tables/judge-panel.png',
     caption: '審判団の構成',
-    firstColumnIsHeader: true,
+    headerColumns: 1,
     layout: 'list',
     narrowColumns: 1,
     columns: ['審判の役目', '人数'],
@@ -44,10 +44,11 @@ export const JUDGE_TABLES: readonly RuleTable[] = [
     // 狭い画面で読めるよう、縦に開いた
     imageSource: '/images/rules/tables/free-hand-judges.png',
     caption: '個人徒手の審判編成及び数',
-    firstColumnIsHeader: true,
+    headerColumns: 1,
     compact: true,
     layout: 'list',
-    narrowColumns: 1,
+    // 2列とも短いので、幅を詰める列は作らない（等分の指定とぶつかる）
+    narrowColumns: 0,
     columns: ['審判の役目', '人数'],
     rows: [
       { cells: ['D', '2名'] },

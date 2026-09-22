@@ -34,5 +34,6 @@
   "rules_source_published": "2024年11月15日",
   "rules_source_site_label": "发行方网站",
   "rules_source_note": "正文、表格和图示的内容均出自上述规则书。引用时尽量保留条文的顺序和措辞。各表格的出处写在该表下方。",
-  "rules_source_authority": "正式判定以各竞技团体的规则书为准。"
+  "rules_source_authority": "正式判定以各竞技团体的规则书为准。",
+  "rules_chapter_source": "出处：男子艺术体操规则 2025年版 第{from}〜{to}页"
 }

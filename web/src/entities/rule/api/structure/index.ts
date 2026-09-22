@@ -19,6 +19,8 @@ const SCORING_STRUCTURE: RuleNode = {
   key: 'scoring',
   number: '3',
   page: 19,
+  // 3.8.10 個人徒手採点表が79ページまで続く
+  endPage: 79,
   children: [
     ...SCORING_GENERAL_STRUCTURE,
     ...GROUP_SCORING_STRUCTURE,

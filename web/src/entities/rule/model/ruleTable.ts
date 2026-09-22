@@ -84,15 +84,14 @@ export interface RuleTable {
    */
   readonly compact?: boolean
   /**
-   * いちばん左の列を、行の見出しとして出すか。
+   * 左から何列を、行の見出しとして出すか。
    *
    * @remarks
-   * 「A → 0.1」「難度（D）審判 → 2名」のように、左の列がその行の名前に
-   * なっている表で立てる。読み上げのとき「どの行の値か」が伝わる。
-   *
+   * 分類のように、その行が何のことかを表す列に使う。見出しにした列は灰色の地になり、
+   * 横に送っても左に貼り付いたまま残る（いちばん左の1列だけ）。
    * ます目の中身は書き換えず、出し方だけを変える
    */
-  readonly firstColumnIsHeader?: boolean
+  readonly headerColumns?: number
   /**
    * 縦に続く空のます目を、上のます目にまとめるか。
    *
@@ -114,12 +113,12 @@ export interface RuleTable {
    */
   readonly columnWidths?: readonly string[]
   /**
-   * 行の見出しの列を縦書きにするか。
+   * いちばん左の行の見出しを縦書きにするか。
    *
    * @remarks
    * 分類のように、同じ言葉が何行にもまたがる列に使う。
    * 縦に書くと列が1行ぶんの幅で済み、そのぶんを本文の列に回せる。
-   * `firstColumnIsHeader` と合わせて使う
+   * `headerColumns` と合わせて使う
    */
   readonly verticalHeader?: boolean
   /** 表の下に置く補足 */
@@ -269,6 +268,26 @@ export const normalizeRuleTableCell = (cell: RuleTableCellSource): Required<Rule
  */
 export const hasRowHeader = (table: RuleTable): boolean =>
   table.cornerLabel !== undefined || table.rows.some((row) => row.header !== undefined)
+
+/**
+ * 左から何列を行の見出しにするか
+ * @param table - 表
+ * @returns 行の見出しにする列の数。指定が無ければ 0
+ */
+export const headerColumnCount = (table: RuleTable): number => table.headerColumns ?? 0
+
+/**
+ * 行の見出しが、番号のように短いものばかりか。
+ *
+ * @remarks
+ * 難度表の通し番号のような列に、本文と同じ最小の幅を当てると、
+ * 番号1つのために広い列ができてしまう
+ *
+ * @param table - 表
+ * @returns どの見出しも3文字以内なら true
+ */
+export const hasShortRowHeader = (table: RuleTable): boolean =>
+  table.rows.every((row) => (row.header ?? '').length <= 3)
 
 /**
  * 縦に続く空のます目を、上のます目にまとめた結果。

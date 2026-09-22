@@ -6,6 +6,8 @@
     findRuleTable,
     findRuleTree,
     hasRowHeader,
+    hasShortRowHeader,
+    headerColumnCount,
     mergeEmptyCellsDownward,
     narrowColumnCount,
   } from '@entities/rule'
@@ -33,6 +35,14 @@
 
   /** 行の見出しの列を出すか */
   const showsRowHeader = $derived(table ? hasRowHeader(table) : false)
+  /** 左から何列を行の見出しにするか */
+  const headerColumns = $derived(table ? headerColumnCount(table) : 0)
+  /** 行の見出しが番号のように短いものばかりか。幅を詰めてよい */
+  const shortRowHeader = $derived(table ? hasShortRowHeader(table) : false)
+  /** どの列も幅を詰める表か。見出しを折り返す意味が無い */
+  const allColumnsNarrow = $derived(
+    table ? narrowColumnCount(table) >= table.columns.length : false,
+  )
   /** 区分の見出しの行が、横に何列ぶん広がるか */
   const totalColumnCount = $derived(table ? table.columns.length + (showsRowHeader ? 1 : 0) : 0)
   /** ここから右の列は、幅を詰めて折り返さない */
@@ -330,6 +340,8 @@
       class:form={table.purpose === 'form'}
       class:compact={table.compact}
       class:vertical-header={table.verticalHeader}
+      class:short-row-header={shortRowHeader}
+      class:uniform={allColumnsNarrow}
       use:watchOverflow
       role={isScrollable ? 'region' : undefined}
       tabindex={isScrollable ? 0 : undefined}
@@ -354,7 +366,7 @@
             {#each table.columns as column, columnIndex (column)}
               <th
                 scope="col"
-                class:corner={table.firstColumnIsHeader && columnIndex === 0}
+                class:corner={columnIndex < headerColumns}
                 class:narrow={columnIndex >= narrowFromIndex}>{column}</th
               >
             {/each}
@@ -374,7 +386,7 @@
               {#each placeCells(mergedRows[rowIndex] ?? []) as cell, cellIndex (cellIndex)}
                 <!-- 上のます目に呑まれたものは出さない -->
                 {#if cell.rowSpan > 0}
-                  {#if table.firstColumnIsHeader && cellIndex === 0}
+                  {#if cellIndex < headerColumns}
                     <!-- いちばん左がその行の名前になっている表。読み上げに伝わるよう th で出す -->
                     <th
                       scope="row"
@@ -700,17 +712,53 @@
   }
 
   /*
+    行の見出しは左に貼り付けて、横へ送っても残るようにする。
+    貼り付けるのはいちばん左の1列だけ。2列目から先は、左の列の幅が
+    百分率で決まるため、貼り付ける位置を決められない
+  */
+  tbody th.row-header:first-child,
+  thead th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    box-shadow: inset -#{$border-size-1} 0 0 map.get($gray, 200);
+  }
+
+  // 見出し行と行の見出しが重なる角は、どちらよりも手前に置く
+  thead th:first-child {
+    z-index: 2;
+  }
+
+  /*
+    見出しの言葉は、途中で折らない。「徒手系の技」で改行されると読みにくい。
+    どうしても収まらないときだけ折る（overflow-wrap: break-word が効く）
+  */
+  .row-header,
+  thead th {
+    word-break: keep-all;
+  }
+
+  /*
     分類のように、同じ言葉が何行にもまたがる列。
     縦に書くと1行ぶんの幅で済み、残りを本文の列に回せる。
     縦書きでは text-align が上下方向の揃えになるので、中央は center で指定する
   */
   .scroller.vertical-header .row-header {
     min-width: 0;
-    padding: $space-size-12 $space-size-4;
+
+    // 縦書きでは行の高さが横幅になる。1.7 のままだと列に収まらず、字が切れる
+    padding: $space-size-12 $space-size-2;
+    line-height: 1.2;
     writing-mode: vertical-rl;
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
+  }
+
+  // 通し番号だけが入る行の見出し。本文と同じ幅を取ると、番号1つのために広い列ができる
+  .scroller.short-row-header .row-header {
+    min-width: 3em;
+    text-align: center;
   }
 
   .row-header {
@@ -749,7 +797,7 @@
     細い列の見出しだけは折り返させる。「団体5名実施」を1行に保つと、
     その幅のぶん内容の列が痩せてしまうため
   */
-  .scroller:not(.matrix) thead th.narrow {
+  .scroller:not(.matrix, .uniform) thead th.narrow {
     white-space: normal;
   }
 
@@ -768,6 +816,15 @@
   // 中身の幅で止めると、右に白い余白が残って落ち着かない
   .scroller.compact table {
     table-layout: fixed;
+  }
+
+  /*
+    中身が短い表は列を等分するので、幅を詰める指定は要らない。
+    そのままだと列が 1% になり、等分の指定とぶつかって中身がはみ出す
+  */
+  .scroller.compact td.narrow,
+  .scroller.compact th.narrow {
+    width: auto;
   }
 
   /*
@@ -957,14 +1014,17 @@
     color: map.get($sky-blue, text);
   }
 
+  /*
+    席の並び。紙面では前列の真ん中に後列が並ぶので、数の少ない列は真ん中に寄せる。
+    席は減らさず、狭い画面では折り返して縦に積み直す
+  */
   .seats {
     display: flex;
     gap: $space-size-4;
+    justify-content: center;
     margin: 0;
     padding: 0;
     list-style: none;
-
-    // 席は減らさず、狭い画面では折り返して縦に積み直す
     flex-wrap: wrap;
   }
 

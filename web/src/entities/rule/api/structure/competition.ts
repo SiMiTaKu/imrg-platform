@@ -11,6 +11,7 @@ export const COMPETITION_STRUCTURE: RuleNode = {
   key: 'competition',
   number: '1',
   page: 1,
+  endPage: 12,
   children: [
     {
       key: 'competition.general',

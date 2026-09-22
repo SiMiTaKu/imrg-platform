@@ -11,6 +11,7 @@ export const APPENDIX_STRUCTURE: RuleNode = {
   key: 'appendix',
   number: '5',
   page: 84,
+  endPage: 100,
   children: [
     {
       key: 'appendix.judge',

@@ -20,7 +20,7 @@ export const FEE_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/tables/judge-application-fee.png',
     caption: '公認審判申請料',
     mergeEmptyCells: true,
-    firstColumnIsHeader: true,
+    headerColumns: 1,
     columnWidths: ['26%', '30%', '44%'],
     layout: 'list',
     columns: ['種類', '料金', '備考'],
@@ -44,7 +44,7 @@ export const FEE_TABLES: readonly RuleTable[] = [
     // 単位は列の見出しに書き込んだ
     imageSource: '/images/rules/tables/registration-fee.png',
     caption: '登録料（別表）',
-    firstColumnIsHeader: true,
+    headerColumns: 1,
     layout: 'list',
     narrowColumns: 1,
     columns: ['会員区分', '登録料'],

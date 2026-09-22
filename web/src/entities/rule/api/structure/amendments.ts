@@ -10,6 +10,7 @@ export const AMENDMENTS_STRUCTURE: RuleNode = {
   key: 'amendments',
   number: '4',
   page: 81,
+  endPage: 83,
   children: [
     {
       key: 'amendments.junior',

@@ -19,6 +19,8 @@ const RULE_BOOK: LocalizedRuleBook = {
   chapter: [
     {
       number: '1',
+      firstPage: 1,
+      lastPage: 12,
       title: '競技規則',
       article: [
         {
@@ -61,6 +63,8 @@ const RULE_BOOK: LocalizedRuleBook = {
     },
     {
       number: '2',
+      firstPage: 15,
+      lastPage: 16,
       title: '審判規程',
       article: [
         {

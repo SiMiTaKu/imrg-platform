@@ -2,6 +2,7 @@
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { CHARACTERS, Character } from '@entities/character'
+  import { leafNumber } from '@entities/rule'
   import type { LocalizedRuleBook } from '@entities/rule'
   import { GuideLead } from '@features/guideLead'
   import { pageData } from '@shared/lib/device'
@@ -227,7 +228,7 @@
                       aria-expanded={isArticleOpen}
                       aria-controls={articleId}
                     >
-                      <span class="number">{article.number}</span>
+                      <span class="number">{leafNumber(article.number)}</span>
                       <span class="label">{article.title}</span>
                       <span class="mark" aria-hidden="true"></span>
                     </button>
@@ -249,7 +250,7 @@
                                 aria-controls={sectionId}
                               >
                                 {#if section.number}
-                                  <span class="article-number">{section.number}</span>
+                                  <span class="article-number">{leafNumber(section.number)}</span>
                                 {/if}
                                 <span class="label">{section.title}</span>
                                 <span class="mark" aria-hidden="true"></span>
@@ -277,7 +278,9 @@
                                       <div class="item">
                                         <h5>
                                           {#if block.number}
-                                            <span class="article-number">{block.number}</span>
+                                            <span class="article-number"
+                                              >{leafNumber(block.number)}</span
+                                            >
                                           {/if}
                                           {block.title}
                                         </h5>
@@ -298,6 +301,11 @@
                   </div>
                 </section>
               {/each}
+
+              <!-- 章ごとに、冊子のどこを写したものかを示す -->
+              <p class="chapter-source">
+                {m.rules_chapter_source({ from: chapter.firstPage, to: chapter.lastPage })}
+              </p>
             </div>
           </div>
         </div>
@@ -604,6 +612,14 @@
 
   .chapter-toggle .mark {
     font-size: $font-size-18;
+  }
+
+  // 章の終わりに置く出典。本文より小さく、控えめに
+  .chapter-source {
+    margin: $space-size-8 0 0;
+    font-size: $font-size-11;
+    line-height: 1.7;
+    color: map.get($gray, light-text);
   }
 
   .chapter-body {

@@ -58,6 +58,16 @@ const pickEntry = (
 }
 
 /**
+ * その節点と、その下にぶら下がるすべての節点のページ番号を集める
+ * @param node - 節点
+ * @returns ページ番号の一覧
+ */
+const collectPages = (node: RuleNode): number[] => [
+  node.page,
+  ...(node.children ?? []).flatMap(collectPages),
+]
+
+/**
  * 骨格と本文から、表示する言語の規則集を組み立てる。
  *
  * @remarks
@@ -111,14 +121,20 @@ export const buildRuleBook = (
 
   return {
     title,
-    chapter: structure.map((chapter) => ({
-      number: chapter.number,
-      title: pickEntry(chapter.key, locale, content).title,
-      article: (chapter.children ?? []).map((article) => ({
-        number: article.number,
-        title: pickEntry(article.key, locale, content).title,
-        section: (article.children ?? []).map(toSection),
-      })),
-    })),
+    chapter: structure.map((chapter) => {
+      const pages = collectPages(chapter)
+      return {
+        number: chapter.number,
+        firstPage: Math.min(...pages),
+        // 終わりのページが書いてあればそれを使う。書いていなければ、いちばん後ろの節点の始まり
+        lastPage: chapter.endPage ?? Math.max(...pages),
+        title: pickEntry(chapter.key, locale, content).title,
+        article: (chapter.children ?? []).map((article) => ({
+          number: article.number,
+          title: pickEntry(article.key, locale, content).title,
+          section: (article.children ?? []).map(toSection),
+        })),
+      }
+    }),
   }
 }

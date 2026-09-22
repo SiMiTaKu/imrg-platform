@@ -1,4 +1,5 @@
 export { loadRuleBook } from './api/ruleSource'
+export { leafNumber } from './lib/ruleNumber'
 export type {
   LocalizedRuleArticle,
   LocalizedRuleBlock,
@@ -19,6 +20,8 @@ export {
 } from './api/tables'
 export {
   hasRowHeader,
+  hasShortRowHeader,
+  headerColumnCount,
   mergeEmptyCellsDownward,
   narrowColumnCount,
   normalizeRuleTableCell,

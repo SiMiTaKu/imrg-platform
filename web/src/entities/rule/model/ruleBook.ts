@@ -112,6 +112,10 @@ export interface LocalizedRuleArticle {
 export interface LocalizedRuleChapter {
   /** 冊子の番号（例: `3`） */
   number: string
+  /** 冊子で、この章が載っている最初のページ */
+  firstPage: number
+  /** 冊子で、この章が載っている最後のページ */
+  lastPage: number
   /** 見出し */
   title: string
   /** 大項 */

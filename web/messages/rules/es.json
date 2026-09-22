@@ -34,5 +34,6 @@
   "rules_source_published": "15 de noviembre de 2024",
   "rules_source_site_label": "Sitio del editor",
   "rules_source_note": "El texto, las tablas y las figuras proceden del reglamento indicado. Las citas conservan en lo posible el orden y la redacción de los artículos. La fuente de cada tabla figura debajo de ella.",
-  "rules_source_authority": "Las decisiones oficiales corresponden al reglamento de cada federación."
+  "rules_source_authority": "Las decisiones oficiales corresponden al reglamento de cada federación.",
+  "rules_chapter_source": "Fuente: Reglamento de Gimnasia Rítmica Masculina, edición 2025, pp. {from}–{to}"
 }

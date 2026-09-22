@@ -11,6 +11,7 @@ export const BASICS_STRUCTURE: RuleNode = {
   key: 'basics',
   number: '2',
   page: 15,
+  endPage: 16,
   children: [
     {
       key: 'basics.characteristics',

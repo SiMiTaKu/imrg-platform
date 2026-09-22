@@ -41,6 +41,9 @@
   .source {
     box-sizing: border-box;
     width: 100%;
+
+    // 最後の章との間を空ける。章の続きに見えないように
+    margin-top: $space-size-48;
     padding: $space-size-24;
     border: $border-size-1 solid map.get($gray, 200);
     border-radius: $border-radius-8;

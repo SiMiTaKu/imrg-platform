@@ -13,7 +13,7 @@ export const SCORE_TABLES: readonly RuleTable[] = [
     // 出典: 新体操男子規則 2025年版 3.3.1 採点方法「5 有効点の開きは以下の点数より大きくてはならない」（22ページ）
     imageSource: '/images/rules/yuukouten.png',
     caption: '有効点の開き',
-    firstColumnIsHeader: true,
+    headerColumns: 1,
     layout: 'list',
     columns: ['最終得点', '有効点の開き'],
     rows: [
@@ -30,7 +30,7 @@ export const SCORE_TABLES: readonly RuleTable[] = [
     //       以下の点数より大きくてはならない」（22ページ）
     imageSource: '/images/rules/tennsuu.png',
     caption: '全審判員の点数の開き',
-    firstColumnIsHeader: true,
+    headerColumns: 1,
     layout: 'list',
     columns: ['最終得点', '得点の開き'],
     rows: [
