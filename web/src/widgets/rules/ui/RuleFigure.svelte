@@ -1170,8 +1170,11 @@
   }
 
   // 通し番号だけが入る行の見出し。本文と同じ幅を取ると、番号1つのために広い列ができる
-  .scroller.short-row-header .row-header {
+  .scroller.short-row-header table:not(.pixel-sized) .row-header {
     min-width: 3em;
+  }
+
+  .scroller.short-row-header .row-header {
     text-align: center;
   }
 
@@ -1304,7 +1307,7 @@
     用紙は欄が潰れると書き込めない。狭い画面では詰めずに、
     入れ物の中で横に送って、欄の幅を保つ
   */
-  .scroller.form table {
+  .scroller.form table:not(.pixel-sized) {
     min-width: 34em;
   }
 

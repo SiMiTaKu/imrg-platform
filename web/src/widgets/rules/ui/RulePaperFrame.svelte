@@ -390,6 +390,7 @@
 
   <div
     class="paper"
+    class:card={!fullPage}
     style:--rule-paper-width={paper.width === undefined ? undefined : `${paper.width}px`}
   >
     <p class="paper-title">{caption}</p>
@@ -458,6 +459,33 @@
     border: $border-size-1 solid map.get($gray, 300);
     border-radius: $border-radius-4;
     background: $white;
+  }
+
+  /*
+    はがき大の用紙（冊子61ページの4枚）。幅が 264px しかないので、
+    1ページ大の用紙と同じ余白のままだと、印と手具、審判No.と署名が
+    それぞれ折り返して縦に積み上がってしまう。横に並ぶところまで詰める
+  */
+  .paper.card .card-marks {
+    gap: $space-size-8;
+    flex-wrap: nowrap;
+  }
+
+  .paper.card .badge {
+    padding: $space-size-4 $space-size-8;
+  }
+
+  .paper.card .apparatus li {
+    padding: $space-size-4;
+  }
+
+  // 署名の欄。「審判No.」と「署名」が横に並ぶ基準にする
+  .paper.card .signatures {
+    gap: $space-size-4 $space-size-8;
+  }
+
+  .paper.card .signatures .field-line {
+    flex-basis: 6em;
   }
 
   // 大会名。冊子では用紙の枠の外、右上に刷ってある

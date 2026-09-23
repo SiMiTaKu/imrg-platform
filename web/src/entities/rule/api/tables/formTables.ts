@@ -143,8 +143,10 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 冊子のこの表には見出しの行が無い。読み上げと翻訳のために名前だけ付けてある
     cornerLabel: '',
     columns: ['採点項目', '得点'],
-    // 冊子61ページははがき大。用紙 264px の中身 246px に収める
-    columnPixels: [18, 140, 88],
+    columnAligns: ['center', 'center'],
+    // 冊子61ページははがき大。用紙 264px の中身 246px に収める。
+    // 採点項目と得点は同じ幅（114px）にそろえる
+    columnPixels: [18, 114, 114],
     rows: [
       { header: 'A', cells: ['転回系難度', ''] },
       { header: 'B', cells: ['徒手系難度', ''] },
@@ -180,10 +182,11 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 冊子のこの表には見出しの行が無い。読み上げと翻訳のために名前だけ付けてある
     cornerLabel: '',
     columns: ['採点項目', '配点', '得点'],
-    columnAligns: ['start', 'center', 'center'],
+    columnAligns: ['center', 'center', 'center'],
     // 冊子61ページははがき大。用紙 264px の中身 246px に収める。
-    // 配点の列は「団体2.50」の7文字が折り返さない幅を取る
-    columnPixels: [14, 78, 82, 72],
+    // 配点の列は「団体2.50」の7文字が折り返さない 78px を取り、
+    // 採点項目と得点は同じ幅（75px）にそろえる
+    columnPixels: [18, 75, 78, 75],
     rows: [
       { header: 'A', cells: ['多様性と\n技術的価値', '団体2.50\n個人3.50', ''] },
       { header: 'B', cells: ['芸術と\n技術的価値', '団体2.50\n個人1.50', ''] },
@@ -221,8 +224,10 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 冊子のこの表には見出しの行が無い。読み上げと翻訳のために名前だけ付けてある
     cornerLabel: '',
     columns: ['採点項目', '得点'],
-    // 冊子61ページははがき大。用紙 264px の中身 246px に収める
-    columnPixels: [18, 140, 88],
+    columnAligns: ['center', 'center'],
+    // 冊子61ページははがき大。用紙 264px の中身 246px に収める。
+    // 採点項目と得点は同じ幅（114px）にそろえる
+    columnPixels: [18, 114, 114],
     rows: [
       { header: 'A', cells: ['徒手の技術\n自然な手具操作\n音楽と動きのイメージ', ''] },
       { header: 'B', cells: ['その他の減点', ''] },
@@ -257,8 +262,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
     cornerLabel: '',
     columns: ['身体', '手具', '減点'],
     columnAligns: ['center', 'center', 'center'],
-    // 冊子61ページははがき大。用紙 264px の中身 246px に収める
-    columnPixels: [14, 78, 77, 77],
+    // 冊子61ページははがき大。用紙 264px の中身 246px に収める。
+    // 左の見出しは「回数」「時間」の2文字ぶん、右の3列は同じ幅（72px）にそろえる
+    columnPixels: [30, 72, 72, 72],
     rows: [
       { header: '回数', cells: ['', '', ''] },
       // 冊子では「時間」のかたまりにも見出しの行があり、「入場／演技／減点」と刷ってある
