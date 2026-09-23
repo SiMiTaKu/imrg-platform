@@ -487,13 +487,19 @@
     padding: $space-size-4;
   }
 
-  // 署名の欄。「審判No.」と「署名」が横に並ぶ基準にする
+  /*
+    署名の欄。はがき大の用紙は欄が2つか3つしかないので、2列に並べる。
+    冊子61ページの line・time 採点票は「線審 No.1．2」と「計時」が横に並び、
+    その下に署名が1行を丸ごと使う。欄が奇数のときは最後の1つを2列ぶんに伸ばす
+  */
   .paper.card .signatures {
+    display: grid;
     gap: $space-size-4 $space-size-8;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .paper.card .signatures .field-line {
-    flex-basis: 6em;
+  .paper.card .signatures .field-line:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   // 大会名。冊子では用紙の枠の外、右上に刷ってある
