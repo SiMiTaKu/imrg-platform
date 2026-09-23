@@ -582,7 +582,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 「小分類」まで縦書きにすると、長い技の名前が行の高さからはみ出す
     // 大分類と小分類は、横に送っても左に残るようにする
     headerColumns: 2,
-    mergeEmptyCells: true,
+    // まとめるのは大分類と小分類だけ。A〜D の空のます目は
+    // 「その難度に当たる技が無い」という意味なので、まとめると意味が変わる
+    mergeEmptyCells: [0, 1],
     verticalHeader: true,
     // 大分類と小分類は真ん中に寄せる。A〜D の中身は左からそろえる
     columnAligns: ['center', 'center', 'start', 'start', 'start', 'start'],
@@ -617,7 +619,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
     narrowColumns: 0,
     // 大分類と小分類は、横に送っても左に残るようにする
     headerColumns: 2,
-    mergeEmptyCells: true,
+    // まとめるのは大分類と小分類だけ。A〜D の空のます目は
+    // 「その難度に当たる技が無い」という意味なので、まとめると意味が変わる
+    mergeEmptyCells: [0, 1],
     verticalHeader: true,
     // 大分類と小分類は真ん中に寄せる。A〜D の中身は左からそろえる
     columnAligns: ['center', 'center', 'start', 'start', 'start', 'start'],

@@ -324,8 +324,11 @@
         {#if total === BONUS_TOTAL}
           {@render bonusTable()}
         {:else if total === SCORE_BOX_TOTAL}
-          <!-- 冊子78ページの右下にある得点の枠。紙面のとおり右に寄せる -->
-          <div class="score-box">{total}</div>
+          <!-- 冊子78ページの右下にある得点の欄。名前の枠と書き込む枠を横に並べ、右に寄せる -->
+          <dl class="total-box score-box">
+            <dt>{total}</dt>
+            <dd></dd>
+          </dl>
         {:else if total === BLANK_TOTAL}
           <!-- 冊子79ページのいちばん下にある、何も刷っていない四角い枠 -->
           <div class="memo-box"></div>
@@ -792,20 +795,9 @@
     margin: 0;
   }
 
-  /*
-    冊子78ページの右下にある得点の枠。紙面と同じく、右に寄せた小さな枠1つ
-  */
+  // 冊子78ページの右下にある得点の欄。紙面と同じく右に寄せる
   .score-box {
-    display: flex;
-    box-sizing: border-box;
     width: $space-size-160;
-    min-height: $space-size-40;
-    padding: $space-size-8;
-    font-size: $font-size-14;
-    color: map.get($gray, text);
-    border: $border-size-1 solid map.get($gray, 300);
-    align-items: center;
-    justify-content: center;
     align-self: flex-end;
   }
 
@@ -841,7 +833,7 @@
   }
 
   // 左の「加点」。冊子では表の高さいっぱいの1つのます目
-  .bonus-label {
+  .bonus th.bonus-label {
     width: $space-size-120;
     font-weight: bold;
     background-color: map.get($gray, background);
@@ -849,7 +841,7 @@
   }
 
   // 「内容」の見出し
-  .bonus-head {
+  .bonus th.bonus-head {
     background-color: map.get($gray, background);
     text-align: center;
   }

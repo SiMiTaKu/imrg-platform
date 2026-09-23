@@ -170,8 +170,12 @@ export interface RuleTable {
    *
    * 書き込むための様式（`purpose: 'form'`）では、空のます目は
    * 書き込む場所なので、この指定を立てない
+   *
+   * 列の番号を並べて書くと、その列だけをまとめる。難度表のように、
+   * 空のます目が「その難度に当たる技が無い」という意味を持つ表では、
+   * まとめてしまうと意味が変わるので、まとめる列を選ぶ
    */
-  readonly mergeEmptyCells?: boolean
+  readonly mergeEmptyCells?: boolean | readonly number[]
   /**
    * 列ごとの幅の割り当て。列の数だけ、百分率で並べる。
    *
@@ -452,8 +456,12 @@ export const mergeEmptyCellsDownward = (
   if (!table.mergeEmptyCells) return merged
 
   const columnCount = Math.max(...rows.map((cells) => cells.length), 0)
+  /** まとめる列。書いていなければすべての列 */
+  const targets = Array.isArray(table.mergeEmptyCells) ? table.mergeEmptyCells : undefined
 
   for (let column = 0; column < columnCount; column += 1) {
+    if (targets && !targets.includes(column)) continue
+
     let anchor = -1
     for (let row = 0; row < merged.length; row += 1) {
       // 区分の見出しで区切る。区分が変われば、まとめ直す

@@ -1102,7 +1102,9 @@
     font-size: $font-size-12;
     font-weight: bold;
     color: map.get($gray, text);
-    white-space: nowrap;
+
+    // 書いてある改行はそのまま折る。折り返さない指定にすると改行が潰れてしまう
+    white-space: pre-line;
   }
 
   tbody tr:nth-child(even of :not(.group-row)) td {
