@@ -1025,7 +1025,7 @@
     縦書きの列の見出し。中身が縦なので、見出しも縦に立てる。
     横のままだと、細い列に「大分類」の3文字が収まらずはみ出す
   */
-  .scroller.vertical-header:not(.keep-breaks) thead th:first-child {
+  .scroller.vertical-header:not(.keep-breaks) thead th.sticky-0 {
     padding: $space-size-12 $space-size-2;
     line-height: 1.2;
     writing-mode: vertical-rl;
@@ -1053,11 +1053,21 @@
     table-layout: auto;
   }
 
-  .scroller.keep-breaks .row-header:first-child {
+  .scroller.keep-breaks .row-header.sticky-0 {
     white-space: nowrap;
   }
 
-  .scroller.vertical-header .row-header:first-child {
+  /*
+    縦書きの列は、見出しの言葉の幅だけあればよい。
+    ます目の中身は縦に流れるので、左右の余白を詰めて列を細くする
+  */
+  .scroller.vertical-header thead th.sticky-0,
+  .scroller.vertical-header .row-header.sticky-0 {
+    padding-right: $space-size-2;
+    padding-left: $space-size-2;
+  }
+
+  .scroller.vertical-header .row-header.sticky-0 {
     min-width: 0;
 
     // 縦書きでは行の高さが横幅になる。1.7 のままだと列に収まらず、字が切れる
