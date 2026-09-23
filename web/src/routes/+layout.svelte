@@ -73,7 +73,12 @@
       display: none;
     }
 
-    :global(body[data-printing] [data-print-path]) {
+    /*
+      道すじにある要素と、紙に出す用紙そのものから、余白と枠を外す。
+      用紙にも当てないと、figure が持っている既定の余白が1枚目の頭に残る
+    */
+    :global(body[data-printing] [data-print-path]),
+    :global(body[data-printing] [data-printing='true']) {
       display: block;
       max-height: none;
       margin: 0;
@@ -100,9 +105,9 @@
 
     :global(body[data-printing] [data-printing='true'] th),
     :global(body[data-printing] [data-printing='true'] td) {
-      padding-top: 1px;
-      padding-bottom: 1px;
-      line-height: 1.25;
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: 1.15;
     }
 
     // 画面でだけ要る説明は、紙には出さない

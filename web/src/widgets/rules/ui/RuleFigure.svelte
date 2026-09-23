@@ -1022,18 +1022,6 @@
   */
 
   /*
-    縦書きの列の見出し。中身が縦なので、見出しも縦に立てる。
-    横のままだと、細い列に「大分類」の3文字が収まらずはみ出す
-  */
-  .scroller.vertical-header:not(.keep-breaks) thead th.sticky-0 {
-    padding: $space-size-12 $space-size-2;
-    line-height: 1.2;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    white-space: nowrap;
-  }
-
-  /*
     書いてある改行だけで折る表。冊子の難度表のように、改行の位置そのものが
     読みやすさを作っているもの。収まらないときは入れ物の中で横に送る
   */
