@@ -135,10 +135,10 @@
     */
     :global(body[data-printing] [data-printing='true'] .uniform-rows th),
     :global(body[data-printing] [data-printing='true'] .uniform-rows td) {
-      height: 13px;
+      height: 16px;
       padding: 0 4px;
       font-size: 6.5pt;
-      line-height: 13px;
+      line-height: 16px;
     }
 
     /*
@@ -155,9 +155,17 @@
 
     /*
       縦書きの見出しは、紙に出すと行が詰まって、まとめたます目より
-      文字のほうが長くなる。折り返して2列に分けて収める
+      文字のほうが長くなる。折り返して2列に分けて収める。
+
+      画面側の「折り返さない」指定のほうが強いので、
+      印（.sticky-0）まで書いて上書きする
     */
-    :global(body[data-printing] [data-printing='true'] .vertical-header .row-header) {
+    :global(
+      body[data-printing] [data-printing='true'] .scroller.vertical-header .row-header.sticky-0
+    ) {
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: 1.1;
       white-space: normal;
     }
 
