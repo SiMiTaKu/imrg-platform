@@ -101,11 +101,13 @@
 
     /*
       何枚かをまとめて出す用紙は、紙の上で2列に並べる。
-      冊子61ページの4枚が1ページに2列2段で刷ってあるのに合わせる
+      冊子61ページの4枚が1ページに2列2段で刷ってあるのに合わせる。
+
+      上下は切り離して使う用紙なので、はさみを入れられるよう間を広く取る
     */
     :global(body[data-printing] [data-print-grid]) {
       display: grid;
-      gap: 8px;
+      gap: 32px 8px;
       grid-template-columns: 1fr 1fr;
       align-items: start;
     }
