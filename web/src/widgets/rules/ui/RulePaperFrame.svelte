@@ -89,6 +89,15 @@
   /** 但し書きの欄が、上から何行ぶんを使うか。冊子では（1）（2）の2行にまたがっている */
   const BONUS_NOTE_ROWS = 2
 
+  /**
+   * 2段の記入欄の、1つぶんの幅（px）。
+   *
+   * @remarks
+   * 名前がこれより長い欄は、名前が折り返さないところまで広がる。
+   * 用紙の幅いっぱいに引き伸ばすと、書き込む場所のわりに欄が大きくなりすぎる
+   */
+  const FIELD_BOX_WIDTH = 84
+
   /** 記入欄を、名前の行とます目の行の2段で出す最小の欄の数 */
   const FIELD_HEADER_ROW_MIN = 3
 
@@ -152,7 +161,7 @@
    */
   const fieldColumns = (fields: readonly string[]): string =>
     usesFieldHeaderRow(fields)
-      ? `repeat(${fields.length}, minmax(max-content, 1fr))`
+      ? `repeat(${fields.length}, minmax(max-content, ${FIELD_BOX_WIDTH}px))`
       : 'max-content 1fr'
 
   /**
@@ -682,7 +691,10 @@
   .field-boxes {
     display: grid;
     box-sizing: border-box;
-    width: 100%;
+
+    // 中身の幅で止める。用紙の幅いっぱいには引き伸ばさない
+    width: fit-content;
+    max-width: 100%;
     margin: 0;
     font-size: $font-size-12;
     color: map.get($gray, text);
