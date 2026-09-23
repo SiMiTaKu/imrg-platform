@@ -41,5 +41,6 @@
   "rules_apparatus_clubs": "Clubs",
   "rules_print": "Print this sheet",
   "rules_print_hint": "You can save it as a PDF from your browser’s print dialog.",
-  "rules_section_source": "Source: Men's Rhythmic Gymnastics Rules, 2025 edition, p. {page}"
+  "rules_section_source": "Source: Men's Rhythmic Gymnastics Rules, 2025 edition, p. {page}",
+  "rules_print_group": "Print all four sheets"
 }

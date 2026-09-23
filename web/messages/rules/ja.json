@@ -41,5 +41,6 @@
   "rules_apparatus_clubs": "クラブ",
   "rules_print": "この用紙を印刷",
   "rules_print_hint": "※ブラウザーの印刷から PDF として保存できます",
-  "rules_section_source": "出典: 新体操男子規則 2025年版 {page}ページ"
+  "rules_section_source": "出典: 新体操男子規則 2025年版 {page}ページ",
+  "rules_print_group": "4枚まとめて印刷"
 }

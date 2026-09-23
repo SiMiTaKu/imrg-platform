@@ -41,5 +41,6 @@
   "rules_apparatus_clubs": "棍",
   "rules_print": "打印此表",
   "rules_print_hint": "可在浏览器的打印窗口中保存为 PDF。",
-  "rules_section_source": "出处：男子艺术体操规则 2025年版 第{page}页"
+  "rules_section_source": "出处：男子艺术体操规则 2025年版 第{page}页",
+  "rules_print_group": "四张一起打印"
 }

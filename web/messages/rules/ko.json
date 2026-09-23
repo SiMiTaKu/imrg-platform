@@ -41,5 +41,6 @@
   "rules_apparatus_clubs": "클럽",
   "rules_print": "이 용지 인쇄",
   "rules_print_hint": "브라우저의 인쇄 창에서 PDF로 저장할 수 있습니다.",
-  "rules_section_source": "출처: 남자 리듬체조 규칙 2025년판 {page}쪽"
+  "rules_section_source": "출처: 남자 리듬체조 규칙 2025년판 {page}쪽",
+  "rules_print_group": "4장 함께 인쇄"
 }

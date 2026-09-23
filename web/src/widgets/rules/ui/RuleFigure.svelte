@@ -227,12 +227,24 @@
     if (!figure) return
     printing = true
     document.body.dataset.printing = 'true'
+
+    /*
+      組を決めてある用紙は、同じ組のものも一緒に紙へ出す。
+      冊子61ページのように、何枚かが1ページに並んでいるものがあるため
+    */
+    const group = table?.printGroup
+    const companions = group
+      ? [...document.querySelectorAll<HTMLElement>(`[data-print-group="${group}"]`)]
+      : []
+    for (const companion of companions) companion.dataset.printing = 'true'
+
     const clear = markPrintPath(figure)
     // 印刷の目印が画面に行き渡ってから窓を開く
     requestAnimationFrame(() => {
       globalThis.print()
       printing = false
       delete document.body.dataset.printing
+      for (const companion of companions) delete companion.dataset.printing
       clear()
     })
   }
@@ -616,7 +628,12 @@
   {/if}
 {/snippet}
 
-<figure bind:this={figure} class="rule-figure" data-printing={printing ? 'true' : undefined}>
+<figure
+  bind:this={figure}
+  class="rule-figure"
+  data-printing={printing ? 'true' : undefined}
+  data-print-group={table?.printGroup}
+>
   {#if table}
     <!-- 文字の表。言葉で探せて、訳せて、スマホでも読める -->
     {#if !table.paper}
@@ -634,7 +651,7 @@
       </div>
       <div class="print-action no-print">
         <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={print}>
-          {m.rules_print()}
+          {table.printGroup ? m.rules_print_group() : m.rules_print()}
         </Button>
         <span class="hint">{m.rules_print_hint()}</span>
       </div>

@@ -256,6 +256,14 @@ export interface RuleTable {
    * 空文字にした列は、下の見出しがそのまま2段ぶんに伸びる
    */
   readonly columnGroups?: readonly RuleTableCellSource[]
+  /**
+   * まとめて紙に出す組の名前。
+   *
+   * @remarks
+   * 冊子61ページのように、何枚かの用紙が1ページに並んでいるものがある。
+   * 同じ名前を付けた用紙は、どれの印刷ボタンを押しても一緒に紙へ出る
+   */
+  readonly printGroup?: string
   /** 表の下に置く補足 */
   readonly note?: string
   /**

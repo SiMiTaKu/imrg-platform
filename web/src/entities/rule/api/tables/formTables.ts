@@ -133,6 +133,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
       totals: ['最終採点'],
       signatures: ['審判No.', '署名'],
     },
+    // 冊子61ページは4枚が1ページに並んでいる。まとめて紙に出す
+    printGroup: 'scoring-sheets',
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -166,6 +168,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
       totals: ['最終採点'],
       signatures: ['審判No.', '署名'],
     },
+    // 冊子61ページは4枚が1ページに並んでいる。まとめて紙に出す
+    printGroup: 'scoring-sheets',
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -202,6 +206,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
       totals: ['最終採点'],
       signatures: ['審判No.', '署名'],
     },
+    // 冊子61ページは4枚が1ページに並んでいる。まとめて紙に出す
+    printGroup: 'scoring-sheets',
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,
@@ -234,6 +240,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
       fields: ['選手名・団体名', 'No.', ''],
       signatures: ['線審 No.1．2', '計時', '署名'],
     },
+    // 冊子61ページは4枚が1ページに並んでいる。まとめて紙に出す
+    printGroup: 'scoring-sheets',
     layout: 'list',
     purpose: 'form',
     narrowColumns: 0,

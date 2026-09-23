@@ -162,7 +162,9 @@
   const fieldColumns = (fields: readonly string[]): string =>
     usesFieldHeaderRow(fields)
       ? `repeat(${fields.length}, minmax(max-content, ${FIELD_BOX_WIDTH}px))`
-      : 'max-content 1fr'
+      : // 縦に積むときも、書き込む列に幅を持たせる。
+        // 1fr だけだと、欄ぜんたいを中身の幅で止めているぶん、中身の無い列が潰れる
+        `max-content minmax(${FIELD_BOX_WIDTH * 2}px, 1fr)`
 
   /**
    * 記入欄の名前を、何列目・何行目に置くか
