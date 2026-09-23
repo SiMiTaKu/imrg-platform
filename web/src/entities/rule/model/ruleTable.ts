@@ -26,14 +26,14 @@ export interface RuleTableCell {
   /** 縦に何行ぶん使うか。既定は 1 */
   readonly rowSpan?: number
   /**
-   * 斜線を引く向き。
+   * 斜線を引くか。
    *
    * @remarks
    * 冊子の採点票では「ここには書かない」ます目に斜線が引いてある。
    * 空のまま置くと書き込む場所に見えてしまうので、同じように斜線で示す。
-   * `down` は左上から右下へ、`up` は右上から左下へ引く
+   * 向きは右上から左下へ。どのます目でも同じ向きに引く
    */
-  readonly slash?: RuleTableSlash
+  readonly slash?: boolean
 }
 
 /** ます目の書き方。ただの文字列でも、`colSpan` 付きでも書ける */
@@ -88,9 +88,6 @@ export interface RulePaper {
 
 /** ます目の文字の寄せ方 */
 export type RuleTableAlign = 'start' | 'center' | 'end'
-
-/** 斜線を引く向き。`down` は左上から右下へ、`up` は右上から左下へ */
-export type RuleTableSlash = 'down' | 'up'
 
 /**
  * 棒人間を出す列の指定。
@@ -371,16 +368,14 @@ export const narrowColumnCount = (table: RuleTable): number =>
  * @param cell - ます目。文字列か、`colSpan` 付きのもの
  * @returns `text` と `colSpan` を持つ形にそろえたます目
  */
-export const normalizeRuleTableCell = (
-  cell: RuleTableCellSource,
-): Omit<Required<RuleTableCell>, 'slash'> & { slash?: RuleTableSlash } =>
+export const normalizeRuleTableCell = (cell: RuleTableCellSource): Required<RuleTableCell> =>
   typeof cell === 'string'
-    ? { text: cell, colSpan: 1, rowSpan: 1, slash: undefined }
+    ? { text: cell, colSpan: 1, rowSpan: 1, slash: false }
     : {
         text: cell.text,
         colSpan: cell.colSpan ?? 1,
         rowSpan: cell.rowSpan ?? 1,
-        slash: cell.slash,
+        slash: cell.slash ?? false,
       }
 
 /**
@@ -424,8 +419,8 @@ export interface MergedRuleTableCell {
   readonly colSpan: number
   /** 縦にいくつ分か。0 なら上に呑まれたので出さない */
   readonly rowSpan: number
-  /** 斜線を引く向き。引かないときは省く */
-  readonly slash?: RuleTableSlash
+  /** 斜線を引くか */
+  readonly slash: boolean
 }
 
 /**

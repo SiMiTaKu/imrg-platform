@@ -420,7 +420,7 @@ export const FORM_TABLES: readonly RuleTable[] = [
           { text: '徒手体操', rowSpan: 3 },
           { text: '', rowSpan: 3 },
           { text: '', colSpan: 4 },
-          { text: '', rowSpan: 3, slash: 'up' },
+          { text: '', rowSpan: 3, slash: true },
           // 難度点。徒手体操から転回までを縦にまとめた1つのます目
           { text: '', rowSpan: 10 },
         ],
@@ -435,7 +435,7 @@ export const FORM_TABLES: readonly RuleTable[] = [
       { cells: ['ステップ', '', '', '', '', '', ''] },
       // 転回だけは、内容の後ろ2つのます目に斜線が引いてある
       {
-        cells: ['転回', '', '', '', { text: '', slash: 'down' }, { text: '', slash: 'down' }, ''],
+        cells: ['転回', '', '', '', { text: '', slash: true }, { text: '', slash: true }, ''],
       },
       { cells: [{ text: '加点', colSpan: 8 }, ''] },
       { cells: [{ text: '要素減点', colSpan: 8 }, ''] },
