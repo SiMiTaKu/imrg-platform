@@ -1369,7 +1369,12 @@
     content: '';
     position: absolute;
     top: 50%;
-    left: -$space-size-24;
+
+    /*
+      箱の中に置く線は、箱の枠線の内側からの位置になる。
+      枠線のぶんを引かないと、行に引いた縦の線と1px ずれて、つながらない
+    */
+    left: calc(-1 * #{$space-size-24} - #{$border-size-1});
     width: $space-size-24;
   }
 
@@ -1380,14 +1385,16 @@
   ul.tree:not(.root) > li:last-child > .node::after {
     content: '';
     position: absolute;
-    top: -$space-size-4;
+
+    // 行の上端まで伸ばす。箱の枠線のぶんも足す
+    top: calc(-1 * #{$space-size-4} - #{$border-size-1});
 
     /*
       真ん中でぴたりと止めると、端数の丸めで1〜2px 切れて見える。
       線の太さぶん下まで伸ばして、横の枝と重ねる
     */
     bottom: calc(50% - #{$border-size-2});
-    left: -$space-size-24;
+    left: calc(-1 * #{$space-size-24} - #{$border-size-1});
     width: 0;
   }
 
