@@ -146,7 +146,12 @@
    * @returns 中身・横幅・左から何列目か・幅を詰める列かどうか
    */
   const placeCells = (
-    cells: readonly { text: string; colSpan: number; rowSpan: number; slash: boolean }[],
+    cells: readonly {
+      text: string
+      colSpan: number
+      rowSpan: number
+      slash?: 'down' | 'up'
+    }[],
   ) => {
     let column = 0
 
@@ -534,7 +539,8 @@
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}
                       class:narrow={cell.isNarrow}
                       class:figure-cell={table.stickFigures?.figureColumn === cell.startColumn}
-                      class:slashed={cell.slash}
+                      class:slashed-down={cell.slash === 'down'}
+                      class:slashed-up={cell.slash === 'up'}
                       style:text-align={table.columnAligns?.[cell.startColumn]}
                     >
                       {#if table.stickFigures?.figureColumn === cell.startColumn}
@@ -741,13 +747,24 @@
     斜線を引いたます目。冊子の採点票で「ここには書かない」ことを示している。
     空のまま置くと書き込む場所に見えてしまう
   */
-  .slashed {
+  .slashed-down {
     background-image: linear-gradient(
       to top right,
-      transparent calc(50% - 0.5px),
-      map.get($gray, 300) calc(50% - 0.5px),
-      map.get($gray, 300) calc(50% + 0.5px),
-      transparent calc(50% + 0.5px)
+      transparent calc(50% - 0.6px),
+      map.get($gray, 500) calc(50% - 0.6px),
+      map.get($gray, 500) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    );
+  }
+
+  // 右上から左下へ引く斜線
+  .slashed-up {
+    background-image: linear-gradient(
+      to top left,
+      transparent calc(50% - 0.6px),
+      map.get($gray, 500) calc(50% - 0.6px),
+      map.get($gray, 500) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
     );
   }
 

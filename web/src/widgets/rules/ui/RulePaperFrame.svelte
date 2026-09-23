@@ -433,9 +433,15 @@
   }
 
   // 枠で囲む記入欄。冊子62ページの「チーム・番号」「選手・番号」など
+
+  /*
+    枠囲みの記入欄。冊子では名前と書き込む場所が横に並び、その組が左から続く。
+    名前の列と書き込む列が交互に並ぶよう、2列ずつの繰り返しにする
+  */
   .field-boxes {
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, max-content minmax(48px, 1fr));
     width: 100%;
     margin: 0;
     font-size: $font-size-12;

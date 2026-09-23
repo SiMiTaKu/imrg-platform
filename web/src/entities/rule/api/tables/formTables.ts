@@ -364,8 +364,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     caption: '個人徒手 D・A共通採点表',
     paper: {
       // 冊子では「所属　名」の右に「***」とだけ刷られた欄がある。
-      // 何を書く欄か読み取れないので、ここには置いていない
-      fields: ['No.', '所属名', 'カテゴリー', 'ルール'],
+      // 何を書く欄かは読み取れないが、冊子にある欄なのでそのまま置く
+      fields: ['No.', '所属名', '***', 'カテゴリー', 'ルール'],
       mark: 'D・A',
       markLabel: '演技順',
     },
@@ -414,13 +414,13 @@ export const FORM_TABLES: readonly RuleTable[] = [
       {
         cells: [
           // 演技記録。表の左端を縦に1本通る空欄で、審判が自由に書き込む場所
-          { text: '', rowSpan: 19 },
+          { text: '', rowSpan: 20 },
           // 難度（D）。冊子では行ではなく、縦に通った細い列に「D」とだけ刷ってある
           { text: 'D', rowSpan: 10 },
           { text: '徒手体操', rowSpan: 3 },
           { text: '', rowSpan: 3 },
           { text: '', colSpan: 4 },
-          { text: '', rowSpan: 3, slash: true },
+          { text: '', rowSpan: 3, slash: 'up' },
           // 難度点。徒手体操から転回までを縦にまとめた1つのます目
           { text: '', rowSpan: 10 },
         ],
@@ -435,7 +435,7 @@ export const FORM_TABLES: readonly RuleTable[] = [
       { cells: ['ステップ', '', '', '', '', '', ''] },
       // 転回だけは、内容の後ろ2つのます目に斜線が引いてある
       {
-        cells: ['転回', '', '', '', { text: '', slash: true }, { text: '', slash: true }, ''],
+        cells: ['転回', '', '', '', { text: '', slash: 'down' }, { text: '', slash: 'down' }, ''],
       },
       { cells: [{ text: '加点', colSpan: 8 }, ''] },
       { cells: [{ text: '要素減点', colSpan: 8 }, ''] },
@@ -444,6 +444,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
         芸術と多様性（A）。冊子では D とは別の表になっていて、列の作りも違う。
         見出しの行は表に1つしか置けないので、A の見出しはふつうの行として持つ
       */
+      // 難度（D）と芸術と多様性（A）の間に、冊子と同じように1行空ける
+      { cells: [{ text: '', colSpan: 9 }] },
       {
         cells: [
           '',
@@ -457,8 +459,6 @@ export const FORM_TABLES: readonly RuleTable[] = [
           '多様性と運動量',
         ],
       },
-      // 難度（D）と芸術と多様性（A）の間に、冊子と同じように1行空ける
-      { cells: [{ text: '', colSpan: 9 }] },
       {
         cells: [
           // 芸術と多様性（A）。ここも冊子では縦に通った列に「A」とだけ刷ってある
