@@ -151,8 +151,9 @@
     }
 
     // 用紙のまわりの余白と、離して置く欄の間も詰める
+    // 上下だけ詰める。左右を変えると、表と上の印の右端がそろわなくなる
     :global(body[data-printing] [data-printing='true'] .paper) {
-      padding: 4px 0;
+      padding: 4px 16px;
     }
 
     :global(body[data-printing] [data-printing='true'] .stack) {
