@@ -1071,13 +1071,20 @@
     // 縦書きでは行の高さが横幅になる。1.7 のままだと列に収まらず、字が切れる
     padding: $space-size-12 $space-size-2;
     line-height: 1.2;
-    writing-mode: vertical-rl;
+
+    /*
+      縦書き。行は左から右へ送る（vertical-lr）。
+      右から送ると、折り返した2行目が左に来て、読む順と逆に見える
+    */
+    writing-mode: vertical-lr;
 
     // 数字や英字も縦のまま立てる。既定では横倒しになり「静止2秒以上」の 2 だけが寝てしまう
     text-orientation: upright;
     text-align: center;
     vertical-align: middle;
-    white-space: nowrap;
+
+    // 書いてある改行で折る。折り返さない指定にすると改行が空白になってしまう
+    white-space: pre-line;
   }
 
   // 通し番号だけが入る行の見出し。本文と同じ幅を取ると、番号1つのために広い列ができる

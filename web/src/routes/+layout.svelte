@@ -135,10 +135,10 @@
     */
     :global(body[data-printing] [data-printing='true'] .uniform-rows th),
     :global(body[data-printing] [data-printing='true'] .uniform-rows td) {
-      height: 14.5px;
+      height: 15px;
       padding: 0 4px;
       font-size: 6.5pt;
-      line-height: 14.5px;
+      line-height: 15px;
     }
 
     /*
@@ -151,7 +151,7 @@
     // 上下だけ詰める。左右を変えると、表と上の印の右端がそろわなくなる
     // 下の余白は残さない。用紙の下に空白ができてしまう
     :global(body[data-printing] [data-printing='true'] .paper) {
-      padding: 4px 10px 0;
+      padding: 4px 8px 0;
     }
 
     /*
@@ -167,7 +167,9 @@
       padding-top: 0;
       padding-bottom: 0;
       line-height: 1.1;
-      white-space: normal;
+
+      // 書いてある改行で折る。normal だと改行が空白になってしまう
+      white-space: pre-line;
     }
 
     :global(body[data-printing] [data-printing='true'] .stack) {
