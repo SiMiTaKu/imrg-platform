@@ -571,9 +571,12 @@ export const FORM_TABLES: readonly RuleTable[] = [
     narrowColumns: 0,
     // 縦書きにするのはいちばん左の「大分類」だけ。
     // 「小分類」まで縦書きにすると、長い技の名前が行の高さからはみ出す
-    headerColumns: 1,
+    // 大分類と小分類は、横に送っても左に残るようにする
+    headerColumns: 2,
     mergeEmptyCells: true,
     verticalHeader: true,
+    // 大分類と小分類は真ん中に寄せる。A〜D の中身は左からそろえる
+    columnAligns: ['center', 'center', 'start', 'start', 'start', 'start'],
     columns: DIFFICULTY_COLUMNS,
     // 大分類は縦書きなので、見出しの「大分類」の3文字が収まるだけでよい。
     // 小分類は「開脚片足平均立ち」、A〜D は「足が肩より上〜180度」を目安にして、
@@ -603,9 +606,12 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 67ページの難度表と同じ割り当て。大分類は縦書きなので細くてよい
     // 冊子の改行の位置で読ませる表。列の幅で勝手に折り返させない
     preserveLineBreaks: true,
-    headerColumns: 1,
+    // 大分類と小分類は、横に送っても左に残るようにする
+    headerColumns: 2,
     mergeEmptyCells: true,
     verticalHeader: true,
+    // 大分類と小分類は真ん中に寄せる。A〜D の中身は左からそろえる
+    columnAligns: ['center', 'center', 'start', 'start', 'start', 'start'],
     columns: DIFFICULTY_COLUMNS,
     rows: [
       ...FREE_HAND_DIFFICULTY_ROWS,

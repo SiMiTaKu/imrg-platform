@@ -525,6 +525,7 @@
                       class="row-header"
                       class:sticky-0={cell.startColumn + visualColumn === 0}
                       class:sticky-1={cell.startColumn + visualColumn === 1}
+                      style:text-align={table.columnAligns?.[cell.startColumn]}
                       colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}>{cell.text}</th
                     >
@@ -1024,7 +1025,7 @@
     縦書きの列の見出し。中身が縦なので、見出しも縦に立てる。
     横のままだと、細い列に「大分類」の3文字が収まらずはみ出す
   */
-  .scroller.vertical-header thead th:first-child {
+  .scroller.vertical-header:not(.keep-breaks) thead th:first-child {
     padding: $space-size-12 $space-size-2;
     line-height: 1.2;
     writing-mode: vertical-rl;
