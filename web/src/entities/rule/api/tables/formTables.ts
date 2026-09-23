@@ -123,6 +123,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/forms/score-d.png',
     caption: '難度（D）採点票',
     paper: {
+      // 1ページに2枚ずつ並ぶはがき大の用紙
+      width: 264,
       event: '（　　　　　　）大会',
       categories: ['団体', '個人'],
       apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
@@ -141,8 +143,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 冊子のこの表には見出しの行が無い。読み上げと翻訳のために名前だけ付けてある
     cornerLabel: '',
     columns: ['採点項目', '得点'],
-    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
-    columnPixels: [36, 380, 246],
+    // 冊子61ページははがき大。用紙 264px の中身 246px に収める
+    columnPixels: [18, 140, 88],
     rows: [
       { header: 'A', cells: ['転回系難度', ''] },
       { header: 'B', cells: ['徒手系難度', ''] },
@@ -159,6 +161,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/forms/score-a.png',
     caption: '芸術と多様性（A）採点票',
     paper: {
+      // 1ページに2枚ずつ並ぶはがき大の用紙
+      width: 264,
       event: '（　　　　　　）大会',
       categories: ['団体', '個人'],
       apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
@@ -177,8 +181,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
     cornerLabel: '',
     columns: ['採点項目', '配点', '得点'],
     columnAligns: ['start', 'center', 'center'],
-    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
-    columnPixels: [36, 230, 150, 246],
+    // 冊子61ページははがき大。用紙 264px の中身 246px に収める。
+    // 配点の列は「団体2.50」の7文字が折り返さない幅を取る
+    columnPixels: [14, 78, 82, 72],
     rows: [
       { header: 'A', cells: ['多様性と\n技術的価値', '団体2.50\n個人3.50', ''] },
       { header: 'B', cells: ['芸術と\n技術的価値', '団体2.50\n個人1.50', ''] },
@@ -197,6 +202,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/forms/score-e.png',
     caption: '実施（E）採点票',
     paper: {
+      // 1ページに2枚ずつ並ぶはがき大の用紙
+      width: 264,
       event: '（　　　　　　）大会',
       categories: ['団体', '個人'],
       apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
@@ -214,8 +221,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 冊子のこの表には見出しの行が無い。読み上げと翻訳のために名前だけ付けてある
     cornerLabel: '',
     columns: ['採点項目', '得点'],
-    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
-    columnPixels: [36, 380, 246],
+    // 冊子61ページははがき大。用紙 264px の中身 246px に収める
+    columnPixels: [18, 140, 88],
     rows: [
       { header: 'A', cells: ['徒手の技術\n自然な手具操作\n音楽と動きのイメージ', ''] },
       { header: 'B', cells: ['その他の減点', ''] },
@@ -232,6 +239,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     imageSource: '/images/rules/forms/score-line-time.png',
     caption: 'line・time 採点票',
     paper: {
+      // 1ページに2枚ずつ並ぶはがき大の用紙
+      width: 264,
       event: '（　　　　　　）大会',
       categories: ['団体', '個人'],
       apparatus: [ApparatusKind.STICK, ApparatusKind.RING, ApparatusKind.ROPE, ApparatusKind.CLUBS],
@@ -248,8 +257,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     cornerLabel: '',
     columns: ['身体', '手具', '減点'],
     columnAligns: ['center', 'center', 'center'],
-    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
-    columnPixels: [36, 208, 208, 210],
+    // 冊子61ページははがき大。用紙 264px の中身 246px に収める
+    columnPixels: [14, 78, 77, 77],
     rows: [
       { header: '回数', cells: ['', '', ''] },
       // 冊子では「時間」のかたまりにも見出しの行があり、「入場／演技／減点」と刷ってある

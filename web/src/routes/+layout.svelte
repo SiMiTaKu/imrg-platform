@@ -99,6 +99,17 @@
       font-size: 8pt;
     }
 
+    /*
+      何枚かをまとめて出す用紙は、紙の上で2列に並べる。
+      冊子61ページの4枚が1ページに2列2段で刷ってあるのに合わせる
+    */
+    :global(body[data-printing] [data-print-grid]) {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
     :global(body[data-printing] [data-printing='true'] table) {
       break-inside: avoid;
     }

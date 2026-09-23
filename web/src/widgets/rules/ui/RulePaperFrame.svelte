@@ -388,7 +388,10 @@
     <p class="event">{paper.event}</p>
   {/if}
 
-  <div class="paper">
+  <div
+    class="paper"
+    style:--rule-paper-width={paper.width === undefined ? undefined : `${paper.width}px`}
+  >
     <p class="paper-title">{caption}</p>
 
     {#if !hasHead}
@@ -450,7 +453,7 @@
   */
   .paper {
     box-sizing: border-box;
-    width: 680px;
+    width: var(--rule-paper-width, 680px);
     padding: $space-size-16 $space-size-8;
     border: $border-size-1 solid map.get($gray, 300);
     border-radius: $border-radius-4;

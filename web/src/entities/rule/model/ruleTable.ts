@@ -68,6 +68,14 @@ export type RuleTablePurpose = 'reference' | 'form'
  * 冊子の用紙をなぞる。どれも書き込む場所なので、中身は空のまま枠だけを出す
  */
 export interface RulePaper {
+  /**
+   * 用紙の幅（px）。省くと1ページ大の 680px。
+   *
+   * @remarks
+   * 冊子61ページの4枚のように、1ページに2枚ずつ並ぶはがき大の用紙は
+   * 半分の幅にする。狭い画面でも横に送らずに収まる
+   */
+  readonly width?: number
   /** 右上に書く種別。冊子では「団体競技・個人競技」のように枠で囲んである */
   readonly categories?: readonly string[]
   /** 手具の欄。冊子では絵と名前が横に並ぶ */

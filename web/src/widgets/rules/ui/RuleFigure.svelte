@@ -238,6 +238,10 @@
       : []
     for (const companion of companions) companion.dataset.printing = 'true'
 
+    // 組の用紙は、紙の上で2列に並べる。並べる役は親が担う
+    const grid = companions.length > 1 ? figure.parentElement : undefined
+    if (grid) grid.dataset.printGrid = 'true'
+
     const clear = markPrintPath(figure)
     // 印刷の目印が画面に行き渡ってから窓を開く
     requestAnimationFrame(() => {
@@ -245,6 +249,7 @@
       printing = false
       delete document.body.dataset.printing
       for (const companion of companions) delete companion.dataset.printing
+      if (grid) delete grid.dataset.printGrid
       clear()
     })
   }
