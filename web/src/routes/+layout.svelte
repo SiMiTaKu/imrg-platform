@@ -135,10 +135,10 @@
     */
     :global(body[data-printing] [data-printing='true'] .uniform-rows th),
     :global(body[data-printing] [data-printing='true'] .uniform-rows td) {
-      height: 9px;
+      height: 10px;
       padding: 0 4px;
       font-size: 6.5pt;
-      line-height: 9px;
+      line-height: 10px;
     }
 
     /*
