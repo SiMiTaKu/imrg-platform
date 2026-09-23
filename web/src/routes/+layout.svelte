@@ -122,6 +122,19 @@
     */
     :global(body[data-printing] [data-printing='true'] th),
     :global(body[data-printing] [data-printing='true'] td) {
+      padding-top: 2px;
+      padding-bottom: 2px;
+      font-size: 7pt;
+      line-height: 1.3;
+    }
+
+    /*
+      行の高さをそろえる表だけ、もっと詰める。
+      いちばん長い個人徒手のD採点表を1枚に収めるため。
+      ほかの用紙は短いので、詰めると見出しの行が潰れて見える
+    */
+    :global(body[data-printing] [data-printing='true'] .uniform-rows th),
+    :global(body[data-printing] [data-printing='true'] .uniform-rows td) {
       height: 9px;
       padding: 0 4px;
       font-size: 6.5pt;
@@ -139,7 +152,7 @@
 
     // 用紙のまわりの余白と、離して置く欄の間も詰める
     :global(body[data-printing] [data-printing='true'] .paper) {
-      padding: 4px;
+      padding: 4px 0;
     }
 
     :global(body[data-printing] [data-printing='true'] .stack) {

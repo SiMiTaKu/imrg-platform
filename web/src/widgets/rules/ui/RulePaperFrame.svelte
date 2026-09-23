@@ -431,12 +431,13 @@
 
     PC・スマホ・紙（PDF）のどれでも同じ形に見せたいので、画面の幅に合わせて
     伸び縮みさせない。狭い画面では、包んでいる入れ物の中で横に送る。
-    696px は A4 の縦（左右10mm の余白を取って約718px）に収まる幅
+    672px は A4 の縦（左右10mm の余白を取って約718px）に、
+    余裕を持って収まる幅。中の表は 662px
   */
   .paper {
     box-sizing: border-box;
-    width: 696px;
-    padding: $space-size-16;
+    width: 672px;
+    padding: $space-size-16 $space-size-4;
     border: $border-size-1 solid map.get($gray, 300);
     border-radius: $border-radius-4;
     background: $white;
