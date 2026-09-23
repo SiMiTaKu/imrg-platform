@@ -644,9 +644,6 @@
     {#if !table.paper}
       <p class="title">{table.caption}</p>
     {/if}
-    {#if table.purpose === 'form'}
-      <p class="hint">{m.rules_form_hint()}</p>
-    {/if}
     {#if table.paper}
       <!-- 用紙は幅を決めてあるので、狭い画面ではこの中だけで横に送る -->
       <div class="paper-scroller">

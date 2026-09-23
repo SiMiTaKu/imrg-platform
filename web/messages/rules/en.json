@@ -16,7 +16,6 @@
   "rules_collapse_chapter_label": "Collapse all of Chapter {number}",
   "rules_table_source": "Source: {source}",
   "rules_scroll_hint": "* Scroll sideways to see the rest.",
-  "rules_form_hint": "* A sheet for judges to fill in. The blank cells are where you write.",
   "rules_caution": "Rearranged from the official rules for easier reading. Some parts are still being translated. For official decisions, refer to the rulebook of the governing body.",
   "rules_search_label": "Search by word",
   "rules_search_placeholder": "e.g. deduction, stick, formation",

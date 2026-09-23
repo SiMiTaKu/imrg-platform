@@ -16,7 +16,6 @@
   "rules_collapse_chapter_label": "제{number}장 모두 접기",
   "rules_table_source": "출처: {source}",
   "rules_scroll_hint": "※ 옆으로 스크롤할 수 있습니다",
-  "rules_form_hint": "※심판이 작성하는 용지입니다. 빈칸은 기입하는 곳입니다.",
   "rules_caution": "공식 규칙을 바탕으로 읽기 쉽게 정리한 것입니다. 번역 중인 부분이 있습니다. 정식 판단은 각 경기 단체의 규칙집에 따릅니다.",
   "rules_search_label": "단어로 찾기",
   "rules_search_placeholder": "예: 감점, 스틱, 대형",

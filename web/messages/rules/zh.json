@@ -16,7 +16,6 @@
   "rules_collapse_chapter_label": "折叠第{number}章的全部内容",
   "rules_table_source": "出处：{source}",
   "rules_scroll_hint": "※可左右滑动查看",
-  "rules_form_hint": "※这是裁判填写用的表格。空白栏是填写处。",
   "rules_caution": "根据正式规则重新整理，以便阅读。部分内容仍在翻译中。正式判定以各竞技团体的规则集为准。",
   "rules_search_label": "按关键词查找",
   "rules_search_placeholder": "例：扣分、短棒、队形",
