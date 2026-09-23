@@ -11,6 +11,7 @@
     headerColumnCount,
     mergeEmptyCellsDownward,
     narrowColumnCount,
+    normalizeRuleTableCell,
     sequenceOf,
   } from '@entities/rule'
   import type { RuleShape, RuleShapeKind, RuleTreeNode } from '@entities/rule'
@@ -74,6 +75,27 @@
   const pixelWidth = $derived(
     table?.columnPixels ? table.columnPixels.reduce((sum, width) => sum + width, 0) : undefined,
   )
+
+  /**
+   * まとめの見出しが、この列の上に載っているか。
+   *
+   * @remarks
+   * まとめの見出しは `colSpan` で何列かをまたぐ。またがれた列は下の見出しを
+   * ふつうに出し、まとめの見出しが無い列は下の見出しを2段ぶんに伸ばす。
+   * 並びの位置ではなく、左から何列目かで見る
+   *
+   * @param columnIndex - 列の位置（0 始まり）
+   * @returns まとめの見出しが載っていれば true
+   */
+  const groupCoversColumn = (columnIndex: number): boolean => {
+    let column = 0
+    for (const group of table?.columnGroups ?? []) {
+      const cell = normalizeRuleTableCell(group)
+      if (columnIndex >= column && columnIndex < column + cell.colSpan) return cell.text !== ''
+      column += cell.colSpan
+    }
+    return false
+  }
 
   /** ます目が左から何列目に出るか。行の見出しの列があれば1つずれる */
   const visualColumn = $derived(showsRowHeader ? 1 : 0)
@@ -488,20 +510,55 @@
           </colgroup>
         {/if}
         <thead>
+          {#if table.columnGroups}
+            <!--
+              まとめの見出しの行。冊子の「要求数」のように、
+              いくつかの列をまとめて呼ぶ見出しがある表で出す
+            -->
+            <tr>
+              {#if showsRowHeader}
+                <th scope="col" class="corner sticky-0" rowspan="2">{table.cornerLabel ?? ''}</th>
+              {/if}
+              {#each table.columnGroups as group, groupIndex (groupIndex)}
+                {@const cell = normalizeRuleTableCell(group)}
+                {#if cell.text === ''}
+                  <!-- まとめる言葉が無い列は、下の見出しを2段ぶんに伸ばす -->
+                  <th
+                    scope="col"
+                    rowspan="2"
+                    class:corner={groupIndex < headerColumns}
+                    class:sticky-0={groupIndex + visualColumn === 0}
+                    class:sticky-1={headerColumns + visualColumn > 1 &&
+                      groupIndex + visualColumn === 1}
+                    style:text-align={table.columnAligns?.[groupIndex]}
+                    >{table.columns[groupIndex]}</th
+                  >
+                {:else}
+                  <th
+                    scope="colgroup"
+                    colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
+                    style:text-align={table.columnAligns?.[groupIndex]}>{cell.text}</th
+                  >
+                {/if}
+              {/each}
+            </tr>
+          {/if}
           <tr>
-            {#if showsRowHeader}
+            {#if showsRowHeader && !table.columnGroups}
               <th scope="col" class="corner sticky-0">{table.cornerLabel ?? ''}</th>
             {/if}
             {#each table.columns as column, columnIndex (column)}
-              <th
-                scope="col"
-                class:corner={columnIndex < headerColumns}
-                class:narrow={columnIndex >= narrowFromIndex}
-                class:sticky-0={columnIndex + visualColumn === 0}
-                class:sticky-1={headerColumns + visualColumn > 1 &&
-                  columnIndex + visualColumn === 1}
-                style:text-align={table.columnAligns?.[columnIndex]}>{column}</th
-              >
+              {#if !table.columnGroups || groupCoversColumn(columnIndex)}
+                <th
+                  scope="col"
+                  class:corner={columnIndex < headerColumns}
+                  class:narrow={columnIndex >= narrowFromIndex}
+                  class:sticky-0={columnIndex + visualColumn === 0}
+                  class:sticky-1={headerColumns + visualColumn > 1 &&
+                    columnIndex + visualColumn === 1}
+                  style:text-align={table.columnAligns?.[columnIndex]}>{column}</th
+                >
+              {/if}
             {/each}
           </tr>
         </thead>

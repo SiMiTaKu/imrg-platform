@@ -38,6 +38,8 @@ export const FREE_HAND_TABLES: readonly RuleTable[] = [
     // 内容は「リズミカルな実施」の8文字が1行に収まる 21%（126px）、
     // 減点は折り返さない列なので「その都度 0.10点」がはみ出さない 24%（144px）を取り、
     // 残りの 47%（282px）を具体的な内容に回す
+    // 分類と内容は真ん中に寄せる。減点も記号と数字なので真ん中
+    columnAligns: ['center', 'center', 'start', 'center'],
     columnWidths: ['8%', '21%', '47%', '24%'],
     layout: 'list',
     columns: ['分類', '内容', '具体的な内容', '減点'],

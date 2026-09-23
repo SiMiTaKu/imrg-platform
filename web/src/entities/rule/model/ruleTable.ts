@@ -247,6 +247,15 @@ export interface RuleTable {
    * 立てると列の幅で勝手に折り返さなくなり、収まらないときは横に送る
    */
   readonly preserveLineBreaks?: boolean
+  /**
+   * 見出しの行の、もう一段上に置くまとめの見出し。
+   *
+   * @remarks
+   * 冊子の「要求数」のように、いくつかの列をまとめて呼ぶ見出しがある表に使う。
+   * 列の数だけ並べ、`colSpan` でまたぐ列の数を書く。
+   * 空文字にした列は、下の見出しがそのまま2段ぶんに伸びる
+   */
+  readonly columnGroups?: readonly RuleTableCellSource[]
   /** 表の下に置く補足 */
   readonly note?: string
   /**
@@ -478,14 +487,19 @@ export const mergeEmptyCellsDownward = (
       if (table.rows[row].group !== undefined) anchor = -1
 
       /*
-        左の列が新しい値になった行から、新しいかたまりが始まる。
+        左の**行の見出しの列**が新しい値になった行から、新しいかたまりが始まる。
 
         大分類が変わったのに小分類の空のます目が前のかたまりにつながると、
         別の分類の見出しに呑まれてしまう。
         かたまりの先頭は、中身が空でもそこを起点にする。
-        そうしないと、名前の無い小分類（倒立など）が行ごとに分かれてしまう
+        そうしないと、名前の無い小分類（倒立など）が行ごとに分かれてしまう。
+
+        見る先を行の見出しの列だけにしているのは、本文の列まで見ると
+        中身のある行のたびにまとめ直してしまい、減点のように同じ値が続く列が
+        いつまでもまとまらないため
       */
-      if (rows[row].slice(0, column).some((left) => left.text !== '')) anchor = row
+      const groupingColumns = Math.min(column, headerColumnCount(table))
+      if (rows[row].slice(0, groupingColumns).some((left) => left.text !== '')) anchor = row
 
       const cell = merged[row][column]
       if (cell === undefined) continue

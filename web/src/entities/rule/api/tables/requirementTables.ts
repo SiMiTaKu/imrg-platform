@@ -130,10 +130,12 @@ export const REQUIREMENT_TABLES: readonly RuleTable[] = [
     layout: 'list',
     narrowColumns: 0,
     columnAligns: ['start', 'start', 'center', 'center', 'center'],
+    // 冊子はシニア・ジュニア・キッズの上に「要求数」をまとめて刷っている。
+    // 要素と主な内容には上の段が無いので、下の見出しが2段ぶんに伸びる
+    columnGroups: ['', '', { text: '要求数', colSpan: 3 }],
     columns: ['要素', '主な内容', 'シニア', 'ジュニア', 'キッズ'],
     rows: [
       // 紙面はシニア・ジュニア・キッズの3列の上に「要求数」のまとめの見出しがある
-      { cells: ['', '', { text: '要求数', colSpan: 3 }] },
       {
         cells: ['複合的な徒手体操', '徒手体操の組合わせによる　※(2)参照', '3', '3', '3'],
       },
