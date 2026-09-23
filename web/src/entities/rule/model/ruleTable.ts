@@ -215,6 +215,14 @@ export interface RuleTable {
    * 書かないときは左に寄せる
    */
   readonly columnAligns?: readonly RuleTableAlign[]
+  /**
+   * 書いてある改行だけで折るか。
+   *
+   * @remarks
+   * 冊子の難度表のように、改行の位置そのものが読みやすさを作っている表に使う。
+   * 立てると列の幅で勝手に折り返さなくなり、収まらないときは横に送る
+   */
+  readonly preserveLineBreaks?: boolean
   /** 表の下に置く補足 */
   readonly note?: string
   /**

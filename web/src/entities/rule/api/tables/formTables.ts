@@ -572,7 +572,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 大分類は縦書きなので、見出しの「大分類」の3文字が収まるだけでよい。
     // 小分類は「開脚片足平均立ち」、A〜D は「足が肩より上〜180度」を目安にして、
     // 残りを A〜D の4列で分ける
-    columnWidths: ['8%', '16%', '19%', '19%', '19%', '19%'],
+    // 冊子の改行の位置で読ませる表。列の幅で勝手に折り返させない
+    preserveLineBreaks: true,
+    columnWidths: ['8%', '17%', '18.75%', '18.75%', '18.75%', '18.75%'],
     rows: FREE_HAND_DIFFICULTY_ROWS,
     note: '紙面の空欄は、そこに当たる難度が無いという意味。',
     source: '新体操男子規則 2025年版 3 採点規則 3.8.6「4 難度表」（67ページ）',
@@ -594,7 +596,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
     purpose: 'form',
     narrowColumns: 0,
     // 67ページの難度表と同じ割り当て。大分類は縦書きなので細くてよい
-    columnWidths: ['8%', '16%', '19%', '19%', '19%', '19%'],
+    // 冊子の改行の位置で読ませる表。列の幅で勝手に折り返させない
+    preserveLineBreaks: true,
+    columnWidths: ['8%', '17%', '18.75%', '18.75%', '18.75%', '18.75%'],
     headerColumns: 1,
     mergeEmptyCells: true,
     verticalHeader: true,

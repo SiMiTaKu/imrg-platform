@@ -445,6 +445,7 @@
       class:form={table.purpose === 'form'}
       class:compact={table.compact}
       class:vertical-header={table.verticalHeader}
+      class:keep-breaks={table.preserveLineBreaks}
       class:short-row-header={shortRowHeader}
       class:uniform={allColumnsNarrow}
       use:watchOverflow
@@ -961,6 +962,32 @@
     縦に書くと1行ぶんの幅で済み、残りを本文の列に回せる。
     縦書きでは text-align が上下方向の揃えになるので、中央は center で指定する
   */
+
+  /*
+    縦書きの列の見出し。中身が縦なので、見出しも縦に立てる。
+    横のままだと、細い列に「大分類」の3文字が収まらずはみ出す
+  */
+  .scroller.vertical-header thead th:first-child {
+    padding: $space-size-12 $space-size-2;
+    line-height: 1.2;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: nowrap;
+  }
+
+  /*
+    書いてある改行だけで折る表。冊子の難度表のように、改行の位置そのものが
+    読みやすさを作っているもの。収まらないときは入れ物の中で横に送る
+  */
+  .scroller.keep-breaks th,
+  .scroller.keep-breaks td {
+    white-space: pre;
+  }
+
+  .scroller.keep-breaks .row-header:first-child {
+    white-space: nowrap;
+  }
+
   .scroller.vertical-header .row-header:first-child {
     min-width: 0;
 
@@ -968,6 +995,9 @@
     padding: $space-size-12 $space-size-2;
     line-height: 1.2;
     writing-mode: vertical-rl;
+
+    // 数字や英字も縦のまま立てる。既定では横倒しになり「静止2秒以上」の 2 だけが寝てしまう
+    text-orientation: upright;
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
