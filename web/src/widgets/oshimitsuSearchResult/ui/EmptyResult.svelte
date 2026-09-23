@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
-  import { CHARACTERS, Character, CharacterFigure } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // import { CHARACTERS, Character, CharacterFigure } from '@entities/character'
   import { ContentType } from '@entities/oshimitsuVideo'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
@@ -20,19 +21,24 @@
   const { title, description, actions }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
-  /** 推しミツ！の案内役 */
-  const guide = CHARACTERS[Character.AYATO]
+  // /** 推しミツ！の案内役 */
+  // const guide = CHARACTERS[Character.AYATO]
 </script>
 
 <!-- 0件で行き止まりにしない。必ず次の一手を並べる -->
 <section class="empty" class:mobile={isMobile}>
+  <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+  <!--
   <div class="figure">
     <CharacterFigure character={guide} size={isMobile ? 88 : 112} />
   </div>
+  -->
   <div class="words">
+    <!--
     <p class="speaker">
       {m.character_figure_label({ name: guide.name(), specialty: guide.specialty() })}
     </p>
+    -->
     <h2>{title}</h2>
     <p class="description">{description}</p>
     <div class="actions">
@@ -94,9 +100,10 @@
     text-align: center;
   }
 
-  .figure {
-    flex: none;
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .figure {
+  //   flex: none;
+  // }
 
   .words {
     display: flex;
@@ -105,12 +112,13 @@
     min-inline-size: 0;
   }
 
-  .speaker {
-    margin: 0;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .speaker {
+  //   margin: 0;
+  //   font-size: $font-size-12;
+  //   font-weight: bold;
+  //   color: map.get($sky-blue, text);
+  // }
 
   h2 {
     margin: 0;

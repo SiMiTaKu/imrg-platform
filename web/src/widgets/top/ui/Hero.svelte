@@ -5,7 +5,8 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { CHARACTER_LIST, CharacterFigure } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // import { CHARACTER_LIST, CharacterFigure } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
@@ -46,6 +47,8 @@
     </div>
 
     <!-- 5人が並ぶ。競技が「団体5人」であることを、言葉より先に見せる -->
+    <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+    <!--
     <ul class="team">
       {#each CHARACTER_LIST as character (character.id)}
         <li>
@@ -53,6 +56,7 @@
         </li>
       {/each}
     </ul>
+    -->
 
     <p class="note">
       {m.top_hero_note_lead()}<a href="#contact">Instagram</a>{m.top_hero_note_tail()}
@@ -158,20 +162,22 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .team {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: $space-size-8;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .team {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: flex-end;
+  //   gap: $space-size-8;
+  //   margin: 0;
+  //   padding: 0;
+  //   list-style: none;
+  // }
 
-  .team li {
-    display: flex;
-    align-items: flex-end;
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .team li {
+  //   display: flex;
+  //   align-items: flex-end;
+  // }
 
   .note {
     margin: 0;

@@ -1,6 +1,8 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { CHARACTERS, CharacterFigure } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // 色（--accent）はカードの配色として使い続けるので CHARACTERS は残す
+  import { CHARACTERS } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { HIGHLIGHTS } from '../config/sections'
 
@@ -18,6 +20,7 @@
       {#each HIGHLIGHTS as highlight (highlight.id)}
         {@const character = CHARACTERS[highlight.character]}
         <li style:--accent={character.color}>
+          <!--
           <div class="figure">
             <CharacterFigure
               {character}
@@ -25,6 +28,7 @@
               showApparatus={highlight.showApparatus}
             />
           </div>
+          -->
           <h3>{highlight.title()}</h3>
           <p class="summary">{highlight.summary()}</p>
           <p class="body">{highlight.body()}</p>
@@ -99,14 +103,15 @@
     background: $white;
   }
 
-  .figure {
-    // 姿勢が違っても頭の高さが揃うよう、箱の高さを決める。絵の分だけで、余白は足さない
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    min-height: 100px;
-    margin-bottom: $space-size-4;
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .figure {
+  //   // 姿勢が違っても頭の高さが揃うよう、箱の高さを決める。絵の分だけで、余白は足さない
+  //   display: flex;
+  //   align-items: flex-end;
+  //   justify-content: center;
+  //   min-height: 100px;
+  //   margin-bottom: $space-size-4;
+  // }
 
   h3 {
     margin: 0 0 $space-size-4;

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { CHARACTERS, CharacterFigure } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // 色（--accent）はカードの配色として使い続けるので CHARACTERS は残す
+  import { CHARACTERS } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { SERVICES } from '../config/sections'
@@ -22,7 +24,7 @@
         {@const character = CHARACTERS[service.character]}
         <li style:--accent={character.color}>
           <div class="head">
-            <CharacterFigure {character} size={isMobile ? 84 : 100} />
+            <!-- <CharacterFigure {character} size={isMobile ? 84 : 100} /> -->
             <div class="naming">
               <h3>{service.title()}</h3>
               <!-- 金額と単位のあいだで折り返さないよう、値段は1つずつ箱にする -->

@@ -356,6 +356,21 @@ Phase 4の進め方（2026-09-19に決めた）
     そのまま使える作りにしてある
   - 差し替え先はプロジェクトのキャラクター（5-6のLINEスタンプと同じ5人）を想定している
 
+- [ ] **5-9. キャラクター5人の表示を戻す**（2026-09-24にいったん消した）
+  - LINEスタンプ（5-6）とYouTubeの新体操アニメ解説に向けて、キャラクターデザインを作り直す予定。
+    **デザインが固まってから入れ直したいので、いまはサイトに出していない**
+  - 消したのは絵と名乗りだけ。データ（`entities/character/`）も部品（`CharacterFigure`）も残してある。
+    `TODO(キャラクター)` で全部引ける
+  - 消した場所
+    - トップ … 主役の帯の5人（`widgets/top/ui/Hero.svelte`）、案内役の5人の節まるごと（`CharacterTeam`。`pages/top/ui/TopPage.svelte` から外した）、特長のカードの絵（`Highlights.svelte`）、サービスのカードの絵（`Services.svelte`）
+    - 案内役のひとこと … 絵と名乗り（`features/guideLead/ui/GuideLead.svelte`）。規則集・カレンダー・審判・推しミツ！の5ページに効く
+    - 指導 … 主役・受け方のカード・連絡の欄の3つ（`pages/coaching/ui/CoachingPage.svelte`）
+    - 依頼サービス … 主役の絵と連絡の欄（`widgets/orderService/`）。BGM・手具デコの2ページに効く
+    - 推しミツ！の0件 … 絵と名乗り（`widgets/oshimitsuSearchResult/ui/EmptyResult.svelte`）
+  - カードの色（`--accent`）はキャラクターの色をそのまま使い続けている。配色は変えていない
+  - 戻すときは、絵と一緒にコメントアウトしてある見た目の指定（`.figure` `.speaker` `.team` など）も戻す
+  - 5-8（図解の絵の描き直し）の差し替え先もこの5人。デザインが決まったら一緒に進める
+
 ## Phase 6: そのほか（提案）
 
 - [ ] **6-1. カレンダーのデータ更新の仕組みをリポジトリーに入れる**

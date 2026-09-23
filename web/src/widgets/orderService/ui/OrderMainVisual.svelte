@@ -28,7 +28,9 @@
   import { Button } from '@imrg-platform/design-system'
   import { SLIDE_INTERVAL } from '../config/orderService'
   import { onMount } from 'svelte'
-  import { CharacterFigure, type CharacterProfile } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // import { CharacterFigure } from '@entities/character'
+  import type { CharacterProfile } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { ImageAssets } from '@shared/ui'
 
@@ -88,7 +90,8 @@
     priceUnit,
     priceAmount,
     points,
-    character,
+    // TODO(キャラクター): 絵を出し直すときに、この取り出しも戻す（docs/TODO.md 5-9）
+    // character,
     contactHref,
     contactLabel,
     worksHref,
@@ -169,7 +172,8 @@
   <div class="layer inner">
     <div class="panel">
       <div class="head">
-        <CharacterFigure {character} size={isMobile ? 84 : 112} />
+        <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+        <!-- <CharacterFigure {character} size={isMobile ? 84 : 112} /> -->
         <div class="naming">
           <p class="eyebrow">{eyebrow}</p>
           <h1>

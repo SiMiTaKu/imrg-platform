@@ -1,6 +1,8 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
-  import { CharacterFigure, type CharacterProfile } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // import { CharacterFigure } from '@entities/character'
+  import type { CharacterProfile } from '@entities/character'
   import { CrossLinks, type CrossLinkList } from '@features/crossLinks'
   import { pageData } from '@shared/lib/device'
   import { SectionHeading } from '@features/sectionHeading'
@@ -38,7 +40,8 @@
     contactHref,
     contactLabel,
     note,
-    character,
+    // TODO(キャラクター): 絵を出し直すときに、この取り出しも戻す（docs/TODO.md 5-9）
+    // character,
     crossLink,
   }: Props = $props()
 
@@ -50,9 +53,12 @@
     <SectionHeading {eyebrow} {title} {subtitle} {lead} tone="amber" />
 
     <div class="card">
+      <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+      <!--
       <div class="guide">
         <CharacterFigure {character} size={isMobile ? 84 : 112} />
       </div>
+      -->
 
       <div class="body">
         <p class="lines">
@@ -120,11 +126,12 @@
     padding: $space-size-24 $space-size-16;
   }
 
-  .guide {
-    display: flex;
-    align-items: flex-end;
-    flex: none;
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .guide {
+  //   display: flex;
+  //   align-items: flex-end;
+  //   flex: none;
+  // }
 
   .body {
     display: flex;

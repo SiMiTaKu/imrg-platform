@@ -15,8 +15,10 @@
 
 <script lang="ts">
   import type { Snippet } from 'svelte'
-  import { m } from '$lib/paraglide/messages'
-  import { CharacterFigure, type CharacterProfile } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // import { m } from '$lib/paraglide/messages'
+  // import { CharacterFigure } from '@entities/character'
+  import type { CharacterProfile } from '@entities/character'
   import { pageData } from '@shared/lib/device'
 
   /** ページの頭に置く「案内役のひとこと」の引数 */
@@ -38,9 +40,10 @@
   }
 
   const {
-    character,
-    size = 124,
-    mobileSize = 96,
+    // TODO(キャラクター): 絵を出し直すときに、この3つの取り出しも戻す（docs/TODO.md 5-9）
+    // character,
+    // size = 124,
+    // mobileSize = 96,
     gap = 'normal',
     align = 'start',
     mobileLayout = 'center',
@@ -58,14 +61,22 @@
   class:centered={align === 'center'}
   class:stretch={mobileLayout === 'stretch'}
 >
+  <!--
+    TODO(キャラクター): 案内役の絵と名乗りを出し直す（docs/TODO.md 5-9）。
+    LINE スタンプとキャラクターデザインが固まるまで出さない
+  -->
+  <!--
   <div class="figure">
     <CharacterFigure {character} size={isMobile ? mobileSize : size} />
   </div>
+  -->
 
   <div class="words">
+    <!--
     <p class="speaker">
       {m.character_figure_label({ name: character.name(), specialty: character.specialty() })}
     </p>
+    -->
     {@render children()}
   </div>
 </div>
@@ -103,23 +114,26 @@
     text-align: inherit;
   }
 
-  .guide-lead.mobile.stretch .figure {
-    align-self: center;
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .guide-lead.mobile.stretch .figure {
+  //   align-self: center;
+  // }
 
-  .figure {
-    flex: none;
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .figure {
+  //   flex: none;
+  // }
 
   // 長い名前があっても、親より広がらないようにする
   .words {
     min-inline-size: 0;
   }
 
-  .speaker {
-    margin: 0 0 $space-size-4;
-    font-size: $font-size-12;
-    font-weight: bold;
-    color: map.get($sky-blue, text);
-  }
+  // TODO(キャラクター): 絵を出し直すときに、この見た目の指定も戻す（docs/TODO.md 5-9）
+  // .speaker {
+  //   margin: 0 0 $space-size-4;
+  //   font-size: $font-size-12;
+  //   font-weight: bold;
+  //   color: map.get($sky-blue, text);
+  // }
 </style>

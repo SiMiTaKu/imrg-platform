@@ -1,7 +1,8 @@
 <script lang="ts">
   import { PUBLIC_BASE_URL } from '$env/static/public'
+  // TODO(キャラクター): CharacterTeam（案内役の5人の節）を出し直す（docs/TODO.md 5-9）
   import {
-    CharacterTeam,
+    // CharacterTeam,
     ContactPanel,
     Features,
     Hero,
@@ -29,7 +30,8 @@
   <Services />
   <Features />
   <Numbers />
-  <CharacterTeam />
+  <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+  <!-- <CharacterTeam /> -->
   <ContactPanel />
 </article>
 

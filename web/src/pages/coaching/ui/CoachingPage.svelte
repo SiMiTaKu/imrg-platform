@@ -1,7 +1,10 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
-  import { CHARACTERS, Character, CharacterFigure } from '@entities/character'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // 色（--accent）はカードの配色として使い続けるので CHARACTERS は残す
+  // Character は案内役を引くためだけに使っていたので、いまは要らない
+  import { CHARACTERS } from '@entities/character'
   import { CrossLinks, type CrossLink, type CrossLinkList } from '@features/crossLinks'
   import { createAutoPlayGroup, VideoCard, youtubeVideoId } from '@features/videoAutoPlay'
   import { LINKS } from '@shared/config/links'
@@ -19,8 +22,9 @@
   } from '../config/content'
 
   const isMobile = $derived($pageData.isMobile)
+  // TODO(キャラクター): 絵を出し直すときに、この取り出しも戻す（docs/TODO.md 5-9）
   // 基本を誰よりも正確に、が持ち味の一徒が指導の案内役
-  const guide = CHARACTERS[Character.KAZUTO]
+  // const guide = CHARACTERS[Character.KAZUTO]
 
   // 先頭と残りに分けて持つ。案内が必ず1つ以上あることを、型のまま保ったまま組み立てられる
   const [firstService, ...restServices] = OTHER_SERVICES
@@ -97,7 +101,8 @@
   <section class="hero">
     <div class="inner">
       <div class="head">
-        <CharacterFigure character={guide} size={isMobile ? 84 : 112} />
+        <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+        <!-- <CharacterFigure character={guide} size={isMobile ? 84 : 112} /> -->
         <div class="naming">
           <span class="eyebrow">{HERO.eyebrow()}</span>
           <h1>{m.coaching_hero_title()}</h1>
@@ -148,7 +153,7 @@
           {@const character = CHARACTERS[way.character]}
           <li style:--accent={character.color}>
             <div class="way-head">
-              <CharacterFigure {character} size={isMobile ? 72 : 88} />
+              <!-- <CharacterFigure {character} size={isMobile ? 72 : 88} /> -->
               <div>
                 <h3>{way.label()}</h3>
                 <p class="way-summary">{way.summary()}</p>
@@ -401,7 +406,7 @@
   <!-- 連絡 -->
   <section class="contact-panel">
     <div class="inner">
-      <CharacterFigure character={guide} size={isMobile ? 84 : 104} />
+      <!-- <CharacterFigure character={guide} size={isMobile ? 84 : 104} /> -->
       <h2>{m.coaching_contact_title()}</h2>
       <p>
         {m.coaching_contact_lead()}
