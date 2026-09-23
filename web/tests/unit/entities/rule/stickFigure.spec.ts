@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { STICK_SKELETONS, StickPose, poseOf } from '@entities/rule'
+import { STICK_SEQUENCES, STICK_SKELETONS, StickPose, poseOf, sequenceOf } from '@entities/rule'
 
 describe('poseOf', () => {
   describe('正常系', () => {
@@ -427,6 +427,284 @@ describe('STICK_SKELETONS', () => {
 
       // #region Then
       expect(outOfFrame).toHaveLength(0)
+      // #endregion
+    })
+  })
+})
+
+describe('sequenceOf', () => {
+  describe('正常系', () => {
+    it('技名が「前方（かかえ込み・屈身）宙返り」の場合、踏み切りから着地までのコマ送りになること', () => {
+      // #region Given
+      const techniqueName = '前方（かかえ込み・屈身）宙返り'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([
+        StickPose.RUN_UP,
+        StickPose.TAKEOFF,
+        StickPose.FRONT_SALTO,
+        StickPose.SALTO_OPEN,
+        StickPose.LANDING,
+        StickPose.STAND,
+      ])
+      // #endregion
+    })
+
+    it('技名が「後方倒立回転（両手）」の場合、反ってから倒立を通り着地するコマ送りになること', () => {
+      // #region Given
+      const techniqueName = '後方倒立回転（両手）'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([
+        StickPose.STAND,
+        StickPose.ARCH_STAND,
+        StickPose.HANDSTAND,
+        StickPose.BACK_HANDSPRING,
+        StickPose.LANDING,
+      ])
+      // #endregion
+    })
+
+    it('技名が「開脚跳び　135°～180°」の場合、助走から着地までのコマ送りになること', () => {
+      // #region Given
+      const techniqueName = '開脚跳び　135°～180°'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([
+        StickPose.RUN_UP,
+        StickPose.TAKEOFF,
+        StickPose.SPLIT_JUMP,
+        StickPose.LANDING,
+      ])
+      // #endregion
+    })
+
+    it('技名が「正面水平立ち」の場合、止めて見せる技なので1コマだけになること', () => {
+      // #region Given
+      const techniqueName = '正面水平立ち'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([StickPose.HORIZONTAL_BALANCE])
+      // #endregion
+    })
+
+    it('技名が「長座になり体前屈（顔が足につく）」の場合、柔軟なので1コマだけになること', () => {
+      // #region Given
+      const techniqueName = '長座になり体前屈（顔が足につく）'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([StickPose.FORWARD_BEND])
+      // #endregion
+    })
+
+    it('技名が「片足軸ターン　360度」の場合、同じ姿勢が3コマ並ぶこと', () => {
+      // #region Given
+      const techniqueName = '片足軸ターン　360度'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([StickPose.PIVOT, StickPose.PIVOT, StickPose.PIVOT])
+      // #endregion
+    })
+
+    it('技名が「倒立ターン　1080度」の場合、回転の数だけ倒立が5コマ並ぶこと', () => {
+      // #region Given
+      const techniqueName = '倒立ターン　1080度'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual(Array.from({ length: 5 }, () => StickPose.HANDSTAND))
+      // #endregion
+    })
+
+    it('技名が「後転倒立」の場合、倒立1コマではなく後へ転がって押し上げるコマ送りになること', () => {
+      // #region Given
+      const techniqueName = '後転倒立'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([
+        StickPose.STAND,
+        StickPose.CROUCH,
+        StickPose.BACKWARD_ROLL,
+        StickPose.HANDSTAND,
+      ])
+      // #endregion
+    })
+
+    it('技名が「脚前挙支持～伸腕屈身力倒立」の場合、支持から押し上げて倒立になるコマ送りになること', () => {
+      // #region Given
+      const techniqueName = '脚前挙支持～伸腕屈身力倒立'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([StickPose.L_SUPPORT, StickPose.PIKE_STAND, StickPose.HANDSTAND])
+      // #endregion
+    })
+
+    it('技名が「後方ブリッヂから倒立」の場合、反ってブリッヂを通るコマ送りになること', () => {
+      // #region Given
+      const techniqueName = '後方ブリッヂから倒立'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames).toEqual([
+        StickPose.STAND,
+        StickPose.ARCH_STAND,
+        StickPose.BRIDGE,
+        StickPose.HANDSTAND,
+      ])
+      // #endregion
+    })
+
+    it('技名が「後方倒立回転から正面水平立ち」の場合、終わりのコマが水平立ちになること', () => {
+      // #region Given
+      const techniqueName = '後方倒立回転から正面水平立ち'
+      // #endregion
+
+      // #region When
+      const frames = sequenceOf(techniqueName)
+      // #endregion
+
+      // #region Then
+      expect(frames.at(-1)).toBe(StickPose.HORIZONTAL_BALANCE)
+      // #endregion
+    })
+
+    it('動きのある技を並べた場合、どれも2コマ以上で描かれること', () => {
+      // #region Given
+      const techniqueNames = [
+        'かかえこみとび',
+        'とびあがって1回以上のひねり（片足・両足）',
+        'バタフライ',
+        '側方倒立回転',
+        'テンポ宙返り',
+        '後方肩支持からローリング',
+        '首はねおき、頭はねおき（直立・膝立ち）',
+        '開脚旋回（トーマス旋回）',
+      ]
+      // #endregion
+
+      // #region When
+      const frameCounts = techniqueNames.map((name) => sequenceOf(name).length)
+      // #endregion
+
+      // #region Then
+      expect(frameCounts.every((count) => count >= 2)).toBe(true)
+      // #endregion
+    })
+
+    it('コマの並びを引いた場合、どのコマにも骨組みが用意されていること', () => {
+      // #region Given
+      const techniqueNames = [
+        '前方（かかえ込み・屈身）宙返り',
+        '後転とび',
+        '前とび倒立',
+        '後ろとび正面支持臥',
+        '前方（かかえ込み・屈身）宙返り直接正面支持臥',
+        '足を保持しない1',
+      ]
+      // #endregion
+
+      // #region When
+      const skeletons = techniqueNames.flatMap((name) =>
+        sequenceOf(name).map((pose) => STICK_SKELETONS[pose]),
+      )
+      // #endregion
+
+      // #region Then
+      expect(skeletons.every((skeleton) => skeleton?.legs.length === 2)).toBe(true)
+      // #endregion
+    })
+  })
+})
+
+describe('STICK_SEQUENCES', () => {
+  describe('正常系', () => {
+    it('姿勢を数えた場合、どの姿勢にもコマの並びが1つずつ用意されていること', () => {
+      // #region Given
+      const poses = Object.values(StickPose)
+      // #endregion
+
+      // #region When
+      const sequenced = poses.filter((pose) => STICK_SEQUENCES[pose] !== undefined)
+      // #endregion
+
+      // #region Then
+      expect(sequenced).toHaveLength(poses.length)
+      // #endregion
+    })
+
+    it('コマの並びを調べた場合、どれも鍵にした姿勢を山場として含んでいること', () => {
+      // #region Given
+      const poses = Object.values(StickPose)
+      // #endregion
+
+      // #region When
+      const missing = poses.filter((pose) => !STICK_SEQUENCES[pose].includes(pose))
+      // #endregion
+
+      // #region Then
+      expect(missing).toHaveLength(0)
+      // #endregion
+    })
+
+    it('コマの数を調べた場合、どれも1コマ以上で、冊子と同じ8コマまでに収まっていること', () => {
+      // #region Given
+      const sequences = Object.values(STICK_SEQUENCES)
+      // #endregion
+
+      // #region When
+      const outOfRange = sequences.filter((sequence) => sequence.length < 1 || sequence.length > 8)
+      // #endregion
+
+      // #region Then
+      expect(outOfRange).toHaveLength(0)
       // #endregion
     })
   })

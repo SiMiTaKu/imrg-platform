@@ -23,7 +23,11 @@ import type { RuleTable } from '../../model/ruleTable'
  * どちらも同じ冊子に載っているものなので、**図解の側は図解に印刷されたまま**写し、
  * 食い違いは各表のコメントに残した。
  *
- * 節の分け方と見出しは冊子のとおり
+ * 節の分け方と見出しは冊子のとおり。
+ *
+ * 「図」の列には、線画の代わりに仮の棒人間を出す。
+ * 冊子の図解は技の動きを左から右へ数コマ並べた**コマ送り**なので、こちらも同じように並べる。
+ * 宙返りや転回は5〜6コマになるため、列の幅は技名の列より広く取ってある
  */
 
 /** 図解の列。左が技の名前、右が枠の入っていた欄（A〜D）の難度 */
@@ -52,7 +56,7 @@ export const FREE_HAND_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: FIGURE_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['閉脚とび1回転未満（片足・両足）', '', 'A'] },
       { header: '2', cells: ['閉脚跳び1回転（片足・両足）', '', 'B'] },
@@ -89,7 +93,7 @@ export const FREE_HAND_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: FIGURE_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['長座になり体前屈（顔が脚につく）', '', 'A'] },
       { header: '2', cells: ['左右開脚座で体前屈', '', 'A'] },
@@ -124,7 +128,7 @@ export const FREE_HAND_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: FIGURE_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['横バランス　足が肩より下', '', 'A'] },
       { header: '2', cells: ['横バランス\n足を保持しない　～180度', '', 'B'] },
@@ -161,7 +165,7 @@ export const FREE_HAND_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: FIGURE_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['閉脚・開脚倒立', '', 'A'] },
       { header: '2', cells: ['前跳び倒立', '', 'B'] },
@@ -202,7 +206,7 @@ export const FREE_HAND_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: FIGURE_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['片足軸ターン　360度', '', 'A'] },
       { header: '2', cells: ['片足軸ターン　720度', '', 'B'] },
@@ -258,7 +262,7 @@ export const FREE_HAND_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: FIGURE_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['前方前跳び前転', '', 'A'] },
       { header: '2', cells: ['頭はねおき直立\n首はね起き直立', '', 'A'] },

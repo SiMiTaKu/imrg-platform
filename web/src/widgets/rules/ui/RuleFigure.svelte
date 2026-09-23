@@ -8,10 +8,10 @@
     findRuleTree,
     hasRowHeader,
     hasShortRowHeader,
-    poseOf,
     headerColumnCount,
     mergeEmptyCellsDownward,
     narrowColumnCount,
+    sequenceOf,
   } from '@entities/rule'
   import type { RuleShape, RuleShapeKind, RuleTreeNode } from '@entities/rule'
   import type { Image as RuleImage } from '@shared/model'
@@ -540,10 +540,10 @@
                       style:text-align={table.columnAligns?.[cell.startColumn]}
                     >
                       {#if table.stickFigures?.figureColumn === cell.startColumn}
-                        <!-- 冊子の線画の代わりに出す、仮の棒人間 -->
+                        <!-- 冊子の線画の代わりに出す、仮の棒人間。冊子と同じくコマ送りで出す -->
                         {@const name = row.cells[table.stickFigures.nameColumn]}
                         {@const label = typeof name === 'string' ? name : (name?.text ?? '')}
-                        <StickFigure pose={poseOf(label)} {label} />
+                        <StickFigure frames={sequenceOf(label)} {label} />
                       {:else}
                         {cell.text}
                       {/if}
@@ -753,10 +753,13 @@
     );
   }
 
-  // 仮の棒人間だけが入る列。絵のぶんだけの幅で足りる
+  /*
+    仮の棒人間だけが入る列。冊子と同じくコマ送りで描くので、
+    絵は列の幅いっぱいまで使う。左右の余白は最小限にして、絵に幅を回す
+  */
   .figure-cell {
     min-width: 0;
-    padding: $space-size-4;
+    padding: $space-size-4 $space-size-2;
     text-align: center;
   }
 

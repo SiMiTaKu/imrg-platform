@@ -3,25 +3,46 @@
   import type { StickPoint, StickPose } from '@entities/rule'
 
   const {
-    pose,
+    frames,
     label,
-    size = 48,
+    frameSize = 52,
   }: {
-    /** 描く姿勢 */
-    pose: StickPose
+    /** 左から右へ並べる姿勢。コマ送りの1コマずつにあたる */
+    frames: readonly StickPose[]
     /** 読み上げ用の技名。絵の代わりに読まれる */
     label: string
-    /** 描く大きさ（px）。縦横は同じ */
-    size?: number
+    /** 1コマの大きさ（px）。縦横は同じで、横はコマの数だけ伸びる */
+    frameSize?: number
   } = $props()
 
   /*
     冊子の線画の代わりに出す、仮の棒人間。
+    冊子の図解は技の動きを左から右へ数コマ並べたコマ送りなので、ここも同じように並べる。
     いずれプロジェクトのキャラクターのイラストに差し替えるので、
     本物の絵と見まちがえないよう、細い線1本の単色で描く。
     関節の位置は `STICK_SKELETONS` が持っていて、ここは描くだけにしてある
   */
-  const skeleton = $derived(STICK_SKELETONS[pose])
+
+  /** 1コマぶんの幅（viewBox の中での大きさ）。骨組みの座標がこの中に収まっている */
+  const FRAME_WIDTH = 100
+
+  /** 床の線を引く高さ */
+  const GROUND_Y = 94
+
+  /** コマの数。1つも無いときでも枠がつぶれないように、最低1つは置く */
+  const frameCount = $derived(Math.max(frames.length, 1))
+
+  /** コマごとの骨組み */
+  const skeletons = $derived(frames.map((pose) => STICK_SKELETONS[pose]))
+
+  /**
+   * 床の線を引くか。
+   *
+   * @remarks
+   * 跳んでいる途中のコマだけ床が消えると、絵が宙に浮いて見える。
+   * 1コマでも床に触れていれば、冊子と同じく**端から端まで通しで**1本引く
+   */
+  const showsGround = $derived(skeletons.some((skeleton) => skeleton.onGround))
 
   /**
    * 関節の並びを、SVG の `points` に渡せる文字列にする
@@ -30,36 +51,51 @@
    */
   const toPoints = (points: readonly StickPoint[]): string =>
     points.map(({ x, y }) => `${x},${y}`).join(' ')
+
+  /**
+   * 何コマ目かを、そのコマを置く横のずれに直す
+   * @param frameIndex - 左から何コマ目か（0 から数える）
+   * @returns SVG の `transform` に渡すずらし方
+   */
+  const shiftOf = (frameIndex: number): string => `translate(${frameIndex * FRAME_WIDTH} 0)`
 </script>
 
 <svg
   class="stick-figure"
-  width={size}
-  height={size}
-  viewBox="0 0 100 100"
+  width={frameSize * frameCount}
+  height={frameSize}
+  viewBox="0 0 {FRAME_WIDTH * frameCount} 100"
   role="img"
   aria-label={label}
 >
-  <!-- 床。倒立や座位で、どちらが上か分かるようにする -->
-  {#if skeleton.onGround}
-    <line class="ground" x1="12" y1="94" x2="88" y2="94" />
+  <!-- 床。倒立や座位で、どちらが上か分かるようにする。コマをまたいで1本引く -->
+  {#if showsGround}
+    <line class="ground" x1="6" y1={GROUND_Y} x2={FRAME_WIDTH * frameCount - 6} y2={GROUND_Y} />
   {/if}
 
-  <circle class="head" cx={skeleton.head.x} cy={skeleton.head.y} r={skeleton.headRadius} />
-  <polyline class="limb" points={toPoints(skeleton.spine)} />
+  {#each skeletons as skeleton, frameIndex (frameIndex)}
+    <g transform={shiftOf(frameIndex)}>
+      <circle class="head" cx={skeleton.head.x} cy={skeleton.head.y} r={skeleton.headRadius} />
+      <polyline class="limb" points={toPoints(skeleton.spine)} />
 
-  {#each skeleton.arms as arm, armIndex (armIndex)}
-    <polyline class="limb" points={toPoints(arm)} />
-  {/each}
+      {#each skeleton.arms as arm, armIndex (armIndex)}
+        <polyline class="limb" points={toPoints(arm)} />
+      {/each}
 
-  {#each skeleton.legs as leg, legIndex (legIndex)}
-    <polyline class="limb" points={toPoints(leg)} />
+      {#each skeleton.legs as leg, legIndex (legIndex)}
+        <polyline class="limb" points={toPoints(leg)} />
+      {/each}
+    </g>
   {/each}
 </svg>
 
 <style lang="scss">
+  /*
+    コマ送りの絵。ます目の中で中央に寄せたいので、行の中に置ける形にしてある。
+    横はコマの数だけ伸びるが、列に入らないときは縦横の比を保ったまま縮む
+  */
   .stick-figure {
-    display: block;
+    display: inline-block;
     max-width: 100%;
     height: auto;
 

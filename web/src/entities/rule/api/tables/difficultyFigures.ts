@@ -18,7 +18,11 @@ import type { RuleTable } from '../../model/ruleTable'
  * 食い違いは各表のコメントに残した。
  *
  * 節の分け方は冊子の見出しのとおり。
- * 「4 宙返りの連続」は冊子に「（図解なし）」と書かれていて枠が1つも無いため、表を作っていない
+ * 「4 宙返りの連続」は冊子に「（図解なし）」と書かれていて枠が1つも無いため、表を作っていない。
+ *
+ * 「図」の列には、線画の代わりに仮の棒人間を出す。
+ * 冊子の図解は技の動きを左から右へ数コマ並べた**コマ送り**なので、こちらも同じように並べる。
+ * 宙返りや転回は5〜6コマになるため、列の幅は技名の列より広く取ってある
  */
 
 /** 徒手系難度の図解の列。枠の中に印刷されている見出しをそのまま使う */
@@ -46,7 +50,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     columnAligns: ['start', 'center', 'center', 'center'],
-    columnWidths: ['40%', '16%', '22%', '22%'],
+    columnWidths: ['26%', '46%', '14%', '14%'],
     rows: [
       { header: '1', cells: ['閉脚から大の字とび', '', 'A', 'A'] },
       { header: '2', cells: ['とびあがって1回以上のひねり（片足・両足）', '', 'A', 'B'] },
@@ -85,7 +89,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     columnAligns: ['start', 'center', 'center', 'center'],
-    columnWidths: ['40%', '16%', '22%', '22%'],
+    columnWidths: ['26%', '46%', '14%', '14%'],
     rows: [
       { header: '1', cells: ['正面水平立ち', '', 'A', 'B'] },
       { header: '2', cells: ['側面水平立ち', '', 'A', 'B'] },
@@ -117,7 +121,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     columnAligns: ['start', 'center', 'center', 'center'],
-    columnWidths: ['40%', '16%', '22%', '22%'],
+    columnWidths: ['26%', '46%', '14%', '14%'],
     rows: [
       { header: '1', cells: ['閉脚（開脚）倒立', '', 'A', 'B'] },
       { header: '2', cells: ['前後開脚倒立（片足屈膝を含む）', '', 'A', 'B'] },
@@ -152,7 +156,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 2,
     columns: FREE_HAND_COLUMNS,
     columnAligns: ['start', 'center', 'center', 'center'],
-    columnWidths: ['40%', '16%', '22%', '22%'],
+    columnWidths: ['26%', '46%', '14%', '14%'],
     rows: [
       { header: '1', cells: ['長座になり体前屈（顔が足につく）', '', 'A', 'B'] },
       { header: '2', cells: ['左右開脚座で体前屈（胸が床面につく）', '', 'A', 'B'] },
@@ -185,7 +189,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['首はねおき、頭はねおき（直立・膝立ち）', '', 'A'] },
       { header: '2', cells: ['前転とび、両足踏切前転とび', '', 'A'] },
@@ -225,7 +229,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['後ろとび正面支持臥', '', 'A'] },
       { header: '2', cells: ['後ろとび正面支持臥回転', '', 'A'] },
@@ -287,7 +291,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['側方倒立回転1／4ひねり（ロンダード）', '', 'A'] },
       { header: '2', cells: ['アラビア宙返り', '', 'B'] },
@@ -315,7 +319,7 @@ export const DIFFICULTY_FIGURE_TABLES: readonly RuleTable[] = [
     narrowColumns: 1,
     columns: ACROBATIC_COLUMNS,
     columnAligns: ['start', 'center', 'center'],
-    columnWidths: ['56%', '18%', '26%'],
+    columnWidths: ['30%', '50%', '20%'],
     rows: [
       { header: '1', cells: ['後転とびから後方伸身宙返り', '', 'B'] },
       {

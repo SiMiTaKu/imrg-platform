@@ -18,9 +18,18 @@
  * - 姿勢の種類（`StickPose`）
  * - 姿勢ごとの関節の位置（`STICK_SKELETONS`）
  * - 技の名前から姿勢を選ぶ決まり（`POSE_RULES`・`poseOf`）
+ * - 技の名前からコマの並びを選ぶ決まり（`STICK_SEQUENCES`・`SEQUENCE_RULES`・`sequenceOf`）
  *
- * の3つに分けてある。イラストができたら `STICK_SKELETONS` を使うのをやめ、
- * `StickPose` を鍵にして絵を引けばよく、`poseOf` の決まりはそのまま使える
+ * の4つに分けてある。イラストができたら `STICK_SKELETONS` を使うのをやめ、
+ * `StickPose` を鍵にして絵を引けばよく、`poseOf` と `sequenceOf` の決まりはそのまま使える。
+ *
+ * 冊子の図解は**コマ送り**になっている。技の動きを左から右へ数コマ並べ、
+ * 踏み切りから着地までの流れが1枠で読めるように描いてある。
+ * 前方宙返りのように動きのある技は5〜8コマ、
+ * バランス・倒立・柔軟のように止めて見せる技は1〜2コマ。
+ * ターンは同じ姿勢を回転の数だけ並べてある（360度で3コマ、1080度で5コマ）。
+ * 同じように出せるよう、姿勢を1つ選ぶ `poseOf` とは別に、
+ * コマの並びを返す `sequenceOf` を用意してある
  */
 
 /**
@@ -152,6 +161,29 @@ export const StickPose = {
   LAYOUT_SALTO: 'layoutSalto',
   /** 側方宙返り。アラビア宙返りもここに入れる */
   SIDE_SALTO: 'sideSalto',
+
+  /*
+    ここから下は、コマ送りのつなぎに使う姿勢。
+    冊子の図解は、技そのものの形だけでなく、その前後の助走・踏み切り・着地まで描いてある。
+    `poseOf` はこれらを選ばない。`sequenceOf` がコマの並びを組むときだけ使う
+  */
+
+  /** 助走の構え。前（右）へ踏み出し、腕を後ろへ引いた走りの途中 */
+  RUN_UP: 'runUp',
+  /** 踏み切り。膝を折って沈み、腕を後ろへ振る */
+  TAKEOFF: 'takeoff',
+  /** 着地。膝を軽く曲げて受け、腕を左右へ開く */
+  LANDING: 'landing',
+  /** 踏み込み。前（右）へ大きく踏み出し、両手を床へ伸ばす。転回の入り */
+  LUNGE: 'lunge',
+  /** 立って後へ反る。腕を上げたまま上体を後（左）へ倒す。後転とびの入り */
+  ARCH_STAND: 'archStand',
+  /** しゃがみ。膝を深く折って腕を前へ出す。前転・後転の入りと終わり */
+  CROUCH: 'crouch',
+  /** 立位前屈。腰を高く上げ、上体を折って手を床につく。力倒立の途中 */
+  PIKE_STAND: 'pikeStand',
+  /** 宙返りの開き。回り切って体を開き、足を下ろしていく途中 */
+  SALTO_OPEN: 'saltoOpen',
 } as const
 
 /** 姿勢のどれか1つ */
@@ -782,6 +814,133 @@ export const STICK_SKELETONS: Readonly<Record<StickPose, StickSkeleton>> = {
     ],
     onGround: false,
   },
+
+  /*
+    ここから下はコマ送りのつなぎ。
+    冊子の図解では、どの枠も進む向きを右にそろえて描いてある。
+    助走・踏み切りは左寄りに、着地は真ん中に置いて、左から右へ読めるようにしてある
+  */
+
+  // 助走の構え（55ページ 2 の1コマ目）。前（右）へ大きく踏み出し、腕を後ろへ引く
+  [StickPose.RUN_UP]: {
+    head: at(42, 20),
+    headRadius: 7,
+    spine: [at(44, 27), at(50, 54)],
+    arms: [
+      [at(46, 32), at(34, 38), at(22, 42)],
+      [at(46, 32), at(36, 43), at(24, 48)],
+    ],
+    legs: [
+      [at(50, 54), at(64, 70), at(76, 90)],
+      [at(50, 54), at(40, 72), at(30, 90)],
+    ],
+    onGround: true,
+  },
+  // 踏み切り（52ページ 6 の1コマ目）。膝を折って沈み、腕を後ろへ振って反動を作る
+  [StickPose.TAKEOFF]: {
+    head: at(48, 28),
+    headRadius: 7,
+    spine: [at(48, 35), at(50, 58)],
+    arms: [
+      [at(48, 39), at(38, 46), at(28, 50)],
+      [at(48, 39), at(40, 51), at(30, 56)],
+    ],
+    legs: [
+      [at(50, 58), at(62, 72), at(54, 90)],
+      [at(50, 58), at(58, 75), at(50, 91)],
+    ],
+    onGround: true,
+  },
+  // 着地（52ページ 6 の最後）。膝を軽く曲げて受け止め、腕を左右へ開いて止まる
+  [StickPose.LANDING]: {
+    head: at(50, 22),
+    headRadius: 7,
+    spine: [at(50, 29), at(50, 54)],
+    arms: [
+      [at(50, 33), at(38, 30), at(26, 28)],
+      [at(50, 33), at(62, 30), at(74, 28)],
+    ],
+    legs: [
+      [at(50, 54), at(44, 72), at(46, 90)],
+      [at(50, 54), at(56, 72), at(54, 90)],
+    ],
+    onGround: true,
+  },
+  // 踏み込み（75ページ 15 の2コマ目）。前（右）へ倒れ込みながら、両手を床へ伸ばす
+  [StickPose.LUNGE]: {
+    head: at(58, 40),
+    headRadius: 6.5,
+    spine: [at(52, 45), at(34, 58)],
+    arms: [
+      [at(50, 47), at(62, 66), at(70, 88)],
+      [at(50, 47), at(66, 68), at(76, 88)],
+    ],
+    legs: [
+      [at(34, 58), at(30, 74), at(26, 90)],
+      [at(34, 58), at(20, 66), at(10, 74)],
+    ],
+    onGround: true,
+  },
+  // 後へ反る（75ページ 16 の2コマ目）。腕を上げたまま上体を後（左）へ倒し、後へ跳ぶ構え
+  [StickPose.ARCH_STAND]: {
+    head: at(38, 26),
+    headRadius: 7,
+    spine: [at(42, 32), at(52, 56)],
+    arms: [
+      [at(46, 35), at(36, 26), at(28, 16)],
+      [at(46, 35), at(40, 24), at(33, 14)],
+    ],
+    legs: [
+      [at(52, 56), at(52, 74), at(50, 90)],
+      [at(52, 56), at(57, 74), at(55, 90)],
+    ],
+    onGround: true,
+  },
+  // しゃがみ（55ページ 3 の1コマ目）。膝を深く折って腰を落とし、腕を前へ出す
+  [StickPose.CROUCH]: {
+    head: at(48, 40),
+    headRadius: 6.5,
+    spine: [at(48, 47), at(48, 64)],
+    arms: [
+      [at(48, 50), at(58, 58), at(68, 64)],
+      [at(48, 50), at(58, 62), at(68, 68)],
+    ],
+    legs: [
+      [at(48, 64), at(62, 74), at(50, 90)],
+      [at(48, 64), at(58, 78), at(46, 91)],
+    ],
+    onGround: true,
+  },
+  // 立位前屈（54ページ 8 の1コマ目）。腰を高く上げ、上体を折って手を床につく
+  [StickPose.PIKE_STAND]: {
+    head: at(30, 60),
+    headRadius: 6.5,
+    spine: [at(36, 56), at(56, 42)],
+    arms: [
+      [at(37, 57), at(33, 73), at(30, 88)],
+      [at(37, 57), at(41, 73), at(38, 88)],
+    ],
+    legs: [
+      [at(56, 42), at(60, 65), at(62, 90)],
+      [at(56, 42), at(66, 65), at(68, 90)],
+    ],
+    onGround: true,
+  },
+  // 宙返りの開き（76ページ 5 の後半）。丸めた体を開き、足を下ろして着地へ向かう
+  [StickPose.SALTO_OPEN]: {
+    head: at(44, 26),
+    headRadius: 7,
+    spine: [at(48, 32), at(56, 54)],
+    arms: [
+      [at(50, 36), at(38, 42), at(26, 46)],
+      [at(50, 36), at(42, 48), at(30, 54)],
+    ],
+    legs: [
+      [at(56, 54), at(64, 70), at(66, 86)],
+      [at(56, 54), at(70, 66), at(74, 82)],
+    ],
+    onGround: false,
+  },
 }
 
 /**
@@ -941,3 +1100,387 @@ export const poseOf = (techniqueName: string): StickPose =>
   POSE_RULES.find((rule) =>
     rule.patterns.some((pattern) => pattern.every((word) => techniqueName.includes(word))),
   )?.pose ?? StickPose.STAND
+
+/**
+ * 姿勢ごとの、コマ送りの並び。
+ *
+ * @remarks
+ * 冊子の図解は技の動きを左から右へ数コマ並べてある。ここでは**技の型ごとに動きの流れ**を決め、
+ * その型を代表する姿勢を鍵にして並びを引く。並びには必ず鍵の姿勢が入っていて、
+ * それが技の山場（`poseOf` が返すコマ）になる。
+ *
+ * 冊子の枠を数えると、おおよそ次のとおりだった。
+ *
+ * - 跳躍 … 3〜6コマ。助走の構え → 踏み切り → 空中の形 → 着地
+ * - 倒立回転（転回） … 4〜5コマ。直立 → 手をつく・反る → 倒立を通る → 抜ける → 着地
+ * - 宙返り … 4〜6コマ。助走 → 踏み切り → 空中で丸める → 開く → 着地 → 直立
+ * - 前転・後転・はねおき … 4〜5コマ。しゃがみを挟んで立つところまで
+ * - ターン・旋回 … 同じ姿勢を回転の数だけ並べる
+ * - バランス・倒立・柔軟 … 1コマ。止めて見せる技なので冊子も1〜2コマ
+ *
+ * つなぎの姿勢（`RUN_UP` など）そのものを技として選ぶことは無いが、
+ * どの姿勢にも並びを持たせて、鍵が欠けないようにしてある
+ */
+export const STICK_SEQUENCES: Readonly<Record<StickPose, readonly StickPose[]>> = {
+  /*
+    止めて見せる技。冊子も1〜2コマなので、1コマだけ置く
+  */
+  [StickPose.STAND]: [StickPose.STAND],
+  [StickPose.FORWARD_BEND]: [StickPose.FORWARD_BEND],
+  [StickPose.SPLIT_SIT]: [StickPose.SPLIT_SIT],
+  [StickPose.SUPINE]: [StickPose.SUPINE],
+  [StickPose.L_SUPPORT]: [StickPose.L_SUPPORT],
+  [StickPose.KNEEL]: [StickPose.KNEEL],
+  [StickPose.HANDSTAND]: [StickPose.HANDSTAND],
+  [StickPose.DEER_HANDSTAND]: [StickPose.DEER_HANDSTAND],
+  [StickPose.ONE_HAND_HANDSTAND]: [StickPose.ONE_HAND_HANDSTAND],
+  [StickPose.CROSS_HANDSTAND]: [StickPose.CROSS_HANDSTAND],
+  [StickPose.HORIZONTAL_BALANCE]: [StickPose.HORIZONTAL_BALANCE],
+  [StickPose.SIDE_BALANCE]: [StickPose.SIDE_BALANCE],
+  [StickPose.BACK_BALANCE]: [StickPose.BACK_BALANCE],
+  [StickPose.SPLIT_BALANCE]: [StickPose.SPLIT_BALANCE],
+  [StickPose.BRIDGE]: [StickPose.BRIDGE],
+  [StickPose.FRONT_SUPPORT]: [StickPose.FRONT_SUPPORT],
+
+  /*
+    跳躍。踏み切りで沈み、空中で形を作り、着地で受ける。
+    助走から入る技（反り身・前後開脚）は、走りの構えを1コマ足す
+  */
+  // 閉脚とび（71ページ 1）。沈む → まっすぐ跳ぶ → 受ける → 立つ
+  [StickPose.CLOSED_JUMP]: [
+    StickPose.TAKEOFF,
+    StickPose.CLOSED_JUMP,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+  // とびあがってひねり（52ページ 2）。伸び上がってから腕を組み、回りながら落ちてくる
+  [StickPose.TWIST_JUMP]: [
+    StickPose.TAKEOFF,
+    StickPose.CLOSED_JUMP,
+    StickPose.TWIST_JUMP,
+    StickPose.TWIST_JUMP,
+    StickPose.LANDING,
+  ],
+  // 開脚跳び（71ページ 6）。助走から踏み切り、脚を前後に開いて跳ぶ
+  [StickPose.SPLIT_JUMP]: [
+    StickPose.RUN_UP,
+    StickPose.TAKEOFF,
+    StickPose.SPLIT_JUMP,
+    StickPose.LANDING,
+  ],
+  // 開脚屈身とび（52ページ 5）。その場で沈み、脚を左右へ上げて上体を折る
+  [StickPose.STRADDLE_JUMP]: [
+    StickPose.TAKEOFF,
+    StickPose.STRADDLE_JUMP,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+  // 閉脚屈身とび（52ページ 7）。その場で沈み、両脚をそろえて前へ上げる
+  [StickPose.PIKE_JUMP]: [
+    StickPose.TAKEOFF,
+    StickPose.PIKE_JUMP,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+  // 大ジャンプ（71ページ 12）。その場で沈み、手足を大の字に開いて跳ぶ
+  [StickPose.BIG_JUMP]: [StickPose.TAKEOFF, StickPose.BIG_JUMP, StickPose.LANDING, StickPose.STAND],
+  // 反りジャンプ（52ページ 8）。助走から片足で踏み切り、後の脚を振り上げて反る
+  [StickPose.ARCH_JUMP]: [
+    StickPose.RUN_UP,
+    StickPose.TAKEOFF,
+    StickPose.ARCH_JUMP,
+    StickPose.LANDING,
+  ],
+  // 反りジャンプ 頭一足（52ページ 9）。反りジャンプと同じ流れで、さらに強く反る
+  [StickPose.RING_JUMP]: [
+    StickPose.RUN_UP,
+    StickPose.TAKEOFF,
+    StickPose.RING_JUMP,
+    StickPose.LANDING,
+  ],
+  // かかえこみとび（52ページ 6）。沈む → 伸び上がる → 膝を胸へ引く → 立つ
+  [StickPose.TUCK_JUMP]: [
+    StickPose.TAKEOFF,
+    StickPose.CLOSED_JUMP,
+    StickPose.TUCK_JUMP,
+    StickPose.LANDING,
+  ],
+  // 前後開脚交叉とび（52ページ 4）。助走から踏み切り、前後に開いて入れ替える
+  [StickPose.SCISSORS_JUMP]: [
+    StickPose.RUN_UP,
+    StickPose.TAKEOFF,
+    StickPose.SCISSORS_JUMP,
+    StickPose.LANDING,
+  ],
+  // バタフライ（52ページ 11）。沈んでから体を水平に倒し、横へ回して着地する
+  [StickPose.BUTTERFLY]: [
+    StickPose.TAKEOFF,
+    StickPose.BUTTERFLY,
+    StickPose.BUTTERFLY,
+    StickPose.LANDING,
+  ],
+
+  /*
+    転回。手をついて体を越していく技なので、倒立を通るコマを必ず挟む
+  */
+  // 前方倒立回転（75ページ 15）。直立 → 踏み込んで手をつく → 倒立 → 抜ける → 着地
+  [StickPose.FRONT_HANDSPRING]: [
+    StickPose.STAND,
+    StickPose.LUNGE,
+    StickPose.HANDSTAND,
+    StickPose.FRONT_HANDSPRING,
+    StickPose.LANDING,
+  ],
+  // 後方倒立回転（75ページ 16）。直立 → 後へ反る → 倒立 → 抜ける → 着地
+  [StickPose.BACK_HANDSPRING]: [
+    StickPose.STAND,
+    StickPose.ARCH_STAND,
+    StickPose.HANDSTAND,
+    StickPose.BACK_HANDSPRING,
+    StickPose.LANDING,
+  ],
+  // 側方倒立回転（75ページ 18）。直立 → 踏み込む → 横向きの倒立で越す → 着地 → 立つ
+  [StickPose.CARTWHEEL]: [
+    StickPose.STAND,
+    StickPose.LUNGE,
+    StickPose.CARTWHEEL,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+
+  /*
+    前転・後転。しゃがみを入りと終わりに置くと、どちらへ転がったかが読める
+  */
+  [StickPose.FORWARD_ROLL]: [
+    StickPose.STAND,
+    StickPose.CROUCH,
+    StickPose.FORWARD_ROLL,
+    StickPose.CROUCH,
+    StickPose.STAND,
+  ],
+  [StickPose.BACKWARD_ROLL]: [
+    StickPose.STAND,
+    StickPose.CROUCH,
+    StickPose.BACKWARD_ROLL,
+    StickPose.CROUCH,
+    StickPose.STAND,
+  ],
+
+  /*
+    宙返り。冊子はどれも、踏み切りから着地までを弧を描くように並べてある
+  */
+  // 前方宙返り（76ページ 5）。助走 → 踏み切り → 丸める → 開く → 着地 → 立つ
+  [StickPose.FRONT_SALTO]: [
+    StickPose.RUN_UP,
+    StickPose.TAKEOFF,
+    StickPose.FRONT_SALTO,
+    StickPose.SALTO_OPEN,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+  // 後方宙返り（76ページ 7）。立つ → 沈む → 後へ丸める → 開く → 着地 → 立つ
+  [StickPose.BACK_SALTO]: [
+    StickPose.STAND,
+    StickPose.TAKEOFF,
+    StickPose.BACK_SALTO,
+    StickPose.SALTO_OPEN,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+  // テンポ宙返り（76ページ 8）。丸めずに反ったまま後へ回るので、開くコマを置かない
+  [StickPose.LAYOUT_SALTO]: [
+    StickPose.RUN_UP,
+    StickPose.TAKEOFF,
+    StickPose.LAYOUT_SALTO,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+  // 側方宙返り・アラビア宙返り（76ページ 10・11）。助走から横へ回して着地する
+  [StickPose.SIDE_SALTO]: [
+    StickPose.RUN_UP,
+    StickPose.TAKEOFF,
+    StickPose.SIDE_SALTO,
+    StickPose.LANDING,
+    StickPose.STAND,
+  ],
+
+  /*
+    床から起きる技・回し続ける技
+  */
+  // 首はねおき・頭はねおき（55ページ 1）。あおむけ → 跳ね上げ → 受ける → 立つ
+  [StickPose.NECK_KIP]: [StickPose.SUPINE, StickPose.NECK_KIP, StickPose.CROUCH, StickPose.STAND],
+  // ローリング（75ページ 13）。肩で支えて脚を上げ、体を伸ばしたまま転がって伏せる
+  [StickPose.ROLLING]: [
+    StickPose.SUPINE,
+    StickPose.ROLLING,
+    StickPose.ROLLING,
+    StickPose.FRONT_SUPPORT,
+  ],
+  // 開脚旋回（76ページ 23）。同じ形のまま脚を振り回すので、同じコマを並べる
+  [StickPose.FLAIR]: [StickPose.FLAIR, StickPose.FLAIR, StickPose.FLAIR],
+  // 片足軸ターン（74ページ 1）。冊子も同じ姿勢を回転の数だけ並べてある
+  [StickPose.PIVOT]: [StickPose.PIVOT, StickPose.PIVOT, StickPose.PIVOT],
+
+  /*
+    つなぎの姿勢。技として選ばれることは無いが、鍵を欠かさないために1コマずつ持たせる
+  */
+  [StickPose.RUN_UP]: [StickPose.RUN_UP],
+  [StickPose.TAKEOFF]: [StickPose.TAKEOFF],
+  [StickPose.LANDING]: [StickPose.LANDING],
+  [StickPose.LUNGE]: [StickPose.LUNGE],
+  [StickPose.ARCH_STAND]: [StickPose.ARCH_STAND],
+  [StickPose.CROUCH]: [StickPose.CROUCH],
+  [StickPose.PIKE_STAND]: [StickPose.PIKE_STAND],
+  [StickPose.SALTO_OPEN]: [StickPose.SALTO_OPEN],
+}
+
+/**
+ * 技の名前から、コマの並びを直に決める決まり。
+ *
+ * @remarks
+ * ほとんどの技は `poseOf` が選んだ姿勢から `STICK_SEQUENCES` を引けば足りる。
+ * ただし「後転倒立」「伸腕屈身力倒立」のように、**終わりの姿勢は同じでも入り方が違う**技は、
+ * 姿勢だけでは流れが決まらない。そういう技だけ、ここで並びをそのまま書く
+ */
+interface SequenceRule {
+  /** 当てはまったときのコマの並び */
+  readonly frames: readonly StickPose[]
+  /** 語の組。1つの組の語が**すべて**技名に入っていれば当てはまる */
+  readonly patterns: readonly (readonly string[])[]
+}
+
+/**
+ * 技の名前からコマの並びを選ぶ決まり。**上から順に見て、最初に当てはまったものを使う**。
+ *
+ * @remarks
+ * 冊子の枠をそのまま写してある。どれも終わりが倒立や支持臥で、
+ * `poseOf` だけでは入り方（前へ跳ぶ・後へ転がる・反る・押し上げる）が分からないもの
+ */
+const SEQUENCE_RULES: readonly SequenceRule[] = [
+  // 前とび倒立（53ページ 3）。沈む → 前へ跳んで手をつく → 倒立
+  {
+    frames: [StickPose.STAND, StickPose.TAKEOFF, StickPose.LUNGE, StickPose.HANDSTAND],
+    patterns: [['前とび倒立'], ['前跳び倒立']],
+  },
+  // 後転倒立（54ページ 6）。しゃがむ → 後へ転がる → 押し上げて倒立
+  {
+    frames: [StickPose.STAND, StickPose.CROUCH, StickPose.BACKWARD_ROLL, StickPose.HANDSTAND],
+    patterns: [['後転倒立']],
+  },
+  // 脚前挙支持から力倒立（54ページ 9）。支持 → 腰を上げる → 倒立
+  {
+    frames: [StickPose.L_SUPPORT, StickPose.PIKE_STAND, StickPose.HANDSTAND],
+    patterns: [['前挙支持', '力倒立']],
+  },
+  // 伸腕屈身力倒立（54ページ 8）。立位前屈 → 腰を上げる → 倒立
+  {
+    frames: [StickPose.STAND, StickPose.PIKE_STAND, StickPose.HANDSTAND],
+    patterns: [['力倒立']],
+  },
+  // 後方ブリッヂから倒立（54ページ 7）。立つ → 反る → ブリッヂ → 倒立
+  {
+    frames: [StickPose.STAND, StickPose.ARCH_STAND, StickPose.BRIDGE, StickPose.HANDSTAND],
+    patterns: [
+      ['ブリッヂ', '倒立'],
+      ['ブリッジ', '倒立'],
+    ],
+  },
+  // 後方倒立回転～倒立（74ページ 7）。反って手をつき、倒立で止める
+  {
+    frames: [StickPose.STAND, StickPose.ARCH_STAND, StickPose.BACK_HANDSPRING, StickPose.HANDSTAND],
+    patterns: [
+      ['倒立回転', 'から倒立'],
+      ['倒立回転', '～倒立'],
+    ],
+  },
+  // 後方倒立回転から正面水平立ち（75ページ 19）。転回して、そのままバランスへ移る
+  {
+    frames: [
+      StickPose.STAND,
+      StickPose.BACK_HANDSPRING,
+      StickPose.HANDSTAND,
+      StickPose.HORIZONTAL_BALANCE,
+    ],
+    patterns: [['倒立回転', '水平立ち']],
+  },
+  // 後方倒立回転から前後開脚座位（75ページ 20）。転回して、そのまま床へ下りる
+  {
+    frames: [StickPose.STAND, StickPose.BACK_HANDSPRING, StickPose.HANDSTAND, StickPose.SPLIT_SIT],
+    patterns: [['倒立回転', '開脚座位']],
+  },
+  // 宙返り直接正面支持臥（56ページ 15）。前へ回って、そのまま伏せる
+  {
+    frames: [
+      StickPose.TAKEOFF,
+      StickPose.FRONT_SALTO,
+      StickPose.SALTO_OPEN,
+      StickPose.FRONT_SUPPORT,
+    ],
+    patterns: [['宙返り', '支持臥']],
+  },
+  // 後ろとび正面支持臥（56ページ 1）。反って後へ跳び、前へ落ちて伏せる
+  {
+    frames: [
+      StickPose.STAND,
+      StickPose.ARCH_STAND,
+      StickPose.LAYOUT_SALTO,
+      StickPose.FRONT_SUPPORT,
+    ],
+    patterns: [['支持臥']],
+  },
+]
+
+/**
+ * ターンを何コマで描くかを決める。
+ *
+ * @remarks
+ * 冊子は片足軸ターンも倒立ターンも、**同じ姿勢を回転の数だけ並べて**回転量を表している
+ * （74ページ 1〜6）。360度で3コマ、720度で4コマ、1080度以上で5コマ。
+ * ターンの技でなければ 0 を返す
+ *
+ * @param techniqueName - 技の名前。冊子に印刷されているまま渡す
+ * @returns 並べるコマの数。ターンの技でなければ 0
+ */
+const turnFrameCount = (techniqueName: string): number => {
+  if (!techniqueName.includes('ターン')) return 0
+  if (techniqueName.includes('1080')) return 5
+  if (techniqueName.includes('720')) return 4
+  return 3
+}
+
+/**
+ * 同じ姿勢を並べたコマの並びを作る
+ * @param pose - 並べる姿勢
+ * @param count - 並べる数
+ * @returns 同じ姿勢が count 個並んだコマの並び
+ */
+const repeatPose = (pose: StickPose, count: number): readonly StickPose[] =>
+  Array.from({ length: count }, () => pose)
+
+/**
+ * 技の名前から、冊子と同じようにコマ送りで描くための姿勢の並びを選ぶ。
+ *
+ * @remarks
+ * 上から順に、
+ *
+ * 1. 入り方まで名前に書いてある技は `SEQUENCE_RULES` で並びをそのまま決める
+ * 2. ターンは、回転の数だけ同じ姿勢を並べる
+ * 3. それ以外は `poseOf` で技の山場になる姿勢を選び、`STICK_SEQUENCES` から流れを引く
+ *
+ * と見る。返す並びには必ず `poseOf` の姿勢か、それに代わる山場の姿勢が入っている。
+ * イラストに差し替えるときは、この並びの姿勢を鍵にして絵を引けばよい
+ *
+ * @param techniqueName - 技の名前。冊子に印刷されているまま渡す
+ * @returns 左から右へ並べる姿勢。止めて見せる技は1つだけ
+ */
+export const sequenceOf = (techniqueName: string): readonly StickPose[] => {
+  const ruled = SEQUENCE_RULES.find((rule) =>
+    rule.patterns.some((pattern) => pattern.every((word) => techniqueName.includes(word))),
+  )
+  if (ruled) return ruled.frames
+
+  const pose = poseOf(techniqueName)
+  const turns = turnFrameCount(techniqueName)
+
+  return turns > 0 ? repeatPose(pose, turns) : STICK_SEQUENCES[pose]
+}
