@@ -103,11 +103,33 @@
       break-inside: avoid;
     }
 
+    /*
+      ます目の高さを詰める。
+
+      用紙の表は字の大きさと余白を自分で決めているので、
+      ここで上書きしないと詰まらない。1行のます目は字の高さだけになる
+    */
     :global(body[data-printing] [data-printing='true'] th),
     :global(body[data-printing] [data-printing='true'] td) {
       padding-top: 0;
       padding-bottom: 0;
-      line-height: 1.15;
+
+      /*
+        A4 の縦（余白10mm で高さ約1047px）に収める大きさ。
+        いちばん長い個人徒手のD採点表で、表が約673px、まわりの欄と合わせて
+        約900px になる。8pt だと文字が折り返す行が増えて2枚目にあふれる
+      */
+      font-size: 6.5pt;
+      line-height: 1.1;
+    }
+
+    // 用紙のまわりの余白と、離して置く欄の間も詰める
+    :global(body[data-printing] [data-printing='true'] .paper) {
+      padding: 4px;
+    }
+
+    :global(body[data-printing] [data-printing='true'] .stack) {
+      gap: 4px;
     }
 
     // 画面でだけ要る説明は、紙には出さない
