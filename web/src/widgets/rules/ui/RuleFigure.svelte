@@ -1359,23 +1359,13 @@
     padding: $space-size-4 0;
   }
 
-  // 親から下りてくる縦の線。最後の子では、その子の高さの半分で止める
-  ul.tree:not(.root) > li::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 50%;
-    left: -$space-size-24;
-    width: 0;
-  }
+  /*
+    横の枝は、行ではなく**箱**の高さの真ん中から出す。
 
-  // 途中の子では、次の子へ渡すために下まで引く
-  ul.tree:not(.root) > li:not(:last-child)::after {
-    bottom: 0;
-  }
-
-  // 縦の線から箱へ伸びる、横の枝
-  ul.tree:not(.root) > li::before {
+    子を持つ箱の行は、その下にぶら下がる段まで含めた高さになる。
+    行の真ん中に合わせると、枝が箱よりずっと下から出てしまう
+  */
+  ul.tree:not(.root) > li > .node::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -1383,25 +1373,52 @@
     width: $space-size-24;
   }
 
+  /*
+    いちばん下の子へ下りる縦の線。行の上から箱の真ん中までで止める。
+    li の上下の余白（4px）のぶん上へ伸ばして、親から続く線とつなぐ
+  */
+  ul.tree:not(.root) > li:last-child > .node::after {
+    content: '';
+    position: absolute;
+    top: -$space-size-4;
+    bottom: 50%;
+    left: -$space-size-24;
+    width: 0;
+  }
+
+  // 途中の子では、次の子へ渡すために行の高さいっぱいに引く
+  ul.tree:not(.root) > li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -$space-size-24;
+    width: 0;
+  }
+
   // 上の段から中の段へ下りる線は紺。中の段から下は淡い青にして、深さが分かるようにする
-  ul.tree.middle > li::before {
+  ul.tree.middle > li > .node::before {
     border-top: $border-size-2 solid map.get($sky-blue, 900);
   }
 
-  ul.tree.middle > li::after {
+  ul.tree.middle > li:last-child > .node::after,
+  ul.tree.middle > li:not(:last-child)::after {
     border-left: $border-size-2 solid map.get($sky-blue, 900);
   }
 
-  ul.tree.leaf > li::before {
+  ul.tree.leaf > li > .node::before {
     border-top: $border-size-1 solid map.get($sky-blue, border);
   }
 
-  ul.tree.leaf > li::after {
+  ul.tree.leaf > li:last-child > .node::after,
+  ul.tree.leaf > li:not(:last-child)::after {
     border-left: $border-size-1 solid map.get($sky-blue, border);
   }
 
   // いちばん下の段。淡い青の地に、濃い青の文字
   .node {
+    // 枝の線をこの箱に合わせて置くための基準
+    position: relative;
     display: flex;
     gap: $space-size-4 $space-size-8;
     padding: $space-size-8 $space-size-12;
