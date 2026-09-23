@@ -448,8 +448,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
       { cells: [{ text: '', colSpan: 9 }] },
       {
         cells: [
-          '',
-          '',
+          // A の表の見出し。この下に「A」と要素の名前が続くので、列の名前をここに置く
+          '区分',
+          '要素',
           'レベル5',
           'レベル4',
           'レベル3',
