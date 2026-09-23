@@ -467,10 +467,20 @@ export const mergeEmptyCellsDownward = (
       // 区分の見出しで区切る。区分が変われば、まとめ直す
       if (table.rows[row].group !== undefined) anchor = -1
 
+      /*
+        左の列が新しい値になった行から、新しいかたまりが始まる。
+
+        大分類が変わったのに小分類の空のます目が前のかたまりにつながると、
+        別の分類の見出しに呑まれてしまう。
+        かたまりの先頭は、中身が空でもそこを起点にする。
+        そうしないと、名前の無い小分類（倒立など）が行ごとに分かれてしまう
+      */
+      if (rows[row].slice(0, column).some((left) => left.text !== '')) anchor = row
+
       const cell = merged[row][column]
       if (cell === undefined) continue
 
-      if (cell.text === '' && anchor >= 0) {
+      if (cell.text === '' && anchor >= 0 && anchor !== row) {
         merged[anchor][column] = {
           ...merged[anchor][column],
           rowSpan: merged[anchor][column].rowSpan + 1,
