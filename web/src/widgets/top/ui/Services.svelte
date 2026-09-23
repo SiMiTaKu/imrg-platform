@@ -38,10 +38,16 @@
             {#each service.body as phrase (phrase)}<span class="phrase">{phrase()}</span>{/each}
           </p>
           <div class="actions">
-            <Button href={localizeHref(service.href)} target="_self" variant="outline" width="full">
+            <Button
+              href={localizeHref(service.href)}
+              target="_self"
+              variant="sky-blue-outline"
+              width="full"
+              size="medium"
+            >
               {service.action()}
             </Button>
-            <Button href="#contact" target="_self" variant="yellow" width="full">
+            <Button href="#contact" target="_self" variant="yellow" width="full" size="medium">
               {m.top_services_order()}
             </Button>
           </div>

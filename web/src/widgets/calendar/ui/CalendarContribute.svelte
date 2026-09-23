@@ -39,8 +39,11 @@
     </p>
     <!-- 下にそろえる。重ねずに、余った高さをこの箱で受ける -->
     <div class="contribute-action">
-      <Button href={LINKS.instagram} target="_blank" width={isMobile ? 'full' : 'auto'}
-        >{m.calendar_contribute_button()}</Button
+      <Button
+        href={LINKS.instagram}
+        target="_blank"
+        width={isMobile ? 'full' : 'auto'}
+        size="medium">{m.calendar_contribute_button()}</Button
       >
     </div>
   </div>
@@ -50,8 +53,9 @@
   <Button
     href={localizeHref(ROUTES.top)}
     target="_self"
-    variant="outline"
+    variant="sky-blue-outline"
     width={isMobile ? 'full' : 'auto'}
+    size="medium"
   >
     {m.calendar_back_to_top()}
   </Button>

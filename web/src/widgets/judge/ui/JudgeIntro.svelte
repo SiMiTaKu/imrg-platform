@@ -77,7 +77,7 @@
       <Button
         href={localizeHref(ROUTES.rules)}
         target="_self"
-        variant="outline"
+        variant="sky-blue-outline"
         size="large"
         width={isMobile ? 'full' : 'auto'}
       >

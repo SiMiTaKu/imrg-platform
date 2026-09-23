@@ -74,6 +74,7 @@
       href={localizeHref(ROUTES.oshimitsu.searchResult)}
       target="_self"
       width={isMobile ? 'full' : 'auto'}
+      size="medium"
     >
       {m.oshimitsu_all_videos()}
       <span aria-hidden="true">→</span>

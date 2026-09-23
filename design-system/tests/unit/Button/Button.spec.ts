@@ -16,7 +16,9 @@ describe('Button', () => {
     it('href を渡さない場合、押しボタンになり onclick が呼ばれること', async () => {
       // #region Given
       const onclick = vi.fn()
-      render(Button, { props: { width: 'auto', onclick, children: labelOf('もっと見る') } })
+      render(Button, {
+        props: { size: 'medium', width: 'auto', onclick, children: labelOf('もっと見る') },
+      })
       // #endregion
 
       // #region When
@@ -30,7 +32,12 @@ describe('Button', () => {
 
     it('押しボタンの場合、type が button になり送信に使われないこと', () => {
       // #region Given
-      const props = { width: 'auto', onclick: vi.fn(), children: labelOf('閉じる') } as const
+      const props = {
+        size: 'medium',
+        width: 'auto',
+        onclick: vi.fn(),
+        children: labelOf('閉じる'),
+      } as const
       // #endregion
 
       // #region When
@@ -59,6 +66,7 @@ describe('Button', () => {
       const props = {
         href: '/calendar/',
         target,
+        size: 'medium',
         width: 'auto',
         children: labelOf('開く'),
       } as const
@@ -80,9 +88,14 @@ describe('Button', () => {
 
   // #region 見た目
   describe('正常系（見た目）', () => {
-    it('見た目と大きさを省いた場合、塗り・medium になること', () => {
+    it('見た目を省いた場合、空色の塗りになること', () => {
       // #region Given
-      const props = { width: 'auto', onclick: vi.fn(), children: labelOf('もっと見る') } as const
+      const props = {
+        size: 'medium',
+        width: 'auto',
+        onclick: vi.fn(),
+        children: labelOf('もっと見る'),
+      } as const
       // #endregion
 
       // #region When
@@ -91,18 +104,19 @@ describe('Button', () => {
 
       // #region Then
       const button = screen.getByRole('button', { name: 'もっと見る' })
-      expect(button).toHaveClass('fill')
+      expect(button).toHaveClass('sky-blue')
       expect(button).not.toHaveClass('large')
       // #endregion
     })
 
     it.each([
-      ['塗りを選んだ場合、fill が付くこと', 'fill'],
-      ['白抜きを選んだ場合、outline が付くこと', 'outline'],
+      ['塗りを選んだ場合、sky-blue が付くこと', 'sky-blue'],
+      ['白抜きを選んだ場合、sky-blue-outline が付くこと', 'sky-blue-outline'],
       ['黄を選んだ場合、yellow が付くこと', 'yellow'],
     ] as const)('%s', (_, variant) => {
       // #region Given
       const props = {
+        size: 'medium',
         variant,
         width: 'auto',
         onclick: vi.fn(),
@@ -141,7 +155,8 @@ describe('Button', () => {
     it('読み上げ用の名前を渡した場合、その名前で見つかること', () => {
       // #region Given
       const props = {
-        label: '第1章をすべて開く',
+        ariaLabel: '第1章をすべて開く',
+        size: 'medium',
         width: 'auto',
         onclick: vi.fn(),
         children: labelOf('すべて開く'),
@@ -159,7 +174,12 @@ describe('Button', () => {
 
     it('auto を渡した場合、横に広げず文字に合わせた幅になること', () => {
       // #region Given
-      const props = { width: 'auto', onclick: vi.fn(), children: labelOf('もっと見る') } as const
+      const props = {
+        size: 'medium',
+        width: 'auto',
+        onclick: vi.fn(),
+        children: labelOf('もっと見る'),
+      } as const
       // #endregion
 
       // #region When
@@ -175,7 +195,12 @@ describe('Button', () => {
 
     it('full を渡した場合、横いっぱいに広がり最大幅を決めないこと', () => {
       // #region Given
-      const props = { width: 'full', onclick: vi.fn(), children: labelOf('もっと見る') } as const
+      const props = {
+        size: 'medium',
+        width: 'full',
+        onclick: vi.fn(),
+        children: labelOf('もっと見る'),
+      } as const
       // #endregion
 
       // #region When
@@ -191,7 +216,12 @@ describe('Button', () => {
 
     it('数値を渡した場合、決め打ちの幅ではなく px の最大幅になること', () => {
       // #region Given
-      const props = { width: 240, onclick: vi.fn(), children: labelOf('もっと見る') } as const
+      const props = {
+        size: 'medium',
+        width: 240,
+        onclick: vi.fn(),
+        children: labelOf('もっと見る'),
+      } as const
       // #endregion
 
       // #region When

@@ -91,12 +91,15 @@
 </script>
 
 {#snippet keywordActions()}
-  <Button width={isMobile ? 'full' : 'auto'} onclick={() => (keyword = '')}
+  <Button width={isMobile ? 'full' : 'auto'} onclick={() => (keyword = '')} size="medium"
     >{m.oshimitsu_keyword_clear()}</Button
   >
   {#if hasMore}
-    <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={getMoreVideos}
-      >{m.oshimitsu_load_more()}</Button
+    <Button
+      variant="sky-blue-outline"
+      width={isMobile ? 'full' : 'auto'}
+      onclick={getMoreVideos}
+      size="medium">{m.oshimitsu_load_more()}</Button
     >
   {/if}
 {/snippet}

@@ -224,18 +224,20 @@
             <div class="chapter-body">
               <div class="bulk">
                 <Button
-                  variant="outline"
+                  variant="sky-blue-outline"
                   width={isMobile ? 'full' : 'auto'}
-                  label={m.rules_expand_chapter_label({ number: chapter.number })}
+                  ariaLabel={m.rules_expand_chapter_label({ number: chapter.number })}
                   onclick={() => toggleChapterAll(index, true)}
+                  size="medium"
                 >
                   {m.rules_expand_all()}
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="sky-blue-outline"
                   width={isMobile ? 'full' : 'auto'}
-                  label={m.rules_collapse_chapter_label({ number: chapter.number })}
+                  ariaLabel={m.rules_collapse_chapter_label({ number: chapter.number })}
                   onclick={() => toggleChapterAll(index, false)}
+                  size="medium"
                 >
                   {m.rules_collapse_all()}
                 </Button>

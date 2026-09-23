@@ -614,7 +614,12 @@
         </RulePaperFrame>
       </div>
       <div class="print-action no-print">
-        <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={print}>
+        <Button
+          variant="sky-blue-outline"
+          width={isMobile ? 'full' : 'auto'}
+          onclick={print}
+          size="medium"
+        >
           {table.printGroup ? m.rules_print_group() : m.rules_print()}
         </Button>
         <span class="hint">{m.rules_print_hint()}</span>

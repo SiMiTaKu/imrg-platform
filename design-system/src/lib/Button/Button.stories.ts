@@ -15,14 +15,17 @@ const meta = {
   component: Button,
   tags: ['autodocs'],
   args: {
-    variant: 'fill',
+    variant: 'sky-blue',
     size: 'medium',
     width: 'auto',
     onclick: fn(),
     children: labelOf('もっと見る'),
   },
   argTypes: {
-    variant: { control: 'inline-radio', options: ['fill', 'outline', 'yellow'] },
+    variant: {
+      control: 'inline-radio',
+      options: ['sky-blue', 'sky-blue-outline', 'yellow'],
+    },
     size: { control: 'inline-radio', options: ['medium', 'large'] },
     width: { control: 'inline-radio', options: ['auto', 'full', 240] },
   },
@@ -32,12 +35,12 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** 塗り。そのページでいちばん進んでほしい先に使う */
+/** 空色の塗り。そのページでいちばん進んでほしい先に使う */
 export const 塗り: Story = {}
 
-/** 白抜き。押す先が主役ではないときや、中身の上に置くときに使う */
+/** 空色の白抜き。押す先が主役ではないときや、中身の上に置くときに使う */
 export const 白抜き: Story = {
-  args: { variant: 'outline' },
+  args: { variant: 'sky-blue-outline' },
 }
 
 /** 黄。相談への一歩に使う。黄は明るいので文字は黒にする（色の決まり 4） */
@@ -64,7 +67,8 @@ export const 最大幅を決める: Story = {
 /** href を渡すとリンクになる。新しいタブで開くときは rel が付く */
 export const リンク: StoryObj<typeof Button> = {
   args: {
-    variant: 'fill',
+    variant: 'sky-blue',
+    size: 'medium',
     width: 'auto',
     href: 'https://www.youtube.com/',
     target: '_blank',

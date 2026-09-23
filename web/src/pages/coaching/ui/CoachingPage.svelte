@@ -121,10 +121,10 @@
       </ul>
 
       <div class="actions">
-        <Button href={LINKS.instagram} target="_blank" variant="yellow" width="full">
+        <Button href={LINKS.instagram} target="_blank" variant="yellow" width="full" size="medium">
           {m.coaching_contact_button()}
         </Button>
-        <Button href="#prices" target="_self" variant="outline" width="full">
+        <Button href="#prices" target="_self" variant="sky-blue-outline" width="full" size="medium">
           {m.coaching_hero_price_link()}
         </Button>
       </div>
@@ -259,7 +259,12 @@
                 {/each}
               </ul>
               <div class="market-close">
-                <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={closeMarket}>
+                <Button
+                  variant="sky-blue-outline"
+                  width={isMobile ? 'full' : 'auto'}
+                  onclick={closeMarket}
+                  size="medium"
+                >
                   {m.coaching_market_close()}
                 </Button>
               </div>

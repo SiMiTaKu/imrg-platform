@@ -214,8 +214,15 @@
       </ul>
 
       <div class="actions">
-        <Button href={contactHref} target="_blank" width="full">{contactLabel}</Button>
-        <Button href={worksHref} target="_self" variant="outline" width="full">{worksLabel}</Button>
+        <Button href={contactHref} target="_blank" width="full" size="medium">{contactLabel}</Button
+        >
+        <Button
+          href={worksHref}
+          target="_self"
+          variant="sky-blue-outline"
+          width="full"
+          size="medium">{worksLabel}</Button
+        >
       </div>
 
       <p class="note">{note}</p>

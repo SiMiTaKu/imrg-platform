@@ -43,22 +43,25 @@
           href={localizeHref(ROUTES.oshimitsu.searchResult)}
           target="_self"
           width={isMobile ? 'full' : 'auto'}
+          size="medium"
         >
           {m.oshimitsu_all_videos()}
         </Button>
         <Button
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.INDIVIDUAL.slug))}
           target="_self"
-          variant="outline"
+          variant="sky-blue-outline"
           width={isMobile ? 'full' : 'auto'}
+          size="medium"
         >
           {m.oshimitsu_empty_see_individual({ contentType: ContentType.INDIVIDUAL.label() })}
         </Button>
         <Button
           href={localizeHref(ROUTES.oshimitsu.contentType(ContentType.GROUP.slug))}
           target="_self"
-          variant="outline"
+          variant="sky-blue-outline"
           width={isMobile ? 'full' : 'auto'}
+          size="medium"
         >
           {m.oshimitsu_empty_see_group({ contentType: ContentType.GROUP.label() })}
         </Button>

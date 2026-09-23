@@ -138,7 +138,7 @@
       {m.contact_body_line2()}<br />
       {m.contact_body_line3()}
     </p>
-    <Button href={LINKS.instagram} target="_blank" width={isMobile ? 'full' : 'auto'}
+    <Button href={LINKS.instagram} target="_blank" width={isMobile ? 'full' : 'auto'} size="medium"
       >{m.contact_button()}</Button
     >
   </aside>
@@ -147,8 +147,9 @@
     <Button
       href={localizeHref(ROUTES.top)}
       target="_self"
-      variant="outline"
+      variant="sky-blue-outline"
       width={isMobile ? 'full' : 'auto'}
+      size="medium"
     >
       {m.layout_back_to_top()}
     </Button>

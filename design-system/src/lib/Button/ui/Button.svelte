@@ -4,10 +4,10 @@
   const {
     href,
     target,
-    variant = 'fill',
-    size = 'medium',
+    variant = 'sky-blue',
+    size,
     width,
-    label,
+    ariaLabel,
     onclick,
     children,
   }: ButtonProps = $props()
@@ -21,15 +21,15 @@
 {#if href}
   <a
     class="button"
-    class:fill={variant === 'fill'}
-    class:outline={variant === 'outline'}
+    class:sky-blue={variant === 'sky-blue'}
+    class:sky-blue-outline={variant === 'sky-blue-outline'}
     class:yellow={variant === 'yellow'}
     class:large={size === 'large'}
     class:stretch={stretches}
     style:--button-max-width={maxWidth}
     {href}
     {target}
-    aria-label={label}
+    aria-label={ariaLabel}
     rel={target === '_blank' ? 'noopener noreferrer' : ''}
   >
     {@render children()}
@@ -37,14 +37,14 @@
 {:else}
   <button
     class="button"
-    class:fill={variant === 'fill'}
-    class:outline={variant === 'outline'}
+    class:sky-blue={variant === 'sky-blue'}
+    class:sky-blue-outline={variant === 'sky-blue-outline'}
     class:yellow={variant === 'yellow'}
     class:large={size === 'large'}
     class:stretch={stretches}
     style:--button-max-width={maxWidth}
     type="button"
-    aria-label={label}
+    aria-label={ariaLabel}
     {onclick}
   >
     {@render children()}
@@ -88,27 +88,27 @@
     max-width: var(--button-max-width, none);
   }
 
-  // 塗り。そのページでいちばん進んでほしい先に使う
-  .fill {
+  // 空色の塗り。そのページでいちばん進んでほしい先に使う
+  .sky-blue {
     color: $white;
     border-color: map.get($sky-blue, button);
     background: map.get($sky-blue, button);
     box-shadow: 0 2px 8px rgb(0 89 184 / 25%);
   }
 
-  .fill:hover {
+  .sky-blue:hover {
     border-color: map.get($sky-blue, text);
     background: map.get($sky-blue, text);
   }
 
-  // 白抜き。押す先が主役ではないときや、中身の上に置くときに使う
-  .outline {
+  // 空色の白抜き。押す先が主役ではないときや、中身の上に置くときに使う
+  .sky-blue-outline {
     color: map.get($sky-blue, text);
     border-color: map.get($sky-blue, border);
     background: $white;
   }
 
-  .outline:hover {
+  .sky-blue-outline:hover {
     border-color: map.get($sky-blue, button);
     background: map.get($sky-blue, background);
   }
