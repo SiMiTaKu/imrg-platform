@@ -109,18 +109,32 @@
       用紙の表は字の大きさと余白を自分で決めているので、
       ここで上書きしないと詰まらない。1行のます目は字の高さだけになる
     */
+
+    /*
+      ます目の高さをそろえる。
+
+      行の高さを px で決め打ちするので、1行のます目はどれも同じ高さになり、
+      2行のます目はちょうどその倍になる。倍率で決めると、ます目ごとの
+      字の大きさの違いがそのまま高さの違いになってしまう。
+
+      A4 の縦（余白10mm で高さ約1047px）に収める大きさ。8pt だと A〜D の列に
+      12文字しか入らず、折り返す行が増えて2枚目にあふれる
+    */
     :global(body[data-printing] [data-printing='true'] th),
     :global(body[data-printing] [data-printing='true'] td) {
-      padding-top: 0;
-      padding-bottom: 0;
-
-      /*
-        A4 の縦（余白10mm で高さ約1047px）に収める大きさ。
-        いちばん長い個人徒手のD採点表で、表が約673px、まわりの欄と合わせて
-        約900px になる。8pt だと文字が折り返す行が増えて2枚目にあふれる
-      */
+      height: 9px;
+      padding: 0 4px;
       font-size: 6.5pt;
-      line-height: 1.1;
+      line-height: 9px;
+    }
+
+    // 書き込む欄も、紙に出すときは高さを詰める
+    :global(body[data-printing] [data-printing='true'] dd) {
+      min-height: 12px;
+    }
+
+    :global(body[data-printing] [data-printing='true'] .memo-box) {
+      min-height: 48px;
     }
 
     // 用紙のまわりの余白と、離して置く欄の間も詰める
