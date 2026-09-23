@@ -546,15 +546,11 @@
                     class:corner={groupIndex < headerColumns}
                     class:sticky-0={groupIndex + visualColumn === 0}
                     class:sticky-1={headerColumns + visualColumn > 1 &&
-                      groupIndex + visualColumn === 1}
-                    style:text-align={table.columnAligns?.[groupIndex]}
-                    >{table.columns[groupIndex]}</th
+                      groupIndex + visualColumn === 1}>{table.columns[groupIndex]}</th
                   >
                 {:else}
-                  <th
-                    scope="colgroup"
-                    colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
-                    style:text-align={table.columnAligns?.[groupIndex]}>{cell.text}</th
+                  <th scope="colgroup" colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
+                    >{cell.text}</th
                   >
                 {/if}
               {/each}
@@ -572,8 +568,7 @@
                   class:narrow={columnIndex >= narrowFromIndex}
                   class:sticky-0={columnIndex + visualColumn === 0}
                   class:sticky-1={headerColumns + visualColumn > 1 &&
-                    columnIndex + visualColumn === 1}
-                  style:text-align={table.columnAligns?.[columnIndex]}>{column}</th
+                    columnIndex + visualColumn === 1}>{column}</th
                 >
               {/if}
             {/each}
@@ -1019,9 +1014,14 @@
     overflow-wrap: break-word;
   }
 
-  // 見出し行は上に貼り付けて、下へ送っても残るようにする
+  /*
+    見出しの行。中身の寄せ方に関わらず、見出しはどの列も真ん中に置く。
+    冊子の表も見出しだけは真ん中に刷ってある。
+    上に貼り付けて、下へ送っても残るようにする
+  */
   thead th {
     position: sticky;
+    text-align: center;
     top: 0;
     z-index: 1;
     font-size: $font-size-12;
