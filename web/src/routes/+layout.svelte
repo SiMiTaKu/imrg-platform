@@ -135,10 +135,10 @@
     */
     :global(body[data-printing] [data-printing='true'] .uniform-rows th),
     :global(body[data-printing] [data-printing='true'] .uniform-rows td) {
-      height: 16px;
+      height: 14.5px;
       padding: 0 4px;
       font-size: 6.5pt;
-      line-height: 16px;
+      line-height: 14.5px;
     }
 
     /*
@@ -149,8 +149,9 @@
 
     // 用紙のまわりの余白と、離して置く欄の間も詰める
     // 上下だけ詰める。左右を変えると、表と上の印の右端がそろわなくなる
+    // 下の余白は残さない。用紙の下に空白ができてしまう
     :global(body[data-printing] [data-printing='true'] .paper) {
-      padding: 4px 12px;
+      padding: 4px 10px 0;
     }
 
     /*
