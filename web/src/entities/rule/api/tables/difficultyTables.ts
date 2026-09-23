@@ -495,6 +495,8 @@ export const DIFFICULTY_TABLES: readonly RuleTable[] = [
     caption: 'ロープの跳びの難度',
     layout: 'matrix',
     cornerLabel: '跳びの種類',
+    // 中身は A〜E の1文字だけなので、どの列も真ん中に寄せる
+    columnAligns: ['center', 'center', 'center', 'center'],
     columns: [
       '前跳び（クロスなし）',
       '前跳び（クロスあり）',
