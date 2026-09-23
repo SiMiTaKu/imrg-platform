@@ -980,6 +980,16 @@
     z-index: 1;
   }
 
+  /*
+    採点票は幅を px で決めてあり、どの画面でも同じ形で出す。
+    貼り付けると、横に送ったときだけ列が動いて紙と違う見え方になるので、
+    この表では貼り付けない
+  */
+  .pixel-sized th.sticky-0,
+  .pixel-sized th.sticky-1 {
+    position: static;
+  }
+
   th.sticky-0 {
     left: 0;
   }
