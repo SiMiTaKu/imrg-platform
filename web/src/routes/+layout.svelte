@@ -83,9 +83,31 @@
       overflow: visible;
     }
 
-    // 1枚に収まるよう、紙に出すときだけ字を小さくする
+    /*
+      1枚に収めるための詰め。紙に出すときだけ効かせる。
+
+      用紙は幅 696px で組んであり、A4 の縦（左右10mm の余白を取って約718px）に
+      ちょうど収まる。縦が足りないときのために、ます目の上下の余白と行の高さを
+      詰め、途中でページを割らないようにする
+    */
     :global(body[data-printing] [data-printing='true']) {
       font-size: 8pt;
+    }
+
+    :global(body[data-printing] [data-printing='true'] table) {
+      break-inside: avoid;
+    }
+
+    :global(body[data-printing] [data-printing='true'] th),
+    :global(body[data-printing] [data-printing='true'] td) {
+      padding-top: 1px;
+      padding-bottom: 1px;
+      line-height: 1.25;
+    }
+
+    // 画面でだけ要る説明は、紙には出さない
+    :global(body[data-printing] [data-printing='true'] figcaption) {
+      display: none;
     }
 
     main {

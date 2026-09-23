@@ -36,6 +36,63 @@
   const PRE_DEDUCTION_TOTALS: readonly string[] = ['D', 'A', 'E', '減点前得点']
 
   /**
+   * 表の左に置く、背の高い空欄の印。
+   *
+   * @remarks
+   * 冊子79ページでは、紙面の左半分が何も刷っていない大きな枠になっていて、
+   * 審判が演技を見ながら自由に書き込む。表のます目ではないので表からは外し、
+   * この名前が欄の並びにあるときだけ、表の左に枠として置く。
+   * 名前そのものは紙面に刷られていないので、画面にも出さない
+   */
+  const SIDE_MEMO_TOTAL = 'メモ'
+
+  /** 名前の無い欄の印。冊子79ページのいちばん下にある、何も刷っていない四角い枠 */
+  const BLANK_TOTAL = ''
+
+  /** 加点の欄の名前。冊子78ページでは、難度の表とは別の小さな表になっている */
+  const BONUS_TOTAL = '加点'
+
+  /** 得点の枠の名前。冊子78ページでは、紙面の右下に枠が1つだけ置いてある */
+  const SCORE_BOX_TOTAL = '得点'
+
+  /**
+   * 冊子で1つずつ離れた枠になっている欄。
+   *
+   * @remarks
+   * 冊子62ページの「減点合計」「最終得点」は線を共有して続けて並ぶが、
+   * 78・79ページの欄はそれぞれ独立した枠で、間が空けてある。
+   * この欄がある用紙は、下の欄を続けずに間を空けて置く
+   */
+  const DETACHED_TOTALS: readonly string[] = [BONUS_TOTAL, SCORE_BOX_TOTAL, BLANK_TOTAL]
+
+  /** 加点の表の、内容の列の見出し。冊子78ページのまま */
+  const BONUS_CONTENT_LABEL = '内容'
+
+  /**
+   * 加点の表に刷ってある4つの項目。
+   *
+   * @remarks
+   * 出典は 新体操男子規則 2025年版 3 採点規則 3.8.10 個人徒手採点表「D採点表」（78ページ）。
+   * 冊子では難度の表とは別の表になっていて、1つの図に表は1つしか持てない。
+   * 表のまわりの欄としてここで描くので、刷ってある言葉もここに持たせてある
+   */
+  const BONUS_ITEMS: readonly string[] = [
+    '（1）　異なるB難度の跳躍の連続',
+    '（2）　（1）の中にC難度以上の跳躍が含まれていた場合',
+    '（3）　A難度とB難度の連続した転回',
+    '（4）　B難度を含む４回以上の異なる転回技の連続',
+  ]
+
+  /** 加点の表の右に刷ってある但し書き */
+  const BONUS_NOTE = '※（1）（2）はどちらか一方のみ'
+
+  /** 但し書きの欄が、上から何行ぶんを使うか。冊子では（1）（2）の2行にまたがっている */
+  const BONUS_NOTE_ROWS = 2
+
+  /** 記入欄を、名前の行とます目の行の2段で出す最小の欄の数 */
+  const FIELD_HEADER_ROW_MIN = 3
+
+  /**
    * 冊子で1ページを丸ごと使う用紙か。
    *
    * @remarks
@@ -62,11 +119,79 @@
    */
   const isPreDeductionTotal = (label: string): boolean => PRE_DEDUCTION_TOTALS.includes(label)
 
+  /**
+   * 冊子で1つずつ離れた枠になっている欄か
+   * @param label - 欄の名前
+   * @returns 離して置くなら true
+   */
+  const isDetachedTotal = (label: string): boolean => DETACHED_TOTALS.includes(label)
+
+  /**
+   * 記入欄を、名前の行とます目の行の2段で出すか。
+   *
+   * @remarks
+   * 冊子77・79ページの記入欄は、上の行に「No.／所属　名／カテゴリー」と名前が横に並び、
+   * その下に書き込むためのます目が並ぶ2段の表になっている。
+   * 冊子62ページのように名前が2つだけの用紙は、名前とます目の組が縦に積んである
+   *
+   * @param fields - 記入欄の名前
+   * @returns 2段で出すなら true
+   */
+  const usesFieldHeaderRow = (fields: readonly string[]): boolean =>
+    fields.length >= FIELD_HEADER_ROW_MIN
+
+  /**
+   * 記入欄の列の割り当て。
+   *
+   * @remarks
+   * 2段のときは欄の数だけ列を作り、どの列も名前が折り返さないだけの幅を取ってから、
+   * 残りを等分する。縦に積むときは、名前の列と書き込む列の2列にする
+   *
+   * @param fields - 記入欄の名前
+   * @returns grid-template-columns に渡す値
+   */
+  const fieldColumns = (fields: readonly string[]): string =>
+    usesFieldHeaderRow(fields)
+      ? `repeat(${fields.length}, minmax(max-content, 1fr))`
+      : 'max-content 1fr'
+
+  /**
+   * 記入欄の名前を、何列目・何行目に置くか
+   * @param fields - 記入欄の名前
+   * @param index - 何番目の欄か（0 から数える）
+   * @returns 列と行の指定
+   */
+  const fieldNamePlace = (
+    fields: readonly string[],
+    index: number,
+  ): { column: number; row: number } =>
+    usesFieldHeaderRow(fields) ? { column: index + 1, row: 1 } : { column: 1, row: index + 1 }
+
+  /**
+   * 記入欄のます目を、何列目・何行目に置くか
+   * @param fields - 記入欄の名前
+   * @param index - 何番目の欄か（0 から数える）
+   * @returns 列と行の指定
+   */
+  const fieldBoxPlace = (
+    fields: readonly string[],
+    index: number,
+  ): { column: number; row: number } =>
+    usesFieldHeaderRow(fields) ? { column: index + 1, row: 2 } : { column: 2, row: index + 1 }
+
   /** 表の上に置く得点の欄。1ページ大の用紙だけに出る */
   const topTotals = $derived(fullPage ? (paper.totals ?? []).filter(isPreDeductionTotal) : [])
 
-  /** 表の下に置く合計の欄 */
-  const bottomTotals = $derived((paper.totals ?? []).filter((total) => !topTotals.includes(total)))
+  /** 表の左に、背の高い空欄を置く用紙か */
+  const hasSideMemo = $derived((paper.totals ?? []).includes(SIDE_MEMO_TOTAL))
+
+  /** 表の下に置く合計の欄。表の上と左に出すものは、ここからは外す */
+  const bottomTotals = $derived(
+    (paper.totals ?? []).filter((total) => !topTotals.includes(total) && total !== SIDE_MEMO_TOTAL),
+  )
+
+  /** 表の下の欄を、1つずつ離して置くか */
+  const detached = $derived(bottomTotals.some(isDetachedTotal))
 
   /** 表より上に出すものがあるか。78ページのように、表だけの用紙もある */
   const hasHead = $derived(
@@ -135,13 +260,16 @@
 {#snippet fieldBoxes()}
   {#if paper.fields}
     <!--
-      1ページ大の用紙の記入欄。冊子では名前と書き込む枠が横に並んだ表になっている。
-      横に並べると狭い画面で枠が潰れるので、1行に1つずつ縦に積む
+      1ページ大の用紙の記入欄。冊子77・79ページでは、上の行に名前が横に並び、
+      その下に書き込むための空のます目が並ぶ2段の表になっている。
+      冊子62ページのように名前が2つだけの用紙は、名前とます目の組を縦に積む
     -->
-    <dl class="field-boxes">
+    <dl class="field-boxes" style:grid-template-columns={fieldColumns(paper.fields)}>
       {#each paper.fields as field, index (index)}
-        <dt>{field}</dt>
-        <dd></dd>
+        {@const name = fieldNamePlace(paper.fields, index)}
+        {@const box = fieldBoxPlace(paper.fields, index)}
+        <dt style:grid-column={name.column} style:grid-row={name.row}>{field}</dt>
+        <dd style:grid-column={box.column} style:grid-row={box.row}></dd>
       {/each}
     </dl>
   {/if}
@@ -159,6 +287,85 @@
       {/each}
     </dl>
   {/if}
+{/snippet}
+
+{#snippet bonusTable()}
+  <!--
+    加点の欄。冊子78ページでは、難度の表とは別の表になっていて、
+    左に「加点」、上に「内容」の見出しがあり、その下に（1）〜（4）が縦に並ぶ。
+    右の欄には「※（1）（2）はどちらか一方のみ」が（1）（2）の2行にまたがって刷ってある
+  -->
+  <table class="bonus">
+    <tbody>
+      <tr>
+        <th scope="row" class="bonus-label" rowspan={BONUS_ITEMS.length + 1}>{BONUS_TOTAL}</th>
+        <th scope="col" class="bonus-head">{BONUS_CONTENT_LABEL}</th>
+        <td class="bonus-note-head"></td>
+      </tr>
+      {#each BONUS_ITEMS as item, index (item)}
+        <tr>
+          <td>{item}</td>
+          {#if index === 0}
+            <td class="bonus-note" rowspan={BONUS_NOTE_ROWS}>{BONUS_NOTE}</td>
+          {:else if index >= BONUS_NOTE_ROWS}
+            <td></td>
+          {/if}
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+{/snippet}
+
+{#snippet totalBoxes()}
+  {#if bottomTotals.length > 0}
+    {#if detached}
+      <!-- 冊子78・79ページ。下の欄は1つずつ離れた枠なので、間を空けて縦に並べる -->
+      {#each bottomTotals as total (total)}
+        {#if total === BONUS_TOTAL}
+          {@render bonusTable()}
+        {:else if total === SCORE_BOX_TOTAL}
+          <!-- 冊子78ページの右下にある得点の枠。紙面のとおり右に寄せる -->
+          <div class="score-box">{total}</div>
+        {:else if total === BLANK_TOTAL}
+          <!-- 冊子79ページのいちばん下にある、何も刷っていない四角い枠 -->
+          <div class="memo-box"></div>
+        {:else}
+          <!-- 名前の枠と、書き込む広い枠が横に並ぶ欄 -->
+          <dl class="total-box">
+            <dt>{total}</dt>
+            <dd></dd>
+          </dl>
+        {/if}
+      {/each}
+    {:else}
+      <!-- 合計の欄。冊子62ページでは、線を共有して続けて並ぶ -->
+      <dl class="totals">
+        {#each bottomTotals as total (total)}
+          <dt>{total}</dt>
+          <dd></dd>
+        {/each}
+      </dl>
+    {/if}
+  {/if}
+{/snippet}
+
+{#snippet signatureLines()}
+  {#if paper.signatures}
+    <dl class="signatures">
+      {#each paper.signatures as signature (signature)}
+        <div class="field-line">
+          <dt>{signature}</dt>
+          <dd><span class="blank-line"></span></dd>
+        </div>
+      {/each}
+    </dl>
+  {/if}
+{/snippet}
+
+{#snippet paperMain()}
+  {@render children()}
+  {@render totalBoxes()}
+  {@render signatureLines()}
 {/snippet}
 
 <div class="paper-outer">
@@ -195,28 +402,18 @@
       </div>
     {/if}
 
-    {@render children()}
-
-    {#if bottomTotals.length > 0}
-      <!-- 合計の欄。冊子では名前の枠と、書き込む広い枠が横に並ぶ -->
-      <dl class="totals">
-        {#each bottomTotals as total (total)}
-          <!-- 名前の無い欄は、冊子79ページのいちばん下にある空白の枠。審判が自由に書き込む場所 -->
-          <dt class:memo={total === ''}>{total}</dt>
-          <dd class:memo={total === ''}></dd>
-        {/each}
-      </dl>
-    {/if}
-
-    {#if paper.signatures}
-      <dl class="signatures">
-        {#each paper.signatures as signature (signature)}
-          <div class="field-line">
-            <dt>{signature}</dt>
-            <dd><span class="blank-line"></span></dd>
-          </div>
-        {/each}
-      </dl>
+    {#if hasSideMemo}
+      <!-- 冊子79ページ。左に背の高い空欄、右に採点の表と下の欄が並ぶ -->
+      <div class="paper-body">
+        <div class="side-memo"></div>
+        <div class="stack main" class:detached>
+          {@render paperMain()}
+        </div>
+      </div>
+    {:else}
+      <div class="stack" class:detached>
+        {@render paperMain()}
+      </div>
     {/if}
   </div>
 </div>
@@ -257,6 +454,46 @@
     font-weight: bold;
     text-align: center;
     color: map.get($gray, text);
+  }
+
+  /* ─── 表と、その下の欄の並び ─── */
+
+  // 冊子の並びのまま、表と下の欄を縦に積む
+  .stack {
+    display: flex;
+    gap: $space-size-12;
+    flex-direction: column;
+  }
+
+  /*
+    冊子78・79ページのように、下の欄が1つずつ独立した枠になっている用紙。
+    枠の間を同じだけ空けて、紙面と同じ間隔で並べる
+  */
+  .stack.detached {
+    gap: $space-size-24;
+  }
+
+  // 冊子79ページ。左に背の高い空欄、右に採点の表と下の欄が並ぶ
+  .paper-body {
+    display: flex;
+    gap: $space-size-12;
+    align-items: stretch;
+  }
+
+  /*
+    左の空欄。審判が演技を見ながら自由に書き込む場所で、冊子では紙面の左半分を占める。
+    右の表は幅を px で決めてあるので、残った幅をこちらが受け取る
+  */
+  .side-memo {
+    min-width: 0;
+    border: $border-size-1 solid map.get($gray, 300);
+    flex: 1 1 auto;
+  }
+
+  // 右側。表の幅のまま置き、下の欄もその幅にそろえる
+  .stack.main {
+    max-width: 100%;
+    flex: 0 0 auto;
   }
 
   /* ─── はがき大の用紙（採点票） ─── */
@@ -399,10 +636,6 @@
     flex-wrap: wrap;
   }
 
-  .signatures {
-    margin-top: $space-size-12;
-  }
-
   .field-line {
     display: flex;
     gap: $space-size-8;
@@ -432,21 +665,17 @@
     border-bottom: $border-size-1 solid map.get($gray, 300);
   }
 
-  // 枠で囲む記入欄。冊子62ページの「チーム・番号」「選手・番号」など
-
   /*
-    枠囲みの記入欄。冊子では名前と書き込む場所が横に並び、その組が左から続く。
-    名前の列と書き込む列が交互に並ぶよう、2列ずつの繰り返しにする
-  */
-
-  /*
-    枠囲みの記入欄。冊子では名前と書き込む場所が横に並び、その組が左から続く。
+    枠囲みの記入欄。冊子77・79ページでは、上の行に「No.／所属　名／カテゴリー」と
+    名前が横に並び、その下に書き込むための空のます目が同じ幅で並ぶ。
+    名前とます目を交互に置くと、どこに書けばよいのか分からないので、必ず2段にする。
+    列と行の指定は、欄の数に合わせてその場で付ける。
 
     線はます目ごとに右と下だけ持ち、上と左の縁だけを入れ物に持たせる。
     入れ物とます目の両方が線を引くと、境目が二重に見えてしまう
   */
   .field-boxes {
-    display: flex;
+    display: grid;
     box-sizing: border-box;
     width: 100%;
     margin: 0;
@@ -454,24 +683,22 @@
     color: map.get($gray, text);
     border-top: $border-size-1 solid map.get($gray, 300);
     border-left: $border-size-1 solid map.get($gray, 300);
-    flex-wrap: wrap;
   }
 
   .field-boxes dt {
-    padding: $space-size-8 $space-size-12;
+    padding: $space-size-4 $space-size-8;
     border-right: $border-size-1 solid map.get($gray, 300);
     border-bottom: $border-size-1 solid map.get($gray, 300);
     background-color: map.get($gray, background);
+    text-align: center;
     white-space: nowrap;
   }
 
   .field-boxes dd {
-    min-width: $space-size-48;
     min-height: $space-size-24;
     margin: 0;
     border-right: $border-size-1 solid map.get($gray, 300);
     border-bottom: $border-size-1 solid map.get($gray, 300);
-    flex: 1 1 $space-size-48;
   }
 
   // 減点前の得点。冊子62ページでは「D／A／E／減点前得点」が横に並ぶ
@@ -509,12 +736,12 @@
     margin: 0;
   }
 
-  // 合計の欄。冊子では名前の枠と、書き込む広い枠が横に並ぶ
+  // 合計の欄。冊子62ページでは、名前の枠と書き込む広い枠が線を共有して続けて並ぶ
   .totals {
     display: grid;
     grid-template-columns: max-content 1fr;
     width: 100%;
-    margin: $space-size-12 0 0;
+    margin: 0;
     font-size: $font-size-12;
     color: map.get($gray, text);
     border: $border-size-1 solid map.get($gray, 300);
@@ -539,15 +766,102 @@
   }
 
   /*
-    名前の無い合計の欄。冊子79ページのいちばん下にある、何も刷っていない四角い枠で、
-    審判が自由に書き込む場所。名前の列を作らず、1行を丸ごと使う
+    1つずつ離れた枠の欄。冊子78ページの「要素減点」、79ページの B と得点。
+    名前の枠と、書き込む広い枠が横に並ぶ
   */
-  .totals dt.memo {
-    display: none;
+  .total-box {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    width: 100%;
+    margin: 0;
+    font-size: $font-size-12;
+    color: map.get($gray, text);
+    border: $border-size-1 solid map.get($gray, 300);
   }
 
-  .totals dd.memo {
-    grid-column: 1 / -1;
+  .total-box dt {
+    padding: $space-size-8 $space-size-12;
+    font-weight: bold;
+    border-right: $border-size-1 solid map.get($gray, 300);
+    background: map.get($gray, background);
+    white-space: pre-line;
+  }
+
+  .total-box dd {
+    min-height: $space-size-32;
+    margin: 0;
+  }
+
+  /*
+    冊子78ページの右下にある得点の枠。紙面と同じく、右に寄せた小さな枠1つ
+  */
+  .score-box {
+    display: flex;
+    box-sizing: border-box;
+    width: $space-size-160;
+    min-height: $space-size-40;
+    padding: $space-size-8;
+    font-size: $font-size-14;
+    color: map.get($gray, text);
+    border: $border-size-1 solid map.get($gray, 300);
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+  }
+
+  // 冊子79ページのいちばん下にある、何も刷っていない四角い枠
+  .memo-box {
     min-height: $space-size-120;
+    border: $border-size-1 solid map.get($gray, 300);
+  }
+
+  /*
+    加点の欄。冊子78ページでは難度の表とは別の表で、
+    左に「加点」、上に「内容」の見出しがあり、その下に（1）〜（4）が縦に並ぶ
+  */
+  .bonus {
+    width: 100%;
+    font-size: $font-size-12;
+    color: map.get($gray, text);
+    border-top: $border-size-1 solid map.get($gray, 300);
+    border-left: $border-size-1 solid map.get($gray, 300);
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+
+  .bonus th,
+  .bonus td {
+    padding: $space-size-4 $space-size-8;
+    border-right: $border-size-1 solid map.get($gray, 300);
+    border-bottom: $border-size-1 solid map.get($gray, 300);
+    line-height: 1.5;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  // 左の「加点」。冊子では表の高さいっぱいの1つのます目
+  .bonus-label {
+    width: $space-size-120;
+    font-weight: bold;
+    background-color: map.get($gray, background);
+    text-align: center;
+  }
+
+  // 「内容」の見出し
+  .bonus-head {
+    background-color: map.get($gray, background);
+    text-align: center;
+  }
+
+  // 但し書きの欄の幅。いちばん上の行で決まるので、見出しの行に持たせる
+  .bonus-note-head {
+    width: $space-size-160;
+  }
+
+  // 右の但し書き。冊子では（1）（2）の2行にまたがって刷ってある
+  .bonus-note {
+    font-size: $font-size-11;
+    vertical-align: top;
   }
 </style>
