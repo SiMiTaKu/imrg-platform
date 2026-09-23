@@ -115,34 +115,6 @@
   let isScrollable = $state(false)
 
   /**
-   * 左に貼り付ける1列目の幅を測る。
-   *
-   * @remarks
-   * 2列目を貼り付けるには、1列目の幅だけ右へずらす必要がある。
-   * 幅は百分率で決まるので、画面の幅が変わるたびに測り直す
-   *
-   * @param element - 表を包む入れ物
-   * @returns 片付けの手順
-   */
-  const watchHeaderWidth = (element: HTMLElement) => {
-    const measure = () => {
-      const first = element.querySelector('tbody th.sticky-0')
-      element.style.setProperty(
-        '--rule-first-header-width',
-        `${first instanceof HTMLElement ? first.offsetWidth : 0}px`,
-      )
-    }
-
-    measure()
-    const observer = new ResizeObserver(measure)
-    observer.observe(element)
-    const first = element.querySelector('tbody th.sticky-0')
-    if (first instanceof HTMLElement) observer.observe(first)
-
-    return { destroy: () => observer.disconnect() }
-  }
-
-  /**
    * 横に送れるかを見張る。入れ物や画面の幅が変わるたびに測り直す
    * @param element - 横に送る入れ物の要素
    * @returns 片付けの手順
@@ -500,7 +472,6 @@
       class:short-row-header={shortRowHeader}
       class:uniform={allColumnsNarrow}
       use:watchOverflow
-      use:watchHeaderWidth
       role={isScrollable ? 'region' : undefined}
       tabindex={isScrollable ? 0 : undefined}
       aria-label={isScrollable ? table.caption : undefined}
@@ -544,9 +515,7 @@
                     scope="col"
                     rowspan="2"
                     class:corner={groupIndex < headerColumns}
-                    class:sticky-0={groupIndex + visualColumn === 0}
-                    class:sticky-1={headerColumns + visualColumn > 1 &&
-                      groupIndex + visualColumn === 1}>{table.columns[groupIndex]}</th
+                    class:sticky-0={groupIndex + visualColumn === 0}>{table.columns[groupIndex]}</th
                   >
                 {:else}
                   <th scope="colgroup" colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
@@ -566,9 +535,7 @@
                   scope="col"
                   class:corner={columnIndex < headerColumns}
                   class:narrow={columnIndex >= narrowFromIndex}
-                  class:sticky-0={columnIndex + visualColumn === 0}
-                  class:sticky-1={headerColumns + visualColumn > 1 &&
-                    columnIndex + visualColumn === 1}>{column}</th
+                  class:sticky-0={columnIndex + visualColumn === 0}>{column}</th
                 >
               {/if}
             {/each}
@@ -595,7 +562,6 @@
                       class="row-header"
                       class:wide={cell.colSpan > 1}
                       class:sticky-0={cell.startColumn + visualColumn === 0}
-                      class:sticky-1={cell.startColumn + visualColumn === 1}
                       style:text-align={table.columnAligns?.[cell.startColumn]}
                       colspan={cell.colSpan === 1 ? undefined : cell.colSpan}
                       rowspan={cell.rowSpan === 1 ? undefined : cell.rowSpan}>{cell.text}</th
@@ -842,7 +808,6 @@
 
   // 用紙の中の表は、用紙そのものが横に送れるので、二重に送らせない
   .paper-scroller .scroller {
-    max-height: none;
     overflow: visible;
     border: 0;
   }
@@ -873,7 +838,6 @@
     }
 
     .rule-figure .scroller {
-      max-height: none;
       overflow: visible;
       border: 0;
     }
@@ -905,14 +869,9 @@
 
   /*
     表と図を横に送る入れ物。ページ全体は広げず、この中だけで送る。
-
-    縦にも高さの上限を決めてあるのは、見出し行を追従させるため。
-    横に送るために overflow を持たせると、この入れ物が送りの基準になるので、
-    ここが縦にも送れないと position: sticky が効かない。
-    上限に届かない短い表は、これまでどおりページごと送られる
+    縦は上限を決めず、表の高さのままページごと送る
   */
   .scroller {
-    max-height: 70vh;
     overflow: auto;
     border: $border-size-1 solid map.get($gray, 200);
     border-radius: $border-radius-4;
@@ -1017,14 +976,10 @@
 
   /*
     見出しの行。中身の寄せ方に関わらず、見出しはどの列も真ん中に置く。
-    冊子の表も見出しだけは真ん中に刷ってある。
-    上に貼り付けて、下へ送っても残るようにする
+    冊子の表も見出しだけは真ん中に刷ってある
   */
   thead th {
-    position: sticky;
     text-align: center;
-    top: 0;
-    z-index: 1;
     font-size: $font-size-12;
     color: map.get($gray, 700);
     background-color: map.get($gray, background);
@@ -1050,42 +1005,10 @@
   }
 
   /*
-    行の見出しは左に貼り付けて、横へ送っても残るようにする。
-
-    どのます目を貼り付けるかは「並び順の何番目か」ではなく「左から何列目か」で
-    決める。縦にまとめたます目があると、行によって並び順がずれるため、
-    並び順で見ると2列目が1列目の場所に貼り付いて、上に重なってしまう
+    sticky-0 は「いちばん左の列か」を表す名前。
+    以前は左に貼り付けるために使っていたが、いまは縦書きの列を指すなど、
+    列の位置で見た目を変えるための目印として残してある
   */
-  th.sticky-0,
-  th.sticky-1 {
-    position: sticky;
-    z-index: 1;
-  }
-
-  /*
-    採点票は幅を px で決めてあり、どの画面でも同じ形で出す。
-    貼り付けると、横に送ったときだけ列が動いて紙と違う見え方になるので、
-    この表では貼り付けない
-  */
-  .pixel-sized th.sticky-0,
-  .pixel-sized th.sticky-1 {
-    position: static;
-  }
-
-  th.sticky-0 {
-    left: 0;
-  }
-
-  // 2列目は、1列目の幅だけ右へずらす。幅は use:watchHeaderWidth が測って入れる
-  th.sticky-1 {
-    left: var(--rule-first-header-width, 0);
-  }
-
-  // 見出し行と行の見出しが重なる角は、どちらよりも手前に置く
-  thead th.sticky-0,
-  thead th.sticky-1 {
-    z-index: 2;
-  }
 
   /*
     見出しの言葉は、途中で折らない。「徒手系の技」で改行されると読みにくい。
@@ -1323,7 +1246,7 @@
 
   /*
     行と列の見出しが交わる表（layout: 'matrix'）。
-    幅が足りないときは横に送る。そのとき行の見出しは左に貼り付けておく
+    幅が足りないときは横に送る
   */
   .scroller.matrix td {
     // 「90cm〜110cm」のような値が1行に収まる幅。これより狭いと数字が割れて読みにくい
@@ -1332,16 +1255,7 @@
 
   .scroller.matrix .corner,
   .scroller.matrix .row-header {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-
-    // 下に潜る本文が透けないように、地の色を必ず塗る
     background: map.get($gray, 100);
-  }
-
-  .scroller.matrix .corner {
-    z-index: 2;
   }
 
   /* ─── 文字の分類図 ─── */
