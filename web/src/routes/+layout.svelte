@@ -141,14 +141,11 @@
       line-height: 9px;
     }
 
-    // 書き込む欄も、紙に出すときは高さを詰める
-    :global(body[data-printing] [data-printing='true'] dd) {
-      min-height: 12px;
-    }
-
-    :global(body[data-printing] [data-printing='true'] .memo-box) {
-      min-height: 48px;
-    }
+    /*
+      書き込む欄の高さは、紙に出すときも変えない。
+      詰めると書き込む場所が潰れてしまう。
+      いちばん長い個人徒手のD採点表も、これで紙1枚に収まる
+    */
 
     // 用紙のまわりの余白と、離して置く欄の間も詰める
     // 上下だけ詰める。左右を変えると、表と上の印の右端がそろわなくなる
