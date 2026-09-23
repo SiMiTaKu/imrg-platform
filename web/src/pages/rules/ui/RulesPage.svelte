@@ -794,7 +794,7 @@
       display: grid;
       gap: $space-size-16;
       grid-template-columns: 1fr 1fr;
-      align-items: start;
+      place-items: start center;
     }
   }
   /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */

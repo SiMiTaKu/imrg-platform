@@ -852,12 +852,13 @@
   }
 
   // 印刷のボタン。用紙の下に置く
+  // 印刷のボタンと但し書き。用紙の下に、縦に積んで真ん中に置く
   .print-action {
     display: flex;
     gap: $space-size-8;
+    flex-direction: column;
     align-items: center;
     margin-top: $space-size-8;
-    flex-wrap: wrap;
   }
 
   /*
