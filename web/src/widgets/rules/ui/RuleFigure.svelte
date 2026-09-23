@@ -593,6 +593,7 @@
                     <th
                       scope="row"
                       class="row-header"
+                      class:wide={cell.colSpan > 1}
                       class:sticky-0={cell.startColumn + visualColumn === 0}
                       class:sticky-1={cell.startColumn + visualColumn === 1}
                       style:text-align={table.columnAligns?.[cell.startColumn]}
@@ -1164,6 +1165,18 @@
 
     // 書いてある改行で折る。折り返さない指定にすると改行が空白になってしまう
     white-space: pre-line;
+  }
+
+  /*
+    分類の欄が内容の列まで伸びている行。冊子でも「音楽との調和と表現」のように
+    2列ぶんを1つの枠で使っている。横に広いので、縦書きにすると
+    1行のために背の高い枠ができてしまう。ここだけ横書きに戻す
+  */
+  .scroller.vertical-header .row-header.sticky-0.wide {
+    padding: $space-size-8 $space-size-12;
+    line-height: 1.7;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
   }
 
   // 通し番号だけが入る行の見出し。本文と同じ幅を取ると、番号1つのために広い列ができる
