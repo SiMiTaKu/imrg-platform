@@ -1193,9 +1193,12 @@
 
   /*
     採点票・減点票などの用紙（purpose: 'form'）。
-    空のます目は書き込む場所なので、潰れないように高さを持たせる
+    空のます目は書き込む場所なので、潰れないように高さを持たせる。
+
+    ただし列の幅を px で決めた表では足さない。ます目の高さを px で
+    そろえてあるので、空のます目だけが高くなって行の高さがばらついてしまう
   */
-  .scroller.form td:empty::after {
+  .scroller.form:not(:has(table.pixel-sized)) td:empty::after {
     content: '';
     display: block;
     min-height: $space-size-24;
