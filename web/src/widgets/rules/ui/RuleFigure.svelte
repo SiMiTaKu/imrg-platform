@@ -1381,7 +1381,12 @@
     content: '';
     position: absolute;
     top: -$space-size-4;
-    bottom: 50%;
+
+    /*
+      真ん中でぴたりと止めると、端数の丸めで1〜2px 切れて見える。
+      線の太さぶん下まで伸ばして、横の枝と重ねる
+    */
+    bottom: calc(50% - #{$border-size-2});
     left: -$space-size-24;
     width: 0;
   }
