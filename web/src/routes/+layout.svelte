@@ -154,7 +154,7 @@
     }
 
     :global(body[data-printing] [data-printing='true'] .stack) {
-      gap: 4px;
+      gap: 6px;
     }
 
     // 画面でだけ要る説明は、紙には出さない

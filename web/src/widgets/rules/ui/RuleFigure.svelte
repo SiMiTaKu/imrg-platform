@@ -1178,12 +1178,12 @@
     高さを px で決め打ちする。倍率（line-height: 1.5）で決めると、
     ます目ごとの字の大きさの違いがそのまま高さの違いになり、
     どちらも1行なのに行の高さがそろわない。
-    1行の行は 15 + 余白8 + 罫線1 = 24px、2行の行はその倍になる
+    1行の行は 20 + 余白8 + 罫線1 = 29px、2行の行はその倍になる
   */
   .scroller.uniform-rows th,
   .scroller.uniform-rows td {
-    height: 15px;
-    line-height: 15px;
+    height: 20px;
+    line-height: 20px;
   }
 
   /*
