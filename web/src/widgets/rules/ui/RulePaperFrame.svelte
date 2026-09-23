@@ -473,6 +473,9 @@
   */
   .paper.card .card-marks {
     gap: $space-size-8;
+
+    // 冊子61ページと同じく、印は左、手具は右の端に寄せる
+    justify-content: space-between;
     flex-wrap: nowrap;
   }
 
