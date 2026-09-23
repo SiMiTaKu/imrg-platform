@@ -383,8 +383,8 @@
 {/snippet}
 
 <div class="paper-outer">
-  {#if paper.event}
-    <!-- 大会名。冊子では用紙の枠の外、右上に刷ってある -->
+  {#if paper.event && fullPage}
+    <!-- 大会名。1ページ大の用紙では、冊子と同じく枠の外、右上に刷ってある -->
     <p class="event">{paper.event}</p>
   {/if}
 
@@ -393,6 +393,11 @@
     class:card={!fullPage}
     style:--rule-paper-width={paper.width === undefined ? undefined : `${paper.width}px`}
   >
+    {#if paper.event && !fullPage}
+      <!-- はがき大の用紙は幅が狭い。大会名は枠の中の左上に入れる -->
+      <p class="event in-paper">{paper.event}</p>
+    {/if}
+
     <p class="paper-title">{caption}</p>
 
     {#if !hasHead}
@@ -494,6 +499,11 @@
     font-size: $font-size-12;
     color: map.get($gray, text);
     text-align: right;
+  }
+
+  // はがき大の用紙では枠の中に入れる。用紙の名前より上の左端に置く
+  .event.in-paper {
+    text-align: left;
   }
 
   // 用紙の名前。冊子では紙の上に大きく書いてある
