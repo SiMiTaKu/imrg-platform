@@ -22,6 +22,8 @@ module "site" {
   enable_www     = false
   noindex        = true
   basic_auth     = var.basic_auth
+  # 外の人に一時的に見てもらうための合言葉。用が済んだら一覧から外す
+  guest_basic_auth = var.guest_basic_auth
   # 見るのは開発の間だけなので、いちばん安い範囲で配る
   price_class = "PriceClass_100"
   # 確かめ終わったものを取っておく必要は無いので、短くする

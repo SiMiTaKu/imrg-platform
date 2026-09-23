@@ -6,3 +6,13 @@ basic_auth = {
   username = "imrg"
   password = "ここに決めた合言葉を書く"
 }
+
+# 外の人に一時的に見てもらうための合言葉。要らないときは書かなくてよい。
+# 用が済んだらこの一覧から外して apply すると、その場で通らなくなる
+guest_basic_auth = [
+  {
+    note     = "誰に、いつ渡したものかを書く"
+    username = "guest"
+    password = "ここに決めた合言葉を書く"
+  },
+]
