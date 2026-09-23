@@ -782,6 +782,23 @@
     background: map.get($gray, background);
   }
 
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+
+  /*
+    まとめて紙に出す用紙（冊子61ページの4枚）は、広い画面では紙面と同じく2列に並べる。
+    用紙は 300px なので、2枚と間を取れる幅（この入れ物で 616px）から2列にする。
+    用紙を描いているのは別の部品なので、外から当てるには :global が要る
+  */
+  @media (width >= 768px) {
+    .item:has(> :global(.rule-figure[data-print-group])) {
+      display: grid;
+      gap: $space-size-16;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+
   .item h5 {
     display: flex;
     gap: $space-size-8;
