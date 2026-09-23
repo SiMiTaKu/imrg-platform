@@ -1049,8 +1049,17 @@
   */
   .scroller.keep-breaks table {
     width: max-content;
-    min-width: 100%;
     table-layout: auto;
+  }
+
+  /*
+    中身の幅に合わせる表では、1列あたりの最小の幅（12em）を外す。
+    残したままだと、縦書きの細い列にも 12em が当たって細くならない。
+    折り返さないので、中身の幅だけで足りる
+  */
+  .scroller.keep-breaks th,
+  .scroller.keep-breaks td {
+    min-width: 0;
   }
 
   .scroller.keep-breaks .row-header.sticky-0 {
