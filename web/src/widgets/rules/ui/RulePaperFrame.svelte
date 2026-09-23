@@ -438,32 +438,40 @@
     枠囲みの記入欄。冊子では名前と書き込む場所が横に並び、その組が左から続く。
     名前の列と書き込む列が交互に並ぶよう、2列ずつの繰り返しにする
   */
+
+  /*
+    枠囲みの記入欄。冊子では名前と書き込む場所が横に並び、その組が左から続く。
+
+    線はます目ごとに右と下だけ持ち、上と左の縁だけを入れ物に持たせる。
+    入れ物とます目の両方が線を引くと、境目が二重に見えてしまう
+  */
   .field-boxes {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fit, max-content minmax(48px, 1fr));
+    display: flex;
+    box-sizing: border-box;
     width: 100%;
     margin: 0;
     font-size: $font-size-12;
     color: map.get($gray, text);
-    border: $border-size-1 solid map.get($gray, 300);
+    border-top: $border-size-1 solid map.get($gray, 300);
+    border-left: $border-size-1 solid map.get($gray, 300);
+    flex-wrap: wrap;
   }
 
   .field-boxes dt {
     padding: $space-size-8 $space-size-12;
     border-right: $border-size-1 solid map.get($gray, 300);
-    background: map.get($gray, background);
+    border-bottom: $border-size-1 solid map.get($gray, 300);
+    background-color: map.get($gray, background);
     white-space: nowrap;
   }
 
   .field-boxes dd {
+    min-width: $space-size-48;
     min-height: $space-size-24;
     margin: 0;
-  }
-
-  .field-boxes dt:not(:first-of-type),
-  .field-boxes dd:not(:first-of-type) {
-    border-top: $border-size-1 solid map.get($gray, 300);
+    border-right: $border-size-1 solid map.get($gray, 300);
+    border-bottom: $border-size-1 solid map.get($gray, 300);
+    flex: 1 1 $space-size-48;
   }
 
   // 減点前の得点。冊子62ページでは「D／A／E／減点前得点」が横に並ぶ

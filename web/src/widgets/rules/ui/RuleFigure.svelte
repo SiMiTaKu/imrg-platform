@@ -905,9 +905,20 @@
 
   /* ─── 文字の表 ─── */
 
+  /*
+    罫線はます目ごとに持つ（border-collapse: separate）。
+
+    まとめる（collapse）と、貼り付けた見出しの行や列の線が元の場所に置き去りに
+    なる。影で引き直すと、ます目が自分でも線を引くので二重に見えてしまう。
+    ます目ごとに持てば、線も一緒に動き、重なりもしない。
+    表の上と左の縁だけは、表そのものに持たせる
+  */
   table {
     width: 100%;
-    border-collapse: collapse;
+    border-top: $border-size-1 solid map.get($gray, 100);
+    border-left: $border-size-1 solid map.get($gray, 100);
+    border-collapse: separate;
+    border-spacing: 0;
     font-size: $font-size-12;
   }
 
@@ -929,7 +940,8 @@
     */
     min-width: 12em;
     padding: $space-size-8 $space-size-12;
-    border: $border-size-1 solid map.get($gray, 100);
+    border-right: $border-size-1 solid map.get($gray, 100);
+    border-bottom: $border-size-1 solid map.get($gray, 100);
     line-height: 1.7;
     text-align: left;
 
@@ -943,19 +955,14 @@
     overflow-wrap: break-word;
   }
 
-  /*
-    見出し行は上に貼り付けて、下へ送っても残るようにする。
-    罫線をまとめる（border-collapse: collapse）と貼り付けた行の線が置き去りに
-    なるので、影で下の縁を引き直している
-  */
+  // 見出し行は上に貼り付けて、下へ送っても残るようにする
   thead th {
     position: sticky;
     top: 0;
     z-index: 1;
     font-size: $font-size-12;
     color: map.get($gray, 700);
-    background: map.get($gray, background);
-    box-shadow: inset 0 -#{$border-size-1} 0 map.get($gray, 200);
+    background-color: map.get($gray, background);
     white-space: nowrap;
   }
 
@@ -964,13 +971,17 @@
     font-size: $font-size-11;
     font-weight: bold;
     color: map.get($sky-blue, text);
-    background: map.get($sky-blue, background);
+    background-color: map.get($sky-blue, background);
     white-space: normal;
   }
 
+  /*
+    地の色は background-color で置く。まとめ書き（background）にすると
+    斜線（background-image）まで消えてしまう
+  */
   .corner,
   .row-header {
-    background: map.get($gray, background);
+    background-color: map.get($gray, background);
   }
 
   /*
@@ -984,7 +995,6 @@
   th.sticky-1 {
     position: sticky;
     z-index: 1;
-    box-shadow: inset -#{$border-size-1} 0 0 map.get($gray, 200);
   }
 
   th.sticky-0 {
@@ -1083,7 +1093,7 @@
   }
 
   tbody tr:nth-child(even of :not(.group-row)) td {
-    background: map.get($gray, 50);
+    background-color: map.get($gray, 50);
   }
 
   /*
