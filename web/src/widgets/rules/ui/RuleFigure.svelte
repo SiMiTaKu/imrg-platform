@@ -1428,10 +1428,20 @@
     overflow-x: auto;
   }
 
+  /*
+    席の並びを囲む枠。
+
+    席が入れ物より多いときは、枠のほうを席の並びに合わせて広げる。
+    入れ物の幅のままだと、枠から席がはみ出したうえ、
+    真ん中に寄せているぶん左側が送っても出てこなくなる
+  */
   .seating-frame {
     display: flex;
-    flex-direction: column;
+    box-sizing: border-box;
     gap: $space-size-12;
+    width: max-content;
+    min-width: 100%;
+    flex-direction: column;
     padding: $space-size-12;
     border: $border-size-1 solid map.get($gray, 200);
     border-radius: $border-radius-4;
