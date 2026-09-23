@@ -146,10 +146,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 冊子のこの表には見出しの行が無い。読み上げと翻訳のために名前だけ付けてある
     cornerLabel: '',
     columns: ['採点項目', '得点'],
-    // 行の見出しには「A」「B」「C」しか入らない。幅を決めないと見出しの列が
-    // 本文と同じ広さになり、そのぶん表が横に送られる。
-    // 列の幅は行の見出しの列を除いて書く（見出しの列のぶんは自動で先頭に足される）
-    columnWidths: ['45%', '55%'],
+    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
+    columnPixels: [36, 380, 246],
     rows: [
       { header: 'A', cells: ['転回系難度', ''] },
       { header: 'B', cells: ['徒手系難度', ''] },
@@ -182,9 +180,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     cornerLabel: '',
     columns: ['採点項目', '配点', '得点'],
     columnAligns: ['start', 'center', 'center'],
-    // 行の見出しには「A」〜「D」しか入らないので、見出しの列は狭くてよい。
-    // 採点項目は「技術的価値」、配点は「団体2.50」が収まれば足りる
-    columnWidths: ['30%', '24%', '46%'],
+    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
+    columnPixels: [36, 230, 150, 246],
     rows: [
       { header: 'A', cells: ['多様性と\n技術的価値', '団体2.50\n個人3.50', ''] },
       { header: 'B', cells: ['芸術と\n技術的価値', '団体2.50\n個人1.50', ''] },
@@ -218,9 +215,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 冊子のこの表には見出しの行が無い。読み上げと翻訳のために名前だけ付けてある
     cornerLabel: '',
     columns: ['採点項目', '得点'],
-    // 行の見出しには「A」「B」しか入らない。採点項目は「音楽と動きのイメージ」が
-    // 折り返さないだけ取れば足りるので、残りは書き込む得点の欄に回す
-    columnWidths: ['45%', '55%'],
+    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
+    columnPixels: [36, 380, 246],
     rows: [
       { header: 'A', cells: ['徒手の技術\n自然な手具操作\n音楽と動きのイメージ', ''] },
       { header: 'B', cells: ['その他の減点', ''] },
@@ -251,9 +247,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     cornerLabel: '',
     columns: ['身体', '手具', '減点'],
     columnAligns: ['center', 'center', 'center'],
-    // 行の見出しには「回数」「時間」しか入らない。見出しの列を狭くして、
-    // 書き込む3つの欄を等分する
-    columnWidths: ['34%', '33%', '33%'],
+    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
+    columnPixels: [36, 208, 208, 210],
     rows: [
       { header: '回数', cells: ['', '', ''] },
       // 冊子では「時間」のかたまりにも見出しの行があり、「入場／演技／減点」と刷ってある
@@ -297,7 +292,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 読み上げと翻訳のために名前だけ付けてある（冊子の見出しは「内容」「減点」の2つで、
     // 「減点」は減点の列と記入の列の2列にまたがっている）
     columns: ['番号', '内容', '減点', '記入'],
-    columnWidths: ['6%', '65%', '14%', '15%'],
+    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
+    columnPixels: [40, 372, 130, 120],
     columnAligns: ['center', 'start', 'center', 'center'],
     rows: [
       { cells: ['1', '演技時間の過不足について（1秒につき）', '0.05', ''] },
@@ -394,7 +390,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
       「要求数」（3文字＝60px）が見切れないところから決めた。
       残りを演技記録の欄と内容の4つのます目に回している
     */
-    columnWidths: ['14%', '8%', '12%', '10%', '7%', '7%', '7%', '7%', '16%', '12%'],
+    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
+    columnPixels: [128, 26, 78, 44, 66, 66, 66, 66, 68, 54],
     // 冊子はどのます目も中央ぞろえ。要素の名前も、レベルの点数も真ん中に刷ってある
     columnAligns: [
       'center',
@@ -460,6 +457,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
           '多様性と運動量',
         ],
       },
+      // 難度（D）と芸術と多様性（A）の間に、冊子と同じように1行空ける
+      { cells: [{ text: '', colSpan: 9 }] },
       {
         cells: [
           // 芸術と多様性（A）。ここも冊子では縦に通った列に「A」とだけ刷ってある
@@ -518,8 +517,8 @@ export const FORM_TABLES: readonly RuleTable[] = [
       読み上げと翻訳のために名前だけ付けてある
     */
     columns: ['メモ', '区分', '分類', '内容', '減点', '減点（max5.5）', '合計'],
-    // 見出しのうちいちばん長い「減点（max5.5）」（約111px）が見切れないところから決めた
-    columnWidths: ['16%', '8%', '10%', '22%', '9%', '19%', '16%'],
+    // 紙に出したときと画面で同じ形にするため、列の幅を px で決める（合計 662px）
+    columnPixels: [180, 26, 26, 160, 60, 110, 100],
     columnAligns: ['center', 'center', 'center', 'center', 'center', 'center', 'center'],
     rows: [
       {
@@ -574,7 +573,6 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 残りを A〜D の4列で分ける
     // 冊子の改行の位置で読ませる表。列の幅で勝手に折り返させない
     preserveLineBreaks: true,
-    columnWidths: ['8%', '17%', '18.75%', '18.75%', '18.75%', '18.75%'],
     rows: FREE_HAND_DIFFICULTY_ROWS,
     note: '紙面の空欄は、そこに当たる難度が無いという意味。',
     source: '新体操男子規則 2025年版 3 採点規則 3.8.6「4 難度表」（67ページ）',
@@ -598,7 +596,6 @@ export const FORM_TABLES: readonly RuleTable[] = [
     // 67ページの難度表と同じ割り当て。大分類は縦書きなので細くてよい
     // 冊子の改行の位置で読ませる表。列の幅で勝手に折り返させない
     preserveLineBreaks: true,
-    columnWidths: ['8%', '17%', '18.75%', '18.75%', '18.75%', '18.75%'],
     headerColumns: 1,
     mergeEmptyCells: true,
     verticalHeader: true,

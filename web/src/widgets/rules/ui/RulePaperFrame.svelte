@@ -3,7 +3,6 @@
   import { m } from '$lib/paraglide/messages'
   import { ApparatusKind } from '@entities/rule'
   import type { RulePaper } from '@entities/rule'
-  import { pageData } from '@shared/lib/device'
   import ApparatusMark from './ApparatusMark.svelte'
 
   const {
@@ -18,8 +17,6 @@
     /** 表そのもの */
     children: Snippet
   } = $props()
-
-  const isMobile = $derived($pageData.isMobile)
 
   /** 手具の名前。冊子の採点票に並んでいる順に出す */
   const APPARATUS_LABELS: Record<ApparatusKind, () => string> = {
@@ -170,7 +167,7 @@
     <p class="event">{paper.event}</p>
   {/if}
 
-  <div class="paper" class:mobile={isMobile}>
+  <div class="paper">
     <p class="paper-title">{caption}</p>
 
     {#if !hasHead}
@@ -229,17 +226,20 @@
     width: 100%;
   }
 
+  /*
+    用紙。幅を px で決めてある。
+
+    PC・スマホ・紙（PDF）のどれでも同じ形に見せたいので、画面の幅に合わせて
+    伸び縮みさせない。狭い画面では、包んでいる入れ物の中で横に送る。
+    696px は A4 の縦（左右10mm の余白を取って約718px）に収まる幅
+  */
   .paper {
     box-sizing: border-box;
-    width: 100%;
+    width: 696px;
     padding: $space-size-16;
     border: $border-size-1 solid map.get($gray, 300);
     border-radius: $border-radius-4;
     background: $white;
-  }
-
-  .mobile.paper {
-    padding: $space-size-12;
   }
 
   // 大会名。冊子では用紙の枠の外、右上に刷ってある

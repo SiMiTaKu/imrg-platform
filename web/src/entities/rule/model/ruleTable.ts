@@ -216,6 +216,15 @@ export interface RuleTable {
    */
   readonly columnAligns?: readonly RuleTableAlign[]
   /**
+   * 列ごとの幅（px）。左から順に、行の見出しの列も含めて並べる。
+   *
+   * @remarks
+   * 採点票のように、紙に出したときと画面で同じ形に見せたい表に使う。
+   * 百分率だと画面の幅で形が変わり、PC・スマホ・PDF で別物になってしまう。
+   * 狭い画面では縮めず、入れ物の中で横に送る
+   */
+  readonly columnPixels?: readonly number[]
+  /**
    * 書いてある改行だけで折るか。
    *
    * @remarks

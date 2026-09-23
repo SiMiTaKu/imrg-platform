@@ -64,6 +64,17 @@
     return [`${headerShare}%`, ...shares.map((share) => `${share * scale}%`)]
   })
 
+  /**
+   * 列ごとの幅（px）を足し合わせた、表そのものの幅。
+   *
+   * @remarks
+   * 紙に出したときと画面で同じ形に見せるため、幅を px で決める。
+   * 狭い画面でも縮めず、入れ物の中で横に送る
+   */
+  const pixelWidth = $derived(
+    table?.columnPixels ? table.columnPixels.reduce((sum, width) => sum + width, 0) : undefined,
+  )
+
   /** ます目が左から何列目に出るか。行の見出しの列があれば1つずれる */
   const visualColumn = $derived(showsRowHeader ? 1 : 0)
 
@@ -454,9 +465,20 @@
       tabindex={isScrollable ? 0 : undefined}
       aria-label={isScrollable ? table.caption : undefined}
     >
-      <table class:sized={resolvedWidths}>
+      <table
+        class:sized={resolvedWidths}
+        class:pixel-sized={table.columnPixels}
+        style:width={pixelWidth === undefined ? undefined : `${pixelWidth}px`}
+      >
         <caption class="visually-hidden">{table.caption}</caption>
-        {#if resolvedWidths}
+        {#if table.columnPixels}
+          <!-- 紙に出したときと同じ形にするため、列の幅を px で決める -->
+          <colgroup>
+            {#each table.columnPixels as pixels, pixelIndex (pixelIndex)}
+              <col style:width={`${pixels}px`} />
+            {/each}
+          </colgroup>
+        {:else if resolvedWidths}
           <!-- 書くことが多い列は広く、数字だけの列は狭くする -->
           <colgroup>
             {#each resolvedWidths as width, widthIndex (widthIndex)}
@@ -545,9 +567,12 @@
       <p class="hint">{m.rules_form_hint()}</p>
     {/if}
     {#if table.paper}
-      <RulePaperFrame paper={table.paper} caption={table.caption}>
-        {@render formTable()}
-      </RulePaperFrame>
+      <!-- 用紙は幅を決めてあるので、狭い画面ではこの中だけで横に送る -->
+      <div class="paper-scroller">
+        <RulePaperFrame paper={table.paper} caption={table.caption}>
+          {@render formTable()}
+        </RulePaperFrame>
+      </div>
       <div class="print-action no-print">
         <Button variant="outline" width={isMobile ? 'full' : 'auto'} onclick={print}>
           {m.rules_print()}
@@ -731,6 +756,18 @@
     min-width: 0;
     padding: $space-size-4;
     text-align: center;
+  }
+
+  // 用紙は幅を決めてあるので、入らないときはこの中で横に送る
+  .paper-scroller {
+    overflow-x: auto;
+  }
+
+  // 用紙の中の表は、用紙そのものが横に送れるので、二重に送らせない
+  .paper-scroller .scroller {
+    max-height: none;
+    overflow: visible;
+    border: 0;
   }
 
   // 印刷のボタン。用紙の下に置く
@@ -984,6 +1021,17 @@
     white-space: pre;
   }
 
+  /*
+    改行を守る表は、列の幅を中身に合わせる。
+    幅を割り当てると、折り返さない文字がます目からはみ出してしまう。
+    中身に合わせれば、どの画面でも同じ形のまま横に送るだけで済む
+  */
+  .scroller.keep-breaks table {
+    width: max-content;
+    min-width: 100%;
+    table-layout: auto;
+  }
+
   .scroller.keep-breaks .row-header:first-child {
     white-space: nowrap;
   }
@@ -1073,6 +1121,23 @@
   .scroller.compact td.narrow,
   .scroller.compact th.narrow {
     width: auto;
+  }
+
+  /*
+    幅を px で決めた表。画面の幅が変わっても形が変わらない。
+    紙に出したものと画面とで同じに見せるため、採点票はこちらを使う
+  */
+  table.pixel-sized {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .pixel-sized th,
+  .pixel-sized td {
+    min-width: 0;
+    padding: $space-size-4;
+    font-size: $font-size-10;
+    line-height: 1.5;
   }
 
   /*
