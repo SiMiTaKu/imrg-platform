@@ -1163,20 +1163,26 @@
     table-layout: fixed;
   }
 
-  /*
-    採点票のます目。
+  // 採点票のます目
+  .pixel-sized th,
+  .pixel-sized td {
+    min-width: 0;
+    padding: $space-size-4;
+    font-size: $font-size-10;
+    line-height: 1.5;
+  }
 
-    行の高さを px で決め打ちする。倍率（line-height: 1.5）で決めると、
+  /*
+    行の高さをそろえる表のます目。
+
+    高さを px で決め打ちする。倍率（line-height: 1.5）で決めると、
     ます目ごとの字の大きさの違いがそのまま高さの違いになり、
     どちらも1行なのに行の高さがそろわない。
     1行の行は 15 + 余白8 + 罫線1 = 24px、2行の行はその倍になる
   */
-  .pixel-sized th,
-  .pixel-sized td {
-    min-width: 0;
+  .scroller.uniform-rows th,
+  .scroller.uniform-rows td {
     height: 15px;
-    padding: $space-size-4;
-    font-size: $font-size-10;
     line-height: 15px;
   }
 
