@@ -440,16 +440,16 @@
 
     PC・スマホ・紙（PDF）のどれでも同じ形に見せたいので、画面の幅に合わせて
     伸び縮みさせない。狭い画面では、包んでいる入れ物の中で横に送る。
-    696px は A4 の縦（左右10mm の余白を取って約718px）に収まる幅で、
-    紙の端まで22px の余裕がある。
+    688px は A4 の縦（左右10mm の余白を取って約718px）に収まる幅で、
+    紙の端まで30px の余裕がある。
 
-    左右の余白を 16px にすると、中身の幅が表と同じ 662px になる。
+    左右の余白を 12px にすると、中身の幅が表と同じ 662px になる。
     そろえておかないと、表の上に置く印や記入欄が表より右へはみ出す
   */
   .paper {
     box-sizing: border-box;
-    width: 696px;
-    padding: $space-size-16;
+    width: 688px;
+    padding: $space-size-16 $space-size-12;
     border: $border-size-1 solid map.get($gray, 300);
     border-radius: $border-radius-4;
     background: $white;

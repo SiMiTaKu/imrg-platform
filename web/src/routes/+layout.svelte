@@ -135,10 +135,10 @@
     */
     :global(body[data-printing] [data-printing='true'] .uniform-rows th),
     :global(body[data-printing] [data-printing='true'] .uniform-rows td) {
-      height: 11px;
+      height: 13px;
       padding: 0 4px;
       font-size: 6.5pt;
-      line-height: 11px;
+      line-height: 13px;
     }
 
     /*
@@ -150,7 +150,15 @@
     // 用紙のまわりの余白と、離して置く欄の間も詰める
     // 上下だけ詰める。左右を変えると、表と上の印の右端がそろわなくなる
     :global(body[data-printing] [data-printing='true'] .paper) {
-      padding: 4px 16px;
+      padding: 4px 12px;
+    }
+
+    /*
+      縦書きの見出しは、紙に出すと行が詰まって、まとめたます目より
+      文字のほうが長くなる。折り返して2列に分けて収める
+    */
+    :global(body[data-printing] [data-printing='true'] .vertical-header .row-header) {
+      white-space: normal;
     }
 
     :global(body[data-printing] [data-printing='true'] .stack) {
