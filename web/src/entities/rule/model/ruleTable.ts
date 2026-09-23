@@ -230,6 +230,16 @@ export interface RuleTable {
    */
   readonly columnPixels?: readonly number[]
   /**
+   * どの行も同じ高さにそろえるか。
+   *
+   * @remarks
+   * 書き込む用紙は、空のます目が潰れないように高さを足している。
+   * そのため空のます目がある行だけ高くなる。難度の一覧のように、
+   * 書き込む場所ではなく「その難度に当たる技が無い」ことを表す空欄が並ぶ表では、
+   * 高さを足さずにそろえる
+   */
+  readonly uniformRowHeight?: boolean
+  /**
    * 書いてある改行だけで折るか。
    *
    * @remarks

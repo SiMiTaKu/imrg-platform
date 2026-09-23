@@ -609,6 +609,9 @@ export const FORM_TABLES: readonly RuleTable[] = [
     },
     layout: 'list',
     purpose: 'form',
+    // 空のます目は「その難度に当たる技が無い」という意味で、書き込む場所ではない。
+    // 高さを足さずに、どの行も同じ高さにそろえる
+    uniformRowHeight: true,
     narrowColumns: 0,
     // 大分類と小分類は、横に送っても左に残るようにする
     headerColumns: 2,
