@@ -520,12 +520,16 @@
     min-height: 0;
   }
 
+  /*
+    写真の上に文字を直接置く見せ方。写真が明るいと文字が読めないので、
+    札を敷く見せ方よりも濃くかける
+  */
   .full .veil {
-    background: linear-gradient(to right, rgb(0 0 0 / 70%), rgb(0 0 0 / 45%) 70%, rgb(0 0 0 / 25%));
+    background: linear-gradient(to right, rgb(0 0 0 / 88%), rgb(0 0 0 / 70%) 70%, rgb(0 0 0 / 50%));
   }
 
   .full.mobile .veil {
-    background: linear-gradient(to bottom, rgb(0 0 0 / 45%), rgb(0 0 0 / 70%));
+    background: linear-gradient(to bottom, rgb(0 0 0 / 65%), rgb(0 0 0 / 88%));
   }
 
   .full .panel {

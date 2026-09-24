@@ -34,9 +34,14 @@
   {#each links as link (link.href)}
     <li>
       <a class="link" href={link.href}>
-        <span class="label">{link.label}</span>
-        <span class="body">{link.body}</span>
-        <span class="arrow" aria-hidden="true"></span>
+        <!-- 名前と説明はひとまとまり。長くて折り返しても、三角は札の縦中央に残る -->
+        <span class="words">
+          <span class="label">{link.label}</span>
+          <span class="body">{link.body}</span>
+        </span>
+        <svg class="arrow" viewBox="0 0 16 16" aria-hidden="true">
+          <polygon points="5,3 13,8 5,13" />
+        </svg>
       </a>
     </li>
   {/each}
@@ -55,12 +60,11 @@
     list-style: none;
   }
 
-  // 名前・説明・矢印を1行に並べる。3行に積むと札が無駄に高くなる
+  // 言葉のかたまりと三角を横に並べる
   .link {
     display: flex;
-    flex-wrap: wrap;
-    gap: $space-size-4 $space-size-12;
-    align-items: baseline;
+    gap: $space-size-16;
+    align-items: center;
     box-sizing: border-box;
     width: 100%;
     padding: $space-size-12 $space-size-20;
@@ -79,6 +83,19 @@
     border-color: map.get($sky-blue, border);
   }
 
+  /*
+    名前と説明。1行に並べ、入らなければ折り返す。
+    3行に積むと札が無駄に高くなるので、まず横に並べる
+  */
+  .words {
+    display: flex;
+    gap: $space-size-4 $space-size-12;
+    min-inline-size: 0;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
   .label {
     flex: none;
     font-size: $font-size-16;
@@ -94,15 +111,18 @@
     overflow-wrap: anywhere;
   }
 
-  // 右を向いた三角。枠線だけで描くので、字体によって形が変わらない
+  /*
+    右を向いた三角。字体によって形が変わらないよう、文字ではなく図形で描く。
+    角を丸めたいので、枠線で作る三角ではなく多角形にしてある
+    （線を太くして継ぎ目を丸めると、角だけが丸くなる）
+  */
   .arrow {
     flex: none;
-    align-self: center;
-    width: 0;
-    height: 0;
-    margin-left: auto;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 8px solid map.get($sky-blue, button);
+    width: 20px;
+    height: 20px;
+    fill: map.get($sky-blue, button);
+    stroke: map.get($sky-blue, button);
+    stroke-width: 3;
+    stroke-linejoin: round;
   }
 </style>
