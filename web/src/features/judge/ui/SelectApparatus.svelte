@@ -3,7 +3,6 @@
   import { m } from '$lib/paraglide/messages'
   import { JUDGE_APPARATUSES } from '../config/apparatus'
   import { judgementApparatus } from '../store/apparatus'
-  import QuestionLabel from './QuestionLabel.svelte'
 
   const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 </script>
@@ -20,7 +19,6 @@
   </p>
 {:else}
   <div class="select-apparatuses">
-    <QuestionLabel caption={m.judge_select_apparatus_caption()} {color} />
     <!--
       選択肢は4つしかないので、畳んだ一覧から選ばせるより札で並べるほうが早い。
       札には手具ごとの色を当てて、選んだあとの画面の色とつながるようにする
