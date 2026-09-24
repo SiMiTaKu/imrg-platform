@@ -67,19 +67,11 @@
 
 <style lang="scss">
   .desktop {
-    --head-direction: row;
-    --head-align: center;
-    --head-gap: #{$space-size-12};
+    --head-gap: #{$space-size-16};
   }
 
-  /*
-    スマホでは見出しと答えを縦に積む。
-    横に並べると、設問の文と答えが狭い幅を取り合って、どちらも細切れに折り返す
-  */
   .mobile {
-    --head-direction: column;
-    --head-align: flex-start;
-    --head-gap: #{$space-size-4};
+    --head-gap: #{$space-size-8};
   }
 
   .question-card {
@@ -122,10 +114,11 @@
     --card-color: #{map.get($theme, green)};
   }
 
+  // 見出しは左、答えは右。狭い画面でも横に並べる
   .head {
     display: flex;
     gap: var(--head-gap);
-    align-items: var(--head-align);
+    align-items: center;
     width: 100%;
     padding: 0;
     font-family: inherit;
@@ -133,20 +126,15 @@
     border: none;
     background: none;
     cursor: pointer;
-    flex-direction: var(--head-direction);
   }
 
+  // 答えと開け閉めの三角。縮めずに右端へ寄せる
   .state {
     display: flex;
     gap: $space-size-8;
     align-items: center;
     flex: none;
     margin-left: auto;
-  }
-
-  // スマホでは見出しの下に来るので、右端へは寄せない
-  .mobile .state {
-    margin-left: 0;
   }
 
   .summary {
