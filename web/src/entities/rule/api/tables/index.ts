@@ -1,4 +1,7 @@
-import type { RuleSeating, RuleShapeFigure, RuleTable, RuleTree } from '../../model/ruleTable'
+import type { RuleSeating } from '../../model/ruleSeating'
+import type { RuleShapeFigure } from '../../model/ruleShape'
+import type { RuleTable } from '../../model/ruleTable'
+import type { RuleTree } from '../../model/ruleTree'
 import { APPARATUS_TABLES } from './apparatusTables'
 import { ARTISTRY_TABLES } from './artistryTables'
 import { FREE_HAND_TABLES } from './deductionTables'

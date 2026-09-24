@@ -69,10 +69,9 @@
 <!-- 何番目の作品を見ているかを見出しに出す -->
 <Modal
   title={m.decorating_apparatus_viewer_title({ work: workNumber })}
-  titleVariant="plain"
-  width={1100}
+  size="large"
   onclose={onClose}
-  labels={{ close: m.modal_close() }}
+  closeLabel={m.modal_close()}
 >
   <div class="viewer">
     <!-- 名前はモーダルの見出しが持つので、ここはひとまとまりであることだけを伝える -->

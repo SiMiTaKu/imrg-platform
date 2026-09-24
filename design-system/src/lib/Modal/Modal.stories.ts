@@ -24,10 +24,9 @@ const meta = {
   tags: ['autodocs'],
   args: {
     title: '過去の作品',
-    titleVariant: 'plain',
-    width: 720,
+    size: 'small',
     onclose: fn(),
-    labels: { close: '閉じる' },
+    closeLabel: '閉じる',
     children: bodyOf(3),
   },
 } satisfies Meta<typeof Modal>
@@ -38,17 +37,12 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = { name: '基本' }
 
-export const TintedTitle: Story = {
-  name: '見出しを色の帯にする',
-  args: { title: '決定点', titleVariant: 'tinted', titleBackground: '#0065a4' },
-}
-
 export const LongBody: Story = {
   name: '中身が長い',
   args: { children: bodyOf(40) },
 }
 
 export const Wide: Story = {
-  name: '幅を広げる',
-  args: { width: 1100 },
+  name: '大きいほう',
+  args: { size: 'large' },
 }

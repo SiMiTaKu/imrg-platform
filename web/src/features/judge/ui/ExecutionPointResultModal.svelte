@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Chart } from 'chart.js/auto'
   import { m } from '$lib/paraglide/messages'
-  import { Button, Modal, ThemeColor } from '@imrg-platform/design-system'
+  import { Button, Modal } from '@imrg-platform/design-system'
   import { getLocale } from '@shared/lib/i18n'
   import { formatNumber } from '@shared/lib/number'
   import { POINT_A_ITEMS } from '../config/pointAItems'
@@ -14,7 +14,6 @@
   } from '../lib/calculator'
   import { renderDetailChart } from '../lib/detailChart'
   import { buildScoreFormula } from '../lib/scoreFormula'
-  import type { JudgeThemeColorKey } from '../model/apparatus'
   import { judgementApparatus } from '../store/apparatus'
   import { executionDeduct } from '../store/executionDeduct'
 
@@ -30,18 +29,6 @@
   }
 
   const { show, isMobile, onretry, onclose }: Props = $props()
-
-  /**
-   * 手具のイメージカラー（CSS の色）。見出しの帯と、採点し直すボタンの地に使う。
-   * 色の値はデザインシステム（`ThemeColor`）が持つ
-   */
-  const THEME_COLORS = {
-    gray: ThemeColor.GRAY,
-    blue: ThemeColor.BLUE,
-    red: ThemeColor.RED,
-    yellow: ThemeColor.YELLOW,
-    green: ThemeColor.GREEN,
-  } as const satisfies Record<JudgeThemeColorKey, string>
 
   const locale = getLocale()
   const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
@@ -98,14 +85,7 @@
 </script>
 
 {#if show}
-  <Modal
-    title={m.judge_result_title()}
-    titleVariant="tinted"
-    titleBackground={THEME_COLORS[color]}
-    width={isMobile ? 480 : 800}
-    {onclose}
-    labels={{ close: m.modal_close() }}
-  >
+  <Modal title={m.judge_result_title()} size="small" {onclose} closeLabel={m.modal_close()}>
     <div class:mobile={isMobile}>
       <div class="detail-switch">
         <Button

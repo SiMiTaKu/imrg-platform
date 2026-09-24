@@ -19,34 +19,33 @@ export {
   findRuleTable,
   findRuleTree,
 } from './api/tables'
-export { ApparatusKind } from './model/ruleTable'
-export {
-  hasRowHeader,
-  hasShortRowHeader,
-  headerColumnCount,
-  mergeEmptyCellsDownward,
-  narrowColumnCount,
-  normalizeRuleTableCell,
-} from './model/ruleTable'
+// 表そのもの
 export type {
-  RulePaper,
-  RuleTableAlign,
-  StickFigureColumns,
-  RuleSeat,
-  RuleSeatRow,
-  RuleSeating,
-  RuleShape,
-  RuleShapeFigure,
-  RuleShapeKind,
   RuleTable,
+  RuleTableAlign,
   RuleTableCell,
   RuleTableCellSource,
   RuleTableLayout,
   RuleTablePurpose,
   RuleTableRow,
-  RuleTree,
-  RuleTreeNode,
+  StickFigureColumns,
 } from './model/ruleTable'
+// 表を読み解く。列の見きわめと、ます目の整え
+export {
+  hasRowHeader,
+  hasShortRowHeader,
+  headerColumnCount,
+  narrowColumnCount,
+} from './lib/ruleTableColumns'
+export { mergeEmptyCellsDownward, normalizeRuleTableCell } from './lib/ruleTableCells'
+export type { MergedRuleTableCell } from './lib/ruleTableCells'
+// 採点票の用紙と手具
+export { ApparatusKind } from './model/rulePaper'
+export type { RulePaper } from './model/rulePaper'
+// 表ではない図
+export type { RuleTree, RuleTreeNode } from './model/ruleTree'
+export type { RuleSeat, RuleSeatRow, RuleSeating } from './model/ruleSeating'
+export type { RuleShape, RuleShapeFigure, RuleShapeKind } from './model/ruleShape'
 
 // 骨格と本文を分けて持つための仕組み
 export { buildRuleBook } from './lib/buildRuleBook'

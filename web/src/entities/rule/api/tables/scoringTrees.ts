@@ -1,4 +1,4 @@
-import type { RuleTree } from '../../model/ruleTable'
+import type { RuleTree } from '../../model/ruleTree'
 
 /**
  * 配点と採点項目の分類図。

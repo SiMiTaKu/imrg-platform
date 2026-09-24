@@ -3,8 +3,6 @@ import { createRawSnippet } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import Modal from '../../../src/lib/Modal/ui/Modal.svelte'
 
-const LABELS = { close: '閉じる' }
-
 const CHILDREN = createRawSnippet(() => ({
   render: () => '<p>モーダルの中身</p>',
 }))
@@ -18,10 +16,9 @@ const renderModal = (props: Record<string, unknown> = {}) => {
   const onclose = vi.fn()
   const result = render(Modal, {
     title: '過去の作品',
-    titleVariant: 'plain',
-    width: 720,
+    size: 'small',
     onclose,
-    labels: LABELS,
+    closeLabel: '閉じる',
     children: CHILDREN,
     ...props,
   })
@@ -140,7 +137,7 @@ describe('Modal', () => {
 
     it('見出しを渡した場合、その言葉がモーダルの名前になること', () => {
       // #region Given / When
-      renderModal({ title: '作品 1', titleVariant: 'plain' })
+      renderModal({ title: '作品 1' })
       // #endregion
 
       // #region Then

@@ -1,4 +1,4 @@
-import { ApparatusKind } from '../../model/ruleTable'
+import { ApparatusKind } from '../../model/rulePaper'
 import type { RuleTable, RuleTableRow } from '../../model/ruleTable'
 
 /**

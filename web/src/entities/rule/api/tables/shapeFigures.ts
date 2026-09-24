@@ -1,4 +1,4 @@
-import type { RuleShapeFigure } from '../../model/ruleTable'
+import type { RuleShapeFigure } from '../../model/ruleShape'
 
 /**
  * 所属マークの形と大きさの図。

@@ -3,8 +3,10 @@
   import XIcon from '../../Icons/components/XIcon.svelte'
   import type { ModalProps } from '../model/props'
 
-  const { title, titleVariant, titleBackground, width, onclose, labels, children }: ModalProps =
-    $props()
+  const { title, size, onclose, closeLabel, children }: ModalProps = $props()
+
+  /** 大きさごとの中身の幅（px）。狭い画面では画面に収まるところまで縮む */
+  const WIDTHS = { small: 800, large: 1100 } as const
 
   // 見出しと dialog をつなぐ id。同じ画面に2つ出しても重ならないよう Svelte に振ってもらう
   const titleId = $props.id()
@@ -64,27 +66,20 @@
 <dialog
   bind:this={dialog}
   class="modal"
-  style:--modal-width={`${width}px`}
+  style:--modal-width={`${WIDTHS[size]}px`}
   aria-labelledby={titleId}
   {onclose}
   {onpointerdown}
   {onclick}
 >
   <div class="panel">
-    <h2
-      class="title"
-      class:tinted={titleVariant === 'tinted'}
-      style:--modal-title-background={titleBackground}
-      id={titleId}
-    >
-      {title}
-    </h2>
+    <h2 class="title" id={titleId}>{title}</h2>
 
     <button
       bind:this={closeButton}
       class="close"
       type="button"
-      aria-label={labels.close}
+      aria-label={closeLabel}
       onclick={close}
     >
       <XIcon size={24} color="gray" />
@@ -128,15 +123,6 @@
     padding: $space-size-16 $space-size-56 0 $space-size-16;
     font-size: $font-size-20;
     color: map.get($gray, text);
-  }
-
-  .title.tinted {
-    margin: $space-size-16 $space-size-56 0 $space-size-16;
-    padding: $space-size-4 $space-size-20;
-    color: $white;
-    border-radius: $border-radius-8;
-    background: var(--modal-title-background);
-    align-self: flex-start;
   }
 
   // 見出しの長さや有無に関わらず、いつもモーダルの右上角に置く

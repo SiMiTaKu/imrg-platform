@@ -1,4 +1,4 @@
-import type { RuleSeating } from '../../model/ruleTable'
+import type { RuleSeating } from '../../model/ruleSeating'
 
 /**
  * 審判席の並び。

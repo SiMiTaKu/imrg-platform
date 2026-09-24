@@ -1,61 +1,36 @@
 import type { Snippet } from 'svelte'
 
-/** 読み上げ用の名前。画面には出さない */
-export interface ModalLabels {
-  /** 閉じるボタン（右上のばつ） */
-  close: string
-}
-
 /**
- * 見出しの見せ方。
+ * モーダルの大きさ。
  *
  * @remarks
- * `plain` は文字だけ、`tinted` は色の帯。
- * どのモーダルにも見出しは必ず出す。写真そのものが中身のときも、
- * 「作品 1」のように何を見ているかが分かる言葉を付ける
+ * `small` は文章や表を読ませるモーダル（800px）、
+ * `large` は写真を大きく見せるモーダル（1100px）。
+ * どちらも狭い画面では画面に収まるところまで縮むので、横にはみ出さない
  */
-export type ModalTitleVariant = 'plain' | 'tinted'
+export type ModalSize = 'small' | 'large'
 
-/** 見出しの見せ方によらず、どのモーダルでも渡すもの */
-interface CommonProps {
+/** モーダルの引数 */
+export interface ModalProps {
   /** 見出し。読み上げのときのモーダルの名前にもなる */
   title: string
   /**
-   * 中身の幅（px）。
+   * 大きさ。
    *
    * @remarks
-   * 狭い画面では画面に収まるところまで縮むので、横にはみ出さない。
    * 置く中身によって決まるものなので、使う側が必ず決める
    */
-  width: number
+  size: ModalSize
   /** 閉じたときに呼ぶ。ばつ・Esc・背景を押したときのどれでも呼ばれる */
   onclose: () => void
-  /** 読み上げ用の名前。アイコンだけのボタンにも名前が要るため、使う側の言語で渡す */
-  labels: ModalLabels
+  /**
+   * 閉じるボタン（右上のばつ）の読み上げ用の名前。
+   *
+   * @remarks
+   * 絵だけのボタンには名前が要る。デザインシステムは言語を知らないので、
+   * 使う側の言語で渡す。ふつうは「閉じる」でよい
+   */
+  closeLabel: string
   /** モーダルの中身 */
   children: Snippet
 }
-
-/** 見出しを文字のまま出すときの引数 */
-interface PlainTitleProps extends CommonProps {
-  /** 見出しの見せ方 */
-  titleVariant: 'plain'
-  titleBackground?: never
-}
-
-/** 見出しを色の帯にして出すときの引数 */
-interface TintedTitleProps extends CommonProps {
-  /** 見出しの見せ方 */
-  titleVariant: 'tinted'
-  /** 帯の地の色 */
-  titleBackground: string
-}
-
-/**
- * モーダルの引数。
- *
- * @remarks
- * `titleVariant` に `tinted` を渡したときだけ `titleBackground` を渡す。
- * 色の無い帯や、色だけ渡して帯にならない書き方は型で弾く
- */
-export type ModalProps = PlainTitleProps | TintedTitleProps
