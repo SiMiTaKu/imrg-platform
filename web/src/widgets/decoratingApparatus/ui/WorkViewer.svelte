@@ -7,12 +7,15 @@
   const {
     images,
     alt,
+    workNumber,
     onClose,
   }: {
     /** 見せる作品の写真 */
     images: ImageSourceMeta[][]
     /** 写真の代わりに読む文 */
     alt: string
+    /** 何番目の作品か（1 始まり）。モーダルの見出しになる */
+    workNumber: number
     /** 閉じるときに呼ぶ */
     onClose: () => void
   } = $props()
@@ -63,10 +66,10 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<!-- 見出しは読み上げにだけ残す。写真そのものが中身なので、画面には出さない -->
+<!-- 何番目の作品を見ているかを見出しに出す -->
 <Modal
-  title={m.decorating_apparatus_viewer_stage_label()}
-  titleVariant="hidden"
+  title={m.decorating_apparatus_viewer_title({ work: workNumber })}
+  titleVariant="plain"
   width={1100}
   onclose={onClose}
   labels={{ close: m.modal_close() }}

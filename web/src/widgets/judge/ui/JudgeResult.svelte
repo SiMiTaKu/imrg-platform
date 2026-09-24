@@ -100,8 +100,11 @@
   </figure>
 
   <div class="buttons">
-    <Button width={isMobile ? 'full' : 'auto'} onclick={onshowscore} size="medium"
-      >{m.judge_result_show_score()}</Button
+    <Button
+      width={isMobile ? 'full' : 'auto'}
+      onclick={onshowscore}
+      size="medium"
+      variant="sky-blue">{m.judge_result_show_score()}</Button
     >
     <!-- Xの投稿画面を新しいタブで開く。文は得点と手具の名前が入ったもの -->
     <Button

@@ -138,13 +138,14 @@ describe('Modal', () => {
       // #endregion
     })
 
-    it('見出しを隠した場合でも、モーダルの名前は引けること', () => {
+    it('見出しを渡した場合、その言葉がモーダルの名前になること', () => {
       // #region Given / When
-      renderModal({ title: '作品の写真', titleVariant: 'hidden' })
+      renderModal({ title: '作品 1', titleVariant: 'plain' })
       // #endregion
 
       // #region Then
-      expect(screen.getByRole('dialog', { name: '作品の写真' })).toBeInTheDocument()
+      expect(screen.getByRole('dialog', { name: '作品 1' })).toBeInTheDocument()
+      expect(screen.getByRole('heading', { name: '作品 1' })).toBeVisible()
       // #endregion
     })
 

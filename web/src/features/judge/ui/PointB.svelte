@@ -76,7 +76,9 @@
   </div>
 
   <div class="submit">
-    <Button size="large" width="full" onclick={onsubmit}>{m.judge_submit()}</Button>
+    <Button size="large" width="full" onclick={onsubmit} variant="sky-blue"
+      >{m.judge_submit()}</Button
+    >
   </div>
 </div>
 

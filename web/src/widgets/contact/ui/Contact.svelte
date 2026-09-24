@@ -19,7 +19,8 @@
       href={LINKS.instagram}
       target="_blank"
       size="large"
-      width={$pageData.isMobile ? 'full' : 'auto'}>{m.contact_button()}</Button
+      width={$pageData.isMobile ? 'full' : 'auto'}
+      variant="sky-blue">{m.contact_button()}</Button
     >
   </div>
 </section>

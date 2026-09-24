@@ -38,7 +38,13 @@
     </p>
 
     <div class="actions">
-      <Button href={localizeHref(ROUTES.calendar.index)} target="_self" width="full" size="medium">
+      <Button
+        href={localizeHref(ROUTES.calendar.index)}
+        target="_self"
+        width="full"
+        size="medium"
+        variant="sky-blue"
+      >
         {m.top_hero_action_calendar()}
       </Button>
       <Button href="#services" target="_self" variant="sky-blue-outline" width="full" size="medium">

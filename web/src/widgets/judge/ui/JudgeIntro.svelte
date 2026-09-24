@@ -71,7 +71,7 @@
     </ul>
 
     <div class="actions">
-      <Button size="large" width={isMobile ? 'full' : 'auto'} onclick={onstart}
+      <Button size="large" width={isMobile ? 'full' : 'auto'} onclick={onstart} variant="sky-blue"
         >{m.judge_intro_start()}</Button
       >
       <Button

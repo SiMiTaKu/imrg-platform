@@ -16,7 +16,8 @@
       href={localizeHref(ROUTES.top)}
       target="_self"
       width={isMobile ? 'full' : 'auto'}
-      size="medium">{m.rules_coming_soon_back()}</Button
+      size="medium"
+      variant="sky-blue">{m.rules_coming_soon_back()}</Button
     >
   </div>
 </article>

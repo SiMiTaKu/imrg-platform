@@ -28,8 +28,13 @@ export type ButtonWidth = number | 'full' | 'auto'
 
 /** リンクでも押しボタンでも同じ、見た目に関わる引数 */
 interface AppearanceProps {
-  /** 見た目。省くと空色の塗り */
-  variant?: ButtonVariant
+  /**
+   * 見た目。
+   *
+   * @remarks
+   * 置く場所によって決まるものなので、使う側が必ず決める
+   */
+  variant: ButtonVariant
   /**
    * 大きさ。
    *

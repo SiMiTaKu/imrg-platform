@@ -37,6 +37,7 @@
     <WorkViewer
       images={WORK_LIST[openedIndex].images}
       alt={m.decorating_apparatus_work_image_alt({ work: openedIndex + 1, image: 1 })}
+      workNumber={openedIndex + 1}
       onClose={() => (openedIndex = null)}
     />
   {/if}

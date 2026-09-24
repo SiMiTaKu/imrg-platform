@@ -50,6 +50,7 @@
           target="_self"
           width={isMobile ? 'full' : 'auto'}
           size="medium"
+          variant="sky-blue"
         >
           {m.oshimitsu_all_videos()}
         </Button>

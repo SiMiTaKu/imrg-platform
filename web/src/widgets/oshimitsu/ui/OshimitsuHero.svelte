@@ -48,8 +48,12 @@
       </p>
 
       <div class="actions">
-        <Button href="#search" target="_self" width={isMobile ? 'full' : 'auto'} size="medium"
-          >{m.oshimitsu_hero_action_ways()}</Button
+        <Button
+          href="#search"
+          target="_self"
+          width={isMobile ? 'full' : 'auto'}
+          size="medium"
+          variant="sky-blue">{m.oshimitsu_hero_action_ways()}</Button
         >
         <Button
           href="#recommended"

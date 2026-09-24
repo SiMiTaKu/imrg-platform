@@ -1,16 +1,7 @@
 <script lang="ts">
   import type { ButtonProps } from '../model/props'
 
-  const {
-    href,
-    target,
-    variant = 'sky-blue',
-    size,
-    width,
-    ariaLabel,
-    onclick,
-    children,
-  }: ButtonProps = $props()
+  const { href, target, variant, size, width, ariaLabel, onclick, children }: ButtonProps = $props()
 
   // auto 以外は横いっぱいに広げる。数値のときは最大幅で止まる
   const stretches = $derived(width !== 'auto')

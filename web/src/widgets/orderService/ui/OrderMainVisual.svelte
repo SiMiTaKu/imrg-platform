@@ -218,7 +218,8 @@
       </ul>
 
       <div class="actions">
-        <Button href={contactHref} target="_blank" width="full" size="medium">{contactLabel}</Button
+        <Button href={contactHref} target="_blank" width="full" size="medium" variant="sky-blue"
+          >{contactLabel}</Button
         >
         <Button
           href={worksHref}

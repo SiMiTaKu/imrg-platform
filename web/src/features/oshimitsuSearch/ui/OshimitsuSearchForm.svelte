@@ -67,6 +67,10 @@
     onchange={onChangeApparatus}
   />
 {/if}
-<Button href={searchHref} target="_self" size="large" width={isMobile ? 'full' : 'auto'}
-  >{m.oshimitsu_search_button()}</Button
+<Button
+  href={searchHref}
+  target="_self"
+  size="large"
+  width={isMobile ? 'full' : 'auto'}
+  variant="sky-blue">{m.oshimitsu_search_button()}</Button
 >

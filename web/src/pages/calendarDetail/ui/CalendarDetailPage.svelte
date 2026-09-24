@@ -168,7 +168,13 @@
   {#if event.officialUrl || event.resultUrl}
     <p class="actions">
       {#if event.officialUrl}
-        <Button href={event.officialUrl} target="_blank" width="full" size="medium">
+        <Button
+          href={event.officialUrl}
+          target="_blank"
+          width="full"
+          size="medium"
+          variant="sky-blue"
+        >
           {@render factLabel(m.calendar_official_site)}
         </Button>
       {/if}

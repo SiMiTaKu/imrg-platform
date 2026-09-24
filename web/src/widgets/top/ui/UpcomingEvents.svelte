@@ -81,6 +81,7 @@
           target="_self"
           size="large"
           width={isMobile ? 'full' : 'auto'}
+          variant="sky-blue"
         >
           {m.top_upcoming_search()}
         </Button>

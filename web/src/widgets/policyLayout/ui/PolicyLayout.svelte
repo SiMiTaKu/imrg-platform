@@ -138,8 +138,12 @@
       {m.contact_body_line2()}<br />
       {m.contact_body_line3()}
     </p>
-    <Button href={LINKS.instagram} target="_blank" width={isMobile ? 'full' : 'auto'} size="medium"
-      >{m.contact_button()}</Button
+    <Button
+      href={LINKS.instagram}
+      target="_blank"
+      width={isMobile ? 'full' : 'auto'}
+      size="medium"
+      variant="sky-blue">{m.contact_button()}</Button
     >
   </aside>
 

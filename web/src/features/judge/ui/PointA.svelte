@@ -100,7 +100,9 @@
   </div>
   {#if !submitted}
     <div class="submit">
-      <Button size="large" width="full" onclick={handleSubmit}>{m.judge_submit()}</Button>
+      <Button size="large" width="full" onclick={handleSubmit} variant="sky-blue"
+        >{m.judge_submit()}</Button
+      >
     </div>
   {/if}
 </div>

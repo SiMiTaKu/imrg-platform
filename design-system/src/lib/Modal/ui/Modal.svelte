@@ -70,10 +70,9 @@
   {onpointerdown}
   {onclick}
 >
-  <div class="panel" class:untitled={titleVariant === 'hidden'}>
+  <div class="panel">
     <h2
       class="title"
-      class:hidden={titleVariant === 'hidden'}
       class:tinted={titleVariant === 'tinted'}
       style:--modal-title-background={titleBackground}
       id={titleId}
@@ -122,11 +121,6 @@
     max-height: calc(100vh - #{$space-size-32});
   }
 
-  // 見出しを出さないときも、ばつと中身が重ならないだけの高さを空ける
-  .panel.untitled {
-    padding-top: $space-size-40;
-  }
-
   .title {
     margin: 0;
 
@@ -143,18 +137,6 @@
     border-radius: $border-radius-8;
     background: var(--modal-title-background);
     align-self: flex-start;
-  }
-
-  // 目には見せず、読み上げにだけ残す
-  .title.hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
   }
 
   // 見出しの長さや有無に関わらず、いつもモーダルの右上角に置く

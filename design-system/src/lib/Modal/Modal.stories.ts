@@ -36,20 +36,19 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const 基本: Story = {}
+export const Default: Story = { name: '基本' }
 
-export const 見出しを色の帯にする: Story = {
+export const TintedTitle: Story = {
+  name: '見出しを色の帯にする',
   args: { title: '決定点', titleVariant: 'tinted', titleBackground: '#0065a4' },
 }
 
-export const 見出しを読み上げにだけ残す: Story = {
-  args: { title: '作品の写真', titleVariant: 'hidden' },
-}
-
-export const 中身が長い: Story = {
+export const LongBody: Story = {
+  name: '中身が長い',
   args: { children: bodyOf(40) },
 }
 
-export const 幅を広げる: Story = {
+export const Wide: Story = {
+  name: '幅を広げる',
   args: { width: 1100 },
 }

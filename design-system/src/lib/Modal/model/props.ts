@@ -10,10 +10,11 @@ export interface ModalLabels {
  * 見出しの見せ方。
  *
  * @remarks
- * `plain` は文字だけ、`tinted` は色の帯、`hidden` は目に見せず読み上げにだけ残す。
- * `hidden` は写真そのものが中身のときのように、見出しを出すと邪魔になる場面で使う
+ * `plain` は文字だけ、`tinted` は色の帯。
+ * どのモーダルにも見出しは必ず出す。写真そのものが中身のときも、
+ * 「作品 1」のように何を見ているかが分かる言葉を付ける
  */
-export type ModalTitleVariant = 'plain' | 'tinted' | 'hidden'
+export type ModalTitleVariant = 'plain' | 'tinted'
 
 /** 見出しの見せ方によらず、どのモーダルでも渡すもの */
 interface CommonProps {
@@ -35,10 +36,10 @@ interface CommonProps {
   children: Snippet
 }
 
-/** 見出しを文字のまま出す、または読み上げにだけ残すときの引数 */
+/** 見出しを文字のまま出すときの引数 */
 interface PlainTitleProps extends CommonProps {
   /** 見出しの見せ方 */
-  titleVariant: 'plain' | 'hidden'
+  titleVariant: 'plain'
   titleBackground?: never
 }
 

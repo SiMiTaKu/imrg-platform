@@ -17,7 +17,13 @@ describe('Button', () => {
       // #region Given
       const onclick = vi.fn()
       render(Button, {
-        props: { size: 'medium', width: 'auto', onclick, children: labelOf('もっと見る') },
+        props: {
+          variant: 'sky-blue',
+          size: 'medium',
+          width: 'auto',
+          onclick,
+          children: labelOf('もっと見る'),
+        },
       })
       // #endregion
 
@@ -33,6 +39,7 @@ describe('Button', () => {
     it('押しボタンの場合、type が button になり送信に使われないこと', () => {
       // #region Given
       const props = {
+        variant: 'sky-blue',
         size: 'medium',
         width: 'auto',
         onclick: vi.fn(),
@@ -66,6 +73,7 @@ describe('Button', () => {
       const props = {
         href: '/calendar/',
         target,
+        variant: 'sky-blue',
         size: 'medium',
         width: 'auto',
         children: labelOf('開く'),
@@ -88,9 +96,10 @@ describe('Button', () => {
 
   // #region 見た目
   describe('正常系（見た目）', () => {
-    it('見た目を省いた場合、空色の塗りになること', () => {
+    it('medium を選んだ場合、large が付かないこと', () => {
       // #region Given
       const props = {
+        variant: 'sky-blue',
         size: 'medium',
         width: 'auto',
         onclick: vi.fn(),
@@ -103,9 +112,7 @@ describe('Button', () => {
       // #endregion
 
       // #region Then
-      const button = screen.getByRole('button', { name: 'もっと見る' })
-      expect(button).toHaveClass('sky-blue')
-      expect(button).not.toHaveClass('large')
+      expect(screen.getByRole('button', { name: 'もっと見る' })).not.toHaveClass('large')
       // #endregion
     })
 
@@ -116,8 +123,8 @@ describe('Button', () => {
     ] as const)('%s', (_, variant) => {
       // #region Given
       const props = {
-        size: 'medium',
         variant,
+        size: 'medium',
         width: 'auto',
         onclick: vi.fn(),
         children: labelOf('もっと見る'),
@@ -136,6 +143,7 @@ describe('Button', () => {
     it('large を選んだ場合、large が付くこと', () => {
       // #region Given
       const props = {
+        variant: 'sky-blue',
         size: 'large',
         width: 'auto',
         onclick: vi.fn(),
@@ -156,6 +164,7 @@ describe('Button', () => {
       // #region Given
       const props = {
         ariaLabel: '第1章をすべて開く',
+        variant: 'sky-blue',
         size: 'medium',
         width: 'auto',
         onclick: vi.fn(),
@@ -175,6 +184,7 @@ describe('Button', () => {
     it('auto を渡した場合、横に広げず文字に合わせた幅になること', () => {
       // #region Given
       const props = {
+        variant: 'sky-blue',
         size: 'medium',
         width: 'auto',
         onclick: vi.fn(),
@@ -196,6 +206,7 @@ describe('Button', () => {
     it('full を渡した場合、横いっぱいに広がり最大幅を決めないこと', () => {
       // #region Given
       const props = {
+        variant: 'sky-blue',
         size: 'medium',
         width: 'full',
         onclick: vi.fn(),
@@ -217,6 +228,7 @@ describe('Button', () => {
     it('数値を渡した場合、決め打ちの幅ではなく px の最大幅になること', () => {
       // #region Given
       const props = {
+        variant: 'sky-blue',
         size: 'medium',
         width: 240,
         onclick: vi.fn(),

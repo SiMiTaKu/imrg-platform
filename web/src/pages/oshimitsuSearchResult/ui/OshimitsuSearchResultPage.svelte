@@ -91,8 +91,11 @@
 </script>
 
 {#snippet keywordActions()}
-  <Button width={isMobile ? 'full' : 'auto'} onclick={() => (keyword = '')} size="medium"
-    >{m.oshimitsu_keyword_clear()}</Button
+  <Button
+    width={isMobile ? 'full' : 'auto'}
+    onclick={() => (keyword = '')}
+    size="medium"
+    variant="sky-blue">{m.oshimitsu_keyword_clear()}</Button
   >
   {#if hasMore}
     <Button
@@ -180,8 +183,11 @@
 
       <footer class="foot">
         {#if hasMore}
-          <Button size="large" width={isMobile ? 'full' : 'auto'} onclick={getMoreVideos}
-            >{m.oshimitsu_load_more()}</Button
+          <Button
+            size="large"
+            width={isMobile ? 'full' : 'auto'}
+            onclick={getMoreVideos}
+            variant="sky-blue">{m.oshimitsu_load_more()}</Button
           >
         {:else}
           <p class="no-more">{m.oshimitsu_no_more_videos()}</p>

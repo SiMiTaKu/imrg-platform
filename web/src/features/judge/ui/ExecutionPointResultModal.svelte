@@ -163,7 +163,9 @@
         {formatNumber(decisionPoints, locale)}
       </div>
       <div class="footer">
-        <Button width="full" onclick={onretry} size="medium">{m.judge_result_retry()}</Button>
+        <Button width="full" onclick={onretry} size="medium" variant="sky-blue"
+          >{m.judge_result_retry()}</Button
+        >
       </div>
     </div>
   </Modal>

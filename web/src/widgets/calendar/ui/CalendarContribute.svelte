@@ -43,7 +43,8 @@
         href={LINKS.instagram}
         target="_blank"
         width={isMobile ? 'full' : 'auto'}
-        size="medium">{m.calendar_contribute_button()}</Button
+        size="medium"
+        variant="sky-blue">{m.calendar_contribute_button()}</Button
       >
     </div>
   </div>

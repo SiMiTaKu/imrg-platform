@@ -36,36 +36,42 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /** 空色の塗り。そのページでいちばん進んでほしい先に使う */
-export const 塗り: Story = {}
+export const SkyBlue: Story = { name: '塗り' }
 
 /** 空色の白抜き。押す先が主役ではないときや、中身の上に置くときに使う */
-export const 白抜き: Story = {
+export const SkyBlueOutline: Story = {
+  name: '白抜き',
   args: { variant: 'sky-blue-outline' },
 }
 
 /** 黄。相談への一歩に使う。黄は明るいので文字は黒にする（色の決まり 4） */
-export const 黄: Story = {
+export const Yellow: Story = {
+  name: '黄',
   args: { variant: 'yellow', children: labelOf('DM で相談する') },
 }
 
 /** 大きいほう。最小の高さ 56px・文字 18px */
-export const 大きい: Story = {
+export const Large: Story = {
+  name: '大きい',
   args: { size: 'large', children: labelOf('大会カレンダーを見る') },
 }
 
 /** 横いっぱい。スマホで1つずつ縦に積むときに使う */
-export const 横いっぱい: Story = {
+export const FullWidth: Story = {
+  name: '横いっぱい',
   args: { width: 'full' },
 }
 
 /** 数値を渡すと、その px を最大幅にする。狭い画面では画面に収まるところまで縮む */
-export const 最大幅を決める: Story = {
+export const MaxWidth: Story = {
+  name: '最大幅を決める',
   args: { width: 240 },
 }
 
 // 話の引数が押しボタンではなくリンクの形になるので、meta ではなく部品の型で受ける
 /** href を渡すとリンクになる。新しいタブで開くときは rel が付く */
-export const リンク: StoryObj<typeof Button> = {
+export const Link: StoryObj<typeof Button> = {
+  name: 'リンク',
   args: {
     variant: 'sky-blue',
     size: 'medium',

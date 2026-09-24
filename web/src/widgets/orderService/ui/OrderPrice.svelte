@@ -94,7 +94,9 @@
       </p>
 
       <div class="contact-action">
-        <Button href={contactHref} target="_blank" size="large" width="full">{contactLabel}</Button>
+        <Button href={contactHref} target="_blank" size="large" width="full" variant="sky-blue"
+          >{contactLabel}</Button
+        >
       </div>
     </div>
   </div>
