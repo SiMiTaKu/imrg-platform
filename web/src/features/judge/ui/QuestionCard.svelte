@@ -68,10 +68,12 @@
 <style lang="scss">
   .desktop {
     --head-gap: #{$space-size-16};
+    --summary-font-size: #{$font-size-18};
   }
 
   .mobile {
     --head-gap: #{$space-size-8};
+    --summary-font-size: #{$font-size-18};
   }
 
   .question-card {
@@ -137,12 +139,16 @@
     margin-left: auto;
   }
 
+  /*
+    答えた値。閉じた札で「何点を付けたか」をひと目で拾えるよう、
+    設問の見出しと同じ大きさ（18px）にする
+  */
   .summary {
-    font-size: $font-size-14;
+    font-size: var(--summary-font-size);
     font-weight: bold;
     color: map.get($gray, light-text);
 
-    // 答えの言葉は途中で折らない。「やや当てはまらない」が2行に割れると読みにくい
+    // 答えは途中で折らない。「未回答」が2行に割れると読みにくい
     white-space: nowrap;
   }
 
