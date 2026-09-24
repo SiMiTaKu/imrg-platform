@@ -71,7 +71,7 @@
     </span>
   </span>
 
-  <span class="arrow" aria-hidden="true">›</span>
+  <span class="arrow" aria-hidden="true"></span>
 </a>
 
 <style lang="scss">
@@ -113,7 +113,7 @@
 
   .date-undecided {
     margin-top: $space-size-4;
-    font-size: $font-size-11;
+    font-size: $font-size-12;
     font-weight: bold;
     text-align: center;
     color: map.get($gray, light-text);
@@ -170,8 +170,14 @@
     color: map.get($gray, 300);
   }
 
+  // 右を向いた三角。枠線だけで描くので、字体によって形が変わらない
   .arrow {
-    font-size: $font-size-20;
-    color: map.get($gray, 300);
+    flex: none;
+    align-self: center;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid map.get($gray, border);
   }
 </style>

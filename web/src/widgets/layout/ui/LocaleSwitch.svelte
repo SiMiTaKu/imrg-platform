@@ -3,7 +3,7 @@
   import { page } from '$app/state'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
-  import { deLocalizeHref, getLocale, localizeHref, publishedLocales } from '@shared/lib/i18n'
+  import { deLocalizeHref, getLocale, localizeHref, SITE_LOCALES } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
 
   /** 言語の表示名。その言語自身の表記で出す */
@@ -21,9 +21,13 @@
   let isOpen = $state(false)
 
   const currentLocale = $derived(getLocale() as SiteLocale)
-  // いま見ているページを公開している言語だけを選べるようにする
   const path = $derived(deLocalizeHref(page.url.pathname))
-  const locales = $derived(publishedLocales(path))
+
+  // どのページもすべての言語で書き出しているので、言語はいつも全部から選べる。
+  // 訳し終えたかどうか（publishedLocales）はここでは見ない。あれは検索に登録してよいかの話で、
+  // 訳の途中のページも読みには行ける。ここで使うと、規則集のように登録を止めているページで
+  // 切り替えそのものが消えてしまう
+  const locales = SITE_LOCALES
 
   const close = () => {
     isOpen = false
@@ -32,42 +36,40 @@
 
 <svelte:window onclick={isOpen ? close : undefined} />
 
-{#if locales.length > 1}
-  <div class="locale-switch" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
-    <button
-      class="button"
-      type="button"
-      aria-expanded={isOpen}
-      aria-haspopup="listbox"
-      aria-label={m.layout_locale_switch_label()}
-      onclick={(clickEvent) => {
-        // 画面のどこかを押したら閉じる処理と打ち消し合わないように止める
-        clickEvent.stopPropagation()
-        isOpen = !isOpen
-      }}
-    >
-      <GlobeIcon size={$pageData.isMobile ? 22 : 26} color="gray" />
-    </button>
-    {#if isOpen}
-      <ul class="list" aria-label={m.layout_locale_switch_label()} role="listbox">
-        {#each locales as locale (locale)}
-          <li role="option" aria-selected={locale === currentLocale}>
-            <!-- 言語の境目をまたぐので、ページを読み込み直して表示と URL をそろえる -->
-            <a
-              class="item"
-              class:current={locale === currentLocale}
-              href={localizeHref(path, { locale })}
-              hreflang={locale}
-              lang={locale}
-              data-sveltekit-reload
-              onclick={close}>{LOCALE_NAMES[locale]()}</a
-            >
-          </li>
-        {/each}
-      </ul>
-    {/if}
-  </div>
-{/if}
+<div class="locale-switch" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
+  <button
+    class="button"
+    type="button"
+    aria-expanded={isOpen}
+    aria-haspopup="listbox"
+    aria-label={m.layout_locale_switch_label()}
+    onclick={(clickEvent) => {
+      // 画面のどこかを押したら閉じる処理と打ち消し合わないように止める
+      clickEvent.stopPropagation()
+      isOpen = !isOpen
+    }}
+  >
+    <GlobeIcon size={$pageData.isMobile ? 22 : 26} color="gray" />
+  </button>
+  {#if isOpen}
+    <ul class="list" aria-label={m.layout_locale_switch_label()} role="listbox">
+      {#each locales as locale (locale)}
+        <li role="option" aria-selected={locale === currentLocale}>
+          <!-- 言語の境目をまたぐので、ページを読み込み直して表示と URL をそろえる -->
+          <a
+            class="item"
+            class:current={locale === currentLocale}
+            href={localizeHref(path, { locale })}
+            hreflang={locale}
+            lang={locale}
+            data-sveltekit-reload
+            onclick={close}>{LOCALE_NAMES[locale]()}</a
+          >
+        </li>
+      {/each}
+    </ul>
+  {/if}
+</div>
 
 <style lang="scss">
   .desktop {

@@ -1,13 +1,15 @@
 <script lang="ts">
   import { tick } from 'svelte'
   import { afterNavigate } from '$app/navigation'
-  import { Heading, Pagination } from '@imrg-platform/design-system'
+  import { Pagination } from '@imrg-platform/design-system'
   import { m } from '$lib/paraglide/messages'
   import { formatDay, formatMonth, toDateKey, toMonthKey } from '@shared/lib/date'
   import {
     EVENTS,
     EventRow,
     UPDATED_AT,
+    categoryLabel,
+    eventMonthKey,
     eventsInMonth,
     eventsOnDay,
     monthRangeOf,
@@ -15,9 +17,11 @@
   import {
     CalendarSearchPanel,
     EVENT_PERIODS,
+    EventPeriod,
     defaultState,
     filterEvents,
     groupByMonth,
+    isEveryCategory,
     paginate,
     parseState,
     serializeState,
@@ -26,10 +30,28 @@
   import { pageData } from '@shared/lib/device'
   import { getLocale } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
+  import { UPCOMING_PICK_COUNT } from '../config/calendarConfig'
   import { loadCalendarState, saveCalendarState } from '../lib/stateStorage'
-  import CalendarContribute from './CalendarContribute.svelte'
-  import CalendarArchive from './CalendarArchive.svelte'
-  import MonthCalendar from './MonthCalendar.svelte'
+  import {
+    ANY,
+    CalendarArchive,
+    CalendarContribute,
+    CalendarIntro,
+    CalendarRefinePanel,
+    CalendarUpcoming,
+    MonthCalendar,
+    countByRegion,
+    countByYear,
+    defaultRefine,
+    isRefined,
+    parseRefine,
+    refineEvents,
+    regionLabel,
+    withRefineQuery,
+    type Any,
+    type CalendarRefine,
+    type CalendarRegionKey,
+  } from '@widgets/calendar'
 
   // カレンダーで移動できる範囲（データのある最初の月から最後の月まで）
   const MONTH_RANGE = monthRangeOf(EVENTS, UPDATED_AT)
@@ -39,6 +61,7 @@
   // 書き出すHTMLは最終更新日の時点で作り、閲覧したときに今日の日付とURLの条件で描き直す
   let today = $state(UPDATED_AT)
   let calendarState: CalendarState = $state.raw(defaultState(toMonthKey(UPDATED_AT)))
+  let refine: CalendarRefine = $state.raw(defaultRefine())
   let ready = $state(false)
   let resultsTop: HTMLElement | undefined = $state()
 
@@ -49,22 +72,36 @@
     today = toDateKey(new Date())
     // 詳細ページから戻ったときは直前の条件に戻し、それ以外は URL の指定を読む
     const saved = type === 'popstate' ? loadCalendarState() : null
-    calendarState = parseState(saved ?? window.location.search, toMonthKey(today))
+    const query = saved ?? window.location.search
+    calendarState = parseState(query, toMonthKey(today))
+    refine = parseRefine(query)
     ready = true
   })
 
   $effect(() => {
-    if (ready) saveCalendarState(serializeState(calendarState, toMonthKey(today)))
+    if (!ready) return
+    const query = serializeState(calendarState, toMonthKey(today))
+    saveCalendarState(withRefineQuery(query, refine))
   })
 
-  const matched = $derived(
+  // 種類・キーワード・時期まで絞ったところ。年と地域の件数は、ここを母数にして数える
+  const base = $derived(
     filterEvents(EVENTS, {
       categories: calendarState.categories,
       keyword: calendarState.keyword,
       today,
-      period: calendarState.view === 'list' ? calendarState.period : 'all',
+      period: calendarState.view === 'list' ? calendarState.period : EventPeriod.ALL.key,
     }),
   )
+  const matched = $derived(refineEvents(base, refine))
+
+  // 絞り込みボタンに添える件数。自分の軸だけ外して数えると、押したあとの件数と一致する
+  const byYear = $derived(refineEvents(base, { year: ANY, region: refine.region }))
+  const yearCounts = $derived(countByYear(byYear))
+  const regionCounts = $derived(
+    countByRegion(refineEvents(base, { year: refine.year, region: ANY })),
+  )
+
   const slice = $derived(paginate(matched, calendarState.page))
   const pageGroups = $derived(groupByMonth(slice.items))
   const calendarEvents = $derived(
@@ -72,11 +109,37 @@
       ? eventsOnDay(matched, calendarState.day)
       : eventsInMonth(matched, calendarState.month),
   )
+
+  // ページの先頭に出す「次にある大会」。絞り込みとは別に、いつでも今日に近いものを見せる
+  const upcomingAll = $derived(
+    filterEvents(EVENTS, {
+      categories: [],
+      keyword: '',
+      today,
+      period: EventPeriod.UPCOMING.key,
+    }),
+  )
+  const upcomingPicks = $derived(upcomingAll.slice(0, UPCOMING_PICK_COUNT))
+
   // 最終更新日。日本語ページでは「最終更新: … / Last updated: …」と並べる
   const updatedAtText = m.calendar_updated_at({ date: formatDay(UPDATED_AT, locale) })
 
   // 英語の単数・複数で文言を分ける（日本語はどちらも同じ）
   const isOne = $derived(new Intl.PluralRules(locale).select(matched.length) === 'one')
+
+  // 何かしら絞り込んでいるか。「条件を解除」を出すかどうかの判定に使う
+  const isFiltered = $derived(
+    calendarState.keyword !== '' ||
+      !isEveryCategory(calendarState.categories) ||
+      isRefined(refine) ||
+      calendarState.day !== null,
+  )
+
+  // 「絞り込み中」に並べる札。型を確かめてから文字にするため、表示の前に作っておく
+  const yearPill = $derived(
+    refine.year === ANY ? null : m.calendar_archive_year({ year: refine.year }),
+  )
+  const regionPill = $derived(refine.region === ANY ? null : regionLabel(refine.region))
 
   /**
    * 条件を変える。ページ送り以外の変更では1ページ目に戻す
@@ -103,6 +166,45 @@
   const selectDay = (day: string) => {
     update({ day: day === calendarState.day ? null : day })
   }
+
+  /**
+   * 開催年を選ぶ。カレンダー表示では、その年で最初にイベントのある月へ移る
+   * @param year - 選んだ年 "2026"。`ANY` ならすべての年
+   */
+  const selectYear = (year: string | Any) => {
+    refine = { ...refine, year }
+    if (year === ANY) {
+      update({})
+      return
+    }
+    // 選んだ年に1件も無い月を開いたままにしない
+    const months = refineEvents(base, { year, region: refine.region })
+      .map(eventMonthKey)
+      .sort((a, b) => a.localeCompare(b))
+    update({ month: months[0] ?? `${year}-01`, day: null })
+  }
+
+  /**
+   * 地域を選ぶ
+   * @param region - 選んだ地域。`ANY` ならすべての地域
+   */
+  const selectRegion = (region: CalendarRegionKey | Any) => {
+    refine = { ...refine, region }
+    update({})
+  }
+
+  /** 絞り込みをすべて解除して、今月のカレンダーに戻す */
+  const clearAll = () => {
+    refine = defaultRefine()
+    calendarState = defaultState(toMonthKey(today))
+  }
+
+  /** 「これから」の一覧へ切り替え、結果の先頭まで移動する */
+  const showUpcomingList = async () => {
+    update({ view: 'list', period: EventPeriod.UPCOMING.key, day: null })
+    await tick()
+    resultsTop?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 </script>
 
 {#snippet segmentLabel(message: typeof m.calendar_view_calendar)}
@@ -121,182 +223,249 @@
       )}
 {/snippet}
 
-<article class="calendar" class:desktop={!$pageData.isMobile} class:mobile={$pageData.isMobile}>
-  <Heading
-    fontSize={$pageData.isMobile ? 30 : 40}
-    subtitleFontSize={$pageData.isMobile ? 16 : 20}
-    title={m.calendar_title()}
-  />
+<article class="calendar" class:mobile={$pageData.isMobile}>
+  <CalendarIntro total={EVENTS.length} upcoming={upcomingAll.length} {updatedAtText}>
+    <!--
+        探すための道具をひとまとめにして、ページの先頭に置く。
+        キーワード・種類・年・地域・表示の切り替えを続けて並べる
+      -->
+    <section class="finder" aria-label={m.calendar_search_label()}>
+      <h2 class="finder-title">{m.calendar_finder_title()}</h2>
 
-  <p class="lead">{m.calendar_lead()}</p>
-  <p class="updated-at">{updatedAtText}</p>
+      <CalendarSearchPanel
+        keyword={calendarState.keyword}
+        categories={calendarState.categories}
+        onkeywordchange={(keyword) => update({ keyword })}
+        oncategorieschange={(categories) => update({ categories })}
+      />
 
-  <CalendarSearchPanel
-    keyword={calendarState.keyword}
-    categories={calendarState.categories}
-    onkeywordchange={(keyword) => update({ keyword })}
-    oncategorieschange={(categories) => update({ categories })}
-  />
+      <CalendarRefinePanel
+        {refine}
+        {yearCounts}
+        yearTotal={byYear.length}
+        {regionCounts}
+        onyearchange={selectYear}
+        onregionchange={selectRegion}
+      />
 
-  <div class="toolbar">
-    <div class="segmented" aria-label={m.calendar_view_label()} role="group">
-      <button
-        class="segment"
-        class:active={calendarState.view === 'calendar'}
-        type="button"
-        aria-pressed={calendarState.view === 'calendar'}
-        onclick={() => update({ view: 'calendar' })}
-        >{@render segmentLabel(m.calendar_view_calendar)}</button
-      >
-      <button
-        class="segment"
-        class:active={calendarState.view === 'list'}
-        type="button"
-        aria-pressed={calendarState.view === 'list'}
-        onclick={() => update({ view: 'list' })}
-        >{@render segmentLabel(m.calendar_view_list)}</button
-      >
-    </div>
-
-    {#if calendarState.view === 'list'}
-      <div class="segmented" aria-label={m.calendar_period_label()} role="group">
-        {#each EVENT_PERIODS as period (period.key)}
+      <div class="toolbar">
+        <div class="segmented" aria-label={m.calendar_view_label()} role="group">
           <button
             class="segment"
-            class:active={calendarState.period === period.key}
+            class:active={calendarState.view === 'calendar'}
             type="button"
-            aria-pressed={calendarState.period === period.key}
-            onclick={() => update({ period: period.key })}
-            >{@render segmentLabel(period.label)}</button
+            aria-pressed={calendarState.view === 'calendar'}
+            onclick={() => update({ view: 'calendar' })}
+            >{@render segmentLabel(m.calendar_view_calendar)}</button
           >
-        {/each}
-      </div>
-    {/if}
-
-    <p class="count">
-      <strong>{matched.length}</strong
-      >{` ${isOne ? m.calendar_count_unit_one() : m.calendar_count_unit_other()}`}
-    </p>
-  </div>
-
-  {#if calendarState.view === 'calendar'}
-    {#if calendarState.keyword}
-      <p class="hint">
-        {(isOne ? m.calendar_keyword_hint_one : m.calendar_keyword_hint_other)({
-          count: matched.length,
-        })}
-        <button
-          class="link-button"
-          type="button"
-          onclick={() => update({ view: 'list', period: 'all' })}
-          >{m.calendar_see_all_in_list()}</button
-        >
-      </p>
-    {/if}
-
-    <MonthCalendar
-      canNext={calendarState.month < MONTH_RANGE.last}
-      canPrev={calendarState.month > MONTH_RANGE.first}
-      events={matched}
-      monthKey={calendarState.month}
-      selectedDay={calendarState.day}
-      {today}
-      onmonthchange={(month) => update({ month, day: null })}
-      onselect={selectDay}
-    />
-
-    <section bind:this={resultsTop} class="results">
-      <div class="results-heading">
-        <h3 class="section-title">
-          {@render resultsTitle(locale)}
-        </h3>
-        {#if calendarState.day}
-          <button class="link-button" type="button" onclick={() => update({ day: null })}
-            >{m.calendar_show_whole_month()}</button
+          <button
+            class="segment"
+            class:active={calendarState.view === 'list'}
+            type="button"
+            aria-pressed={calendarState.view === 'list'}
+            onclick={() => update({ view: 'list' })}
+            >{@render segmentLabel(m.calendar_view_list)}</button
           >
+        </div>
+
+        {#if calendarState.view === 'list'}
+          <div class="segmented" aria-label={m.calendar_period_label()} role="group">
+            {#each EVENT_PERIODS as period (period.key)}
+              <button
+                class="segment"
+                class:active={calendarState.period === period.key}
+                type="button"
+                aria-pressed={calendarState.period === period.key}
+                onclick={() => update({ period: period.key })}
+                >{@render segmentLabel(period.label)}</button
+              >
+            {/each}
+          </div>
         {/if}
+
+        <p class="count">
+          <strong>{matched.length}</strong
+          >{` ${isOne ? m.calendar_count_unit_one() : m.calendar_count_unit_other()}`}
+        </p>
       </div>
-      {#if calendarEvents.length}
-        <ul class="rows">
-          {#each calendarEvents as event (event.id)}
-            <li><EventRow {event} /></li>
-          {/each}
-        </ul>
-      {:else}
-        <p class="empty">
-          {m.calendar_empty_month()}
+
+      {#if isFiltered}
+        <!-- 何で絞っているかを言葉で出す。押した覚えのない条件で0件になるのを防ぐ -->
+        <p class="active-filters">
+          <span class="active-label">{m.calendar_active_filters_label()}</span>
+          {#if calendarState.keyword}
+            <span class="pill">{m.calendar_keyword_pill({ keyword: calendarState.keyword })}</span>
+          {/if}
+          {#if yearPill}
+            <span class="pill">{yearPill}</span>
+          {/if}
+          {#if regionPill}
+            <span class="pill">{regionPill}</span>
+          {/if}
+          {#if !isEveryCategory(calendarState.categories)}
+            {#each calendarState.categories as category (category)}
+              <span class="pill">{categoryLabel(category)}</span>
+            {/each}
+          {/if}
+          {#if calendarState.day}
+            <span class="pill">{formatDay(calendarState.day, locale)}</span>
+          {/if}
+          <button class="clear" type="button" onclick={clearAll}>{m.calendar_clear_all()}</button>
         </p>
       {/if}
     </section>
-  {:else}
-    <section bind:this={resultsTop} class="results">
-      {#each pageGroups as group, index (`${group.monthKey}-${index}`)}
-        <h3 class="month-heading">
-          {formatMonth(group.monthKey, locale)}
-        </h3>
-        <ul class="rows">
-          {#each group.events as event (event.id)}
-            <li><EventRow {event} /></li>
-          {/each}
-        </ul>
-      {:else}
-        <p class="empty">
-          {m.calendar_empty_filter()}
-        </p>
-      {/each}
+  </CalendarIntro>
 
-      {#if slice.totalPages > 1}
-        <Pagination
-          page={slice.page}
-          totalPages={slice.totalPages}
-          onchange={goToPage}
-          labels={{
-            navigation: m.pagination_label(),
-            first: m.pagination_first(),
-            prev: m.pagination_prev(),
-            next: m.pagination_next(),
-            last: m.pagination_last(),
-          }}
+  <div class="body">
+    <CalendarUpcoming events={upcomingPicks} {today} onseeall={showUpcomingList} />
+
+    {#if calendarState.view === 'calendar'}
+      {#if calendarState.keyword}
+        <p class="hint">
+          {(isOne ? m.calendar_keyword_hint_one : m.calendar_keyword_hint_other)({
+            count: matched.length,
+          })}
+          <button
+            class="link-button"
+            type="button"
+            onclick={() => update({ view: 'list', period: EventPeriod.ALL.key })}
+            >{m.calendar_see_all_in_list()}</button
+          >
+        </p>
+      {/if}
+
+      <div class="calendar-view">
+        <MonthCalendar
+          canNext={calendarState.month < MONTH_RANGE.last}
+          canPrev={calendarState.month > MONTH_RANGE.first}
+          events={matched}
+          monthKey={calendarState.month}
+          selectedDay={calendarState.day}
+          {today}
+          onmonthchange={(month) => update({ month, day: null })}
+          onselect={selectDay}
         />
-      {/if}
-    </section>
-  {/if}
+      </div>
 
-  <CalendarArchive />
-  <CalendarContribute />
+      <section bind:this={resultsTop} class="results">
+        <div class="results-heading">
+          <h3 class="section-title">
+            {@render resultsTitle(locale)}
+          </h3>
+          {#if calendarState.day}
+            <button class="link-button" type="button" onclick={() => update({ day: null })}
+              >{m.calendar_show_whole_month()}</button
+            >
+          {/if}
+        </div>
+        {#if calendarEvents.length}
+          <ul class="rows">
+            {#each calendarEvents as event (event.id)}
+              <li><EventRow {event} /></li>
+            {/each}
+          </ul>
+        {:else}
+          <p class="empty">
+            {m.calendar_empty_month()}
+            {#if isFiltered}
+              <button class="clear" type="button" onclick={clearAll}
+                >{m.calendar_clear_all()}</button
+              >
+            {/if}
+          </p>
+        {/if}
+      </section>
+    {:else}
+      <section bind:this={resultsTop} class="results">
+        {#each pageGroups as group, index (`${group.monthKey}-${index}`)}
+          <h3 class="month-heading">
+            {formatMonth(group.monthKey, locale)}
+          </h3>
+          <ul class="rows">
+            {#each group.events as event (event.id)}
+              <li><EventRow {event} /></li>
+            {/each}
+          </ul>
+        {:else}
+          <p class="empty">
+            {m.calendar_empty_filter()}
+            {#if isFiltered}
+              <button class="clear" type="button" onclick={clearAll}
+                >{m.calendar_clear_all()}</button
+              >
+            {/if}
+          </p>
+        {/each}
+
+        {#if slice.totalPages > 1}
+          <Pagination
+            page={slice.page}
+            totalPages={slice.totalPages}
+            onchange={goToPage}
+            labels={{
+              navigation: m.pagination_label(),
+              first: m.pagination_first(),
+              prev: m.pagination_prev(),
+              next: m.pagination_next(),
+              last: m.pagination_last(),
+            }}
+          />
+        {/if}
+      </section>
+    {/if}
+
+    <CalendarArchive />
+    <CalendarContribute />
+  </div>
 </article>
 
 <style lang="scss">
-  .desktop {
-    --width: 960px;
-  }
-
-  .mobile {
-    --width: calc(100% - 32px);
-  }
-
+  // ファーストビジュアルの背景を画面の端まで広げるため、幅の制限はここでは掛けない
   .calendar {
-    width: var(--width);
-    margin: 0 auto;
-    padding: $space-size-40 0 $space-size-80;
+    width: 100%;
     font-family:
       'Hiragino Sans', 'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Meiryo, sans-serif;
-    font-size: 15px;
+    font-size: $font-size-16;
     color: map.get($gray, text);
     line-height: 1.7;
     letter-spacing: 0.02em;
+
+    // 長い大会名・会場名でも横へはみ出させない
     overflow-wrap: anywhere;
   }
 
-  .lead {
-    font-size: $font-size-16;
+  // ファーストビジュアルより下だけをコンテンツ幅に収める
+  .body {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: $space-size-8 var(--content-padding-inline) $space-size-80;
   }
 
-  .updated-at {
-    margin-top: $space-size-12;
-    text-align: right;
-    font-size: $font-size-12;
-    color: map.get($gray, light-text);
+  /* ─── 探すための道具 ─── */
+
+  // ファーストビジュアルの中に置くので、上の余白は要らない
+  .finder {
+    display: grid;
+    gap: $space-size-12;
+    padding: $space-size-20;
+    border: $border-size-1 solid map.get($gray, 100);
+    border-radius: 10px;
+    background: $white;
+    box-shadow: 0 2px 12px rgb(0 89 184 / 8%);
+  }
+
+  .mobile .finder {
+    padding: $space-size-12;
+  }
+
+  .finder-title {
+    margin: 0;
+    padding-left: $space-size-12;
+    border-left: $border-size-4 solid map.get($sky-blue, button);
+    font-size: $font-size-20;
+    line-height: 1.4;
   }
 
   .toolbar {
@@ -304,7 +473,6 @@
     flex-wrap: wrap;
     align-items: center;
     gap: $space-size-12;
-    margin: $space-size-24 0 $space-size-16;
   }
 
   .segmented {
@@ -316,12 +484,14 @@
 
   .segment {
     display: grid;
+    min-height: 40px;
     padding: $space-size-4 $space-size-16;
     font-size: $font-size-14;
     font-weight: bold;
     color: map.get($sky-blue, text);
     border: none;
     background: $white;
+    align-items: center;
     line-height: 1.3;
     cursor: pointer;
 
@@ -337,36 +507,80 @@
   }
 
   .count {
-    margin-left: auto;
-    font-size: $font-size-14;
+    margin: 0 0 0 auto;
+    font-size: $font-size-12;
     color: map.get($gray, light-text);
     font-variant-numeric: tabular-nums;
   }
 
   .count strong {
     margin-right: $space-size-2;
-    font-size: $font-size-20;
+    font-size: $font-size-24;
+    color: map.get($sky-blue, text);
+  }
+
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-size-8;
+    margin: 0;
+    padding: $space-size-8 $space-size-12;
+    font-size: $font-size-12;
+
+    // 今かかっている条件は灰で囲む。表の色とぶつけない
+    border: $border-size-1 solid map.get($gray, 200);
+    border-radius: $border-radius-8;
+    background: map.get($gray, background);
+  }
+
+  .active-label {
+    font-weight: bold;
     color: map.get($gray, text);
   }
 
+  .pill {
+    padding: 0 $space-size-8;
+    color: map.get($gray, 600);
+    border-radius: $border-radius-64;
+    background: $white;
+  }
+
+  .clear {
+    padding: $space-size-2 $space-size-12;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+    border: $border-size-1 solid map.get($sky-blue, border);
+    border-radius: $border-radius-64;
+    background: $white;
+    cursor: pointer;
+  }
+
   .hint {
-    margin-bottom: $space-size-12;
-    font-size: 13px;
+    margin: $space-size-24 0 0;
+    font-size: $font-size-14;
+  }
+
+  .calendar-view {
+    margin-top: $space-size-24;
   }
 
   .link-button {
     padding: 0;
-    font-size: 13px;
-    color: rgb(50, 150, 255);
+    font-size: $font-size-14;
+    color: map.get($sky-blue, text);
     border: none;
     background: none;
     text-decoration: underline;
     cursor: pointer;
   }
 
+  /* ─── 結果 ─── */
+
   .results {
     margin-top: $space-size-32;
-    scroll-margin-top: 96px;
+    scroll-margin-top: calc(var(--header-height) + 16px);
   }
 
   .results-heading {
@@ -385,7 +599,7 @@
     align-items: baseline;
     gap: 0 $space-size-8;
     padding-left: $space-size-12;
-    border-left: $border-size-4 solid rgb(50, 150, 255);
+    border-left: $border-size-4 solid map.get($sky-blue, button);
     font-size: $font-size-18;
     line-height: 1.4;
     font-variant-numeric: tabular-nums;
@@ -398,12 +612,17 @@
   .rows {
     display: grid;
     gap: $space-size-8;
+    margin: 0;
+    padding: 0;
     list-style: none;
   }
 
   .empty {
+    display: grid;
+    justify-items: center;
+    gap: $space-size-12;
     padding: $space-size-32 0;
-    font-size: $font-size-14;
+    font-size: $font-size-16;
     text-align: center;
     color: map.get($gray, light-text);
   }

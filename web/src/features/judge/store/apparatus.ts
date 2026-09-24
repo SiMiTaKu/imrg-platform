@@ -17,6 +17,10 @@ const createApparatusStore = () => {
      * @param code - 手具のコード（選択肢の value）
      */
     select: (code: string) => set(findApparatus(JUDGE_APPARATUSES, code)),
+    /**
+     * 手具を選ぶ前の状態へ戻す
+     */
+    reset: () => set(undefined),
   }
 }
 

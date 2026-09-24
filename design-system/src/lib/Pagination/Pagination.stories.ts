@@ -24,12 +24,14 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const 途中のページ: Story = {}
+export const Middle: Story = { name: '途中のページ' }
 
-export const 先頭のページ: Story = {
+export const First: Story = {
+  name: '先頭のページ',
   args: { page: 1 },
 }
 
-export const 末尾のページ: Story = {
+export const Last: Story = {
+  name: '末尾のページ',
   args: { page: 12 },
 }

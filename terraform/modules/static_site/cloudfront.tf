@@ -1,8 +1,14 @@
 locals {
   origin_id = "s3-${var.bucket_name}"
 
-  # 合言葉は Basic 認証の形（`Basic <利用者名:合言葉 を base64 にしたもの>`）で関数に埋め込む
-  basic_auth_credential = var.basic_auth == null ? "null" : jsonencode("Basic ${base64encode("${var.basic_auth.username}:${var.basic_auth.password}")}")
+  # 合言葉は Basic 認証の形（`Basic <利用者名:合言葉 を base64 にしたもの>`）で関数に埋め込む。
+  # guest_basic_auth に足した一時的な合言葉も、同じ一覧に並べて通す
+  basic_auth_credentials = var.basic_auth == null ? "null" : jsonencode([
+    for entry in concat(
+      [{ username = var.basic_auth.username, password = var.basic_auth.password }],
+      [for guest in var.guest_basic_auth : { username = guest.username, password = guest.password }],
+    ) : "Basic ${base64encode("${entry.username}:${entry.password}")}"
+  ])
 }
 
 resource "aws_cloudfront_function" "request" {
@@ -12,8 +18,8 @@ resource "aws_cloudfront_function" "request" {
   publish = true
 
   code = templatefile("${path.module}/functions/request.js.tftpl", {
-    site_domain           = var.site_domain
-    basic_auth_credential = local.basic_auth_credential
+    site_domain            = var.site_domain
+    basic_auth_credentials = local.basic_auth_credentials
   })
 }
 

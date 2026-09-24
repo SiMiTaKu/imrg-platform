@@ -1,6 +1,4 @@
 <script lang="ts" module>
-  import { STEP_GAP, STEP_PADDING } from '../config/orderService'
-
   /** 依頼の流れの1段階 */
   export interface OrderFlowStep {
     /** 段階の名前 */
@@ -8,186 +6,201 @@
     /** 段階の説明 */
     description: string
   }
-
-  /**
-   * PC で段階を横に並べるときの、1段階の幅
-   * @param stepCount - 段階の数
-   * @returns CSS の幅の値
-   */
-  const pcStepWidth = (stepCount: number): string =>
-    `calc(((100% - ${STEP_GAP}px * ${stepCount - 1}) / ${stepCount}) - ${STEP_PADDING}px)`
 </script>
 
 <script lang="ts">
-  import { Heading } from '@imrg-platform/design-system'
   import { pageData } from '@shared/lib/device'
+  import { SectionHeading } from '@features/sectionHeading'
 
   /** 依頼を受け付けるページ（曲編集・手具装飾）の「依頼の流れ」の引数 */
   interface Props {
     /** 流れの前に大きく出す呼びかけ。1要素を1行にする */
     messageLines: string[]
+    /** 見出しの上に出す小さなラベル */
+    eyebrow: string
     /** 見出し */
     title: string
     /** 見出しの下に出す英語の見出し。省くと出さない（英語ページ） */
     subtitle?: string
+    /** 見出しの下に出す補足 */
+    lead: string
     /** 依頼の流れ（順番どおり） */
     steps: OrderFlowStep[]
   }
 
-  const { messageLines, title, subtitle, steps }: Props = $props()
+  const { messageLines, eyebrow, title, subtitle, lead, steps }: Props = $props()
+
+  const isMobile = $derived($pageData.isMobile)
 </script>
 
-<section
-  class="flow-section"
-  class:desktop={!$pageData.isMobile}
-  class:mobile={$pageData.isMobile}
-  style:--item-width={$pageData.isMobile ? undefined : pcStepWidth(steps.length)}
->
-  <div class="message">
-    {#each messageLines as line, index (index)}
-      {#if index > 0}<br />{/if}{line}
-    {/each}
+<section class="flow" class:mobile={isMobile} style:--step-count={steps.length} id="flow">
+  <div class="inner">
+    <p class="message">
+      {#each messageLines as line, index (index)}
+        {#if index > 0}<br />{/if}<span class="message-line">{line}</span>
+      {/each}
+    </p>
+
+    <SectionHeading {eyebrow} {title} {subtitle} {lead} />
+
+    <ol class="steps">
+      {#each steps as step, index (index)}
+        {#if index > 0}
+          <!-- 段階のつながりを示す矢印。読み上げには要らないので隠す -->
+          <li class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 28" width="22" height="26">
+              <path
+                d="M5 5 L19 14 L5 23 Z"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="7"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </li>
+        {/if}
+        <li class="step">
+          <span class="index">{index + 1}</span>
+          <div class="words">
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </li>
+      {/each}
+    </ol>
   </div>
-  <Heading
-    fontSize={$pageData.isMobile ? 30 : 40}
-    subtitleFontSize={$pageData.isMobile ? 16 : 20}
-    {subtitle}
-    {title}
-  />
-  <ul class="flow">
-    {#each steps as step, index (index)}
-      <li class="item">
-        <div class="item-index">{index + 1}</div>
-        <h3 class="item-label">{step.title}</h3>
-        <p class="item-description">{step.description}</p>
-      </li>
-    {/each}
-  </ul>
 </section>
 
 <style lang="scss">
-  // PC の --item-width は段階の数で変わるので、要素の style で渡す
-  .desktop {
-    --width: 1024px;
-    --message-font-size: 36px;
-    --message-margin-bottom: 80px;
-    --flow-flex-direction: row;
-    --item-flex-direction: column;
-    --item-gap: 20px;
-    --item-padding: 16px;
-    --item-label-width: 100%;
-    --item-label-height: 40px;
-    --item-label-font-size: 24px;
-    --item-label-after-width: 50px;
-    --item-label-after-height: 3px;
-    --item-label-after-top: 64px;
-    --item-label-after-left: 50%;
-    --item-label-after-transform: translateX(-50%);
-    --item-description-width: 100%;
+  .flow {
+    width: 100%;
+    background: map.get($gray, background);
   }
 
-  .mobile {
-    --width: 90%;
-    --message-font-size: 30px;
-    --message-margin-bottom: 60px;
-    --flow-flex-direction: column;
-    --item-flex-direction: row;
-    --item-gap: 24px;
-    --item-width: calc(100% - 24px);
-    --item-padding: 8px 8px 8px 16px;
-    --item-label-width: 36%;
-    --item-label-font-size: 20px;
-    --item-label-after-width: 2px;
-    --item-label-after-height: 30px;
-    --item-label-after-top: 50%;
-    --item-label-after-left: 38%;
-    --item-label-after-transform: translateY(-50%);
-    --item-description-width: 64%;
-  }
-
-  .flow-section {
-    width: var(--width);
+  .inner {
+    width: 100%;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 0 0 80px;
-    text-align: center;
+    padding: $space-size-80 var(--content-padding-inline);
+  }
+
+  .mobile .inner {
+    padding: $space-size-48 var(--content-padding-inline);
   }
 
   .message {
-    margin-bottom: var(--message-margin-bottom);
-    font-size: var(--message-font-size);
+    margin: 0 0 $space-size-40;
+    font-size: $font-size-28;
     font-weight: bold;
-    color: #666;
-    text-shadow: 3px 3px #ffa;
+    color: map.get($gray, text);
+    line-height: 1.6;
+    text-align: center;
+    overflow-wrap: anywhere;
   }
 
-  .flow {
-    display: flex;
-    flex-direction: var(--flow-flex-direction);
-    gap: 20px;
+  .mobile .message {
+    margin-bottom: $space-size-32;
+    font-size: $font-size-20;
+  }
+
+  // 呼びかけの下線は青。蛍光色の影ではなく、読める線で強調する
+  .message-line {
+    box-decoration-break: clone;
+    background: linear-gradient(transparent 70%, map.get($sky-blue, 200) 70%);
+  }
+
+  // 段階を詰めて並べ、三角形はその境目に浮かせる。
+  // 矢印の列は幅を持たないので、カードどうしはすき間なく並ぶ
+  .steps {
+    display: grid;
+    gap: $space-size-4;
+    grid-template-columns: repeat(var(--step-count), minmax(0, 1fr) 0);
+    align-items: stretch;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .item {
+  // カードの境目に浮かせる三角形。角を丸くしてある
+  .arrow {
     position: relative;
-    display: flex;
-    flex-direction: var(--item-flex-direction);
-    gap: var(--item-gap);
-    width: var(--item-width);
-    padding: var(--item-padding);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    color: map.get($gray, 300);
   }
 
-  .item-index {
+  .arrow svg {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  // 縦に並ぶときは下を向く
+  .mobile .arrow svg {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  // カードの境目にかぶせる。灰色の三角形で、つながりを示す
+
+  .mobile .steps {
+    grid-template-columns: 1fr;
+  }
+
+  // 縦に並ぶので、三角形も下向きにする
+
+  // 番号・名前・説明を縦に積むだけ。番号を重ねない
+  .steps .step {
     display: flex;
-    width: 30px;
-    height: 30px;
-    font-weight: bold;
-    color: white;
-    border-radius: 1em;
-    background: rgb(50, 150, 255);
-    top: -10px;
-    left: -10px;
+    gap: $space-size-12;
+    align-items: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+    padding: $space-size-16;
+    border-top: 3px solid map.get($sky-blue, border);
+    border-radius: 8px;
+    background: $white;
+  }
+
+  .words {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-4;
+    min-inline-size: 0;
+  }
+
+  .mobile .steps .step {
+    padding: $space-size-16;
+  }
+
+  .index {
+    flex: none;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .item-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--item-label-width);
-    height: var(--item-label-height);
-    margin: 0;
-    font-size: var(--item-label-font-size);
+    width: 32px;
+    height: 32px;
+    font-size: $font-size-16;
     font-weight: bold;
-    text-shadow: 0 0 10px rgb(50, 150, 255, 0.5);
-
-    &::after {
-      position: absolute;
-      top: var(--item-label-after-top);
-      left: var(--item-label-after-left);
-      display: block;
-      width: var(--item-label-after-width);
-      height: var(--item-label-after-height);
-      content: '';
-      background: rgb(50, 150, 255);
-      transform: var(--item-label-after-transform);
-    }
+    color: $white;
+    border-radius: 999px;
+    background: map.get($sky-blue, button);
+    font-variant-numeric: tabular-nums;
   }
 
-  // スマホでは段階の名前の幅が狭く、英語の長い名前（Consultation など）が区切り線にかかるため小さくする。
-  // 日本語ページの見た目（計算済みスタイル）を変えないよう、変数を足さずに言語で当てる
-  .mobile .item-label:lang(en) {
-    font-size: 16px;
-  }
-
-  .item-description {
-    width: var(--item-description-width);
+  h3 {
     margin: 0;
-    text-align: left;
+    font-size: $font-size-18;
+    color: map.get($gray, text);
+    overflow-wrap: anywhere;
+  }
+
+  .steps p {
+    margin: 0;
+    font-size: $font-size-14;
+    color: map.get($gray, 600);
+    line-height: 1.8;
+    overflow-wrap: anywhere;
   }
 </style>

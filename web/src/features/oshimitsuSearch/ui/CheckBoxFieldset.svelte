@@ -46,19 +46,21 @@
   fieldset {
     box-sizing: border-box;
 
+    // 親が align-items: flex-start / center だと、指定が無いと中身の幅まで縮む。
+    // 選択肢が2つしかないと 172px ほどになって潰れて見えるので、横いっぱいに広げる
+    width: 100%;
+
     // fieldset は既定で中身より狭くならないので、狭い画面でも縮むようにする
     min-inline-size: 0;
     max-width: 100%;
   }
 
   .desktop {
-    --width: 343px;
     --legend-font-size: #{$font-size-24};
     --label-font-size: #{$font-size-20};
   }
 
   .mobile {
-    --width: 343px;
     --legend-font-size: #{$font-size-20};
     --label-font-size: #{$font-size-18};
   }
@@ -66,10 +68,12 @@
   .wrapper {
     display: grid;
     gap: $space-size-8;
-    box-sizing: border-box;
-    width: var(--width);
+
+    // 固定幅だと、画面がそれより狭いときに横へはみ出す
+    width: 100%;
     min-width: 0;
     max-width: 100%;
+    box-sizing: border-box;
   }
 
   .legend {

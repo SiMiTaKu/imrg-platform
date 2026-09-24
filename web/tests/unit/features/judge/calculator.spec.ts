@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import {
+  POINT_A_FINE_OPTIONS,
   POINT_A_OPTIONS,
+  POINT_B_ITEMS,
   createExecutionDeduct,
+  getAmountOfCountedFaults,
   getAmountOfPointA,
   getAmountOfPointB,
   getDecisionPoints,
@@ -32,19 +35,54 @@ const makeDeduct = ({
   const pointA = Object.fromEntries(
     Object.keys(base.pointA).map((key) => [key, option]),
   ) as ExecutionDeduct['pointA']
-  return { pointA, pointB: { droppedApparatus: { single, double }, miss } }
+  const counts = { ...base.pointB.counts, droppedSingle: single, droppedDouble: double }
+  return { pointA, pointB: { counts, miss } }
 }
 
 /**
  * 選択肢のコードから選択肢を返す
- * @param code - 選択肢のコード（1〜10）
+ * @param code - 選択肢のコード（規則の5段階は 1〜5。0.05 刻みの補助は 1.5〜5.5）
  * @returns 選択肢
  */
 const optionOf = (code: number): PointAOption => {
-  const option = POINT_A_OPTIONS.find((candidate) => candidate.code === code)
+  const option = [...POINT_A_OPTIONS, ...POINT_A_FINE_OPTIONS].find(
+    (candidate) => candidate.code === code,
+  )
   if (!option) throw new Error(`選択肢 ${code} がありません`)
   return option
 }
+
+describe('POINT_A_OPTIONS', () => {
+  describe('正常系', () => {
+    it('規則の実施欠点基準どおり、0.50 から 0.10 までの5段階になっていること', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = POINT_A_OPTIONS.map((option) => option.value)
+      // #endregion
+
+      // #region Then
+      expect(result).toEqual([0.5, 0.4, 0.3, 0.2, 0.1])
+      // #endregion
+    })
+
+    it('補助の選択肢が、段階の間を 0.05 刻みで埋めていること', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = POINT_A_FINE_OPTIONS.map((option) => option.value)
+      // #endregion
+
+      // #region Then
+      expect(result).toEqual([0.45, 0.35, 0.25, 0.15, 0.05])
+      // #endregion
+    })
+  })
+})
 
 describe('createExecutionDeduct', () => {
   describe('正常系', () => {
@@ -60,7 +98,9 @@ describe('createExecutionDeduct', () => {
       // #region Then
       expect(Object.keys(result.pointA)).toHaveLength(11)
       expect(Object.values(result.pointA).every((option) => option.code === 1)).toBe(true)
-      expect(result.pointB).toEqual({ droppedApparatus: { single: 0, double: 0 }, miss: 0 })
+      expect(Object.values(result.pointB.counts).every((count) => count === 0)).toBe(true)
+      expect(Object.keys(result.pointB.counts)).toHaveLength(POINT_B_ITEMS.length)
+      expect(result.pointB.miss).toBe(0)
       // #endregion
     })
   })
@@ -70,9 +110,9 @@ describe('getAmountOfPointA', () => {
   describe('正常系', () => {
     it.each([
       ['全項目が 0.5 の場合、5.5 になること', 1, 5.5],
-      ['全項目が 0.45 の場合、小数の誤差なく 4.95 になること', 2, 4.95],
-      ['全項目が 0.35 の場合、小数の誤差なく 3.85 になること', 4, 3.85],
-      ['全項目が 0.05 の場合、小数の誤差なく 0.55 になること', 10, 0.55],
+      ['全項目が 0.45 の場合、小数の誤差なく 4.95 になること', 1.5, 4.95],
+      ['全項目が 0.35 の場合、小数の誤差なく 3.85 になること', 2.5, 3.85],
+      ['全項目が 0.05 の場合、小数の誤差なく 0.55 になること', 5.5, 0.55],
     ])('%s', (_, code, expected) => {
       // #region Given
       const data = makeDeduct({ option: optionOf(code) })
@@ -107,6 +147,71 @@ describe('getDeductionOfDroppedApparatus', () => {
 
       // #region Then
       expect(result).toBeCloseTo(expected, 10)
+      // #endregion
+    })
+  })
+})
+
+describe('getAmountOfCountedFaults', () => {
+  describe('正常系', () => {
+    it('区分の違う欠点を数えた場合、小数の誤差なく合計になること', () => {
+      // #region Given
+      const base = makeDeduct({ single: 1 })
+      const data: ExecutionDeduct = {
+        ...base,
+        pointB: {
+          ...base.pointB,
+          // 手具の技術 0.05 ×2、転回系 0.30 ×1、その他 0.10 ×3、音楽 0.10 ×1
+          counts: {
+            ...base.pointB.counts,
+            catchPlaceChanged: 2,
+            landingFall: 1,
+            stagger: 3,
+            musicRhythm: 1,
+          },
+        },
+      }
+      // #endregion
+
+      // #region When
+      const result = getAmountOfCountedFaults(data)
+      // #endregion
+
+      // #region Then
+      // 落下 0.30 + 0.10 + 0.30 + 0.30 + 0.10
+      expect(result).toBe(1.1)
+      // #endregion
+    })
+  })
+})
+
+describe('POINT_B_ITEMS', () => {
+  describe('正常系', () => {
+    it('規則の実施欠点表どおり、数える欠点が 26 項目あること', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = POINT_B_ITEMS.length
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(26)
+      // #endregion
+    })
+
+    it('項目のキーが重複していないこと', () => {
+      // #region Given
+      // 定数そのものを見る
+      // #endregion
+
+      // #region When
+      const result = new Set(POINT_B_ITEMS.map((item) => item.key)).size
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(POINT_B_ITEMS.length)
       // #endregion
     })
   })
@@ -187,8 +292,8 @@ describe('getAmountOfPointB', () => {
 describe('getDecisionPoints', () => {
   describe('正常系', () => {
     it.each([
-      ['減点が最小で落下とミスが無い場合、9.45 になること', 10, 0, 0, 0, 9.45],
-      ['Aが 0.55 で落下 1 回とミス 0.2 の場合、8.95 になること', 10, 1, 0, 0.2, 8.95],
+      ['減点が最小で落下とミスが無い場合、9.45 になること', 5.5, 0, 0, 0, 9.45],
+      ['Aが 0.55 で落下 1 回とミス 0.2 の場合、8.95 になること', 5.5, 1, 0, 0.2, 8.95],
       ['Aが 5.5 の場合、4.5 になること', 1, 0, 0, 0, 4.5],
     ])('%s', (_, code, single, double, miss, expected) => {
       // #region Given
