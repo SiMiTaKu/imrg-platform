@@ -3,23 +3,23 @@
  */
 export type PointAOption = {
   /**
-   * 選択肢のコード。グラフの値にも使う。
+   * 付けた点（1〜5）。グラフの値にも使う。
    *
    * @remarks
-   * 1 が「当てはまる」で減点なし。5 が「当てはまらない」でいちばん大きい減点
+   * 5 がいちばん良く、減点なし。1 点下がるごとに減点が増える
    */
   code: number
-  /** 減点（0.5〜0.05） */
+  /** 減点 */
   value: number
 }
 
 /**
- * 規則の5段階の減点1つ分。段階の言い回しを持つ
+ * 実施のAの段階1つ分。
+ *
+ * @remarks
+ * いまは `PointAOption` と同じ形だが、呼び分けのために名前を残してある
  */
-export type PointALevel = PointAOption & {
-  /** 段階の言い回し（表示中の言語）。例: やや当てはまる */
-  level: () => string
-}
+export type PointALevel = PointAOption
 
 /**
  * 実施のAの減点項目のキー
@@ -73,19 +73,17 @@ export type PointBScaleKey =
   | 'musicMatch'
 
 /**
- * あてはまり具合の5段階。
+ * 実施のBで付ける点。
  *
  * @remarks
- * 1 が「当てはまる」で減点なし。1つ下がるごとに減点が増える
+ * 5 がいちばん良く、減点なし。1 点下がるごとに減点が増える
  */
 export type PointBScaleCode = 1 | 2 | 3 | 4 | 5
 
-/** あてはまり具合の選択肢1つ分 */
+/** 実施のBの点の選択肢1つ分 */
 export type PointBScaleOption = {
-  /** 段階。1 が「当てはまる」 */
+  /** 付けた点（1〜5）。5 がいちばん良い */
   code: PointBScaleCode
-  /** 段階の言い回し（表示中の言語） */
-  label: () => string
 }
 
 /** 実施のBの設問1つ分 */
@@ -110,7 +108,7 @@ export type PointBScaleItem = {
 export type PointB = {
   /** 手具を落とした回数 */
   drops: number
-  /** あてはまり具合。まだ答えていない設問は持たない */
+  /** 設問ごとに付けた点。まだ答えていない設問は持たない */
   scales: Partial<Record<PointBScaleKey, PointBScaleCode>>
 }
 

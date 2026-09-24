@@ -18,11 +18,8 @@
 
   const { onsubmit }: Props = $props()
 
-  /** 選択肢は言葉だけにする。減点の数は出さない */
-  const options = POINT_B_SCALE_OPTIONS.map((option) => ({
-    code: option.code,
-    label: option.label(),
-  }))
+  /** 1〜5 点の札。減点の数は出さない */
+  const options = POINT_B_SCALE_OPTIONS.map((option) => ({ code: option.code }))
 
   /** 落下の回数の札を開いているか。最初はここから答える */
   let dropsOpen = $state(true)

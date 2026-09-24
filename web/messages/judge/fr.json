@@ -9,7 +9,7 @@
   "judge_annotation": "{annotation}",
   "judge_submit": "Valider",
   "judge_point_a_heading": "Pénalités A",
-  "judge_point_a_note": "* Fiez-vous à votre intuition pour choisir.",
+  "judge_point_a_note": "Répondez de 1 à 5. 5 est le meilleur.",
   "judge_point_a_section": "Technique corporelle",
   "judge_point_a_beautiful_pose_title": "Beauté de la posture",
   "judge_point_a_beautiful_pose_annotation": "La posture était-elle belle ?",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "Pas encore choisi",
   "judge_point_a_progress": "{done} sur {total} critères choisis",
   "judge_point_b_heading": "Éléments de notation B",
-  "judge_point_b_note": "Repensez à l'enchaînement et choisissez la réponse la plus proche.",
+  "judge_point_b_note": "Repensez à l'enchaînement et répondez de 1 à 5. 5 est le meilleur.",
   "judge_counter_decrease": "Diminuer le nombre de un",
   "judge_counter_increase": "Augmenter le nombre de un",
   "judge_result_title": "Note finale",
@@ -122,9 +122,8 @@
   "judge_times": "{count} fois",
   "judge_next": "Suivant",
   "judge_scale_yes": "Oui",
-  "judge_scale_mostly": "Plutôt oui",
-  "judge_scale_neutral": "Ni oui ni non",
-  "judge_scale_partly": "Plutôt non",
   "judge_scale_no": "Non",
-  "judge_scale_label": "Degré de correspondance"
+  "judge_scale_label": "Degré de correspondance",
+  "judge_scale_score": "{score} pts",
+  "judge_scale_hint": "5 est le meilleur"
 }

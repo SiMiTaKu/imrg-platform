@@ -9,7 +9,7 @@
   "judge_annotation": "※ {annotation}",
   "judge_submit": "Готово",
   "judge_point_a_heading": "Сбавки группы A",
-  "judge_point_a_note": "※ Доверяйте своему первому впечатлению",
+  "judge_point_a_note": "※Оцените от 1 до 5. 5 — лучше всего",
   "judge_point_a_section": "Техника без предмета",
   "judge_point_a_beautiful_pose_title": "Красота осанки",
   "judge_point_a_beautiful_pose_annotation": "Осанка выглядела красиво?",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "Не выбрано",
   "judge_point_a_progress": "Выбрано {done} из {total} пунктов",
   "judge_point_b_heading": "Элементы оценки B",
-  "judge_point_b_note": "※Вспомните выступление и выберите наиболее близкий ответ",
+  "judge_point_b_note": "※Вспомните выступление и оцените от 1 до 5. 5 — лучше всего",
   "judge_counter_decrease": "Уменьшить на единицу",
   "judge_counter_increase": "Увеличить на единицу",
   "judge_result_title": "Итоговая оценка",
@@ -122,9 +122,8 @@
   "judge_times": "{count} раз",
   "judge_next": "Далее",
   "judge_scale_yes": "Да",
-  "judge_scale_mostly": "Скорее да",
-  "judge_scale_neutral": "Затрудняюсь",
-  "judge_scale_partly": "Скорее нет",
   "judge_scale_no": "Нет",
-  "judge_scale_label": "Насколько подходит"
+  "judge_scale_label": "Насколько подходит",
+  "judge_scale_score": "{score} б.",
+  "judge_scale_hint": "5 — лучше всего"
 }

@@ -9,7 +9,7 @@
   "judge_annotation": "{annotation}",
   "judge_submit": "Confirmar",
   "judge_point_a_heading": "Penalizaciones A",
-  "judge_point_a_note": "* Confía en tu intuición al elegir.",
+  "judge_point_a_note": "Responde del 1 al 5. El 5 es lo mejor.",
   "judge_point_a_section": "Técnica corporal",
   "judge_point_a_beautiful_pose_title": "Belleza de la postura",
   "judge_point_a_beautiful_pose_annotation": "¿La postura se vio bonita?",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "Sin elegir",
   "judge_point_a_progress": "{done} de {total} apartados elegidos",
   "judge_point_b_heading": "Elementos de puntuación de B",
-  "judge_point_b_note": "Recuerda el ejercicio y elige la respuesta más cercana.",
+  "judge_point_b_note": "Recuerda el ejercicio y responde del 1 al 5. El 5 es lo mejor.",
   "judge_counter_decrease": "Restar uno",
   "judge_counter_increase": "Sumar uno",
   "judge_result_title": "Nota final",
@@ -122,9 +122,8 @@
   "judge_times": "{count} veces",
   "judge_next": "Siguiente",
   "judge_scale_yes": "Sí",
-  "judge_scale_mostly": "Bastante",
-  "judge_scale_neutral": "Ni sí ni no",
-  "judge_scale_partly": "Poco",
   "judge_scale_no": "No",
-  "judge_scale_label": "Grado en que se cumple"
+  "judge_scale_label": "Grado en que se cumple",
+  "judge_scale_score": "{score} pts",
+  "judge_scale_hint": "5 es lo mejor"
 }

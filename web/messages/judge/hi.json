@@ -9,7 +9,7 @@
   "judge_annotation": "{annotation}",
   "judge_submit": "पुष्टि करें",
   "judge_point_a_heading": "A की कटौतियाँ",
-  "judge_point_a_note": "* अपने अंदाज़े पर भरोसा करके चुनें।",
+  "judge_point_a_note": "※1 से 5 तक उत्तर दें। 5 सबसे अच्छा है",
   "judge_point_a_section": "शारीरिक तकनीक",
   "judge_point_a_beautiful_pose_title": "सुंदर मुद्रा",
   "judge_point_a_beautiful_pose_annotation": "क्या मुद्रा सुंदर लगी?",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "अभी चुना नहीं",
   "judge_point_a_progress": "{total} में से {done} मद चुने गए",
   "judge_point_b_heading": "B के अंक देने के बिंदु",
-  "judge_point_b_note": "※प्रदर्शन याद करके सबसे नज़दीकी उत्तर चुनें",
+  "judge_point_b_note": "※प्रदर्शन याद करके 1 से 5 तक उत्तर दें। 5 सबसे अच्छा है",
   "judge_counter_decrease": "संख्या एक घटाएँ",
   "judge_counter_increase": "संख्या एक बढ़ाएँ",
   "judge_result_title": "अंतिम अंक",
@@ -122,9 +122,8 @@
   "judge_times": "{count} बार",
   "judge_next": "आगे",
   "judge_scale_yes": "हाँ",
-  "judge_scale_mostly": "कुछ हद तक हाँ",
-  "judge_scale_neutral": "कह नहीं सकते",
-  "judge_scale_partly": "कुछ हद तक नहीं",
   "judge_scale_no": "नहीं",
-  "judge_scale_label": "कितना लागू होता है"
+  "judge_scale_label": "कितना लागू होता है",
+  "judge_scale_score": "{score} अंक",
+  "judge_scale_hint": "5 सबसे अच्छा है"
 }

@@ -9,7 +9,7 @@
   "judge_annotation": "※{annotation}",
   "judge_submit": "결정",
   "judge_point_a_heading": "A 감점 항목",
-  "judge_point_a_note": "※직감을 믿고 선택해 주세요",
+  "judge_point_a_note": "※1〜5점으로 답해 주세요. 5점이 가장 좋습니다",
   "judge_point_a_section": "신체 기술",
   "judge_point_a_beautiful_pose_title": "아름다운 자세",
   "judge_point_a_beautiful_pose_annotation": "자세가 아름다웠나요?",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "미선택",
   "judge_point_a_progress": "{total}개 중 {done}개 항목을 선택했습니다",
   "judge_point_b_heading": "B의 채점 항목",
-  "judge_point_b_note": "※연기를 떠올려 가장 가까운 것을 골라 주세요",
+  "judge_point_b_note": "※연기를 떠올려 1〜5점으로 답해 주세요. 5점이 가장 좋습니다",
   "judge_counter_decrease": "횟수를 1 줄이기",
   "judge_counter_increase": "횟수를 1 늘리기",
   "judge_result_title": "최종 점수",
@@ -122,9 +122,8 @@
   "judge_times": "{count}회",
   "judge_next": "다음",
   "judge_scale_yes": "그렇다",
-  "judge_scale_mostly": "조금 그렇다",
-  "judge_scale_neutral": "보통이다",
-  "judge_scale_partly": "조금 아니다",
   "judge_scale_no": "아니다",
-  "judge_scale_label": "해당하는 정도"
+  "judge_scale_label": "해당하는 정도",
+  "judge_scale_score": "{score}점",
+  "judge_scale_hint": "5점이 가장 좋음"
 }

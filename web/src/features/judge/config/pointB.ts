@@ -1,5 +1,5 @@
 import { m } from '$lib/paraglide/messages'
-import type { PointBScaleItem, PointBScaleOption } from '../model/executionDeduct'
+import type { PointBScaleCode, PointBScaleItem, PointBScaleOption } from '../model/executionDeduct'
 
 /**
  * 実施のBの設問。
@@ -26,20 +26,20 @@ export const POINT_B_SCALE_ITEMS: readonly PointBScaleItem[] = [
 ]
 
 /**
- * あてはまり具合の5段階。
+ * 実施のBで付けられる点。1〜5 点。
  *
  * @remarks
- * 「当てはまる」が減点なしで、1つ下がるごとに `POINT_B_SCALE_STEP` ずつ減点が増える
+ * **5点が減点なし**で、1点下がるごとに `POINT_B_SCALE_STEP` ずつ減点が増える。
+ * 言葉ではなく数にしているのは、狭い画面でも5つを横1列に並べるため
  */
-export const POINT_B_SCALE_OPTIONS: readonly PointBScaleOption[] = [
-  { code: 1, label: m.judge_scale_yes },
-  { code: 2, label: m.judge_scale_mostly },
-  { code: 3, label: m.judge_scale_neutral },
-  { code: 4, label: m.judge_scale_partly },
-  { code: 5, label: m.judge_scale_no },
-]
+export const POINT_B_SCALE_OPTIONS: readonly PointBScaleOption[] = [1, 2, 3, 4, 5].map((score) => ({
+  code: score as PointBScaleCode,
+}))
 
-/** 段階が1つ下がるごとに増える減点 */
+/** 点をいちばん良く付けたときの値 */
+export const POINT_B_BEST_SCORE = 5
+
+/** 1点下がるごとに増える減点 */
 export const POINT_B_SCALE_STEP = 0.3
 
 /** 手具を1回落としたときの減点。規則の 0.30 点（46ページ）に合わせてある */

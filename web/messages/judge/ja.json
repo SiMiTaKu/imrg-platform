@@ -9,7 +9,7 @@
   "judge_annotation": "※{annotation}",
   "judge_submit": "決定",
   "judge_point_a_heading": "Aの減点項目",
-  "judge_point_a_note": "※あなたの直感を信じて選択してください",
+  "judge_point_a_note": "※1〜5 点で答えてください。5 点がいちばん良い",
   "judge_point_a_section": "徒手の技術",
   "judge_point_a_beautiful_pose_title": "美しい姿勢",
   "judge_point_a_beautiful_pose_annotation": "姿勢が綺麗だと感じたか",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "未選択",
   "judge_point_a_progress": "{done} / {total} 項目を選びました",
   "judge_point_b_heading": "Bの採点項目",
-  "judge_point_b_note": "※演技を思い出して、いちばん近いものを選んでください",
+  "judge_point_b_note": "※演技を思い出して 1〜5 点で答えてください。5 点がいちばん良い",
   "judge_counter_decrease": "回数を1減らす",
   "judge_counter_increase": "回数を1増やす",
   "judge_result_title": "決定点",
@@ -122,9 +122,8 @@
   "judge_times": "{count} 回",
   "judge_next": "次へ",
   "judge_scale_yes": "当てはまる",
-  "judge_scale_mostly": "やや当てはまる",
-  "judge_scale_neutral": "どちらでもない",
-  "judge_scale_partly": "やや当てはまらない",
   "judge_scale_no": "当てはまらない",
-  "judge_scale_label": "あてはまり具合"
+  "judge_scale_label": "あてはまり具合",
+  "judge_scale_score": "{score} 点",
+  "judge_scale_hint": "5 点がいちばん良い"
 }

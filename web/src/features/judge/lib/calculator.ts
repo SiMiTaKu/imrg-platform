@@ -1,10 +1,15 @@
 import { MAX_EXECUTION_SCORE, POINT_A_OPTIONS } from '../config/pointA'
-import { POINT_B_DROP_VALUE, POINT_B_SCALE_ITEMS, POINT_B_SCALE_STEP } from '../config/pointB'
+import {
+  POINT_B_BEST_SCORE,
+  POINT_B_DROP_VALUE,
+  POINT_B_SCALE_ITEMS,
+  POINT_B_SCALE_STEP,
+} from '../config/pointB'
 import type { ExecutionDeduct, PointBScaleCode, PointBScaleKey } from '../model/executionDeduct'
 
 /**
  * 採点を始めるときの採点項目を作る
- * @returns Aの各項目は先頭の選択肢、Bはまだ答えていない状態
+ * @returns Aの各項目は1点（まだ選んでいない状態）、Bはまだ答えていない状態
  */
 export const createExecutionDeduct = (): ExecutionDeduct => {
   const [initialOption] = POINT_A_OPTIONS
@@ -41,19 +46,19 @@ export const getAmountOfPointA = (data: ExecutionDeduct): number => {
 }
 
 /**
- * あてはまり具合1つ分の減点を返す。
+ * 設問1つに付けた点から減点を返す。
  *
  * @remarks
- * 「当てはまる」（1）は減点なし。1つ下がるごとに 0.3 増え、設問ごとの重みを掛ける
+ * 5点は減点なし。1点下がるごとに 0.3 増え、設問ごとの重みを掛ける
  *
- * @param code - 選んだ段階。まだ答えていなければ undefined
+ * @param code - 付けた点（1〜5）。まだ答えていなければ undefined
  * @param weight - 設問の重み
  * @returns その設問の減点
  */
 export const getDeductionOfScale = (code: PointBScaleCode | undefined, weight: number): number => {
   if (code === undefined) return 0
   // 小数の誤差をなくすため、100 倍した整数で計算してから元に戻す
-  return ((code - 1) * Math.round(POINT_B_SCALE_STEP * 100) * weight) / 100
+  return ((POINT_B_BEST_SCORE - code) * Math.round(POINT_B_SCALE_STEP * 100) * weight) / 100
 }
 
 /**
@@ -77,7 +82,7 @@ export const getDeductionOfDroppedApparatus = (data: ExecutionDeduct): number =>
   (data.pointB.drops * Math.round(POINT_B_DROP_VALUE * 100)) / 100
 
 /**
- * あてはまり具合で答える設問すべての減点を返す
+ * 点で答える設問すべての減点を返す
  * @param data - 実施の採点項目
  * @returns 8つの設問の減点の合計
  */

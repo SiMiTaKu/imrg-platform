@@ -9,7 +9,7 @@
   "judge_annotation": "※{annotation}",
   "judge_submit": "确定",
   "judge_point_a_heading": "A 的扣分项目",
-  "judge_point_a_note": "※请相信自己的直觉来选择",
+  "judge_point_a_note": "※请用 1〜5 分作答。5 分最好",
   "judge_point_a_section": "徒手技术",
   "judge_point_a_beautiful_pose_title": "优美的姿势",
   "judge_point_a_beautiful_pose_annotation": "姿态好看吗？",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "尚未选择",
   "judge_point_a_progress": "已选择 {done} / {total} 个项目",
   "judge_point_b_heading": "B的评分项目",
-  "judge_point_b_note": "※请回想演技，选择最接近的答案",
+  "judge_point_b_note": "※请回想演技，用 1〜5 分作答。5 分最好",
   "judge_counter_decrease": "次数减一",
   "judge_counter_increase": "次数加一",
   "judge_result_title": "最后得分",
@@ -122,9 +122,8 @@
   "judge_times": "{count} 次",
   "judge_next": "下一个",
   "judge_scale_yes": "符合",
-  "judge_scale_mostly": "比较符合",
-  "judge_scale_neutral": "一般",
-  "judge_scale_partly": "不太符合",
   "judge_scale_no": "不符合",
-  "judge_scale_label": "符合程度"
+  "judge_scale_label": "符合程度",
+  "judge_scale_score": "{score} 分",
+  "judge_scale_hint": "5 分最好"
 }

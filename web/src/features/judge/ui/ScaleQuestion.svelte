@@ -1,14 +1,13 @@
 <script lang="ts" generics="Code extends number">
   import { JudgeThemeColor } from '../config/themeColor'
+  import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { judgementApparatus } from '../store/apparatus'
   import QuestionCard from './QuestionCard.svelte'
 
   type Option = {
-    /** 選択肢の値 */
+    /** 付けられる点。そのまま札の文字になる */
     code: Code
-    /** 選択肢の言葉（表示中の言語） */
-    label: string
   }
 
   type Props = {
@@ -51,7 +50,7 @@
   const answered = $derived(selected !== undefined)
   /** 閉じているときに見出しの右へ出す言葉。減点の数は出さない */
   const summary = $derived(
-    options.find((option) => option.code === selected)?.label ?? untouchedLabel,
+    selected === undefined ? untouchedLabel : m.judge_scale_score({ score: selected }),
   )
 </script>
 
@@ -80,14 +79,24 @@
         value={option.code}
         onchange={() => onchange(option.code)}
       />
-      <label class="option" for={`${uniqueId}-${option.code}`}>{option.label}</label>
+      <label
+        class="option"
+        aria-label={m.judge_scale_score({ score: option.code })}
+        for={`${uniqueId}-${option.code}`}>{option.code}</label
+      >
     {/each}
   </div>
+
+  <!-- 数だけでは向きが分からないので、両端に意味を添える -->
+  <p class="ends">
+    <span>1 {m.judge_scale_no()}</span>
+    <span>{m.judge_scale_yes()} 5</span>
+  </p>
 </QuestionCard>
 
 <style lang="scss">
   .desktop {
-    --option-font-size: #{$font-size-14};
+    --option-font-size: #{$font-size-20};
     --option-padding: #{$space-size-8} #{$space-size-4};
   }
 
@@ -97,8 +106,8 @@
     1つ 60px ほどになるので、字を小さくして余白を詰める
   */
   .mobile {
-    --option-font-size: #{$font-size-11};
-    --option-padding: #{$space-size-4} #{$space-size-2};
+    --option-font-size: #{$font-size-18};
+    --option-padding: #{$space-size-8} #{$space-size-2};
   }
 
   .options {
@@ -157,5 +166,14 @@
     color: $white;
     border-color: var(--option-color);
     background: var(--option-color);
+  }
+
+  // 両端の目印。1 がいちばん悪く、5 がいちばん良い
+  .ends {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
   }
 </style>

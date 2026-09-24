@@ -59,7 +59,6 @@ describe('createExecutionDeduct', () => {
       expect(Object.values(result.pointA).every((option) => option === POINT_A_OPTIONS[0])).toBe(
         true,
       )
-      expect(getAmountOfPointA(result)).toBe(0)
       expect(result.pointB.drops).toBe(0)
       expect(result.pointB.scales).toEqual({})
       // #endregion
@@ -71,9 +70,9 @@ describe('createExecutionDeduct', () => {
 describe('getAmountOfPointA', () => {
   // #region 正常系
   describe('正常系', () => {
-    it('全項目に「当てはまる」を選んだ場合、減点なしになること', () => {
+    it('全項目に5点を付けた場合、減点なしになること', () => {
       // #region Given
-      const data = makeDeduct({ option: POINT_A_OPTIONS[0] })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[4] })
       // #endregion
 
       // #region When
@@ -85,9 +84,9 @@ describe('getAmountOfPointA', () => {
       // #endregion
     })
 
-    it('全項目に「当てはまらない」を選んだ場合、その減点の11倍になること', () => {
+    it('全項目に1点を付けた場合、その減点の11倍になること', () => {
       // #region Given
-      const data = makeDeduct({ option: POINT_A_OPTIONS[4] })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[0] })
       // #endregion
 
       // #region When
@@ -106,11 +105,11 @@ describe('getDeductionOfScale', () => {
   // #region 正常系
   describe('正常系', () => {
     it.each([
-      ['当てはまる場合、減点なしになること', 1, 1, 0],
-      ['1つ下がった場合、0.3 になること', 2, 1, 0.3],
-      ['当てはまらない場合、1.2 になること', 5, 1, 1.2],
-      ['重み3で1つ下がった場合、0.9 になること', 2, 3, 0.9],
-      ['重み2で当てはまらない場合、2.4 になること', 5, 2, 2.4],
+      ['5点なら減点なしになること', 5, 1, 0],
+      ['4点なら 0.3 になること', 4, 1, 0.3],
+      ['1点なら 1.2 になること', 1, 1, 1.2],
+      ['重み3で4点なら 0.9 になること', 4, 3, 0.9],
+      ['重み2で1点なら 2.4 になること', 1, 2, 2.4],
     ] as const)('%s', (_, code, weight, expected) => {
       // #region When
       const result = getDeductionOfScale(code, weight)
@@ -137,9 +136,9 @@ describe('getDeductionOfScale', () => {
 describe('getDeductionOfPointBItem', () => {
   // #region 正常系
   describe('正常系', () => {
-    it('投げのキャッチは重みが3なので、1つ下がると 0.9 になること', () => {
+    it('投げのキャッチは重みが3なので、4点で 0.9 になること', () => {
       // #region Given
-      const data = makeDeduct({ scales: { throwCatch: 2 } })
+      const data = makeDeduct({ scales: { throwCatch: 4 } })
       // #endregion
 
       // #region When
@@ -151,9 +150,9 @@ describe('getDeductionOfPointBItem', () => {
       // #endregion
     })
 
-    it('着地は重みが2なので、1つ下がると 0.6 になること', () => {
+    it('着地は重みが2なので、4点で 0.6 になること', () => {
       // #region Given
-      const data = makeDeduct({ scales: { landing: 2 } })
+      const data = makeDeduct({ scales: { landing: 4 } })
       // #endregion
 
       // #region When
@@ -195,9 +194,9 @@ describe('getDeductionOfDroppedApparatus', () => {
 describe('getAmountOfScaleFaults', () => {
   // #region 正常系
   describe('正常系', () => {
-    it('すべて当てはまる場合、減点なしになること', () => {
+    it('すべて5点なら減点なしになること', () => {
       // #region Given
-      const data = makeDeduct({ scales: answerAll(1) })
+      const data = makeDeduct({ scales: answerAll(5) })
       // #endregion
 
       // #region When
@@ -209,9 +208,9 @@ describe('getAmountOfScaleFaults', () => {
       // #endregion
     })
 
-    it('すべて1つ下がった場合、重みの合計ぶんになること', () => {
+    it('すべて4点なら、重みの合計ぶんになること', () => {
       // #region Given
-      const data = makeDeduct({ scales: answerAll(2) })
+      const data = makeDeduct({ scales: answerAll(4) })
       const weights = POINT_B_SCALE_ITEMS.reduce((sum, item) => sum + item.weight, 0)
       // #endregion
 
@@ -232,7 +231,7 @@ describe('getAmountOfPointB', () => {
   describe('正常系', () => {
     it('落下と設問の減点を足した値になること', () => {
       // #region Given
-      const data = makeDeduct({ option: POINT_A_OPTIONS[4], drops: 1, scales: { legLine: 2 } })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[0], drops: 1, scales: { legLine: 4 } })
       // #endregion
 
       // #region When
@@ -246,7 +245,7 @@ describe('getAmountOfPointB', () => {
 
     it('上限を超えた場合、上限で止まること', () => {
       // #region Given
-      const data = makeDeduct({ option: POINT_A_OPTIONS[4], drops: 100, scales: answerAll(5) })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[0], drops: 100, scales: answerAll(1) })
       // #endregion
 
       // #region When
@@ -266,7 +265,7 @@ describe('getDecisionPoints', () => {
   describe('正常系', () => {
     it('減点が無い場合、満点になること', () => {
       // #region Given
-      const data = makeDeduct({ option: POINT_A_OPTIONS[0], scales: answerAll(1) })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[4], scales: answerAll(5) })
       // #endregion
 
       // #region When
@@ -280,7 +279,7 @@ describe('getDecisionPoints', () => {
 
     it('AとBの減点を満点から引いた値になること', () => {
       // #region Given
-      const data = makeDeduct({ option: POINT_A_OPTIONS[4], drops: 1, scales: { legLine: 2 } })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[0], drops: 1, scales: { legLine: 4 } })
       // #endregion
 
       // #region When

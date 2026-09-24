@@ -17,8 +17,8 @@
 
   const { onsubmit }: Props = $props()
 
-  /** 選択肢は言葉だけにする。減点の数は出さない */
-  const options = POINT_A_OPTIONS.map((option) => ({ code: option.code, label: option.level() }))
+  /** 1〜5 点の札。減点の数は出さない */
+  const options = POINT_A_OPTIONS.map((option) => ({ code: option.code }))
 
   let submitted = $state(false)
   /** いま開いている項目。最初は先頭の項目だけを開く。すべて閉じているときは undefined */

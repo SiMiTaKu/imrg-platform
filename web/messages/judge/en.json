@@ -9,7 +9,7 @@
   "judge_annotation": "{annotation}",
   "judge_submit": "Confirm",
   "judge_point_a_heading": "A deductions",
-  "judge_point_a_note": "* Trust your instincts when you choose.",
+  "judge_point_a_note": "Answer from 1 to 5. 5 is the best.",
   "judge_point_a_section": "Body technique",
   "judge_point_a_beautiful_pose_title": "Beautiful posture",
   "judge_point_a_beautiful_pose_annotation": "Did the posture look beautiful?",
@@ -36,7 +36,7 @@
   "judge_point_a_item_untouched": "Not chosen yet",
   "judge_point_a_progress": "{done} of {total} items chosen",
   "judge_point_b_heading": "Scoring items for B",
-  "judge_point_b_note": "Recall the routine and pick the closest answer.",
+  "judge_point_b_note": "Recall the routine and answer from 1 to 5. 5 is the best.",
   "judge_counter_decrease": "Decrease the count by one",
   "judge_counter_increase": "Increase the count by one",
   "judge_result_title": "Final score",
@@ -122,9 +122,8 @@
   "judge_times": "{count} times",
   "judge_next": "Next",
   "judge_scale_yes": "Yes",
-  "judge_scale_mostly": "Mostly",
-  "judge_scale_neutral": "Neither",
-  "judge_scale_partly": "Not quite",
   "judge_scale_no": "No",
-  "judge_scale_label": "How well it applies"
+  "judge_scale_label": "How well it applies",
+  "judge_scale_score": "{score} pts",
+  "judge_scale_hint": "5 is the best"
 }
