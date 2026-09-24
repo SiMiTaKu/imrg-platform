@@ -1,5 +1,5 @@
-import { SITE_LOCALES, type SiteLocale } from '@shared/lib/i18n'
-import type { RuleContent, RuleKey, TranslationStatus } from '../model/ruleSource'
+import { SITE_LOCALES } from '@shared/lib/i18n'
+import type { RuleContentByLocale, RuleKey, TranslationStatus } from '../model/ruleSource'
 import { fingerprint } from './fingerprint'
 
 /**
@@ -12,9 +12,7 @@ import { fingerprint } from './fingerprint'
  * @param content - 言語ごとの本文
  * @returns 言語ごとの見立て（日本語を除く）
  */
-export const checkTranslations = (
-  content: Readonly<Record<SiteLocale, RuleContent>>,
-): readonly TranslationStatus[] => {
+export const checkTranslations = (content: RuleContentByLocale): readonly TranslationStatus[] => {
   const japanese = content.ja
   const keys = Object.keys(japanese) as RuleKey[]
 

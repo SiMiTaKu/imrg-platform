@@ -8,7 +8,7 @@ import type { RuleContent } from '../../../model/ruleSource'
  * この章には番号の付いた項目が無く、すべて番号の無い段落でできている。
  * 段落の1つめを `lead`、2つめ以降を `label` の無い `items` として持つ
  */
-export const BASICS_JA: RuleContent = {
+export const BASICS_JA = {
   basics: {
     title: '新体操の特性とその基本',
   },
@@ -124,4 +124,4 @@ export const BASICS_JA: RuleContent = {
       },
     ],
   },
-}
+} satisfies RuleContent

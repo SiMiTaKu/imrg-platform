@@ -1,4 +1,4 @@
-import type { RuleNode } from '../../model/ruleSource'
+import type { RuleChildKey, RuleNode } from '../../model/ruleSource'
 
 /**
  * 3.8 個人徒手の骨格（63〜79ページ）。
@@ -15,7 +15,7 @@ import type { RuleNode } from '../../model/ruleSource'
  * 線画は文字にできないので、枠に印刷されている通し番号・技名・難度だけを
  * `api/tables/freeHandFigures.ts` に写し、節ごとの `figures` からつないである
  */
-export const FREE_HAND_STRUCTURE: RuleNode[] = [
+export const FREE_HAND_STRUCTURE: RuleNode<RuleChildKey<'scoring'>>[] = [
   {
     key: 'scoring.freeHand',
     number: '3.8',

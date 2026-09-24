@@ -7,7 +7,7 @@ import type { RuleNode } from '../../model/ruleSource'
  * 出典は 公益財団法人日本体操協会『新体操男子規則 2025年版』1〜12ページ。
  * 見出しと本文は `content/ja/competition.ts` に置き、ここは「どこに何があるか」だけを持つ
  */
-export const COMPETITION_STRUCTURE: RuleNode = {
+export const COMPETITION_STRUCTURE: RuleNode<'competition'> = {
   key: 'competition',
   number: '1',
   page: 1,

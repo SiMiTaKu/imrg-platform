@@ -7,7 +7,7 @@ import type { RuleContent } from '../../../model/ruleSource'
  * 出典はすべて 公益財団法人日本体操協会『新体操男子規則 2025年版』の 37〜62ページ。
  * 冊子の一次資料から起こした。表と図解は本文に写さず、骨格側の `figures` で対応する表・画像につなぐ
  */
-export const INDIVIDUAL_SCORING_JA: RuleContent = {
+export const INDIVIDUAL_SCORING_JA = {
   'scoring.individual': {
     title: '個人競技',
   },
@@ -675,4 +675,4 @@ export const INDIVIDUAL_SCORING_JA: RuleContent = {
   'scoring.forms.chiefJudge': {
     title: '審判長減点表（男子）',
   },
-}
+} satisfies RuleContent

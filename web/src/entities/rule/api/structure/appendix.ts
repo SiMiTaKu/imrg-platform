@@ -7,7 +7,7 @@ import type { RuleNode } from '../../model/ruleSource'
  * 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』84〜101ページ。
  * 各規程の末尾にある「付則」は、冊子どおり、その規程の本文の続きとして持たせている
  */
-export const APPENDIX_STRUCTURE: RuleNode = {
+export const APPENDIX_STRUCTURE: RuleNode<'appendix'> = {
   key: 'appendix',
   number: '5',
   page: 84,

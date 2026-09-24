@@ -1,4 +1,4 @@
-import type { RuleNode } from '../../model/ruleSource'
+import type { RuleChildKey, RuleNode } from '../../model/ruleSource'
 
 /**
  * 3 採点規則 のうち 3.1 総則・3.2 審判・3.3 一般的な採点規則 の骨格。
@@ -9,7 +9,7 @@ import type { RuleNode } from '../../model/ruleSource'
  *
  * 目次に載っていない節が1つある（3.2.14 審判の配置・21ページ）。本文から起こした
  */
-export const SCORING_GENERAL_STRUCTURE: readonly RuleNode[] = [
+export const SCORING_GENERAL_STRUCTURE: readonly RuleNode<RuleChildKey<'scoring'>>[] = [
   {
     key: 'scoring.general',
     number: '3.1',

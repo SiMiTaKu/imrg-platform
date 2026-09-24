@@ -1,4 +1,4 @@
-import type { RuleNode } from '../../model/ruleSource'
+import type { RuleChildKey, RuleNode } from '../../model/ruleSource'
 
 /**
  * 3 採点規則 3.5 個人競技／3.6 難度表／3.7 採点票等 の骨格。
@@ -16,7 +16,7 @@ import type { RuleNode } from '../../model/ruleSource'
  * 3.6.3.2（転回系）にまとめてぶら下げてある。冊子がその下に置いている小見出し
  * （1 跳躍系・2 バランスなど）は、5段目にあたるのでふしにはせず、表の題に入れてある
  */
-export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode[] = [
+export const INDIVIDUAL_SCORING_STRUCTURE: RuleNode<RuleChildKey<'scoring'>>[] = [
   {
     key: 'scoring.individual',
     number: '3.5',

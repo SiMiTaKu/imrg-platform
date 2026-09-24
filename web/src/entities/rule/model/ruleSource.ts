@@ -1,13 +1,5 @@
 import type { SiteLocale } from '@shared/lib/i18n'
-
-/**
- * 規則の条文を指す鍵。
- *
- * @remarks
- * `競技規則.総則.本規則の指針` のような、点でつないだ英字の名前にする。
- * 骨格（どこに何があるか）と本文（何が書いてあるか）を、この鍵でつなぐ
- */
-export type RuleKey = string
+import type { RuleChildKey, RuleKey } from './ruleKey'
 
 /**
  * 番号の付いた項目。冊子の「1」「（1）」にあたる。
@@ -48,8 +40,32 @@ export interface RuleEntry {
   from?: string
 }
 
-/** 言語ごとの本文。鍵から条文の中身を引く */
-export type RuleContent = Readonly<Record<RuleKey, RuleEntry>>
+/**
+ * 言語ごとの本文。鍵から条文の中身を引く。
+ *
+ * @remarks
+ * 訳の途中の言語があるので、そろっていなくてもよい形にしてある。
+ * 正である日本語だけは `RuleContentComplete` で全部そろっていることを確かめる
+ */
+export type RuleContent = Readonly<Partial<Record<RuleKey, RuleEntry>>>
+
+/**
+ * 全部そろった本文。
+ *
+ * @remarks
+ * 日本語の本文に付けると、`RULE_KEY_TREE` に足した鍵の本文を書き忘れたとき、
+ * 逆に木から消した鍵の本文が残っているときに、どちらも型で落ちる
+ */
+export type RuleContentComplete = Readonly<Record<RuleKey, RuleEntry>>
+
+/**
+ * 言語ごとの本文のまとまり。
+ *
+ * @remarks
+ * 日本語は正なので全部そろっている。ほかの言語は訳の途中でよい
+ */
+export type RuleContentByLocale = Readonly<{ ja: RuleContentComplete }> &
+  Readonly<Record<SiteLocale, RuleContent>>
 
 /**
  * 図や表の置き場所。
@@ -71,9 +87,9 @@ export type RuleFigureRef =
  * @remarks
  * 見出しも本文も持たない。「どこに何があるか」と「冊子の何ページか」だけを持つ
  */
-export interface RuleNode {
-  /** 本文を引くための鍵 */
-  key: RuleKey
+export interface RuleNode<K extends RuleKey = RuleKey> {
+  /** 本文を引くための鍵。`RULE_KEY_TREE` に無い鍵は書けない */
+  key: K
   /** 冊子に印刷されている番号。「1」「1.1」「1.1.1」など */
   number: string
   /** 冊子のページ。出典をたどれるようにする */
@@ -96,12 +112,21 @@ export interface RuleNode {
    * `after` にその図の手前に来る行の書き出しを入れる
    */
   figures?: readonly RuleFigureRef[]
-  /** 中に入る節点 */
-  children?: readonly RuleNode[]
+  /**
+   * 中に入る節点。
+   *
+   * @remarks
+   * すぐ下にぶら下がる鍵しか書けない。章に条を直接ぶら下げる、
+   * 別の項の条をぶら下げる、といった書き方は型で落ちる
+   */
+  children?: readonly RuleNode<RuleChildKey<K>>[]
 }
 
 /** 規則集の骨格。章の一覧 */
 export type RuleStructure = readonly RuleNode[]
+
+export type { RuleChapterKey, RuleChildKey, RuleKey } from './ruleKey'
+export { RULE_KEY_TREE } from './ruleKey'
 
 /** 訳がどこまで追いついているかの見立て */
 export interface TranslationStatus {

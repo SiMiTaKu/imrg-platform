@@ -1,4 +1,4 @@
-import type { RuleNode } from '../../model/ruleSource'
+import type { RuleChildKey, RuleNode } from '../../model/ruleSource'
 
 /**
  * 3 採点規則 3.4 団体競技（自由演技）の骨格。
@@ -8,7 +8,7 @@ import type { RuleNode } from '../../model/ruleSource'
  * 冊子は「採点規則 3.4.2.3 転回系の数え方」のように4けたで各項を指し、
  * 改ページ後の見出しも「3.4.4.5」「3.4.6.4」と印刷されているので、`number` もそれに合わせた
  */
-export const GROUP_SCORING_STRUCTURE: RuleNode[] = [
+export const GROUP_SCORING_STRUCTURE: RuleNode<RuleChildKey<'scoring'>>[] = [
   {
     key: 'scoring.group',
     number: '3.4',

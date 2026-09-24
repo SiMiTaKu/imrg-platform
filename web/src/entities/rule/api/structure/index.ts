@@ -15,7 +15,7 @@ import { SCORING_GENERAL_STRUCTURE } from './scoringGeneral'
  * 冊子の並びは 3.1 総則／3.2 審判／3.3 一般的な採点規則／3.4 団体競技／
  * 3.5 個人競技／3.6 難度表／3.7 採点票等／3.8 個人徒手
  */
-const SCORING_STRUCTURE: RuleNode = {
+const SCORING_STRUCTURE: RuleNode<'scoring'> = {
   key: 'scoring',
   number: '3',
   page: 19,

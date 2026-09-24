@@ -16,7 +16,7 @@ import type { RuleContent } from '../../../model/ruleSource'
  * 69ページの実施欠点基準は、いっとき `items` に文字で起こしてあったが、
  * 表・図として持ち直したので本文からは外した。見出しの行だけを残してある
  */
-export const FREE_HAND_JA: RuleContent = {
+export const FREE_HAND_JA = {
   'scoring.freeHand': {
     title: '個人徒手',
   },
@@ -329,4 +329,4 @@ export const FREE_HAND_JA: RuleContent = {
     title: '個人徒手採点表',
     items: [{ text: 'D・A共通採点表' }, { text: 'D採点表' }, { text: 'E採点票' }],
   },
-}
+} satisfies RuleContent

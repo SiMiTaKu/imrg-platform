@@ -7,7 +7,7 @@ import type { RuleNode } from '../../model/ruleSource'
  * 出典は公益財団法人日本体操協会『新体操男子規則 2025年版』。
  * この章には図・表・写真が1つも無いため、`figures` を持つ節点は無い
  */
-export const BASICS_STRUCTURE: RuleNode = {
+export const BASICS_STRUCTURE: RuleNode<'basics'> = {
   key: 'basics',
   number: '2',
   page: 15,

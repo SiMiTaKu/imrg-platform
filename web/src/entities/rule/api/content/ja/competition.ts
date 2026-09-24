@@ -7,7 +7,7 @@ import type { RuleContent } from '../../../model/ruleSource'
  * 出典は 公益財団法人日本体操協会『新体操男子規則 2025年版』1〜12ページ。
  * 冊子に印刷されているとおりに写してある。番号や言い回しは整えていない
  */
-export const COMPETITION_JA: RuleContent = {
+export const COMPETITION_JA = {
   competition: {
     title: '競技規則',
   },
@@ -893,4 +893,4 @@ export const COMPETITION_JA: RuleContent = {
     title: 'その他の競技上の問題',
     lead: '競技規則に定めない審判および採点に関する問題は、すべて採点規則による。',
   },
-}
+} satisfies RuleContent

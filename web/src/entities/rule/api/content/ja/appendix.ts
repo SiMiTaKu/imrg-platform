@@ -6,7 +6,7 @@ import type { RuleContent } from '../../../model/ruleSource'
  * @remarks
  * 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』84〜101ページ
  */
-export const APPENDIX_JA: RuleContent = {
+export const APPENDIX_JA = {
   appendix: {
     title: '付録',
   },
@@ -1045,4 +1045,4 @@ export const APPENDIX_JA: RuleContent = {
       { text: '平成 29年 4月 1日　施行' },
     ],
   },
-}
+} satisfies RuleContent

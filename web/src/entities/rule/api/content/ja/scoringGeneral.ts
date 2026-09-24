@@ -7,7 +7,7 @@ import type { RuleContent } from '../../../model/ruleSource'
  * 出典は 公益財団法人日本体操協会『新体操男子規則 2025年版』19〜24ページ。
  * 冊子の一次資料から起こした。言い回し・番号は冊子のとおり
  */
-export const SCORING_GENERAL_JA: RuleContent = {
+export const SCORING_GENERAL_JA = {
   'scoring.general': {
     title: '総則',
   },
@@ -463,4 +463,4 @@ export const SCORING_GENERAL_JA: RuleContent = {
       },
     ],
   },
-}
+} satisfies RuleContent

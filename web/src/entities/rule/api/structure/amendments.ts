@@ -6,7 +6,7 @@ import type { RuleNode } from '../../model/ruleSource'
  * @remarks
  * 出典: 公益財団法人日本体操協会『新体操男子規則 2025年版』81〜83ページ
  */
-export const AMENDMENTS_STRUCTURE: RuleNode = {
+export const AMENDMENTS_STRUCTURE: RuleNode<'amendments'> = {
   key: 'amendments',
   number: '4',
   page: 81,

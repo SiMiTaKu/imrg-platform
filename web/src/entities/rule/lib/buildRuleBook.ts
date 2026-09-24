@@ -2,8 +2,9 @@ import type { Image } from '@shared/model'
 import type { SiteLocale } from '@shared/lib/i18n'
 import type { LocalizedRuleBook, LocalizedRuleLine, LocalizedRuleSection } from '../model/ruleBook'
 import type {
-  RuleContent,
+  RuleContentByLocale,
   RuleEntry,
+  RuleKey,
   RuleFigureRef,
   RuleItem,
   RuleNode,
@@ -132,11 +133,7 @@ const bodyLines = (entry: RuleEntry): LocalizedRuleLine[] => [
  * @param content - 言語ごとの本文
  * @returns 出してよい条文
  */
-const pickEntry = (
-  key: string,
-  locale: SiteLocale,
-  content: Readonly<Record<SiteLocale, RuleContent>>,
-): RuleEntry => {
+const pickEntry = (key: RuleKey, locale: SiteLocale, content: RuleContentByLocale): RuleEntry => {
   const japanese = content.ja[key]
   if (locale === 'ja') return japanese
   const translated = content[locale]?.[key]
@@ -164,7 +161,7 @@ const pickEntry = (
  */
 export const buildRuleBook = (
   structure: RuleStructure,
-  content: Readonly<Record<SiteLocale, RuleContent>>,
+  content: RuleContentByLocale,
   locale: SiteLocale,
   title: string,
 ): LocalizedRuleBook => {

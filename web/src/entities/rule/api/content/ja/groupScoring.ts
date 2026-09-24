@@ -7,7 +7,7 @@ import type { RuleContent } from '../../../model/ruleSource'
  * 出典は 公益財団法人日本体操協会『新体操男子規則 2025年版』25〜36ページ。
  * 冊子に印刷されているとおりに写してあり、番号の飛びや送り仮名の揺れもそのままにしてある
  */
-export const GROUP_SCORING_JA: RuleContent = {
+export const GROUP_SCORING_JA = {
   'scoring.group': {
     title: '団体競技（自由演技）',
   },
@@ -573,4 +573,4 @@ export const GROUP_SCORING_JA: RuleContent = {
       },
     ],
   },
-}
+} satisfies RuleContent
