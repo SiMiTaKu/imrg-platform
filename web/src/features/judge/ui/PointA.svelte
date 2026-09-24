@@ -111,7 +111,7 @@
       {#each POINT_A_ITEMS as item (item.key)}
         <ScaleQuestion
           annotation={item.annotation()}
-          groupLabel={m.judge_point_a_levels_label()}
+          groupLabel={m.judge_scale_label()}
           open={openKey === item.key}
           {options}
           selected={answeredKeys.includes(item.key)

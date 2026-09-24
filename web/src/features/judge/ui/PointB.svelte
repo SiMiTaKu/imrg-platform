@@ -158,7 +158,7 @@
 
       {#each POINT_B_SCALE_ITEMS as item (item.key)}
         <ScaleQuestion
-          groupLabel={m.judge_point_b_scale_label()}
+          groupLabel={m.judge_scale_label()}
           open={openKey === item.key}
           {options}
           selected={$executionDeduct.pointB.scales[item.key]}

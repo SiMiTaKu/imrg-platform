@@ -87,21 +87,24 @@
 
 <style lang="scss">
   .desktop {
-    --option-columns: repeat(5, 1fr);
+    --option-font-size: #{$font-size-14};
+    --option-padding: #{$space-size-8} #{$space-size-4};
   }
 
   /*
-    スマホでは2列。5つを横に並べると1つ 60px ほどになり、
-    「やや当てはまらない」が何行にも折り返してしまう
+    狭い画面でも5つを横1列に並べる。
+    2列に折り返すと3行2列の欠けた形になり、段階の並びが読み取れなくなる。
+    1つ 60px ほどになるので、字を小さくして余白を詰める
   */
   .mobile {
-    --option-columns: 1fr 1fr;
+    --option-font-size: #{$font-size-11};
+    --option-padding: #{$space-size-4} #{$space-size-2};
   }
 
   .options {
     display: grid;
     gap: $space-size-8;
-    grid-template-columns: var(--option-columns);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .gray {
@@ -134,8 +137,8 @@
     align-items: center;
     justify-content: center;
     min-height: 56px;
-    padding: $space-size-8 $space-size-4;
-    font-size: $font-size-14;
+    padding: var(--option-padding);
+    font-size: var(--option-font-size);
     font-weight: bold;
     line-height: 1.4;
     text-align: center;

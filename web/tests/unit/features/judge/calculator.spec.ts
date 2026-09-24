@@ -59,6 +59,7 @@ describe('createExecutionDeduct', () => {
       expect(Object.values(result.pointA).every((option) => option === POINT_A_OPTIONS[0])).toBe(
         true,
       )
+      expect(getAmountOfPointA(result)).toBe(0)
       expect(result.pointB.drops).toBe(0)
       expect(result.pointB.scales).toEqual({})
       // #endregion
@@ -70,7 +71,21 @@ describe('createExecutionDeduct', () => {
 describe('getAmountOfPointA', () => {
   // #region 正常系
   describe('正常系', () => {
-    it('全項目に同じ選択肢を選んだ場合、その減点の11倍になること', () => {
+    it('全項目に「当てはまる」を選んだ場合、減点なしになること', () => {
+      // #region Given
+      const data = makeDeduct({ option: POINT_A_OPTIONS[0] })
+      // #endregion
+
+      // #region When
+      const result = getAmountOfPointA(data)
+      // #endregion
+
+      // #region Then
+      expect(result).toBe(0)
+      // #endregion
+    })
+
+    it('全項目に「当てはまらない」を選んだ場合、その減点の11倍になること', () => {
       // #region Given
       const data = makeDeduct({ option: POINT_A_OPTIONS[4] })
       // #endregion
@@ -80,7 +95,7 @@ describe('getAmountOfPointA', () => {
       // #endregion
 
       // #region Then
-      expect(result).toBe(1.1)
+      expect(result).toBe(4.4)
       // #endregion
     })
   })
@@ -231,7 +246,7 @@ describe('getAmountOfPointB', () => {
 
     it('上限を超えた場合、上限で止まること', () => {
       // #region Given
-      const data = makeDeduct({ option: POINT_A_OPTIONS[0], drops: 100, scales: answerAll(5) })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[4], drops: 100, scales: answerAll(5) })
       // #endregion
 
       // #region When
@@ -251,7 +266,7 @@ describe('getDecisionPoints', () => {
   describe('正常系', () => {
     it('減点が無い場合、満点になること', () => {
       // #region Given
-      const data = makeDeduct({ option: { code: 5, value: 0 }, scales: answerAll(1) })
+      const data = makeDeduct({ option: POINT_A_OPTIONS[0], scales: answerAll(1) })
       // #endregion
 
       // #region When
@@ -273,7 +288,7 @@ describe('getDecisionPoints', () => {
       // #endregion
 
       // #region Then
-      expect(result).toBe(10 - 1.1 - 0.6)
+      expect(result).toBe(10 - 4.4 - 0.6)
       // #endregion
     })
   })

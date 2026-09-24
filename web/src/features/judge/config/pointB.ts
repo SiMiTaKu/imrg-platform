@@ -32,11 +32,11 @@ export const POINT_B_SCALE_ITEMS: readonly PointBScaleItem[] = [
  * 「当てはまる」が減点なしで、1つ下がるごとに `POINT_B_SCALE_STEP` ずつ減点が増える
  */
 export const POINT_B_SCALE_OPTIONS: readonly PointBScaleOption[] = [
-  { code: 1, label: m.judge_point_b_scale_yes },
-  { code: 2, label: m.judge_point_b_scale_mostly },
-  { code: 3, label: m.judge_point_b_scale_neutral },
-  { code: 4, label: m.judge_point_b_scale_partly },
-  { code: 5, label: m.judge_point_b_scale_no },
+  { code: 1, label: m.judge_scale_yes },
+  { code: 2, label: m.judge_scale_mostly },
+  { code: 3, label: m.judge_scale_neutral },
+  { code: 4, label: m.judge_scale_partly },
+  { code: 5, label: m.judge_scale_no },
 ]
 
 /** 段階が1つ下がるごとに増える減点 */

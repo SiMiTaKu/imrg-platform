@@ -6,7 +6,7 @@ export type PointAOption = {
    * 選択肢のコード。グラフの値にも使う。
    *
    * @remarks
-   * 規則の5段階が 1〜5（1 が最も大きい減点）
+   * 1 が「当てはまる」で減点なし。5 が「当てはまらない」でいちばん大きい減点
    */
   code: number
   /** 減点（0.5〜0.05） */
@@ -17,7 +17,7 @@ export type PointAOption = {
  * 規則の5段階の減点1つ分。段階の言い回しを持つ
  */
 export type PointALevel = PointAOption & {
-  /** 段階の言い回し（表示中の言語）。例: 著しく欠けた */
+  /** 段階の言い回し（表示中の言語）。例: やや当てはまる */
   level: () => string
 }
 

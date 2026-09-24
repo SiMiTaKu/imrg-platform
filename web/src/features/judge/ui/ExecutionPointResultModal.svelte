@@ -5,6 +5,7 @@
   import { getLocale } from '@shared/lib/i18n'
   import { formatNumber } from '@shared/lib/number'
   import { POINT_B_SCALE_ITEMS } from '../config/pointB'
+  import { POINT_A_MAX_CODE } from '../config/pointA'
   import { POINT_A_ITEMS } from '../config/pointAItems'
   import { JudgeThemeColor } from '../config/themeColor'
   import {
@@ -63,7 +64,14 @@
     chart?.destroy()
     chart = renderDetailChart(canvas, {
       labels: POINT_A_ITEMS.map((item) => item.title()),
-      values: POINT_A_ITEMS.map((item) => $executionDeduct.pointA[item.key].code),
+      /*
+        外側ほど良い向きにする。
+        コード 1 が「当てはまる」（いちばん良い）なので、そのまま描くと
+        良いほど内側に縮んでしまう
+      */
+      values: POINT_A_ITEMS.map(
+        (item) => POINT_A_MAX_CODE + 1 - $executionDeduct.pointA[item.key].code,
+      ),
       color,
       showsPointLabels: !isMobile,
     })
