@@ -4,6 +4,7 @@
   import { Button, Modal } from '@imrg-platform/design-system'
   import { getLocale } from '@shared/lib/i18n'
   import { formatNumber } from '@shared/lib/number'
+  import { POINT_B_SCALE_ITEMS } from '../config/pointB'
   import { POINT_A_ITEMS } from '../config/pointAItems'
   import { JudgeThemeColor } from '../config/themeColor'
   import {
@@ -11,6 +12,7 @@
     getAmountOfPointB,
     getDecisionPoints,
     getDeductionOfDroppedApparatus,
+    getDeductionOfPointBItem,
   } from '../lib/calculator'
   import { renderDetailChart } from '../lib/detailChart'
   import { buildScoreFormula } from '../lib/scoreFormula'
@@ -128,10 +130,18 @@
                 >
               </li>
             {/if}
-            <li class="detail-item">
-              <span class="detail-title"> {m.judge_point_b_miss()} </span>
-              <span>{formatNumber($executionDeduct.pointB.miss, locale)}</span>
-            </li>
+            <!-- Bの設問ごとの減点。落下は上に別で出している -->
+            {#each POINT_B_SCALE_ITEMS as item (item.key)}
+              <li class="detail-item">
+                <span class="detail-title">{item.title()}</span>
+                <span
+                  >{formatNumber(
+                    getDeductionOfPointBItem($executionDeduct, item.key),
+                    locale,
+                  )}</span
+                >
+              </li>
+            {/each}
           </ul>
         </div>
       </div>

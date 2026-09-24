@@ -4,7 +4,8 @@ import type {
   ExecutionDeduct,
   PointAKey,
   PointAOption,
-  PointBCountKey,
+  PointBScaleCode,
+  PointBScaleKey,
 } from '../model/executionDeduct'
 
 /**
@@ -24,23 +25,21 @@ const createExecutionDeductStore = () => {
     selectPointA: (key: PointAKey, option: PointAOption) =>
       update((data) => ({ ...data, pointA: { ...data.pointA, [key]: option } })),
     /**
-     * 数える欠点の数を変える。0 未満にはしない
-     * @param key - 項目のキー
-     * @param count - 数えた数
+     * 手具を落とした回数を変える。0 未満にはしない
+     * @param drops - 落とした回数
      */
-    setCount: (key: PointBCountKey, count: number) =>
+    setDrops: (drops: number) =>
+      update((data) => ({ ...data, pointB: { ...data.pointB, drops: Math.max(0, drops) } })),
+    /**
+     * Bの設問に答える
+     * @param key - 設問のキー
+     * @param code - 選んだ段階
+     */
+    selectScale: (key: PointBScaleKey, code: PointBScaleCode) =>
       update((data) => ({
         ...data,
-        pointB: {
-          ...data.pointB,
-          counts: { ...data.pointB.counts, [key]: Math.max(0, count) },
-        },
+        pointB: { ...data.pointB, scales: { ...data.pointB.scales, [key]: code } },
       })),
-    /**
-     * その他ミスによる減点を変える
-     * @param miss - 減点
-     */
-    setMiss: (miss: number) => update((data) => ({ ...data, pointB: { ...data.pointB, miss } })),
     /**
      * 採点を始める前の値へ戻す
      */

@@ -1,16 +1,15 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
-  import { JudgeThemeColor } from '../config/themeColor'
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
-  import { getLocale } from '@shared/lib/i18n'
-  import { formatNumber } from '@shared/lib/number'
-  import { POINT_B_GROUPS } from '../config/pointB'
-  import { getAmountOfCountedFaults, normalizeMiss } from '../lib/calculator'
-  import { judgementApparatus } from '../store/apparatus'
+  import { POINT_B_SCALE_ITEMS, POINT_B_SCALE_OPTIONS } from '../config/pointB'
+  import { scrollToQuestion } from '../lib/scrollToQuestion'
+  import type { PointBScaleCode, PointBScaleKey } from '../model/executionDeduct'
   import { executionDeduct } from '../store/executionDeduct'
-  import PointBGroup from './PointBGroup.svelte'
+  import QuestionCard from './QuestionCard.svelte'
+  import ScaleQuestion from './ScaleQuestion.svelte'
+  import TimesCounter from './TimesCounter.svelte'
 
   type Props = {
     /** 決定ボタンを押したときに呼ぶ */
@@ -19,20 +18,99 @@
 
   const { onsubmit }: Props = $props()
 
-  const locale = getLocale()
-  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
-  /** 数えた欠点の減点の合計 */
-  const counted = $derived(getAmountOfCountedFaults($executionDeduct))
+  /** 選択肢は言葉だけにする。減点の数は出さない */
+  const options = POINT_B_SCALE_OPTIONS.map((option) => ({
+    code: option.code,
+    label: option.label(),
+  }))
 
-  // 入力中の値を書き換えないように、入力欄には最初の値だけを渡す
-  const initialMiss = $executionDeduct.pointB.miss
+  /** 落下の回数の札を開いているか。最初はここから答える */
+  let dropsOpen = $state(true)
+  /** いま開いている設問。すべて閉じているときは undefined */
+  let openKey: PointBScaleKey | undefined = $state(undefined)
+  /** 落下の回数に答えたか。0 回も答えのうちなので、押したかどうかで持つ */
+  let dropsAnswered = $state(false)
+  /** 決定を押したのに未回答が残っていたか */
+  let missing = $state(false)
+
+  /** まだ答えていない設問。並びは画面と同じ */
+  const unanswered = $derived(
+    POINT_B_SCALE_ITEMS.filter((item) => $executionDeduct.pointB.scales[item.key] === undefined),
+  )
+  /** 答えた数。落下の回数も1問として数える */
+  const answeredCount = $derived(
+    POINT_B_SCALE_ITEMS.length - unanswered.length + (dropsAnswered ? 1 : 0),
+  )
 
   /**
-   * その他ミスによる減点の入力を、採点に使える値にしてストアへ入れる
-   * @param event - input イベント
+   * 次に答える設問を探す。まだ答えていない設問を、その設問の次から順に見る
+   * @param key - いま答え終えた設問のキー
+   * @returns 次に開く設問のキー。すべて答え終えていれば undefined
    */
-  const handleMissInput = (event: Event & { currentTarget: HTMLInputElement }) => {
-    executionDeduct.setMiss(normalizeMiss(event.currentTarget.valueAsNumber))
+  const findNextKey = (key: PointBScaleKey): PointBScaleKey | undefined => {
+    const index = POINT_B_SCALE_ITEMS.findIndex((item) => item.key === key)
+    const order = [...POINT_B_SCALE_ITEMS.slice(index + 1), ...POINT_B_SCALE_ITEMS.slice(0, index)]
+    return order.find(
+      (item) => item.key !== key && $executionDeduct.pointB.scales[item.key] === undefined,
+    )?.key
+  }
+
+  /**
+   * 落下の回数を決めて、最初の設問へ進む
+   * @param count - 落とした回数
+   */
+  const handleDrops = (count: number) => {
+    executionDeduct.setDrops(count)
+    dropsAnswered = true
+    missing = false
+  }
+
+  /**
+   * 落下の回数の札を閉じて、最初の設問を開く
+   */
+  const handleDropsDone = () => {
+    dropsAnswered = true
+    dropsOpen = false
+    const [first] = unanswered
+    if (first) {
+      openKey = first.key
+      scrollToQuestion(`${first.key}-body`)
+    }
+  }
+
+  /**
+   * 設問に答えたので、その設問を閉じて次の設問を開き、そこまで画面を動かす
+   * @param key - 答えた設問のキー
+   * @param code - 選んだ段階
+   */
+  const handleSelect = (key: PointBScaleKey, code: PointBScaleCode) => {
+    executionDeduct.selectScale(key, code)
+    missing = false
+    const next = findNextKey(key)
+    openKey = next
+    if (next) scrollToQuestion(`${next}-body`)
+  }
+
+  /**
+   * 決定ボタンを押したときの動き。
+   * まだ答えていない設問があれば先へ進まず、いちばん上の未回答まで戻す
+   */
+  const handleSubmit = () => {
+    if (!dropsAnswered) {
+      missing = true
+      dropsOpen = true
+      scrollToQuestion('drops-body')
+      return
+    }
+    const [first] = unanswered
+    if (first) {
+      missing = true
+      openKey = first.key
+      scrollToQuestion(`${first.key}-body`)
+      return
+    }
+    missing = false
+    onsubmit()
   }
 </script>
 
@@ -47,36 +125,58 @@
     <div>{m.judge_point_b_note()}</div>
   </header>
 
-  <div class="section {color}">
+  <div class="section">
     <div class="section-head">
-      <h3>{m.judge_point_b_counted_section()}</h3>
-      <p class="total">
-        {m.judge_point_b_counted_total()}
-        <span class="total-value">{formatNumber(counted, locale, 2)}</span>
+      <h3 class="section-title">{m.judge_point_b_scale_section()}</h3>
+      <p class="progress">
+        {m.judge_point_b_progress({
+          done: answeredCount,
+          total: POINT_B_SCALE_ITEMS.length + 1,
+        })}
       </p>
     </div>
-    <div class="groups">
-      {#each POINT_B_GROUPS as group (group.key)}
-        <PointBGroup {group} />
+
+    <div class="question-list">
+      <!-- 落下だけは段階ではなく回数で答える -->
+      <QuestionCard
+        answered={dropsAnswered}
+        bodyId="drops-body"
+        open={dropsOpen}
+        ontoggle={() => (dropsOpen = !dropsOpen)}
+        summary={dropsAnswered
+          ? m.judge_times({ count: $executionDeduct.pointB.drops })
+          : m.judge_point_b_item_untouched()}
+        title={m.judge_point_b_drops()}
+      >
+        <div class="drops">
+          <TimesCounter count={$executionDeduct.pointB.drops} onchange={handleDrops} />
+          <Button size="medium" width="auto" onclick={handleDropsDone} variant="sky-blue-outline"
+            >{m.judge_next()}</Button
+          >
+        </div>
+      </QuestionCard>
+
+      {#each POINT_B_SCALE_ITEMS as item (item.key)}
+        <ScaleQuestion
+          groupLabel={m.judge_point_b_scale_label()}
+          open={openKey === item.key}
+          {options}
+          selected={$executionDeduct.pointB.scales[item.key]}
+          title={item.title()}
+          uniqueId={item.key}
+          untouchedLabel={m.judge_point_b_item_untouched()}
+          onchange={(code) => handleSelect(item.key, code)}
+          ontoggle={() => (openKey = openKey === item.key ? undefined : item.key)}
+        />
       {/each}
     </div>
   </div>
 
-  <div class="section {color}">
-    <h3>{m.judge_point_b_miss()}</h3>
-    <input
-      class="miss-point"
-      aria-label={m.judge_point_b_miss()}
-      min="0"
-      step="0.05"
-      type="number"
-      value={initialMiss}
-      oninput={handleMissInput}
-    />
-  </div>
-
   <div class="submit">
-    <Button size="large" width="full" onclick={onsubmit} variant="sky-blue"
+    {#if missing}
+      <p class="missing" role="status">{m.judge_unanswered_note()}</p>
+    {/if}
+    <Button size="large" width="full" onclick={handleSubmit} variant="sky-blue"
       >{m.judge_submit()}</Button
     >
   </div>
@@ -85,32 +185,16 @@
 <style lang="scss">
   .desktop {
     --header-flex-direction: row;
-    --gap: 16px;
+    --header-gap: 16px;
+    --section-font-size: 26px;
+    --question-list-gap: 12px;
   }
 
   .mobile {
     --header-flex-direction: column;
-    --gap: 8px;
-  }
-
-  .gray {
-    --forcus-border-color: #{map.get($theme, gray)};
-  }
-
-  .blue {
-    --forcus-border-color: #{map.get($theme, blue)};
-  }
-
-  .red {
-    --forcus-border-color: #{map.get($theme, red)};
-  }
-
-  .yellow {
-    --forcus-border-color: #{map.get($theme, yellow)};
-  }
-
-  .green {
-    --forcus-border-color: #{map.get($theme, green)};
+    --header-gap: 8px;
+    --section-font-size: 24px;
+    --question-list-gap: 8px;
   }
 
   .point-b {
@@ -123,70 +207,64 @@
     display: flex;
     align-items: baseline;
     flex-direction: var(--header-flex-direction);
-    gap: var(--gap);
+    gap: var(--header-gap);
   }
 
   .section {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
   }
 
   .section-head {
     display: flex;
-    flex-wrap: wrap;
     align-items: baseline;
+    flex-wrap: wrap;
     gap: $space-size-12;
   }
 
-  .total {
+  .section-title {
+    font-size: var(--section-font-size);
+  }
+
+  .progress {
     margin: 0;
     font-size: $font-size-14;
     font-weight: bold;
     color: map.get($gray, light-text);
   }
 
-  .total-value {
-    display: inline-block;
-    font-size: $font-size-16;
-    color: var(--forcus-border-color);
-
-    // 数と見出しは意味のまとまりなので、数の途中では折り返さない
-    white-space: nowrap;
-  }
-
-  .groups {
+  .question-list {
     display: flex;
     flex-direction: column;
-    gap: $space-size-8;
+    gap: var(--question-list-gap);
   }
 
-  .miss-point {
-    width: 100%;
-    height: 56px;
-    margin: 0;
-    padding-left: 24px;
-    font-size: 20px;
-    font-weight: bold;
-    border: solid 4px #aaa;
-    border-radius: 8px;
-    transition: 0.3s;
-    outline: none;
-    box-sizing: border-box;
-
-    &:focus {
-      border: solid 4px var(--forcus-border-color);
-    }
+  // 回数を数える欄と、次へ進むボタン
+  .drops {
+    display: flex;
+    gap: $space-size-16;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   // 送るボタンは中央に置く。スマホでは横いっぱいにする
   .submit {
     display: grid;
+    gap: $space-size-8;
     grid-template-columns: min(260px, 100%);
     justify-content: center;
   }
 
   .mobile .submit {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .missing {
+    margin: 0;
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: #{map.get($theme, red)};
+    text-align: center;
   }
 </style>

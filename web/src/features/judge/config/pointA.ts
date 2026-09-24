@@ -1,5 +1,5 @@
 import { m } from '$lib/paraglide/messages'
-import type { PointALevel, PointAOption } from '../model/executionDeduct'
+import type { PointALevel } from '../model/executionDeduct'
 
 /** 実施の満点 */
 export const MAX_EXECUTION_SCORE = 10
@@ -19,20 +19,5 @@ export const POINT_A_OPTIONS: readonly PointALevel[] = [
   { code: 5, value: 0.1, level: m.judge_point_a_level_minor },
 ]
 
-/**
- * 5段階のどれにも当てはまらないわずかな差のための、補助の選択肢（0.05 刻み）。
- *
- * @remarks
- * 規則の但し書き「上記に当てはまらないわずかな差は 0.05 点の差を付けて減点しても良い」にあたる。
- * コードは段階と段階の間（1.5・2.5 など）に置き、グラフでも段階の間に出る
- */
-export const POINT_A_FINE_OPTIONS: readonly PointAOption[] = [
-  { code: 1.5, value: 0.45 },
-  { code: 2.5, value: 0.35 },
-  { code: 3.5, value: 0.25 },
-  { code: 4.5, value: 0.15 },
-  { code: 5.5, value: 0.05 },
-]
-
 /** 選択肢のコードの最大値。グラフの目盛りの外側になる */
-export const POINT_A_MAX_CODE = 5.5
+export const POINT_A_MAX_CODE = 5
