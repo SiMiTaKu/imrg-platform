@@ -11,27 +11,36 @@
     state: JudgeStepState
     /** 段階の中身（採点の部品）。まだ来ていない段階では描かない */
     children?: Snippet
+    /**
+     * 見出しと手引きを畳むか。
+     *
+     * @remarks
+     * 手具を選んだあとのように、済んでしまえば読む必要が無くなる段階で立てる
+     */
+    compact?: boolean
   }
 
-  const { step, state, children = undefined }: Props = $props()
+  const { step, state, children = undefined, compact = false }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
 </script>
 
 <!-- 段階1つ分の枠。番号・見出し・手引き・中身を、重ねずに縦へ積む -->
 <section class="panel {state}" class:mobile={isMobile}>
-  <header class="head">
-    <span class="number" aria-hidden="true">{step.number}</span>
-    <div class="words">
-      <h2>{step.title()}</h2>
-      <p class="note">{state === JudgeStepState.WAITING ? step.waiting() : step.note()}</p>
-    </div>
-    {#if state === JudgeStepState.CURRENT}
-      <span class="badge">{m.judge_step_badge_current()}</span>
-    {:else if state === JudgeStepState.DONE}
-      <span class="badge filled">{m.judge_step_badge_done()}</span>
-    {/if}
-  </header>
+  {#if !compact}
+    <header class="head">
+      <span class="number" aria-hidden="true">{step.number}</span>
+      <div class="words">
+        <h2>{step.title()}</h2>
+        <p class="note">{state === JudgeStepState.WAITING ? step.waiting() : step.note()}</p>
+      </div>
+      {#if state === JudgeStepState.CURRENT}
+        <span class="badge">{m.judge_step_badge_current()}</span>
+      {:else if state === JudgeStepState.DONE}
+        <span class="badge filled">{m.judge_step_badge_done()}</span>
+      {/if}
+    </header>
+  {/if}
 
   {#if state !== JudgeStepState.WAITING}
     <!-- 採点表は横に長くなることがあるので、この中だけで横に送る -->

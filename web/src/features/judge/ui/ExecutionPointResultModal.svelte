@@ -52,6 +52,9 @@
 
   $effect(() => () => chart?.destroy())
 
+  /** 内訳の入れ物。開くときに中身の高さを測るために持つ */
+  let pullDown = $state<HTMLElement>()
+
   /**
    * 内訳のグラフを描き直す。スマホでは項目名を出さない
    */
@@ -73,10 +76,14 @@
     isPointDetailShown = !isPointDetailShown
     if (isPointDetailShown) {
       renderChart()
-      pointDetailHeight = isMobile ? 300 : 430
-      setTimeout(() => {
+      /*
+        高さは中身を測って決める。決め打ちにすると、設問が増えたときに
+        下が切れたまま送れなくなる（実際に B の設問を増やして切れた）
+      */
+      requestAnimationFrame(() => {
+        pointDetailHeight = pullDown?.scrollHeight ?? 0
         pointDetailOpacity = 1
-      }, 100)
+      })
       return
     }
     pointDetailOpacity = 0
@@ -101,6 +108,7 @@
       </div>
 
       <div
+        bind:this={pullDown}
         style:opacity={pointDetailOpacity}
         style:height={`${pointDetailHeight}px`}
         class="pull-down"
