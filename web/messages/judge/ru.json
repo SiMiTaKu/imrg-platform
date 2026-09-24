@@ -125,5 +125,7 @@
   "judge_scale_no": "Нет",
   "judge_scale_label": "Насколько подходит",
   "judge_scale_score": "{score} б.",
-  "judge_scale_hint": "5 — лучше всего"
+  "judge_scale_hint": "5 — лучше всего",
+  "judge_select_apparatus_change_label": "Выбрать заново",
+  "judge_select_apparatus_change": "{name}. Нажмите, чтобы выбрать другой предмет"
 }

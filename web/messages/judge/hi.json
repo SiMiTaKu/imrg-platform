@@ -125,5 +125,7 @@
   "judge_scale_no": "नहीं",
   "judge_scale_label": "कितना लागू होता है",
   "judge_scale_score": "{score} अंक",
-  "judge_scale_hint": "5 सबसे अच्छा है"
+  "judge_scale_hint": "5 सबसे अच्छा है",
+  "judge_select_apparatus_change_label": "फिर चुनें",
+  "judge_select_apparatus_change": "{name}. दूसरा उपकरण चुनने के लिए दबाएँ"
 }

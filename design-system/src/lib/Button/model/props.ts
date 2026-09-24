@@ -9,9 +9,21 @@ import type { Snippet } from 'svelte'
  * 色の名前にしておけば、黄の白抜きが要るときも `yellow-outline` と足せる。
  *
  * `yellow` は黄の 300 の地に黒の文字にする。黄はもともと明るく、白い文字だと読めないため
- * （`design-system/src/styles/colors.scss` の「色の決まり」4）
+ * （`design-system/src/styles/colors.scss` の「色の決まり」4）。
+ *
+ * `theme-*` は手具のイメージカラー（`$theme`）の塗り。
+ * 採点の画面のように、選んだ手具に合わせて色が変わるところで使う。
+ * `theme-yellow` も同じ理由で文字は黒にする
  */
-export type ButtonVariant = 'sky-blue' | 'sky-blue-outline' | 'yellow'
+export type ButtonVariant =
+  | 'sky-blue'
+  | 'sky-blue-outline'
+  | 'yellow'
+  | 'theme-gray'
+  | 'theme-blue'
+  | 'theme-red'
+  | 'theme-yellow'
+  | 'theme-green'
 
 /** ボタンの大きさ。`medium` は最小の高さ 48px・文字 16px、`large` は 56px・18px */
 export type ButtonSize = 'medium' | 'large'

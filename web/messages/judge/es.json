@@ -125,5 +125,7 @@
   "judge_scale_no": "No",
   "judge_scale_label": "Grado en que se cumple",
   "judge_scale_score": "{score} pts",
-  "judge_scale_hint": "5 es lo mejor"
+  "judge_scale_hint": "5 es lo mejor",
+  "judge_select_apparatus_change_label": "Cambiar",
+  "judge_select_apparatus_change": "{name}. Pulsa para elegir otro aparato."
 }

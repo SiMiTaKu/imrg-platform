@@ -125,5 +125,7 @@
   "judge_scale_no": "No",
   "judge_scale_label": "How well it applies",
   "judge_scale_score": "{score} pts",
-  "judge_scale_hint": "5 is the best"
+  "judge_scale_hint": "5 is the best",
+  "judge_select_apparatus_change_label": "Change",
+  "judge_select_apparatus_change": "{name}. Press to choose a different apparatus."
 }

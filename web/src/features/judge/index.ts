@@ -14,6 +14,7 @@ export {
   POINT_B_SCALE_STEP,
 } from './config/pointB'
 export { findApparatus } from './lib/apparatus'
+export { themeButtonVariant } from './lib/buttonVariant'
 export {
   createExecutionDeduct,
   getAmountOfPointA,

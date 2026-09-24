@@ -125,5 +125,7 @@
   "judge_scale_no": "아니다",
   "judge_scale_label": "해당하는 정도",
   "judge_scale_score": "{score}점",
-  "judge_scale_hint": "5점이 가장 좋음"
+  "judge_scale_hint": "5점이 가장 좋음",
+  "judge_select_apparatus_change_label": "다시 선택",
+  "judge_select_apparatus_change": "{name}. 누르면 수구를 다시 고를 수 있습니다"
 }

@@ -125,5 +125,7 @@
   "judge_scale_no": "当てはまらない",
   "judge_scale_label": "あてはまり具合",
   "judge_scale_score": "{score} 点",
-  "judge_scale_hint": "5 点がいちばん良い"
+  "judge_scale_hint": "5 点がいちばん良い",
+  "judge_select_apparatus_change_label": "選び直す",
+  "judge_select_apparatus_change": "{name}。押すと手具を選び直せます"
 }

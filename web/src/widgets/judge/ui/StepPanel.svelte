@@ -2,6 +2,7 @@
   import type { Snippet } from 'svelte'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
+  import { JudgeThemeColor, judgementApparatus } from '@features/judge'
   import { JudgeStepState, type JudgeStep } from '../config/steps'
 
   type Props = {
@@ -23,10 +24,17 @@
   const { step, state, children = undefined, compact = false }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
+  /** 手具のイメージカラー。段階の番号に使う */
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 </script>
 
 <!-- 段階1つ分の枠。番号・見出し・手引き・中身を、重ねずに縦へ積む -->
-<section class="panel {state}" class:mobile={isMobile}>
+<section
+  class="panel {color}"
+  class:mobile={isMobile}
+  class:current={state === JudgeStepState.CURRENT}
+  class:waiting={state === JudgeStepState.WAITING}
+>
   {#if !compact}
     <header class="head">
       <span class="number" aria-hidden="true">{step.number}</span>
@@ -89,6 +97,27 @@
     gap: $space-size-12;
   }
 
+  // 段階の番号。選んだ手具の色にする
+  .gray {
+    --step-color: #{map.get($theme, gray)};
+  }
+
+  .blue {
+    --step-color: #{map.get($theme, blue)};
+  }
+
+  .red {
+    --step-color: #{map.get($theme, red)};
+  }
+
+  .yellow {
+    --step-color: #{map.get($theme, yellow)};
+  }
+
+  .green {
+    --step-color: #{map.get($theme, green)};
+  }
+
   .number {
     display: flex;
     flex: none;
@@ -100,11 +129,7 @@
     font-weight: bold;
     color: $white;
     border-radius: 999px;
-    background: map.get($sky-blue, button);
-  }
-
-  .current .number {
-    background: map.get($sky-blue, button);
+    background: var(--step-color);
   }
 
   .waiting .number {

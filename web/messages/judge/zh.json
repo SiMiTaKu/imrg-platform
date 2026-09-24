@@ -125,5 +125,7 @@
   "judge_scale_no": "不符合",
   "judge_scale_label": "符合程度",
   "judge_scale_score": "{score} 分",
-  "judge_scale_hint": "5 分最好"
+  "judge_scale_hint": "5 分最好",
+  "judge_select_apparatus_change_label": "重新选择",
+  "judge_select_apparatus_change": "{name}。点击可重新选择器械"
 }

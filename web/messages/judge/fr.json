@@ -125,5 +125,7 @@
   "judge_scale_no": "Non",
   "judge_scale_label": "Degré de correspondance",
   "judge_scale_score": "{score} pts",
-  "judge_scale_hint": "5 est le meilleur"
+  "judge_scale_hint": "5 est le meilleur",
+  "judge_select_apparatus_change_label": "Changer",
+  "judge_select_apparatus_change": "{name}. Appuyez pour choisir un autre engin."
 }

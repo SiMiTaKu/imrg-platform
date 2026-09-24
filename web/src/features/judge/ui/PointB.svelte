@@ -1,11 +1,14 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
+  import { JudgeThemeColor } from '../config/themeColor'
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { POINT_B_SCALE_ITEMS, POINT_B_SCALE_OPTIONS } from '../config/pointB'
+  import { themeButtonVariant } from '../lib/buttonVariant'
   import { scrollToQuestion } from '../lib/scrollToQuestion'
   import type { PointBScaleCode, PointBScaleKey } from '../model/executionDeduct'
+  import { judgementApparatus } from '../store/apparatus'
   import { executionDeduct } from '../store/executionDeduct'
   import QuestionCard from './QuestionCard.svelte'
   import ScaleQuestion from './ScaleQuestion.svelte'
@@ -17,6 +20,11 @@
   }
 
   const { onsubmit }: Props = $props()
+
+  /** 決定ボタンの色。選んだ手具に合わせる */
+  const submitVariant = $derived(
+    themeButtonVariant($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY),
+  )
 
   /** 1〜5 点の札。減点の数は出さない */
   const options = POINT_B_SCALE_OPTIONS.map((option) => ({ code: option.code }))
@@ -173,7 +181,7 @@
     {#if missing}
       <p class="missing" role="status">{m.judge_unanswered_note()}</p>
     {/if}
-    <Button size="large" width="full" onclick={handleSubmit} variant="sky-blue"
+    <Button size="large" width="full" onclick={handleSubmit} variant={submitVariant}
       >{m.judge_submit()}</Button
     >
   </div>

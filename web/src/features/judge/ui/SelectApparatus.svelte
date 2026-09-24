@@ -11,12 +11,19 @@
   <!--
     選んだあとは、選んだ手具だけを出す。
     採点のあいだ何の手具を見ているかが分かればよく、
-    問いかけと選択肢を残しておくと画面が長くなる
+    問いかけと選択肢を残しておくと画面が長くなる。
+    押せば選び直せるので、間違えてもやり直せる
   -->
-  <p class="chosen {color}">
+  <button
+    class="chosen {color}"
+    aria-label={m.judge_select_apparatus_change({ name: $judgementApparatus.name() })}
+    type="button"
+    onclick={judgementApparatus.reset}
+  >
     <span class="mark" aria-hidden="true"></span>
     <span class="name">{$judgementApparatus.name()}</span>
-  </p>
+    <span class="change">{m.judge_select_apparatus_change_label()}</span>
+  </button>
 {:else}
   <div class="select-apparatuses">
     <!--
@@ -105,12 +112,32 @@
     --chosen-color: #{map.get($theme, green)};
   }
 
-  // 選んだ手具。色の丸と名前だけを出す
+  // 選んだ手具。色の丸と名前を出す。押すと選び直せる
   .chosen {
     display: flex;
     gap: $space-size-12;
     align-items: center;
     margin: 0;
+    padding: $space-size-8 $space-size-12;
+    font-family: inherit;
+    text-align: left;
+    border: $border-size-1 solid map.get($gray, 100);
+    border-radius: 8px;
+    background: $white;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+      border-color: var(--chosen-color);
+    }
+  }
+
+  // 押せることを言葉でも示す
+  .change {
+    margin-left: auto;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: var(--chosen-color);
   }
 
   .mark {
