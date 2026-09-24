@@ -4,13 +4,7 @@
   import { JUDGE_APPARATUSES } from '../config/apparatus'
   import { judgementApparatus } from '../store/apparatus'
   import QuestionLabel from './QuestionLabel.svelte'
-  import SingleSelect from './SingleSelect.svelte'
 
-  // 手具の名前は表示中の言語で出すので、読み込み時ではなく描画時に作る
-  const options = JUDGE_APPARATUSES.map((apparatus) => ({
-    code: apparatus.code,
-    value: apparatus.name(),
-  }))
   const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 </script>
 
@@ -27,14 +21,25 @@
 {:else}
   <div class="select-apparatuses">
     <QuestionLabel caption={m.judge_select_apparatus_caption()} {color} />
-    <SingleSelect
-      id="select-apparatus"
-      label={m.judge_select_apparatus_caption()}
-      {color}
-      {options}
-      placeholder={m.judge_select_apparatus_placeholder()}
-      onchange={judgementApparatus.select}
-    />
+    <!--
+      選択肢は4つしかないので、畳んだ一覧から選ばせるより札で並べるほうが早い。
+      札には手具ごとの色を当てて、選んだあとの画面の色とつながるようにする
+    -->
+    <div class="choices" aria-label={m.judge_select_apparatus_caption()} role="radiogroup">
+      {#each JUDGE_APPARATUSES as apparatus (apparatus.code)}
+        <!-- ここに来るのは、まだ選んでいないときだけ。選んだ札の見た目は要らない -->
+        <input
+          id={`apparatus-${apparatus.code}`}
+          name="select-apparatus"
+          type="radio"
+          value={apparatus.code}
+          onchange={() => judgementApparatus.select(String(apparatus.code))}
+        />
+        <label class="choice {apparatus.imageColor}" for={`apparatus-${apparatus.code}`}>
+          {apparatus.name()}
+        </label>
+      {/each}
+    </div>
   </div>
 {/if}
 
@@ -42,6 +47,44 @@
   .select-apparatuses {
     display: grid;
     gap: 16px;
+  }
+
+  // 手具の札。狭い画面でも4つを横1列に並べる
+  .choices {
+    display: grid;
+    gap: $space-size-8;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  .choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: $space-size-8 $space-size-4;
+    font-size: $font-size-14;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: center;
+    border: $border-size-2 solid map.get($gray, 200);
+    border-radius: 8px;
+    background: $white;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      border-color: var(--chosen-color);
+    }
+  }
+
+  input[type='radio']:checked + .choice {
+    color: $white;
+    border-color: var(--chosen-color);
+    background: var(--chosen-color);
   }
 
   .gray {
