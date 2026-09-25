@@ -1,0 +1,6 @@
+export { AutoPlayWatcher } from './lib/autoPlay'
+export { createAutoPlayGroup } from './lib/autoPlayGroup.svelte'
+export type { AutoPlayCardState, AutoPlayGroup } from './lib/autoPlayGroup.svelte'
+export { youtubeEmbedUrl, youtubeThumbnail, youtubeVideoId } from './lib/youtube'
+export { default as VideoCard } from './ui/VideoCard.svelte'
+export type { VideoCardAppearance } from './ui/VideoCard.svelte'

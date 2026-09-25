@@ -1,19 +1,44 @@
 <script lang="ts">
-  import Introduction from './Introduction.svelte'
-  import Links from './Links.svelte'
-  import MainVisual from './MainVisual.svelte'
+  import { PUBLIC_BASE_URL } from '$env/static/public'
+  // TODO(キャラクター): CharacterTeam（案内役の5人の節）を出し直す（docs/TODO.md 5-9）
+  import {
+    // CharacterTeam,
+    ContactPanel,
+    Features,
+    Hero,
+    Highlights,
+    Numbers,
+    Services,
+    UpcomingEvents,
+  } from '@widgets/top'
+  import { buildTopJsonLd } from '../lib/structuredData'
+
+  const jsonLd = JSON.stringify(buildTopJsonLd(PUBLIC_BASE_URL))
+  // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる
+  const jsonLdTag = `<script type="application/ld+json">${jsonLd}<` + '/script>'
 </script>
 
+<svelte:head>
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -- 埋め込むのは自前のデータを JSON.stringify した文字列だけで、外部からの入力は混ざらない -->
+  {@html jsonLdTag}
+</svelte:head>
+
 <article class="site-top">
-  <MainVisual />
-  <Introduction />
-  <Links />
+  <Hero />
+  <UpcomingEvents />
+  <Highlights />
+  <Services />
+  <Features />
+  <Numbers />
+  <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+  <!-- <CharacterTeam /> -->
+  <ContactPanel />
 </article>
 
 <style lang="scss">
   .site-top {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
   }
 </style>

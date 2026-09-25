@@ -25,4 +25,4 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const ギャラリー: Story = {}
+export const Gallery: Story = { name: 'ギャラリー' }

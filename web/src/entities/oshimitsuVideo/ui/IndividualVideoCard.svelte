@@ -46,10 +46,9 @@
 <style lang="scss">
   .card {
     display: grid;
-    grid-template-rows: 97px 97px auto;
-    width: 343px;
+    grid-template-rows: auto auto;
+    width: 100%;
     max-width: 100%;
-    min-height: 194px;
     border-radius: 8px;
     transition: 0.3s;
     box-sizing: border-box;
@@ -58,13 +57,15 @@
     box-shadow: $black-box-shadow;
 
     &:has(.placeholder) {
-      background: url('../images/spin.gif') 50% 56px / 20% no-repeat;
+      background: url('../images/spin.gif') 50% 25% / 18% no-repeat;
     }
   }
 
   .video {
     grid-column: 1;
-    grid-row: 1 / 3;
+    grid-row: 1;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     max-width: 100%;
     transition: 0.3s;
     pointer-events: none;
@@ -80,17 +81,10 @@
     display: flex;
     gap: 8px;
     grid-column: 1;
-    grid-row: 2 / 4;
+    grid-row: 2;
     width: 100%;
-    padding: 64px 8px 12px;
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0, 0) 0,
-      rgb(255, 255, 255, 0.1) 22px,
-      rgb(255, 255, 255, 0.9) 55px,
-      rgb(255, 255, 255, 0.95) 60px,
-      rgb(255, 255, 255) 65px
-    );
+    padding: $space-size-12 $space-size-16 $space-size-16;
+    background: $white;
     flex-wrap: wrap;
     align-items: flex-end;
     box-sizing: border-box;

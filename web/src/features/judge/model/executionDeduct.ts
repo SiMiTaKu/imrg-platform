@@ -2,11 +2,24 @@
  * 実施のAの減点項目の選択肢1つ分
  */
 export type PointAOption = {
-  /** 選択肢のコード（1〜10）。グラフの値にも使う */
+  /**
+   * 付けた点（1〜5）。グラフの値にも使う。
+   *
+   * @remarks
+   * 5 がいちばん良く、減点なし。1 点下がるごとに減点が増える
+   */
   code: number
-  /** 減点（0.5〜0.05） */
+  /** 減点 */
   value: number
 }
+
+/**
+ * 実施のAの段階1つ分。
+ *
+ * @remarks
+ * いまは `PointAOption` と同じ形だが、呼び分けのために名前を残してある
+ */
+export type PointALevel = PointAOption
 
 /**
  * 実施のAの減点項目のキー
@@ -42,17 +55,73 @@ export type PointAItem = {
 }
 
 /**
- * 実施のBの減点項目（手具の落下とミス）の入力値
+ * 実施のBの設問のキー。
+ *
+ * @remarks
+ * 規則の欠点表をそのまま並べると項目が26個になり、採点を試す人には多すぎた。
+ * 「見ていて どう感じたか」を答えれば点が付く形にまとめ直してある。
+ * 規則と1対1では対応しない
+ */
+export type PointBScaleKey =
+  | 'apparatusSpin'
+  | 'apparatusSkill'
+  | 'throwCatch'
+  | 'tumblingHeight'
+  | 'landing'
+  | 'legLine'
+  | 'steadiness'
+  | 'musicMatch'
+
+/**
+ * 実施のBで付ける点。
+ *
+ * @remarks
+ * 5 がいちばん良く、減点なし。1 点下がるごとに減点が増える
+ */
+export type PointBScaleCode = 1 | 2 | 3 | 4 | 5
+
+/** 実施のBの点の選択肢1つ分 */
+export type PointBScaleOption = {
+  /** 付けた点（1〜5）。5 がいちばん良い */
+  code: PointBScaleCode
+}
+
+/** 実施のBの設問1つ分 */
+export type PointBScaleItem = {
+  /** 設問のキー */
+  key: PointBScaleKey
+  /** 設問の文（表示中の言語） */
+  title: () => string
+  /**
+   * 1点下がるごとに増える減点。
+   *
+   * @remarks
+   * 設問ごとに重みが違う。着地のように大きく響くものは刻みを大きく、
+   * タンブリングの高さのように差が付きにくいものは小さくしてある
+   */
+  step: number
+}
+
+/**
+ * 内訳に出すときの、Bのまとまり1つ分
+ */
+export type PointBSummary = {
+  /** まとまりのキー */
+  key: string
+  /** まとまりの名前（表示中の言語） */
+  title: () => string
+  /** このまとまりに入る設問 */
+  items: readonly PointBScaleKey[]
+}
+
+/**
+ * 実施のBの入力値
  */
 export type PointB = {
-  droppedApparatus: {
-    /** 1つの手具を落とした回数 */
-    single: number
-    /** 2つの手具（リング・クラブ）を同時に落とした回数 */
-    double: number
-  }
-  /** その他ミスによる減点 */
-  miss: number
+  /** 手具を落とした回数 */
+  drops: number
+  /** 設問ごとに付けた点。まだ答えていない設問は持たない */
+  scales: Partial<Record<PointBScaleKey, PointBScaleCode>>
 }
 
 /**

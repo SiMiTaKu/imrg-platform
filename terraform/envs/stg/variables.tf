@@ -35,3 +35,17 @@ variable "basic_auth" {
   })
   sensitive = true
 }
+
+variable "guest_basic_auth" {
+  description = <<-EOT
+    運営の合言葉に加えて通す、一時的な合言葉の一覧。
+    外の人に期間を切って見てもらうときに足し、用が済んだら外して apply する
+  EOT
+  type = list(object({
+    note     = string
+    username = string
+    password = string
+  }))
+  default   = []
+  sensitive = true
+}

@@ -17,12 +17,14 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const 標準: Story = {}
+export const Default: Story = { name: '標準' }
 
-export const 小さめ: Story = {
+export const Small: Story = {
+  name: '小さめ',
   args: { fontSize: 30, subtitleFontSize: 16 },
 }
 
-export const 補助の文言なし: Story = {
+export const WithoutLead: Story = {
+  name: '補助の文言なし',
   args: { subtitle: undefined },
 }

@@ -2,14 +2,16 @@
   import { m } from '$lib/paraglide/messages'
   import { getLocale } from '@shared/lib/i18n'
   import { PolicyLayout } from '@widgets/policyLayout'
-  import PrivacyBodyChinese from './PrivacyBodyChinese.svelte'
-  import PrivacyBodyEnglish from './PrivacyBodyEnglish.svelte'
-  import PrivacyBodyFrench from './PrivacyBodyFrench.svelte'
-  import PrivacyBodyHindi from './PrivacyBodyHindi.svelte'
-  import PrivacyBodyJapanese from './PrivacyBodyJapanese.svelte'
-  import PrivacyBodyKorean from './PrivacyBodyKorean.svelte'
-  import PrivacyBodyRussian from './PrivacyBodyRussian.svelte'
-  import PrivacyBodySpanish from './PrivacyBodySpanish.svelte'
+  import {
+    PrivacyBodyChinese,
+    PrivacyBodyEnglish,
+    PrivacyBodyFrench,
+    PrivacyBodyHindi,
+    PrivacyBodyJapanese,
+    PrivacyBodyKorean,
+    PrivacyBodyRussian,
+    PrivacyBodySpanish,
+  } from '@widgets/privacy'
 
   // 表示する言語の本文だけを出す。訳が無い言語は英語の本文にする
   const locale = getLocale()

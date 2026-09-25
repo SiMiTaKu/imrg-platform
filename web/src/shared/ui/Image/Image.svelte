@@ -37,3 +37,11 @@
   loading={isLazy ? 'lazy' : 'eager'}
   use:fadeInImage
 />
+
+<style lang="scss">
+  // width 属性に "100%" は効かないため、はみ出しは CSS で止める
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

@@ -1,0 +1,519 @@
+import type { RuleTable, RuleTableAlign } from '../../model/ruleTable'
+
+/**
+ * 難度表。
+ *
+ * @remarks
+ * 出典はすべて 公益財団法人日本体操協会『新体操男子規則 2025年版』
+ * 3 採点規則 3.6 難度表（48〜51ページ）と 3.5.5 難度（D）の採点（40ページ）。
+ *
+ * 画像で載せていたものは版が古く、2025年版とは**列の見出しそのものが違う**。
+ * 画像は「基礎難度／6名実施」の2列だが、2025年版の徒手系難度は「個人／団体5名実施」、
+ * 転回系難度は「基礎難度」1列のみ。中身の難度にも食い違いが多いため、
+ * すべて一次資料から取り直した。食い違いは各表のコメントに残してある
+ */
+
+/** 徒手系難度の列。2025年版は「個人」と「団体5名実施」で難度が分かれる */
+const FREE_HAND_COLUMNS = ['種目', '個人', '団体5名実施']
+
+/** 転回系難度の列。2025年版は個人・団体で分かれず「基礎難度」1列のみ */
+const ACROBATIC_COLUMNS = ['技名', '基礎難度']
+
+/** 徒手系難度の列の寄せ方。難度の記号だけが入る列は真ん中にそろえる */
+const FREE_HAND_ALIGNS: readonly RuleTableAlign[] = ['start', 'center', 'center']
+
+/** 転回系難度の列の寄せ方。難度の記号だけが入る列は真ん中にそろえる */
+const ACROBATIC_ALIGNS: readonly RuleTableAlign[] = ['start', 'center']
+
+/*
+  難度表の列の幅。
+
+  どの表も左に通し番号の列（行の見出し）がある。幅を書いた表では、その列に
+  自動で 8%（50em のとき 48px ＝「24」の2文字×12px＋左右の余白24px）が入り、
+  残りの 92% をここに書いた比で割り直す。番号が改行も見切れもしないぎりぎりの幅。
+
+  ここに書く数字は通し番号の列を抜いた 92% を割る比なので、画面に出る幅は
+  0.92 を掛けたものになる。見積もりは「文字数×12px＋左右24px」で、50em（約600px）で見て、
+  - 個人 … 見出しの「個人」2文字ぶん（10% → 実際 9.2% ＝ 約55px）
+  - 団体5名実施 … 見出しの6文字が折り返さないぶん（18% → 実際 16.6% ＝ 約99px）
+  - 基礎難度 … 見出しの4文字が折り返さないぶん（14% → 実際 12.9% ＝ 約77px）
+  を取り、残りを種目・技名の列に回している
+*/
+
+/** 徒手系難度の列の幅。種目／個人／団体5名実施 */
+const FREE_HAND_WIDTHS: readonly string[] = ['72%', '10%', '18%']
+
+/** 転回系難度の列の幅。技名／基礎難度 */
+const ACROBATIC_WIDTHS: readonly string[] = ['86%', '14%']
+
+export const DIFFICULTY_TABLES: readonly RuleTable[] = [
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.1「1 跳躍」（48ページ）
+    //
+    // 画像（jumpdifficulties.png）との食い違い（画像のほうが古い）:
+    // - 列 … 画像「基礎難度／6名実施」/ 2025年版「個人／団体5名実施」
+    // - 1 閉脚から大の字とび … 画像 A/B / 2025年版 A/A
+    // - 5・7 … 画像「開脚屈伸とび」「閉脚屈伸とび」/ 2025年版「開脚屈身とび」「閉脚屈身とび」
+    // - 6 かかえこみとび … 画像 A/B / 2025年版 A/A
+    // - 9 反り身の跳躍（頭と足がつく） … 画像 C/D / 2025年版 B/C
+    imageSource: '/images/rules/jumpdifficulties.png',
+    caption: '徒手系難度（跳躍）',
+    layout: 'list',
+    narrowColumns: 2,
+    columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
+    columnAligns: FREE_HAND_ALIGNS,
+    rows: [
+      { header: '1', cells: ['閉脚から大の字とび', 'A', 'A'] },
+      { header: '2', cells: ['とびあがって1回以上のひねり（片足・両足）', 'A', 'B'] },
+      { header: '3', cells: ['とびあがって2回以上のひねり（片足・両足）', 'B', 'C'] },
+      { header: '4', cells: ['前後開脚交叉とび', 'A', 'B'] },
+      { header: '5', cells: ['開脚屈身とび', 'A', 'B'] },
+      { header: '6', cells: ['かかえこみとび', 'A', 'A'] },
+      { header: '7', cells: ['閉脚屈身とび', 'A', 'B'] },
+      { header: '8', cells: ['片足または両足を後に大きく振り上げて反り身の跳躍', 'A', 'B'] },
+      {
+        header: '9',
+        cells: ['片足または両足を後に大きく振り上げて反り身の跳躍（頭と足がつく）', 'B', 'C'],
+      },
+      { header: '10', cells: ['前・後・側で足打ちを伴う跳躍', 'A', 'B'] },
+      { header: '11', cells: ['バタフライ', 'A', 'B'] },
+      { header: '12', cells: ['バタフライ1回ひねり', 'B', 'C'] },
+    ],
+    note: '団体競技での採用条件は 3.4.4.3、個人競技での採用条件は 3.5.5.3 による。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.1「1 跳躍」（48ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.1「2 バランス」（48ページ）
+    //
+    // 画像（balansedifficulties.png）との食い違い（画像のほうが古い）:
+    // - 画像は5行、2025年版は8行。「足を保持した片足平均立ち」「開脚片足平均立ち（頭と足が触れる）」
+    //   「足を保持しない135°以上…」は画像に無い
+    // - 画像の3「背面水平立ち B/C」は、2025年版では5番に移った（難度は同じ）
+    imageSource: '/images/rules/balansedifficulties.png',
+    caption: '徒手系難度（バランス）',
+    layout: 'list',
+    narrowColumns: 2,
+    columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
+    columnAligns: FREE_HAND_ALIGNS,
+    rows: [
+      { header: '1', cells: ['正面水平立ち', 'A', 'B'] },
+      { header: '2', cells: ['側面水平立ち', 'A', 'B'] },
+      { header: '3', cells: ['足を保持した片足平均立ち', 'A', 'B'] },
+      { header: '4', cells: ['開脚片足平均立ち（頭と足が触れる）', 'C', 'C'] },
+      { header: '5', cells: ['背面水平立ち', 'B', 'C'] },
+      { header: '6', cells: ['足を保持した180°開脚片足平均立ち', 'B', 'C'] },
+      {
+        header: '7',
+        cells: ['足を保持しない135°以上の開脚片足平均立ち（上体は水平以上）', 'B', 'C'],
+      },
+      {
+        header: '8',
+        cells: ['足を保持しない180°以上の開脚片足平均立ち（上体は水平以上）', 'C', 'D'],
+      },
+    ],
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.1「2 バランス」（48ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.1「3 倒立（静止2秒）」（48ページ）
+    //
+    // 画像（handstanddifficulties.png）との食い違い（画像のほうが古い）:
+    // - 6 後転倒立 … 画像 B/C / 2025年版 C/D
+    // - 8 … 画像「伸腕屈伸力倒立（シンピ閉脚・開脚）」/ 2025年版「伸腕屈身力倒立（シンピ閉脚・開脚）」
+    imageSource: '/images/rules/handstanddifficulties.png',
+    caption: '徒手系難度（倒立・静止2秒）',
+    layout: 'list',
+    narrowColumns: 2,
+    columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
+    columnAligns: FREE_HAND_ALIGNS,
+    rows: [
+      { header: '1', cells: ['閉脚（開脚）倒立', 'A', 'B'] },
+      { header: '2', cells: ['前後開脚倒立（片足屈膝を含む）', 'A', 'B'] },
+      { header: '3', cells: ['前とび倒立', 'B', 'C'] },
+      { header: '4', cells: ['十字倒立', 'C', 'D'] },
+      { header: '5', cells: ['片手倒立', 'C', 'D'] },
+      { header: '6', cells: ['後転倒立', 'C', 'D'] },
+      { header: '7', cells: ['後方ブリッヂから倒立', 'C', 'D'] },
+      { header: '8', cells: ['伸腕屈身力倒立（シンピ閉脚・開脚）', 'C', 'D'] },
+      { header: '9', cells: ['開脚前挙支持（脚前挙支持）から伸腕屈伸力倒立', 'C', 'D'] },
+    ],
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.1「3 倒立（静止2秒）」（48ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.1「4 柔軟（静止2秒）」（49ページ）
+    //
+    // 画像（stretchdifficulties.png）との食い違い（画像のほうが古い）:
+    // - 画像は4行、2025年版は7行。仰臥位の2行と「左右開脚座（180度）前屈」は画像に無い
+    // - 画像の4「胸指示で後ろ反りをし、床に足をつける。」は2025年版のこの表には無い
+    imageSource: '/images/rules/stretchdifficulties.png',
+    caption: '徒手系難度（柔軟・静止2秒）',
+    layout: 'list',
+    narrowColumns: 2,
+    columns: FREE_HAND_COLUMNS,
+    columnWidths: FREE_HAND_WIDTHS,
+    columnAligns: FREE_HAND_ALIGNS,
+    rows: [
+      { header: '1', cells: ['長座になり体前屈（頭が足につく）', 'A', 'B'] },
+      { header: '2', cells: ['左右開脚座で体前屈（胸が床面につく）', 'A', 'B'] },
+      { header: '3', cells: ['左右開脚座、又は前後開脚座（脚は一直線・180度）', 'A', 'B'] },
+      { header: '4', cells: ['左右開脚座（脚は一直線・180度）前屈', 'B', 'C'] },
+      { header: '5', cells: ['前後開脚座（脚は一直線・180度）前屈', 'A', 'B'] },
+      { header: '6', cells: ['左右開脚座、又は前後開脚座（脚は180度未満）仰臥位', 'A', 'B'] },
+      { header: '7', cells: ['左右開脚座、又は前後開脚座（脚は一直線・180度）仰臥位', 'B', 'C'] },
+    ],
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.1「4 柔軟（静止2秒）」（49ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.2「1 前方系」（49ページ）
+    //
+    // 画像（forwardjumpdifficulties.png）との食い違い（画像のほうが古い）:
+    // - 列 … 画像「基礎難度／6名実施」の2列 / 2025年版は「基礎難度」1列のみ
+    // - 9 … 画像「前とびひねり前方かかえこみ宙返り」/ 2025年版「前跳びひねり後方かかえ込み宙返り」
+    // - 画像の12「前方伸身宙返り（1回・1回半・2回）ひねり D」は、
+    //   2025年版では12・13・14に分かれ、2回ひねりだけ E に上がった
+    // - 画像の14「前方（かかえ込み・屈伸）宙返り転」は2025年版のこの表には無い
+    imageSource: '/images/rules/forwardjumpdifficulties.png',
+    caption: '転回系難度（前方系）',
+    layout: 'list',
+    narrowColumns: 1,
+    columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
+    columnAligns: ACROBATIC_ALIGNS,
+    rows: [
+      { header: '1', cells: ['首はねおき（直立・膝立ち）、頭はねおき（直立・膝立ち）', 'A'] },
+      { header: '2', cells: ['前転とび、両足踏切前転とび', 'A'] },
+      { header: '3', cells: ['伸身前とび前転', 'A'] },
+      { header: '4', cells: ['伸身前とび1回ひねり前転', 'B'] },
+      { header: '5', cells: ['前とび1回ひねり前転とび', 'C'] },
+      { header: '6', cells: ['片足踏切前方開脚伸身宙返り', 'B'] },
+      { header: '7', cells: ['前方（かかえ込み・屈身）宙返り', 'B'] },
+      { header: '8', cells: ['前方伸身宙返り', 'C'] },
+      { header: '9', cells: ['前跳びひねり後方かかえ込み宙返り', 'B'] },
+      { header: '10', cells: ['前方かかえ込み宙返りひねり', 'B'] },
+      { header: '11', cells: ['前方（かかえ込み・屈身）宙返り1回ひねり', 'C'] },
+      { header: '12', cells: ['前方伸身宙返り1回ひねり', 'D'] },
+      { header: '13', cells: ['前方伸身宙返り1回半ひねり', 'D'] },
+      { header: '14', cells: ['前方伸身宙返り2回ひねり', 'E'] },
+      { header: '15', cells: ['前方（かかえ込み・屈身）宙返り直接正面支持臥', 'B'] },
+    ],
+    note: '団体競技での採用条件は 3.4.4.4、個人競技での採用条件は 3.5.5.4 による。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.2「1 前方系」（49ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.2「2 後方系」の1〜4（49ページ）
+    //
+    // 2025年版には「とびひねり技の難度表」という独立した表は無い。
+    // 画像（jumpturndifficulties.png）が載せていた「後ろとび正面支持臥」の系統は、
+    // 2025年版では後方系の 1〜4 に組み込まれたので、その4行をここに出す。
+    // 残りの 5〜24 は backwardjumpdifficulties.png 側の表に続く
+    //
+    // 画像との食い違い（画像のほうが古い）:
+    // - 列 … 画像「基礎難度／6名実施」の2列 / 2025年版は「基礎難度」1列のみ
+    // - 3 … 画像「屈伸しながら後ろとびをし、体を伸ばして正面支持臥 A」/
+    //        2025年版「後ろとびをし、屈身姿勢から体を伸ばして正面支持臥 B」
+    // - 画像の5「後ろとび1回半ひねり正面支持臥」は2025年版のこの表には無い
+    imageSource: '/images/rules/jumpturndifficulties.png',
+    caption: '転回系難度（後方系・とび系 1〜4）',
+    layout: 'list',
+    narrowColumns: 1,
+    columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
+    columnAligns: ACROBATIC_ALIGNS,
+    rows: [
+      { header: '1', cells: ['後ろとび正面支持臥', 'A'] },
+      { header: '2', cells: ['後ろとび正面支持臥回転', 'A'] },
+      { header: '3', cells: ['後ろとびをし、屈身姿勢から体を伸ばして正面支持臥', 'B'] },
+      { header: '4', cells: ['後ろとび1回ひねり正面支持臥', 'C'] },
+    ],
+    note: '2025年版では独立した「とびひねり技の難度表」は無くなり、後方系の1〜4になった。5以降は次の表に続く。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.2「2 後方系」1〜4（49ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.2「2 後方系」の5〜24（49〜50ページ）
+    //
+    // 画像（backwardjumpdifficulties.png）との食い違い（画像のほうが古い）:
+    // - 列 … 画像「基礎難度／6名実施」の2列 / 2025年版は「基礎難度」1列のみ
+    // - 画像の5「後方（かかえ込み・屈伸・伸身）2回宙返り D」は、2025年版では
+    //   9「後方（かかえ込み・屈身）2回宙返り D」と10「後方伸身2回宙返り E」に分かれた
+    // - 画像の6「後方かかえ込み2回宙返り1回ひねり D」… 2025年版 E
+    // - 画像の7「…宙返り開脚座」9「…1回ひねり開脚座」15「後ろとび1回半ひねり前転」
+    //   16「後ろとびひねり2回半ひねり前転」は2025年版のこの表には無い
+    // - 2025年版で新たに入ったもの: 17（3回ひねり以上 E）、20（宙返りひねり C）、
+    //   23（1回ひねり直接正面支持臥 C）、24（前方2回宙返り E）
+    imageSource: '/images/rules/backwardjumpdifficulties.png',
+    caption: '転回系難度（後方系 5〜24）',
+    layout: 'list',
+    narrowColumns: 1,
+    columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
+    columnAligns: ACROBATIC_ALIGNS,
+    rows: [
+      { header: '5', cells: ['後ろ首はねおき（直立・膝立ち）', 'A'] },
+      { header: '6', cells: ['後転とび', 'A'] },
+      { header: '7', cells: ['後方（かかえ込み・屈身・伸身・開脚）宙返り', 'B'] },
+      { header: '8', cells: ['テンポ宙返り', 'B'] },
+      { header: '9', cells: ['後方（かかえ込み・屈身）2回宙返り', 'D'] },
+      { header: '10', cells: ['後方伸身2回宙返り', 'E'] },
+      { header: '11', cells: ['後方かかえ込み2回宙返り1回ひねり', 'E'] },
+      { header: '12', cells: ['後方（かかえ込み・屈身・伸身・開脚）宙返りひねり', 'B'] },
+      { header: '13', cells: ['後方宙返り（かかえ込み・屈身・伸身）1回ひねり', 'C'] },
+      { header: '14', cells: ['後方宙返り（かかえ込み・屈身・伸身）1回半ひねり', 'C'] },
+      { header: '15', cells: ['後方宙返り（かかえ込み・屈身・伸身）2回ひねり', 'D'] },
+      { header: '16', cells: ['後方宙返り（かかえ込み・屈身・伸身）2回半ひねり', 'D'] },
+      { header: '17', cells: ['後方宙返り（かかえ込み・屈身・伸身）3回ひねり以上', 'E'] },
+      { header: '18', cells: ['後ろとびひねり前転', 'A'] },
+      { header: '19', cells: ['後ろとびひねり前方（かかえ込み・屈身・伸身）宙返り', 'B'] },
+      { header: '20', cells: ['後ろとびひねり前方（かかえ込み・屈身・伸身）宙返りひねり', 'C'] },
+      { header: '21', cells: ['後ろとびひねり前方（かかえ込み・屈身・伸身）宙返り1回ひねり', 'C'] },
+      {
+        header: '22',
+        cells: ['後ろとびひねり前方（かかえ込み・屈身・伸身）宙返り直接正面支持臥', 'B'],
+      },
+      {
+        header: '23',
+        cells: ['後ろとびひねり前方（かかえ込み・屈身・伸身）宙返り1回ひねり直接正面支持臥', 'C'],
+      },
+      { header: '24', cells: ['後ろとびひねり前方2回宙返り（かかえ込み・屈身・伸身）', 'E'] },
+    ],
+    note: '1〜4（とび系）は前の表にある。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.2「2 後方系」5〜24（49〜50ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.2「3 側方系」（50ページ）
+    imageSource: '/images/rules/sidewardjumpdifficulties.png',
+    caption: '転回系難度（側方系）',
+    layout: 'list',
+    narrowColumns: 1,
+    columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
+    columnAligns: ACROBATIC_ALIGNS,
+    rows: [
+      { header: '1', cells: ['側方倒立回転1／4ひねり（ロンダード）', 'A'] },
+      { header: '2', cells: ['アラビア宙返り', 'B'] },
+      { header: '3', cells: ['側方（かかえ込み・屈身・伸身）宙返り', 'B'] },
+    ],
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.2「3 側方系」（50ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.2「4 宙返りの連続」（50ページ）
+    //
+    // 画像（combinationdifficulties.png）との食い違い（画像のほうが古い）:
+    // - 列 … 画像「基礎難度／6名実施」の2列 / 2025年版は「基礎難度」1列のみ
+    // - 3〜6 … 画像は基礎難度 D / 2025年版 E に上がった
+    imageSource: '/images/rules/combinationdifficulties.png',
+    caption: '転回系難度（宙返りの連続）',
+    layout: 'list',
+    narrowColumns: 1,
+    columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
+    columnAligns: ACROBATIC_ALIGNS,
+    rows: [
+      { header: '1', cells: ['B難度の宙返り直ちにB難度の宙返り', 'C'] },
+      { header: '2', cells: ['C難度の宙返り直ちにB難度の宙返り', 'D'] },
+      { header: '3', cells: ['C難度の宙返り直ちにC難度の宙返り', 'E'] },
+      { header: '4', cells: ['D難度の宙返り直ちにB難度の宙返り', 'E'] },
+      { header: '5', cells: ['D難度の宙返り直ちにC難度の宙返り', 'E'] },
+      { header: '6', cells: ['D難度の宙返り直ちにD難度の宙返り', 'E'] },
+      { header: '7', cells: ['宙返り3回以上の連続（前方、後方、側方含む）', 'D'] },
+    ],
+    note: '※宙返り以外の技では 3.6.2 の 1-4、1-5 の転回系も同等の扱いとする。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.2「4 宙返りの連続」（50ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.6.2「5 連続した転回」（51ページ）
+    //
+    // 画像（combinationdifficulties2.png）との食い違い（画像のほうが古い）:
+    // - 列 … 画像「基礎難度／6名実施」の2列 / 2025年版は「基礎難度」1列のみ
+    // - 画像は7行、2025年版は12行。「A難度の転回→後ろとびひねり前転」以下の3行と
+    //   「B難度の宙返り→A難度の転回→D難度の宙返り」は画像に無い
+    // - 画像の3「3回以上の連続後転とびから後方伸身宙返り※2」と
+    //   5「ロンダートまたは前転とびから伸身前とび1回ひねり前転」は2025年版のこの表には無い
+    imageSource: '/images/rules/combinationdifficulties2.png',
+    caption: '転回系難度（連続した転回）',
+    layout: 'list',
+    narrowColumns: 1,
+    columns: ACROBATIC_COLUMNS,
+    columnWidths: ACROBATIC_WIDTHS,
+    columnAligns: ACROBATIC_ALIGNS,
+    rows: [
+      { header: '1', cells: ['後転とびから後方伸身宙返り', 'B'] },
+      {
+        header: '2',
+        cells: ['3回以上の連続後転とびから後方（かかえ込み・屈身、伸身）宙返り', 'B'],
+      },
+      { header: '3', cells: ['前転とびから前方宙返り（かかえ込み・屈身）', 'B'] },
+      { header: '4', cells: ['前転とびから伸身前とび1回ひねり前転', 'B'] },
+      { header: '5', cells: ['B難度の宙返り→A難度の転回→B難度の宙返り', 'C'] },
+      { header: '6', cells: ['B難度の宙返り→A難度の転回→C難度の宙返り', 'D'] },
+      { header: '7', cells: ['B難度の宙返り→A難度の転回→D難度の宙返り', 'E'] },
+      { header: '8', cells: ['C難度の宙返り→A難度の転回→C難度の宙返り', 'D'] },
+      { header: '9', cells: ['C難度の宙返り→A難度の転回→D難度の宙返り', 'E'] },
+      { header: '10', cells: ['A難度の転回→後ろとびひねり前転', 'B'] },
+      { header: '11', cells: ['B難度の転回→後ろとびひねり前転', 'C'] },
+      { header: '12', cells: ['C難度の転回→後ろとびひねり前転', 'D'] },
+    ],
+    note: '※5〜9の宙返りは入れ替わっても同様の扱いとする。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.6.2「5 連続した転回」（51ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.5.5「3 徒手系難度(2) 投げ受けを伴った徒手系難度」（40ページ）
+    //
+    // 画像（tossdifficulties.png）との食い違い（画像のほうが古い）:
+    // - 画像は「3回以上 D」で終わるが、2025年版は「3回 D」と「4回以上 E」に分かれる
+    imageSource: '/images/rules/tossdifficulties.png',
+    caption: '投げ受けを伴った徒手系難度',
+    headerColumns: 1,
+    layout: 'list',
+    narrowColumns: 1,
+    columns: ['間に実施した徒手系または転回系の数', '難度'],
+    columnAligns: ['start', 'center'],
+    rows: [
+      { cells: ['0回', 'A'] },
+      { cells: ['1回', 'B'] },
+      { cells: ['2回', 'C'] },
+      { cells: ['3回', 'D'] },
+      { cells: ['4回以上', 'E'] },
+    ],
+    note: '※ここでの徒手系は、縦軸または横軸で360度回転したもののみを1つとして数える。転回系が含まれていた場合は 3.5.5.4 の条件と比べ、高い方の難度を採用する。',
+    source:
+      '新体操男子規則 2025年版 3 採点規則 3.5.5「3 徒手系難度(2) 投げ受けを伴った徒手系難度」（40ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.4「2 価値点(2) 難度には次の価値点が与えられる」（28ページ）
+    //
+    // 同じ表が個人競技の 3.5.5「2 価値点(2)」（40ページ）にも載っている。
+    // E 難度（0.7）は2025年版で新しく入ったもの
+    imageSource: '/images/rules/tables/difficulty-value.png',
+    caption: '難度の価値点',
+    headerColumns: 1,
+    compact: true,
+    layout: 'list',
+    narrowColumns: 0,
+    columns: ['難度', '価値点'],
+    columnAligns: ['center', 'center'],
+    rows: [
+      { cells: ['A', '0.1'] },
+      { cells: ['B', '0.2'] },
+      { cells: ['C', '0.3'] },
+      { cells: ['D', '0.5'] },
+      { cells: ['E', '0.7'] },
+    ],
+    note: '紙面は難度を横に並べた1行の表。狭い画面でも読めるよう縦に開いた。難度（D）の採点は、この価値点とボーナス加点の合計で算出する。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.4.4「2 価値点(2)」（28ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.4.4「(4)② C 2段交差の難度」（29ページ）
+    imageSource: '/images/rules/tables/group-cross-two.png',
+    caption: '2段交差の難度',
+    headerColumns: 1,
+    compact: true,
+    layout: 'list',
+    narrowColumns: 0,
+    columns: ['転回系1', '転回系2', '難度'],
+    columnAligns: ['center', 'center', 'center'],
+    rows: [
+      { cells: ['A', 'A', 'A'] },
+      { cells: ['A', 'B', 'B'] },
+      { cells: ['A', 'C', 'C'] },
+      { cells: ['A', 'D', 'D'] },
+      { cells: ['A', 'E', 'E'] },
+      { cells: ['B', 'B', 'C'] },
+      { cells: ['B', 'C', 'D'] },
+      { cells: ['B', 'D', 'E'] },
+      { cells: ['B', 'E', 'E'] },
+      { cells: ['C', 'C', 'E'] },
+      { cells: ['C', 'D', 'E'] },
+      { cells: ['C', 'E', 'E'] },
+      { cells: ['D', 'D', 'E'] },
+      { cells: ['D', 'E', 'E'] },
+      { cells: ['E', 'E', 'E'] },
+    ],
+    note: '転回系の交差技は、転回系の途中を跳び越えていなければならない。最低条件として、転回系の着地寸前に跳び越えることとする。着地後に跳び越えた場合は、徒手系の上を転回系で跳び越えた場合と同じ扱いとし、転回系の種目の難度を採用する。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.4.4.4「(4)② C」（29ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.4.4「(4)② D 3段交差の難度」（29ページ）
+    imageSource: '/images/rules/tables/group-cross-three.png',
+    caption: '3段交差の難度',
+    headerColumns: 1,
+    compact: true,
+    layout: 'list',
+    narrowColumns: 0,
+    columns: ['2段交差の難度', '3段目の難度', '難度'],
+    columnAligns: ['center', 'center', 'center'],
+    rows: [
+      { cells: ['A', 'A', 'A'] },
+      { cells: ['A', 'B', 'B'] },
+      { cells: ['A', 'C', 'C'] },
+      { cells: ['A', 'D', 'D'] },
+      { cells: ['A', 'E', 'E'] },
+      { cells: ['B', 'B', 'C'] },
+      { cells: ['B', 'C', 'D'] },
+      { cells: ['B', 'D', 'E'] },
+      { cells: ['B', 'E', 'E'] },
+      { cells: ['C', 'C', 'E'] },
+      { cells: ['C', 'D', 'E'] },
+      { cells: ['C', 'E', 'E'] },
+      { cells: ['D', 'D', 'E'] },
+      { cells: ['D', 'E', 'E'] },
+      { cells: ['E', 'E', 'E'] },
+    ],
+    note: '※2段の交差の難度と3段目の転回系の難度が入れ替わっていても同様とする。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.4.4.4「(4)② D」（29ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.4.4.4「(6)② シリーズの難度の判定」（30ページ）
+    //
+    // 紙面の1列目の見出しは「第1クループ」と濁点が落ちて印刷されている。
+    // 言葉で探せるよう「第1グループ」に直した
+    imageSource: '/images/rules/tables/group-series-difficulty.png',
+    caption: 'シリーズの難度の判定（3・2または4・1で分かれた場合）',
+    compact: true,
+    headerColumns: 1,
+    layout: 'list',
+    narrowColumns: 0,
+    columns: ['第1グループ', '第2グループ', '難度'],
+    rows: [
+      { cells: ['3名がA', '2名がC', 'A'] },
+      { cells: ['3名がB', '2名がA', 'B'] },
+      { cells: ['3名の交差C', '2名がB', 'C'] },
+      { cells: ['3名がA', '2名の交差D', 'D'] },
+      { cells: ['3名の交差C', '2名の交差E', 'E'] },
+    ],
+    note: '原則として、3名以上が実施したグループの難度を採用するが、交差等で2名で難度認定されるものを実施した場合は、高いほうの難度が採用される。',
+    source: '新体操男子規則 2025年版 3 採点規則 3.4.4.4「(6)②」（30ページ）',
+  },
+  {
+    // 出典: 新体操男子規則 2025年版 3 採点規則 3.5.5「3 徒手系難度(1)② ロープの跳びの難度」（40ページ）
+    //
+    // 紙面は「前跳び／後ろ跳び」の下にそれぞれ「クロスなし／クロスあり」が入る2段の見出し。
+    // 見出しは1段にしか持てないので「前跳び（クロスなし）」のようにまとめた。
+    // 下の3行は4つの欄がつながって1つの難度になっているので、横に続けて使っている
+    imageSource: '/images/rules/tables/rope-jump-difficulty.png',
+    caption: 'ロープの跳びの難度',
+    layout: 'matrix',
+    cornerLabel: '跳びの種類',
+    // 中身は A〜E の1文字だけなので、どの列も真ん中に寄せる
+    columnAligns: ['center', 'center', 'center', 'center'],
+    columns: [
+      '前跳び（クロスなし）',
+      '前跳び（クロスあり）',
+      '後ろ跳び（クロスなし）',
+      '後ろ跳び（クロスあり）',
+    ],
+    rows: [
+      { header: '1重跳び', cells: ['A', 'A', 'A', 'A'] },
+      { header: '2重跳び', cells: ['A', 'B', 'B', 'C'] },
+      { header: '3重跳び', cells: ['B', 'C', 'C', 'D'] },
+      { header: '3重とび2回', cells: ['C', 'C', 'D', 'D'] },
+      { header: '3回以上の連続した3重跳び', cells: [{ text: 'D', colSpan: 4 }] },
+      { header: '4重跳び', cells: [{ text: 'D', colSpan: 4 }] },
+      { header: '2回以上の連続した4重とび', cells: [{ text: 'E', colSpan: 4 }] },
+    ],
+    note: 'ロープの演技において実施した跳びは、その中の最も難度の高い技を徒手系難度として数える。「跳び」「とび」の書き分けは冊子のまま。',
+    source:
+      '新体操男子規則 2025年版 3 採点規則 3.5.5「3 徒手系難度(1)② ロープの跳びの難度」（40ページ）',
+  },
+]

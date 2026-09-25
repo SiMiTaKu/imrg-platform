@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { ButtonLink } from '@imrg-platform/design-system'
+  import { Button } from '@imrg-platform/design-system'
   import { ContentType, findApparatus, findContentType } from '@entities/oshimitsuVideo'
   import { APPARATUSES } from '@shared/config/apparatus'
   import type { ApparatusSlug } from '@shared/model'
   import { m } from '$lib/paraglide/messages'
-  import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
+  import { pageData } from '@shared/lib/device'
   import { buildSearchPath } from '../lib/search'
   import type { SearchQuery } from '../model/criteria'
   import CheckBoxFieldset from './CheckBoxFieldset.svelte'
@@ -25,6 +25,8 @@
   let query = $state<SearchQuery>({ contentType: undefined, apparatuses: [] })
 
   const searchHref = $derived(localizeHref(buildSearchPath(query)))
+
+  const isMobile = $derived($pageData.isMobile)
 
   /**
    * 種類を選んだとき、条件を置き換える
@@ -65,11 +67,10 @@
     onchange={onChangeApparatus}
   />
 {/if}
-<ButtonLink
-  target="_self"
-  fontSize={$pageData.isMobile ? 20 : 24}
-  width={$pageData.isMobile ? 320 : 343}
-  height={56}
-  text={m.oshimitsu_search_button()}
+<Button
   href={searchHref}
-/>
+  target="_self"
+  size="large"
+  width={isMobile ? 'full' : 'auto'}
+  variant="sky-blue">{m.oshimitsu_search_button()}</Button
+>

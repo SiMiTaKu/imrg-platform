@@ -10,6 +10,8 @@
 export const AccentColor = {
   /** 青。`$sky-blue` の button と同じ値 */
   BLUE: '#1986ff',
+  /** 紅 */
+  RED: '#d33f3f',
   /** 緑 */
   GREEN: '#16a06b',
   /** 紫 */

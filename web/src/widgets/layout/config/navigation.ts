@@ -16,8 +16,9 @@ export interface NavigationLink {
 export const NAVIGATION_LINKS: readonly NavigationLink[] = [
   { href: ROUTES.top, label: m.layout_nav_top },
   { href: ROUTES.calendar.index, label: m.layout_nav_calendar },
-  { href: ROUTES.decoratingApparatus, label: m.layout_nav_decorating_apparatus },
+  { href: ROUTES.coaching, label: m.layout_nav_coaching },
   { href: ROUTES.backgroundMusic, label: m.layout_nav_background_music },
+  { href: ROUTES.decoratingApparatus, label: m.layout_nav_decorating_apparatus },
   { href: ROUTES.judge, label: m.layout_nav_judge },
   { href: ROUTES.oshimitsu.index, label: m.layout_nav_oshimitsu },
 ]

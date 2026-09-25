@@ -1,0 +1,10 @@
+// トップページを組み立てる節。ページ本体（pages/top）はこれらを並べるだけにする
+export { CONTACTS, FEATURES, HIGHLIGHTS, SERVICES, UPCOMING_EVENT_COUNT } from './config/sections'
+export { default as CharacterTeam } from './ui/CharacterTeam.svelte'
+export { default as ContactPanel } from './ui/ContactPanel.svelte'
+export { default as Features } from './ui/Features.svelte'
+export { default as Hero } from './ui/Hero.svelte'
+export { default as Highlights } from './ui/Highlights.svelte'
+export { default as Numbers } from './ui/Numbers.svelte'
+export { default as Services } from './ui/Services.svelte'
+export { default as UpcomingEvents } from './ui/UpcomingEvents.svelte'

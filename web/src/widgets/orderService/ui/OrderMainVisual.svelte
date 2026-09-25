@@ -8,14 +8,29 @@
     /** この1枚の背景画像。省くと `backgroundImage` を出したままにする */
     image?: ImageSourceMeta[]
   }
+
   /** キャッチコピーを消してから次を出すまでの時間（ミリ秒） */
   const SLIDE_GAP = 1250
+
+  /**
+   * 1つの文字列でも、意味のまとまりの並びでも、まとまりの配列として受け取る。
+   *
+   * @remarks
+   * まとまりを1つずつ並べて出すと、まとまりの途中では折り返さない
+   * @param value - 文字列、または意味のまとまりの配列
+   * @returns 意味のまとまりの配列
+   */
+  const toParts = (value: string | readonly string[]): readonly string[] =>
+    typeof value === 'string' ? [value] : value
 </script>
 
 <script lang="ts">
+  import { Button } from '@imrg-platform/design-system'
   import { SLIDE_INTERVAL } from '../config/orderService'
   import { onMount } from 'svelte'
-  import { fade, fly } from 'svelte/transition'
+  // TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9）
+  // import { CharacterFigure } from '@entities/character'
+  import type { CharacterProfile } from '@entities/character'
   import { pageData } from '@shared/lib/device'
   import { ImageAssets } from '@shared/ui'
 
@@ -25,33 +40,75 @@
     title: string
     /** 見出しの下に出す英語の見出し。省くと出さない（英語ページ） */
     subtitle?: string
+    /** 見出しの上に出す小さなラベル（例: 曲編集を承っています） */
+    eyebrow: string
+    /** 何を頼めるのかの説明。2〜3行でまとめる */
+    summary: string
+    /** 何に対しての金額か（例: 1曲） */
+    priceUnit: string
+    /**
+     * 金額の表記（例: 5,000円〜）。
+     *
+     * 「個人 5,000円〜」「団体 10,000円〜」のように読み手が分けて読むものは、
+     * まとまりごとの配列で渡す。まとまりの途中では折り返さずに出す
+     */
+    priceAmount: string | readonly string[]
+    /** 頼めることの短い言い切り。3つまでにする */
+    points: readonly string[]
+    /** このページの案内役 */
+    character: CharacterProfile
+    /** 相談の窓口（Instagram） */
+    contactHref: string
+    /** 相談のボタンの文言 */
+    contactLabel: string
+    /** 作例へ送るリンク先（同じページの中の `#works` など） */
+    worksHref: string
+    /** 作例のボタンの文言 */
+    worksLabel: string
+    /** ボタンの下に小さく出す補足 */
+    note: string
     /** 背景画像の代替テキスト */
     imageAlt: string
     /** 切り替えて見せるキャッチコピー（と背景画像） */
     slides: OrderMainVisualSlide[]
     /** 切り替えずに出したままにする背景画像 */
     backgroundImage?: ImageSourceMeta[]
-    /** 左から暗くする影の幅（`85%` など） */
-    overlayWidth: string
-    /** 左から暗くする影の濃さ（0〜1） */
-    overlayOpacity: number
+    /**
+     * 見せ方。省くと `card`。
+     *
+     * - `card`: 写真の上に白い札を置き、その中に文字を出す
+     * - `full`: 札を置かず、画面の端まで行き渡らせた写真の上に直に文字を出す（トップページと同じ）
+     */
+    layout?: 'card' | 'full'
   }
 
   const {
     title,
     subtitle,
+    eyebrow,
+    summary,
+    priceUnit,
+    priceAmount,
+    points,
+    // TODO(キャラクター): 絵を出し直すときに、この取り出しも戻す（docs/TODO.md 5-9）
+    // character,
+    contactHref,
+    contactLabel,
+    worksHref,
+    worksLabel,
+    note,
     imageAlt,
     slides,
     backgroundImage,
-    overlayWidth,
-    overlayOpacity,
+    layout = 'card',
   }: Props = $props()
+
+  const isMobile = $derived($pageData.isMobile)
+  const priceParts = $derived(toParts(priceAmount))
 
   let currentIndex = $state(0)
   let isShow = $state(false)
   let initialized = $state(false)
-
-  const currentSlide = $derived(slides[currentIndex % slides.length])
 
   onMount(() => {
     // 最初に見せる1枚は、開くたびに変える。表示はマウント後なので、書き出した HTML とずれない
@@ -75,150 +132,448 @@
   })
 </script>
 
-<section
-  class="main-visual"
-  class:desktop={!$pageData.isMobile}
-  class:mobile={$pageData.isMobile}
-  style:--overlay-width={overlayWidth}
-  style:--overlay-opacity={overlayOpacity}
->
-  {#if backgroundImage}
-    <div class="image">
-      <ImageAssets
-        width="100%"
-        height="100%"
-        alt={imageAlt}
-        lazy={false}
-        imageSourceMeta={backgroundImage}
-        objectFit="cover"
-      />
-    </div>
-  {/if}
-  {#if isShow && currentSlide.image}
-    <div class="image" in:fade={{ duration: 1000 }} out:fade={{ duration: 300 }}>
-      <ImageAssets
-        width="100%"
-        height="100%"
-        alt={imageAlt}
-        lazy={false}
-        imageSourceMeta={currentSlide.image}
-        objectFit="cover"
-      />
-    </div>
-  {/if}
-  <div class="content-wrapper">
-    <div class="content">
-      {#if initialized}
-        <h1
-          class="title"
-          data-has-subtitle={subtitle !== undefined}
-          in:fly={{ duration: 1000, delay: 100, x: 50 }}
-        >
-          {title}
-        </h1>
-        {#if subtitle}
-          <div class="english-title" lang="en" in:fly={{ duration: 1000, delay: 600, y: 50 }}>
-            {subtitle}
-          </div>
-        {/if}
-      {/if}
-      {#if isShow}
-        <div
-          class="description"
-          in:fly={$pageData.isMobile ? { duration: 1000, y: 50 } : { duration: 1000, x: 100 }}
-          out:fly={$pageData.isMobile ? { duration: 300, y: -50 } : { duration: 300, x: -100 }}
-        >
-          {currentSlide.description}
+<!-- 背景・影・中身は position ではなく grid の同じマス目に重ねる。高さは中身で決まる -->
+<section class="main-visual" class:mobile={isMobile} class:full={layout === 'full'}>
+  <div class="layer images">
+    {#if backgroundImage}
+      <!-- 切り替えずに出したままにする1枚。いちばん下に敷いて、ずっと見えたままにする -->
+      <div class="image base">
+        <ImageAssets
+          width="100%"
+          height="100%"
+          alt={imageAlt}
+          lazy={false}
+          imageSourceMeta={backgroundImage}
+          objectFit="cover"
+        />
+      </div>
+    {/if}
+    <!--
+      写真は全部を同じ場所に重ねて置き、いま見せる1枚だけを前に出して透過を解く。
+      下には前の写真が残り続けるので、入れ替わりの合間に背景が暗く抜けない
+    -->
+    {#each slides as slide, index (index)}
+      {#if slide.image}
+        <div class="image" class:showing={index === currentIndex % slides.length}>
+          <ImageAssets
+            width="100%"
+            height="100%"
+            alt={index === currentIndex % slides.length ? imageAlt : ''}
+            lazy={index !== 0}
+            imageSourceMeta={slide.image}
+            objectFit="cover"
+          />
         </div>
       {/if}
+    {/each}
+  </div>
+  <div class="layer veil" aria-hidden="true"></div>
+
+  <div class="layer inner">
+    <div class="panel">
+      <div class="head">
+        <!-- TODO(キャラクター): LINE スタンプとキャラクターデザインが固まったら出し直す（docs/TODO.md 5-9） -->
+        <!-- <CharacterFigure {character} size={isMobile ? 84 : 112} /> -->
+        <div class="naming">
+          <p class="eyebrow">{eyebrow}</p>
+          <h1>
+            {title}
+            {#if subtitle}
+              <span class="subtitle" lang="en">{subtitle}</span>
+            {/if}
+          </h1>
+          <!-- 金額はまとまりごとに出す。金額と単位の途中では折り返さない -->
+          <p class="price">
+            <span class="unit">{priceUnit}</span>
+            {#each priceParts as part (part)}
+              <strong class="amount">{part}</strong>
+            {/each}
+          </p>
+        </div>
+      </div>
+
+      <!--
+        キャッチコピーは入れ替わる。長さがまちまちなので、高さを決め打ちにすると
+        行数が変わるたびに下の中身が動いてしまう。全部を同じ場所に重ねて置き、
+        いちばん高いものに合わせて場所を取っておく（見せるのは1つだけ）
+      -->
+      <div class="catch-slot">
+        {#each slides as slide, index (index)}
+          <p
+            class="catch"
+            class:showing={initialized && isShow && index === currentIndex % slides.length}
+            aria-hidden={index !== currentIndex % slides.length}
+          >
+            {slide.description}
+          </p>
+        {/each}
+      </div>
+
+      <p class="summary">{summary}</p>
+
+      <ul class="points">
+        {#each points as point (point)}
+          <li>{point}</li>
+        {/each}
+      </ul>
+
+      <div class="actions">
+        <Button href={contactHref} target="_blank" width="full" size="medium" variant="sky-blue"
+          >{contactLabel}</Button
+        >
+        <Button
+          href={worksHref}
+          target="_self"
+          variant="sky-blue-outline"
+          width="full"
+          size="medium">{worksLabel}</Button
+        >
+      </div>
+
+      <p class="note">{note}</p>
     </div>
   </div>
 </section>
 
 <style lang="scss">
-  .desktop {
-    --width: 1024px;
-    --height: calc(100dvh - 80px);
-    --content-margin: 250px auto 0;
-    --title-font-size: 64px;
-    --english-title-font-size: 24px;
-    --english-margin-bottom: 100px;
-    --description-font-size: 36px;
-  }
-
-  .mobile {
-    --width: 90%;
-    --height: calc(100dvh - 64px);
-    --content-margin: 180px auto 0;
-    --title-font-size: 48px;
-    --english-title-font-size: 22px;
-    --english-margin-bottom: 80px;
-    --description-font-size: 32px;
-  }
-
   .main-visual {
-    position: relative;
+    display: grid;
     width: 100%;
-    height: var(--height);
-    padding: 0;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      width: var(--overlay-width);
-      height: 100%;
-      content: '';
-      background: linear-gradient(to right, #000, transparent);
-      opacity: var(--overlay-opacity);
-    }
+    min-height: 560px;
+    overflow: hidden;
+    background: map.get($gray, text);
   }
 
-  .image {
-    width: 100vw;
-    height: var(--height);
+  .mobile.main-visual {
+    min-height: 0;
+  }
+
+  // 3つの層を同じマス目に置く。position: absolute で重ねない
+  .layer {
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  // 写真どうしの重ね順は、この層の中だけで閉じる。
+  // 閉じないと、前に出した1枚が覆いや文字の層まで越えて手前に出てしまう
+  .images {
+    z-index: 0;
+    display: grid;
+    isolation: isolate;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
   }
 
-  .content-wrapper {
-    position: absolute;
-    top: 0;
+  .image {
+    grid-area: 1 / 1;
     z-index: 1;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    // 見せる1枚だけを前に出し、ゆっくり現れる。下の写真は消さずに残す
+    opacity: 0;
+    transition: opacity 1.4s ease-in-out;
   }
 
-  .content {
-    width: var(--width);
-    margin: var(--content-margin);
-    color: white;
+  .image.showing {
+    z-index: 2;
+    opacity: 1;
   }
 
-  .title {
-    display: inline-block;
-    margin: 0 0 4px;
-    font-size: var(--title-font-size);
+  // 出したままにする背景は、切り替える写真の下でずっと見せる。
+  // 透過したままだと地の色だけが残り、背景が真っ黒になる
+  .image.base {
+    z-index: 0;
+    opacity: 1;
+  }
+
+  // ImageAssets の img は高さが auto になるので、ここで枠いっぱいに伸ばす
+  /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+  .image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-class-disallowed-list */
+
+  // 写真の上の文字が読めるように、左から暗くする。写真より必ず手前に置く
+  .veil {
+    z-index: 1;
+    background: linear-gradient(to right, rgb(0 0 0 / 55%), rgb(0 0 0 / 15%) 70%, transparent);
+  }
+
+  .mobile .veil {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 30%), rgb(0 0 0 / 55%));
+  }
+
+  // 文字はいちばん手前。写真にも覆いにも隠されない
+  .inner {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: $space-size-56 var(--content-padding-inline);
+  }
+
+  .mobile .inner {
+    padding: $space-size-40 var(--content-padding-inline);
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-16;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 620px;
+    padding: $space-size-32;
+    border-top: 4px solid map.get($sky-blue, border);
+    border-radius: 10px;
+    background: rgb(255 255 255 / 95%);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+  }
+
+  .mobile .panel {
+    gap: $space-size-12;
+    padding: $space-size-20 $space-size-16;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: $space-size-16;
+  }
+
+  .naming {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-4;
+    min-inline-size: 0;
+  }
+
+  .eyebrow {
+    align-self: flex-start;
+    margin: 0;
+    padding: $space-size-2 $space-size-8;
+    font-size: $font-size-12;
     font-weight: bold;
-    line-height: var(--title-font-size);
-    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
+    color: map.get($sky-blue, text);
+    border-radius: 999px;
+    background: map.get($sky-blue, background);
+    letter-spacing: 0.08em;
+  }
 
-    // 英語の見出しを出さない（英語ページの）ときは、見出しの下にキャッチコピーとの間を空ける
-    &[data-has-subtitle='false'] {
-      margin-bottom: var(--english-margin-bottom);
+  h1 {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-2;
+    margin: 0;
+    font-size: $font-size-40;
+    line-height: 1.2;
+    color: map.get($gray, text);
+  }
+
+  .mobile h1 {
+    font-size: $font-size-30;
+  }
+
+  .subtitle {
+    font-size: $font-size-12;
+    font-weight: normal;
+    color: map.get($gray, light-text);
+    letter-spacing: 0.25em;
+  }
+
+  // 料金は最初の画面で見せる。青で強調する
+  // 入りきらないときはまとまりごとに折り返す。まとまりの中では折り返さない
+  .price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: $space-size-4 $space-size-8;
+    margin: 0;
+  }
+
+  .unit {
+    flex: none;
+    padding: $space-size-2 $space-size-8;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: $white;
+    border-radius: 999px;
+    background: map.get($sky-blue, button);
+  }
+
+  // 1つのまとまりは、幅に入りきらないときだけ中で折り返す
+  .amount {
+    min-inline-size: 0;
+    font-size: $font-size-22;
+    color: map.get($sky-blue, text);
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: break-word;
+  }
+
+  // 重ねた中でいちばん高いものが、この場所の高さを決める
+  .catch-slot {
+    display: grid;
+    align-items: center;
+  }
+
+  .catch {
+    // 全部を同じますに重ねる
+    grid-area: 1 / 1;
+    margin: 0;
+    font-size: $font-size-20;
+    font-weight: bold;
+    line-height: 1.7;
+    color: map.get($sky-blue, text);
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+
+    // 出ていないものは見せない。場所だけ取っておく
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .catch.showing {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.8s ease 0.1s,
+      transform 0.8s ease 0.1s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .catch {
+      transform: none;
+      transition: none;
     }
   }
 
-  .english-title {
-    margin-bottom: var(--english-margin-bottom);
-    font-size: var(--english-title-font-size);
-    letter-spacing: 0.25em;
-    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
+  .mobile .catch {
+    font-size: $font-size-16;
   }
 
-  .description {
-    font-size: var(--description-font-size);
+  .summary {
+    margin: 0;
+    font-size: $font-size-16;
+    color: map.get($gray, 600);
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+  }
+
+  .points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-8;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .points li {
+    padding: $space-size-4 $space-size-12;
+    font-size: $font-size-12;
     font-weight: bold;
-    text-shadow: 5px 5px 10px rgb(0, 0, 0, 0.5);
-    white-space: pre-line;
+    color: map.get($gray, 600);
+    border: 1px solid map.get($sky-blue, border);
+    border-radius: 999px;
+    background: map.get($sky-blue, background);
+  }
+
+  // 相談へ進む一歩は青の塗り、作例を見に行くのは青の枠。黄はページ下の相談の節だけに残す。
+  // スマホでは1列に積んで、1つずつ横いっぱいにする
+  .actions {
+    display: grid;
+    gap: $space-size-12;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mobile .actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .note {
+    margin: 0;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+
+  // ここから下は layout="full" のとき。
+  // 白い札を外し、画面の端まで行き渡らせた写真の上に直に文字を出す。
+  // 写真の上でも読めるように、覆いを濃くして文字を白くする
+  .full.main-visual {
+    min-height: 640px;
+  }
+
+  .full.mobile.main-visual {
+    min-height: 0;
+  }
+
+  /*
+    写真の上に文字を直接置く見せ方。写真が明るいと文字が読めないので、
+    札を敷く見せ方よりも濃くかける
+  */
+  .full .veil {
+    background: linear-gradient(to right, rgb(0 0 0 / 88%), rgb(0 0 0 / 70%) 70%, rgb(0 0 0 / 50%));
+  }
+
+  .full.mobile .veil {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 65%), rgb(0 0 0 / 88%));
+  }
+
+  .full .panel {
+    max-width: 680px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    text-shadow: 0 1px 3px rgb(0 0 0 / 45%);
+  }
+
+  .full .eyebrow {
+    color: map.get($sky-blue, text);
+    background: $white;
+    text-shadow: none;
+  }
+
+  .full h1 {
+    color: $white;
+  }
+
+  .full .subtitle {
+    color: rgb(255 255 255 / 75%);
+  }
+
+  // 淡い青。白の見出しの中でも、金額とキャッチコピーだけは色で分ける
+  .full .catch,
+  .full .amount {
+    color: map.get($sky-blue, 100);
+  }
+
+  .full .summary {
+    color: rgb(255 255 255 / 88%);
+  }
+
+  .full .points li {
+    color: $white;
+    border-color: rgb(255 255 255 / 45%);
+    background: rgb(255 255 255 / 15%);
+    text-shadow: none;
+  }
+
+  .full .note {
+    color: rgb(255 255 255 / 80%);
   }
 </style>

@@ -10,8 +10,10 @@ export const ALL_PAGES: readonly string[] = [
   `${ROUTES.oshimitsu.index}*`,
   ROUTES.decoratingApparatus,
   ROUTES.backgroundMusic,
+  ROUTES.coaching,
   ROUTES.judge,
-  ROUTES.rules,
+  // 規則集は、載せてよいか確かめている途中。
+  // 見には行けるが、検索に登録させない（ここに足すと noindex が外れる）
   ROUTES.privacy,
   ROUTES.terms,
 ]

@@ -1,13 +1,19 @@
 import { writable } from 'svelte/store'
 import { createExecutionDeduct } from '../lib/calculator'
-import type { ExecutionDeduct, PointAKey, PointAOption } from '../model/executionDeduct'
+import type {
+  ExecutionDeduct,
+  PointAKey,
+  PointAOption,
+  PointBScaleCode,
+  PointBScaleKey,
+} from '../model/executionDeduct'
 
 /**
  * 採点項目の入力値を持つストアを作る
  * @returns 採点項目のストア
  */
 const createExecutionDeductStore = () => {
-  const { subscribe, update } = writable<ExecutionDeduct>(createExecutionDeduct())
+  const { subscribe, set, update } = writable<ExecutionDeduct>(createExecutionDeduct())
 
   return {
     subscribe,
@@ -19,23 +25,25 @@ const createExecutionDeductStore = () => {
     selectPointA: (key: PointAKey, option: PointAOption) =>
       update((data) => ({ ...data, pointA: { ...data.pointA, [key]: option } })),
     /**
-     * 手具を落とした回数を変える
-     * @param kind - `single`（1つの手具）か `double`（2つの手具を同時に）
-     * @param count - 回数
+     * 手具を落とした回数を変える。0 未満にはしない
+     * @param drops - 落とした回数
      */
-    setDroppedCount: (kind: keyof ExecutionDeduct['pointB']['droppedApparatus'], count: number) =>
+    setDrops: (drops: number) =>
+      update((data) => ({ ...data, pointB: { ...data.pointB, drops: Math.max(0, drops) } })),
+    /**
+     * Bの設問に答える
+     * @param key - 設問のキー
+     * @param code - 選んだ段階
+     */
+    selectScale: (key: PointBScaleKey, code: PointBScaleCode) =>
       update((data) => ({
         ...data,
-        pointB: {
-          ...data.pointB,
-          droppedApparatus: { ...data.pointB.droppedApparatus, [kind]: count },
-        },
+        pointB: { ...data.pointB, scales: { ...data.pointB.scales, [key]: code } },
       })),
     /**
-     * その他ミスによる減点を変える
-     * @param miss - 減点
+     * 採点を始める前の値へ戻す
      */
-    setMiss: (miss: number) => update((data) => ({ ...data, pointB: { ...data.pointB, miss } })),
+    reset: () => set(createExecutionDeduct()),
   }
 }
 

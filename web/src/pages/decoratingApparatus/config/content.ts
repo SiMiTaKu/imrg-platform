@@ -1,4 +1,5 @@
 import { m } from '$lib/paraglide/messages'
+import { ROUTES } from '@shared/routes'
 import type { ImageSourceMeta } from '@shared/ui'
 import MainVisual1 from '../images/main-visual-1.jpg?w=1024;2048&format=webp&as=meta'
 import MainVisual2 from '../images/main-visual-2.jpg?w=1024;2048&format=webp&as=meta'
@@ -60,3 +61,91 @@ export const FLOW_STEPS = [
 
 /** 手具装飾の料金（作業1時間あたり、円） */
 export const PRICE_PER_HOUR = 1500
+
+/** ページの上のほうに出す案内の文言 */
+export const HERO = {
+  /** 見出しの上の小さなラベル */
+  eyebrow: m.decorating_apparatus_hero_eyebrow,
+  /** 何を頼めるのかの説明 */
+  summary: m.decorating_apparatus_hero_summary,
+  /** 頼めることの短い言い切り */
+  points: [
+    m.decorating_apparatus_hero_point_1,
+    m.decorating_apparatus_hero_point_2,
+    m.decorating_apparatus_hero_point_3,
+  ],
+  /** 料金のラベル（金額の前に出す） */
+  priceUnit: m.decorating_apparatus_hero_price_unit,
+  /** ボタンの下に小さく出す補足 */
+  note: m.decorating_apparatus_hero_note,
+} as const
+
+/** 「手具装飾で頼めること」の見出しまわり */
+export const POINTS_HEADING = {
+  eyebrow: m.decorating_apparatus_points_eyebrow,
+  title: m.decorating_apparatus_points_title,
+  lead: m.decorating_apparatus_points_lead,
+} as const
+
+/** 手具装飾で頼めること */
+export const ORDER_POINTS = [
+  {
+    title: m.decorating_apparatus_point_1_title,
+    body: m.decorating_apparatus_point_1_body,
+  },
+  {
+    title: m.decorating_apparatus_point_2_title,
+    body: m.decorating_apparatus_point_2_body,
+  },
+  {
+    title: m.decorating_apparatus_point_3_title,
+    body: m.decorating_apparatus_point_3_body,
+  },
+  {
+    title: m.decorating_apparatus_point_4_title,
+    body: m.decorating_apparatus_point_4_body,
+  },
+] as const
+
+/** 「料金」の見出しまわり */
+export const PRICE_HEADING = {
+  eyebrow: m.decorating_apparatus_price_eyebrow,
+  lead: m.decorating_apparatus_price_lead,
+} as const
+
+/** 「装飾の流れ」の見出しまわり */
+export const FLOW_HEADING = {
+  eyebrow: m.decorating_apparatus_flow_eyebrow,
+  lead: m.decorating_apparatus_flow_lead,
+} as const
+
+/** 「相談する」の見出しまわり */
+export const CONTACT = {
+  eyebrow: m.decorating_apparatus_contact_eyebrow,
+  lead: m.decorating_apparatus_contact_lead,
+  /** ボタンの下に小さく出す補足 */
+  note: m.decorating_apparatus_contact_note,
+} as const
+
+/**
+ * 曲編集の料金（1曲あたり、円）。
+ *
+ * @remarks
+ * もう一方の依頼への案内に金額を出すためだけに持つ。
+ * ページ同士は参照し合わないので、曲編集のページと同じ値をここにも置く
+ */
+export const CROSS_LINK_PRICE_PER_MUSIC = 5000
+
+/** もう一方の依頼（曲編集）への案内 */
+export const CROSS_LINK_BACKGROUND_MUSIC = {
+  label: m.decorating_apparatus_cross_link_label,
+  href: ROUTES.backgroundMusic,
+  body: m.decorating_apparatus_cross_link_body,
+} as const
+
+/** 指導依頼への案内 */
+export const CROSS_LINK_COACHING = {
+  label: m.decorating_apparatus_cross_link_coaching_label,
+  href: ROUTES.coaching,
+  body: m.decorating_apparatus_cross_link_coaching_body,
+} as const

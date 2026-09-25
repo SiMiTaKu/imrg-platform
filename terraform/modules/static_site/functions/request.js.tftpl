@@ -1,18 +1,19 @@
 // CloudFront のビューワーリクエストで動く。静的なファイルを返すために URL を整える
-// 1. 合言葉を設定していれば、合っていない来訪を断る
+// 1. 合言葉を設定していれば、どれにも合わない来訪を断る
 // 2. www 付きでの来訪は ${site_domain} へ移す
 // 3. 拡張子の無いパスは末尾スラッシュ付きへ移す（サイトは末尾スラッシュ付きを正とする）
 // 4. 末尾スラッシュのパスは、その下の index.html を返す
-var CREDENTIAL = ${basic_auth_credential}
+// 通す合言葉の一覧。運営のものに、一時的に配った分が並ぶ
+var CREDENTIALS = ${basic_auth_credentials}
 
 function handler(event) {
   var request = event.request
   var uri = request.uri
   var host = request.headers.host ? request.headers.host.value : ''
 
-  if (CREDENTIAL !== null) {
+  if (CREDENTIALS !== null) {
     var authorization = request.headers.authorization
-    if (!authorization || authorization.value !== CREDENTIAL) {
+    if (!authorization || CREDENTIALS.indexOf(authorization.value) === -1) {
       return {
         statusCode: 401,
         statusDescription: 'Unauthorized',

@@ -1,54 +1,105 @@
+@use 'sass:map';
+
+// 色の決まり
+// 1. 濃さは 50・100・200・300・400・500・600・700・800・900 の10段階。
+//    50 がいちばん薄く、900 がいちばん濃い。隣どうしの明るさの差はそろえてある
+// 2. 役割の名前は、どの色でも同じ段階を指す。色を変えても見た目の重さが変わらない
+//    | 名前         | 段階 | 使うところ                             |
+//    | ------------ | ---- | -------------------------------------- |
+//    | `background` | 50   | 淡い背景                               |
+//    | `border`     | 300  | 枠・区切り・ラベルの地                 |
+//    | `light-text` | 600  | 控えめな文字                           |
+//    | `button`     | 700  | 塗りのボタンの地（白い文字を載せる）   |
+//    | `text`       | 800  | 文字・リンク                           |
+// 3. 文字と地の明暗の差は 4.5 以上にする（小さい文字でも読めるように）。
+//    青と灰は上の表のとおりで満たす
+// 4. **黄だけは例外。** 黄はもともと明るいので、塗りのボタンにすると
+//    白い文字が読めない。黄のボタンは「300 の地に黒（`$black`）の文字」で作る（差 17.3）
+// 5. 数字で直に指定してよいのは、上の役割に当てはまらないときだけ。
+//    まず役割の名前を探し、無ければ数字を使う
+
 $white: #fff;
-$sky-blue: (
-  background: #e7f1ff,
-  // 背景 50
-  100: #c5dfff,
-  200: #acd2ff,
-  300: #98c9ff,
-  400: #80baff,
-  // リンク
-  border: #66adff,
-  // ボーダー, ラベル
-  600: #479eff,
-  700: #2e91ff,
-  button: #1986ff,
-  // ボタン 800
-  text: #0079ff, // 文字 900
+
+// 黄のボタンに載せる文字。黄は明るいので、濃い色を置くより黒のほうがはっきり読める
+$black: #000;
+
+// 信頼・情報を表す色。サイトの土台
+$sky-blue-scale: (
+  50: #e9f3fe,
+  100: #c7e1fd,
+  200: #9eccfd,
+  300: #75b7fd,
+  400: #49a0fd,
+  500: #1a88ff,
+  600: #006fe6,
+  700: #0059b8,
+  800: #00438a,
+  900: #003063,
 );
-$yellow: (
-  background: #ffe,
-  // 背景 50
-  100: #ffffd5,
-  200: #ffffbf,
-  300: #ffa,
-  400: #ffff8f,
-  500: #ffff74,
-  // ボーダー, ラベル
-  600: #ffff59,
-  text: #fdfd3a,
-  // 文字 700
-  800: #ff2,
-  900: #ff0,
-);
-$gray: (
-  background: #f3f3f3,
-  // 背景 50
-  100: #e8e8e8,
-  200: #d5d5d5,
-  300: #afafaf,
-  400: #818181,
-  border: #818181,
-  // ボーダー 400
-  light-text: #606060,
-  // 明るい文字 500
-  600: #454545,
-  text: #333,
-  // 文字 700
-  800: #212121,
-  900: #000,
+$sky-blue: map.merge(
+  $sky-blue-scale,
+  (
+    background: map.get($sky-blue-scale, 50),
+    border: map.get($sky-blue-scale, 300),
+    light-text: map.get($sky-blue-scale, 600),
+    button: map.get($sky-blue-scale, 700),
+    text: map.get($sky-blue-scale, 800),
+  )
 );
 
-// 画面のテーマの色（採点体験の手具ごとの色など）。TS からは AccentColor・ThemeColor で参照する
+// 黄。希望・行動を表す色で、連絡への一歩や今日の印など、ここぞという場所にだけ使う。
+// サイトで使う黄はこれ1つ（手具ごとの色の $theme とは役割が違う）
+// 明るい側（50〜500）は濁りのない黄にして目を引かせ、
+// 濃い側（600〜900）は文字として読める暗さを保つ
+$yellow-scale: (
+  50: #fffce5,
+  100: #fff8bf,
+  200: #fff28f,
+  300: #ffeb5c,
+  400: #ffe329,
+  500: #ffd900,
+  600: #d4b300,
+  700: #9e8500,
+  800: #6b5a00,
+  900: #453b00,
+);
+$yellow: map.merge(
+  $yellow-scale,
+  (
+    background: map.get($yellow-scale, 50),
+    border: map.get($yellow-scale, 300),
+    light-text: map.get($yellow-scale, 600),
+    button: map.get($yellow-scale, 700),
+    text: map.get($yellow-scale, 800),
+  )
+);
+
+// 文字・枠・背景に使う無彩色。わずかに青を含ませてある
+$gray-scale: (
+  50: #f3f4f4,
+  100: #e0e2e3,
+  200: #cbcdd0,
+  300: #b5b9bc,
+  400: #9fa3a8,
+  500: #878c92,
+  600: #6c737a,
+  700: #555c62,
+  800: #3f454a,
+  900: #2d3236,
+);
+$gray: map.merge(
+  $gray-scale,
+  (
+    background: map.get($gray-scale, 50),
+    border: map.get($gray-scale, 300),
+    light-text: map.get($gray-scale, 600),
+    button: map.get($gray-scale, 700),
+    text: map.get($gray-scale, 800),
+  )
+);
+
+// 画面のテーマの色（採点体験の手具ごとの色など）。TS からは AccentColor・ThemeColor で参照する。
+// 上の10段階とは役割が違う（種類を見分けるための色）ので、そろえていない
 $theme: (
   gray: #707070,
   blue: #0065a4,

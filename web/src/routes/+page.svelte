@@ -1,6 +1,6 @@
 <script lang="ts">
   import { TopPage } from '@pages/top'
-  import { PageHead, StickyFooter } from '@widgets/layout'
+  import { PageHead } from '@widgets/layout'
   import type { PageData } from './$types'
 
   const { data }: { data: PageData } = $props()
@@ -8,4 +8,3 @@
 
 <PageHead meta={data.meta} />
 <TopPage />
-<StickyFooter />

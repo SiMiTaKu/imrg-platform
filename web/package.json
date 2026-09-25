@@ -18,7 +18,7 @@
     "chart.js": "^4.5.1"
   },
   "devDependencies": {
-    "@inlang/paraglide-js": "^2.25.3",
+    "@inlang/paraglide-js": "^2.25.4",
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.70.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",

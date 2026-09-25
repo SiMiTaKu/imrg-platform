@@ -24,4 +24,6 @@ export const LINKS = {
   googlePermissions: 'https://security.google.com/settings/security/permissions',
   /** Cloudflare のプライバシーポリシー */
   cloudflarePrivacy: 'https://www.cloudflare.com/privacypolicy/',
+  /** 公益財団法人日本体操協会。規則集の発行元 */
+  japanGymnastics: 'https://www.jpn-gym.or.jp/',
 } as const

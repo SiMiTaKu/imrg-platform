@@ -65,13 +65,45 @@ export interface RuleBook {
 }
 
 /**
+ * 本文の1行。番号と本文を分けて持つ。
+ *
+ * @remarks
+ * 「（1） …」のような番号付きの行は、折り返したときに2行目も番号のぶんだけ
+ * 字下げしたい。1本の文字列にしてしまうと、番号と本文の境目が分からなくなる
+ */
+export interface LocalizedRuleLine {
+  /** 入れ子の深さ。0 がいちばん外 */
+  depth: number
+  /** 番号。「（1）」「①」など。番号が無い行では空 */
+  label: string
+  /**
+   * 中黒（・）を付けるか。
+   *
+   * @remarks
+   * 冊子で番号を振らずに並べてある項目は、中黒で箇条書きにしてある。
+   * 印を付けないと、導入の文と見分けが付かず、ひと続きの文章に見えてしまう
+   */
+  bullet: boolean
+  /** 本文 */
+  text: string
+  /** この行の直後に差し込む図や表。冊子で本文の途中に挟まっているもの */
+  image?: Image[]
+  /** この行の手前に差し込む図や表 */
+  imageBefore?: Image[]
+}
+
+/**
  * 表示する言語に絞った小項
  */
 export interface LocalizedRuleBlock {
+  /** 冊子の番号（例: `3.4.2.1`） */
+  number: string
   /** 見出し */
   title: string
-  /** 本文 */
+  /** 本文。言葉で探すときに使う */
   element: string
+  /** 本文を行ごとに分けたもの。画面に出すときに使う */
+  lines: LocalizedRuleLine[]
   /** 図 */
   image: Image[]
 }
@@ -80,10 +112,16 @@ export interface LocalizedRuleBlock {
  * 表示する言語に絞った条項
  */
 export interface LocalizedRuleSection {
+  /** 冊子の番号（例: `3.5.7`） */
+  number: string
+  /** 冊子で、この条が載っているページ */
+  page: number
   /** 見出し */
   title: string
-  /** 本文（小項を持たないときだけ使う） */
+  /** 本文。言葉で探すときに使う */
   content: string
+  /** 本文を行ごとに分けたもの。画面に出すときに使う */
+  lines: LocalizedRuleLine[]
   /** 小項 */
   block: LocalizedRuleBlock[]
   /** 図 */
@@ -94,8 +132,14 @@ export interface LocalizedRuleSection {
  * 表示する言語に絞った大項
  */
 export interface LocalizedRuleArticle {
+  /** 冊子の番号（例: `3.5`） */
+  number: string
   /** 見出し */
   title: string
+  /** 節そのものの本文。条を持たない節や、条の前に置かれた文がある節で使う */
+  lines: LocalizedRuleLine[]
+  /** 節そのものに付く図 */
+  image: Image[]
   /** 条項 */
   section: LocalizedRuleSection[]
 }
@@ -104,6 +148,8 @@ export interface LocalizedRuleArticle {
  * 表示する言語に絞った章
  */
 export interface LocalizedRuleChapter {
+  /** 冊子の番号（例: `3`） */
+  number: string
   /** 見出し */
   title: string
   /** 大項 */

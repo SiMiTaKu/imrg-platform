@@ -23,3 +23,5 @@ jobs:
       site_url: https://stg.imrg.work/
       # 本番へ入れる前に見るための場所なので、取っておかない
       store_release: false
+      # 掲載の許可を確かめてもらう場所なので、規則集の中身を出す
+      rules_published: true

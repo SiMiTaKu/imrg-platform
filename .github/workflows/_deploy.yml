@@ -22,6 +22,11 @@ on:
         required: false
         default: true
         type: boolean
+      rules_published:
+        description: '規則集（/rules/）の中身を出すか。false なら「準備中」だけを出す'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -41,7 +46,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
@@ -70,6 +75,9 @@ jobs:
       - name: Build
         if: inputs.release == ''
         run: pnpm --filter @imrg-platform/web build
+        env:
+          # .env の既定（false）を、呼び出し側の指定で上書きする
+          PUBLIC_RULES_PUBLISHED: ${{ inputs.rules_published }}
 
       # 配ったものを取っておく。あとで作り直さずに戻せる
       - name: Store release

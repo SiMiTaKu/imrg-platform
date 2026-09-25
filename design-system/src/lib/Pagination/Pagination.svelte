@@ -135,7 +135,9 @@
     font-weight: bold;
     color: map.get($sky-blue, text);
     border: $border-size-1 solid map.get($sky-blue, border);
-    border-radius: $border-radius-8;
+
+    // ページ送りも押せるものなので、角は全丸にそろえる
+    border-radius: $border-radius-64;
     background: $white;
     font-variant-numeric: tabular-nums;
     cursor: pointer;

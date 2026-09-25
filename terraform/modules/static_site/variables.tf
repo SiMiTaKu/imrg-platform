@@ -38,6 +38,22 @@ variable "basic_auth" {
   sensitive = true
 }
 
+variable "guest_basic_auth" {
+  description = <<-EOT
+    basic_auth に加えて通す、一時的な合言葉の一覧。空なら basic_auth だけが通る。
+    外の人に期間を切って見てもらうときに足し、用が済んだら一覧から外す。
+    外して apply すれば、その合言葉はその場で通らなくなる
+  EOT
+  type = list(object({
+    # 誰に渡したものかが後から分かるように書いておく。動きには関わらない
+    note     = string
+    username = string
+    password = string
+  }))
+  default   = []
+  sensitive = true
+}
+
 variable "attach_domain" {
   description = <<-EOT
     この配信にドメインを結びつけるか。別名（CNAME）と Route53 のレコードの両方が対象。

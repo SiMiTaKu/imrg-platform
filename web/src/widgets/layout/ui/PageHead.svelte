@@ -17,9 +17,17 @@
   interface Props {
     /** ページのメタ情報 */
     meta: PageMeta
+    /**
+     * 言語を問わず、検索エンジンに登録させないか。
+     *
+     * @remarks
+     * 訳していないページは言語ごとに自動で外れるが、これは日本語も含めて止める。
+     * 中身を出してよいか確かめている途中のページで使う
+     */
+    noindex?: boolean
   }
 
-  const { meta }: Props = $props()
+  const { meta, noindex = false }: Props = $props()
 
   const locale = $derived(getLocale() as SiteLocale)
   // 英語ページでは /en/ 付きの URL になる
@@ -40,8 +48,8 @@
   <title>{meta.title}</title>
   <meta name="description" content={meta.description} />
   <link href={pageUrl} rel="canonical" />
-  <!-- 訳す前の英語ページは、検索エンジンに登録させない -->
-  {#if !isPublished(meta.path, locale)}
+  <!-- 訳す前のページと、出してよいか確かめている途中のページは、検索エンジンに登録させない -->
+  {#if noindex || !isPublished(meta.path, locale)}
     <meta name="robots" content="noindex" />
   {/if}
 

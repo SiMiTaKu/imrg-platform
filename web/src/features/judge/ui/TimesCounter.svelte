@@ -72,7 +72,7 @@
     font-weight: bold;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: $border-radius-64;
     background-color: var(--button-color);
     transition: 0.5s;
 

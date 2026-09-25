@@ -3,10 +3,14 @@
  * 部品と、部品に付随する関数をここから公開する。
  */
 
-/** ボタンと、ボタンの見た目のリンク */
-export { Button, ButtonLink } from './Button'
+/** サイトで使うボタン。href を渡すとリンク、渡さなければ押しボタンになる */
+export { Button } from './Button'
+export type { ButtonProps, ButtonSize, ButtonVariant, ButtonWidth } from './Button'
 /** セクションの見出し（見出しと、その下の補助の文言） */
 export { default as Heading } from './Heading/Heading.svelte'
+/** モーダル（右上のばつで閉じる入れ物） */
+export { Modal } from './Modal'
+export type { ModalProps, ModalSize } from './Modal'
 /** ページ送り */
 export { default as Pagination } from './Pagination/Pagination.svelte'
 export { ELLIPSIS, pageNumbers } from './Pagination/lib/pageNumbers'

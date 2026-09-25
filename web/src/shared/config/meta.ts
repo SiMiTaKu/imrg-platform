@@ -133,6 +133,16 @@ export const META_DATA = {
     ogType: 'website',
   }),
   /**
+   * 指導・演技構成の依頼
+   * @returns メタ情報
+   */
+  coaching: (): PageMeta => ({
+    title: pageTitle(m.meta_coaching_page()),
+    description: m.meta_coaching_description(),
+    path: ROUTES.coaching,
+    ogType: 'website',
+  }),
+  /**
    * 採点アプリ
    * @returns メタ情報
    */

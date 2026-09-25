@@ -1,26 +1,29 @@
-import type { PointAOption } from '../model/executionDeduct'
+import type { PointALevel } from '../model/executionDeduct'
 
 /** 実施の満点 */
 export const MAX_EXECUTION_SCORE = 10
 
+/** 点をいちばん良く付けたときの値。ここから1点下がるごとに減点が増える */
+export const POINT_A_BEST_SCORE = 5
+
+/** 1点下がるごとに増える減点 */
+export const POINT_A_SCORE_STEP = 0.1
+
 /**
- * 実施のAの減点項目の選択肢。先頭（減点が最も大きい）が初期値
+ * 実施のAの段階。1〜5 点で答える。
+ *
+ * @remarks
+ * 規則の欠点基準（『新体操男子規則 2025年版』46ページ・0.50〜0.10 の5段階）は
+ * 「どれだけ欠けていたか」を選ばせる形で、欠点が無いという答えが選べなかった。
+ * 見たままを点で答えれば点数が付くようにしたいので、
+ * **5点を減点なし**とし、1点下がるごとに 0.1 ずつ増やす。
+ *
+ * 言葉ではなく数にしているのは、狭い画面でも5つを横1列に並べるため
  */
-export const POINT_A_OPTIONS: readonly PointAOption[] = [
-  { code: 1, value: 0.5 },
-  { code: 2, value: 0.45 },
-  { code: 3, value: 0.4 },
-  { code: 4, value: 0.35 },
-  { code: 5, value: 0.3 },
-  { code: 6, value: 0.25 },
-  { code: 7, value: 0.2 },
-  { code: 8, value: 0.15 },
-  { code: 9, value: 0.1 },
-  { code: 10, value: 0.05 },
-]
+export const POINT_A_OPTIONS: readonly PointALevel[] = [1, 2, 3, 4, 5].map((score) => ({
+  code: score,
+  value: Math.round((POINT_A_BEST_SCORE - score) * POINT_A_SCORE_STEP * 100) / 100,
+}))
 
-/** 1つの手具を落としたときの1回の減点 */
-export const DEDUCTION_SINGLE_DROP = 0.3
-
-/** 2つの手具を同時に落としたときの1回の減点 */
-export const DEDUCTION_DOUBLE_DROP = 0.4
+/** 選択肢のコードの最大値。グラフの目盛りの外側になる */
+export const POINT_A_MAX_CODE = POINT_A_BEST_SCORE
