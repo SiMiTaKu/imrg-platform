@@ -4,7 +4,7 @@
   import { Button, Modal } from '@imrg-platform/design-system'
   import { getLocale } from '@shared/lib/i18n'
   import { formatNumber } from '@shared/lib/number'
-  import { POINT_B_SCALE_ITEMS } from '../config/pointB'
+  import { POINT_B_SUMMARIES } from '../config/pointB'
   import { POINT_A_ITEMS } from '../config/pointAItems'
   import { JudgeThemeColor } from '../config/themeColor'
   import {
@@ -12,7 +12,7 @@
     getAmountOfPointB,
     getDecisionPoints,
     getDeductionOfDroppedApparatus,
-    getDeductionOfPointBItem,
+    getDeductionOfPointBSummary,
   } from '../lib/calculator'
   import { renderDetailChart } from '../lib/detailChart'
   import { buildScoreFormula } from '../lib/scoreFormula'
@@ -140,18 +140,22 @@
                   <span>{formatNumber($executionDeduct.pointA[item.key].value, locale)}</span>
                 </li>
               {/each}
+              <!--
+                B は設問のまま8行並べても、どこで引かれたのかが掴めない。
+                「手具の扱い」「投げのミス」のように、減点の出どころとして
+                名前が付くまとまりにして出す
+              -->
               <li class="detail-item">
                 <span class="detail-title">{m.judge_result_dropped_deduction()}</span>
                 <span>{formatNumber(getDeductionOfDroppedApparatus($executionDeduct), locale)}</span
                 >
               </li>
-              <!-- Bの設問ごとの減点。落下は上に別で出している -->
-              {#each POINT_B_SCALE_ITEMS as item (item.key)}
+              {#each POINT_B_SUMMARIES as summary (summary.key)}
                 <li class="detail-item">
-                  <span class="detail-title">{item.title()}</span>
+                  <span class="detail-title">{summary.title()}</span>
                   <span
                     >{formatNumber(
-                      getDeductionOfPointBItem($executionDeduct, item.key),
+                      getDeductionOfPointBSummary($executionDeduct, summary),
                       locale,
                     )}</span
                   >
@@ -251,6 +255,7 @@
     gap: $space-size-12;
     align-items: baseline;
     flex-wrap: wrap;
+    justify-content: center;
     padding-bottom: $space-size-16;
     border-bottom: 4px solid map.get($gray, 300);
   }
@@ -265,7 +270,6 @@
   }
 
   .result {
-    margin-left: auto;
     font-size: 40px;
     font-weight: bold;
     line-height: 1.1;

@@ -127,5 +127,10 @@
   "judge_scale_score": "{score} अंक",
   "judge_scale_hint": "5 सबसे अच्छा है",
   "judge_select_apparatus_change_label": "फिर चुनें",
-  "judge_select_apparatus_change": "{name}. दूसरा उपकरण चुनने के लिए दबाएँ"
+  "judge_select_apparatus_change": "{name}. दूसरा उपकरण चुनने के लिए दबाएँ",
+  "judge_point_b_summary_apparatus": "उपकरण संचालन",
+  "judge_point_b_summary_throw": "पकड़ में चूक",
+  "judge_point_b_summary_tumbling": "टम्बलिंग और लैंडिंग",
+  "judge_point_b_summary_body": "मुद्रा के दोष",
+  "judge_point_b_summary_music": "संगीत से मेल"
 }

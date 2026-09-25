@@ -127,5 +127,10 @@
   "judge_scale_score": "{score} pts",
   "judge_scale_hint": "5 es lo mejor",
   "judge_select_apparatus_change_label": "Cambiar",
-  "judge_select_apparatus_change": "{name}. Pulsa para elegir otro aparato."
+  "judge_select_apparatus_change": "{name}. Pulsa para elegir otro aparato.",
+  "judge_point_b_summary_apparatus": "Manejo del aparato",
+  "judge_point_b_summary_throw": "Fallos en las recepciones",
+  "judge_point_b_summary_tumbling": "Tumbling y recepciones",
+  "judge_point_b_summary_body": "Postura y equilibrio",
+  "judge_point_b_summary_music": "Ajuste con la música"
 }

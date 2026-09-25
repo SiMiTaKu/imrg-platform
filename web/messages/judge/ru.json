@@ -127,5 +127,10 @@
   "judge_scale_score": "{score} б.",
   "judge_scale_hint": "5 — лучше всего",
   "judge_select_apparatus_change_label": "Выбрать заново",
-  "judge_select_apparatus_change": "{name}. Нажмите, чтобы выбрать другой предмет"
+  "judge_select_apparatus_change": "{name}. Нажмите, чтобы выбрать другой предмет",
+  "judge_point_b_summary_apparatus": "Работа с предметом",
+  "judge_point_b_summary_throw": "Ошибки при ловле",
+  "judge_point_b_summary_tumbling": "Акробатика и приземления",
+  "judge_point_b_summary_body": "Осанка и равновесие",
+  "judge_point_b_summary_music": "Совпадение с музыкой"
 }

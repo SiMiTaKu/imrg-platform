@@ -12,6 +12,7 @@ export {
   POINT_B_SCALE_ITEMS,
   POINT_B_SCALE_OPTIONS,
   POINT_B_SCALE_STEP,
+  POINT_B_SUMMARIES,
 } from './config/pointB'
 export { findApparatus } from './lib/apparatus'
 export { themeButtonVariant } from './lib/buttonVariant'
@@ -23,6 +24,7 @@ export {
   getDecisionPoints,
   getDeductionOfDroppedApparatus,
   getDeductionOfPointBItem,
+  getDeductionOfPointBSummary,
   getDeductionOfScale,
   getMaxPointB,
   isPointBAnswered,
@@ -42,4 +44,5 @@ export type {
   PointBScaleItem,
   PointBScaleKey,
   PointBScaleOption,
+  PointBSummary,
 } from './model/executionDeduct'

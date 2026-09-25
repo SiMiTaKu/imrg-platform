@@ -127,5 +127,10 @@
   "judge_scale_score": "{score}점",
   "judge_scale_hint": "5점이 가장 좋음",
   "judge_select_apparatus_change_label": "다시 선택",
-  "judge_select_apparatus_change": "{name}. 누르면 수구를 다시 고를 수 있습니다"
+  "judge_select_apparatus_change": "{name}. 누르면 수구를 다시 고를 수 있습니다",
+  "judge_point_b_summary_apparatus": "수구 조작",
+  "judge_point_b_summary_throw": "받기 실수",
+  "judge_point_b_summary_tumbling": "텀블링과 착지",
+  "judge_point_b_summary_body": "자세 결점",
+  "judge_point_b_summary_music": "음악과의 조화"
 }

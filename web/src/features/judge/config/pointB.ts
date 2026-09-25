@@ -1,5 +1,10 @@
 import { m } from '$lib/paraglide/messages'
-import type { PointBScaleCode, PointBScaleItem, PointBScaleOption } from '../model/executionDeduct'
+import type {
+  PointBScaleCode,
+  PointBScaleItem,
+  PointBScaleOption,
+  PointBSummary,
+} from '../model/executionDeduct'
 
 /**
  * 実施のBの設問。
@@ -44,3 +49,27 @@ export const POINT_B_SCALE_STEP = 0.3
 
 /** 手具を1回落としたときの減点。規則の 0.30 点（46ページ）に合わせてある */
 export const POINT_B_DROP_VALUE = 0.3
+
+/**
+ * 内訳に出すときの、Bのまとめ方。
+ *
+ * @remarks
+ * 設問をそのまま8行並べても、どこで引かれたのかが掴めない。
+ * 「手具の扱い」「投げのミス」のように、減点の出どころとして
+ * 名前が付くまとまりにして出す
+ */
+export const POINT_B_SUMMARIES: readonly PointBSummary[] = [
+  {
+    key: 'apparatus',
+    title: m.judge_point_b_summary_apparatus,
+    items: ['apparatusSpin', 'apparatusSkill'],
+  },
+  { key: 'throw', title: m.judge_point_b_summary_throw, items: ['throwCatch'] },
+  {
+    key: 'tumbling',
+    title: m.judge_point_b_summary_tumbling,
+    items: ['tumblingHeight', 'landing'],
+  },
+  { key: 'body', title: m.judge_point_b_summary_body, items: ['legLine', 'steadiness'] },
+  { key: 'music', title: m.judge_point_b_summary_music, items: ['musicMatch'] },
+]

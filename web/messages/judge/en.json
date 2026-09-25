@@ -127,5 +127,10 @@
   "judge_scale_score": "{score} pts",
   "judge_scale_hint": "5 is the best",
   "judge_select_apparatus_change_label": "Change",
-  "judge_select_apparatus_change": "{name}. Press to choose a different apparatus."
+  "judge_select_apparatus_change": "{name}. Press to choose a different apparatus.",
+  "judge_point_b_summary_apparatus": "Apparatus handling",
+  "judge_point_b_summary_throw": "Catches after throws",
+  "judge_point_b_summary_tumbling": "Tumbling and landings",
+  "judge_point_b_summary_body": "Posture and balance",
+  "judge_point_b_summary_music": "Match with the music"
 }

@@ -127,5 +127,10 @@
   "judge_scale_score": "{score} 点",
   "judge_scale_hint": "5 点がいちばん良い",
   "judge_select_apparatus_change_label": "選び直す",
-  "judge_select_apparatus_change": "{name}。押すと手具を選び直せます"
+  "judge_select_apparatus_change": "{name}。押すと手具を選び直せます",
+  "judge_point_b_summary_apparatus": "手具の扱い",
+  "judge_point_b_summary_throw": "投げのミス",
+  "judge_point_b_summary_tumbling": "転回のミス",
+  "judge_point_b_summary_body": "姿勢の欠点",
+  "judge_point_b_summary_music": "音楽との合い"
 }

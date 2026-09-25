@@ -127,5 +127,10 @@
   "judge_scale_score": "{score} 分",
   "judge_scale_hint": "5 分最好",
   "judge_select_apparatus_change_label": "重新选择",
-  "judge_select_apparatus_change": "{name}。点击可重新选择器械"
+  "judge_select_apparatus_change": "{name}。点击可重新选择器械",
+  "judge_point_b_summary_apparatus": "器械操作",
+  "judge_point_b_summary_throw": "抛接失误",
+  "judge_point_b_summary_tumbling": "翻腾与落地",
+  "judge_point_b_summary_body": "姿态缺点",
+  "judge_point_b_summary_music": "与音乐的配合"
 }

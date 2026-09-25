@@ -103,6 +103,18 @@ export type PointBScaleItem = {
 }
 
 /**
+ * 内訳に出すときの、Bのまとまり1つ分
+ */
+export type PointBSummary = {
+  /** まとまりのキー */
+  key: string
+  /** まとまりの名前（表示中の言語） */
+  title: () => string
+  /** このまとまりに入る設問 */
+  items: readonly PointBScaleKey[]
+}
+
+/**
  * 実施のBの入力値
  */
 export type PointB = {

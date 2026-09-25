@@ -127,5 +127,10 @@
   "judge_scale_score": "{score} pts",
   "judge_scale_hint": "5 est le meilleur",
   "judge_select_apparatus_change_label": "Changer",
-  "judge_select_apparatus_change": "{name}. Appuyez pour choisir un autre engin."
+  "judge_select_apparatus_change": "{name}. Appuyez pour choisir un autre engin.",
+  "judge_point_b_summary_apparatus": "Maniement de l'engin",
+  "judge_point_b_summary_throw": "Réceptions après lancers",
+  "judge_point_b_summary_tumbling": "Tumbling et réceptions",
+  "judge_point_b_summary_body": "Posture et équilibre",
+  "judge_point_b_summary_music": "Accord avec la musique"
 }

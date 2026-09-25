@@ -5,7 +5,12 @@ import {
   POINT_B_SCALE_ITEMS,
   POINT_B_SCALE_STEP,
 } from '../config/pointB'
-import type { ExecutionDeduct, PointBScaleCode, PointBScaleKey } from '../model/executionDeduct'
+import type {
+  ExecutionDeduct,
+  PointBScaleCode,
+  PointBScaleKey,
+  PointBSummary,
+} from '../model/executionDeduct'
 
 /**
  * 採点を始めるときの採点項目を作る
@@ -134,3 +139,21 @@ export const getDecisionPoints = (data: ExecutionDeduct): number =>
  */
 export const isPointBAnswered = (data: ExecutionDeduct): boolean =>
   POINT_B_SCALE_ITEMS.every((item) => data.pointB.scales[item.key] !== undefined)
+
+/**
+ * 内訳のまとまり1つぶんの減点を返す
+ * @param data - 実施の採点項目
+ * @param summary - 内訳のまとまり
+ * @returns そのまとまりに入る設問の減点の合計
+ */
+export const getDeductionOfPointBSummary = (
+  data: ExecutionDeduct,
+  summary: PointBSummary,
+): number => {
+  // 小数の誤差をなくすため、100 倍した整数で足してから元に戻す
+  const total = summary.items.reduce(
+    (sum, key) => sum + Math.round(getDeductionOfPointBItem(data, key) * 100),
+    0,
+  )
+  return total / 100
+}
