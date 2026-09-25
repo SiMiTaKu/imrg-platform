@@ -33,11 +33,12 @@ export const renderDetailChart = (canvas: HTMLCanvasElement, options: DetailChar
         {
           data: options.values,
           borderColor: CHART_BORDER_COLORS[options.color],
+          // 中は塗らない。塗ると目盛りと項目名が透けて読みにくくなる
+          fill: false,
           /*
             点は大きめに打つ。既定の3pxでは線の途中の折れ目にしか見えず、
             どこを押せば中身が出るのか分からない
           */
-          backgroundColor: CHART_BORDER_COLORS[options.color],
           pointBackgroundColor: CHART_BORDER_COLORS[options.color],
           pointBorderColor: '#fff',
           pointBorderWidth: 2,
