@@ -20,8 +20,7 @@ import type {
 export const POINT_B_SCALE_ITEMS: readonly PointBScaleItem[] = [
   { key: 'apparatusSpin', title: m.judge_point_b_apparatus_spin, weight: 1 },
   { key: 'apparatusSkill', title: m.judge_point_b_apparatus_skill, weight: 1 },
-  // 投げは1つの演技に3回以上あるので、1回ぶんではなくまとめて見る
-  { key: 'throwCatch', title: m.judge_point_b_throw_catch, weight: 3 },
+  { key: 'throwCatch', title: m.judge_point_b_throw_catch, weight: 1 },
   { key: 'tumblingHeight', title: m.judge_point_b_tumbling_height, weight: 1 },
   // 着地は転回のたびにあるので、ほかより重く見る
   { key: 'landing', title: m.judge_point_b_landing, weight: 2 },

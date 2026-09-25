@@ -136,7 +136,7 @@ describe('getDeductionOfScale', () => {
 describe('getDeductionOfPointBItem', () => {
   // #region 正常系
   describe('正常系', () => {
-    it('投げのキャッチは重みが3なので、4点で 0.9 になること', () => {
+    it('重みの無い設問は、4点で 0.3 になること', () => {
       // #region Given
       const data = makeDeduct({ scales: { throwCatch: 4 } })
       // #endregion
@@ -146,7 +146,7 @@ describe('getDeductionOfPointBItem', () => {
       // #endregion
 
       // #region Then
-      expect(result).toBe(0.9)
+      expect(result).toBe(0.3)
       // #endregion
     })
 
