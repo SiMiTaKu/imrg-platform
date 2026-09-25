@@ -97,80 +97,88 @@
 {#if show}
   <Modal title={m.judge_result_title()} size="small" {onclose} closeLabel={m.modal_close()}>
     <div class:mobile={isMobile}>
-      <div class="detail-switch">
-        <Button
-          variant="sky-blue-outline"
-          width={isMobile ? 'full' : 'auto'}
-          onclick={switchShowPointADetail}
-          size="medium"
-        >
-          {isPointDetailShown ? m.judge_result_hide_detail() : m.judge_result_show_detail()}
-        </Button>
+      <!-- 式と得点は1つのまとまり。式は添えものなので小さく、横に並べる -->
+      <div class="score">
+        <span class="format">{formula}</span>
+        <span class="result">{formatNumber(decisionPoints, locale)}</span>
       </div>
 
-      <div
-        bind:this={pullDown}
-        style:opacity={pointDetailOpacity}
-        style:height={`${pointDetailHeight}px`}
-        class="pull-down"
-      >
-        <div class="pull-down-inner">
-          <div class="chart">
-            <canvas
-              id="detail-chart"
-              width={isMobile ? 256 : 500}
-              height={isMobile ? 256 : 400}
-              bind:this={canvas}
-            >
-              <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
-            </canvas>
-          </div>
-          <ul class="detail">
-            {#each POINT_A_ITEMS as item (item.key)}
-              <li class="detail-item">
-                <span class="detail-title">{item.title()}</span>
-                <span>{formatNumber($executionDeduct.pointA[item.key].value, locale)}</span>
-              </li>
-            {/each}
-            {#if !isMobile}
+      <div class="actions">
+        <!-- 内訳は見たい人だけが開く。もう一度採点するより先に置く -->
+        <div class="detail-switch">
+          <Button
+            variant="sky-blue-outline"
+            width={isMobile ? 'full' : 'auto'}
+            onclick={switchShowPointADetail}
+            size="medium"
+          >
+            {isPointDetailShown ? m.judge_result_hide_detail() : m.judge_result_show_detail()}
+          </Button>
+        </div>
+
+        <div
+          bind:this={pullDown}
+          style:opacity={pointDetailOpacity}
+          style:height={`${pointDetailHeight}px`}
+          class="pull-down"
+        >
+          <div class="pull-down-inner">
+            <div class="chart">
+              <canvas
+                id="detail-chart"
+                width={isMobile ? 256 : 500}
+                height={isMobile ? 256 : 400}
+                bind:this={canvas}
+              >
+                <!-- HTML5の仕様上canvasタグは終了タグを必要とするため文字は表示されないが終了タグを記載している -->
+              </canvas>
+            </div>
+            <ul class="detail">
+              {#each POINT_A_ITEMS as item (item.key)}
+                <li class="detail-item">
+                  <span class="detail-title">{item.title()}</span>
+                  <span>{formatNumber($executionDeduct.pointA[item.key].value, locale)}</span>
+                </li>
+              {/each}
               <li class="detail-item">
                 <span class="detail-title">{m.judge_result_dropped_deduction()}</span>
                 <span>{formatNumber(getDeductionOfDroppedApparatus($executionDeduct), locale)}</span
                 >
               </li>
-            {/if}
-            <!-- Bの設問ごとの減点。落下は上に別で出している -->
-            {#each POINT_B_SCALE_ITEMS as item (item.key)}
-              <li class="detail-item">
-                <span class="detail-title">{item.title()}</span>
-                <span
-                  >{formatNumber(
-                    getDeductionOfPointBItem($executionDeduct, item.key),
-                    locale,
-                  )}</span
-                >
-              </li>
-            {/each}
-          </ul>
+              <!-- Bの設問ごとの減点。落下は上に別で出している -->
+              {#each POINT_B_SCALE_ITEMS as item (item.key)}
+                <li class="detail-item">
+                  <span class="detail-title">{item.title()}</span>
+                  <span
+                    >{formatNumber(
+                      getDeductionOfPointBItem($executionDeduct, item.key),
+                      locale,
+                    )}</span
+                  >
+                </li>
+              {/each}
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="format">
-        {formula}
-      </div>
-      <div class="result">
-        {formatNumber(decisionPoints, locale)}
-      </div>
-      <div class="footer">
-        <Button width="full" onclick={onretry} size="medium" variant="sky-blue"
-          >{m.judge_result_retry()}</Button
-        >
+        <div class="footer">
+          <Button width="full" onclick={onretry} size="medium" variant="sky-blue"
+            >{m.judge_result_retry()}</Button
+          >
+        </div>
       </div>
     </div>
   </Modal>
 {/if}
 
 <style lang="scss">
+  // 内訳を開くボタンと、もう一度のボタン。得点の下に縦へ積む
+  .actions {
+    display: flex;
+    flex-direction: column;
+    padding-top: $space-size-16;
+  }
+
   .detail-switch {
     display: flex;
   }
@@ -203,65 +211,64 @@
   }
 
   .detail {
-    width: 220px;
+    min-inline-size: 0;
+    flex: 1 1 280px;
     margin: 0;
     padding: 0;
   }
 
-  .mobile .detail {
-    width: 270px;
-  }
-
+  /*
+    内訳の1行。項目名と減点を左右に離して並べる。
+    12px では読めなかったので、本文と同じくらいまで大きくする
+  */
   .detail-item {
-    margin-bottom: 8px;
-    font-size: 12px;
+    display: flex;
+    gap: $space-size-12;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: $space-size-8;
+    padding-bottom: $space-size-4;
+    font-size: $font-size-16;
+    font-weight: bold;
     list-style: none;
-    border-bottom: 1px solid #aaa;
-  }
-
-  .mobile .detail-item {
-    font-size: 16px;
+    border-bottom: 1px solid map.get($gray, 200);
   }
 
   .detail-title {
-    display: inline-block;
-    width: 180px;
-    font-size: 12px;
-  }
-
-  .mobile .detail-title {
-    width: 220px;
-    font-size: 16px;
+    min-inline-size: 0;
+    font-weight: normal;
+    color: map.get($gray, text);
   }
 
   /** 決定点 ------------------------------------- */
-  .format {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    font-size: 24px;
+
+  /*
+    式と得点。式は「どう出したか」の添えものなので小さくし、
+    得点の横に並べる。狭い画面では式が下へ回る
+  */
+  .score {
+    display: flex;
+    gap: $space-size-12;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding-bottom: $space-size-16;
+    border-bottom: 4px solid map.get($gray, 300);
   }
 
-  // 点数の下に線を引く
+  .format {
+    font-size: $font-size-14;
+    color: map.get($gray, light-text);
+  }
+
+  .mobile .format {
+    font-size: $font-size-12;
+  }
+
   .result {
-    position: relative;
-    padding-left: 40px;
+    margin-left: auto;
     font-size: 40px;
     font-weight: bold;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 0;
-      display: block;
-      width: 200px;
-      height: 4px;
-      background: #aaa;
-    }
-  }
-
-  .mobile .result {
-    padding-left: 70px;
+    line-height: 1.1;
   }
 
   // もう一度のボタンは中央に置く。スマホでは横いっぱいにする
