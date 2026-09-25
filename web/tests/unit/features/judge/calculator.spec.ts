@@ -105,14 +105,14 @@ describe('getDeductionOfScale', () => {
   // #region 正常系
   describe('正常系', () => {
     it.each([
-      ['5点なら減点なしになること', 5, 1, 0],
-      ['4点なら 0.3 になること', 4, 1, 0.3],
-      ['1点なら 1.2 になること', 1, 1, 1.2],
-      ['重み3で4点なら 0.9 になること', 4, 3, 0.9],
-      ['重み2で1点なら 2.4 になること', 1, 2, 2.4],
-    ] as const)('%s', (_, code, weight, expected) => {
+      ['5点なら減点なしになること', 5, 0.3, 0],
+      ['4点なら刻み1つぶんになること', 4, 0.3, 0.3],
+      ['1点なら刻み4つぶんになること', 1, 0.3, 1.2],
+      ['刻みが 0.1 なら、1点で 0.4 になること', 1, 0.1, 0.4],
+      ['刻みが 0.4 なら、1点で 1.6 になること', 1, 0.4, 1.6],
+    ] as const)('%s', (_, code, step, expected) => {
       // #region When
-      const result = getDeductionOfScale(code, weight)
+      const result = getDeductionOfScale(code, step)
       // #endregion
 
       // #region Then
@@ -122,7 +122,7 @@ describe('getDeductionOfScale', () => {
 
     it('まだ答えていない場合、減点なしになること', () => {
       // #region When
-      const result = getDeductionOfScale(undefined, 3)
+      const result = getDeductionOfScale(undefined, 0.3)
       // #endregion
 
       // #region Then
@@ -136,7 +136,7 @@ describe('getDeductionOfScale', () => {
 describe('getDeductionOfPointBItem', () => {
   // #region 正常系
   describe('正常系', () => {
-    it('重みの無い設問は、4点で 0.3 になること', () => {
+    it('刻みが 0.3 の設問は、4点で 0.3 になること', () => {
       // #region Given
       const data = makeDeduct({ scales: { throwCatch: 4 } })
       // #endregion
@@ -150,7 +150,7 @@ describe('getDeductionOfPointBItem', () => {
       // #endregion
     })
 
-    it('着地は重みが2なので、4点で 0.6 になること', () => {
+    it('着地は刻みが 0.4 なので、4点で 0.4 になること', () => {
       // #region Given
       const data = makeDeduct({ scales: { landing: 4 } })
       // #endregion
@@ -160,7 +160,7 @@ describe('getDeductionOfPointBItem', () => {
       // #endregion
 
       // #region Then
-      expect(result).toBe(0.6)
+      expect(result).toBe(0.4)
       // #endregion
     })
   })
@@ -208,10 +208,10 @@ describe('getAmountOfScaleFaults', () => {
       // #endregion
     })
 
-    it('すべて4点なら、重みの合計ぶんになること', () => {
+    it('すべて4点なら、刻みの合計ぶんになること', () => {
       // #region Given
       const data = makeDeduct({ scales: answerAll(4) })
-      const weights = POINT_B_SCALE_ITEMS.reduce((sum, item) => sum + item.weight, 0)
+      const steps = POINT_B_SCALE_ITEMS.reduce((sum, item) => sum + Math.round(item.step * 100), 0)
       // #endregion
 
       // #region When
@@ -219,7 +219,7 @@ describe('getAmountOfScaleFaults', () => {
       // #endregion
 
       // #region Then
-      expect(result).toBe(Math.round(weights * 0.3 * 100) / 100)
+      expect(result).toBe(steps / 100)
       // #endregion
     })
   })

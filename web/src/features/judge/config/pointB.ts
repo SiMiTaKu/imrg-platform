@@ -18,22 +18,23 @@ import type {
  * 画面・内訳はこの順に並ぶ
  */
 export const POINT_B_SCALE_ITEMS: readonly PointBScaleItem[] = [
-  { key: 'apparatusSpin', title: m.judge_point_b_apparatus_spin, weight: 1 },
-  { key: 'apparatusSkill', title: m.judge_point_b_apparatus_skill, weight: 1 },
-  { key: 'throwCatch', title: m.judge_point_b_throw_catch, weight: 1 },
-  { key: 'tumblingHeight', title: m.judge_point_b_tumbling_height, weight: 1 },
-  // 着地は転回のたびにあるので、ほかより重く見る
-  { key: 'landing', title: m.judge_point_b_landing, weight: 2 },
-  { key: 'legLine', title: m.judge_point_b_leg_line, weight: 1 },
-  { key: 'steadiness', title: m.judge_point_b_steadiness, weight: 1 },
-  { key: 'musicMatch', title: m.judge_point_b_music_match, weight: 1 },
+  { key: 'apparatusSpin', title: m.judge_point_b_apparatus_spin, step: 0.3 },
+  { key: 'apparatusSkill', title: m.judge_point_b_apparatus_skill, step: 0.2 },
+  { key: 'throwCatch', title: m.judge_point_b_throw_catch, step: 0.3 },
+  // 高さは見た目の差が付きにくいので小さく取る
+  { key: 'tumblingHeight', title: m.judge_point_b_tumbling_height, step: 0.1 },
+  // 着地は転回のたびにあり、崩れると目に付くので大きく取る
+  { key: 'landing', title: m.judge_point_b_landing, step: 0.4 },
+  { key: 'legLine', title: m.judge_point_b_leg_line, step: 0.3 },
+  { key: 'steadiness', title: m.judge_point_b_steadiness, step: 0.3 },
+  { key: 'musicMatch', title: m.judge_point_b_music_match, step: 0.3 },
 ]
 
 /**
  * 実施のBで付けられる点。1〜5 点。
  *
  * @remarks
- * **5点が減点なし**で、1点下がるごとに `POINT_B_SCALE_STEP` ずつ減点が増える。
+ * **5点が減点なし**で、1点下がるごとに設問ごとの刻み（`step`）ぶん減点が増える。
  * 言葉ではなく数にしているのは、狭い画面でも5つを横1列に並べるため
  */
 export const POINT_B_SCALE_OPTIONS: readonly PointBScaleOption[] = [1, 2, 3, 4, 5].map((score) => ({
@@ -42,9 +43,6 @@ export const POINT_B_SCALE_OPTIONS: readonly PointBScaleOption[] = [1, 2, 3, 4, 
 
 /** 点をいちばん良く付けたときの値 */
 export const POINT_B_BEST_SCORE = 5
-
-/** 1点下がるごとに増える減点 */
-export const POINT_B_SCALE_STEP = 0.3
 
 /** 手具を1回落としたときの減点。規則の 0.30 点（46ページ）に合わせてある */
 export const POINT_B_DROP_VALUE = 0.3

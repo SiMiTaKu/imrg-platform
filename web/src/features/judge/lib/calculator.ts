@@ -1,10 +1,5 @@
 import { MAX_EXECUTION_SCORE, POINT_A_OPTIONS } from '../config/pointA'
-import {
-  POINT_B_BEST_SCORE,
-  POINT_B_DROP_VALUE,
-  POINT_B_SCALE_ITEMS,
-  POINT_B_SCALE_STEP,
-} from '../config/pointB'
+import { POINT_B_BEST_SCORE, POINT_B_DROP_VALUE, POINT_B_SCALE_ITEMS } from '../config/pointB'
 import type {
   ExecutionDeduct,
   PointBScaleCode,
@@ -54,16 +49,16 @@ export const getAmountOfPointA = (data: ExecutionDeduct): number => {
  * 設問1つに付けた点から減点を返す。
  *
  * @remarks
- * 5点は減点なし。1点下がるごとに 0.3 増え、設問ごとの重みを掛ける
+ * 5点は減点なし。1点下がるごとに、その設問の刻みぶん増える
  *
  * @param code - 付けた点（1〜5）。まだ答えていなければ undefined
- * @param weight - 設問の重み
+ * @param step - その設問の刻み
  * @returns その設問の減点
  */
-export const getDeductionOfScale = (code: PointBScaleCode | undefined, weight: number): number => {
+export const getDeductionOfScale = (code: PointBScaleCode | undefined, step: number): number => {
   if (code === undefined) return 0
   // 小数の誤差をなくすため、100 倍した整数で計算してから元に戻す
-  return ((POINT_B_BEST_SCORE - code) * Math.round(POINT_B_SCALE_STEP * 100) * weight) / 100
+  return ((POINT_B_BEST_SCORE - code) * Math.round(step * 100)) / 100
 }
 
 /**
@@ -75,7 +70,7 @@ export const getDeductionOfScale = (code: PointBScaleCode | undefined, weight: n
 export const getDeductionOfPointBItem = (data: ExecutionDeduct, key: PointBScaleKey): number => {
   const item = POINT_B_SCALE_ITEMS.find((candidate) => candidate.key === key)
   if (!item) return 0
-  return getDeductionOfScale(data.pointB.scales[key], item.weight)
+  return getDeductionOfScale(data.pointB.scales[key], item.step)
 }
 
 /**
@@ -95,7 +90,7 @@ export const getAmountOfScaleFaults = (data: ExecutionDeduct): number => {
   // 小数の誤差をなくすため、100 倍した整数で足してから元に戻す
   const total = POINT_B_SCALE_ITEMS.reduce(
     (sum, item) =>
-      sum + Math.round(getDeductionOfScale(data.pointB.scales[item.key], item.weight) * 100),
+      sum + Math.round(getDeductionOfScale(data.pointB.scales[item.key], item.step) * 100),
     0,
   )
   return total / 100
