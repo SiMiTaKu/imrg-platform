@@ -15,7 +15,7 @@
 </script>
 
 <div class="header {color}">
-  <span class="title"><span class="icon">Q</span>{caption}</span>
+  <span class="title"><span class="icon">Q</span><span class="caption">{caption}</span></span>
   {#if annotation}
     <span class="annotation">{m.judge_annotation({ annotation })}</span>
   {/if}
@@ -42,15 +42,23 @@
     --icon-background: #{map.get($theme, green)};
   }
 
+  /*
+    設問の見出し。Q の印・設問の文・補足を縦に積む。
+
+    横に並べると、設問の文と補足が狭い幅を取り合って細切れに折り返す。
+    包んでいる札が幅を決めるので、ここでは向きを固定してよい
+  */
   .header {
     display: flex;
-    align-items: baseline;
-    flex-direction: var(--header-flex-direction);
-    gap: 8px;
+    flex-direction: column;
+    gap: $space-size-4;
+    min-width: 0;
   }
 
+  // Q の印。縮むと丸がつぶれるので、幅は固定にする
   .icon {
     display: flex;
+    flex: none;
     width: 36px;
     height: 36px;
     font-size: 20px;
@@ -64,13 +72,27 @@
 
   .title {
     display: flex;
-    flex-direction: row;
-    gap: 12px;
-    font-size: 22px;
+    gap: $space-size-12;
+    align-items: center;
+    min-width: 0;
+    font-size: $font-size-18;
     font-weight: bold;
+    line-height: 1.5;
+  }
+
+  /*
+    設問の文。
+    「投げのキャッチは綺麗だった？」のような文は、読点の無いひとまとまりなので、
+    途中では折らずに札の幅いっぱいまで使う
+  */
+  .caption {
+    min-width: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
 
   .annotation {
-    font-size: 16px;
+    font-size: $font-size-14;
+    color: map.get($gray, light-text);
   }
 </style>

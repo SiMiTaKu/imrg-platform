@@ -102,7 +102,13 @@
       <!-- 採点し直すと attempt が変わり、この中がまるごと描き直されて入力が消える -->
       {#key attempt}
         <div class="panels">
-          <StepPanel step={JUDGE_STEPS[0]} state={getStepState(1, currentStep)}>
+          <!-- 手具を選んだら、問いかけを畳んで選んだ手具だけを残す -->
+          <StepPanel
+            compact={Boolean($judgementApparatus)}
+            onclick={$judgementApparatus ? judgementApparatus.reset : undefined}
+            state={getStepState(1, currentStep)}
+            step={JUDGE_STEPS[0]}
+          >
             <SelectApparatus />
           </StepPanel>
 

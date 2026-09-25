@@ -2,6 +2,7 @@
   import type { Snippet } from 'svelte'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
+  import { JudgeThemeColor, judgementApparatus } from '@features/judge'
   import { JudgeStepState, type JudgeStep } from '../config/steps'
 
   type Props = {
@@ -11,27 +12,51 @@
     state: JudgeStepState
     /** 段階の中身（採点の部品）。まだ来ていない段階では描かない */
     children?: Snippet
+    /**
+     * 見出しと手引きを畳むか。
+     *
+     * @remarks
+     * 手具を選んだあとのように、済んでしまえば読む必要が無くなる段階で立てる
+     */
+    compact?: boolean
+    /**
+     * 枠ごと押したときに呼ぶ。
+     *
+     * @remarks
+     * 渡すと枠そのものが押しボタンになる。中に押すところがある段階では渡さない
+     */
+    onclick?: () => void
   }
 
-  const { step, state, children = undefined }: Props = $props()
+  const {
+    step,
+    state,
+    children = undefined,
+    compact = false,
+    onclick = undefined,
+  }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
+  /** 手具のイメージカラー。段階の番号に使う */
+  const color = $derived($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY)
 </script>
 
 <!-- 段階1つ分の枠。番号・見出し・手引き・中身を、重ねずに縦へ積む -->
-<section class="panel {state}" class:mobile={isMobile}>
-  <header class="head">
-    <span class="number" aria-hidden="true">{step.number}</span>
-    <div class="words">
-      <h2>{step.title()}</h2>
-      <p class="note">{state === JudgeStepState.WAITING ? step.waiting() : step.note()}</p>
-    </div>
-    {#if state === JudgeStepState.CURRENT}
-      <span class="badge">{m.judge_step_badge_current()}</span>
-    {:else if state === JudgeStepState.DONE}
-      <span class="badge filled">{m.judge_step_badge_done()}</span>
-    {/if}
-  </header>
+{#snippet inner()}
+  {#if !compact}
+    <header class="head">
+      <span class="number" aria-hidden="true">{step.number}</span>
+      <div class="words">
+        <h2>{step.title()}</h2>
+        <p class="note">{state === JudgeStepState.WAITING ? step.waiting() : step.note()}</p>
+      </div>
+      {#if state === JudgeStepState.CURRENT}
+        <span class="badge">{m.judge_step_badge_current()}</span>
+      {:else if state === JudgeStepState.DONE}
+        <span class="badge filled">{m.judge_step_badge_done()}</span>
+      {/if}
+    </header>
+  {/if}
 
   {#if state !== JudgeStepState.WAITING}
     <!-- 採点表は横に長くなることがあるので、この中だけで横に送る -->
@@ -39,17 +64,57 @@
       {@render children?.()}
     </div>
   {/if}
-</section>
+{/snippet}
+
+{#if onclick}
+  <!--
+    枠ごと押せる段階。手具を選び直すときのように、中に押すところが無く、
+    枠全体が1つの動きになるときに使う。狭い当たり判定を探させない
+  -->
+  <button
+    class="panel pressable {color}"
+    class:mobile={isMobile}
+    class:current={state === JudgeStepState.CURRENT}
+    class:waiting={state === JudgeStepState.WAITING}
+    type="button"
+    {onclick}
+  >
+    {@render inner()}
+  </button>
+{:else}
+  <section
+    class="panel {color}"
+    class:mobile={isMobile}
+    class:current={state === JudgeStepState.CURRENT}
+    class:waiting={state === JudgeStepState.WAITING}
+  >
+    {@render inner()}
+  </section>
+{/if}
 
 <style lang="scss">
   .panel {
     display: flex;
     flex-direction: column;
     gap: $space-size-24;
+    width: 100%;
     padding: $space-size-32;
+    font-family: inherit;
+    text-align: left;
     border: 1px solid map.get($gray, 100);
     border-radius: 10px;
     background: $white;
+    box-sizing: border-box;
+  }
+
+  // 枠ごと押せるときは、押せることが分かるようにする
+  .panel.pressable {
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+
+  .panel.pressable:hover {
+    border-color: var(--step-color);
   }
 
   .panel.mobile {
@@ -80,6 +145,27 @@
     gap: $space-size-12;
   }
 
+  // 段階の番号。選んだ手具の色にする
+  .gray {
+    --step-color: #{map.get($theme, gray)};
+  }
+
+  .blue {
+    --step-color: #{map.get($theme, blue)};
+  }
+
+  .red {
+    --step-color: #{map.get($theme, red)};
+  }
+
+  .yellow {
+    --step-color: #{map.get($theme, yellow)};
+  }
+
+  .green {
+    --step-color: #{map.get($theme, green)};
+  }
+
   .number {
     display: flex;
     flex: none;
@@ -91,11 +177,7 @@
     font-weight: bold;
     color: $white;
     border-radius: 999px;
-    background: map.get($sky-blue, button);
-  }
-
-  .current .number {
-    background: map.get($sky-blue, button);
+    background: var(--step-color);
   }
 
   .waiting .number {

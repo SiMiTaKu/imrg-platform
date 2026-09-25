@@ -7,7 +7,12 @@ import { MAX_EXECUTION_SCORE } from '../config/pointA'
  * @param pointA - Aの減点の合計
  * @param pointB - Bの減点の合計
  * @param locale - 表示中の言語
- * @returns 計算式（例: `10.00　-　( 5.500 + 0.300 )`）。区切りの全角スペースは以前の表示のまま
+ * @returns 計算式（例: `10.00 − (5.500 + 0.300)`）
+ *
+ * @remarks
+ * 引き算の記号は、半角ハイフンではなく**マイナス記号**（U+2212）を使う。
+ * ハイフンは短くて点や中黒に見え、式に見えない。
+ * 括弧のすぐ内側の空きも詰める。離れていると括弧がどこに掛かるのか分かりにくい
  */
 export const buildScoreFormula = (pointA: number, pointB: number, locale: SiteLocale): string =>
-  `${formatNumber(MAX_EXECUTION_SCORE, locale, 2)}　-　( ${formatNumber(pointA, locale)} + ${formatNumber(pointB, locale)} )`
+  `${formatNumber(MAX_EXECUTION_SCORE, locale, 2)} − (${formatNumber(pointA, locale)} + ${formatNumber(pointB, locale)})`

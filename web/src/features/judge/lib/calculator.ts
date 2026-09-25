@@ -1,25 +1,15 @@
 import { MAX_EXECUTION_SCORE, POINT_A_OPTIONS } from '../config/pointA'
-import { POINT_B_DROP_KEYS, POINT_B_ITEMS } from '../config/pointB'
-import type { ExecutionDeduct, PointBCountKey } from '../model/executionDeduct'
-
-/**
- * 数える欠点の、1回あたりの減点を引く
- * @param key - 項目のキー
- * @returns 1回あたりの減点。項目が無ければ 0
- */
-const valueOf = (key: PointBCountKey): number =>
-  POINT_B_ITEMS.find((item) => item.key === key)?.value ?? 0
-
-/**
- * 数える欠点を 0 回にした入力値を作る
- * @returns すべての項目が 0 回の入力値
- */
-const createCounts = (): Record<PointBCountKey, number> =>
-  Object.fromEntries(POINT_B_ITEMS.map((item) => [item.key, 0])) as Record<PointBCountKey, number>
+import { POINT_B_BEST_SCORE, POINT_B_DROP_VALUE, POINT_B_SCALE_ITEMS } from '../config/pointB'
+import type {
+  ExecutionDeduct,
+  PointBScaleCode,
+  PointBScaleKey,
+  PointBSummary,
+} from '../model/executionDeduct'
 
 /**
  * 採点を始めるときの採点項目を作る
- * @returns Aの各項目は先頭の選択肢、Bはすべて 0
+ * @returns Aの各項目は1点（まだ選んでいない状態）、Bはまだ答えていない状態
  */
 export const createExecutionDeduct = (): ExecutionDeduct => {
   const [initialOption] = POINT_A_OPTIONS
@@ -38,8 +28,8 @@ export const createExecutionDeduct = (): ExecutionDeduct => {
       musicImage: initialOption,
     },
     pointB: {
-      counts: createCounts(),
-      miss: 0,
+      drops: 0,
+      scales: {},
     },
   }
 }
@@ -56,41 +46,55 @@ export const getAmountOfPointA = (data: ExecutionDeduct): number => {
 }
 
 /**
- * 数える欠点のうち、指定した項目の減点を返す
- * @param data - 実施の採点項目
- * @param keys - 数える項目のキー
- * @returns 指定した項目の減点の合計
+ * 設問1つに付けた点から減点を返す。
+ *
+ * @remarks
+ * 5点は減点なし。1点下がるごとに、その設問の刻みぶん増える
+ *
+ * @param code - 付けた点（1〜5）。まだ答えていなければ undefined
+ * @param step - その設問の刻み
+ * @returns その設問の減点
  */
-export const getDeductionOfCounts = (
-  data: ExecutionDeduct,
-  keys: readonly PointBCountKey[],
-): number => {
-  // 小数の誤差をなくすため、100 倍した整数で足してから元に戻す
-  const total = keys.reduce(
-    (sum, key) => sum + Math.round(valueOf(key) * 100) * (data.pointB.counts[key] ?? 0),
-    0,
-  )
-  return total / 100
+export const getDeductionOfScale = (code: PointBScaleCode | undefined, step: number): number => {
+  if (code === undefined) return 0
+  // 小数の誤差をなくすため、100 倍した整数で計算してから元に戻す
+  return ((POINT_B_BEST_SCORE - code) * Math.round(step * 100)) / 100
 }
 
 /**
- * 数える欠点すべての減点を返す
+ * 設問1つの減点を返す
  * @param data - 実施の採点項目
- * @returns 回数や秒数で数えた欠点の減点の合計
+ * @param key - 設問のキー
+ * @returns その設問の減点。まだ答えていなければ 0
  */
-export const getAmountOfCountedFaults = (data: ExecutionDeduct): number =>
-  getDeductionOfCounts(
-    data,
-    POINT_B_ITEMS.map((item) => item.key),
-  )
+export const getDeductionOfPointBItem = (data: ExecutionDeduct, key: PointBScaleKey): number => {
+  const item = POINT_B_SCALE_ITEMS.find((candidate) => candidate.key === key)
+  if (!item) return 0
+  return getDeductionOfScale(data.pointB.scales[key], item.step)
+}
 
 /**
  * 手具を落とした回数から減点を返す
  * @param data - 実施の採点項目
- * @returns 手具の落下による減点（1つの手具の落下は1回0.3、2つの手具を同時に落としたときは1回0.4）
+ * @returns 手具の落下による減点（1回につき 0.3）
  */
 export const getDeductionOfDroppedApparatus = (data: ExecutionDeduct): number =>
-  getDeductionOfCounts(data, POINT_B_DROP_KEYS)
+  (data.pointB.drops * Math.round(POINT_B_DROP_VALUE * 100)) / 100
+
+/**
+ * 点で答える設問すべての減点を返す
+ * @param data - 実施の採点項目
+ * @returns 8つの設問の減点の合計
+ */
+export const getAmountOfScaleFaults = (data: ExecutionDeduct): number => {
+  // 小数の誤差をなくすため、100 倍した整数で足してから元に戻す
+  const total = POINT_B_SCALE_ITEMS.reduce(
+    (sum, item) =>
+      sum + Math.round(getDeductionOfScale(data.pointB.scales[item.key], item.step) * 100),
+    0,
+  )
+  return total / 100
+}
 
 /**
  * Bの減点の上限を返す。満点からAの減点を引いた値
@@ -103,14 +107,15 @@ export const getMaxPointB = (data: ExecutionDeduct): number =>
 /**
  * Bの減点項目の合計を返す。減点の上限を超えた場合は上限の値を返す
  * @param data - 実施の採点項目
- * @returns Bの減点の合計（数える欠点とその他ミスの合計。上限は getMaxPointB の値）
- * @throws Error
- * その他ミスによる減点が 0 未満のとき
+ * @returns Bの減点の合計（手具の落下とあてはまり具合の合計。上限は getMaxPointB の値）
  */
 export const getAmountOfPointB = (data: ExecutionDeduct): number => {
-  if (data.pointB.miss < 0) throw new Error('その他ミスによる減点が 0 未満です。')
   const maxPointB = getMaxPointB(data)
-  const result = getAmountOfCountedFaults(data) + data.pointB.miss
+  // 小数の誤差をなくすため、100 倍した整数で足してから元に戻す
+  const result =
+    (Math.round(getDeductionOfDroppedApparatus(data) * 100) +
+      Math.round(getAmountOfScaleFaults(data) * 100)) /
+    100
   return result >= maxPointB ? maxPointB : result
 }
 
@@ -123,12 +128,27 @@ export const getDecisionPoints = (data: ExecutionDeduct): number =>
   MAX_EXECUTION_SCORE - (getAmountOfPointA(data) + getAmountOfPointB(data))
 
 /**
- * その他ミスによる減点の入力値を、採点に使える値に直す
- * @param value - 入力欄の値（`valueAsNumber`）
- * @returns 空欄など数値でないときと 0 未満のときは 0。それ以外はそのまま
- *
- * @remarks
- * 以前は入力欄を空にすると値が null になり、結果の表示で例外になっていた
+ * Bの設問すべてに答え終わったか
+ * @param data - 実施の採点項目
+ * @returns まだ答えていない設問が1つも無ければ true
  */
-export const normalizeMiss = (value: number): number =>
-  Number.isNaN(value) || value < 0 ? 0 : value
+export const isPointBAnswered = (data: ExecutionDeduct): boolean =>
+  POINT_B_SCALE_ITEMS.every((item) => data.pointB.scales[item.key] !== undefined)
+
+/**
+ * 内訳のまとまり1つぶんの減点を返す
+ * @param data - 実施の採点項目
+ * @param summary - 内訳のまとまり
+ * @returns そのまとまりに入る設問の減点の合計
+ */
+export const getDeductionOfPointBSummary = (
+  data: ExecutionDeduct,
+  summary: PointBSummary,
+): number => {
+  // 小数の誤差をなくすため、100 倍した整数で足してから元に戻す
+  const total = summary.items.reduce(
+    (sum, key) => sum + Math.round(getDeductionOfPointBItem(data, key) * 100),
+    0,
+  )
+  return total / 100
+}

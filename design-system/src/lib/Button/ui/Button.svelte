@@ -15,6 +15,11 @@
     class:sky-blue={variant === 'sky-blue'}
     class:sky-blue-outline={variant === 'sky-blue-outline'}
     class:yellow={variant === 'yellow'}
+    class:theme-gray={variant === 'theme-gray'}
+    class:theme-blue={variant === 'theme-blue'}
+    class:theme-red={variant === 'theme-red'}
+    class:theme-yellow={variant === 'theme-yellow'}
+    class:theme-green={variant === 'theme-green'}
     class:large={size === 'large'}
     class:stretch={stretches}
     style:--button-max-width={maxWidth}
@@ -31,6 +36,11 @@
     class:sky-blue={variant === 'sky-blue'}
     class:sky-blue-outline={variant === 'sky-blue-outline'}
     class:yellow={variant === 'yellow'}
+    class:theme-gray={variant === 'theme-gray'}
+    class:theme-blue={variant === 'theme-blue'}
+    class:theme-red={variant === 'theme-red'}
+    class:theme-yellow={variant === 'theme-yellow'}
+    class:theme-green={variant === 'theme-green'}
     class:large={size === 'large'}
     class:stretch={stretches}
     style:--button-max-width={maxWidth}
@@ -102,6 +112,66 @@
   .sky-blue-outline:hover {
     border-color: map.get($sky-blue, button);
     background: map.get($sky-blue, background);
+  }
+
+  /*
+    手具のイメージカラーの塗り。採点の画面で、選んだ手具に合わせて色が変わる。
+    押した状態は、同じ色を少し黒に寄せて作る（$theme には濃い側の段階が無いため）
+  */
+  .theme-gray {
+    color: $white;
+    border-color: map.get($theme, gray);
+    background: map.get($theme, gray);
+  }
+
+  .theme-gray:hover {
+    border-color: color-mix(in srgb, #{map.get($theme, gray)} 82%, black);
+    background: color-mix(in srgb, #{map.get($theme, gray)} 82%, black);
+  }
+
+  .theme-blue {
+    color: $white;
+    border-color: map.get($theme, blue);
+    background: map.get($theme, blue);
+  }
+
+  .theme-blue:hover {
+    border-color: color-mix(in srgb, #{map.get($theme, blue)} 82%, black);
+    background: color-mix(in srgb, #{map.get($theme, blue)} 82%, black);
+  }
+
+  .theme-red {
+    color: $white;
+    border-color: map.get($theme, red);
+    background: map.get($theme, red);
+  }
+
+  .theme-red:hover {
+    border-color: color-mix(in srgb, #{map.get($theme, red)} 82%, black);
+    background: color-mix(in srgb, #{map.get($theme, red)} 82%, black);
+  }
+
+  // 黄は明るいので文字は黒にする（色の決まり 4）
+  .theme-yellow {
+    color: $black;
+    border-color: map.get($theme, yellow);
+    background: map.get($theme, yellow);
+  }
+
+  .theme-yellow:hover {
+    border-color: color-mix(in srgb, #{map.get($theme, yellow)} 82%, black);
+    background: color-mix(in srgb, #{map.get($theme, yellow)} 82%, black);
+  }
+
+  .theme-green {
+    color: $white;
+    border-color: map.get($theme, green);
+    background: map.get($theme, green);
+  }
+
+  .theme-green:hover {
+    border-color: color-mix(in srgb, #{map.get($theme, green)} 82%, black);
+    background: color-mix(in srgb, #{map.get($theme, green)} 82%, black);
   }
 
   // 黄。相談への一歩に使う。黄は明るいので文字は黒にする（色の決まり 4）

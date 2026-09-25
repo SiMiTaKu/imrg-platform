@@ -6,19 +6,27 @@ export { judgementApparatus } from './store/apparatus'
 export { executionDeduct } from './store/executionDeduct'
 export { JUDGE_APPARATUSES } from './config/apparatus'
 export { JudgeThemeColor } from './config/themeColor'
-export { POINT_A_FINE_OPTIONS, POINT_A_MAX_CODE, POINT_A_OPTIONS } from './config/pointA'
-export { POINT_B_DROP_KEYS, POINT_B_GROUPS, POINT_B_ITEMS } from './config/pointB'
+export { POINT_A_MAX_CODE, POINT_A_OPTIONS } from './config/pointA'
+export {
+  POINT_B_DROP_VALUE,
+  POINT_B_SCALE_ITEMS,
+  POINT_B_SCALE_OPTIONS,
+  POINT_B_SUMMARIES,
+} from './config/pointB'
 export { findApparatus } from './lib/apparatus'
+export { themeButtonVariant } from './lib/buttonVariant'
 export {
   createExecutionDeduct,
-  getAmountOfCountedFaults,
   getAmountOfPointA,
   getAmountOfPointB,
+  getAmountOfScaleFaults,
   getDecisionPoints,
-  getDeductionOfCounts,
   getDeductionOfDroppedApparatus,
+  getDeductionOfPointBItem,
+  getDeductionOfPointBSummary,
+  getDeductionOfScale,
   getMaxPointB,
-  normalizeMiss,
+  isPointBAnswered,
 } from './lib/calculator'
 export { buildScoreFormula } from './lib/scoreFormula'
 export { buildShareUrl } from './lib/share'
@@ -31,7 +39,9 @@ export type {
   ExecutionDeduct,
   PointALevel,
   PointAOption,
-  PointBCountKey,
-  PointBGroup,
-  PointBItem,
+  PointBScaleCode,
+  PointBScaleItem,
+  PointBScaleKey,
+  PointBScaleOption,
+  PointBSummary,
 } from './model/executionDeduct'

@@ -1,12 +1,17 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
+  import { JudgeThemeColor } from '../config/themeColor'
   import { fly } from 'svelte/transition'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
+  import { POINT_A_OPTIONS } from '../config/pointA'
   import { POINT_A_ITEMS } from '../config/pointAItems'
-  import type { PointAKey, PointAOption } from '../model/executionDeduct'
+  import { themeButtonVariant } from '../lib/buttonVariant'
+  import { scrollToQuestion } from '../lib/scrollToQuestion'
+  import type { PointAKey } from '../model/executionDeduct'
+  import { judgementApparatus } from '../store/apparatus'
   import { executionDeduct } from '../store/executionDeduct'
-  import Radio from './Radio.svelte'
+  import ScaleQuestion from './ScaleQuestion.svelte'
 
   type Props = {
     /** 決定ボタンを押したときに呼ぶ */
@@ -15,11 +20,24 @@
 
   const { onsubmit }: Props = $props()
 
+  /** 決定ボタンの色。選んだ手具に合わせる */
+  const submitVariant = $derived(
+    themeButtonVariant($judgementApparatus?.imageColor ?? JudgeThemeColor.GRAY),
+  )
+
+  /** 1〜5 点の札。減点の数は出さない */
+  const options = POINT_A_OPTIONS.map((option) => ({ code: option.code }))
+
   let submitted = $state(false)
   /** いま開いている項目。最初は先頭の項目だけを開く。すべて閉じているときは undefined */
   let openKey: PointAKey | undefined = $state(POINT_A_ITEMS[0]?.key)
   /** もう選んだ項目。選んだ順に増える */
   let answeredKeys: PointAKey[] = $state([])
+  /** 決定を押したのに未回答が残っていたか。残っていれば但し書きを出す */
+  let missing = $state(false)
+
+  /** まだ選んでいない項目。並びは画面と同じ */
+  const unanswered = $derived(POINT_A_ITEMS.filter((item) => !answeredKeys.includes(item.key)))
 
   /**
    * 選んだあとに次へ開く項目を探す。
@@ -35,15 +53,20 @@
   }
 
   /**
-   * 項目の入力が終わったので、その項目を閉じて次の項目を開く
+   * 項目の入力が終わったので、その項目を閉じて次の項目を開き、そこまで画面を動かす
    * @param key - 選んだ項目のキー
-   * @param option - 選んだ選択肢
+   * @param code - 選んだ段階
    */
-  const handleSelect = (key: PointAKey, option: PointAOption) => {
+  const handleSelect = (key: PointAKey, code: number) => {
+    const option = POINT_A_OPTIONS.find((candidate) => candidate.code === code)
+    if (!option) return
     executionDeduct.selectPointA(key, option)
     const answered = answeredKeys.includes(key) ? answeredKeys : [...answeredKeys, key]
     answeredKeys = answered
-    openKey = findNextKey(key, answered)
+    missing = false
+    const next = findNextKey(key, answered)
+    openKey = next
+    if (next) scrollToQuestion(`${next}-body`)
   }
 
   /**
@@ -55,9 +78,18 @@
   }
 
   /**
-   * 決定ボタンを押したときに、親へ知らせてボタンを消す
+   * 決定ボタンを押したときの動き。
+   * まだ選んでいない項目があれば先へ進まず、いちばん上の未回答まで戻す
    */
   const handleSubmit = () => {
+    const [first] = unanswered
+    if (first) {
+      missing = true
+      openKey = first.key
+      scrollToQuestion(`${first.key}-body`)
+      return
+    }
+    missing = false
     onsubmit()
     submitted = true
   }
@@ -85,14 +117,18 @@
     </div>
     <div class="question-list">
       {#each POINT_A_ITEMS as item (item.key)}
-        <Radio
+        <ScaleQuestion
           annotation={item.annotation()}
-          answered={answeredKeys.includes(item.key)}
+          groupLabel={m.judge_scale_label()}
           open={openKey === item.key}
-          selected={$executionDeduct.pointA[item.key]}
+          {options}
+          selected={answeredKeys.includes(item.key)
+            ? $executionDeduct.pointA[item.key].code
+            : undefined}
           title={item.title()}
           uniqueId={item.key}
-          onchange={(option) => handleSelect(item.key, option)}
+          untouchedLabel={m.judge_point_a_item_untouched()}
+          onchange={(code) => handleSelect(item.key, code)}
           ontoggle={() => handleToggle(item.key)}
         />
       {/each}
@@ -100,7 +136,10 @@
   </div>
   {#if !submitted}
     <div class="submit">
-      <Button size="large" width="full" onclick={handleSubmit} variant="sky-blue"
+      {#if missing}
+        <p class="missing" role="status">{m.judge_unanswered_note()}</p>
+      {/if}
+      <Button size="large" width="full" onclick={handleSubmit} variant={submitVariant}
         >{m.judge_submit()}</Button
       >
     </div>
@@ -168,11 +207,20 @@
   // 送るボタンは中央に置く。スマホでは横いっぱいにする
   .submit {
     display: grid;
+    gap: $space-size-8;
     grid-template-columns: min(260px, 100%);
     justify-content: center;
   }
 
   .mobile .submit {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .missing {
+    margin: 0;
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: #{map.get($theme, red)};
+    text-align: center;
   }
 </style>

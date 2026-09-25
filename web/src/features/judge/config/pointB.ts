@@ -1,182 +1,72 @@
 import { m } from '$lib/paraglide/messages'
-import { Apparatus } from '@shared/config/apparatus'
-import { PointBUnit, type PointBGroup, type PointBItem } from '../model/executionDeduct'
+import type {
+  PointBScaleCode,
+  PointBScaleItem,
+  PointBScaleOption,
+  PointBSummary,
+} from '../model/executionDeduct'
 
 /**
- * 実施のBの、回数や秒数で数える欠点。区分ごとにまとめている。
+ * 実施のBの設問。
  *
  * @remarks
- * 出典は『新体操男子規則 2025年版』の実施欠点表（46〜47ページ）。
- * 「欠点基準に準じる」とされている項目はAの減点（`POINT_A_ITEMS`）が受け持つので、
- * ここには回数・歩数・秒数で数える項目だけを置く。
+ * 規則の欠点表（『新体操男子規則 2025年版』46〜47ページ）をそのまま並べると
+ * 項目が26個になり、採点を試す人には多すぎた。
+ * 「見ていてどう感じたか」に答えれば点が付く形にまとめ直してある。
+ * **規則と1対1では対応しない**
+ *
  * 画面・内訳はこの順に並ぶ
  */
-export const POINT_B_GROUPS: readonly PointBGroup[] = [
-  {
-    key: 'apparatus',
-    title: m.judge_point_b_group_apparatus,
-    items: [
-      {
-        key: 'apparatusStopped',
-        title: m.judge_point_b_apparatus_stopped,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'apparatusShape',
-        title: m.judge_point_b_apparatus_shape,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'apparatusExtension',
-        title: m.judge_point_b_apparatus_extension,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'droppedSingle',
-        title: m.judge_point_b_dropped_single,
-        value: 0.3,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'droppedDouble',
-        title: m.judge_point_b_dropped_double,
-        value: 0.4,
-        unit: PointBUnit.EACH,
-        pairOnly: true,
-      },
-      {
-        key: 'catchPlaceChanged',
-        title: m.judge_point_b_catch_place_changed,
-        value: 0.05,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'catchPlaceKept',
-        title: m.judge_point_b_catch_place_kept,
-        value: 0.1,
-        unit: PointBUnit.SECOND,
-      },
-      {
-        key: 'catchMove12',
-        title: m.judge_point_b_catch_move_1_2,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'catchMove34',
-        title: m.judge_point_b_catch_move_3_4,
-        value: 0.2,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'catchMove5',
-        title: m.judge_point_b_catch_move_5,
-        value: 0.3,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'ropeShape',
-        title: m.judge_point_b_rope_shape,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-        apparatusSlug: Apparatus.ROPE.slug,
-      },
-      {
-        key: 'ropeFloor',
-        title: m.judge_point_b_rope_floor,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-        apparatusSlug: Apparatus.ROPE.slug,
-      },
-      {
-        key: 'somersaultApparatus',
-        title: m.judge_point_b_somersault_apparatus,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-    ],
-  },
-  {
-    key: 'tumbling',
-    title: m.judge_point_b_group_tumbling,
-    items: [
-      {
-        key: 'somersaultHeight',
-        title: m.judge_point_b_somersault_height,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'somersaultSpeed',
-        title: m.judge_point_b_somersault_speed,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'somersaultAxis',
-        title: m.judge_point_b_somersault_axis,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'landingStep',
-        title: m.judge_point_b_landing_step,
-        value: 0.1,
-        unit: PointBUnit.STEP,
-      },
-      {
-        key: 'landingHand',
-        title: m.judge_point_b_landing_hand,
-        value: 0.2,
-        unit: PointBUnit.EACH,
-      },
-      {
-        key: 'landingFall',
-        title: m.judge_point_b_landing_fall,
-        value: 0.3,
-        unit: PointBUnit.EACH,
-      },
-    ],
-  },
-  {
-    key: 'other',
-    title: m.judge_point_b_group_other,
-    items: [
-      { key: 'posture', title: m.judge_point_b_posture, value: 0.1, unit: PointBUnit.EACH },
-      { key: 'flexibility', title: m.judge_point_b_flexibility, value: 0.1, unit: PointBUnit.EACH },
-      { key: 'jump', title: m.judge_point_b_jump, value: 0.1, unit: PointBUnit.EACH },
-      { key: 'turn', title: m.judge_point_b_turn, value: 0.1, unit: PointBUnit.EACH },
-      { key: 'stagger', title: m.judge_point_b_stagger, value: 0.1, unit: PointBUnit.STEP },
-      { key: 'pause', title: m.judge_point_b_pause, value: 0.1, unit: PointBUnit.SECOND },
-    ],
-  },
-  {
-    key: 'music',
-    title: m.judge_point_b_group_music,
-    items: [
-      {
-        key: 'musicRhythm',
-        title: m.judge_point_b_music_rhythm,
-        value: 0.1,
-        unit: PointBUnit.EACH,
-      },
-    ],
-  },
+export const POINT_B_SCALE_ITEMS: readonly PointBScaleItem[] = [
+  { key: 'apparatusSpin', title: m.judge_point_b_apparatus_spin, step: 0.3 },
+  { key: 'apparatusSkill', title: m.judge_point_b_apparatus_skill, step: 0.2 },
+  { key: 'throwCatch', title: m.judge_point_b_throw_catch, step: 0.3 },
+  // 高さは見た目の差が付きにくいので小さく取る
+  { key: 'tumblingHeight', title: m.judge_point_b_tumbling_height, step: 0.1 },
+  // 着地は転回のたびにあり、崩れると目に付くので大きく取る
+  { key: 'landing', title: m.judge_point_b_landing, step: 0.4 },
+  { key: 'legLine', title: m.judge_point_b_leg_line, step: 0.3 },
+  { key: 'steadiness', title: m.judge_point_b_steadiness, step: 0.3 },
+  { key: 'musicMatch', title: m.judge_point_b_music_match, step: 0.3 },
 ]
 
-/** 区分をまたいだ、数える欠点のすべて */
-export const POINT_B_ITEMS: readonly PointBItem[] = POINT_B_GROUPS.flatMap((group) => group.items)
-
 /**
- * 手具の落下にあたる項目のキー。
+ * 実施のBで付けられる点。1〜5 点。
  *
  * @remarks
- * 決定点の内訳では、手具の落下による減点だけを別に出す
+ * **5点が減点なし**で、1点下がるごとに設問ごとの刻み（`step`）ぶん減点が増える。
+ * 言葉ではなく数にしているのは、狭い画面でも5つを横1列に並べるため
  */
-export const POINT_B_DROP_KEYS = [
-  'droppedSingle',
-  'droppedDouble',
-] as const satisfies readonly PointBItem['key'][]
+export const POINT_B_SCALE_OPTIONS: readonly PointBScaleOption[] = [1, 2, 3, 4, 5].map((score) => ({
+  code: score as PointBScaleCode,
+}))
+
+/** 点をいちばん良く付けたときの値 */
+export const POINT_B_BEST_SCORE = 5
+
+/** 手具を1回落としたときの減点。規則の 0.30 点（46ページ）に合わせてある */
+export const POINT_B_DROP_VALUE = 0.3
+
+/**
+ * 内訳に出すときの、Bのまとめ方。
+ *
+ * @remarks
+ * 設問をそのまま8行並べても、どこで引かれたのかが掴めない。
+ * 「手具の扱い」「投げのミス」のように、減点の出どころとして
+ * 名前が付くまとまりにして出す
+ */
+export const POINT_B_SUMMARIES: readonly PointBSummary[] = [
+  {
+    key: 'apparatus',
+    title: m.judge_point_b_summary_apparatus,
+    items: ['apparatusSpin', 'apparatusSkill'],
+  },
+  { key: 'throw', title: m.judge_point_b_summary_throw, items: ['throwCatch'] },
+  {
+    key: 'tumbling',
+    title: m.judge_point_b_summary_tumbling,
+    items: ['tumblingHeight', 'landing'],
+  },
+  { key: 'body', title: m.judge_point_b_summary_body, items: ['legLine', 'steadiness'] },
+  { key: 'music', title: m.judge_point_b_summary_music, items: ['musicMatch'] },
+]
