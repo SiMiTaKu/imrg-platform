@@ -105,6 +105,7 @@
           <!-- 手具を選んだら、問いかけを畳んで選んだ手具だけを残す -->
           <StepPanel
             compact={Boolean($judgementApparatus)}
+            onclick={$judgementApparatus ? judgementApparatus.reset : undefined}
             state={getStepState(1, currentStep)}
             step={JUDGE_STEPS[0]}
           >

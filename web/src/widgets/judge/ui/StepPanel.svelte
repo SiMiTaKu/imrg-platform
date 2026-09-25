@@ -19,9 +19,22 @@
      * 手具を選んだあとのように、済んでしまえば読む必要が無くなる段階で立てる
      */
     compact?: boolean
+    /**
+     * 枠ごと押したときに呼ぶ。
+     *
+     * @remarks
+     * 渡すと枠そのものが押しボタンになる。中に押すところがある段階では渡さない
+     */
+    onclick?: () => void
   }
 
-  const { step, state, children = undefined, compact = false }: Props = $props()
+  const {
+    step,
+    state,
+    children = undefined,
+    compact = false,
+    onclick = undefined,
+  }: Props = $props()
 
   const isMobile = $derived($pageData.isMobile)
   /** 手具のイメージカラー。段階の番号に使う */
@@ -29,12 +42,7 @@
 </script>
 
 <!-- 段階1つ分の枠。番号・見出し・手引き・中身を、重ねずに縦へ積む -->
-<section
-  class="panel {color}"
-  class:mobile={isMobile}
-  class:current={state === JudgeStepState.CURRENT}
-  class:waiting={state === JudgeStepState.WAITING}
->
+{#snippet inner()}
   {#if !compact}
     <header class="head">
       <span class="number" aria-hidden="true">{step.number}</span>
@@ -56,17 +64,57 @@
       {@render children?.()}
     </div>
   {/if}
-</section>
+{/snippet}
+
+{#if onclick}
+  <!--
+    枠ごと押せる段階。手具を選び直すときのように、中に押すところが無く、
+    枠全体が1つの動きになるときに使う。狭い当たり判定を探させない
+  -->
+  <button
+    class="panel pressable {color}"
+    class:mobile={isMobile}
+    class:current={state === JudgeStepState.CURRENT}
+    class:waiting={state === JudgeStepState.WAITING}
+    type="button"
+    {onclick}
+  >
+    {@render inner()}
+  </button>
+{:else}
+  <section
+    class="panel {color}"
+    class:mobile={isMobile}
+    class:current={state === JudgeStepState.CURRENT}
+    class:waiting={state === JudgeStepState.WAITING}
+  >
+    {@render inner()}
+  </section>
+{/if}
 
 <style lang="scss">
   .panel {
     display: flex;
     flex-direction: column;
     gap: $space-size-24;
+    width: 100%;
     padding: $space-size-32;
+    font-family: inherit;
+    text-align: left;
     border: 1px solid map.get($gray, 100);
     border-radius: 10px;
     background: $white;
+    box-sizing: border-box;
+  }
+
+  // 枠ごと押せるときは、押せることが分かるようにする
+  .panel.pressable {
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+
+  .panel.pressable:hover {
+    border-color: var(--step-color);
   }
 
   .panel.mobile {
