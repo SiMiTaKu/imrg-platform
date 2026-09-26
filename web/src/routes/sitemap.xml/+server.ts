@@ -20,6 +20,7 @@ const STATIC_ENTRIES: SitemapEntry[] = [
   { path: '/judge', priority: 0.6, lastmod: UPDATED_AT },
   { path: '/decorating_apparatus', priority: 0.6, lastmod: UPDATED_AT },
   { path: '/background_music', priority: 0.6, lastmod: UPDATED_AT },
+  { path: '/coaching', priority: 0.6, lastmod: UPDATED_AT },
   { path: '/privacy', priority: 0.3, lastmod: UPDATED_AT },
   { path: '/terms', priority: 0.3, lastmod: UPDATED_AT },
 ]
