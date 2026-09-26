@@ -123,12 +123,17 @@
     border-radius: $border-radius-4;
   }
 
+  /*
+    全体のスタイル（app/styles/global.css）が ul の点を消しているので、
+    本文の箇条書きだけ戻す。点が無いと、ただの短い段落に見えて読みにくい
+  */
   ul {
     display: flex;
     flex-direction: column;
     gap: $space-size-4;
-    padding-left: $space-size-20;
+    padding-left: $space-size-24;
     line-height: 1.9;
+    list-style: disc;
   }
 
   .table {

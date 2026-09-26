@@ -43,7 +43,7 @@ export const FORMATION_JA: GuidePage = {
     { kind: 'heading', text: 'うまい隊形移動の見分け方' },
     {
       kind: 'table',
-      caption: '見るところ',
+      caption: '見分け方の3つのポイント',
       columns: ['見るところ', 'うまいとき', 'もったいないとき'],
       rows: [
         ['きっかけ', '何かが起きてから動く', '合図もなく急に動く'],
