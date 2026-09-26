@@ -18,7 +18,7 @@
   } from '@entities/calendarEvent'
   import { formatDay, toDateKey } from '@shared/lib/date'
   import { pageData } from '@shared/lib/device'
-  import { getLocale, localizeHref } from '@shared/lib/i18n'
+  import { getLocale, localizedText, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
   import { RelatedEvents } from '@widgets/calendarDetail'
@@ -57,8 +57,9 @@
 
   const isMobile = $derived($pageData.isMobile)
   const localized = $derived(localizeEvent(event, locale))
+  const results = $derived(event.results ?? [])
   const showSource = $derived(
-    event.sourceUrl !== event.officialUrl && event.sourceUrl !== event.resultUrl,
+    event.sourceUrl !== event.officialUrl && !results.some((r) => r.url === event.sourceUrl),
   )
   const categoryText = $derived(categoryLabel(event.category))
   // 「終了」は済んだことなので、青で目立たせない。訳した文字ではなく finished で見分ける
@@ -108,7 +109,7 @@
       {#if isTentative(event)}
         <span class="tentative">{m.calendar_tag_tentative()}</span>
       {/if}
-      {#if event.resultUrl}
+      {#if results.length > 0}
         <span class="result">{m.calendar_tag_result()}</span>
       {/if}
     </p>
@@ -165,7 +166,7 @@
     </section>
   {/if}
 
-  {#if event.officialUrl || event.resultUrl}
+  {#if event.officialUrl || results.length > 0}
     <p class="actions">
       {#if event.officialUrl}
         <Button
@@ -178,17 +179,22 @@
           {@render factLabel(m.calendar_official_site)}
         </Button>
       {/if}
-      {#if event.resultUrl}
+      <!-- 団体と個人で結果が分かれていることが多いので、あるぶんだけ並べる -->
+      {#each results as result (result.url)}
         <Button
-          href={event.resultUrl}
+          href={result.url}
           target="_blank"
           variant="sky-blue-outline"
           width="full"
           size="medium"
         >
-          {@render factLabel(m.calendar_results)}
+          {#if result.label}
+            {m.calendar_results_of({ label: localizedText(result.label, locale) })}
+          {:else}
+            {@render factLabel(m.calendar_results)}
+          {/if}
         </Button>
-      {/if}
+      {/each}
     </p>
   {/if}
 
@@ -428,7 +434,9 @@
   .actions {
     display: grid;
     gap: $space-size-12;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    /* min() を挟まないと、画面より広い列ができてボタンがはみ出す */
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     margin: $space-size-32 0 0;
   }
 

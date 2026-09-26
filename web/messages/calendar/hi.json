@@ -57,6 +57,7 @@
   "calendar_fact_note": "टिप्पणी",
   "calendar_official_site": "आधिकारिक साइट",
   "calendar_results": "परिणाम देखें",
+  "calendar_results_of": "परिणाम: {label}",
   "calendar_source": "स्रोत",
   "calendar_archive_title": "सभी प्रतियोगिताएँ और कार्यक्रम",
   "calendar_archive_year": "{year}",

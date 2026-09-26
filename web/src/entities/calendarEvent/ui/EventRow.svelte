@@ -60,7 +60,7 @@
       {#if isTentative(event)}
         <span class="tag">{m.calendar_tag_tentative()}</span>
       {/if}
-      {#if event.resultUrl}
+      {#if (event.results?.length ?? 0) > 0}
         <span class="tag result">{m.calendar_tag_result()}</span>
       {/if}
     </span>

@@ -57,6 +57,7 @@
   "calendar_fact_note": "Примечание",
   "calendar_official_site": "Официальный сайт",
   "calendar_results": "Результаты",
+  "calendar_results_of": "Результаты: {label}",
   "calendar_source": "Источник",
   "calendar_archive_title": "Все соревнования и события",
   "calendar_archive_year": "{year}",

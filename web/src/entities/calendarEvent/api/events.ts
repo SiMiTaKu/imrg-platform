@@ -74,7 +74,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-05-04",
     venue: { name: { ja: "彩の国くまがやドーム体育館（埼玉県）", en: "Sainokuni Kumagaya Dome Gymnasium" } },
     sourceUrl: "https://saitama-gym.jp/results/rhythmic_gymnastics/",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file216.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file216.pdf" }],
   },
   {
     id: "2023-05-04-1abf42",
@@ -94,7 +94,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-05-14",
     venue: { name: { ja: "白石市文化体育活動センター（ホワイトキューブ）（宮城県）", en: "Shiroishi City Cultural and Sports Activity Center (White Cube)" } },
     sourceUrl: "http://www.kokushikan-rg.com/topix/2023/05/index.html#entry-003124",
-    resultUrl: "http://www.kokushikan-rg.com/topix/2023/05/index.html#entry-003124",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/2023/05/index.html#entry-003124" }],
   },
   {
     id: "2023-05-14-316f68",
@@ -105,7 +105,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "このはなアリーナ（静岡県草薙総合運動場体育館）", en: "Konohana Arena (Shizuoka Kusanagi Sports Complex Gymnasium)" } },
     officialUrl: "https://shizuoka-koutairen.com/gymnastics/event/schedule/entry-11883.html",
     sourceUrl: "https://shizuoka-gym.com/kekka/report2023/RGMShizuokaSoutai.pdf",
-    resultUrl: "https://shizuoka-gym.com/kekka/report2023/RGMShizuokaSoutai.pdf",
+    results: [{ url: "https://shizuoka-gym.com/kekka/report2023/RGMShizuokaSoutai.pdf" }],
   },
   {
     id: "2023-05-19-833edc",
@@ -116,7 +116,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-05-20",
     venue: { name: { ja: "鹿児島県" } },
     sourceUrl: "http://gymlove.net/rgl/topics/report/2023/05/22/2-24/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2023/05/22/2-24/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2023/05/22/2-24/" }],
   },
   {
     id: "2023-05-26-15a00c",
@@ -128,7 +128,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "東京体育館（東京都）", en: "Tokyo Metropolitan Gymnasium" } },
     officialUrl: "https://www.jpn-gym.or.jp/rhythmic/event/34886/",
     sourceUrl: "http://gymlove.net/rgl/topics/report/2023/05/22/2-24/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2023/05/31/post-774/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2023/05/31/post-774/" }],
   },
   {
     id: "2023-05-30-e553c4",
@@ -160,7 +160,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-09",
     venue: { name: { ja: "真駒内セキスイハイムアイスアリーナ（北海道）", en: "Makomanai Sekisui Heim Ice Arena" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_hokkaido_rg_result.pdf",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-kou/23zen-kou-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-kou/23zen-kou-rg.html" }],
   },
   {
     id: "2023-06-10-48ba33",
@@ -171,7 +171,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-11",
     venue: { name: { ja: "島根県立体育館（竹本正男アリーナ）", en: "Shimane Prefectural Gymnasium (Takemoto Masao Arena)" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_chugoku_rg_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_chugoku_rg_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_chugoku_rg_result.pdf" }],
   },
   {
     id: "2023-06-10-647274",
@@ -182,7 +182,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-11",
     venue: { name: { ja: "丸善インテックアリーナ大阪（大阪府）", en: "Maruzen Intec Arena Osaka" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kinki_rg_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kinki_rg_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kinki_rg_result.pdf" }],
   },
   {
     id: "2023-06-10-dd3c89",
@@ -193,7 +193,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-11",
     venue: { name: { ja: "神奈川県立スポーツセンター", en: "Kanagawa Prefectural Sports Center" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kanto_rg_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kanto_rg_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kanto_rg_result.pdf" }],
   },
   {
     id: "2023-06-16-9cd906",
@@ -204,7 +204,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-18",
     venue: { name: { ja: "北九州市立総合体育館（福岡県）", en: "Kitakyushu City General Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_kyuusyuu_rg_result.pdf",
-    resultUrl: "http://gymlove.net/rgl/topics/gallery/2023/06/17/",
+    results: [{ url: "http://gymlove.net/rgl/topics/gallery/2023/06/17/" }],
   },
   {
     id: "2023-06-16-26b8bd",
@@ -215,7 +215,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-18",
     venue: { name: { ja: "彩の国くまがやドーム（埼玉県）", en: "Sainokuni Kumagaya Dome" } },
     sourceUrl: "https://saitama-gym.jp/results/rhythmic_gymnastics/",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file233.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file233.pdf" }],
   },
   {
     id: "2023-06-16-8a8fb0",
@@ -227,7 +227,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "リージョンプラザ上越（新潟県）", en: "Region Plaza Joetsu" } },
     officialUrl: "https://toyama-koutairen.jp/gymnastics/event/schedule/entry-8789.html",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_hokushinetsu_rg_result-1.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_hokushinetsu_rg_result-1.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_hokushinetsu_rg_result-1.pdf" }],
   },
   {
     id: "2023-06-17-544d23",
@@ -239,7 +239,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "このはなアリーナ（静岡県草薙総合運動場体育館）", en: "Konohana Arena (Shizuoka Kusanagi Sports Complex Gymnasium)" } },
     officialUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2718.html",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tokai_rg_result_new.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tokai_rg_result_new.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tokai_rg_result_new.pdf" }],
   },
   {
     id: "2023-06-23-b24ef6",
@@ -250,7 +250,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-24",
     venue: { name: { ja: "秋田県立体育館", en: "Akita Prefectural Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tohoku_rg_result_new.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tohoku_rg_result_new.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_tohoku_rg_result_new.pdf" }],
   },
   {
     id: "2023-06-24-463204",
@@ -261,7 +261,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-06-25",
     venue: { name: { ja: "高松市総合体育館（香川県）", en: "Takamatsu City General Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_shikoku_rg_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_shikoku_rg_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2023/06/r5_shikoku_rg_result.pdf" }],
   },
   {
     id: "2023-07-573187",
@@ -282,7 +282,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-07-14",
     venue: { name: { ja: "大分県" } },
     sourceUrl: "http://gymlove.net/rgl/topics/report/2023/07/17/post-783/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2023/07/17/post-783/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2023/07/17/post-783/" }],
   },
   {
     id: "2023-07-17-fd6680",
@@ -292,7 +292,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2023-07-17",
     venue: { name: { ja: "四日市市総合体育館（三重県）", en: "Yokkaichi City General Gymnasium" } },
     sourceUrl: "http://gymlove.net/rgl/topics/report/2023/07/18/post-784/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2023/07/18/post-784/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2023/07/18/post-784/" }],
   },
   {
     id: "2023-07-21-4a2d3a",
@@ -303,7 +303,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-07-23",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-rg/23zen-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-rg/23zen-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-rg/23zen-rg.html" }],
   },
   {
     id: "2023-07-23-ac7609",
@@ -343,7 +343,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "真駒内セキスイハイムアイスアリーナ（北海道立真駒内公園屋内競技場）", en: "Makomanai Sekisui Heim Ice Arena" } },
     officialUrl: "https://www.koukousoutai.com/2023soutai/event/index.php?xpref=1",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/03/0d7b80ba9b3c1970e10c3e7490691a4b.pdf",
-    resultUrl: "https://gymhs.org/wp/2023/08/12/%e5%8c%97%e6%b5%b7%e9%81%93%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%83%8f%e3%82%a4%e3%80%80%e6%96%b0%e4%bd%93%e6%93%8d%e3%80%80%e3%83%81%e3%83%bc%e3%83%a0%e3%83%bb%e5%80%8b%e4%ba%ba%e3%80%80%e5%85%a5/",
+    results: [{ url: "https://gymhs.org/wp/2023/08/12/%e5%8c%97%e6%b5%b7%e9%81%93%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%83%8f%e3%82%a4%e3%80%80%e6%96%b0%e4%bd%93%e6%93%8d%e3%80%80%e3%83%81%e3%83%bc%e3%83%a0%e3%83%bb%e5%80%8b%e4%ba%ba%e3%80%80%e5%85%a5/" }],
   },
   {
     id: "2023-08-17-44b1f2",
@@ -384,7 +384,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     officialUrl: "http://gymgakurenn.noor.jp/",
     sourceUrl: "http://www.kokushikan-rg.com/topix/2023/08/index.html#entry-003257",
-    resultUrl: "http://gymgakurenn.noor.jp/taikaikekka/",
+    results: [{ url: "http://gymgakurenn.noor.jp/taikaikekka/" }],
   },
   {
     id: "2023-09-02-6aeaa9",
@@ -395,7 +395,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-09-03",
     venue: { name: { ja: "国士舘大学（東京都）", en: "Kokushikan University" } },
     sourceUrl: "http://www.kokushikan-jr-rg.com/blog/2023/09/2023.html",
-    resultUrl: "http://www.kokushikan-jr-rg.com/blog/2023/09/2023.html",
+    results: [{ url: "http://www.kokushikan-jr-rg.com/blog/2023/09/2023.html" }],
   },
   {
     id: "2023-09-16-26f80c",
@@ -423,7 +423,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2023-09-25",
     venue: { name: { ja: "西原商会アリーナ（鹿児島アリーナ）（鹿児島県）", en: "Nishihara Shokai Arena (Kagoshima Arena)" } },
     sourceUrl: "https://prtimes.jp/main/html/rd/p/000000348.000018574.html",
-    resultUrl: "https://www.ibara.okayama-c.ed.jp/wp/?p=30236",
+    results: [{ url: "https://www.ibara.okayama-c.ed.jp/wp/?p=30236" }],
   },
   {
     id: "2023-09-30-2aa8c7",
@@ -435,7 +435,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "岐阜メモリアルセンター で愛ドーム（岐阜県）", en: "Gifu Memorial Center De-Ai Dome" } },
     officialUrl: "https://www.jpn-gym.or.jp/rhythmic/event/35257/",
     sourceUrl: "https://aca-ws.jp/live/game?game_id=9&game_type=2",
-    resultUrl: "https://aca-ws.jp/live/game?game_id=9&game_type=2",
+    results: [{ url: "https://aca-ws.jp/live/game?game_id=9&game_type=2" }],
   },
   {
     id: "2023-09-30-b03a98",
@@ -446,7 +446,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-10-01",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23senshuken-rg/23senshuken-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23senshuken-rg/23senshuken-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23senshuken-rg/23senshuken-rg.html" }],
   },
   {
     id: "2023-10-01-4be4ef",
@@ -485,7 +485,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-10-29",
     venue: { name: { ja: "武蔵野の森総合スポーツプラザ（東京都）", en: "Musashino Forest Sport Plaza" } },
     sourceUrl: "https://www.sports-tokyo-info.metro.tokyo.lg.jp/eventblog/2023/9/bm_23092201.html",
-    resultUrl: "http://www.kokushikan-rg.com/topix/2023/10/index.html#entry-003321",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/2023/10/index.html#entry-003321" }],
   },
   {
     id: "2023-11-03-a5b613",
@@ -526,7 +526,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-11-12",
     venue: { name: { ja: "埼玉県" } },
     sourceUrl: "https://saitama-gym.jp/results/rhythmic_gymnastics/",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file240.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2023/11/file240.pdf" }],
   },
   {
     id: "2023-11-10-4a94f7",
@@ -537,7 +537,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-11-11",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-jr-rg/23zen-jr-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-jr-rg/23zen-jr-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23zen-jr-rg/23zen-jr-rg.html" }],
   },
   {
     id: "2023-11-11-b0f84c",
@@ -548,7 +548,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "このはなアリーナ（静岡県草薙総合運動場体育館）", en: "Konohana Arena (Shizuoka Kusanagi Sports Complex Gymnasium)" } },
     officialUrl: "https://shizuoka-gym.com/kekka/kekka2023.html",
     sourceUrl: "https://shizuoka-gym.com/kekka/report2023/RGMFestival.pdf",
-    resultUrl: "https://shizuoka-gym.com/kekka/report2023/RGMFestival.pdf",
+    results: [{ url: "https://shizuoka-gym.com/kekka/report2023/RGMFestival.pdf" }],
   },
   {
     id: "2023-11-11-74ff4b",
@@ -588,7 +588,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2023-12-02",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23sinjinsen/23sinjinsen.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23sinjinsen/23sinjinsen.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/23/23sinjinsen/23sinjinsen.html" }],
   },
   {
     id: "2023-12-03-95642e",
@@ -647,7 +647,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "国士舘大学 多摩キャンパス（東京都）", en: "Kokushikan University Tama Campus" } },
     officialUrl: "http://www.kokushikan-rg.com/topix/cat30/",
     sourceUrl: "http://www.kokushikan-rg.com/topix/2023/11/index.html#entry-003336",
-    resultUrl: "http://www.kokushikan-rg.com/topix/2023/12/index.html#entry-003358",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/2023/12/index.html#entry-003358" }],
   },
   {
     id: "2023-12-27-e98933",
@@ -667,7 +667,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-01-21",
     venue: { name: { ja: "長野市真島総合スポーツアリーナ（ホワイトリング）（長野県）", en: "White Ring (Nagano City Mashima General Sports Arena)" } },
     sourceUrl: "http://gymlove.net/rgl/topics/gallery/2024/01/31/top32024-6/",
-    resultUrl: "http://gymlove.net/rgl/topics/gallery/2024/01/27/",
+    results: [{ url: "http://gymlove.net/rgl/topics/gallery/2024/01/27/" }],
   },
   {
     id: "2024-01-28-bae9cc",
@@ -716,7 +716,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-03-03",
     venue: { name: { ja: "佐賀県" } },
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/02/26/go-2/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2024/03/17/jkkagf2024/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2024/03/17/jkkagf2024/" }],
   },
   {
     id: "2024-03-19-122b06",
@@ -727,7 +727,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-03-20",
     venue: { name: { ja: "行田グリーンアリーナ（埼玉県）", en: "Gyoda Green Arena" } },
     sourceUrl: "https://kyushu-koutairen.jp/sonota_taikai/2023_r05/02_%E4%BB%A4%E5%92%8C%EF%BC%95%E5%B9%B4%E5%BA%A6%20%E5%85%A8%E5%9B%BD%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%E9%81%B8%E6%8A%9C%E7%AD%89%E5%A4%A7%E4%BC%9A%20%E4%B8%80%E8%A6%A7.pdf",
-    resultUrl: "https://gymhs.org/wp/2024/03/20/%e7%ac%ac%ef%bc%93%ef%bc%99%e5%9b%9e%e5%85%a8%e5%9b%bd%e9%ab%98%e7%ad%89%e5%ad%a6%e6%a0%a1%e6%96%b0%e4%bd%93%e6%93%8d%e9%81%b8%e6%8a%9c%e5%a4%a7%e4%bc%9a%ef%bd%9e%e5%9f%bc%e7%8e%89%ef%bd%9e%e3%80%80/",
+    results: [{ url: "https://gymhs.org/wp/2024/03/20/%e7%ac%ac%ef%bc%93%ef%bc%99%e5%9b%9e%e5%85%a8%e5%9b%bd%e9%ab%98%e7%ad%89%e5%ad%a6%e6%a0%a1%e6%96%b0%e4%bd%93%e6%93%8d%e9%81%b8%e6%8a%9c%e5%a4%a7%e4%bc%9a%ef%bd%9e%e5%9f%bc%e7%8e%89%ef%bd%9e%e3%80%80/" }],
   },
   {
     id: "2024-03-23-cda588",
@@ -784,7 +784,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2024-04-22",
     venue: { name: { ja: "埼玉県立ふじみ野高等学校", en: "Saitama Prefectural Fujimino High School" } },
     sourceUrl: "https://saitama-gym.jp/results/rhythmic_gymnastics/",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2024/05/R60422-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E9%96%A2%E6%9D%B1%E7%9C%8C%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C%E3%80%80%E5%80%8B%E4%BA%BA%E7%B7%8F%E5%90%88%E3%83%BB%E5%9B%A3%E4%BD%93%E7%B7%8F%E5%90%88.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2024/05/R60422-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E9%96%A2%E6%9D%B1%E7%9C%8C%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C%E3%80%80%E5%80%8B%E4%BA%BA%E7%B7%8F%E5%90%88%E3%83%BB%E5%9B%A3%E4%BD%93%E7%B7%8F%E5%90%88.pdf" }],
   },
   {
     id: "2024-04-29-3597e7",
@@ -794,7 +794,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2024-04-29",
     venue: { name: { ja: "三重県営サンアリーナ", en: "Mie Prefectural Sun Arena" } },
     sourceUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2725.html",
-    resultUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2725.html",
+    results: [{ url: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2725.html" }],
   },
   {
     id: "2024-04-29-569a12",
@@ -824,7 +824,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-05-10",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/05/index.html#entry-003455",
-    resultUrl: "https://www.aomori-u.ac.jp/20240529-2/",
+    results: [{ url: "https://www.aomori-u.ac.jp/20240529-2/" }],
   },
   {
     id: "2024-05-09-1006a4",
@@ -834,7 +834,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2024-05-09",
     venue: { name: { ja: "緑が丘スポーツ公園体育館（山梨県）", en: "Midorigaoka Sports Park Gymnasium" } },
     sourceUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4893.html",
-    resultUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4893.html",
+    results: [{ url: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4893.html" }],
   },
   {
     id: "2024-05-12-372426",
@@ -864,7 +864,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-05-18",
     venue: { name: { ja: "鹿児島県総合体育センター体育館", en: "Kagoshima Prefectural General Sports Center Gymnasium" } },
     sourceUrl: "https://www.kajitsu.ac.jp/clubreport/%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8D%E9%83%A8%E3%80%80%E4%BB%A4%E5%92%8C6%E5%B9%B4%E5%BA%A6%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%E7%B7%8F%E5%90%88%E4%BD%93/",
-    resultUrl: "https://www.kajitsu.ac.jp/clubreport/%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8D%E9%83%A8%E3%80%80%E4%BB%A4%E5%92%8C6%E5%B9%B4%E5%BA%A6%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%E7%B7%8F%E5%90%88%E4%BD%93/",
+    results: [{ url: "https://www.kajitsu.ac.jp/clubreport/%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8D%E9%83%A8%E3%80%80%E4%BB%A4%E5%92%8C6%E5%B9%B4%E5%BA%A6%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%E7%B7%8F%E5%90%88%E4%BD%93/" }],
   },
   {
     id: "2024-05-21-cf3845",
@@ -886,7 +886,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-05-26",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     sourceUrl: "https://www.kajitsu.ac.jp/clubreport/%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8D%E9%83%A8%E3%80%80sasaki-cup%E3%80%80-%E7%AC%AC22%E5%9B%9E%E5%85%A8%E6%97%A5%E6%9C%AC%E6%96%B0%E4%BD%93%E6%93%8D%E3%83%A6%E3%83%BC%E3%82%B9%E3%83%81/",
-    resultUrl: "https://www.jpn-gym.or.jp/rhythmic/report/37394/",
+    results: [{ url: "https://www.jpn-gym.or.jp/rhythmic/report/37394/" }],
   },
   {
     id: "2024-05-26-89f8d7",
@@ -905,7 +905,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2024-05-31",
     venue: { name: { ja: "三重県営サンアリーナ", en: "Mie Prefectural Sun Arena" } },
     sourceUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2722.html",
-    resultUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2722.html",
+    results: [{ url: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2722.html" }],
   },
   {
     id: "2024-05-31-343824",
@@ -916,7 +916,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-06-02",
     venue: { name: { ja: "エスフォルタアリーナ八王子（東京都）", en: "Esforta Arena Hachioji" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/ccb68a0b2bec28676dfca9b45b177c52.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/ccb68a0b2bec28676dfca9b45b177c52.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2024/06/ccb68a0b2bec28676dfca9b45b177c52.pdf" }],
   },
   {
     id: "2024-06-01-e96afc",
@@ -955,7 +955,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2024-06-02",
     venue: { name: { ja: "熊本県" } },
     sourceUrl: "http://gymlove.net/rgl/topics/report/2024/06/03/post-844/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2024/06/03/post-844/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2024/06/03/post-844/" }],
   },
   {
     id: "2024-06-08-c2f9a2",
@@ -967,7 +967,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "滋賀ダイハツアリーナ（滋賀県）", en: "Shiga Daihatsu Arena" } },
     officialUrl: "https://nara-koutairen.asfweb.jp/gymnastics/event/schedule/entry-13178.html",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/11/aab0a463b3c90ed3adb5743ff186b130.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/11/aab0a463b3c90ed3adb5743ff186b130.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2024/11/aab0a463b3c90ed3adb5743ff186b130.pdf" }],
   },
   {
     id: "2024-06-14-251dd3",
@@ -978,7 +978,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-06-15",
     venue: { name: { ja: "金沢市総合体育館（石川県）", en: "Kanazawa City General Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/354c1f72b46f4f821f5413772f9f85cf.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/354c1f72b46f4f821f5413772f9f85cf.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2024/06/354c1f72b46f4f821f5413772f9f85cf.pdf" }],
   },
   {
     id: "2024-06-14-c9e97b",
@@ -989,7 +989,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-06-16",
     venue: { name: { ja: "埼玉県" } },
     sourceUrl: "https://saitama-gym.jp/results/rhythmic_gymnastics/",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2024/06/R60614-16-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E7%B7%8F%E4%BD%93%E7%9C%8C%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C%E3%80%80%E5%80%8B%E4%BA%BA%E7%B7%8F%E5%90%88%E3%83%BB%E5%9B%A3%E4%BD%93%E7%B7%8F%E5%90%88.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2024/06/R60614-16-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E7%B7%8F%E4%BD%93%E7%9C%8C%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C%E3%80%80%E5%80%8B%E4%BA%BA%E7%B7%8F%E5%90%88%E3%83%BB%E5%9B%A3%E4%BD%93%E7%B7%8F%E5%90%88.pdf" }],
   },
   {
     id: "2024-06-14-b31ba8",
@@ -1001,7 +1001,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "SAGAアリーナ（佐賀県）", en: "SAGA Arena" } },
     officialUrl: "https://aca-ws.jp/live/game?game_id=17&game_type=2",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/09/8be73506f879ac60534c8e801c1b0915.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/09/8be73506f879ac60534c8e801c1b0915.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2024/09/8be73506f879ac60534c8e801c1b0915.pdf" }],
   },
   {
     id: "2024-06-15-f53376",
@@ -1012,7 +1012,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-06-16",
     venue: { name: { ja: "アミノバリューホール（鳴門・大塚スポーツパーク）（徳島県）", en: "Amino Value Hall (Naruto Otsuka Sports Park)" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/7253c0646f49209f79c2fc4b742717bb.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/7253c0646f49209f79c2fc4b742717bb.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2024/06/7253c0646f49209f79c2fc4b742717bb.pdf" }],
   },
   {
     id: "2024-06-15-728534",
@@ -1023,7 +1023,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-06-16",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/5e27c8669ea9bc9d2f873d879665650d.pdf",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-kou/24zen-kou.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-kou/24zen-kou.html" }],
   },
   {
     id: "2024-06-22-443b22",
@@ -1044,7 +1044,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "岐阜メモリアルセンター（岐阜県）", en: "Gifu Memorial Center" } },
     officialUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-2728.html",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/67d13a93b00eb7113244a5be35b2603c.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/06/67d13a93b00eb7113244a5be35b2603c.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2024/06/67d13a93b00eb7113244a5be35b2603c.pdf" }],
   },
   {
     id: "2024-06-22-bb3f73",
@@ -1055,7 +1055,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-06-23",
     venue: { name: { ja: "青森県武道館", en: "Aomori Prefectural Budokan" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2024/07/bfe4446e81d43ec89493c594d7dfdd52.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2024/07/bfe4446e81d43ec89493c594d7dfdd52.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2024/07/bfe4446e81d43ec89493c594d7dfdd52.pdf" }],
   },
   {
     id: "2024-06-23-bcddd3",
@@ -1074,7 +1074,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2024-06-23",
     venue: { name: { ja: "緑が丘スポーツ公園体育館（山梨県）", en: "Midorigaoka Sports Park Gymnasium" } },
     sourceUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4898.html",
-    resultUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4898.html",
+    results: [{ url: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4898.html" }],
   },
   {
     id: "2024-06-29-421192",
@@ -1114,7 +1114,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-07-14",
     venue: { name: { ja: "宮崎県" } },
     sourceUrl: "http://gymlove.net/rgl/topics/report/2024/07/12/gomiyazakigo-1/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2024/07/15/2024-1/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2024/07/15/2024-1/" }],
   },
   {
     id: "2024-07-19-a2b2fe",
@@ -1125,7 +1125,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-07-21",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-rg/24zen-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-rg/24zen-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-rg/24zen-rg.html" }],
   },
   {
     id: "2024-07-28-716542",
@@ -1145,7 +1145,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "国士舘大学（東京都）", en: "Kokushikan University" } },
     officialUrl: "https://totaikyou.jimdoweb.com/",
     sourceUrl: "http://www.kokushikan-jr-rg.com/blog/2024/07/2024.html",
-    resultUrl: "https://totaikyou.jimdoweb.com/",
+    results: [{ url: "https://totaikyou.jimdoweb.com/" }],
   },
   {
     id: "2024-08-05-f21e5d",
@@ -1157,7 +1157,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "北九州市立総合体育館（福岡県）", en: "Kitakyushu City General Gymnasium" } },
     officialUrl: "https://www.koukousoutai.com/2024soutai/event/index.php?xpref=1",
     sourceUrl: "https://aca-ws.jp/live/game?game_id=18&game_type=2",
-    resultUrl: "https://gymhs.org/wp/2024/08/04/%e7%a6%8f%e5%b2%a1%e7%b7%8f%e4%bd%93%e3%80%80%e6%96%b0%e4%bd%93%e6%93%8d%e3%80%80%e3%83%81%e3%83%bc%e3%83%a01%ef%bd%9e3%e4%bd%8d%e3%83%bb%e5%80%8b%e4%ba%ba%e9%81%b8%e6%89%8b%e6%a8%a91%ef%bd%9e6/",
+    results: [{ url: "https://gymhs.org/wp/2024/08/04/%e7%a6%8f%e5%b2%a1%e7%b7%8f%e4%bd%93%e3%80%80%e6%96%b0%e4%bd%93%e6%93%8d%e3%80%80%e3%83%81%e3%83%bc%e3%83%a01%ef%bd%9e3%e4%bd%8d%e3%83%bb%e5%80%8b%e4%ba%ba%e9%81%b8%e6%89%8b%e6%a8%a91%ef%bd%9e6/" }],
   },
   {
     id: "2024-08-10-084d24",
@@ -1188,7 +1188,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "西原商会アリーナ（鹿児島アリーナ）（鹿児島県）", en: "Nishihara Shokai Arena (Kagoshima Arena)" } },
     officialUrl: "https://www.aomori-u.ac.jp/20240529-2/",
     sourceUrl: "https://www.spo.fukuoka-u.ac.jp/match-results/5697",
-    resultUrl: "http://gymlove.net/rgl/topics/gallery/2024/09/22/2024top3-1/",
+    results: [{ url: "http://gymlove.net/rgl/topics/gallery/2024/09/22/2024top3-1/" }],
   },
   {
     id: "2024-09-07-630d2b",
@@ -1199,7 +1199,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-09-09",
     venue: { name: { ja: "岐阜メモリアルセンター で愛ドーム（岐阜県）", en: "Gifu Memorial Center De-Ai Dome" } },
     sourceUrl: "https://www.aomori-u.ac.jp/20240913-2/",
-    resultUrl: "https://aca-ws.jp/live/game?game_id=25&game_type=2",
+    results: [{ url: "https://aca-ws.jp/live/game?game_id=25&game_type=2" }],
   },
   {
     id: "2024-09-14-2348e1",
@@ -1230,7 +1230,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "SAGAサンライズパーク SAGAアリーナ（佐賀県）", en: "SAGA Arena (SAGA Sunrise Park)" } },
     officialUrl: "https://saga2024.com/",
     sourceUrl: "https://www.saga-s.co.jp/articles/-/1326279",
-    resultUrl: "https://aca-ws.jp/live/game?game_id=30&game_type=2",
+    results: [{ url: "https://aca-ws.jp/live/game?game_id=30&game_type=2" }],
   },
   {
     id: "2024-10-05-e4e1a3",
@@ -1241,7 +1241,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-10-06",
     venue: { name: { ja: "国士舘大学（東京都）", en: "Kokushikan University" } },
     sourceUrl: "http://www.kokushikan-jr-rg.com/blog/2024/10/post-150.html",
-    resultUrl: "http://www.kokushikan-jr-rg.com/blog/2024/10/post-150.html",
+    results: [{ url: "http://www.kokushikan-jr-rg.com/blog/2024/10/post-150.html" }],
   },
   {
     id: "2024-10-05-6c98ec",
@@ -1252,7 +1252,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-10-06",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24senshuken-rg/24senshuken-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24senshuken-rg/24senshuken-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24senshuken-rg/24senshuken-rg.html" }],
   },
   {
     id: "2024-10-13-301434",
@@ -1263,7 +1263,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-10-14",
     venue: { name: { ja: "しろやまスカイドーム（熊本県）", en: "Shiroyama Sky Dome" } },
     sourceUrl: "http://gymlove.net/rgl/topics/report/2024/10/15/20241/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2024/10/15/20241/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2024/10/15/20241/" }],
   },
   {
     id: "2024-10-13-3bc188",
@@ -1320,7 +1320,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-10-27",
     venue: { name: { ja: "埼玉県" } },
     sourceUrl: "https://saitama-gym.jp/results/rhythmic_gymnastics/",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2024/10/R61025-27-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E6%96%B0%E4%BA%BA%E5%A4%A7%E4%BC%9A%E7%B5%90%E6%9E%9C.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2024/10/R61025-27-%E7%94%B7%E5%AD%90%E6%96%B0%E4%BD%93%E6%93%8DC3%E6%96%B0%E4%BA%BA%E5%A4%A7%E4%BC%9A%E7%B5%90%E6%9E%9C.pdf" }],
   },
   {
     id: "2024-10-27-cb2c4c",
@@ -1349,7 +1349,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2024-11-02",
     venue: { name: { ja: "緑が丘スポーツ公園体育館（山梨県）", en: "Midorigaoka Sports Park Gymnasium" } },
     sourceUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4894.html",
-    resultUrl: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4894.html",
+    results: [{ url: "https://yamanashi-koutairen.jp/rhythmic-gymnastics/event/schedule/entry-4894.html" }],
   },
   {
     id: "2024-11-02-5a00c5",
@@ -1380,7 +1380,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-11-10",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24sinjinsen/24sinjinsen.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24sinjinsen/24sinjinsen.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24sinjinsen/24sinjinsen.html" }],
   },
   {
     id: "2024-11-08-cbdef6",
@@ -1391,7 +1391,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-11-10",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     sourceUrl: "https://www.spo.fukuoka-u.ac.jp/match-results/5804",
-    resultUrl: "http://www.kokushikan-rg.com/topix/2024/11/index.html#entry-003637",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/2024/11/index.html#entry-003637" }],
   },
   {
     id: "2024-11-09-46b4c9",
@@ -1411,7 +1411,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-11-17",
     venue: { name: { ja: "三重県営サンアリーナ", en: "Mie Prefectural Sun Arena" } },
     sourceUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-3147.html",
-    resultUrl: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-3147.html",
+    results: [{ url: "https://mie-koutairen.jp/gymnastics/event/schedule/entry-3147.html" }],
   },
   {
     id: "2024-11-16-694142",
@@ -1422,7 +1422,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2024-11-17",
     venue: { name: { ja: "北海道立野幌総合運動公園総合体育館", en: "Hokkaido Prefectural Nopporo Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-jr-rg/24zen-jr-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-jr-rg/24zen-jr-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/24/24zen-jr-rg/24zen-jr-rg.html" }],
   },
   {
     id: "2024-11-17-a62f08",
@@ -1532,7 +1532,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "東京都" } },
     officialUrl: "http://www.kokushikan-rg.com/topix/cat30/",
     sourceUrl: "http://www.kokushikan-rg.com/topix/2024/11/index.html#entry-003627",
-    resultUrl: "http://www.kokushikan-rg.com/topix/2024/12/index.html#entry-003677",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/2024/12/index.html#entry-003677" }],
   },
   {
     id: "2024-12-29-64f43f",
@@ -1553,7 +1553,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-02-09",
     venue: { name: { ja: "佐賀県" } },
     sourceUrl: "http://gymlove.net/rgl/topics/pr/2024/08/31/post-866/",
-    resultUrl: "http://gymlove.net/rgl/topics/report/2025/02/09/kagf12/",
+    results: [{ url: "http://gymlove.net/rgl/topics/report/2025/02/09/kagf12/" }],
   },
   {
     id: "2025-02-15-a79e90",
@@ -1564,7 +1564,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-02-16",
     venue: { name: { ja: "長野市真島総合スポーツアリーナ（ホワイトリング）（長野県）", en: "White Ring (Nagano City Mashima General Sports Arena)" } },
     sourceUrl: "http://gymlove.net/rgl/topics/gallery/2025/03/17/top32025-6/",
-    resultUrl: "http://gymlove.net/rgl/topics/gallery/2025/03/",
+    results: [{ url: "http://gymlove.net/rgl/topics/gallery/2025/03/" }],
   },
   {
     id: "2025-02-23-4e7708",
@@ -1604,7 +1604,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-03-23",
     venue: { name: { ja: "高松市総合体育館（香川県）", en: "Takamatsu City General Gymnasium" } },
     sourceUrl: "https://www.pweb.jp/data/datafkt/fktjy0972.pdf",
-    resultUrl: "https://gymhs.org/wp/2025/03/24/%e7%ac%ac40%e5%9b%9e%e5%85%a8%e5%9b%bd%e9%ab%98%e7%ad%89%e5%ad%a6%e6%a0%a1%e6%96%b0%e4%bd%93%e6%93%8d%e9%81%b8%e6%8a%9c%e5%a4%a7%e4%bc%9a%e3%80%80%e9%a6%99%e5%b7%9d%e3%80%80%e7%94%b7%e5%ad%90%e5%85%a5/",
+    results: [{ url: "https://gymhs.org/wp/2025/03/24/%e7%ac%ac40%e5%9b%9e%e5%85%a8%e5%9b%bd%e9%ab%98%e7%ad%89%e5%ad%a6%e6%a0%a1%e6%96%b0%e4%bd%93%e6%93%8d%e9%81%b8%e6%8a%9c%e5%a4%a7%e4%bc%9a%e3%80%80%e9%a6%99%e5%b7%9d%e3%80%80%e7%94%b7%e5%ad%90%e5%85%a5/" }],
   },
   {
     id: "2025-03-23-fd91a6",
@@ -1614,7 +1614,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2025-03-23",
     venue: { name: { ja: "新潟市鳥屋野総合体育館（新潟県）", en: "Toyano General Gymnasium, Niigata City" } },
     sourceUrl: "http://www.kokushikan-rg.com/topix/2025/02/index.html#entry-003699",
-    resultUrl: "http://www.kokushikan-rg.com/topix/2025/03/index.html#entry-003743",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/2025/03/index.html#entry-003743" }],
   },
   {
     id: "2025-04-08-f852a3",
@@ -1637,7 +1637,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "向日市民体育館（京都府）", en: "Muko City Gymnasium" } },
     officialUrl: "http://kansaigymgakuren.sakura.ne.jp/",
     sourceUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/923/RG-67th-kansai-seisekihyou.pdf",
-    resultUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/923/RG-67th-kansai-seisekihyou.pdf",
+    results: [{ url: "http://kansaigymgakuren.sakura.ne.jp/_src/923/RG-67th-kansai-seisekihyou.pdf" }],
   },
   {
     id: "2025-04-19-6fe4e7",
@@ -1649,7 +1649,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "OKB体操アリーナ（男子）（岐阜県）", en: "OKB Gymnastics Arena (men)" } },
     officialUrl: "https://www.toukaihokusinetu-gymren.com/",
     sourceUrl: "https://www.toukaihokusinetu-gymren.com/%E4%BA%8B%E6%A5%AD%E8%A8%88%E7%94%BB/",
-    resultUrl: "https://www.toukaihokusinetu-gymren.com/%E6%88%90%E7%B8%BE%E8%A1%A8/",
+    results: [{ url: "https://www.toukaihokusinetu-gymren.com/%E6%88%90%E7%B8%BE%E8%A1%A8/" }],
   },
   {
     id: "2025-04-23-7fa5e8",
@@ -1659,7 +1659,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2025-04-23",
     venue: { name: { ja: "伊奈学園総合高等学校（埼玉県）", en: "Ina Gakuen Sogo High School" } },
     sourceUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/06/R7-男子新体操C3関東県予選結果　個人総合・団体総合.pdf",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/06/R7-男子新体操C3関東県予選結果　個人総合・団体総合.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2025/06/R7-男子新体操C3関東県予選結果　個人総合・団体総合.pdf" }],
   },
   {
     id: "2025-05-01-7f3358",
@@ -1682,7 +1682,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "福岡大学 第二記念会堂（福岡県）", en: "Fukuoka University Second Memorial Hall" } },
     officialUrl: "https://kyusyugakuren.net/",
     sourceUrl: "https://kyusyugakuren.net/_src/97327040/obj20250331111251883207.pdf",
-    resultUrl: "https://kyusyugakuren.net/_src/89168098/obj20250503161944972097.pdf",
+    results: [{ url: "https://kyusyugakuren.net/_src/89168098/obj20250503161944972097.pdf" }],
   },
   {
     id: "2025-05-03-192a89",
@@ -1722,7 +1722,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-05-18",
     venue: { name: { ja: "向日市民体育館（京都府）", en: "Muko City Gymnasium" } },
     sourceUrl: "http://kyotogym.jp/index.php?id=1714",
-    resultUrl: "http://kyotogym.jp/content/files/2025/Result/koukousoutai/RG_m.pdf",
+    results: [{ url: "http://kyotogym.jp/content/files/2025/Result/koukousoutai/RG_m.pdf" }],
   },
   {
     id: "2025-05-23-cd726f",
@@ -1754,7 +1754,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-06-01",
     venue: { name: { ja: "向日市民体育館（京都府）", en: "Muko City Gymnasium" } },
     sourceUrl: "http://kyotogym.jp/index.php?id=1718",
-    resultUrl: "http://kyotogym.jp/content/files/2025/Result/IHyosen/rg_3.pdf",
+    results: [{ url: "http://kyotogym.jp/content/files/2025/Result/IHyosen/rg_3.pdf" }],
   },
   {
     id: "2025-05-30-3c44a9",
@@ -1764,7 +1764,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2025-05-30",
     venue: { name: { ja: "SAGAプラザ（佐賀県）", en: "SAGA Plaza" } },
     sourceUrl: "https://www.kachispo-saga.com/sbb2l-vt29",
-    resultUrl: "https://www.kachispo-saga.com/sbb2l-vt29",
+    results: [{ url: "https://www.kachispo-saga.com/sbb2l-vt29" }],
   },
   {
     id: "2025-06-07-03d6b1",
@@ -1776,7 +1776,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "グリーンアリーナ神戸（兵庫県）", en: "Green Arena Kobe" } },
     officialUrl: "https://nara-koutairen.asfweb.jp/gymnastics/event/schedule/entry-23099.html",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/6-2_RG_kinki_block_result.pdf",
-    resultUrl: "https://nara-koutairen.asfweb.jp/archives/452/202506/R7近畿高校男子団体総合結果.pdf",
+    results: [{ url: "https://nara-koutairen.asfweb.jp/archives/452/202506/R7近畿高校男子団体総合結果.pdf" }],
   },
   {
     id: "2025-06-07-f29ac9",
@@ -1787,7 +1787,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-06-08",
     venue: { name: { ja: "日立市池の川さくらアリーナ（茨城県）", en: "Hitachi Ikenokawa Sakura Arena" } },
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2025/03/79e5c55bb68f243fc51860235508d974.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/3-2_RG_kanto_block_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2025/06/3-2_RG_kanto_block_result.pdf" }],
   },
   {
     id: "2025-06-08-ea2ddb",
@@ -1798,7 +1798,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "愛知県立阿久比高等学校", en: "Aichi Prefectural Agui High School" } },
     officialUrl: "https://drive.google.com/file/d/1uONQvaadAxScyfsRM1M5uDAyI0xl47Up/view",
     sourceUrl: "https://aichi-gym.jimdofree.com/%E7%AB%B6%E6%8A%80/%E6%96%B0%E4%BD%93%E6%93%8D/",
-    resultUrl: "https://drive.google.com/file/d/1_u144xZBBAqPM_GHfyb2QnFevpF5o5SC/view",
+    results: [{ url: "https://drive.google.com/file/d/1_u144xZBBAqPM_GHfyb2QnFevpF5o5SC/view" }],
   },
   {
     id: "2025-06-11-6647f1",
@@ -1820,7 +1820,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "高知県立青少年センター", en: "Kochi Prefectural Youth Center" } },
     officialUrl: "https://www.topics.or.jp/feature/shikokusensyuken2025",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/0353bb3793df6c053a8c19f439af9b5d.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/0353bb3793df6c053a8c19f439af9b5d.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2025/06/0353bb3793df6c053a8c19f439af9b5d.pdf" }],
   },
   {
     id: "2025-06-13-a25971",
@@ -1831,7 +1831,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-06-15",
     venue: { name: { ja: "J:COMアリーナ下関（下関市総合体育館）（山口県）", en: "J:COM Arena Shimonoseki" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/7-2_RG_chugoku_block_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/7-2_RG_chugoku_block_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2025/06/7-2_RG_chugoku_block_result.pdf" }],
   },
   {
     id: "2025-06-13-a74266",
@@ -1842,7 +1842,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-06-15",
     venue: { name: { ja: "野幌総合運動公園体育館（北海道）", en: "Nopporo General Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-kou/25zen-kou.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-kou/25zen-kou.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-kou/25zen-kou.html" }],
   },
   {
     id: "2025-06-14-5f5223",
@@ -1863,7 +1863,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "パラシオ・ムルティウソス（グアダラハラ）（スペイン）", en: "Palacio Multiusos, Guadalajara" } },
     note: { ja: "スペインの男子新体操の大会です。女子と同じ手具を使う形式で、日本の男子新体操とは競技の形が異なります。", en: "A men's rhythmic gymnastics competition in Spain, using the same apparatus as women's and differing from the Japanese style." },
     sourceUrl: "https://www.guadalajara.es/guadalajara-acoge-el-campeonato-de-espana-individual-y-autonomias-y-el-campeonato-de-espana-masculino-de-gimnasia-ritmica.html",
-    resultUrl: "https://rfegonline.com/grmas/S%C3%A9nior/ARO/393",
+    results: [{ url: "https://rfegonline.com/grmas/S%C3%A9nior/ARO/393" }],
   },
   {
     id: "2025-06-18-839ba9",
@@ -1875,7 +1875,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "鹿児島県総合体育センター体育館", en: "Kagoshima Prefectural General Sports Center Gymnasium" } },
     officialUrl: "https://kag-taisou.sakura.ne.jp/kg/",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/8-2_RG_kyushu_block_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/8-2_RG_kyushu_block_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2025/06/8-2_RG_kyushu_block_result.pdf" }],
   },
   {
     id: "2025-06-20-2f4536",
@@ -1886,7 +1886,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-06-21",
     venue: { name: { ja: "ホワイトリング（長野市真島総合スポーツアリーナ）（長野県）", en: "White Ring (Nagano City Majima General Sports Arena)" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/4-2_RG_hokushinetsu_block_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/4-2_RG_hokushinetsu_block_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2025/06/4-2_RG_hokushinetsu_block_result.pdf" }],
   },
   {
     id: "2025-06-21-e5e6ba",
@@ -1897,7 +1897,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-06-22",
     venue: { name: { ja: "トヨタ紡織東北サンシャインアリーナ（北上総合体育館）（岩手県）", en: "Toyota Boshoku Tohoku Sunshine Arena (Kitakami General Gymnasium)" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/abd697a4ccf6cc0c51b1fa0ce4483338.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/abd697a4ccf6cc0c51b1fa0ce4483338.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2025/06/abd697a4ccf6cc0c51b1fa0ce4483338.pdf" }],
   },
   {
     id: "2025-06-21-c032ee",
@@ -1917,7 +1917,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "三重県サンアリーナ", en: "Mie Sun Arena" } },
     officialUrl: "https://mie-koutairen.jp/soutai_2025/department/",
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/5-2_RG_tokai_block_result.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2025/06/5-2_RG_tokai_block_result.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2025/06/5-2_RG_tokai_block_result.pdf" }],
   },
   {
     id: "2025-07-06-200660",
@@ -1968,7 +1968,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-07-13",
     venue: { name: { ja: "射水市（富山県）", en: "Imizu City, Toyama" } },
     sourceUrl: "https://www.pref.fukui.lg.jp/doc/013710/hokushinnestu.html",
-    resultUrl: "https://www.toyama-sports.or.jp/pdf/hokushinetu/46th/kekka/08_shin_syoudandantai_fin.pdf",
+    results: [{ url: "https://www.toyama-sports.or.jp/pdf/hokushinetu/46th/kekka/08_shin_syoudandantai_fin.pdf" }],
   },
   {
     id: "2025-07-13-fc1b60",
@@ -1979,7 +1979,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "愛知県立阿久比高等学校", en: "Aichi Prefectural Agui High School" } },
     officialUrl: "https://drive.google.com/file/d/12CkabiA9DG1EcKdt6gI5PG4yTV-P0NMF/view",
     sourceUrl: "https://aichi-gym.jimdofree.com/%E7%AB%B6%E6%8A%80/%E6%96%B0%E4%BD%93%E6%93%8D/",
-    resultUrl: "https://drive.google.com/file/d/1FhqnrZukyMv26bpf-01zTQhKaJnpEkDg/view",
+    results: [{ url: "https://drive.google.com/file/d/1FhqnrZukyMv26bpf-01zTQhKaJnpEkDg/view" }],
   },
   {
     id: "2025-07-19-4f3c77",
@@ -1990,7 +1990,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-07-21",
     venue: { name: { ja: "野幌総合運動公園体育館（北海道）", en: "Nopporo General Sports Park Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-rg/25zen-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-rg/25zen-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-rg/25zen-rg.html" }],
   },
   {
     id: "2025-07-19-c89b37",
@@ -2000,7 +2000,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2025-07-19",
     venue: { name: { ja: "埼玉県" } },
     sourceUrl: "https://saitama-gym.jp/results/rhythmic_gymnastics/",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/07/R7-県新体操選手権大会-男子結果.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2025/07/R7-県新体操選手権大会-男子結果.pdf" }],
   },
   {
     id: "2025-07-21-391ff3",
@@ -2020,7 +2020,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-08-05",
     venue: { name: { ja: "向日市民体育館（京都府）", en: "Muko City Gymnasium" } },
     sourceUrl: "http://kyotogym.jp/index.php?id=1720",
-    resultUrl: "http://kyotogym.jp/content/files/2025/Result/fumin/rg_m_dantai.pdf",
+    results: [{ url: "http://kyotogym.jp/content/files/2025/Result/fumin/rg_m_dantai.pdf" }],
   },
   {
     id: "2025-08-03-cc8451",
@@ -2042,7 +2042,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "J:COMアリーナ下関（下関市総合体育館）（山口県）", en: "J:COM Arena Shimonoseki (Shimonoseki City Gymnasium)" } },
     officialUrl: "https://www.koukousoutai.com/2025soutai/event/schedule.php",
     sourceUrl: "https://aca-ws.jp/live/game?game_id=32&game_type=2",
-    resultUrl: "https://aca-ws.jp/live/game?game_id=32&game_type=2",
+    results: [{ url: "https://aca-ws.jp/live/game?game_id=32&game_type=2" }],
   },
   {
     id: "2025-08-17-5d94e5",
@@ -2074,7 +2074,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     officialUrl: "http://gymgakurenn.noor.jp/",
     sourceUrl: "https://www.aomori-u.ac.jp/20250828-2/",
-    resultUrl: "http://gymgakurenn.noor.jp/wp-content/uploads/2025/08/2025　新体操　成績表.pdf",
+    results: [{ url: "http://gymgakurenn.noor.jp/wp-content/uploads/2025/08/2025　新体操　成績表.pdf" }],
   },
   {
     id: "2025-09-06-515d2e",
@@ -2086,7 +2086,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "滋賀ダイハツアリーナ（滋賀アリーナ）（滋賀県）", en: "Shiga Daihatsu Arena (Shiga Arena)" } },
     officialUrl: "https://results.shiga-sports2025.jp/",
     sourceUrl: "https://aca-ws.jp/live/game?game_id=37&game_type=2",
-    resultUrl: "https://aca-ws.jp/live/result/37/2/2/114/1",
+    results: [{ url: "https://aca-ws.jp/live/result/37/2/2/114/1" }],
   },
   {
     id: "2025-09-13-b65923",
@@ -2097,7 +2097,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-09-14",
     venue: { name: { ja: "札幌市南区体育館（北海道）", en: "Sapporo Minami Ward Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25senshuken-rg/25senshuken-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25senshuken-rg/25senshuken-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25senshuken-rg/25senshuken-rg.html" }],
   },
   {
     id: "2025-09-19-8a4f9e",
@@ -2108,7 +2108,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-09-21",
     venue: { name: { ja: "岐阜メモリアルセンターで愛ドーム（岐阜県）", en: "Gifu Memorial Center De Ai Dome" } },
     sourceUrl: "https://aca-ws.jp/live/game?game_id=40&game_type=2",
-    resultUrl: "https://aca-ws.jp/live/game?game_id=40&game_type=2",
+    results: [{ url: "https://aca-ws.jp/live/game?game_id=40&game_type=2" }],
   },
   {
     id: "2025-09-28-85110f",
@@ -2127,7 +2127,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-10-05",
     venue: { name: { ja: "清風高等学校 曼荼羅アリーナ（大阪府）", en: "Seifu High School Mandala Arena" } },
     sourceUrl: "http://kyotogym.jp/index.php?id=1740",
-    resultUrl: "http://kyotogym.jp/content/files/2025/Result/kinnkijr_RG_m/kiroku.pdf",
+    results: [{ url: "http://kyotogym.jp/content/files/2025/Result/kinnkijr_RG_m/kiroku.pdf" }],
   },
   {
     id: "2025-10-04-ff2950",
@@ -2138,7 +2138,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-10-05",
     venue: { name: { ja: "上越市立上越体操場（新潟県）", en: "Joetsu City Joetsu Gymnastics Hall" } },
     sourceUrl: "http://www.niigata-gym.jp/main/2025/10/2025-227d.html",
-    resultUrl: "http://www.niigata-gym.jp/main/files/2025_hokushinetsuJr_rg_m.pdf",
+    results: [{ url: "http://www.niigata-gym.jp/main/files/2025_hokushinetsuJr_rg_m.pdf" }],
   },
   {
     id: "2025-10-04-e1c43b",
@@ -2187,7 +2187,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-10-19",
     venue: { name: { ja: "北海きたえーる（北海道立総合体育センター）", en: "Hokkai Kitaeru (Hokkaido Prefectural Sports Center)" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-jr-rg/25zen-jr-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-jr-rg/25zen-jr-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25zen-jr-rg/25zen-jr-rg.html" }],
   },
   {
     id: "2025-10-26-9052d4",
@@ -2208,7 +2208,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-11-02",
     venue: { name: { ja: "向日市民体育館（京都府）", en: "Muko City Gymnasium" } },
     sourceUrl: "http://kyotogym.jp/index.php?id=1737",
-    resultUrl: "http://kyotogym.jp/content/files/2025/Result/koukousinzin/dantai.pdf",
+    results: [{ url: "http://kyotogym.jp/content/files/2025/Result/koukousinzin/dantai.pdf" }],
   },
   {
     id: "2025-10-31-c19b15",
@@ -2219,7 +2219,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-11-02",
     venue: { name: { ja: "くまがやドーム（埼玉県）", en: "Kumagaya Dome" } },
     sourceUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/11/R7-男子新体操C3新人大会.pdf",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2025/11/R7-男子新体操C3新人大会.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2025/11/R7-男子新体操C3新人大会.pdf" }],
   },
   {
     id: "2025-11-01-331702",
@@ -2230,7 +2230,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2025-11-02",
     venue: { name: { ja: "北海きたえーる（北海道立総合体育センター）", en: "Hokkai Kitaeru (Hokkaido Prefectural Sports Center)" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25sinjinsen/25sinjinsen.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25sinjinsen/25sinjinsen.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/25/25sinjinsen/25sinjinsen.html" }],
   },
   {
     id: "2025-11-03-1b07c7",
@@ -2252,7 +2252,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     officialUrl: "https://jpn-gym.jp/wp-content/uploads/2025/09/412bf501a4ccaf5b535b8b40099cca3d-1.pdf",
     sourceUrl: "https://r4.quicca.com/~kawai/mrgcal/kako.html",
-    resultUrl: "https://jpn-gym.jp/wp-content/uploads/2025/11/1a4d1ba69541aee1a7ac0a90cf3397fe.pdf",
+    results: [{ url: "https://jpn-gym.jp/wp-content/uploads/2025/11/1a4d1ba69541aee1a7ac0a90cf3397fe.pdf" }],
   },
   {
     id: "2025-11-16-7b4bdf",
@@ -2284,7 +2284,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "花園大学（京都府）", en: "Hanazono University" } },
     officialUrl: "http://kansaigymgakuren.sakura.ne.jp/",
     sourceUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/966/RG%2057th%20shinnjinnkouryuu%20result.pdf",
-    resultUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/966/RG%2057th%20shinnjinnkouryuu%20result.pdf",
+    results: [{ url: "http://kansaigymgakuren.sakura.ne.jp/_src/966/RG%2057th%20shinnjinnkouryuu%20result.pdf" }],
   },
   {
     id: "2025-11-28-f69965",
@@ -2296,7 +2296,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "アリーナ立川立飛（東京都）", en: "Arena Tachikawa Tachihi" } },
     officialUrl: "https://jpn-gym.jp/wp-content/uploads/2025/07/d6b0f1b0902846f2da504a0e552ba611.pdf",
     sourceUrl: "https://jpn-gym.jp/news/rhythmic-gymnastics/1694",
-    resultUrl: "https://jpn-gym.jp/wp-content/uploads/2025/11/2025rgjr_result.pdf",
+    results: [{ url: "https://jpn-gym.jp/wp-content/uploads/2025/11/2025rgjr_result.pdf" }],
   },
   {
     id: "2025-11-28-b9fe6e",
@@ -2347,7 +2347,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "東京都" } },
     officialUrl: "http://www.kokushikan-rg.com/topix/cat30/",
     sourceUrl: "http://www.kokushikan-rg.com/topix/2025/12/kokushikan-cup2025-2.html",
-    resultUrl: "http://www.kokushikan-rg.com/topix/b10b2d0d639ade5b7b30e02987b7c329b5da2268.pdf",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/b10b2d0d639ade5b7b30e02987b7c329b5da2268.pdf" }],
   },
   {
     id: "2026-02-b5a613",
@@ -2409,7 +2409,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "セーレン・ドリームアリーナ（福井県営体育館）", en: "Seiren Dream Arena (Fukui Prefectural Gymnasium)" } },
     officialUrl: "https://jpn-gym.or.jp/event/event-6977/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-6977/",
-    resultUrl: "https://jpn-gym.or.jp/wp-content/uploads/2026/03/R_20260321_0322_HS_Senbatsu.pdf",
+    results: [{ url: "https://jpn-gym.or.jp/wp-content/uploads/2026/03/R_20260321_0322_HS_Senbatsu.pdf" }],
   },
   {
     id: "2026-03-20-5b41e4",
@@ -2480,7 +2480,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "福岡大学 第二記念会堂（福岡県）", en: "Fukuoka University Second Memorial Hall" } },
     officialUrl: "https://kyusyugakuren.net/",
     sourceUrl: "https://kyusyugakuren.net/_src/97327031/obj20260305130219486830.pdf",
-    resultUrl: "https://www.spo.fukuoka-u.ac.jp/match-results/6713",
+    results: [{ url: "https://www.spo.fukuoka-u.ac.jp/match-results/6713" }],
   },
   {
     id: "2026-04-25-2e6ae6",
@@ -2492,7 +2492,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "こうふくホーム和歌山アリーナ（和歌山県）", en: "Kofuku Home Wakayama Arena" } },
     officialUrl: "http://kansaigymgakuren.sakura.ne.jp/",
     sourceUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/997/RG%2068th%20kannsai%20seisekihyou.pdf",
-    resultUrl: "http://kansaigymgakuren.sakura.ne.jp/_src/997/RG%2068th%20kannsai%20seisekihyou.pdf",
+    results: [{ url: "http://kansaigymgakuren.sakura.ne.jp/_src/997/RG%2068th%20kannsai%20seisekihyou.pdf" }],
   },
   {
     id: "2026-05-01-94f01a",
@@ -2512,7 +2512,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-05-03",
     venue: { name: { ja: "くまがやドーム（埼玉県）", en: "Kumagaya Dome" } },
     sourceUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/05/R8-C3新体操男子埼玉県国スポ予選結果.pdf",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/05/R8-C3埼玉県新体操関東予選-男子.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2026/05/R8-C3埼玉県新体操関東予選-男子.pdf" }],
   },
   {
     id: "2026-05-04-2bf92e",
@@ -2553,7 +2553,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-05-10",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     sourceUrl: "http://www.kokushikan-rg.com/topix/2026/05/59.html",
-    resultUrl: "http://www.kokushikan-rg.com/topix/2026/05/59-2.html",
+    results: [{ url: "http://www.kokushikan-rg.com/topix/2026/05/59-2.html" }],
   },
   {
     id: "2026-05-17-e7e023",
@@ -2603,7 +2603,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "愛知県立阿久比高等学校", en: "Aichi Prefectural Agui High School" } },
     officialUrl: "https://drive.google.com/file/d/1F19n59E1LMpbjdlfOAGxmMzXZmkGpZ_y/view",
     sourceUrl: "https://aichi-gym.jimdofree.com/%E7%AB%B6%E6%8A%80/%E6%96%B0%E4%BD%93%E6%93%8D/",
-    resultUrl: "https://drive.google.com/file/d/1BtrWOE60jweVMxqe7WzmmQW0ni_aDWUU/view",
+    results: [{ url: "https://drive.google.com/file/d/1BtrWOE60jweVMxqe7WzmmQW0ni_aDWUU/view" }],
   },
   {
     id: "2026-06-02-0ba6f0",
@@ -2635,7 +2635,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-13",
     venue: { name: { ja: "NOPPOROヤシマ商会スポーツパーク総合体育館（北海道）", en: "NOPPORO Yashima Shokai Sports Park General Gymnasium" } },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-kou/26zen-kou.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-kou/26zen-kou.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-kou/26zen-kou.html" }],
   },
   {
     id: "2026-06-13-cfaf14",
@@ -2646,7 +2646,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-14",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/e2f1ff3de0ac4864291418c68586d2f2.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/e2f1ff3de0ac4864291418c68586d2f2.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/07/e2f1ff3de0ac4864291418c68586d2f2.pdf" }],
   },
   {
     id: "2026-06-13-f9115f",
@@ -2657,7 +2657,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-14",
     venue: { name: { ja: "向日市民体育館（京都府）", en: "Muko City Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/052ecfaee3eb032141ae905d45375bed.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/052ecfaee3eb032141ae905d45375bed.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/06/052ecfaee3eb032141ae905d45375bed.pdf" }],
   },
   {
     id: "2026-06-17-fb1667",
@@ -2669,6 +2669,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "スペイン" } },
     note: { ja: "スペインの男子新体操の大会です。女子と同じ手具を使う形式で、日本の男子新体操とは競技の形が異なります。", en: "A men's rhythmic gymnastics competition in Spain, using the same apparatus as women's and differing from the Japanese style." },
     sourceUrl: "https://www.fexgimnasia.es/wp-content/uploads/2025/12/Calendario-Nacional-provisional-2026.pdf",
+    results: [{ url: "https://rfegimnasia.es/wp-content/uploads/2026/06/Resultados-Campeonato-de-Espana-individual-masculino-Divina-Seguros-GR-2026.pdf" }],
   },
   {
     id: "2026-06-19-4b6611",
@@ -2679,7 +2680,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-21",
     venue: { name: { ja: "長崎県立総合体育館", en: "Nagasaki Prefectural General Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/189139cb1f92a38beab9be1387e3d050.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/189139cb1f92a38beab9be1387e3d050.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/07/189139cb1f92a38beab9be1387e3d050.pdf" }],
   },
   {
     id: "2026-06-19-c15d8c",
@@ -2690,7 +2691,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-20",
     venue: { name: { ja: "鯖江市総合体育館（福井県）", en: "Sabae City General Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/ca387a682a0e340b7d6085f912933eeb.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/ca387a682a0e340b7d6085f912933eeb.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/06/ca387a682a0e340b7d6085f912933eeb.pdf" }],
   },
   {
     id: "2026-06-19-fae523",
@@ -2701,7 +2702,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-21",
     venue: { name: { ja: "愛媛県総合運動公園体育館", en: "Ehime Prefectural Sports Park Gymnasium" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/e9f5d15afbf67226efdb6d6e89e5df43-1.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/e9f5d15afbf67226efdb6d6e89e5df43-1.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/06/e9f5d15afbf67226efdb6d6e89e5df43-1.pdf" }],
   },
   {
     id: "2026-06-19-2ad87e",
@@ -2712,7 +2713,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-21",
     venue: { name: { ja: "シゲトーアリーナ岡山（岡山県）", en: "Shigeto Arena Okayama" } },
     sourceUrl: "https://www.shimane-koutai.jp/wp/wp-content/uploads/2026/04/岡山・体操・中国選手権要項.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/07/351368fe86044ff64885429f577139ba-1.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/07/351368fe86044ff64885429f577139ba-1.pdf" }],
   },
   {
     id: "2026-06-20-f43fcb",
@@ -2721,9 +2722,9 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-06-20",
     venue: { name: { ja: "草薙総合運動場 このはなアリーナ（静岡県）", en: "Kusanagi Sports Complex Konohana Arena" } },
-    note: { ja: "年間の予定表をもとに載せています。", en: "Listed based on the annual schedule." },
     officialUrl: "https://shizuoka-gym.com/",
     sourceUrl: "https://shizuoka-gym.com/yotei/yotei.html",
+    results: [{ url: "https://shizuoka-gym.com/kekka/kekka.html" }],
   },
   {
     id: "2026-06-20-3c205c",
@@ -2733,7 +2734,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-06-20",
     venue: { name: { ja: "白石市文化体育活動センター（宮城県）", en: "Shiroishi City Culture & Sports Center (White Cube)" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/718f7d3bc953af25c8e8279803dc99d3.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/718f7d3bc953af25c8e8279803dc99d3.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/06/718f7d3bc953af25c8e8279803dc99d3.pdf" }],
   },
   {
     id: "2026-06-21-2bb82e",
@@ -2742,8 +2743,8 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-06-21",
     venue: { name: { ja: "市立船橋高等学校（千葉県）", en: "Funabashi Municipal High School" } },
-    note: { ja: "年間の予定表をもとに載せています。", en: "Listed based on the annual schedule." },
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2026/03/b845e8869636afdd74d62321e2ece9ef.pdf",
+    results: [{ url: "https://chiba-koutairen.com/archives/059/202507/R7_%E6%96%B0%E4%BD%93%E6%93%8D%EF%BC%88%E7%94%B7%E5%AD%90%EF%BC%89%E7%B7%8F%E4%BD%93%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C.pdf" }],
   },
   {
     id: "2026-06-22-6df5a7",
@@ -2754,7 +2755,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-06-26",
     venue: { name: { ja: "くまがやドーム（埼玉県）", en: "Kumagaya Dome" } },
     sourceUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/06/R8-男子新体操C３インハイ予選結果（個人団体）.pdf",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/06/R8-男子新体操C３インハイ予選結果（個人団体）.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2026/06/R8-男子新体操C３インハイ予選結果（個人団体）.pdf" }],
   },
   {
     id: "2026-06-28-8063d4",
@@ -2764,7 +2765,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-06-28",
     venue: { name: { ja: "スカイホール豊田（愛知県）", en: "Sky Hall Toyota" } },
     sourceUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/d1dd8ebf73686bd3c940b877502f3ab8.pdf",
-    resultUrl: "https://gymhs.org/wp/wp-content/uploads/2026/06/d1dd8ebf73686bd3c940b877502f3ab8.pdf",
+    results: [{ url: "https://gymhs.org/wp/wp-content/uploads/2026/06/d1dd8ebf73686bd3c940b877502f3ab8.pdf" }],
   },
   {
     id: "2026-07-90443e",
@@ -2795,6 +2796,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-07-11",
     venue: { name: { ja: "宝来屋ボンズアリーナ（福島県）", en: "Horaiya Bonds Arena" } },
     sourceUrl: "https://www.sakataminami-h.ed.jp/club1/rhythmicgymnastics/%E5%9B%BD%E6%B0%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E5%A4%A7%E4%BC%9A%E6%9D%B1%E5%8C%97%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%A4%A7%E4%BC%9A%EF%BC%88%E6%96%B0%E4%BD%93%E6%93%8D%EF%BC%89/",
+    results: [{ url: "https://www.touhokusoutai.net/data/20261000K053-taisou-sinm.pdf" }],
   },
   {
     id: "2026-07-11-7f8717",
@@ -2805,6 +2807,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-07-12",
     venue: { name: { ja: "高知県立青少年センター（大アリーナ）", en: "Kochi Prefectural Youth Center (Main Arena)" } },
     sourceUrl: "https://kochi-sports.or.jp/wp/wp-content/uploads/2026/04/07%E4%BD%93%E6%93%8D-%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%A4%A7%E4%BC%9A%E8%A6%81%E9%A0%85.pdf",
+    results: [{ url: "https://tks-p-gym.org/wp-content/uploads/2026/07/r08_7_skk_rhy_kokuspo_c3.pdf" }],
   },
   {
     id: "2026-07-11-ee0a6b",
@@ -2814,7 +2817,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-07-11",
     venue: { name: { ja: "滋賀ダイハツアリーナ（滋賀県）", en: "Shiga Daihatsu Arena" } },
     sourceUrl: "https://www.bsn.or.jp/kinki-block/",
-    resultUrl: "https://www.bsn.or.jp/kinki-block/wp-content/uploads/2026/08/新体操（少男）.pdf",
+    results: [{ url: "https://www.bsn.or.jp/kinki-block/wp-content/uploads/2026/08/新体操（少男）.pdf" }],
   },
   {
     id: "2026-07-17-b34e4c",
@@ -2825,7 +2828,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-07-18",
     venue: { name: { ja: "千葉ポートアリーナ（千葉県）", en: "Chiba Port Arena" } },
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2026/03/b845e8869636afdd74d62321e2ece9ef.pdf",
-    resultUrl: "https://kanntou.jimdofree.com/%E7%AB%B6%E6%8A%80%E7%B5%90%E6%9E%9C/",
+    results: [{ url: "https://kanntou.jimdofree.com/%E7%AB%B6%E6%8A%80%E7%B5%90%E6%9E%9C/" }],
   },
   {
     id: "2026-07-18-67305e",
@@ -2837,7 +2840,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "NOPPOROヤシマ商会スポーツパーク体育館（北海道）", en: "NOPPORO Yashima Shokai Sports Park Gymnasium" } },
     officialUrl: "http://www.do-taisou.sakura.ne.jp/youkou/26/26zendou_rg-youkou.pdf",
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-rg/26zen-rg.html",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-rg/26zen-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26zen-rg/26zen-rg.html" }],
   },
   {
     id: "2026-07-18-f101ff",
@@ -2848,7 +2851,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-07-19",
     venue: { name: { ja: "ホワイトリング（長野市真島総合スポーツアリーナ）（長野県）", en: "White Ring (Nagano City Majima General Sports Arena)" } },
     sourceUrl: "https://www.pref.fukui.lg.jp/doc/013710/kokutai.html",
-    resultUrl: "https://www.pref.nagano.lg.jp/kokusupo/47hokushinnetsu/documents/sintaiso_finalresult.pdf",
+    results: [{ url: "https://www.pref.nagano.lg.jp/kokusupo/47hokushinnetsu/documents/sintaiso_finalresult.pdf" }],
   },
   {
     id: "2026-07-18-92afe7",
@@ -2858,8 +2861,8 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-07-18",
     endDate: "2026-07-19",
     venue: { name: { ja: "シゲトーアリーナ岡山（岡山県）", en: "Shigeto Arena Okayama" } },
-    note: { ja: "年間の予定表をもとに載せています。", en: "Listed based on the annual schedule." },
     sourceUrl: "https://h-gym.jp/pdf/2026/2026_zigyoukeikaku.pdf",
+    results: [{ label: { ja: "男子 個人", en: "Men's Individual" }, url: "https://www.okayama-taikyo.or.jp/wordpress/wp-content/uploads/2026/07/%E6%96%B0%E4%BD%93%E6%93%8D%E3%80%80%E7%94%B7%E5%AD%90%E3%80%80%E5%80%8B%E4%BA%BA.pdf" }, { label: { ja: "男子 総合", en: "Men's All-Around" }, url: "https://www.okayama-taikyo.or.jp/wordpress/wp-content/uploads/2026/07/%E6%96%B0%E4%BD%93%E6%93%8D%E3%80%80%E7%94%B7%E5%AD%90%E3%80%80%E7%B7%8F%E5%90%88.pdf" }],
   },
   {
     id: "2026-07-19-ab8a48",
@@ -2870,7 +2873,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "愛知県立阿久比高等学校 体育館", en: "Aichi Prefectural Agui High School Gymnasium" } },
     officialUrl: "https://drive.google.com/file/d/1098pCJUx9eqhR9rAAmxGoJSk7qGTq7OO/view",
     sourceUrl: "https://aichi-gym.jimdofree.com/%E7%AB%B6%E6%8A%80/%E6%96%B0%E4%BD%93%E6%93%8D/",
-    resultUrl: "https://drive.google.com/file/d/1FUIfo4FQHvogcMzziL2fMkO5iG9KrVwb/view",
+    results: [{ url: "https://drive.google.com/file/d/1FUIfo4FQHvogcMzziL2fMkO5iG9KrVwb/view" }],
   },
   {
     id: "2026-07-20-e0ce39",
@@ -2880,7 +2883,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-07-20",
     venue: { name: { ja: "埼玉県" } },
     sourceUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/07/R8-男子新体操C3高校選手権（学年別）結果.pdf",
-    resultUrl: "https://saitama-gym.jp/admin/wp-content/uploads/2026/07/R8-男子新体操C3高校選手権（学年別）結果.pdf",
+    results: [{ url: "https://saitama-gym.jp/admin/wp-content/uploads/2026/07/R8-男子新体操C3高校選手権（学年別）結果.pdf" }],
   },
   {
     id: "2026-07-25-1d5dda",
@@ -2902,7 +2905,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "グリーンアリーナ神戸（神戸総合運動公園体育館）（兵庫県）", en: "Green Arena Kobe (Kobe Sports Park Gymnasium)" } },
     officialUrl: "https://jpn-gym.or.jp/event/event-8786/",
     sourceUrl: "https://aca-ws.jp/live/game?game_id=43&game_type=2",
-    resultUrl: "https://aca-ws.jp/live/game?game_id=43&game_type=2",
+    results: [{ url: "https://aca-ws.jp/live/game?game_id=43&game_type=2" }],
   },
   {
     id: "2026-08-11-390f0f",
@@ -2936,7 +2939,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
     officialUrl: "https://jpn-gym.or.jp/event/event-7599/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-7599/",
-    resultUrl: "http://gymgakurenn.noor.jp/wp-content/uploads/2026/08/第７８回全日本学生新体操選手権大会　成績表.pdf",
+    results: [{ url: "http://gymgakurenn.noor.jp/wp-content/uploads/2026/08/第７８回全日本学生新体操選手権大会　成績表.pdf" }],
   },
   {
     id: "2026-09-12-7a136e",
@@ -2948,7 +2951,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "青森県武道館", en: "Aomori Prefectural Budokan" } },
     officialUrl: "https://jpn-gym.or.jp/event/event-7589/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-7589/",
-    resultUrl: "https://aca-ws.jp/live/game?game_id=47&game_type=2",
+    results: [{ url: "https://aca-ws.jp/live/game?game_id=47&game_type=2" }],
   },
   {
     id: "2026-09-19-8373f3",
@@ -2972,6 +2975,7 @@ export const EVENTS: CalendarEvent[] = [
     note: { ja: "男子は団体（徒手）と個人（ロープ・クラブ）を行います。第44回全日本ジュニア新体操選手権大会の九州地区予選を兼ねます。", en: "The men's events are group Toshu (floor routine, no apparatus) and individual (rope and clubs). Also the Kyushu qualifier for the 44th All Japan Junior Championships." },
     officialUrl: "https://kasasagi-cup.jimdofree.com/",
     sourceUrl: "https://kasasagi-cup.jimdofree.com/app/download/12746402998/%E8%A6%81%E9%A0%85.pdf",
+    results: [{ url: "https://kasasagi-cup.jimdofree.com/%E9%80%9F%E5%A0%B1/" }],
   },
   {
     id: "2026-09-19-80ac25",
@@ -2983,6 +2987,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "国士舘大学 多目的フロアー（東京都）", en: "Kokushikan University Multipurpose Floor" } },
     note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
+    results: [{ url: "https://kanntou.jimdofree.com/%E7%AB%B6%E6%8A%80%E7%B5%90%E6%9E%9C/" }],
   },
   {
     id: "2026-09-20-b5d560",
@@ -2994,6 +2999,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "白石市文化体育活動センター（ホワイトキューブ）（宮城県）", en: "Shiroishi Culture and Sports Center (White Cube)" } },
     note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
+    results: [{ label: { ja: "団体", en: "Group" }, url: "https://www7a.biglobe.ne.jp/~iwategym/RG/2026/44th%20All-Japan%20Junior%20Rhythmic%20Gymnastics%20Championships%20Preliminaries/Organization.png" }, { label: { ja: "個人総合", en: "Individual All-Around" }, url: "https://www7a.biglobe.ne.jp/~iwategym/RG/2026/44th%20All-Japan%20Junior%20Rhythmic%20Gymnastics%20Championships%20Preliminaries/individual.png" }],
   },
   {
     id: "2026-09-22-4c72b4",
@@ -3017,7 +3023,7 @@ export const EVENTS: CalendarEvent[] = [
     note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     officialUrl: "http://www.do-taisou.sakura.ne.jp/jigyoukeikaku.pdf",
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
-    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26senshuken-rg/26senshuken-rg.html",
+    results: [{ url: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26senshuken-rg/26senshuken-rg.html" }],
   },
   {
     id: "2026-10-04-f3a957",

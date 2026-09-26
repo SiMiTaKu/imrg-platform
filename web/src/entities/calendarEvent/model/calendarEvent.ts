@@ -12,6 +12,21 @@ export type EventCategorySlug = EventCategory['slug']
 export type EventSchedule = (typeof EVENT_SCHEDULE)[keyof typeof EVENT_SCHEDULE]
 
 /**
+ * 結果のページ。
+ *
+ * @remarks
+ * 主催者は**団体・個人・予選・決勝を別のファイルで出すことが多い**ので、1つに絞らず並べる。
+ * PDF のことも、画像のことも、一覧ページのこともある。
+ * `label` は「男子 個人」のような中身の名前。1つしか無いときは付けない
+ */
+export interface EventResult {
+  /** 何の結果か。無ければただ「結果」と出す */
+  label?: LocalizedText
+  /** 結果のページ */
+  url: string
+}
+
+/**
  * 会場。
  *
  * @remarks
@@ -47,8 +62,8 @@ interface BaseCalendarEvent {
   officialUrl?: string
   /** 日程を確認できたページ。出典のないイベントは載せない */
   sourceUrl: string
-  /** 結果のページ */
-  resultUrl?: string
+  /** 結果のページ。1つの大会でも、団体と個人で分かれていることが多いので配列で持つ */
+  results?: readonly EventResult[]
 }
 
 /** 日付まで決まっているイベント */
