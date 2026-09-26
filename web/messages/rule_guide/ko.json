@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rule_guide_disclaimer_individual": "이 페이지는 남자 리듬체조를 널리 알리고 싶은 개인이 만든 해설입니다. 어떤 단체의 공인이나 추천을 받은 것이 아닙니다.",
+  "rule_guide_disclaimer_authority": "대회에서의 공식 판정은 공식 규정집에 따릅니다. 경기에 나가는 분은 반드시 규정집을 확인해 주세요.",
+  "rule_guide_empty": "이 페이지는 지금 작성하고 있습니다.",
+  "rule_guide_breadcrumb_top": "규칙 알아보기",
+  "rule_guide_children_heading": "더 자세히"
+}

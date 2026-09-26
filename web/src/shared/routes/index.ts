@@ -37,7 +37,15 @@ export const ROUTES = {
   coaching: '/coaching/',
   backgroundMusic: '/background_music/',
   judge: '/judge/',
-  rules: '/rules/',
+  rules: {
+    index: '/rules/',
+    /**
+     * ルールの解説のページ
+     * @param path - 鍵から作ったパス（`score/difficulty` の形。`guideKeyToPath` で作る）
+     * @returns 解説のページのパス
+     */
+    page: (path: string) => `/rules/${path}/`,
+  },
   privacy: '/privacy/',
   terms: '/terms/',
 } as const

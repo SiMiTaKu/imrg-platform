@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rule_guide_disclaimer_individual": "Esta página es una guía escrita por una persona que quiere difundir la gimnasia rítmica masculina. No cuenta con el respaldo ni la aprobación de ninguna organización.",
+  "rule_guide_disclaimer_authority": "Las decisiones oficiales en competición se rigen por el reglamento oficial. Si compites, consulta siempre el reglamento.",
+  "rule_guide_empty": "Todavía estamos escribiendo esta página.",
+  "rule_guide_breadcrumb_top": "Conoce las reglas",
+  "rule_guide_children_heading": "Más a fondo"
+}

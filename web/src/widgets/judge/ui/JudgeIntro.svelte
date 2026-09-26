@@ -75,7 +75,7 @@
         >{m.judge_intro_start()}</Button
       >
       <Button
-        href={localizeHref(ROUTES.rules)}
+        href={localizeHref(ROUTES.rules.index)}
         target="_self"
         variant="sky-blue-outline"
         size="large"
