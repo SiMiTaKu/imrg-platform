@@ -3,15 +3,15 @@
   import { m } from '$lib/paraglide/messages'
   import { onMount, type Snippet } from 'svelte'
   import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
-  import { LOCAL_HOSTS } from '../app/config/analytics'
+  import { ANALYTICS_HOSTS } from '../app/config/analytics'
   import { Footer, Header, LocalePageLinks, ScrollToTopButton, StickyFooter } from '@widgets/layout'
 
   const { children }: { children: Snippet } = $props()
 
   // アクセス解析（Cloudflare Web Analytics）。Cookie を使わない。
-  // トークンが空のときは読み込まない
+  // トークンが空のとき、本番以外のホスト（stg・PR プレビュー・手元）では読み込まない
   onMount(() => {
-    if (!PUBLIC_CF_BEACON_TOKEN || LOCAL_HOSTS.includes(location.hostname)) return
+    if (!PUBLIC_CF_BEACON_TOKEN || !ANALYTICS_HOSTS.includes(location.hostname)) return
     const beacon = document.createElement('script')
     beacon.defer = true
     beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js'
