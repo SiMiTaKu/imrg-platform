@@ -2972,6 +2972,7 @@ export const EVENTS: CalendarEvent[] = [
     note: { ja: "男子は団体（徒手）と個人（ロープ・クラブ）を行います。第44回全日本ジュニア新体操選手権大会の九州地区予選を兼ねます。", en: "The men's events are group Toshu (floor routine, no apparatus) and individual (rope and clubs). Also the Kyushu qualifier for the 44th All Japan Junior Championships." },
     officialUrl: "https://kasasagi-cup.jimdofree.com/",
     sourceUrl: "https://kasasagi-cup.jimdofree.com/app/download/12746402998/%E8%A6%81%E9%A0%85.pdf",
+    resultUrl: "https://kasasagi-cup.jimdofree.com/%E9%80%9F%E5%A0%B1/",
   },
   {
     id: "2026-09-19-80ac25",
@@ -2983,6 +2984,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "国士舘大学 多目的フロアー（東京都）", en: "Kokushikan University Multipurpose Floor" } },
     note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
+    resultUrl: "https://kanntou.jimdofree.com/%E7%AB%B6%E6%8A%80%E7%B5%90%E6%9E%9C/",
   },
   {
     id: "2026-09-20-b5d560",
