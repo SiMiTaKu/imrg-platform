@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rule_guide_disclaimer_individual": "本页是一位希望推广男子艺术体操的个人所写的解说，未获得任何团体的认可或推荐。",
+  "rule_guide_disclaimer_authority": "比赛中的正式判定以官方规则集为准。参赛者请务必查阅规则集本身。",
+  "rule_guide_empty": "本页正在撰写中。",
+  "rule_guide_breadcrumb_top": "了解规则",
+  "rule_guide_children_heading": "深入了解"
+}

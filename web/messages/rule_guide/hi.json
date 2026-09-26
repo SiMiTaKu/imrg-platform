@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rule_guide_disclaimer_individual": "यह पृष्ठ पुरुष लयबद्ध जिम्नास्टिक को फैलाने की इच्छा रखने वाले एक व्यक्ति द्वारा लिखी गई व्याख्या है। इसे किसी संस्था की मान्यता या सिफ़ारिश प्राप्त नहीं है।",
+  "rule_guide_disclaimer_authority": "प्रतियोगिता में आधिकारिक निर्णय आधिकारिक नियम-पुस्तिका के अनुसार होते हैं। प्रतिस्पर्धा करने वाले उसे स्वयं अवश्य देखें।",
+  "rule_guide_empty": "यह पृष्ठ अभी लिखा जा रहा है।",
+  "rule_guide_breadcrumb_top": "नियम जानें",
+  "rule_guide_children_heading": "और गहराई से"
+}

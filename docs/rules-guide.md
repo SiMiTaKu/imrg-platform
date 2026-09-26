@@ -182,27 +182,22 @@ export interface GuidePage {
 - **「である」ではなく「です・ます」。** 読者は子どもと保護者
 - **結論から書く。** 前置き・経緯を先に書かない
 
-### 6-2. textlint に足すルール
+### 6-2. 読みやすさはテストで測る
 
-ルート [.textlintrc.json](../.textlintrc.json) に足す。CIの `verify` で落ちるようにする。
+**textlintではなくテストで測る。** textlintはMarkdownを見る道具で、
+解説の本文はTypeScriptの中（`entities/ruleGuide/api/content/`）にあるため、
+textlintからは見えない。2026-09-27に実装して分かったので、この形にした。
 
-```jsonc
-{
-  "rules": {
-    // 1文の長さ。40字を超えたら落とす
-    "sentence-length": { "max": 40 },
-    // 小学校で習わない漢字を検出する
-    "ja-no-mixed-period": true,
-    // 同じ助詞の連続（既に有効）
-    "no-doubled-joshi": true,
-    // 難しい言い方を検出する
-    "ja-no-redundant-expression": true,
-  },
-}
-```
+置き場所は `web/tests/unit/entities/ruleGuide/guideText.spec.ts`。CIの `verify` で落ちる。
 
-- 対象は `web/src/entities/ruleGuide/**` と `web/messages/rule_guide/**`
-- **既存のコードや他のページには効かせない。** 解説ページだけ厳しくする
+| 何を測るか           | 落とす条件                                                                   |
+| -------------------- | ---------------------------------------------------------------------------- |
+| 1文の長さ            | 句点で切って**40字を超えたら落とす**                                         |
+| 難しい言い方         | `且つ` `殆ど` `概ね` `尚` `但し` `故に` `勿論` `出来る` が入っていたら落とす |
+| 出してはいけない言葉 | → 3-3                                                                        |
+| 断り書き             | 省いていたら落とす                                                           |
+
+`docs/` のMarkdownは、これまでどおりtextlintで見る（`pnpm run textlint`）。
 
 ### 6-3. 表は「自分の切り口」で組む
 

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "rule_guide_disclaimer_individual": "このページは、男子新体操を広めたい個人が作った解説です。どこかの団体の公認や推奨を受けたものではありません。",
+  "rule_guide_disclaimer_authority": "大会での正式な判断は、公式の規則集によります。競技に出る人は必ず規則集を確かめてください。",
+  "rule_guide_empty": "このページは、いま書いています。",
+  "rule_guide_breadcrumb_top": "ルールを知る",
+  "rule_guide_children_heading": "もっと詳しく"
+}
