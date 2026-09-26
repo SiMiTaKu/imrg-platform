@@ -16,31 +16,32 @@ const event = makeEvent({
   startDate: '2026-10-30',
   endDate: '2026-11-01',
   venue: { name: { ja: '高崎アリーナ（群馬県）', en: 'Takasaki Arena' } },
+  note: { ja: '日本一を決める大会です。', en: "The championships that decide Japan's best." },
 })
 
 describe('calendarDetailMetaInput', () => {
   describe('正常系', () => {
     it.each([
       [
-        '日本語の場合、日本語の大会名・日程・会場と英語の大会名になること',
+        '日本語の場合、日本語の大会名・日程・会場・説明になること',
         'ja',
         {
           id: '2026-10-30-abcdef',
           title: '全日本新体操選手権大会',
-          alternateTitle: 'All Japan Rhythmic Gymnastics Championships',
           dateRange: '2026年10月30日（金）〜11月1日（日）',
           venue: '高崎アリーナ（群馬県）',
+          note: '日本一を決める大会です。',
         },
       ],
       [
-        '英語の場合、英語の大会名・日程・会場と日本語の大会名になること',
+        '英語の場合、英語の大会名・日程・会場・説明になること',
         'en',
         {
           id: '2026-10-30-abcdef',
           title: 'All Japan Rhythmic Gymnastics Championships',
-          alternateTitle: '全日本新体操選手権大会',
           dateRange: 'Fri, Oct 30 – Sun, Nov 1, 2026',
           venue: 'Takasaki Arena',
+          note: "The championships that decide Japan's best.",
         },
       ],
     ] as const)('%s', (_, locale, expected) => {

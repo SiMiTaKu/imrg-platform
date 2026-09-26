@@ -1331,22 +1331,22 @@ export const ES_EVENT_TRANSLATIONS: EventTranslations = {
     title:
       '11.º Campeonato de Japón de Clubes de gimnasia rítmica masculina / 34.ª Competición de Japón de Adultos de gimnasia rítmica masculina',
     venue: 'Gifu Memorial Center Deai Dome (Gifu)',
-    note: 'Campeonato nacional para equipos de club y gimnastas adultos. Se celebra como parte del Festival de Gimnasia Rítmica de Gifu 2026, en el Gifu Memorial Center Deai Dome.',
+    note: 'Campeonato nacional para equipos de club y gimnastas adultos. Se celebra como parte del Festival de Gimnasia Rítmica de Gifu 2026.',
   },
   '2026-10-11-2b5d36': {
     title: '49.º Campeonato Júnior de gimnasia rítmica de Hokkaido',
     venue: 'NOPPORO Yashima Shokai Sports Park (Hokkaido)',
-    note: 'Competición juvenil en Hokkaido, organizada por la Federación de Gimnasia de Hokkaido los días 11 y 12 de octubre.',
+    note: 'Competición juvenil en Hokkaido, organizada por la Federación de Gimnasia de Hokkaido.',
   },
   '2026-10-30-733ecd': {
     title: '79.º Campeonato de Japón de gimnasia rítmica',
     venue: 'Takasaki Arena (Gunma)',
-    note: 'Campeonato nacional que decide el mejor de Japón. En categoría masculina se disputan pruebas individuales y de conjunto. Del 30 de octubre al 1 de noviembre en el Takasaki Arena, en la misma sede que la competición femenina.',
+    note: 'Campeonato nacional que decide el mejor de Japón. En categoría masculina se disputan pruebas individuales y de conjunto, en la misma sede que la competición femenina.',
   },
   '2026-11-20-4dc9ec': {
     title: '34.º Campeonato Selectivo de Institutos de Tohoku de gimnasia rítmica',
     venue: 'Toyota Boshoku Tohoku Sunshine Arena (Iwate)',
-    note: 'Fase clasificatoria de la región de Tohoku para el Campeonato Nacional Selectivo de Institutos. Se celebra en el Toyota Boshoku Tohoku Sunshine Arena.',
+    note: 'Fase clasificatoria de la región de Tohoku para el Campeonato Nacional Selectivo de Institutos. Se celebra en Kitakami (Iwate).',
   },
   '2026-11-22-edab65': {
     title: 'Campeonato de gimnasia rítmica masculina de Gunma',
@@ -1361,12 +1361,12 @@ export const ES_EVENT_TRANSLATIONS: EventTranslations = {
   '2026-11-26-6df3b8': {
     title: 'Copa Challenge de Japón Júnior de gimnasia rítmica 2026',
     venue: 'Takasaki Arena (Gunma)',
-    note: 'Se celebra el día antes de que comience el Campeonato de Japón Júnior en la misma sede, el Takasaki Arena. Las pruebas masculinas y femeninas se disputan juntas.',
+    note: 'Se celebra el día antes de que comience el Campeonato de Japón Júnior en la misma sede. Las pruebas masculinas y femeninas se disputan juntas.',
   },
   '2026-11-27-e2427f': {
     title: 'Chacott CHAMPIONSHIPS 44.º Campeonato de Japón Júnior de gimnasia rítmica',
     venue: 'Takasaki Arena (Gunma)',
-    note: 'Campeonato que decide el mejor júnior de Japón. En categoría masculina: individual (sticks y aro) el 27 de noviembre, individual (cuerda y mazas) el 28, y conjunto Toshu (sin aparato) el 29. En el Takasaki Arena, en la misma sede que la competición femenina.',
+    note: 'Campeonato que decide el mejor júnior de Japón. En categoría masculina: individual (sticks y aro) el 27 de noviembre, individual (cuerda y mazas) el 28, y conjunto Toshu (sin aparato) el 29, en la misma sede que la competición femenina.',
   },
   '2026-12-2ee260': {
     title: 'KOKUSHIKAN CUP 2026',
@@ -1412,7 +1412,7 @@ export const ES_EVENT_TRANSLATIONS: EventTranslations = {
   '2027-03-24-2b95c1': {
     title: '42.º Campeonato Nacional Selectivo de Institutos de gimnasia rítmica',
     venue: 'Athlete Town Nobeoka Arena (Miyazaki)',
-    note: 'Campeonato nacional de institutos. Se celebra en el Athlete Town Nobeoka Arena como evento de ensayo de los Juegos Deportivos Nacionales de 2027 en Miyazaki, con pruebas masculinas y femeninas juntas.',
+    note: 'Campeonato nacional de institutos. Se celebra en Nobeoka (Miyazaki) como evento de ensayo de los Juegos Deportivos Nacionales de 2027, con pruebas masculinas y femeninas juntas.',
   },
   '2027-04-01daa9': {
     title: 'Campeonato Universitario de gimnasia rítmica de Kyushu 2027',
@@ -1431,7 +1431,7 @@ export const ES_EVENT_TRANSLATIONS: EventTranslations = {
     title:
       'Juegos Deportivos Nacionales de Institutos (Inter-High) 2027, gimnasia rítmica (sede: sur de Kanto)',
     venue: 'Chiba Port Arena (Chiba)',
-    note: 'Pruebas de gimnasia rítmica de los Juegos Deportivos Nacionales de Institutos (Inter-High). En el Chiba Port Arena, con pruebas masculinas y femeninas juntas. La ceremonia de apertura general es el 22 de julio en el Yokohama BUNTAI.',
+    note: 'Pruebas de gimnasia rítmica de los Juegos Deportivos Nacionales de Institutos (Inter-High). En la ciudad de Chiba, con pruebas masculinas y femeninas juntas. La ceremonia de apertura general es el 22 de julio en el Yokohama BUNTAI.',
   },
   '2027-08-db1824': {
     title: 'Campeonato de Japón Universitario de gimnasia rítmica 2027 (Intercollegiate)',
