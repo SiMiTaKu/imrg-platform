@@ -1321,8 +1321,7 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
     note: 'Chez les hommes : ensembles (mains libres) et individuel (corde, massues). Vaut également comme qualifications du Kyushu pour le 44e Championnat junior du Japon de gymnastique rythmique.',
   },
   '2026-09-19-80ac25': {
-    title:
-      '44e Championnat junior du Japon de gymnastique rythmique – qualifications du bloc Kanto (hommes)',
+    title: '24e Championnat junior du Kanto de gymnastique rythmique masculine',
     venue: 'Université Kokushikan, salle polyvalente (Tokyo)',
     note: 'Qualifications pour le 44e Championnat junior du Japon de gymnastique rythmique, qui se tient à la Takasaki Arena à partir du 27 novembre.',
   },

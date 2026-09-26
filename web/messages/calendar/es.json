@@ -57,6 +57,7 @@
   "calendar_fact_note": "Nota",
   "calendar_official_site": "Web oficial",
   "calendar_results": "Ver resultados",
+  "calendar_results_of": "Resultados: {label}",
   "calendar_source": "Fuente",
   "calendar_archive_title": "Todas las competiciones y eventos",
   "calendar_archive_year": "{year}",

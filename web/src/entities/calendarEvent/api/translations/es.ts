@@ -1298,8 +1298,7 @@ export const ES_EVENT_TRANSLATIONS: EventTranslations = {
     note: 'En categoría masculina se compite por equipos (manos libres) e individual (cuerda y mazas). Sirve también como fase clasificatoria de Kyushu para el 44.º Campeonato de Japón Júnior de gimnasia rítmica.',
   },
   '2026-09-19-80ac25': {
-    title:
-      'Clasificatorio del bloque de Kanto para el 44.º Campeonato de Japón Júnior de gimnasia rítmica (masculino)',
+    title: '24.º Campeonato Júnior de Kanto de gimnasia rítmica masculina',
     venue: 'Kokushikan University Multipurpose Floor (Tokyo)',
     note: 'Es la fase clasificatoria para el 44.º Campeonato de Japón Júnior de gimnasia rítmica, que se celebra a partir del 27 de noviembre en el Takasaki Arena.',
   },

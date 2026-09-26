@@ -16,5 +16,5 @@ export {
   monthRangeOf,
 } from './lib/event'
 export type { LocalizedEvent } from './lib/event'
-export type { CalendarEvent, EventCategorySlug } from './model'
+export type { CalendarEvent, EventCategorySlug, EventResult } from './model'
 export { default as EventRow } from './ui/EventRow.svelte'

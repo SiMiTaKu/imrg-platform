@@ -58,8 +58,9 @@ export const META_DATA = {
    * 大会・イベントカレンダー
    * @returns メタ情報
    */
-  calendar: (): PageMeta => ({
-    title: pageTitle(m.meta_calendar_page()),
+  calendar: (year: number): PageMeta => ({
+    // 拾えている検索語は「新体操 東北大会 2026」のような**地域と年**なので、年を入れる
+    title: pageTitle(m.meta_calendar_page({ year })),
     description: m.meta_calendar_description(),
     path: ROUTES.calendar.index,
     ogType: 'website',
