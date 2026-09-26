@@ -31,7 +31,7 @@ export const findCalendarEvent = (id: string): CalendarEvent => {
  * 詳細ページのメタ情報を作るための値
  * @param event - 大会
  * @param locale - 表示する言語
- * @returns 表示する言語の大会名・会場・日程。alternateTitle はもう一方の言語の大会名
+ * @returns 表示する言語の大会名・会場・日程・説明
  */
 export const calendarDetailMetaInput = (
   event: CalendarEvent,
@@ -41,10 +41,9 @@ export const calendarDetailMetaInput = (
   return {
     id: event.id,
     title: localized.title,
-    // 日本語のページだけ英語の名前を添え、それ以外の言語では元の日本語の名前を添える
-    alternateTitle: locale === 'ja' ? event.title.en : event.title.ja,
     dateRange: eventDateRange(event, locale),
     venue: localized.venue,
+    note: localized.note,
   }
 }
 
