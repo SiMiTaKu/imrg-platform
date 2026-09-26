@@ -2669,6 +2669,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "スペイン" } },
     note: { ja: "スペインの男子新体操の大会です。女子と同じ手具を使う形式で、日本の男子新体操とは競技の形が異なります。", en: "A men's rhythmic gymnastics competition in Spain, using the same apparatus as women's and differing from the Japanese style." },
     sourceUrl: "https://www.fexgimnasia.es/wp-content/uploads/2025/12/Calendario-Nacional-provisional-2026.pdf",
+    resultUrl: "https://rfegimnasia.es/wp-content/uploads/2026/06/Resultados-Campeonato-de-Espana-individual-masculino-Divina-Seguros-GR-2026.pdf",
   },
   {
     id: "2026-06-19-4b6611",
@@ -2721,9 +2722,9 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-06-20",
     venue: { name: { ja: "草薙総合運動場 このはなアリーナ（静岡県）", en: "Kusanagi Sports Complex Konohana Arena" } },
-    note: { ja: "年間の予定表をもとに載せています。", en: "Listed based on the annual schedule." },
     officialUrl: "https://shizuoka-gym.com/",
     sourceUrl: "https://shizuoka-gym.com/yotei/yotei.html",
+    resultUrl: "https://shizuoka-gym.com/kekka/kekka.html",
   },
   {
     id: "2026-06-20-3c205c",
@@ -2742,8 +2743,8 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-06-21",
     venue: { name: { ja: "市立船橋高等学校（千葉県）", en: "Funabashi Municipal High School" } },
-    note: { ja: "年間の予定表をもとに載せています。", en: "Listed based on the annual schedule." },
     sourceUrl: "https://chiba-gym.online/wp-content/uploads/2026/03/b845e8869636afdd74d62321e2ece9ef.pdf",
+    resultUrl: "https://chiba-koutairen.com/archives/059/202507/R7_%E6%96%B0%E4%BD%93%E6%93%8D%EF%BC%88%E7%94%B7%E5%AD%90%EF%BC%89%E7%B7%8F%E4%BD%93%E4%BA%88%E9%81%B8%E7%B5%90%E6%9E%9C.pdf",
   },
   {
     id: "2026-06-22-6df5a7",
@@ -2795,6 +2796,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-07-11",
     venue: { name: { ja: "宝来屋ボンズアリーナ（福島県）", en: "Horaiya Bonds Arena" } },
     sourceUrl: "https://www.sakataminami-h.ed.jp/club1/rhythmicgymnastics/%E5%9B%BD%E6%B0%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E5%A4%A7%E4%BC%9A%E6%9D%B1%E5%8C%97%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%A4%A7%E4%BC%9A%EF%BC%88%E6%96%B0%E4%BD%93%E6%93%8D%EF%BC%89/",
+    resultUrl: "https://www.touhokusoutai.net/data/20261000K053-taisou-sinm.pdf",
   },
   {
     id: "2026-07-11-7f8717",
@@ -2805,6 +2807,7 @@ export const EVENTS: CalendarEvent[] = [
     endDate: "2026-07-12",
     venue: { name: { ja: "高知県立青少年センター（大アリーナ）", en: "Kochi Prefectural Youth Center (Main Arena)" } },
     sourceUrl: "https://kochi-sports.or.jp/wp/wp-content/uploads/2026/04/07%E4%BD%93%E6%93%8D-%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%A4%A7%E4%BC%9A%E8%A6%81%E9%A0%85.pdf",
+    resultUrl: "https://tks-p-gym.org/wp-content/uploads/2026/07/r08_7_skk_rhy_kokuspo_c3.pdf",
   },
   {
     id: "2026-07-11-ee0a6b",
