@@ -1354,35 +1354,43 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
     title:
       '11e Championnat du Japon des clubs de gymnastique rythmique masculine / 34e Compétition du Japon des adultes de gymnastique rythmique masculine',
     venue: 'Gifu Memorial Center, De-Ai Dome (Gifu)',
+    note: 'Championnat national pour les équipes de club et les gymnastes adultes. Organisé dans le cadre du Festival de gymnastique rythmique de Gifu 2026, au Gifu Memorial Center, De-Ai Dome.',
   },
   '2026-10-11-2b5d36': {
     title: '49e Championnat junior de Hokkaido de gymnastique rythmique',
     venue: 'Parc des sports NOPPORO Yashima Shokai (Hokkaido)',
+    note: 'Compétition junior à Hokkaido, organisée par la Fédération de gymnastique de Hokkaido les 11 et 12 octobre.',
   },
   '2026-10-30-733ecd': {
     title: '79e Championnat du Japon de gymnastique rythmique',
     venue: 'Takasaki Arena (Gunma)',
+    note: "Championnat national qui désigne le meilleur du Japon. La compétition masculine comprend les épreuves individuelles et d'ensemble. Du 30 octobre au 1er novembre au Takasaki Arena, sur le même site que la compétition féminine.",
   },
   '2026-11-20-4dc9ec': {
     title: '34e Championnat de sélection des lycées du Tohoku de gymnastique rythmique',
     venue: 'Toyota Boshoku Tohoku Sunshine Arena (Iwate)',
+    note: 'Qualifications de la région du Tohoku pour le Championnat national de sélection des lycées. Au Toyota Boshoku Tohoku Sunshine Arena.',
   },
   '2026-11-22-edab65': {
     title: 'Championnat de la préfecture de Gunma de gymnastique rythmique masculine',
     venue: 'ALSOK Gunma Arena (Gunma)',
+    note: 'Championnat de gymnastique rythmique masculine de la préfecture de Gunma. Le championnat de la relève des lycées de la préfecture a lieu le même jour sur le même site.',
   },
   '2026-11-22-22545e': {
     title:
       'Championnat de la relève des lycées de la préfecture de Gunma (gymnastique rythmique masculine)',
     venue: 'ALSOK Gunma Arena (Gunma)',
+    note: 'Championnat de la relève des lycées de Gunma. Le championnat de gymnastique rythmique masculine de la préfecture a lieu le même jour sur le même site.',
   },
   '2026-11-26-6df3b8': {
     title: 'Challenge Cup junior du Japon de gymnastique rythmique 2026',
     venue: 'Takasaki Arena (Gunma)',
+    note: 'Organisé la veille du Championnat junior du Japon, sur le même site, le Takasaki Arena. Les épreuves masculines et féminines ont lieu ensemble.',
   },
   '2026-11-27-e2427f': {
     title: 'Chacott CHAMPIONSHIPS – 44e Championnat junior du Japon de gymnastique rythmique',
     venue: 'Takasaki Arena (Gunma)',
+    note: 'Championnat qui désigne le meilleur junior du Japon. Chez les hommes : individuel (sticks et cerceau) le 27 novembre, individuel (corde et massues) le 28, et ensemble Toshu (sans engin) le 29. Au Takasaki Arena, sur le même site que la compétition féminine.',
   },
   '2026-12-2ee260': {
     title: 'KOKUSHIKAN CUP 2026',
@@ -1403,6 +1411,7 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
     title:
       '41e Championnat de la relève des lycées de Hokkaido / qualifications pour le Championnat national de sélection des lycées (gymnastique rythmique)',
     venue: 'Parc des sports NOPPORO Yashima Shokai (Hokkaido)',
+    note: 'Championnat de la relève des lycées de Hokkaido, qui sert également de qualification pour le Championnat national de sélection des lycées.',
   },
   '2027-02-0fff8f': {
     title: 'SANIX CUP – gala-compétition de gymnastique rythmique masculine 2027',
@@ -1427,6 +1436,7 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
   '2027-03-24-2b95c1': {
     title: '42e Championnat national de sélection des lycées de gymnastique rythmique',
     venue: 'Athlete Town Nobeoka Arena (Miyazaki)',
+    note: "Championnat national des lycées. Au Athlete Town Nobeoka Arena, en tant qu'épreuve test des Jeux sportifs nationaux de 2027 à Miyazaki, avec les épreuves masculines et féminines réunies.",
   },
   '2027-04-01daa9': {
     title: 'Championnat universitaire du Kyushu de gymnastique rythmique 2027',
@@ -1445,6 +1455,7 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
     title:
       'Jeux sportifs nationaux des lycées (Inter-High) 2027 – gymnastique rythmique (sud du Kanto)',
     venue: 'Chiba Port Arena (Chiba)',
+    note: "Épreuves de gymnastique rythmique des Jeux sportifs nationaux des lycées (Inter-High). Au Chiba Port Arena, avec les épreuves masculines et féminines réunies. La cérémonie d'ouverture générale a lieu le 22 juillet au Yokohama BUNTAI.",
   },
   '2027-08-db1824': {
     title: 'Championnat universitaire du Japon de gymnastique rythmique 2027 (Intercollegiate)',

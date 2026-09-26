@@ -2911,7 +2911,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-08-11",
     venue: { name: { ja: "相好アリーナ四日市（三重県）", en: "Sogo Arena Yokkaichi" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -2969,7 +2969,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-19",
     endDate: "2026-09-21",
     venue: { name: { ja: "SAGAプラザ（佐賀県総合体育館）", en: "SAGA Plaza (Saga Prefectural Gymnasium)" } },
-    note: { ja: "男子は団体（徒手）と個人（ロープ・クラブ）。第44回全日本ジュニア新体操選手権大会の九州地区予選を兼ねます。", en: "Men's events: group (without apparatus) and individual (rope, clubs). Also the Kyushu qualifier for the 44th All Japan Junior Championships." },
+    note: { ja: "男子は団体（徒手）と個人（ロープ・クラブ）を行います。第44回全日本ジュニア新体操選手権大会の九州地区予選を兼ねます。", en: "The men's events are group Toshu (floor routine, no apparatus) and individual (rope and clubs). Also the Kyushu qualifier for the 44th All Japan Junior Championships." },
     officialUrl: "https://kasasagi-cup.jimdofree.com/",
     sourceUrl: "https://kasasagi-cup.jimdofree.com/app/download/12746402998/%E8%A6%81%E9%A0%85.pdf",
   },
@@ -2981,7 +2981,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-19",
     endDate: "2026-09-20",
     venue: { name: { ja: "国士舘大学 多目的フロアー（東京都）", en: "Kokushikan University Multipurpose Floor" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -2992,7 +2992,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-20",
     endDate: "2026-09-21",
     venue: { name: { ja: "白石市文化体育活動センター（ホワイトキューブ）（宮城県）", en: "Shiroishi Culture and Sports Center (White Cube)" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -3003,7 +3003,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-22",
     endDate: "2026-09-23",
     venue: { name: { ja: "鯖江市総合体育館（福井県）", en: "Sabae City General Gymnasium" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -3014,7 +3014,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-22",
     endDate: "2026-09-23",
     venue: { name: { ja: "NOPPOROヤシマ商会スポーツパーク（北海道）", en: "NOPPORO Yashima Shokai Sports Park" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     officialUrl: "http://www.do-taisou.sakura.ne.jp/jigyoukeikaku.pdf",
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
@@ -3025,7 +3025,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-10-04",
     venue: { name: { ja: "清風高等学校（大阪府）", en: "Seifu High School" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
