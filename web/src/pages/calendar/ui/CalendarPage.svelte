@@ -28,9 +28,12 @@
     type CalendarState,
   } from '@features/calendarFilter'
   import { pageData } from '@shared/lib/device'
-  import { getLocale } from '@shared/lib/i18n'
+  import { PUBLIC_BASE_URL } from '$env/static/public'
+  import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
+  import { ROUTES } from '@shared/routes'
   import { UPCOMING_PICK_COUNT } from '../config/calendarConfig'
+  import { buildEventListJsonLd } from '../lib/jsonLd'
   import { loadCalendarState, saveCalendarState } from '../lib/stateStorage'
   import {
     ANY,
@@ -120,6 +123,22 @@
     }),
   )
   const upcomingPicks = $derived(upcomingAll.slice(0, UPCOMING_PICK_COUNT))
+
+  // 画面に出しているのは「次にある大会」3件だけなので、検索エンジンからはそれ以外が読めない。
+  // 見た目は変えずに、これから開かれる大会を構造化データで渡す
+  const jsonLd = $derived(
+    JSON.stringify(
+      buildEventListJsonLd(
+        upcomingAll,
+        locale,
+        PUBLIC_BASE_URL,
+        (id) => localizeHref(ROUTES.calendar.detail(id)),
+        m.meta_calendar_page({ year: Number(UPDATED_AT.slice(0, 4)) }),
+      ),
+    ),
+  )
+  // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる
+  const jsonLdTag = $derived(`<script type="application/ld+json">${jsonLd}<` + '/script>')
 
   // 最終更新日。日本語ページでは「最終更新: … / Last updated: …」と並べる
   const updatedAtText = m.calendar_updated_at({ date: formatDay(UPDATED_AT, locale) })
@@ -222,6 +241,11 @@
         { locale: targetLocale },
       )}
 {/snippet}
+
+<svelte:head>
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -- 埋め込むのは自前のデータを JSON.stringify した文字列だけで、外部からの入力は混ざらない -->
+  {@html jsonLdTag}
+</svelte:head>
 
 <article class="calendar" class:mobile={$pageData.isMobile}>
   <CalendarIntro total={EVENTS.length} upcoming={upcomingAll.length} {updatedAtText}>
