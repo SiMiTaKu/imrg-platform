@@ -3017,6 +3017,7 @@ export const EVENTS: CalendarEvent[] = [
     note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     officialUrl: "http://www.do-taisou.sakura.ne.jp/jigyoukeikaku.pdf",
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
+    resultUrl: "http://www.do-taisou.sakura.ne.jp/seiseki/26/26senshuken-rg/26senshuken-rg.html",
   },
   {
     id: "2026-10-04-f3a957",
