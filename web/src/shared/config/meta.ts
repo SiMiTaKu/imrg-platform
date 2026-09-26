@@ -21,12 +21,12 @@ export interface CalendarDetailMetaInput {
   id: string
   /** 大会名 */
   title: string
-  /** もう一方の言語の大会名（日本語ページでは英語名） */
-  alternateTitle: string
   /** 日程の表記 */
   dateRange: string
   /** 会場。無ければ省く */
   venue?: string
+  /** その大会の説明。無ければ決まり文句にする */
+  note?: string
 }
 
 /**
@@ -73,9 +73,10 @@ export const META_DATA = {
     title: m.meta_calendar_detail_title({ event: input.title }),
     description: m.meta_calendar_detail_description({
       event: input.title,
-      eventAlt: input.alternateTitle,
       dateRange: input.dateRange,
       venue: input.venue ? m.meta_calendar_detail_venue({ venue: input.venue }) : '',
+      // 検索結果に出るのは前の方だけなので、末尾はその大会の話にする
+      tail: input.note ?? m.meta_calendar_detail_fallback(),
     }),
     path: ROUTES.calendar.detail(input.id),
     ogType: 'article',

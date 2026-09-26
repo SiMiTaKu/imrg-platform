@@ -1,7 +1,7 @@
 import type { CalendarEvent } from "../model"
 
 /** 掲載内容を最後に確認した日 */
-export const UPDATED_AT = "2026-09-16"
+export const UPDATED_AT = "2026-09-26"
 
 /**
  * 掲載するイベント
@@ -2911,7 +2911,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-08-11",
     venue: { name: { ja: "相好アリーナ四日市（三重県）", en: "Sogo Arena Yokkaichi" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -2969,7 +2969,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-19",
     endDate: "2026-09-21",
     venue: { name: { ja: "SAGAプラザ（佐賀県総合体育館）", en: "SAGA Plaza (Saga Prefectural Gymnasium)" } },
-    note: { ja: "男子は団体（徒手）と個人（ロープ・クラブ）。第44回全日本ジュニア新体操選手権大会の九州地区予選を兼ねます。", en: "Men's events: group (without apparatus) and individual (rope, clubs). Also the Kyushu qualifier for the 44th All Japan Junior Championships." },
+    note: { ja: "男子は団体（徒手）と個人（ロープ・クラブ）を行います。第44回全日本ジュニア新体操選手権大会の九州地区予選を兼ねます。", en: "The men's events are group Toshu (floor routine, no apparatus) and individual (rope and clubs). Also the Kyushu qualifier for the 44th All Japan Junior Championships." },
     officialUrl: "https://kasasagi-cup.jimdofree.com/",
     sourceUrl: "https://kasasagi-cup.jimdofree.com/app/download/12746402998/%E8%A6%81%E9%A0%85.pdf",
   },
@@ -2981,7 +2981,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-19",
     endDate: "2026-09-20",
     venue: { name: { ja: "国士舘大学 多目的フロアー（東京都）", en: "Kokushikan University Multipurpose Floor" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -2992,7 +2992,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-20",
     endDate: "2026-09-21",
     venue: { name: { ja: "白石市文化体育活動センター（ホワイトキューブ）（宮城県）", en: "Shiroishi Culture and Sports Center (White Cube)" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -3003,7 +3003,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-22",
     endDate: "2026-09-23",
     venue: { name: { ja: "鯖江市総合体育館（福井県）", en: "Sabae City General Gymnasium" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -3014,7 +3014,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-09-22",
     endDate: "2026-09-23",
     venue: { name: { ja: "NOPPOROヤシマ商会スポーツパーク（北海道）", en: "NOPPORO Yashima Shokai Sports Park" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     officialUrl: "http://www.do-taisou.sakura.ne.jp/jigyoukeikaku.pdf",
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
@@ -3025,7 +3025,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-10-04",
     venue: { name: { ja: "清風高等学校（大阪府）", en: "Seifu High School" } },
-    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held in Takasaki from November 27." },
+    note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
   },
   {
@@ -3036,6 +3036,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-10-09",
     endDate: "2026-10-11",
     venue: { name: { ja: "岐阜メモリアルセンター で愛ドーム（岐阜県）", en: "Gifu Memorial Center Deai Dome" } },
+    note: { ja: "クラブチームと社会人の全国大会です。「2026新体操フェスタ岐阜」の一つとして開かれます。", en: "National championships for club teams and adult gymnasts, held as part of the 2026 Rhythmic Gymnastics Festa Gifu." },
     officialUrl: "https://gifugym.com/blog/2026fesgifu/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-0-7/",
   },
@@ -3047,6 +3048,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-10-11",
     endDate: "2026-10-12",
     venue: { name: { ja: "NOPPOROヤシマ商会スポーツパーク（北海道）", en: "NOPPORO Yashima Shokai Sports Park" } },
+    note: { ja: "北海道のジュニア選手の大会です。北海道体操協会が開きます。", en: "A junior competition in Hokkaido, held by the Hokkaido Gymnastics Association." },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/jigyoukeikaku.pdf",
   },
   {
@@ -3057,6 +3059,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-10-30",
     endDate: "2026-11-01",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
+    note: { ja: "日本一を決める大会です。男子は個人競技と団体競技を行います。女子と同じ会場で開かれます。", en: "The national championships that decide Japan's best. The men's competition includes both individual and group events, at the same venue as the women's competition." },
     officialUrl: "https://jpn-gym.or.jp/event/event-8002/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-8002/",
   },
@@ -3068,6 +3071,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-11-20",
     endDate: "2026-11-21",
     venue: { name: { ja: "トヨタ紡織東北サンシャインアリーナ（岩手県）", en: "Toyota Boshoku Tohoku Sunshine Arena" } },
+    note: { ja: "全国高等学校選抜大会の東北予選にあたる大会です。岩手県北上市で開かれます。", en: "The Tohoku qualifier for the National High School Invitational, held in Kitakami, Iwate." },
     sourceUrl: "https://www.kotairen.asn.ed.jp/taikai/2026/R8_touhoku.pdf",
   },
   {
@@ -3077,6 +3081,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-11-22",
     venue: { name: { ja: "ALSOKぐんまアリーナ（群馬県）", en: "ALSOK Gunma Arena" } },
+    note: { ja: "群馬県の男子新体操の選手権大会です。同じ日、同じ会場で県の高校新人大会も開かれます。", en: "The men's rhythmic gymnastics championships for Gunma Prefecture. The prefectural high school new team championships are held on the same day at the same venue." },
     sourceUrl: "https://www.gunma-sports.or.jp/about/eventlist/2026/12_taisou.pdf",
   },
   {
@@ -3086,6 +3091,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-11-22",
     venue: { name: { ja: "ALSOKぐんまアリーナ（群馬県）", en: "ALSOK Gunma Arena" } },
+    note: { ja: "群馬県の高校生の新人大会です。同じ日、同じ会場で県の男子新体操選手権大会も開かれます。", en: "The new team championships for high schools in Gunma. The prefectural men's rhythmic gymnastics championships are held on the same day at the same venue." },
     sourceUrl: "https://www.gunma-sports.or.jp/about/eventlist/2026/12_taisou.pdf",
   },
   {
@@ -3095,6 +3101,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-11-26",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
+    note: { ja: "翌日から同じ会場で開かれる全日本ジュニア選手権の前に行われる、男女共催の大会です。", en: "Held the day before the All Japan Junior Championships begin at the same venue. Men's and women's events are held together." },
     officialUrl: "https://jpn-gym.or.jp/event/event-8004/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-8004/",
   },
@@ -3106,6 +3113,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-11-27",
     endDate: "2026-11-29",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
+    note: { ja: "ジュニアの日本一を決める大会です。男子は11月27日に個人（スティック・リング）、28日に個人（ロープ・クラブ）、29日に団体（徒手）を行います。女子と同じ会場で開かれます。", en: "The national junior championships. The men's schedule is individual (sticks and ring) on November 27, individual (rope and clubs) on the 28th, and group Toshu (floor routine, no apparatus) on the 29th, at the same venue as the women's competition." },
     officialUrl: "https://jpn-gym.or.jp/event/event-8006/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-8006/",
   },
@@ -3150,6 +3158,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2026-12-11",
     endDate: "2026-12-13",
     venue: { name: { ja: "NOPPOROヤシマ商会スポーツパーク（北海道）", en: "NOPPORO Yashima Shokai Sports Park" } },
+    note: { ja: "北海道の高校生の新人大会で、全国高等学校選抜大会の予選を兼ねています。", en: "The new team championships for high schools in Hokkaido, which also serve as the qualifier for the National High School Invitational." },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/jigyoukeikaku.pdf",
   },
   {
@@ -3202,6 +3211,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2027-03-24",
     endDate: "2027-03-25",
     venue: { name: { ja: "アスリートタウン延岡アリーナ（宮崎県）", en: "Athlete Town Nobeoka Arena" } },
+    note: { ja: "高校生の全国大会です。2027年に宮崎で開かれる国民スポーツ大会のリハーサル大会として、延岡市で行われます。男女共催です。", en: "The national high school invitational, held in Nobeoka, Miyazaki as a rehearsal event for the 2027 national sports games, with men's and women's events together." },
     sourceUrl: "https://www.hinata-miyazaki-sports2027.jp/kokusupo/test-events/",
   },
   {
@@ -3241,6 +3251,7 @@ export const EVENTS: CalendarEvent[] = [
     startDate: "2027-07-23",
     endDate: "2027-07-25",
     venue: { name: { ja: "千葉ポートアリーナ（千葉県）", en: "Chiba Port Arena" } },
+    note: { ja: "高校総体（インターハイ）の新体操競技です。千葉市で、男女共催で開かれます。総合開会式は7月22日に横浜BUNTAIで行われます。", en: "The rhythmic gymnastics events of the National High School Championships (Inter-High), held in Chiba City with men's and women's events together. The overall opening ceremony is on July 22 at Yokohama BUNTAI." },
     officialUrl: "https://www.koukousoutai.com/2027soutai/",
     sourceUrl: "https://www.koukousoutai.com/2027soutai/event-all",
   },
