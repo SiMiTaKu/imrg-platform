@@ -33,56 +33,89 @@
 </script>
 
 <article class="guide" class:mobile={isMobile}>
-  <nav class="up">
-    <a href={upHref}>{m.rule_guide_breadcrumb_top()}</a>
-  </nav>
+  <!-- ほかのページと同じ作り。帯で受けて、本文は白い面に置く -->
+  <section class="hero">
+    <div class="inner">
+      <nav class="up">
+        <a href={upHref}>{m.rule_guide_breadcrumb_top()}</a>
+      </nav>
+      <h1>{page.title}</h1>
+      <!-- 最初の答え。検索から来た人はここだけ読んで帰れるようにする -->
+      <p class="lead">{page.lead}</p>
+    </div>
+  </section>
 
-  <h1>{page.title}</h1>
+  <section class="body">
+    <div class="inner">
+      <GuideBlocks blocks={page.blocks} />
 
-  <!-- 最初の答え。検索から来た人はここだけ読んで帰れるようにする -->
-  <p class="lead">{page.lead}</p>
+      {#if children.length > 0}
+        <section class="children">
+          <h2>{m.rule_guide_children_heading()}</h2>
+          <ul>
+            {#each children as child (child.key)}
+              <li>
+                <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(child.key)))}>
+                  <span class="child-title">{child.title}</span>
+                  <span class="child-lead">{child.lead}</span>
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </section>
+      {/if}
 
-  <GuideBlocks blocks={page.blocks} />
+      <!-- 断り書き。ページの型（GuidePage.disclaimer）で必須にしてある -->
+      <GuideDisclaimer />
 
-  {#if children.length > 0}
-    <section class="children">
-      <h2>{m.rule_guide_children_heading()}</h2>
-      <ul>
-        {#each children as child (child.key)}
-          <li>
-            <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(child.key)))}>{child.title}</a>
-          </li>
-        {/each}
-      </ul>
-    </section>
-  {/if}
-
-  <!-- 断り書き。ページの型（GuidePage.disclaimer）で必須にしてある -->
-  <GuideDisclaimer />
-
-  <div class="back">
-    <Button
-      href={localizeHref(ROUTES.rules.index)}
-      target="_self"
-      width={isMobile ? 'full' : 'auto'}
-      size="medium"
-      variant="sky-blue">{m.rule_guide_breadcrumb_top()}</Button
-    >
-  </div>
+      <div class="back">
+        <Button
+          href={localizeHref(ROUTES.rules.index)}
+          target="_self"
+          width={isMobile ? 'full' : 'auto'}
+          size="medium"
+          variant="sky-blue">{m.rule_guide_breadcrumb_top()}</Button
+        >
+      </div>
+    </div>
+  </section>
 </article>
 
 <style lang="scss">
-  /* 縦の間隔は gap で作る。margin はこのリポジトリーでは使わない決まり */
+  /* ほかのページと同じ組み方。帯（hero）で受けて、白い面に本文を置く */
   .guide {
     display: flex;
     flex-direction: column;
-    gap: $space-size-16;
     width: 100%;
-    max-width: 44em;
+  }
+
+  .hero {
+    width: 100%;
+    background:
+      radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
+      radial-gradient(circle at 92% 6%, rgb(25 134 255 / 14%), transparent 42%), $white;
+    border-bottom: $border-size-1 solid map.get($gray, 100);
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-12;
+    width: 100%;
+    max-width: 48em;
 
     /* 中央に寄せる。margin は使わない決まりなので論理プロパティで書く */
     margin-inline: auto;
-    padding: $space-size-40 $space-size-16 $space-size-64;
+    padding: $space-size-48 $space-size-16;
+  }
+
+  .mobile .inner {
+    padding: $space-size-32 $space-size-16;
+  }
+
+  .body .inner {
+    gap: $space-size-24;
+    padding-bottom: $space-size-64;
   }
 
   .up {
@@ -103,9 +136,7 @@
   }
 
   .lead {
-    padding-bottom: $space-size-16;
     font-size: $font-size-18;
-    font-weight: bold;
     line-height: 1.9;
   }
 
@@ -113,29 +144,58 @@
     font-size: $font-size-16;
   }
 
+  /* 次に読むページ。ほかのページのカードと同じ見た目にそろえる */
   .children {
     display: flex;
     flex-direction: column;
     gap: $space-size-12;
-    padding-top: $space-size-24;
 
     h2 {
       font-size: $font-size-20;
     }
 
     ul {
-      padding-left: $space-size-20;
-      line-height: 2;
+      display: flex;
+      flex-direction: column;
+      gap: $space-size-8;
     }
 
     a {
-      color: map.get($sky-blue, text);
+      display: flex;
+      gap: $space-size-4;
+      padding: $space-size-16;
+      color: map.get($gray, text);
+      border: $border-size-1 solid map.get($gray, border);
+      border-radius: $border-radius-8;
+      background-color: $white;
+      flex-direction: column;
+      text-decoration: none;
+
+      &:hover {
+        border-color: map.get($sky-blue, border);
+      }
     }
+  }
+
+  .child-title {
+    font-size: $font-size-16;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+  }
+
+  .child-lead {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: $font-size-14;
+    line-height: 1.7;
+    color: map.get($gray, light-text);
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   .back {
     display: flex;
     justify-content: center;
-    padding-top: $space-size-24;
+    padding-top: $space-size-16;
   }
 </style>

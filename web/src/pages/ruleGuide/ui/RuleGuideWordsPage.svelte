@@ -98,11 +98,11 @@
     flex-direction: column;
     gap: $space-size-16;
     width: 100%;
-    max-width: 44em;
+    max-width: 48em;
 
     /* 中央に寄せる。margin は使わない決まりなので論理プロパティで書く */
     margin-inline: auto;
-    padding: $space-size-40 $space-size-16 $space-size-64;
+    padding: $space-size-48 $space-size-16 $space-size-64;
   }
 
   .up {
