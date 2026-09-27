@@ -12,7 +12,10 @@ import type { GuidePage } from '@entities/ruleGuide'
 
 /*
   解説の本文が、決めた書き方から外れていないかを機械で見る。
-  約束（docs/rules-guide.md の3）と、読みやすさ（同6）を人の注意力に任せない
+  約束（docs/rules-guide.md の3）と、読みやすさ（同6）を人の注意力に任せない。
+
+  読み手として置くのは**中学生**。小学生に寄せすぎると幼い文になり、
+  かえって読みにくくなる（PR #190 のレビュー）
 */
 
 /** 書いてあるページ */
@@ -74,39 +77,32 @@ describe('解説の本文', () => {
   )
 
   /*
-    小学生でも読めるようにするための決まり。
-    1文40字までにして、長い文は2文に割る
+    長い文は読みにくい。ただし**字数で機械的に落とさない**。
+    長くても分かりやすければよい、という運営者の判断（PR #188 のレビュー）。
+    目安を大きく超えたものだけ気づけるようにして、あとは書き手が読んで決める
   */
   it.each(pages.map((page) => [page.key, page] as const))(
-    '%s … 1文が40字を超えていない',
+    '%s … 一文が極端に長くない（目安80字）',
     (_key, page) => {
       for (const text of textsOf(page)) {
         for (const sentence of sentencesOf(text)) {
-          expect(sentence.length, `長すぎる文: ${sentence}`).toBeLessThanOrEqual(40)
+          expect(sentence.length, `長すぎる文: ${sentence}`).toBeLessThanOrEqual(80)
         }
       }
     },
   )
 
   /*
-    ひらがなで書いたほうが読みやすい言葉。
+    ふだん漢字で書かない語だけを見る。
+    ひらがなに開きすぎると幼い文になり、かえって読みにくい。
+    「一度に」「視線」のようなふつうの漢字はそのまま使う（PR #190 のレビュー）。
+
     textlint は Markdown を見る道具なので、TypeScript の中の文はここで見る
   */
   it.each(pages.map((page) => [page.key, page] as const))(
     '%s … 難しい言い方をしていない',
     (_key, page) => {
-      const openUp = [
-        '且つ',
-        '殆ど',
-        '概ね',
-        '尚',
-        '但し',
-        '故に',
-        '勿論',
-        '出来る',
-        '事が',
-        '物が',
-      ]
+      const openUp = ['且つ', '殆ど', '概ね', '但し', '故に', '勿論', '出来る']
       for (const text of textsOf(page)) {
         for (const word of openUp) {
           expect(text, `「${word}」はひらがなで書く`).not.toContain(word)

@@ -4,6 +4,8 @@
   import { m } from '$lib/paraglide/messages'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
+  import { hasGuideFigure } from '../lib/figureKeys'
+  import GuideFigure from './GuideFigure.svelte'
 
   /** 本文のかたまりを順に描く */
   interface Props {
@@ -16,17 +18,19 @@
   const published = publishedGuideKeys()
 
   /*
-    出さないかたまりが2つある。
+    まだ無いものへは案内しない。
 
-    - 絵（figure）… 鍵だけ持たせてあり、まだ描いていない（TODO 7-7）。
-      「準備中」と出すと読み手の信頼を落とすので、かたまりごと出さない
-    - まだ書いていないページへのリンク（link）… 押しても何も無いので出さない。
+    - 絵（figure）… 描いていない絵は、かたまりごと出さない。
+      「準備中」と出すと読み手の信頼を落とす
+    - リンク（link）… まだ書いていないページへは押せても何も無いので出さない。
       本文を書けば自動で出る
   */
   const shown = $derived(
-    blocks.filter(
-      (block) => block.kind !== 'figure' && (block.kind !== 'link' || published.includes(block.to)),
-    ),
+    blocks.filter((block) => {
+      if (block.kind === 'figure') return hasGuideFigure(block.figureKey)
+      if (block.kind === 'link') return published.includes(block.to)
+      return true
+    }),
   )
 </script>
 
@@ -71,6 +75,11 @@
             </tbody>
           </table>
         </div>
+      </figure>
+    {:else if block.kind === 'figure'}
+      <figure class="drawing">
+        <GuideFigure figureKey={block.figureKey} />
+        <figcaption>{block.caption}</figcaption>
       </figure>
     {:else if block.kind === 'video'}
       <figure class="video">
@@ -167,6 +176,17 @@
 
   thead th {
     background-color: map.get($gray, background);
+  }
+
+  .drawing {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-8;
+
+    figcaption {
+      font-size: $font-size-14;
+      color: map.get($gray, light-text);
+    }
   }
 
   .video {
