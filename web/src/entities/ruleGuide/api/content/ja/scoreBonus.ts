@@ -10,7 +10,7 @@ import type { GuidePage } from '../../../model'
 export const SCORE_BONUS_JA: GuidePage = {
   key: 'score.bonus',
   title: '加点の取り方',
-  lead: '加点は、難度の値には表れない「技術的に価値の高いこと」に付きます。技をもっと難しくするのではなく、同じ技を条件に当てはめることで取ります。ここが点を伸ばす本命です。',
+  lead: '加点は、難度の値には表れない「技術的に価値の高いこと」に付きます。技をもっと難しくするのではなく、同じ技を条件に当てはめることで取ります。ここが得点を伸ばす本命です。',
   disclaimer: 'individual-work',
   blocks: [
     { kind: 'heading', text: '個人の加点' },
@@ -86,7 +86,7 @@ export const SCORE_BONUS_JA: GuidePage = {
     { kind: 'heading', text: '考え方' },
     {
       kind: 'paragraph',
-      text: '個人は「1つの投げにいくつ条件を重ねるか」、団体は「どこまでそろえるか」。どちらも、新しい技を覚えるより先に取れる点です。いまできる技の見せ方を変えるだけで届きます。',
+      text: '個人は「1つの投げにいくつ条件を重ねるか」、団体は「どこまでそろえるか」。どちらも、新しい技を覚えるより先に取れる得点です。いまできる技の見せ方を変えるだけで届きます。',
     },
     {
       kind: 'link',

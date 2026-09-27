@@ -33,15 +33,19 @@
   .disclaimer {
     display: flex;
     flex-direction: column;
-    gap: $space-size-4;
+    gap: $space-size-2;
     padding-top: $space-size-24;
-    font-size: $font-size-12;
-    line-height: 1.8;
     color: map.get($gray, light-text);
   }
 
+  /*
+    文字の大きさは段落に当てる。全体のスタイル（app/styles/global.css）が
+    p を18pxにしているので、親に指定しても効かない
+  */
   p {
     padding-left: 1.2em;
+    font-size: $font-size-11;
+    line-height: 1.7;
     text-indent: -1.2em;
   }
 

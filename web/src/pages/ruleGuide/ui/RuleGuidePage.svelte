@@ -190,6 +190,7 @@
     line-height: 1.7;
     color: map.get($gray, light-text);
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
   }
 

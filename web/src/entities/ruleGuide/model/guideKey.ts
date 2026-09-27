@@ -14,6 +14,8 @@
 export const GUIDE_KEY_TREE = {
   /** そもそもどんな競技か */
   basics: {},
+  /** 基本技術。難しい技の前に身につける土台 */
+  techniques: {},
   /** 点はどう決まるか */
   score: {
     /** 難度（D） */
@@ -43,8 +45,6 @@ export const GUIDE_KEY_TREE = {
   },
   /** 徒手体操 */
   toshu: {},
-  /** 用語集 */
-  words: {},
 } as const
 
 /** 鍵の木の形 */

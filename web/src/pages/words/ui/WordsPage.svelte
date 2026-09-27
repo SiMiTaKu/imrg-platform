@@ -1,6 +1,8 @@
 <script lang="ts">
-  import type { GlossaryGroup } from '@entities/ruleGuide'
-  import { guideKeyToPath, matchesGlossaryTerm } from '@entities/ruleGuide'
+  import type { GlossaryGroup } from '@entities/glossary'
+  import { matchesGlossaryTerm } from '@entities/glossary'
+  import type { GuideKey } from '@entities/ruleGuide'
+  import { guideKeyToPath } from '@entities/ruleGuide'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -11,11 +13,21 @@
   interface Props {
     /** まとまりごとの用語 */
     groups: readonly GlossaryGroup[]
-    /** 本文のある解説のページの鍵。ここにある鍵だけリンクにする */
-    publishedKeys: readonly string[]
+    /** 本文のあるルールの解説の鍵。ここにある鍵だけリンクにする */
+    publishedKeys: readonly GuideKey[]
   }
 
   const { groups, publishedKeys }: Props = $props()
+
+  /**
+   * 用語が指すルールの解説のリンク先を作る
+   * @param to - 用語が持つ解説の鍵
+   * @returns 本文のある解説ならそのパス。無ければ `undefined`（リンクを出さない）
+   */
+  const guideHrefOf = (to: string | undefined): string | undefined => {
+    const key = publishedKeys.find((published) => published === to)
+    return key === undefined ? undefined : localizeHref(ROUTES.rules.page(guideKeyToPath(key)))
+  }
 
   const isMobile = $derived($pageData.isMobile)
 
@@ -35,52 +47,48 @@
 </script>
 
 <article class="words" class:mobile={isMobile}>
-  <nav class="up">
-    <a href={localizeHref(ROUTES.rules.index)}>{m.rule_guide_breadcrumb_top()}</a>
-  </nav>
-
-  <h1>{m.rule_guide_words_title()}</h1>
-  <p class="lead">{m.rule_guide_words_lead()}</p>
+  <h1>{m.words_title()}</h1>
+  <p class="lead">{m.words_lead()}</p>
 
   <div class="search">
-    <label for="glossary-search">{m.rule_guide_words_search_label()}</label>
+    <label for="glossary-search">{m.words_search_label()}</label>
     <div class="field">
       <input
         id="glossary-search"
         type="search"
         bind:value={keyword}
-        placeholder={m.rule_guide_words_search_placeholder()}
+        placeholder={m.words_search_placeholder()}
         autocomplete="off"
       />
       {#if keyword !== ''}
         <button type="button" onclick={() => (keyword = '')}>
-          {m.rule_guide_words_clear()}
+          {m.words_clear()}
         </button>
       {/if}
     </div>
-    <p class="found">{m.rule_guide_words_found({ count: foundCount })}</p>
+    <p class="found">{m.words_found({ count: foundCount })}</p>
   </div>
 
   {#if foundCount === 0}
-    <p class="empty">{m.rule_guide_words_empty({ keyword })}</p>
+    <p class="empty">{m.words_empty({ keyword })}</p>
   {/if}
 
   {#each filtered as group (group.name)}
     <section class="group">
       <h2>{group.name}</h2>
       <dl>
-        {#each group.terms as term (term.term)}
-          <div class="term">
+        {#each group.terms as term (term.slug)}
+          {@const guideHref = guideHrefOf(term.to)}
+          <!-- 位置の目印。語ごとのページができるまでは /words/#<slug> で直接開ける -->
+          <div class="term" id={term.slug}>
             <dt>
               {term.term}
               {#if term.reading}<span class="reading">{term.reading}</span>{/if}
             </dt>
             <dd>
               {term.summary}
-              {#if term.to && publishedKeys.includes(term.to)}
-                <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(term.to)))}>
-                  {m.rule_guide_words_detail()}
-                </a>
+              {#if guideHref}
+                <a href={guideHref}>{m.words_detail()}</a>
               {/if}
             </dd>
           </div>
@@ -103,14 +111,6 @@
     /* 中央に寄せる。margin は使わない決まりなので論理プロパティで書く */
     margin-inline: auto;
     padding: $space-size-48 $space-size-16 $space-size-64;
-  }
-
-  .up {
-    font-size: $font-size-14;
-
-    a {
-      color: map.get($gray, light-text);
-    }
   }
 
   h1 {

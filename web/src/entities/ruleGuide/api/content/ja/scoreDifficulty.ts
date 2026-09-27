@@ -12,12 +12,16 @@ import type { GuidePage } from '../../../model'
 export const SCORE_DIFFICULTY_JA: GuidePage = {
   key: 'score.difficulty',
   title: '難度（D）とは',
-  lead: '難度は「どれだけ難しい技をやったか」の点です。技ごとに0.1点から0.7点の値が決まっていて、数えられる技は6つまで。そこに加点を足したものが難度の点になります。',
+  lead: '難度は「どれだけ難しい技をやったか」の得点です。技ごとに0.1点から0.7点の値が決まっていて、数えられる技は6つまで。そこに加点を足したものが難度の得点になります。',
   disclaimer: 'individual-work',
   blocks: [
     {
       kind: 'note',
-      text: '難度の点 ＝ 価値点（技6つ分） ＋ 加点',
+      text: 'Dは英語のDifficulty（ディフィカルティ）の頭文字です。「難しさ」という意味です。',
+    },
+    {
+      kind: 'note',
+      text: '難度の得点 ＝ 価値点（技6つ分） ＋ 加点',
     },
     { kind: 'heading', text: '技には5段階の値がある' },
     {
@@ -33,7 +37,7 @@ export const SCORE_DIFFICULTY_JA: GuidePage = {
     { kind: 'heading', text: '数えられるのは6つまで' },
     {
       kind: 'paragraph',
-      text: '演技にいくつ技を入れても、点になるのは6つだけです。徒手系から3つ、転回系から3つ。どちらも値の高いものから選ばれます。',
+      text: '演技にいくつ技を入れても、得点になるのは6つだけです。徒手系から3つ、転回系から3つ。どちらも値の高いものから選ばれます。',
     },
     {
       kind: 'table',
@@ -93,7 +97,7 @@ export const SCORE_DIFFICULTY_JA: GuidePage = {
     },
     {
       kind: 'note',
-      text: '5人が同時に同じ転回技を行うと、その難度が1ランク上がります。そろえること自体が点になります。',
+      text: '5人が同時に同じ転回技を行うと、その難度が1ランク上がります。そろえること自体が得点になります。',
     },
     {
       kind: 'paragraph',
@@ -107,7 +111,7 @@ export const SCORE_DIFFICULTY_JA: GuidePage = {
     {
       kind: 'link',
       to: 'score',
-      label: '点の決まり方に戻る',
+      label: '得点の決まり方に戻る',
     },
   ],
 }

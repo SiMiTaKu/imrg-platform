@@ -10,18 +10,22 @@ import type { GuidePage } from '../../../model'
 export const SCORE_EXECUTION_JA: GuidePage = {
   key: 'score.execution',
   title: '実施（E）とは',
-  lead: '実施は「どれだけ正確にできたか」の点です。10点から引いていく減点方式で、何をいくつミスしたかで決まります。審判が何を見ているかは、細かく決まっています。',
+  lead: '実施は「どれだけ正確にできたか」の得点です。10点から引いていく減点方式で、何をいくつミスしたかで決まります。審判が何を見ているかは、細かく決まっています。',
   disclaimer: 'individual-work',
   blocks: [
-    { kind: 'heading', text: 'はっきり点数が決まっているミス' },
+    {
+      kind: 'note',
+      text: 'Eは英語のExecution（エグゼキューション）の頭文字です。「やり遂げること、実行」という意味です。',
+    },
+    { kind: 'heading', text: '引かれる得点が決まっているミス' },
     {
       kind: 'paragraph',
-      text: 'まず、見て分かるミスには決まった点数があります。団体の場合です。',
+      text: 'まず、見て分かるミスは、引かれる得点が決まっています。団体の場合です。',
     },
     {
       kind: 'table',
       caption: '着地と姿勢の減点',
-      columns: ['何が起きたか', '引かれる点'],
+      columns: ['何が起きたか', '引かれる得点'],
       rows: [
         ['着地が少し乱れた', '1人1歩につき 0.10点'],
         ['着地で軽く手をついた', '1回につき 0.20点'],
@@ -34,7 +38,7 @@ export const SCORE_EXECUTION_JA: GuidePage = {
     {
       kind: 'table',
       caption: 'そろわなかったときの減点',
-      columns: ['何が起きたか', '引かれる点'],
+      columns: ['何が起きたか', '引かれる得点'],
       rows: [
         ['1人の動きやリズムが狂った', 'その都度 0.10点'],
         ['数人の動きやリズムが狂った', 'その都度 0.20点'],

@@ -16,15 +16,7 @@
   "rule_guide_index_start_watch": "Вы идёте на соревнования",
   "rule_guide_index_start_watch_body": "Когда понимаешь, как считают баллы, смотришь иначе.",
   "rule_guide_index_start_word": "Вы ищете значение термина",
-  "rule_guide_index_start_word_body": "Разбираем по отдельности «смену построения», «тосю» и другие термины.",
-  "rule_guide_index_all_heading": "Все страницы",
-  "rule_guide_index_writing": "Остальные страницы ещё пишутся.",
-  "rule_guide_words_title": "Словарь",
-  "rule_guide_words_lead": "Термины мужской художественной гимнастики — по одной строке на каждый. Введите слово, чтобы отфильтровать.",
-  "rule_guide_words_search_label": "Поиск по словам",
-  "rule_guide_words_search_placeholder": "например: построение, трудность, тосю",
-  "rule_guide_words_found": "{count}",
-  "rule_guide_words_empty": "По запросу «{keyword}» ничего не найдено. Попробуйте другое слово.",
-  "rule_guide_words_detail": "Подробнее",
-  "rule_guide_words_clear": "Очистить"
+  "rule_guide_index_start_word_body": "Можно искать частые термины: «смена построения», «тосю» и другие.",
+  "rule_guide_index_all_heading": "Содержание",
+  "rule_guide_index_writing": "Остальные страницы ещё пишутся."
 }

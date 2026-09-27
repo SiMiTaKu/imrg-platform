@@ -16,15 +16,7 @@
   "rule_guide_index_start_watch": "Vous allez voir une compétition",
   "rule_guide_index_start_watch_body": "Comprendre la notation change votre regard.",
   "rule_guide_index_start_word": "Vous cherchez un terme",
-  "rule_guide_index_start_word_body": "Nous expliquons un à un des termes comme « changement de formation » ou « toshu ».",
-  "rule_guide_index_all_heading": "Toutes les pages",
-  "rule_guide_index_writing": "D'autres pages sont en cours d'écriture.",
-  "rule_guide_words_title": "Glossaire",
-  "rule_guide_words_lead": "Les termes de la gymnastique rythmique masculine, expliqués en une ligne. Tapez pour filtrer.",
-  "rule_guide_words_search_label": "Rechercher un terme",
-  "rule_guide_words_search_placeholder": "ex. formation, difficulté, toshu",
-  "rule_guide_words_found": "{count} termes",
-  "rule_guide_words_empty": "Aucun résultat pour « {keyword} ». Essayez un autre mot.",
-  "rule_guide_words_detail": "En savoir plus",
-  "rule_guide_words_clear": "Effacer"
+  "rule_guide_index_start_word_body": "Recherchez des termes courants comme « changement de formation » ou « toshu ».",
+  "rule_guide_index_all_heading": "Sommaire",
+  "rule_guide_index_writing": "D'autres pages sont en cours d'écriture."
 }

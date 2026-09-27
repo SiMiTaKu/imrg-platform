@@ -10,6 +10,7 @@ import { SCORE_ARTISTRY_JA } from './scoreArtistry'
 import { SCORE_BONUS_JA } from './scoreBonus'
 import { SCORE_DIFFICULTY_JA } from './scoreDifficulty'
 import { SCORE_EXECUTION_JA } from './scoreExecution'
+import { TECHNIQUES_JA } from './techniques'
 import { TOSHU_JA } from './toshu'
 
 /**
@@ -20,11 +21,11 @@ import { TOSHU_JA } from './toshu'
  * 逆に、木にあっても**ここに無い鍵はページが生えない**。
  * だから書いた順に公開できる。
  *
- * 用語集（`words`）はここに入れない。検索を持つ専用のページで、
- * `api/glossary/ja.ts` から作る
+ * 用語集はルールの解説とは別のもの（`entities/glossary`・`/words/`）
  */
 export const GUIDE_CONTENT_JA: GuideContent = {
   basics: BASICS_JA,
+  techniques: TECHNIQUES_JA,
   score: SCORE_JA,
   'score.difficulty': SCORE_DIFFICULTY_JA,
   'score.bonus': SCORE_BONUS_JA,

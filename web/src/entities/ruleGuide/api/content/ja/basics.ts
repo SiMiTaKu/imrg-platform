@@ -67,7 +67,17 @@ export const BASICS_JA: GuidePage = {
       kind: 'note',
       text: '男子新体操は日本で生まれ、いまも競技人口の多くが日本にいます。世界へ広げようとしている段階の競技です。',
     },
-    { kind: 'heading', text: '点はどう決まるのか' },
+    { kind: 'heading', text: 'まず身につける基本技術' },
+    {
+      kind: 'paragraph',
+      text: '難しい技の前に、土台になる技術があります。柔軟性、間合い、締めと抜き、呼吸など。演技の見え方の大半は、ここで決まります。',
+    },
+    {
+      kind: 'link',
+      to: 'techniques',
+      label: '男子新体操の基本技術を見る',
+    },
+    { kind: 'heading', text: '得点はどう決まるのか' },
     {
       kind: 'paragraph',
       text: '何をやったか、どう見せたか、どれだけ正確か。この3つを足して、ミスの分を引きます。詳しくは次のページで説明します。',
@@ -75,7 +85,7 @@ export const BASICS_JA: GuidePage = {
     {
       kind: 'link',
       to: 'score',
-      label: '点の決まり方を見る',
+      label: '得点の決まり方を見る',
     },
   ],
 }

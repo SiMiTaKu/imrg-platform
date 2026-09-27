@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { GuidePage } from '@entities/ruleGuide'
-  import { guideKeyToPath } from '@entities/ruleGuide'
+  import { guideKeyToPath, guideParentKey } from '@entities/ruleGuide'
+  import type { GuideKey } from '@entities/ruleGuide'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -26,38 +27,76 @@
    */
   const hrefOf = (page: GuidePage) => localizeHref(ROUTES.rules.page(guideKeyToPath(page.key)))
 
+  /** どこから読むかの入口1つ */
+  interface Start {
+    /** 一覧を描くときの目印 */
+    id: string
+    /** だれ向けか */
+    title: string
+    /** ひと言の説明 */
+    body: string
+    /** 行き先の名前 */
+    to: string
+    /** 行き先 */
+    href: string
+  }
+
+  /**
+   * 解説のページへの入口を作る
+   * @param key - 行き先のページの鍵
+   * @param title - だれ向けか
+   * @param body - ひと言の説明
+   * @returns 入口。そのページの本文がまだ無ければ `undefined`
+   */
+  const guideStart = (key: GuideKey, title: string, body: string): Start | undefined => {
+    const page = topPages.find((candidate) => candidate.key === key)
+    return page === undefined
+      ? undefined
+      : { id: key, title, body, to: page.title, href: hrefOf(page) }
+  }
+
   /*
     どこから読むかの3つの入口。読み手の目的ごとに分ける。
-    検索から来る人の多くは言葉を調べに来るので、その入口も置く
+    検索から来る人の多くは言葉を調べに来るので、用語集への入口も置く。
+    用語集はルールの外の言葉も扱うので、解説の外（/words/）にある
   */
   const starts = $derived(
     [
+      guideStart('basics', m.rule_guide_index_start_new(), m.rule_guide_index_start_new_body()),
+      guideStart('score', m.rule_guide_index_start_watch(), m.rule_guide_index_start_watch_body()),
       {
-        key: 'basics',
-        title: m.rule_guide_index_start_new(),
-        body: m.rule_guide_index_start_new_body(),
-      },
-      {
-        key: 'score',
-        title: m.rule_guide_index_start_watch(),
-        body: m.rule_guide_index_start_watch_body(),
-      },
-      {
-        key: 'toshu',
+        id: 'words',
         title: m.rule_guide_index_start_word(),
         body: m.rule_guide_index_start_word_body(),
+        to: m.words_title(),
+        href: localizeHref(ROUTES.words.index),
       },
-    ]
-      .map((start) => ({ ...start, page: topPages.find((page) => page.key === start.key) }))
-      .filter((start) => start.page !== undefined),
+    ].filter((start): start is Start => start !== undefined),
   )
 
+  /** 目次の1項目。子の項目を持てる */
+  interface TocNode {
+    /** そのページ */
+    page: GuidePage
+    /** すぐ下のページ */
+    children: TocNode[]
+  }
+
   /**
-   * 階層の深さを返す。子のページを1段下げて、親子の関係が見えるようにする
-   * @param page - 解説のページ
-   * @returns いちばん上なら 0、その子なら 1
+   * 目次の木を組み立てる。
+   *
+   * @remarks
+   * 字下げを余白でまねるのではなく、リストを入れ子にする。
+   * そうすると「・」の位置も階層ごとに下がり、親子の関係が形で分かる
+   * @param parent - 親の鍵。いちばん上なら `undefined`
+   * @returns その親のすぐ下の項目
    */
-  const depthOf = (page: GuidePage) => page.key.split('.').length - 1
+  const buildToc = (parent: GuideKey | undefined): TocNode[] =>
+    allPages
+      .filter((page) => guideParentKey(page.key) === parent)
+      .map((page) => ({ page, children: buildToc(page.key) }))
+
+  const toc = $derived(buildToc(undefined))
 </script>
 
 <article class="index" class:mobile={isMobile}>
@@ -68,32 +107,39 @@
     <section class="starts">
       <h2>{m.rule_guide_index_start_heading()}</h2>
       <ul>
-        {#each starts as start (start.key)}
-          {#if start.page}
-            <li>
-              <a href={hrefOf(start.page)}>
-                <span class="who">{start.title}</span>
-                <span class="what">{start.body}</span>
-                <span class="to">{start.page.title}</span>
-              </a>
-            </li>
-          {/if}
+        {#each starts as start (start.id)}
+          <li>
+            <a href={start.href}>
+              <span class="who">{start.title}</span>
+              <span class="what">{start.body}</span>
+              <span class="to">{start.to}</span>
+            </a>
+          </li>
         {/each}
       </ul>
     </section>
   {/if}
 
-  <section class="all">
-    <h2>{m.rule_guide_index_all_heading()}</h2>
-    <ul>
-      {#each allPages as page (page.key)}
-        <li class:child={depthOf(page) === 1}>
-          <a href={hrefOf(page)}>{page.title}</a>
+  <!-- 目次。入れ子のリストにして、階層ごとに「・」の位置を下げる -->
+  {#snippet tocList(nodes: TocNode[], nested: boolean)}
+    <ul class="toc" class:nested>
+      {#each nodes as node (node.page.key)}
+        <li>
+          <a href={hrefOf(node.page)}>{node.page.title}</a>
+          {#if node.children.length > 0}
+            {@render tocList(node.children, true)}
+          {/if}
         </li>
       {/each}
     </ul>
+  {/snippet}
+
+  <!-- 以前の規則集のページと同じく、目次は枠で囲んで本文と分ける -->
+  <nav class="all" aria-labelledby="rule-guide-toc">
+    <h2 id="rule-guide-toc" class="toc-title">{m.rule_guide_index_all_heading()}</h2>
+    {@render tocList(toc, false)}
     <p class="writing">{m.rule_guide_index_writing()}</p>
-  </section>
+  </nav>
 
   <GuideDisclaimer />
 </article>
@@ -176,35 +222,69 @@
     color: map.get($sky-blue, text);
   }
 
+  /* 目次の枠。以前の規則集のページの目次と同じ見た目にそろえる */
   .all {
     display: flex;
     flex-direction: column;
-    gap: $space-size-12;
-    padding-top: $space-size-24;
+    gap: $space-size-8;
+    padding: $space-size-16 $space-size-20;
+    border: $border-size-1 solid map.get($gray, 100);
+    border-radius: $border-radius-8;
+  }
 
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: $space-size-4;
-      line-height: 1.9;
-      list-style: disc;
-    }
+  .toc-title {
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: map.get($gray, light-text);
+  }
 
-    /* 子のページは1段下げて、親子の関係が見えるようにする */
-    li {
-      padding-left: $space-size-20;
-    }
-
-    li.child {
-      padding-left: $space-size-40;
-    }
+  /*
+    目次のリスト。入れ子の ul ごとに左の余白を取るので、
+    「・」も文字と一緒に1段ずつ右へ下がる
+  */
+  .toc {
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-2;
+    padding-left: 1.5em;
+    font-size: $font-size-14;
+    list-style: disc;
 
     a {
+      display: block;
+      padding: $space-size-4 $space-size-8;
       color: map.get($sky-blue, text);
+      text-decoration: none;
+      border-radius: $border-radius-4;
+
+      &:hover {
+        background-color: map.get($sky-blue, background);
+      }
+
+      &:focus-visible {
+        outline: $border-size-2 solid map.get($sky-blue, button);
+        outline-offset: -2px;
+      }
+    }
+
+    /* いちばん上の階層は太字にして、章の区切りに見せる */
+    > li > a {
+      font-weight: bold;
+    }
+  }
+
+  /* 2段目から下は白丸にして、1段目と見分けられるようにする */
+  .toc.nested {
+    padding-top: $space-size-2;
+    list-style: circle;
+
+    > li > a {
+      font-weight: normal;
     }
   }
 
   .writing {
+    padding: $space-size-4 $space-size-8 0;
     font-size: $font-size-12;
     color: map.get($gray, light-text);
   }

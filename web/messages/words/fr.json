@@ -1,0 +1,11 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "words_title": "Glossaire",
+  "words_lead": "Les termes de la gymnastique rythmique masculine, expliqués en une ligne : pas seulement ceux du règlement, mais aussi ceux de l'entraînement et des compétitions. Tapez pour filtrer.",
+  "words_search_label": "Rechercher un terme",
+  "words_search_placeholder": "ex. formation, difficulté, toshu",
+  "words_found": "{count} termes",
+  "words_empty": "Aucun résultat pour « {keyword} ». Essayez un autre mot.",
+  "words_detail": "En savoir plus",
+  "words_clear": "Effacer"
+}

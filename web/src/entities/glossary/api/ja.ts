@@ -1,7 +1,10 @@
-import type { GlossaryGroup } from '../../model/glossary'
+import type { GlossaryGroup } from '../model/glossary'
 
 /**
  * 用語集（日本語）。
+ *
+ * @remarks
+ * ルールの外の言葉も入れてよい。`slug` は語ごとのページの URL になるので、一度決めたら変えない。
  *
  * @remarks
  * 読みと意味は `~/imrg/imrg-hub/knowledge/language/glossary-ja-en.md` と
@@ -15,6 +18,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
     name: '競技と種目',
     terms: [
       {
+        slug: 'mens_rhythmic_gymnastics',
         term: '男子新体操',
         reading: 'だんししんたいそう',
         summary: '日本で生まれた競技。5人でそろえる団体と、手具を1つ持つ個人がある。',
@@ -22,18 +26,21 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'basics',
       },
       {
+        slug: 'group',
         term: '団体',
         summary: '5人で行う種目。手具は持たない。演技時間は2分15秒から2分30秒。',
         aliases: ['Group', '団体競技'],
         to: 'group',
       },
       {
+        slug: 'individual',
         term: '個人',
         summary: '1人で行う種目。手具を1つ持つ。演技時間は1分15秒から1分30秒。',
         aliases: ['Individual', '個人競技'],
         to: 'individual',
       },
       {
+        slug: 'floor_area',
         term: '演技面',
         reading: 'えんぎめん',
         summary: '演技をする場所。内側13メートル四方。周りに2メートル以上の安全地帯をとる。',
@@ -41,6 +48,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'basics',
       },
       {
+        slug: 'apparatus',
         term: '手具',
         reading: 'しゅぐ',
         summary: '個人が持つ道具。スティック、リング、ロープ、クラブの4種類。',
@@ -53,6 +61,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
     name: '動きの種類',
     terms: [
       {
+        slug: 'toshu',
         term: '徒手',
         reading: 'としゅ',
         summary: '手具を持たずに行う動き。団体の演技はまるごとこれにあたる。',
@@ -60,12 +69,14 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'toshu_elements',
         term: '徒手系',
         reading: 'としゅけい',
         summary: '跳躍、柔軟、バランス、倒立など、体だけで行う要素のまとまり。',
         to: 'group.requirements',
       },
       {
+        slug: 'tumbling_elements',
         term: '転回系',
         reading: 'てんかいけい',
         summary: '宙返りや転回など、体を回転させる要素のまとまり。助走もこれに含む。',
@@ -73,6 +84,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'group.requirements',
       },
       {
+        slug: 'formation_change',
         term: '隊形移動',
         reading: 'たいけいいどう',
         summary: '演技の途中で並び方を変えること。団体では違う隊形を5つ以上入れる決まり。',
@@ -80,17 +92,20 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'group.formation',
       },
       {
+        slug: 'series',
         term: 'シリーズ',
         summary: '1人ずつ、またはグループごとに、途切れずに次々と転回系を行うもの。',
         to: 'group.requirements',
       },
       {
+        slug: 'crossing',
         term: '交差技',
         reading: 'こうさわざ',
         summary: '他の人の上を、転回しながら跳び越える技。',
         to: 'group.requirements',
       },
       {
+        slug: 'partner_lifts',
         term: '組・組立運動',
         reading: 'くみ・くみたてうんどう',
         summary: '2人以上が組んで、体重や力を利用し合う動き。触れたところから転回系として扱う。',
@@ -98,6 +113,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'group.requirements',
       },
       {
+        slug: 'simultaneous',
         term: '同時技',
         reading: 'どうじわざ',
         summary: '全員が同時に始める転回系。終わりは同時でも別々でもよい。',
@@ -109,12 +125,15 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
     name: '基本徒手',
     terms: [
       {
+        slug: 'basic_toshu',
         term: '基本徒手',
         reading: 'きほんとしゅ',
-        summary: '徒手体操の土台になる8つの動き。大きく、自然に、美しくの順に身につける。',
+        summary:
+          '徒手体操の土台になる動き。振動、胸後反、上下肢、蛇動などがある。大きく、自然に、美しくの順に身につける。',
         to: 'toshu',
       },
       {
+        slug: 'shindo',
         term: '振動',
         reading: 'しんどう',
         summary: 'すべての土台。膝、手の振り、胸の含み、頭の入れを合わせる。',
@@ -122,6 +141,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'kyokohan',
         term: '胸後反',
         reading: 'きょうこうはん',
         summary: '膝の屈伸の強さと、体のしなりを見せる動き。',
@@ -129,6 +149,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'jokashi',
         term: '上下肢',
         reading: 'じょうかし',
         summary: '平面の動きでいちばん大きい徒手。',
@@ -136,6 +157,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'jado',
         term: '蛇動',
         reading: 'じゃどう',
         summary: '動きの流れと幅を見せる。「蛇道」ではなく動くの動。',
@@ -143,6 +165,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'taikaisen',
         term: '体回旋',
         reading: 'たいかいせん',
         summary: '立体的な動きでいちばん大きい徒手。',
@@ -150,6 +173,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'shazenkutsu',
         term: '斜前屈',
         reading: 'しゃぜんくつ',
         summary: '深さと重さを見せる動き。',
@@ -157,6 +181,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'zento',
         term: '前倒',
         reading: 'ぜんとう',
         summary: '前に踏み出して体を倒す姿勢。倒れるの倒。',
@@ -164,6 +189,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         to: 'toshu',
       },
       {
+        slug: 'sokuto',
         term: '側倒',
         reading: 'そくとう',
         summary: '横に開いて体を倒す姿勢。つま先は外を向く。',
@@ -176,66 +202,78 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
     name: '採点',
     terms: [
       {
+        slug: 'difficulty',
         term: '難度',
         reading: 'なんど',
-        summary: '技の難しさ。AからEの5段階で、0.1点から0.7点。',
+        summary: '技の難しさ。英語のDifficultyの頭文字でDと呼ぶ。AからEの5段階で、0.1点から0.7点。',
         aliases: ['D', 'Difficulty'],
         to: 'score.difficulty',
       },
       {
+        slug: 'difficulty_value',
         term: '価値点',
         reading: 'かちてん',
-        summary: '難度そのものの点。徒手系3つと転回系3つ、合わせて6つまで数える。',
+        summary: '難度そのものの得点。徒手系3つと転回系3つ、合わせて6つまで数える。',
         to: 'score.difficulty',
       },
       {
+        slug: 'bonus',
         term: '加点',
         reading: 'かてん',
-        summary: '難度の値に表れない価値に付く点。手以外での投げ受けなど、1つ0.10点。',
+        summary: '難度の値に表れない価値に付く得点。手以外での投げ受けなど、1つ0.10点。',
         aliases: ['ボーナス', 'Bonus'],
         to: 'score.bonus',
       },
       {
+        slug: 'artistry',
         term: '構成',
         reading: 'こうせい',
-        summary: '演技の組み立て方に付く点。多様性と芸術性を見る。上位で9点台。',
+        summary:
+          '演技の組み立て方に付く得点。英語のArtistryの頭文字でAと呼ぶ。多様性と芸術性を見る。上位で9点台。',
         aliases: ['A', 'Artistry', '芸術'],
         to: 'score.artistry',
       },
       {
+        slug: 'execution',
         term: '実施',
         reading: 'じっし',
-        summary: '正確さに付く点。減点方式で、ミスの分が引かれる。上位で9点台。',
+        summary:
+          '正確さに付く得点。英語のExecutionの頭文字でEと呼ぶ。減点方式で、ミスの分が引かれる。上位で9点台。',
         aliases: ['E', 'Execution'],
         to: 'score.execution',
       },
       {
+        slug: 'requirements',
         term: '要求要素',
         reading: 'ようきゅうようそ',
         summary: '必ず入れなければならない動き。抜けると減点される。',
         to: 'group.requirements',
       },
       {
+        slug: 'throw',
         term: '投げ上げ',
         reading: 'なげあげ',
         summary: '手具を投げること。投げたところから2メートル以上でないと数えない。',
         to: 'individual.requirements',
       },
       {
+        slug: 'roll',
         term: 'ころがし',
         summary: '手具を体や床にころがす操作。決められた長さに足りないと数えない。',
         to: 'individual.requirements',
       },
       {
+        slug: 'propeller',
         term: 'プロペラ回旋',
         reading: 'プロペラかいせん',
         summary: 'スティックやクラブを、プロペラのように回す操作。2回以上が要求要素。',
         to: 'individual.requirements',
       },
       {
+        slug: 'reference_score',
         term: '基準点',
         reading: 'きじゅんてん',
-        summary: '審判が協議しても決まらないときに使う点。有効点の平均と主任審判の点から出す。',
+        summary: '審判が協議しても決まらないときに使う得点。有効点の平均と主任審判の得点から出す。',
       },
     ],
   },

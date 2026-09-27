@@ -20,6 +20,7 @@ export const NAVIGATION_LINKS: readonly NavigationLink[] = [
   { href: ROUTES.backgroundMusic, label: m.layout_nav_background_music },
   { href: ROUTES.decoratingApparatus, label: m.layout_nav_decorating_apparatus },
   { href: ROUTES.rules.index, label: m.layout_nav_rules },
+  { href: ROUTES.words.index, label: m.layout_nav_words },
   { href: ROUTES.judge, label: m.layout_nav_judge },
   { href: ROUTES.oshimitsu.index, label: m.layout_nav_oshimitsu },
 ]

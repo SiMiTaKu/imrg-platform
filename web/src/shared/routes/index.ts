@@ -37,6 +37,17 @@ export const ROUTES = {
   coaching: '/coaching/',
   backgroundMusic: '/background_music/',
   judge: '/judge/',
+  words: {
+    /** 用語集の一覧。ルールの外の言葉も載せるので `/rules/` の下には置かない */
+    index: '/words/',
+    /**
+     * 一覧の中の、その語の位置
+     * @param slug - 語の URL の名前（`formation_change`）
+     * @returns 一覧のページの中の位置
+     */
+    term: (slug: string) => `/words/#${slug}`,
+    // 語ごとのページを作ったら `/words/<slug>/` を足す（docs/rules-guide.md 5-1）
+  },
   rules: {
     index: '/rules/',
     /**
@@ -45,8 +56,6 @@ export const ROUTES = {
      * @returns 解説のページのパス
      */
     page: (path: string) => `/rules/${path}/`,
-    /** 用語集 */
-    words: '/rules/words/',
   },
   privacy: '/privacy/',
   terms: '/terms/',

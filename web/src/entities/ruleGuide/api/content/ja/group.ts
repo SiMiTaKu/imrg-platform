@@ -40,10 +40,10 @@ export const GROUP_JA: GuidePage = {
       to: 'group.requirements',
       label: '入れなければならないものを詳しく見る',
     },
-    { kind: 'heading', text: 'そろえると点が上がる' },
+    { kind: 'heading', text: 'そろえると得点が上がる' },
     {
       kind: 'paragraph',
-      text: '団体でいちばん効くのは、そろえることです。5人が同時に同じ転回技を行うと、その難度が1ランク上がります。そろえること自体が点になります。',
+      text: '団体でいちばん効くのは、そろえることです。5人が同時に同じ転回技を行うと、その難度が1ランク上がります。そろえること自体が得点になります。',
     },
     {
       kind: 'table',
@@ -102,7 +102,7 @@ export const GROUP_JA: GuidePage = {
     {
       kind: 'link',
       to: 'score',
-      label: '点の決まり方を見る',
+      label: '得点の決まり方を見る',
     },
   ],
 }

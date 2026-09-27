@@ -157,17 +157,6 @@ describe('上へ戻る先', () => {
     expect(guideUpKey('score')).toBeUndefined()
   })
 
-  /*
-    木には並べたが本文がまだ無いページがある。
-    そこへリンクすると404になるので、書いてある先祖まで飛ばす
-  */
-  it('まだ書いていない親を飛ばす', () => {
-    // individual.apparatus の親 individual は書いてある
-    expect(GUIDE_CONTENT_JA['individual']).toBeDefined()
-    // words は書いていないので、その子ができたときは入口へ戻る
-    expect(GUIDE_CONTENT_JA['words']).toBeUndefined()
-  })
-
   it('戻る先は必ず本文のあるページになる', () => {
     for (const key of publishedGuideKeys()) {
       const up = guideUpKey(key)

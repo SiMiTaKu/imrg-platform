@@ -16,15 +16,7 @@
   "rule_guide_index_start_watch": "경기를 보러 가는 분",
   "rule_guide_index_start_watch_body": "점수가 정해지는 방식을 알면 보는 눈이 달라집니다.",
   "rule_guide_index_start_word": "용어를 찾는 분",
-  "rule_guide_index_start_word_body": "「대형 이동」「도수 체조」 등을 하나씩 설명합니다.",
-  "rule_guide_index_all_heading": "모든 페이지",
-  "rule_guide_index_writing": "나머지 페이지는 지금 작성하고 있습니다.",
-  "rule_guide_words_title": "용어집",
-  "rule_guide_words_lead": "남자 리듬체조에서 쓰는 말을 한마디로 설명합니다. 찾고 싶은 말을 넣으면 좁힐 수 있습니다.",
-  "rule_guide_words_search_label": "말로 찾기",
-  "rule_guide_words_search_placeholder": "예: 대형 이동, 난도, 도수",
-  "rule_guide_words_found": "{count}개",
-  "rule_guide_words_empty": "「{keyword}」을(를) 찾지 못했습니다. 다른 말로 찾아 보세요.",
-  "rule_guide_words_detail": "자세히 보기",
-  "rule_guide_words_clear": "지우기"
+  "rule_guide_index_start_word_body": "「대형 이동」「도수」 등 자주 나오는 말을 검색할 수 있습니다.",
+  "rule_guide_index_all_heading": "목차",
+  "rule_guide_index_writing": "나머지 페이지는 지금 작성하고 있습니다."
 }

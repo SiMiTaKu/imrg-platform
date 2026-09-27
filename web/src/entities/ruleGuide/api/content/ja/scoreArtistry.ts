@@ -11,13 +11,17 @@ import type { GuidePage } from '../../../model'
 export const SCORE_ARTISTRY_JA: GuidePage = {
   key: 'score.artistry',
   title: '構成・芸術（A）とは',
-  lead: '構成の点は「どう組み立てたか」で決まります。同じ技を並べても、順番と見せ方で点が変わります。実施と同じくらい大きく、上位の演技では9点台になります。',
+  lead: '構成の得点は「どう組み立てたか」で決まります。同じ技を並べても、順番と見せ方で得点が変わります。実施と同じくらい大きく、上位の演技では9点台になります。',
   disclaimer: 'individual-work',
   blocks: [
+    {
+      kind: 'note',
+      text: 'Aは英語のArtistry（アーティストリー）の頭文字です。「芸術性」という意味です。',
+    },
     { kind: 'heading', text: '大きく2つに分かれる' },
     {
       kind: 'table',
-      caption: '構成の点の中身',
+      caption: '構成の得点の中身',
       columns: ['何を見るか', '中身'],
       rows: [
         ['多様性と技術的価値', '同じようなものばかりになっていないか'],
@@ -38,7 +42,7 @@ export const SCORE_ARTISTRY_JA: GuidePage = {
     },
     {
       kind: 'note',
-      text: '「演技面全体を使う」は隊形の評価に直接書かれています。真ん中だけで演じていると、ここで点が伸びません。',
+      text: '「演技面全体を使う」は隊形の評価に直接書かれています。真ん中だけで演じていると、ここで得点が伸びません。',
     },
     { kind: 'heading', text: '芸術性 — 4つの面から見られる' },
     {
@@ -80,7 +84,7 @@ export const SCORE_ARTISTRY_JA: GuidePage = {
     { kind: 'heading', text: '人と同じことをしない' },
     {
       kind: 'paragraph',
-      text: '他校や大学の演技をそのまま持ってくると、どれだけ上手にできても独創性の点は来ません。参考にするなら、何が良いのかを言葉にしてから、自分たちの形に置き換えます。',
+      text: '他校や大学の演技をそのまま持ってくると、どれだけ上手にできても独創性の得点は来ません。参考にするなら、何が良いのかを言葉にしてから、自分たちの形に置き換えます。',
     },
     {
       kind: 'link',

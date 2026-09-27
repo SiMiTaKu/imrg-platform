@@ -175,13 +175,13 @@ export const META_DATA = {
     ogType: 'website',
   }),
   /**
-   * ルールの解説の用語集
+   * 用語集
    * @returns メタ情報
    */
-  ruleGuideWords: (): PageMeta => ({
-    title: pageTitle(m.rule_guide_words_title()),
-    description: m.rule_guide_words_lead(),
-    path: ROUTES.rules.words,
+  words: (): PageMeta => ({
+    title: pageTitle(m.words_title()),
+    description: m.words_lead(),
+    path: ROUTES.words.index,
     ogType: 'website',
   }),
   /**

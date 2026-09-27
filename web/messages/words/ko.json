@@ -1,0 +1,11 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "words_title": "용어집",
+  "words_lead": "남자 리듬체조에서 쓰는 말을 한마디로 설명합니다. 규칙 용어뿐 아니라 연습과 대회에서 쓰는 말도 싣고 있습니다. 찾고 싶은 말을 넣으면 좁힐 수 있습니다.",
+  "words_search_label": "말로 찾기",
+  "words_search_placeholder": "예: 대형 이동, 난도, 도수",
+  "words_found": "{count}개",
+  "words_empty": "「{keyword}」을(를) 찾지 못했습니다. 다른 말로 찾아 보세요.",
+  "words_detail": "자세히 보기",
+  "words_clear": "지우기"
+}

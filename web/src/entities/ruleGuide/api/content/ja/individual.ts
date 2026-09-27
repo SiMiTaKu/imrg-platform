@@ -26,7 +26,7 @@ export const INDIVIDUAL_JA: GuidePage = {
     },
     {
       kind: 'note',
-      text: '2本持つ種目では、片方が止まっている時間をできるだけ作らないのがうまい演技です。',
+      text: '2本持つ種目では、片方が止まっている時間をできるだけ作らないのが上手な演技です。',
     },
     { kind: 'heading', text: '手具ごとに入れるものが決まっている' },
     {

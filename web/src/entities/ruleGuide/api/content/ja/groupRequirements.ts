@@ -80,7 +80,7 @@ export const GROUP_REQUIREMENTS_JA: GuidePage = {
     },
     {
       kind: 'paragraph',
-      text: 'この種類を、いろいろ混ぜることも決まりのひとつです。同じ種類ばかりだと構成の点が下がります。',
+      text: 'この種類を、いろいろ混ぜることも決まりのひとつです。同じ種類ばかりだと構成の得点が下がります。',
     },
     { kind: 'heading', text: '隊形は5つ以上' },
     {

@@ -16,15 +16,7 @@
   "rule_guide_index_start_watch": "Si vas a ver una competición",
   "rule_guide_index_start_watch_body": "Saber cómo se puntúa cambia lo que ves.",
   "rule_guide_index_start_word": "Si buscas un término",
-  "rule_guide_index_start_word_body": "Explicamos uno a uno términos como «cambio de formación» o «toshu».",
-  "rule_guide_index_all_heading": "Todas las páginas",
-  "rule_guide_index_writing": "Estamos escribiendo más páginas.",
-  "rule_guide_words_title": "Glosario",
-  "rule_guide_words_lead": "Los términos de la gimnasia rítmica masculina, explicados en una línea. Escribe para filtrar.",
-  "rule_guide_words_search_label": "Buscar términos",
-  "rule_guide_words_search_placeholder": "p. ej. formación, dificultad, toshu",
-  "rule_guide_words_found": "{count} términos",
-  "rule_guide_words_empty": "No hay resultados para «{keyword}». Prueba con otra palabra.",
-  "rule_guide_words_detail": "Ver más",
-  "rule_guide_words_clear": "Borrar"
+  "rule_guide_index_start_word_body": "Busca términos frecuentes como «cambio de formación» o «toshu».",
+  "rule_guide_index_all_heading": "Índice",
+  "rule_guide_index_writing": "Estamos escribiendo más páginas."
 }
