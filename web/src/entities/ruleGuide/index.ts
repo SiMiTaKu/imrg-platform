@@ -16,6 +16,8 @@ export type {
   GuideDisclaimer,
   GuideKey,
   GuidePage,
+  GuideQuiz,
+  GuideQuizQuestion,
   GuideTopKey,
 } from './model'
 export { GUIDE_CONTENT_JA } from './api/content/ja'
@@ -24,6 +26,16 @@ export {
   loadAllGuidePages,
   loadGuideChildren,
   loadGuidePage,
+  loadGuideQuiz,
   loadTopGuidePages,
   publishedGuideKeys,
 } from './lib/loadGuide'
+export {
+  guideChapterKeyOf,
+  guideChapterKeys,
+  guideCoursePosition,
+  guideLessonKeys,
+  isChapterEnd,
+} from './lib/course'
+export type { GuideCoursePosition } from './lib/course'
+export { GUIDE_QUIZ_JA } from './api/quiz/ja'

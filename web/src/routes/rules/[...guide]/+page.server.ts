@@ -1,11 +1,15 @@
 import { error } from '@sveltejs/kit'
 import {
+  guideCoursePosition,
+  guideKeyToPath,
   guidePathToKey,
+  isChapterEnd,
   loadGuideChildren,
   loadGuidePage,
+  loadGuideQuiz,
   publishedGuideKeys,
 } from '@entities/ruleGuide'
-import { guideKeyToPath } from '@entities/ruleGuide'
+import type { GuideKey } from '@entities/ruleGuide'
 import { META_DATA } from '@shared/config/meta'
 import { getLocale } from '@shared/lib/i18n'
 import type { EntryGenerator, PageServerLoad } from './$types'
@@ -25,7 +29,21 @@ export const load: PageServerLoad = ({ params }) => {
 
   const locale = getLocale()
   const page = loadGuidePage(key, locale)
-  if (page === undefined) error(404, 'Not Found')
+  const position = guideCoursePosition(key)
+  if (page === undefined || position === undefined) error(404, 'Not Found')
+
+  /**
+   * 前後のレッスンを、リンクに要る分だけ取り出す
+   * @param target - 前後のレッスンの鍵
+   * @returns 鍵と見出し。無ければ `undefined`
+   */
+  const lessonLink = (target: GuideKey | undefined) => {
+    const found = target === undefined ? undefined : loadGuidePage(target, locale)
+    return found === undefined ? undefined : { key: found.key, title: found.title }
+  }
+
+  const prev = lessonLink(position.prev)
+  const next = lessonLink(position.next)
 
   return {
     meta: META_DATA.ruleGuide({
@@ -35,5 +53,17 @@ export const load: PageServerLoad = ({ params }) => {
     }),
     page,
     children: loadGuideChildren(key, locale),
+    course: {
+      chapter: position.chapter,
+      chapterTitle: loadGuidePage(position.chapterKey, locale)?.title ?? '',
+      lesson: position.lesson,
+      lessonCount: position.lessonCount,
+      prev,
+      next,
+      // 次が別の章なら「次の章へ」と出す
+      nextIsNewChapter: next !== undefined && !next.key.startsWith(`${position.chapterKey}.`),
+    },
+    // 理解度チェックは章の最後のレッスンで出す
+    quiz: isChapterEnd(position) ? loadGuideQuiz(position.chapterKey, locale) : [],
   }
 }

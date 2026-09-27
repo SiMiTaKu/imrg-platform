@@ -1,6 +1,7 @@
 import type { SiteLocale } from '@shared/lib/i18n'
 import { GUIDE_CONTENT_JA } from '../api/content/ja'
-import type { GuideContent, GuidePage } from '../model'
+import { GUIDE_QUIZ_JA } from '../api/quiz/ja'
+import type { GuideContent, GuidePage, GuideQuiz, GuideQuizQuestion } from '../model'
 import { GUIDE_KEYS, guideChildKeys, guideParentKey } from '../model'
 import type { GuideKey } from '../model'
 
@@ -89,3 +90,21 @@ export const loadAllGuidePages = (locale: SiteLocale): GuidePage[] =>
  */
 export const loadTopGuidePages = (locale: SiteLocale): GuidePage[] =>
   loadAllGuidePages(locale).filter((page) => !page.key.includes('.'))
+
+/**
+ * 言語ごとの理解度チェック。訳が無ければ日本語に落ちる
+ */
+const QUIZ: Partial<Record<SiteLocale, GuideQuiz>> = {
+  ja: GUIDE_QUIZ_JA,
+}
+
+/**
+ * その章の理解度チェックを返す
+ * @param chapterKey - 章のいちばん上の鍵
+ * @param locale - 表示する言語
+ * @returns 問題。その章に問題が無ければ空
+ */
+export const loadGuideQuiz = (
+  chapterKey: GuideKey,
+  locale: SiteLocale,
+): readonly GuideQuizQuestion[] => QUIZ[locale]?.[chapterKey] ?? GUIDE_QUIZ_JA[chapterKey] ?? []

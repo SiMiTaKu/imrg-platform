@@ -1,7 +1,8 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
-  import type { GuidePage } from '@entities/ruleGuide'
+  import type { GuideKey, GuidePage, GuideQuizQuestion } from '@entities/ruleGuide'
   import { guideKeyToPath, guideUpKey } from '@entities/ruleGuide'
+  import { GuideQuiz } from '@features/guideQuiz'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
@@ -14,9 +15,46 @@
     page: GuidePage
     /** すぐ下にぶら下がるページ。本文があるものだけ渡ってくる */
     children: readonly GuidePage[]
+    /** 講座の中での位置。何章の何番目のレッスンか、前後はどこか */
+    course: GuideCourse
+    /** 章末の理解度チェック。章の最後のレッスンでだけ中身がある */
+    quiz: readonly GuideQuizQuestion[]
   }
 
-  const { page, children }: Props = $props()
+  /** 前後のレッスンへのリンクに要るもの */
+  interface LessonLink {
+    /** 鍵 */
+    key: GuideKey
+    /** 見出し */
+    title: string
+  }
+
+  /** 講座の中での位置 */
+  interface GuideCourse {
+    /** 何章か */
+    chapter: number
+    /** 章の名前（章のいちばん上のページの見出し） */
+    chapterTitle: string
+    /** 章の中で何番目か */
+    lesson: number
+    /** 章の中のレッスンの数 */
+    lessonCount: number
+    /** 前のレッスン */
+    prev?: LessonLink
+    /** 次のレッスン */
+    next?: LessonLink
+    /** 次のレッスンが別の章か */
+    nextIsNewChapter: boolean
+  }
+
+  const { page, children, course, quiz }: Props = $props()
+
+  /**
+   * レッスンへのリンク先を作る
+   * @param key - レッスンの鍵
+   * @returns 表示中の言語のパス
+   */
+  const lessonHref = (key: GuideKey) => localizeHref(ROUTES.rules.page(guideKeyToPath(key)))
 
   const isMobile = $derived($pageData.isMobile)
 
@@ -39,6 +77,14 @@
       <nav class="up">
         <a href={upHref}>{m.rule_guide_breadcrumb_top()}</a>
       </nav>
+      <!-- 講座の中の位置。Udemy のように、いま何章の何番目かを見せる -->
+      <p class="course">
+        <span class="chapter">{m.rule_guide_chapter({ number: course.chapter })}</span>
+        <span class="chapter-title">{course.chapterTitle}</span>
+        <span class="lesson"
+          >{m.rule_guide_lesson({ number: course.lesson, total: course.lessonCount })}</span
+        >
+      </p>
       <h1>{page.title}</h1>
       <!-- 最初の答え。検索から来た人はここだけ読んで帰れるようにする -->
       <p class="lead">{page.lead}</p>
@@ -64,6 +110,37 @@
           </ul>
         </section>
       {/if}
+
+      {#if quiz.length > 0}
+        <GuideQuiz
+          heading={m.rule_guide_quiz_heading({ number: course.chapter })}
+          questions={quiz}
+          id="chapter-{course.chapter}-quiz"
+        />
+      {/if}
+
+      <!-- 前後のレッスン。前から順に読めば理解が積み上がるように並べてある -->
+      <nav class="pager" aria-label={m.rule_guide_chapter({ number: course.chapter })}>
+        {#if course.prev}
+          <a href={lessonHref(course.prev.key)}>
+            <span class="direction">← {m.rule_guide_prev()}</span>
+            <span class="title">{course.prev.title}</span>
+          </a>
+        {/if}
+        {#if course.next}
+          <a class="next" href={lessonHref(course.next.key)}>
+            <span class="direction"
+              >{course.nextIsNewChapter ? m.rule_guide_next_chapter() : m.rule_guide_next()} →</span
+            >
+            <span class="title">{course.next.title}</span>
+          </a>
+        {:else}
+          <a class="next" href={localizeHref(ROUTES.rules.quiz)}>
+            <span class="direction">{m.rule_guide_quiz_page_title()} →</span>
+            <span class="title">{m.rule_guide_course_end()}</span>
+          </a>
+        {/if}
+      </nav>
 
       <!-- 断り書き。ページの型（GuidePage.disclaimer）で必須にしてある -->
       <GuideDisclaimer />
@@ -116,6 +193,79 @@
   .body .inner {
     gap: $space-size-24;
     padding-bottom: $space-size-64;
+  }
+
+  .course {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-4 $space-size-8;
+    align-items: center;
+    font-size: $font-size-14;
+  }
+
+  .chapter {
+    padding: $space-size-2 $space-size-12;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: $white;
+    border-radius: 999px;
+    background-color: map.get($sky-blue, button);
+  }
+
+  .chapter-title {
+    font-weight: bold;
+    color: map.get($gray, text);
+  }
+
+  .lesson {
+    color: map.get($gray, light-text);
+  }
+
+  /* 前後のレッスン。前は左、次は右に置く */
+  .pager {
+    display: grid;
+    gap: $space-size-12;
+    grid-template-columns: 1fr 1fr;
+
+    a {
+      display: flex;
+      gap: $space-size-4;
+      padding: $space-size-16;
+      color: map.get($gray, text);
+      border: $border-size-1 solid map.get($gray, border);
+      border-radius: $border-radius-8;
+      background-color: $white;
+      flex-direction: column;
+      text-decoration: none;
+
+      &:hover {
+        border-color: map.get($sky-blue, border);
+      }
+    }
+
+    .next {
+      grid-column: 2;
+      text-align: right;
+    }
+  }
+
+  .mobile .pager {
+    grid-template-columns: 1fr;
+
+    .next {
+      grid-column: 1;
+    }
+  }
+
+  .direction {
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+  }
+
+  .pager .title {
+    font-size: $font-size-16;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
   }
 
   .up {

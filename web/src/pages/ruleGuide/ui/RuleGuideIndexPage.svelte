@@ -120,14 +120,25 @@
     </section>
   {/if}
 
-  <!-- 目次。入れ子のリストにして、階層ごとに「・」の位置を下げる -->
-  {#snippet tocList(nodes: TocNode[], nested: boolean)}
-    <ul class="toc" class:nested>
-      {#each nodes as node (node.page.key)}
+  <!--
+    目次。入れ子のリストにして、階層ごとに「・」の位置を下げる。
+    講座の順番が分かるよう、1段目に章の番号、2段目にレッスンの番号を付ける。
+    章のいちばん上のページがレッスン1なので、2段目は2から数える
+  -->
+  {#snippet tocList(nodes: TocNode[], chapter: number | undefined)}
+    <ul class="toc" class:nested={chapter !== undefined}>
+      {#each nodes as node, index (node.page.key)}
         <li>
-          <a href={hrefOf(node.page)}>{node.page.title}</a>
+          <a href={hrefOf(node.page)}>
+            <span class="toc-number">
+              {chapter === undefined
+                ? m.rule_guide_chapter({ number: index + 1 })
+                : `${chapter}-${index + 2}`}
+            </span>
+            {node.page.title}
+          </a>
           {#if node.children.length > 0}
-            {@render tocList(node.children, true)}
+            {@render tocList(node.children, index + 1)}
           {/if}
         </li>
       {/each}
@@ -137,9 +148,16 @@
   <!-- 以前の規則集のページと同じく、目次は枠で囲んで本文と分ける -->
   <nav class="all" aria-labelledby="rule-guide-toc">
     <h2 id="rule-guide-toc" class="toc-title">{m.rule_guide_index_all_heading()}</h2>
-    {@render tocList(toc, false)}
+    {@render tocList(toc, undefined)}
     <p class="writing">{m.rule_guide_index_writing()}</p>
   </nav>
+
+  <!-- 章ごとの理解度チェックをまとめた問題集 -->
+  <a class="quiz-card" href={localizeHref(ROUTES.rules.quiz)}>
+    <span class="who">{m.rule_guide_index_quiz_title()}</span>
+    <span class="what">{m.rule_guide_index_quiz_body()}</span>
+    <span class="to">{m.rule_guide_quiz_page_title()} →</span>
+  </a>
 
   <GuideDisclaimer />
 </article>
@@ -280,6 +298,29 @@
 
     > li > a {
       font-weight: normal;
+    }
+  }
+
+  .toc-number {
+    padding-right: $space-size-8;
+    font-size: $font-size-12;
+    font-weight: normal;
+    color: map.get($gray, light-text);
+  }
+
+  .quiz-card {
+    display: flex;
+    gap: $space-size-4;
+    padding: $space-size-16 $space-size-20;
+    color: map.get($gray, text);
+    border: $border-size-1 solid map.get($sky-blue, border);
+    border-radius: $border-radius-8;
+    background-color: map.get($sky-blue, background);
+    flex-direction: column;
+    text-decoration: none;
+
+    &:hover {
+      border-color: map.get($sky-blue, button);
     }
   }
 

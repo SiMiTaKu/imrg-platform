@@ -56,6 +56,8 @@ export const ROUTES = {
      * @returns 解説のページのパス
      */
     page: (path: string) => `/rules/${path}/`,
+    /** 問題集。章ごとの理解度チェックをまとめたもの */
+    quiz: '/rules/quiz/',
   },
   privacy: '/privacy/',
   terms: '/terms/',

@@ -175,6 +175,16 @@ export const META_DATA = {
     ogType: 'website',
   }),
   /**
+   * ルールの解説の問題集
+   * @returns メタ情報
+   */
+  ruleGuideQuiz: (): PageMeta => ({
+    title: pageTitle(m.rule_guide_quiz_page_title()),
+    description: m.rule_guide_quiz_page_lead(),
+    path: ROUTES.rules.quiz,
+    ogType: 'website',
+  }),
+  /**
    * 用語集
    * @returns メタ情報
    */
