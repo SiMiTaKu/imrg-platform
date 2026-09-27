@@ -18,6 +18,8 @@ export const GUIDE_KEY_TREE = {
   score: {
     /** 難度（D） */
     difficulty: {},
+    /** 加点（ボーナス）の取り方 */
+    bonus: {},
     /** 構成・芸術（A） */
     artistry: {},
     /** 実施（E） */
@@ -27,11 +29,15 @@ export const GUIDE_KEY_TREE = {
   },
   /** 団体（5人）のルール */
   group: {
+    /** 入れなければならない要素 */
+    requirements: {},
     /** 隊形移動 */
     formation: {},
   },
   /** 個人のルール */
   individual: {
+    /** 入れなければならない要素（手具ごと） */
+    requirements: {},
     /** 手具4種 */
     apparatus: {},
   },

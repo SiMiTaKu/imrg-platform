@@ -18,5 +18,13 @@
   "rule_guide_index_start_word": "想查词义的人",
   "rule_guide_index_start_word_body": "逐一说明「队形移动」「徒手体操」等词。",
   "rule_guide_index_all_heading": "全部页面",
-  "rule_guide_index_writing": "其余页面正在撰写中。"
+  "rule_guide_index_writing": "其余页面正在撰写中。",
+  "rule_guide_words_title": "术语集",
+  "rule_guide_words_lead": "用一句话说明男子艺术体操使用的词语。输入想找的词即可筛选。",
+  "rule_guide_words_search_label": "按词搜索",
+  "rule_guide_words_search_placeholder": "例：队形移动、难度、徒手",
+  "rule_guide_words_found": "{count}个词",
+  "rule_guide_words_empty": "没有找到「{keyword}」。请换个词试试。",
+  "rule_guide_words_detail": "查看详情",
+  "rule_guide_words_clear": "清除"
 }

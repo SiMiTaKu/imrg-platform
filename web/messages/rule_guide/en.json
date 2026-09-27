@@ -18,5 +18,13 @@
   "rule_guide_index_start_word": "Looking up a word",
   "rule_guide_index_start_word_body": "Terms such as \"formation change\" and \"toshu\" are explained one by one.",
   "rule_guide_index_all_heading": "All pages",
-  "rule_guide_index_writing": "More pages are being written."
+  "rule_guide_index_writing": "More pages are being written.",
+  "rule_guide_words_title": "Glossary",
+  "rule_guide_words_lead": "Terms used in men's rhythmic gymnastics, each explained in one line. Type to filter.",
+  "rule_guide_words_search_label": "Search terms",
+  "rule_guide_words_search_placeholder": "e.g. formation, difficulty, toshu",
+  "rule_guide_words_found": "{count} terms",
+  "rule_guide_words_empty": "No results for \"{keyword}\". Try another word.",
+  "rule_guide_words_detail": "Read more",
+  "rule_guide_words_clear": "Clear"
 }

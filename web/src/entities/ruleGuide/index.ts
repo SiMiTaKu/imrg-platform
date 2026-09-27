@@ -8,8 +8,11 @@ export {
   guideKeyToPath,
   guideParentKey,
   guidePathToKey,
+  matchesGlossaryTerm,
 } from './model'
 export type {
+  GlossaryGroup,
+  GlossaryTerm,
   GuideBlock,
   GuideChildKey,
   GuideContent,
@@ -19,6 +22,7 @@ export type {
   GuideTopKey,
 } from './model'
 export { GUIDE_CONTENT_JA } from './api/content/ja'
+export { GLOSSARY_JA } from './api/glossary/ja'
 export {
   guideUpKey,
   loadAllGuidePages,

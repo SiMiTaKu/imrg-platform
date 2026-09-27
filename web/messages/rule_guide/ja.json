@@ -18,5 +18,13 @@
   "rule_guide_index_start_word": "言葉の意味を調べたい人",
   "rule_guide_index_start_word_body": "「隊形移動」「徒手体操」などを個別に説明しています。",
   "rule_guide_index_all_heading": "すべてのページ",
-  "rule_guide_index_writing": "このほかのページは、いま書いています。"
+  "rule_guide_index_writing": "このほかのページは、いま書いています。",
+  "rule_guide_words_title": "用語集",
+  "rule_guide_words_lead": "男子新体操で使う言葉を、ひとことで説明します。探したい言葉を入れると絞り込めます。",
+  "rule_guide_words_search_label": "言葉で探す",
+  "rule_guide_words_search_placeholder": "例：隊形移動、難度、徒手",
+  "rule_guide_words_found": "{count}語",
+  "rule_guide_words_empty": "「{keyword}」は見つかりませんでした。別の言葉で探してみてください。",
+  "rule_guide_words_detail": "詳しく見る",
+  "rule_guide_words_clear": "消す"
 }

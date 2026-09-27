@@ -18,5 +18,13 @@
   "rule_guide_index_start_word": "किसी शब्द का अर्थ खोज रहे हैं",
   "rule_guide_index_start_word_body": "«रचना परिवर्तन», «तोशु» जैसे शब्द एक-एक करके समझाए गए हैं।",
   "rule_guide_index_all_heading": "सभी पृष्ठ",
-  "rule_guide_index_writing": "बाक़ी पृष्ठ अभी लिखे जा रहे हैं।"
+  "rule_guide_index_writing": "बाक़ी पृष्ठ अभी लिखे जा रहे हैं।",
+  "rule_guide_words_title": "शब्दावली",
+  "rule_guide_words_lead": "पुरुष लयबद्ध जिम्नास्टिक में उपयोग होने वाले शब्द, एक पंक्ति में समझाए गए। खोजने के लिए शब्द लिखें।",
+  "rule_guide_words_search_label": "शब्द से खोजें",
+  "rule_guide_words_search_placeholder": "जैसे: रचना परिवर्तन, कठिनाई, तोशु",
+  "rule_guide_words_found": "{count} शब्द",
+  "rule_guide_words_empty": "«{keyword}» नहीं मिला। कोई दूसरा शब्द आज़माएँ।",
+  "rule_guide_words_detail": "और देखें",
+  "rule_guide_words_clear": "साफ़ करें"
 }

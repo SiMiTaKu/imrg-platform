@@ -45,6 +45,8 @@ export const ROUTES = {
      * @returns 解説のページのパス
      */
     page: (path: string) => `/rules/${path}/`,
+    /** 用語集 */
+    words: '/rules/words/',
   },
   privacy: '/privacy/',
   terms: '/terms/',
