@@ -7,5 +7,16 @@
   "rule_guide_disclaimer_buy_link": "Открыть страницу продажи",
   "rule_guide_empty": "Эта страница ещё пишется.",
   "rule_guide_breadcrumb_top": "Разбор правил",
-  "rule_guide_children_heading": "Подробнее"
+  "rule_guide_children_heading": "Подробнее",
+  "rule_guide_index_title": "Разбор правил",
+  "rule_guide_index_lead": "Правила мужской художественной гимнастики, объяснённые так, чтобы их понял новичок: от значения терминов до того, как складываются оценки. Начните с того, что вам интересно.",
+  "rule_guide_index_start_heading": "С чего начать",
+  "rule_guide_index_start_new": "Вы впервые об этом слышите",
+  "rule_guide_index_start_new_body": "Что это за вид спорта — без предварительных знаний.",
+  "rule_guide_index_start_watch": "Вы идёте на соревнования",
+  "rule_guide_index_start_watch_body": "Когда понимаешь, как считают баллы, смотришь иначе.",
+  "rule_guide_index_start_word": "Вы ищете значение термина",
+  "rule_guide_index_start_word_body": "Разбираем по отдельности «смену построения», «тосю» и другие термины.",
+  "rule_guide_index_all_heading": "Все страницы",
+  "rule_guide_index_writing": "Остальные страницы ещё пишутся."
 }

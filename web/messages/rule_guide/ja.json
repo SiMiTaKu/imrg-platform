@@ -7,5 +7,16 @@
   "rule_guide_disclaimer_buy_link": "販売ページを見る",
   "rule_guide_empty": "このページは、いま書いています。",
   "rule_guide_breadcrumb_top": "ルールを知る",
-  "rule_guide_children_heading": "もっと詳しく"
+  "rule_guide_children_heading": "もっと詳しく",
+  "rule_guide_index_title": "ルールを知る",
+  "rule_guide_index_lead": "男子新体操のルールを、はじめての人にも分かるように解説します。用語の説明から、点の決まり方まで。知りたいところから読んでください。",
+  "rule_guide_index_start_heading": "どこから読むか",
+  "rule_guide_index_start_new": "はじめて見る人",
+  "rule_guide_index_start_new_body": "どんな競技なのかを、前提なしで説明します。",
+  "rule_guide_index_start_watch": "試合を見に行く人",
+  "rule_guide_index_start_watch_body": "点がどう決まるかが分かると、見え方が変わります。",
+  "rule_guide_index_start_word": "言葉の意味を調べたい人",
+  "rule_guide_index_start_word_body": "「隊形移動」「徒手体操」などを個別に説明しています。",
+  "rule_guide_index_all_heading": "すべてのページ",
+  "rule_guide_index_writing": "このほかのページは、いま書いています。"
 }

@@ -46,5 +46,8 @@
   "video_card_title": "{name}の演技",
   "video_card_play": "{name}の演技を再生する",
   "video_card_again": "もう一度見る",
-  "modal_close": "閉じる"
+  "modal_close": "閉じる",
+  "cross_rules_label": "ルールを知る",
+  "cross_rules_from_oshimitsu": "点の決まり方が分かると、同じ演技でも見えるものが変わります。",
+  "cross_rules_from_calendar": "観に行く前にルールを知っておくと、その場で何が起きているか分かります。"
 }

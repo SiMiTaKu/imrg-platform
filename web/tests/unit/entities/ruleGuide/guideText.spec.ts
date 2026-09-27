@@ -148,18 +148,24 @@ describe('鍵と URL', () => {
 })
 
 describe('上へ戻る先', () => {
-  /*
-    木には並べたが本文がまだ無いページがある。
-    そこへリンクすると 404 になるので、書いてある先祖まで飛ばす
-  */
-  it('まだ書いていない親を飛ばす', () => {
-    // group はまだ本文が無いので、group.formation の戻る先は undefined（＝解説の入口へ戻す）
-    expect(GUIDE_CONTENT_JA['group']).toBeUndefined()
-    expect(guideUpKey('group.formation')).toBeUndefined()
+  it('親の本文があれば、その親を返す', () => {
+    expect(guideUpKey('group.formation')).toBe('group')
+    expect(guideUpKey('score.difficulty')).toBe('score')
   })
 
   it('いちばん上の鍵には戻る先が無い', () => {
     expect(guideUpKey('score')).toBeUndefined()
+  })
+
+  /*
+    木には並べたが本文がまだ無いページがある。
+    そこへリンクすると404になるので、書いてある先祖まで飛ばす
+  */
+  it('まだ書いていない親を飛ばす', () => {
+    // individual.apparatus の親 individual は書いてある
+    expect(GUIDE_CONTENT_JA['individual']).toBeDefined()
+    // words は書いていないので、その子ができたときは入口へ戻る
+    expect(GUIDE_CONTENT_JA['words']).toBeUndefined()
   })
 
   it('戻る先は必ず本文のあるページになる', () => {

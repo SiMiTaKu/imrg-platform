@@ -46,5 +46,8 @@
   "video_card_title": "{name}’s routine",
   "video_card_play": "Play {name}’s routine",
   "video_card_again": "Watch again",
-  "modal_close": "Close"
+  "modal_close": "Close",
+  "cross_rules_label": "Learn the Rules",
+  "cross_rules_from_oshimitsu": "Once you know how scoring works, the same routine looks different.",
+  "cross_rules_from_calendar": "Knowing the rules before you go means you can follow what is happening."
 }

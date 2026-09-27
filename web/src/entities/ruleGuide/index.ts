@@ -19,4 +19,11 @@ export type {
   GuideTopKey,
 } from './model'
 export { GUIDE_CONTENT_JA } from './api/content/ja'
-export { guideUpKey, loadGuideChildren, loadGuidePage, publishedGuideKeys } from './lib/loadGuide'
+export {
+  guideUpKey,
+  loadAllGuidePages,
+  loadGuideChildren,
+  loadGuidePage,
+  loadTopGuidePages,
+  publishedGuideKeys,
+} from './lib/loadGuide'

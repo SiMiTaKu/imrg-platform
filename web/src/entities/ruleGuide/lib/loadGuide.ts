@@ -68,3 +68,24 @@ export const loadGuideChildren = (key: GuideKey, locale: SiteLocale): GuidePage[
   guideChildKeys(key)
     .map((child) => loadGuidePage(child, locale))
     .filter((page): page is GuidePage => page !== undefined)
+
+/**
+ * 解説の入口に出す一覧を作る。
+ *
+ * @remarks
+ * 本文のあるページだけを、木の並び順（親が子より先）で返す
+ * @param locale - 表示する言語
+ * @returns すべてのページ
+ */
+export const loadAllGuidePages = (locale: SiteLocale): GuidePage[] =>
+  publishedGuideKeys()
+    .map((key) => loadGuidePage(key, locale))
+    .filter((page): page is GuidePage => page !== undefined)
+
+/**
+ * いちばん上の層のページを返す
+ * @param locale - 表示する言語
+ * @returns 親を持たないページ
+ */
+export const loadTopGuidePages = (locale: SiteLocale): GuidePage[] =>
+  loadAllGuidePages(locale).filter((page) => !page.key.includes('.'))

@@ -46,5 +46,8 @@
   "video_card_title": "Ejercicio de {name}",
   "video_card_play": "Reproducir el ejercicio de {name}",
   "video_card_again": "Ver de nuevo",
-  "modal_close": "Cerrar"
+  "modal_close": "Cerrar",
+  "cross_rules_label": "Conoce las reglas",
+  "cross_rules_from_oshimitsu": "Cuando sabes cómo se puntúa, el mismo ejercicio se ve distinto.",
+  "cross_rules_from_calendar": "Conocer las reglas antes de ir te permite seguir lo que ocurre."
 }
