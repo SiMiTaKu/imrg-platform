@@ -95,7 +95,7 @@ export const GROUP_REQUIREMENTS_JA: GuidePage = {
     { kind: 'heading', text: '始め方・終わり方・音楽' },
     {
       kind: 'paragraph',
-      text: '演技の開始と終了にも決まりがあります。音楽は、終わりの動きと音楽の終わりが合っていないと0.20点引かれます。',
+      text: '演技の開始と終了にも決まりがあります。音楽は、終わりの動きと音楽の終わりが合っていないと0.20点減点されます。',
     },
     {
       kind: 'link',

@@ -238,7 +238,7 @@ export const GLOSSARY_JA: readonly GlossaryGroup[] = [
         term: '実施',
         reading: 'じっし',
         summary:
-          '正確さに付く得点。英語のExecutionの頭文字でEと呼ぶ。減点方式で、ミスの分が引かれる。上位で9点台。',
+          '正確さに付く得点。英語のExecutionの頭文字でEと呼ぶ。減点方式で、ミスの分が減点される。上位で9点台。',
         aliases: ['E', 'Execution'],
         to: 'score.execution',
       },
