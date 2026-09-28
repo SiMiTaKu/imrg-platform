@@ -11,9 +11,9 @@
   外すのは TODO 7-6（全体がそろってから）
 -->
 <PageHead meta={data.meta} noindex={true} />
-{#if data.allPages.length > 0}
-  <RuleGuideIndexPage topPages={data.topPages} allPages={data.allPages} />
+{#if data.chapters.length > 0}
+  <RuleGuideIndexPage chapters={data.chapters} documents={data.documents} stats={data.stats} />
 {:else}
-  <!-- 本文が1枚も無いときは、空の一覧を見せずに「準備中」を出す -->
+  <!-- 本文が1枚も無いときは、空の講座を見せずに「準備中」を出す -->
   <ComingSoon />
 {/if}

@@ -39,3 +39,4 @@ export {
 } from './lib/course'
 export type { GuideCoursePosition } from './lib/course'
 export { GUIDE_QUIZ_JA } from './api/quiz/ja'
+export { guideReadingMinutes, guideSearchText } from './lib/readingTime'

@@ -1,13 +1,15 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import { Button } from '@imrg-platform/design-system'
   import type { GuideKey, GuidePage, GuideQuizQuestion } from '@entities/ruleGuide'
   import { guideKeyToPath, guideUpKey } from '@entities/ruleGuide'
+  import { markLessonRead } from '@features/guideProgress'
   import { GuideQuiz } from '@features/guideQuiz'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { GuideBlocks, GuideDisclaimer } from '@widgets/ruleGuide'
+  import { GuideBlocks, GuideDisclaimer, chapterColor } from '@widgets/ruleGuide'
 
   /** ルールの解説の1ページ */
   interface Props {
@@ -63,6 +65,29 @@
     見つからなければ解説の入口へ。書いていないページへのリンクを出さないための決まり
   */
   const up = $derived(guideUpKey(page.key))
+
+  /* 章の色。入口の章カードと同じ色で、どの章にいるかを見分けられるようにする */
+  const accent = $derived(chapterColor(course.chapter))
+
+  /*
+    ページの下（前後のレッスンの案内）まで来たら「読んだ」にする。
+    開いただけでは読んだことにしない。見分けられない古いブラウザでは、開いた時点で読んだことにする
+  */
+  let pager = $state<HTMLElement>()
+  onMount(() => {
+    if (pager === undefined || !('IntersectionObserver' in window)) {
+      markLessonRead(page.key)
+      return
+    }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        markLessonRead(page.key)
+        observer.disconnect()
+      }
+    })
+    observer.observe(pager)
+    return () => observer.disconnect()
+  })
   const upHref = $derived(
     up === undefined
       ? localizeHref(ROUTES.rules.index)
@@ -70,13 +95,34 @@
   )
 </script>
 
-<article class="guide" class:mobile={isMobile}>
+<article class="guide" class:mobile={isMobile} style:--accent={accent}>
   <!-- ほかのページと同じ作り。帯で受けて、本文は白い面に置く -->
   <section class="hero">
     <div class="inner">
-      <nav class="up">
-        <a href={upHref}>{m.rule_guide_breadcrumb_top()}</a>
-      </nav>
+      <div class="topbar">
+        <nav class="up">
+          <a href={upHref}>{m.rule_guide_breadcrumb_top()}</a>
+        </nav>
+        <!-- レッスンを読んでいる途中でも、ルールを言葉で探せるようにする。入口の検索へ送る -->
+        <form
+          class="mini-search"
+          role="search"
+          method="get"
+          action={localizeHref(ROUTES.rules.index)}
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+          <input
+            type="search"
+            name="q"
+            aria-label={m.rule_guide_index_search_label()}
+            placeholder={m.rule_guide_index_search_label()}
+            enterkeyhint="search"
+          />
+        </form>
+      </div>
       <!-- 講座の中の位置。Udemy のように、いま何章の何番目かを見せる -->
       <p class="course">
         <span class="chapter">{m.rule_guide_chapter({ number: course.chapter })}</span>
@@ -85,6 +131,12 @@
           >{m.rule_guide_lesson({ number: course.lesson, total: course.lessonCount })}</span
         >
       </p>
+      <!-- 章の中の進み具合。いまのレッスンまでを章の色で塗る -->
+      <ol class="steps" aria-hidden="true">
+        {#each Array.from({ length: course.lessonCount }, (_, index) => index + 1) as step (step)}
+          <li class:reached={step <= course.lesson}></li>
+        {/each}
+      </ol>
       <h1>{page.title}</h1>
       <!-- 最初の答え。検索から来た人はここだけ読んで帰れるようにする -->
       <p class="lead">{page.lead}</p>
@@ -120,7 +172,11 @@
       {/if}
 
       <!-- 前後のレッスン。前から順に読めば理解が積み上がるように並べてある -->
-      <nav class="pager" aria-label={m.rule_guide_chapter({ number: course.chapter })}>
+      <nav
+        class="pager"
+        aria-label={m.rule_guide_chapter({ number: course.chapter })}
+        bind:this={pager}
+      >
         {#if course.prev}
           <a href={lessonHref(course.prev.key)}>
             <span class="direction">← {m.rule_guide_prev()}</span>
@@ -168,6 +224,7 @@
 
   .hero {
     width: 100%;
+    border-top: 6px solid var(--accent);
     background:
       radial-gradient(circle at 8% 0%, rgb(25 134 255 / 10%), transparent 45%),
       radial-gradient(circle at 92% 6%, rgb(25 134 255 / 14%), transparent 42%), $white;
@@ -209,7 +266,70 @@
     font-weight: bold;
     color: $white;
     border-radius: 999px;
-    background-color: map.get($sky-blue, button);
+    background-color: var(--accent);
+  }
+
+  .topbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-12;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mini-search {
+    position: relative;
+    flex: 0 1 16em;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: $space-size-12;
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: map.get($gray, light-text);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      transform: translateY(-50%);
+    }
+
+    input {
+      width: 100%;
+      padding: $space-size-8 $space-size-12 $space-size-8 $space-size-32;
+      font-size: $font-size-14;
+      border: $border-size-1 solid map.get($gray, border);
+      border-radius: 999px;
+      background: rgb(255 255 255 / 80%);
+
+      &:focus-visible {
+        border-color: var(--accent);
+        outline: none;
+      }
+    }
+  }
+
+  .mobile .mini-search {
+    flex-basis: 100%;
+  }
+
+  .steps {
+    display: flex;
+    gap: $space-size-4;
+    padding: 0;
+    list-style: none;
+
+    li {
+      max-width: 64px;
+      height: 6px;
+      border-radius: 999px;
+      background: map.get($gray, 200);
+      flex: 1 1 0;
+    }
+
+    .reached {
+      background: var(--accent);
+    }
   }
 
   .chapter-title {
@@ -265,7 +385,7 @@
   .pager .title {
     font-size: $font-size-16;
     font-weight: bold;
-    color: map.get($sky-blue, text);
+    color: var(--accent);
   }
 
   .up {
