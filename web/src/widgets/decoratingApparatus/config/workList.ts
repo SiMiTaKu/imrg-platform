@@ -26,6 +26,21 @@ import Image8_3 from '../images/work-list-image-8-3.jpg?w=512;1024;1600&format=w
 import Image9_1 from '../images/work-list-image-9-1.jpg?w=512;1024;1600&format=webp&as=meta'
 import Image9_2 from '../images/work-list-image-9-2.jpg?w=512;1024;1600&format=webp&as=meta'
 import Image9_3 from '../images/work-list-image-9-3.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image10_1 from '../images/work-list-image-10-1.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image10_2 from '../images/work-list-image-10-2.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image10_3 from '../images/work-list-image-10-3.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image11_1 from '../images/work-list-image-11-1.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image11_2 from '../images/work-list-image-11-2.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image11_3 from '../images/work-list-image-11-3.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image12_1 from '../images/work-list-image-12-1.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image12_2 from '../images/work-list-image-12-2.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image12_3 from '../images/work-list-image-12-3.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image13_1 from '../images/work-list-image-13-1.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image13_2 from '../images/work-list-image-13-2.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image13_3 from '../images/work-list-image-13-3.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image14_1 from '../images/work-list-image-14-1.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image14_2 from '../images/work-list-image-14-2.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image14_3 from '../images/work-list-image-14-3.jpg?w=512;1024;1600&format=webp&as=meta'
 
 /** 手具装飾の作品1件 */
 export type DecoratingWork = {
@@ -44,4 +59,9 @@ export const WORK_LIST: readonly DecoratingWork[] = [
   { images: [Image7_1, Image7_2, Image7_3] },
   { images: [Image8_1, Image8_2, Image8_3] },
   { images: [Image9_1, Image9_2, Image9_3] },
+  { images: [Image10_1, Image10_2, Image10_3] },
+  { images: [Image11_1, Image11_2, Image11_3] },
+  { images: [Image12_1, Image12_2, Image12_3] },
+  { images: [Image13_1, Image13_2, Image13_3] },
+  { images: [Image14_1, Image14_2, Image14_3] },
 ]
