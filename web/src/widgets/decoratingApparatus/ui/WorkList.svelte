@@ -41,10 +41,6 @@
       onClose={() => (openedIndex = null)}
     />
   {/if}
-
-  <div class="inner foot">
-    <p class="count">{m.decorating_apparatus_works_count({ count: WORK_LIST.length })}</p>
-  </div>
 </section>
 
 <style lang="scss">
@@ -53,7 +49,7 @@
     background: map.get($sky-blue, background);
   }
 
-  // 見出しと本数の数え上げだけが、サイトの決まりどおりの余白を持つ
+  // 見出しだけが、サイトの決まりどおりの余白を持つ
   .inner {
     width: 100%;
     max-width: var(--content-max-width);
@@ -65,16 +61,6 @@
     padding: $space-size-48 var(--content-padding-inline) 0;
   }
 
-  .foot {
-    padding-top: $space-size-24;
-    padding-bottom: $space-size-80;
-  }
-
-  .mobile .foot {
-    padding-top: $space-size-16;
-    padding-bottom: $space-size-48;
-  }
-
   .list {
     display: grid;
     gap: 0;
@@ -83,12 +69,5 @@
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  .count {
-    margin: 0;
-    font-size: $font-size-12;
-    color: map.get($gray, light-text);
-    text-align: center;
   }
 </style>
