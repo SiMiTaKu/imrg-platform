@@ -54,17 +54,15 @@ export const load: PageServerLoad = () => {
       }
     }),
   )
-  const wordDocuments: GuideSearchDocument[] = GLOSSARY_JA.flatMap((group) =>
-    group.terms.map((term) => ({
-      id: `word:${term.slug}`,
-      kind: 'word' as const,
-      title: term.term,
-      subtitle: term.reading,
-      text: term.summary,
-      aliases: [...(term.aliases ?? []), term.reading ?? ''],
-      href: ROUTES.words.term(term.slug),
-    })),
-  )
+  const wordDocuments: GuideSearchDocument[] = GLOSSARY_JA.map((term) => ({
+    id: `word:${term.slug}`,
+    kind: 'word' as const,
+    title: term.term,
+    subtitle: term.reading,
+    text: term.summary,
+    aliases: [...(term.aliases ?? []), term.reading],
+    href: ROUTES.words.term(term.slug),
+  }))
   const documents = [...lessonDocuments, ...wordDocuments].map((document) => ({
     ...document,
     href: localizePath(document.href, locale),

@@ -7,5 +7,9 @@
   "words_found": "{count}",
   "words_empty": "По запросу «{keyword}» ничего не найдено. Попробуйте другое слово.",
   "words_detail": "Подробнее",
-  "words_clear": "Очистить"
+  "words_clear": "Очистить",
+  "words_eyebrow": "Словарь мужской художественной гимнастики",
+  "words_index_label": "По слоговой азбуке",
+  "words_gyou": "{head}",
+  "words_other": "Другое"
 }

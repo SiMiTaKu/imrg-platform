@@ -7,5 +7,9 @@
   "words_found": "{count}个词",
   "words_empty": "没有找到「{keyword}」。请换个词试试。",
   "words_detail": "查看详情",
-  "words_clear": "清除"
+  "words_clear": "清除",
+  "words_eyebrow": "男子艺术体操词典",
+  "words_index_label": "按五十音查找",
+  "words_gyou": "{head}行",
+  "words_other": "字母・符号"
 }

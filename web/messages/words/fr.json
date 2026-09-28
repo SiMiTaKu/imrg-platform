@@ -7,5 +7,9 @@
   "words_found": "{count} termes",
   "words_empty": "Aucun résultat pour « {keyword} ». Essayez un autre mot.",
   "words_detail": "En savoir plus",
-  "words_clear": "Effacer"
+  "words_clear": "Effacer",
+  "words_eyebrow": "Dictionnaire de la gymnastique rythmique masculine",
+  "words_index_label": "Parcourir par kana",
+  "words_gyou": "{head}",
+  "words_other": "Autres"
 }

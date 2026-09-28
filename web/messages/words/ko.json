@@ -7,5 +7,9 @@
   "words_found": "{count}개",
   "words_empty": "「{keyword}」을(를) 찾지 못했습니다. 다른 말로 찾아 보세요.",
   "words_detail": "자세히 보기",
-  "words_clear": "지우기"
+  "words_clear": "지우기",
+  "words_eyebrow": "남자 리듬체조 사전",
+  "words_index_label": "오십음으로 찾기",
+  "words_gyou": "{head}행",
+  "words_other": "영문・기호"
 }

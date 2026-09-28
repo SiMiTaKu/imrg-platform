@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest'
-import { GLOSSARY_JA, matchesGlossaryTerm } from '@entities/glossary'
+import {
+  GLOSSARY_JA,
+  glossaryGyouOf,
+  groupGlossaryByGyou,
+  matchesGlossaryTerm,
+  toHiragana,
+} from '@entities/glossary'
 import type { GlossaryTerm } from '@entities/glossary'
 import { GUIDE_KEYS } from '@entities/ruleGuide'
 
 /** 用語集のすべての語 */
-const terms: GlossaryTerm[] = GLOSSARY_JA.flatMap((group) => group.terms)
+const terms: readonly GlossaryTerm[] = GLOSSARY_JA
 
 /**
  * 語を名前で引く
@@ -74,5 +80,43 @@ describe('用語集の検索', () => {
 
   it('全角の空白でも区切れる', () => {
     expect(matchesGlossaryTerm(termOf('隊形移動'), '隊形　5つ')).toBe(true)
+  })
+})
+
+describe('辞書の並び', () => {
+  /* 読みで並べるので、読みが無い・ひらがなでない語があると並びが崩れる */
+  it('すべての語に、ひらがなの読みが付いている', () => {
+    for (const term of terms) {
+      expect(term.reading, term.term).toMatch(/^[ぁ-ゖー・]+$/)
+    }
+  })
+
+  it('カタカナはひらがなにそろえる', () => {
+    expect(toHiragana('プロペラ回旋')).toBe('ぷろぺら回旋')
+  })
+
+  it('濁音・半濁音・小さい字も、もとの行に入る', () => {
+    expect(glossaryGyouOf('じっし')).toBe('さ')
+    expect(glossaryGyouOf('ぷろぺら')).toBe('は')
+    expect(glossaryGyouOf('どうじわざ')).toBe('た')
+    expect(glossaryGyouOf('Execution')).toBe('他')
+  })
+
+  it('行はあ行から順に並び、語の無い行は出さない', () => {
+    const heads = groupGlossaryByGyou(terms).map((gyou) => gyou.head)
+    const order = ['あ', 'か', 'さ', 'た', 'な', 'は', 'ま', 'や', 'ら', 'わ', '他']
+    expect(heads).toEqual(order.filter((head) => heads.includes(head)))
+  })
+
+  it('行の中は、読みのあいうえお順', () => {
+    for (const gyou of groupGlossaryByGyou(terms)) {
+      const readings = gyou.terms.map((term) => term.reading.replace(/・/g, ''))
+      expect(readings).toEqual([...readings].sort((a, b) => a.localeCompare(b, 'ja')))
+    }
+  })
+
+  it('並べ直しても、語は1つも減らない', () => {
+    const count = groupGlossaryByGyou(terms).reduce((total, gyou) => total + gyou.terms.length, 0)
+    expect(count).toBe(terms.length)
   })
 })

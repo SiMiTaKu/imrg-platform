@@ -7,5 +7,9 @@
   "words_found": "{count} terms",
   "words_empty": "No results for \"{keyword}\". Try another word.",
   "words_detail": "Read more",
-  "words_clear": "Clear"
+  "words_clear": "Clear",
+  "words_eyebrow": "Men's rhythmic gymnastics dictionary",
+  "words_index_label": "Browse by kana",
+  "words_gyou": "{head}",
+  "words_other": "Others"
 }
