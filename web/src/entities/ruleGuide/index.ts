@@ -11,6 +11,7 @@ export {
 } from './model'
 export type {
   GuideBlock,
+  GuideCard,
   GuideChildKey,
   GuideContent,
   GuideDisclaimer,

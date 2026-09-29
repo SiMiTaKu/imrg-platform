@@ -96,6 +96,36 @@
       <p class="next">
         <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(block.to)))}>{block.label}</a>
       </p>
+    {:else if block.kind === 'cards'}
+      <!-- 見くらべるものをカードで並べる。表より親しみやすく見せたいところで使う -->
+      <ul class="cards">
+        {#each block.cards as card (card.title)}
+          <li class="card">
+            <p class="card-title">{card.title}</p>
+            {#if card.tagline}
+              <p class="card-tagline">{card.tagline}</p>
+            {/if}
+            <dl class="facts">
+              {#each card.facts as fact (fact.label)}
+                <div>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              {/each}
+            </dl>
+            {#if card.body}
+              <p class="card-body">{card.body}</p>
+            {/if}
+            {#if card.link && published.includes(card.link.to)}
+              <a
+                class="card-link"
+                href={localizeHref(ROUTES.rules.page(guideKeyToPath(card.link.to)))}
+                >{card.link.label} →</a
+              >
+            {/if}
+          </li>
+        {/each}
+      </ul>
     {/if}
   {/each}
 
@@ -113,6 +143,78 @@
     display: flex;
     flex-direction: column;
     gap: $space-size-16;
+  }
+
+  /* カード。広い画面では横に並べ、狭い画面では縦に積む */
+  .cards {
+    display: grid;
+    gap: $space-size-16;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 0;
+    list-style: none;
+  }
+
+  .card {
+    display: flex;
+    gap: $space-size-8;
+    padding: $space-size-20;
+    border-radius: $border-radius-8;
+    background: $white;
+    flex-direction: column;
+    border-top: 5px solid var(--accent, #{map.get($sky-blue, button)});
+    box-shadow: 0 2px 10px rgb(0 0 0 / 8%);
+
+    /* 全体のスタイルが p を18pxにしているので、段落ごとに大きさを当てる */
+    .card-title {
+      font-size: $font-size-24;
+      font-weight: bold;
+      line-height: 1.3;
+      color: var(--accent, #{map.get($sky-blue, text)});
+    }
+
+    .card-tagline {
+      font-size: $font-size-14;
+      font-weight: bold;
+      color: map.get($gray, light-text);
+    }
+
+    .card-body {
+      font-size: $font-size-14;
+      line-height: 1.8;
+    }
+  }
+
+  .facts {
+    display: flex;
+    flex-direction: column;
+    padding: $space-size-8 0;
+    border-top: $border-size-1 solid map.get($gray, 100);
+    border-bottom: $border-size-1 solid map.get($gray, 100);
+
+    div {
+      display: flex;
+      gap: $space-size-12;
+      justify-content: space-between;
+      padding: $space-size-4 0;
+    }
+
+    dt {
+      font-size: $font-size-14;
+      color: map.get($gray, light-text);
+    }
+
+    dd {
+      margin-inline-start: 0;
+      font-size: $font-size-16;
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+
+  .card-link {
+    font-size: $font-size-14;
+    font-weight: bold;
+    color: var(--accent, #{map.get($sky-blue, text)});
   }
 
   h2 {

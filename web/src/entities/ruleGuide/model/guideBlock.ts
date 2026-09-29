@@ -31,6 +31,28 @@ export type GuideBlock =
   | { kind: 'video'; videoId: string; caption: string }
   /** ほかの解説のページへ送る */
   | { kind: 'link'; to: GuideKey; label: string }
+  /**
+   * カードを横に並べる。いくつかのものを見くらべるときに使う。
+   *
+   * @remarks
+   * 表よりも親しみやすく見せたいところ（団体と個人の違いなど）で使う。
+   * 行や列が多く、数字の見くらべが主になるものは表のままにする
+   */
+  | { kind: 'cards'; cards: readonly GuideCard[] }
+
+/** カード1枚 */
+export interface GuideCard {
+  /** カードの名前（「団体」など） */
+  title: string
+  /** 名前の下に出すひとこと（「5人でそろえる」など） */
+  tagline?: string
+  /** 見くらべる項目。左に項目の名前、右に中身 */
+  facts: readonly { label: string; value: string }[]
+  /** カードの下に出す説明 */
+  body?: string
+  /** くわしいページへのリンク。本文の無いページなら出さない */
+  link?: { to: GuideKey; label: string }
+}
 
 /**
  * 段落や表の中身を、文字だけ取り出す。
@@ -55,5 +77,15 @@ export const guideBlockTexts = (block: GuideBlock): string[] => {
       return [block.caption]
     case 'link':
       return [block.label]
+    case 'cards':
+      return block.cards
+        .flatMap((card) => [
+          card.title,
+          card.tagline ?? '',
+          ...card.facts.flatMap((fact) => [fact.label, fact.value]),
+          card.body ?? '',
+          card.link?.label ?? '',
+        ])
+        .filter((text) => text !== '')
   }
 }
