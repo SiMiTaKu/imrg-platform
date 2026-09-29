@@ -23,9 +23,23 @@
     id: string
     /** 解説のページへ戻るリンクを出すか。そのページの中に置くときは出さない */
     showReview?: boolean
+    /** 最後まで解いたときに呼ぶ。問題集で、章ごとの点数を覚えておくのに使う */
+    onfinish?: (correct: number, total: number) => void
+    /** 結果の画面に出す「次へ」のボタンの文字。渡したときだけ出す（問題集の「次の章へ」） */
+    nextLabel?: string
+    /** 「次へ」のボタンを押したときに呼ぶ */
+    onnext?: () => void
   }
 
-  const { heading, questions, id, showReview = false }: Props = $props()
+  const {
+    heading,
+    questions,
+    id,
+    showReview = false,
+    onfinish,
+    nextLabel,
+    onnext,
+  }: Props = $props()
 
   /* いま出している問題の番号（0から）。問題の数と同じになったら結果を出す */
   let current = $state(0)
@@ -63,6 +77,7 @@
   /** 次の問題へ進む。最後の問題なら結果へ */
   const goNext = () => {
     current += 1
+    if (current >= questions.length) onfinish?.(correctCount, questions.length)
     void focusStage()
   }
 
@@ -175,6 +190,9 @@
           <button type="button" class="retry" onclick={retry}>
             {m.rule_guide_quiz_retry()}
           </button>
+          {#if nextLabel && onnext}
+            <button type="button" class="next" onclick={onnext}>{nextLabel} →</button>
+          {/if}
         </div>
       </div>
     {/if}
@@ -333,6 +351,8 @@
 
   .actions {
     display: flex;
+    flex-wrap: wrap;
+    gap: $space-size-8;
     justify-content: flex-end;
   }
 
