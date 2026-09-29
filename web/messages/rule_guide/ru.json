@@ -18,7 +18,6 @@
   "rule_guide_next_chapter": "Следующая глава",
   "rule_guide_course_end": "Это последний урок. Повторите всё с помощью сборника вопросов.",
   "rule_guide_quiz_heading": "Проверка по главе {number}",
-  "rule_guide_quiz_lead": "Проверьте, что вы прочитали. Ответ появится сразу после выбора.",
   "rule_guide_quiz_question": "Вопрос {number}",
   "rule_guide_quiz_correct": "Верно",
   "rule_guide_quiz_wrong": "Неверно. Правильный ответ: «{answer}»",
@@ -57,5 +56,8 @@
   "rule_guide_index_lessons_toggle": "Уроки ({count})",
   "rule_guide_outline_title": "Главы",
   "rule_guide_outline_close": "Закрыть",
-  "rule_guide_outline_home": "К началу курса"
+  "rule_guide_outline_home": "К началу курса",
+  "rule_guide_quiz_progress": "{number} / {total}",
+  "rule_guide_quiz_next": "Следующий вопрос",
+  "rule_guide_quiz_show_result": "Посмотреть результат"
 }

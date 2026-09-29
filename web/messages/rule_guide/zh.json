@@ -18,7 +18,6 @@
   "rule_guide_next_chapter": "进入下一章",
   "rule_guide_course_end": "这是最后一课。可以用习题集复习全部内容。",
   "rule_guide_quiz_heading": "第{number}章 理解度测验",
-  "rule_guide_quiz_lead": "确认一下读过的内容。选择后马上显示答案。",
   "rule_guide_quiz_question": "第{number}题",
   "rule_guide_quiz_correct": "正确",
   "rule_guide_quiz_wrong": "不正确。正确答案是「{answer}」",
@@ -57,5 +56,8 @@
   "rule_guide_index_lessons_toggle": "课程列表（{count}）",
   "rule_guide_outline_title": "选择章节",
   "rule_guide_outline_close": "关闭",
-  "rule_guide_outline_home": "回到讲座首页"
+  "rule_guide_outline_home": "回到讲座首页",
+  "rule_guide_quiz_progress": "{number} / {total}题",
+  "rule_guide_quiz_next": "下一题",
+  "rule_guide_quiz_show_result": "查看结果"
 }

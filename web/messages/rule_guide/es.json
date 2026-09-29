@@ -18,7 +18,6 @@
   "rule_guide_next_chapter": "Siguiente capítulo",
   "rule_guide_course_end": "Es la última lección. Repasa todo con la colección de preguntas.",
   "rule_guide_quiz_heading": "Repaso del capítulo {number}",
-  "rule_guide_quiz_lead": "Comprueba lo que has leído. La respuesta aparece al elegir.",
   "rule_guide_quiz_question": "P{number}",
   "rule_guide_quiz_correct": "Correcto",
   "rule_guide_quiz_wrong": "Incorrecto. La respuesta es «{answer}»",
@@ -57,5 +56,8 @@
   "rule_guide_index_lessons_toggle": "Lecciones ({count})",
   "rule_guide_outline_title": "Capítulos",
   "rule_guide_outline_close": "Cerrar",
-  "rule_guide_outline_home": "Inicio del curso"
+  "rule_guide_outline_home": "Inicio del curso",
+  "rule_guide_quiz_progress": "{number} / {total}",
+  "rule_guide_quiz_next": "Siguiente pregunta",
+  "rule_guide_quiz_show_result": "Ver resultados"
 }

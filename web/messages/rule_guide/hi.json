@@ -18,7 +18,6 @@
   "rule_guide_next_chapter": "अगला अध्याय",
   "rule_guide_course_end": "यह आख़िरी पाठ है। प्रश्न-संग्रह से पूरा दोहराइए।",
   "rule_guide_quiz_heading": "अध्याय {number} की समझ जाँच",
-  "rule_guide_quiz_lead": "जो पढ़ा उसे जाँचिए। चुनते ही उत्तर दिखता है।",
   "rule_guide_quiz_question": "प्रश्न {number}",
   "rule_guide_quiz_correct": "सही",
   "rule_guide_quiz_wrong": "ग़लत। सही उत्तर «{answer}» है",
@@ -57,5 +56,8 @@
   "rule_guide_index_lessons_toggle": "पाठ सूची ({count})",
   "rule_guide_outline_title": "अध्याय चुनें",
   "rule_guide_outline_close": "बंद करें",
-  "rule_guide_outline_home": "पाठ्यक्रम का मुख्य पृष्ठ"
+  "rule_guide_outline_home": "पाठ्यक्रम का मुख्य पृष्ठ",
+  "rule_guide_quiz_progress": "{number} / {total}",
+  "rule_guide_quiz_next": "अगला प्रश्न",
+  "rule_guide_quiz_show_result": "परिणाम देखें"
 }

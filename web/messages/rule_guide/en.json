@@ -18,7 +18,6 @@
   "rule_guide_next_chapter": "Next chapter",
   "rule_guide_course_end": "This is the last lesson. Review everything with the quiz collection.",
   "rule_guide_quiz_heading": "Chapter {number} check",
-  "rule_guide_quiz_lead": "Check what you have read. The answer appears as soon as you choose.",
   "rule_guide_quiz_question": "Q{number}",
   "rule_guide_quiz_correct": "Correct",
   "rule_guide_quiz_wrong": "Not quite. The answer is \"{answer}\"",
@@ -57,5 +56,8 @@
   "rule_guide_index_lessons_toggle": "Lessons ({count})",
   "rule_guide_outline_title": "Chapters",
   "rule_guide_outline_close": "Close",
-  "rule_guide_outline_home": "Course top"
+  "rule_guide_outline_home": "Course top",
+  "rule_guide_quiz_progress": "{number} / {total}",
+  "rule_guide_quiz_next": "Next question",
+  "rule_guide_quiz_show_result": "See results"
 }
