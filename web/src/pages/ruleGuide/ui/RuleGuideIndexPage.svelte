@@ -93,6 +93,14 @@
    */
   const readInChapter = (chapter: Chapter) =>
     chapter.lessons.filter((lesson) => $readLessons.includes(lesson.key)).length
+
+  /**
+   * いま読み進めている章か。続きから読むレッスンがある章のこと
+   * @param chapter - 章
+   * @returns 読み始めていて、続きのレッスンがこの章にあれば true
+   */
+  const isCurrentChapter = (chapter: Chapter) =>
+    readCount > 0 && chapter.lessons.some((lesson) => lesson.key === nextLesson?.key)
 </script>
 
 <article class="index" class:mobile={isMobile}>
@@ -103,24 +111,7 @@
       <h1>{m.rule_guide_index_title()}</h1>
       <p class="lead">{m.rule_guide_index_lead()}</p>
 
-      <form class="search" role="search" onsubmit={(event) => event.preventDefault()}>
-        <label class="label" for="rule-guide-search">{m.rule_guide_index_search_label()}</label>
-        <div class="field">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-          <input
-            id="rule-guide-search"
-            type="search"
-            bind:value={keyword}
-            placeholder={m.rule_guide_index_search_placeholder()}
-            autocomplete="off"
-            enterkeyhint="search"
-          />
-        </div>
-      </form>
-
+      <!-- 講座を始めるボタンを先に置き、その下で言葉でも探せるようにする -->
       {#if !searching}
         <div class="actions">
           {#if nextLesson !== undefined && readCount > 0}
@@ -148,7 +139,27 @@
             variant="sky-blue-outline">{m.rule_guide_index_quiz_title()}</Button
           >
         </div>
+      {/if}
 
+      <form class="search" role="search" onsubmit={(event) => event.preventDefault()}>
+        <label class="label" for="rule-guide-search">{m.rule_guide_index_search_label()}</label>
+        <div class="field">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+          <input
+            id="rule-guide-search"
+            type="search"
+            bind:value={keyword}
+            placeholder={m.rule_guide_index_search_placeholder()}
+            autocomplete="off"
+            enterkeyhint="search"
+          />
+        </div>
+      </form>
+
+      {#if !searching}
         <ul class="stats">
           <li>{m.rule_guide_index_stat_chapters({ count: stats.chapters })}</li>
           <li>{m.rule_guide_index_stat_lessons({ count: stats.lessons })}</li>
@@ -256,49 +267,65 @@
               </div>
 
               <div class="card">
-                <a class="chapter-head" href={lessonHref(chapter.key)}>
-                  <span class="chapter-label"
-                    >{m.rule_guide_chapter({ number: chapter.number })}</span
-                  >
-                  <span class="chapter-title">{chapter.title}</span>
-                </a>
+                <span class="chapter-label">{m.rule_guide_chapter({ number: chapter.number })}</span
+                >
+                <!-- 章の名前の横に、読む時間・レッスン数・確認テストの札を並べる -->
+                <div class="title-row">
+                  <a class="chapter-title" href={lessonHref(chapter.key)}>{chapter.title}</a>
+                  <p class="chapter-meta">
+                    <span>{m.rule_guide_index_minutes({ minutes: chapter.minutes })}</span>
+                    <span>{m.rule_guide_index_lessons({ count: chapter.lessons.length })}</span>
+                    {#if chapter.quizCount > 0}
+                      <span>{m.rule_guide_index_quiz_count({ count: chapter.quizCount })}</span>
+                    {/if}
+                    {#if read > 0}
+                      <span class="chapter-read">{read} / {chapter.lessons.length}</span>
+                    {/if}
+                  </p>
+                </div>
                 <p class="chapter-lead">{chapter.lead}</p>
-                <p class="chapter-meta">
-                  <span>{m.rule_guide_index_minutes({ minutes: chapter.minutes })}</span>
-                  <span>{m.rule_guide_index_lessons({ count: chapter.lessons.length })}</span>
-                  {#if chapter.quizCount > 0}
-                    <span>{m.rule_guide_index_quiz_count({ count: chapter.quizCount })}</span>
-                  {/if}
-                  {#if read > 0}
-                    <span class="chapter-read">{read} / {chapter.lessons.length}</span>
-                  {/if}
-                </p>
 
                 {#if chapter.lessons.length > 1}
-                  <ol class="lessons">
-                    {#each chapter.lessons as lesson, index (lesson.key)}
-                      {@const done = $readLessons.includes(lesson.key)}
-                      <li>
-                        <a href={lessonHref(lesson.key)} class:done>
-                          <span
-                            class="check"
-                            aria-label={done ? m.rule_guide_index_read() : undefined}
-                          >
-                            {#if done}
-                              <svg viewBox="0 0 16 16" aria-hidden="true"
-                                ><polyline points="3.5,8.5 6.5,11.5 12.5,4.5" /></svg
-                              >
-                            {/if}
-                          </span>
-                          <span class="lesson-number">{chapter.number}-{index + 1}</span>
-                          <span class="lesson-title">{lesson.title}</span>
-                          <span class="lesson-minutes"
-                            >{m.rule_guide_index_minutes({ minutes: lesson.minutes })}</span
-                          >
-                        </a>
-                      </li>
-                    {/each}
-                  </ol>
+                  <!--
+                    章の中のレッスンは開け閉めできる。最初は閉じておき、
+                    いま読み進めている章（続きから読むレッスンがある章）だけ開いておく
+                  -->
+                  <details class="toggle" open={isCurrentChapter(chapter)}>
+                    <summary>
+                      <span
+                        >{m.rule_guide_index_lessons_toggle({
+                          count: chapter.lessons.length,
+                        })}</span
+                      >
+                      <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"
+                        ><polyline points="4,6 8,10 12,6" /></svg
+                      >
+                    </summary>
+                    <ol class="lessons">
+                      {#each chapter.lessons as lesson, index (lesson.key)}
+                        {@const done = $readLessons.includes(lesson.key)}
+                        <li>
+                          <a href={lessonHref(lesson.key)} class:done>
+                            <span
+                              class="check"
+                              aria-label={done ? m.rule_guide_index_read() : undefined}
+                            >
+                              {#if done}
+                                <svg viewBox="0 0 16 16" aria-hidden="true"
+                                  ><polyline points="3.5,8.5 6.5,11.5 12.5,4.5" /></svg
+                                >
+                              {/if}
+                            </span>
+                            <span class="lesson-number">{chapter.number}-{index + 1}</span>
+                            <span class="lesson-title">{lesson.title}</span>
+                            <span class="lesson-minutes"
+                              >{m.rule_guide_index_minutes({ minutes: lesson.minutes })}</span
+                            >
+                          </a>
+                        </li>
+                      {/each}
+                    </ol>
+                  </details>
                 {:else}
                   <!-- レッスンが1つの章は、章の名前と重なるので一覧を出さず「読む」だけにする -->
                   <a class="read-one" href={lessonHref(chapter.key)} class:done={read > 0}>
@@ -485,14 +512,14 @@
     padding: 0;
     list-style: none;
 
+    /* ボタンと見分けられるよう、角は丸め切らずに小さく丸める */
     li {
       padding: $space-size-4 $space-size-12;
       font-size: $font-size-14;
       font-weight: bold;
       color: map.get($sky-blue, text);
-      border: $border-size-1 solid map.get($sky-blue, border);
-      border-radius: 999px;
-      background: $white;
+      border-radius: $border-radius-4;
+      background: map.get($sky-blue, background);
     }
   }
 
@@ -671,16 +698,11 @@
     padding: $space-size-16;
   }
 
-  .chapter-head {
+  .title-row {
     display: flex;
-    flex-direction: column;
-    gap: $space-size-2;
-    color: map.get($gray, text);
-    text-decoration: none;
-
-    &:hover .chapter-title {
-      color: var(--accent);
-    }
+    flex-wrap: wrap;
+    gap: $space-size-8 $space-size-12;
+    align-items: center;
   }
 
   .chapter-label {
@@ -693,7 +715,13 @@
     font-size: $font-size-22;
     font-weight: bold;
     line-height: 1.4;
+    color: map.get($gray, text);
+    text-decoration: none;
     transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--accent);
+    }
   }
 
   .mobile .chapter-title {
@@ -720,7 +748,7 @@
 
     span {
       padding: $space-size-2 $space-size-8;
-      border-radius: 999px;
+      border-radius: $border-radius-4;
       background: map.get($gray, 50);
     }
 
@@ -729,6 +757,46 @@
       color: $white;
       background: var(--accent);
     }
+  }
+
+  /* 章の中のレッスンの開け閉め */
+  .toggle {
+    border-top: $border-size-1 solid map.get($gray, 100);
+
+    summary {
+      display: flex;
+      gap: $space-size-8;
+      align-items: center;
+      padding: $space-size-12 $space-size-4;
+      font-size: $font-size-14;
+      font-weight: bold;
+      color: var(--accent);
+      cursor: pointer;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:hover {
+        background: map.get($gray, 50);
+      }
+    }
+
+    &[open] .chevron {
+      transform: rotate(180deg);
+    }
+  }
+
+  .chevron {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
   }
 
   /*

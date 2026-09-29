@@ -53,5 +53,6 @@
   "rule_guide_index_read": "Lu",
   "rule_guide_index_words_body": "Les termes courants, expliqués en une ligne.",
   "rule_guide_index_done": "Toutes les leçons lues",
-  "rule_guide_index_read_lesson": "Lire la leçon"
+  "rule_guide_index_read_lesson": "Lire la leçon",
+  "rule_guide_index_lessons_toggle": "Leçons ({count})"
 }

@@ -53,5 +53,6 @@
   "rule_guide_index_read": "已读",
   "rule_guide_index_words_body": "用一句话说明常见的词语。",
   "rule_guide_index_done": "全部读完了",
-  "rule_guide_index_read_lesson": "阅读本课"
+  "rule_guide_index_read_lesson": "阅读本课",
+  "rule_guide_index_lessons_toggle": "课程列表（{count}）"
 }

@@ -53,5 +53,6 @@
   "rule_guide_index_read": "읽음",
   "rule_guide_index_words_body": "자주 나오는 말을 한마디로 설명합니다.",
   "rule_guide_index_done": "모두 읽었습니다",
-  "rule_guide_index_read_lesson": "레슨 읽기"
+  "rule_guide_index_read_lesson": "레슨 읽기",
+  "rule_guide_index_lessons_toggle": "레슨 목록 ({count})"
 }
