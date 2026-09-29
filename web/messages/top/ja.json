@@ -74,8 +74,8 @@
   "top_feature_calendar_body": "全国の大会を年ごとに一覧で。日程・会場・配信の有無まで載せている。",
   "top_feature_calendar_badge": "{count}件",
   "top_feature_rules_title": "ルールを知る",
-  "top_feature_rules_body": "規則集を読みやすく並べ直した。採点の考え方から、手具ごとの決まりまで。",
-  "top_feature_rules_badge": "全文",
+  "top_feature_rules_body": "男子新体操のルールを、はじめての人にも分かるように解説する。点の決まり方から、手具ごとの決まりまで。",
+  "top_feature_rules_badge": "準備中",
   "top_feature_judge_title": "審判を体験する",
   "top_feature_judge_body": "実際の採点表と同じ形で点を付けてみる。見る目が変わる。",
   "top_feature_judge_badge": "体験",
@@ -104,6 +104,6 @@
   "top_contact_x_description": "大会の速報",
   "top_contact_tiktok_description": "短い動画",
   "top_contact_operator": "運営：男子新体操国際化プロジェクト（清水琢巳）／2022年から活動しています",
-  "top_jsonld_organization_description": "男子新体操の大会情報、規則集の解説、演技の動画、曲編集や手具装飾の依頼をまとめたサイト。日本で生まれたこの競技を世界へ広げる活動として運営している。",
+  "top_jsonld_organization_description": "男子新体操の大会情報、ルールの解説、演技の動画、曲編集や手具装飾の依頼をまとめたサイト。日本で生まれたこの競技を世界へ広げる活動として運営している。",
   "top_service_price_separator": "／"
 }

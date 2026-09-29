@@ -36,5 +36,3 @@ jobs:
       release: ${{ inputs.release }}
       # 本番へ配ったものだけ、あとで戻せるように取っておく
       store_release: ${{ inputs.environment == 'production' }}
-      # ステージングでは規則集の中身を出す。本番は「準備中」のまま
-      rules_published: ${{ inputs.environment != 'production' }}

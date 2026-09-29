@@ -74,8 +74,8 @@
   "top_feature_calendar_body": "Every competition in Japan, listed year by year, with dates, venues and whether it is streamed.",
   "top_feature_calendar_badge": "{count}",
   "top_feature_rules_title": "Learn the rules",
-  "top_feature_rules_body": "We have rearranged the rulebook to be easy to read, from how scoring works to the rules for each apparatus.",
-  "top_feature_rules_badge": "Full text",
+  "top_feature_rules_body": "The rules of men's rhythmic gymnastics, explained so newcomers can follow them — from how scoring works to the rules for each apparatus.",
+  "top_feature_rules_badge": "Coming soon",
   "top_feature_judge_title": "Try judging",
   "top_feature_judge_body": "Score a routine on the same sheet the judges use. It changes how you watch.",
   "top_feature_judge_badge": "Try it",
@@ -104,6 +104,6 @@
   "top_contact_x_description": "Live competition updates",
   "top_contact_tiktok_description": "Short videos",
   "top_contact_operator": "Run by the Men's Rhythmic Gymnastics Internationalization Project (Takumi Shimizu) / Active since 2022",
-  "top_jsonld_organization_description": "A site bringing together competition information, rulebook explanations, routine videos, and orders for music editing and apparatus decoration in men's rhythmic gymnastics. It is run as part of an effort to spread this Japanese-born sport around the world.",
+  "top_jsonld_organization_description": "A site bringing together competition information, explanations of the rules, routine videos, and orders for music editing and apparatus decoration in men's rhythmic gymnastics. It is run as part of an effort to spread this Japanese-born sport around the world.",
   "top_service_price_separator": " / "
 }

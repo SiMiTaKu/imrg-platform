@@ -74,8 +74,8 @@
   "top_feature_calendar_body": "Todas las competiciones del país, año por año, con fechas, sedes y si hay retransmisión.",
   "top_feature_calendar_badge": "{count}",
   "top_feature_rules_title": "Conoce las reglas",
-  "top_feature_rules_body": "Hemos reordenado el reglamento para que se lea fácil, desde cómo se puntúa hasta las normas de cada aparato.",
-  "top_feature_rules_badge": "Texto completo",
+  "top_feature_rules_body": "Explicamos las reglas de la gimnasia rítmica masculina para que se entiendan desde cero: desde cómo se puntúa hasta las normas de cada aparato.",
+  "top_feature_rules_badge": "Próximamente",
   "top_feature_judge_title": "Prueba a ser juez",
   "top_feature_judge_body": "Puntúa con la misma hoja que usan los jueces. Cambiará tu forma de mirar.",
   "top_feature_judge_badge": "Pruébalo",
@@ -104,6 +104,6 @@
   "top_contact_x_description": "Resultados en directo",
   "top_contact_tiktok_description": "Vídeos cortos",
   "top_contact_operator": "Gestionado por el Proyecto de Internacionalización de la Gimnasia Rítmica Masculina (Takumi Shimizu) / En activo desde 2022",
-  "top_jsonld_organization_description": "Un sitio que reúne información de competiciones, explicaciones del reglamento, vídeos de ejercicios y encargos de edición musical y decoración de aparatos de gimnasia rítmica masculina. Se gestiona como parte de una iniciativa para llevar al mundo este deporte nacido en Japón.",
+  "top_jsonld_organization_description": "Un sitio que reúne información de competiciones, explicaciones de las reglas, vídeos de ejercicios y encargos de edición musical y decoración de aparatos de gimnasia rítmica masculina. Se gestiona como parte de una iniciativa para llevar al mundo este deporte nacido en Japón.",
   "top_service_price_separator": " / "
 }
