@@ -54,5 +54,8 @@
   "rule_guide_index_words_body": "Les termes courants, expliqués en une ligne.",
   "rule_guide_index_done": "Toutes les leçons lues",
   "rule_guide_index_read_lesson": "Lire la leçon",
-  "rule_guide_index_lessons_toggle": "Leçons ({count})"
+  "rule_guide_index_lessons_toggle": "Leçons ({count})",
+  "rule_guide_outline_title": "Chapitres",
+  "rule_guide_outline_close": "Fermer",
+  "rule_guide_outline_home": "Accueil du cours"
 }

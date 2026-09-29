@@ -11,4 +11,10 @@
   外すのは TODO 7-6（全体がそろってから）
 -->
 <PageHead meta={data.meta} noindex={true} />
-<RuleGuidePage page={data.page} children={data.children} course={data.course} quiz={data.quiz} />
+<RuleGuidePage
+  page={data.page}
+  children={data.children}
+  course={data.course}
+  quiz={data.quiz}
+  outline={data.outline}
+/>

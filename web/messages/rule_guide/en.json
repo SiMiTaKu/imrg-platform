@@ -54,5 +54,8 @@
   "rule_guide_index_words_body": "Common terms, each explained in one line.",
   "rule_guide_index_done": "All lessons read",
   "rule_guide_index_read_lesson": "Read the lesson",
-  "rule_guide_index_lessons_toggle": "Lessons ({count})"
+  "rule_guide_index_lessons_toggle": "Lessons ({count})",
+  "rule_guide_outline_title": "Chapters",
+  "rule_guide_outline_close": "Close",
+  "rule_guide_outline_home": "Course top"
 }

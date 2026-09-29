@@ -1,7 +1,9 @@
 import { error } from '@sveltejs/kit'
 import {
+  guideChapterKeys,
   guideCoursePosition,
   guideKeyToPath,
+  guideLessonKeys,
   guidePathToKey,
   isChapterEnd,
   loadGuideChildren,
@@ -42,6 +44,19 @@ export const load: PageServerLoad = ({ params }) => {
     return found === undefined ? undefined : { key: found.key, title: found.title }
   }
 
+  /*
+    講座全体の目次。どのレッスンからでも章を選べるよう、ページの横（スマホでは右端のつまみ）に出す
+  */
+  const outline = guideChapterKeys().map((chapterKey, index) => ({
+    number: index + 1,
+    key: chapterKey,
+    title: loadGuidePage(chapterKey, locale)?.title ?? '',
+    lessons: guideLessonKeys(chapterKey)
+      .map((lessonKey) => loadGuidePage(lessonKey, locale))
+      .filter((lesson) => lesson !== undefined)
+      .map((lesson) => ({ key: lesson.key, title: lesson.title })),
+  }))
+
   const prev = lessonLink(position.prev)
   const next = lessonLink(position.next)
 
@@ -63,6 +78,7 @@ export const load: PageServerLoad = ({ params }) => {
       // 次が別の章なら「次の章へ」と出す
       nextIsNewChapter: next !== undefined && !next.key.startsWith(`${position.chapterKey}.`),
     },
+    outline,
     // 理解度チェックは章の最後のレッスンで出す
     quiz: isChapterEnd(position) ? loadGuideQuiz(position.chapterKey, locale) : [],
   }

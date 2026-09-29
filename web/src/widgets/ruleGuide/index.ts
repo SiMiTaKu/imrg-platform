@@ -2,3 +2,4 @@
 export { default as GuideBlocks } from './ui/GuideBlocks.svelte'
 export { default as GuideDisclaimer } from './ui/GuideDisclaimer.svelte'
 export { chapterColor } from './config/chapterColors'
+export { default as GuideOutline } from './ui/GuideOutline.svelte'

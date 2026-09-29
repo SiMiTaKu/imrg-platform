@@ -54,5 +54,8 @@
   "rule_guide_index_words_body": "आम शब्द, एक पंक्ति में।",
   "rule_guide_index_done": "सभी पाठ पढ़ लिए",
   "rule_guide_index_read_lesson": "पाठ पढ़ें",
-  "rule_guide_index_lessons_toggle": "पाठ सूची ({count})"
+  "rule_guide_index_lessons_toggle": "पाठ सूची ({count})",
+  "rule_guide_outline_title": "अध्याय चुनें",
+  "rule_guide_outline_close": "बंद करें",
+  "rule_guide_outline_home": "पाठ्यक्रम का मुख्य पृष्ठ"
 }

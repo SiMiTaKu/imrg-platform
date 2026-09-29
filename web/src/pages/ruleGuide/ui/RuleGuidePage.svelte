@@ -1,15 +1,14 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
   import { Button } from '@imrg-platform/design-system'
   import type { GuideKey, GuidePage, GuideQuizQuestion } from '@entities/ruleGuide'
   import { guideKeyToPath, guideUpKey } from '@entities/ruleGuide'
-  import { markLessonRead } from '@features/guideProgress'
+  import { loadReadLessons, markLessonRead } from '@features/guideProgress'
   import { GuideQuiz } from '@features/guideQuiz'
   import { m } from '$lib/paraglide/messages'
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { GuideBlocks, GuideDisclaimer, chapterColor } from '@widgets/ruleGuide'
+  import { GuideBlocks, GuideDisclaimer, GuideOutline, chapterColor } from '@widgets/ruleGuide'
 
   /** ルールの解説の1ページ */
   interface Props {
@@ -21,6 +20,13 @@
     course: GuideCourse
     /** 章末の理解度チェック。章の最後のレッスンでだけ中身がある */
     quiz: readonly GuideQuizQuestion[]
+    /** 講座全体の目次。どのレッスンからでも章を選べるようにする */
+    outline: readonly {
+      number: number
+      key: GuideKey
+      title: string
+      lessons: readonly { key: GuideKey; title: string }[]
+    }[]
   }
 
   /** 前後のレッスンへのリンクに要るもの */
@@ -49,7 +55,7 @@
     nextIsNewChapter: boolean
   }
 
-  const { page, children, course, quiz }: Props = $props()
+  const { page, children, course, quiz, outline }: Props = $props()
 
   /**
    * レッスンへのリンク先を作る
@@ -71,22 +77,37 @@
 
   /*
     ページの下（前後のレッスンの案内）まで来たら「読んだ」にする。
-    開いただけでは読んだことにしない。見分けられない古いブラウザでは、開いた時点で読んだことにする
+    開いただけでは読んだことにしない。見分けられない古いブラウザでは、開いた時点で読んだことにする。
+
+    「次のレッスン」で移ると、この部品はそのまま使い回される（onMount はもう呼ばれない）。
+    だからページの鍵が変わるたびに見張り直す
   */
   let pager = $state<HTMLElement>()
-  onMount(() => {
+  $effect(() => {
+    const key = page.key
+    loadReadLessons()
     if (pager === undefined || !('IntersectionObserver' in window)) {
-      markLessonRead(page.key)
+      markLessonRead(key)
       return
     }
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
-        markLessonRead(page.key)
+        markLessonRead(key)
         observer.disconnect()
       }
     })
     observer.observe(pager)
     return () => observer.disconnect()
+  })
+
+  /*
+    狭い画面で開く目次。右端のつまみで開き、リンクを押すか外側を押すか Esc で閉じる。
+    ページを移ったときも閉じておく
+  */
+  let outlineOpen = $state(false)
+  $effect(() => {
+    void page.key
+    outlineOpen = false
   })
   const upHref = $derived(
     up === undefined
@@ -144,77 +165,251 @@
   </section>
 
   <section class="body">
-    <div class="inner">
-      <GuideBlocks blocks={page.blocks} />
+    <!-- 広い画面では、本文の右に講座全体の目次を常に出す -->
+    <div class="layout">
+      <div class="inner">
+        <GuideBlocks blocks={page.blocks} />
 
-      {#if children.length > 0}
-        <section class="children">
-          <h2>{m.rule_guide_children_heading()}</h2>
-          <ul>
-            {#each children as child (child.key)}
-              <li>
-                <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(child.key)))}>
-                  <span class="child-title">{child.title}</span>
-                  <span class="child-lead">{child.lead}</span>
-                </a>
-              </li>
-            {/each}
-          </ul>
-        </section>
-      {/if}
-
-      {#if quiz.length > 0}
-        <GuideQuiz
-          heading={m.rule_guide_quiz_heading({ number: course.chapter })}
-          questions={quiz}
-          id="chapter-{course.chapter}-quiz"
-        />
-      {/if}
-
-      <!-- 前後のレッスン。前から順に読めば理解が積み上がるように並べてある -->
-      <nav
-        class="pager"
-        aria-label={m.rule_guide_chapter({ number: course.chapter })}
-        bind:this={pager}
-      >
-        {#if course.prev}
-          <a href={lessonHref(course.prev.key)}>
-            <span class="direction">← {m.rule_guide_prev()}</span>
-            <span class="title">{course.prev.title}</span>
-          </a>
+        {#if children.length > 0}
+          <section class="children">
+            <h2>{m.rule_guide_children_heading()}</h2>
+            <ul>
+              {#each children as child (child.key)}
+                <li>
+                  <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(child.key)))}>
+                    <span class="child-title">{child.title}</span>
+                    <span class="child-lead">{child.lead}</span>
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </section>
         {/if}
-        {#if course.next}
-          <a class="next" href={lessonHref(course.next.key)}>
-            <span class="direction"
-              >{course.nextIsNewChapter ? m.rule_guide_next_chapter() : m.rule_guide_next()} →</span
-            >
-            <span class="title">{course.next.title}</span>
-          </a>
-        {:else}
-          <a class="next" href={localizeHref(ROUTES.rules.quiz)}>
-            <span class="direction">{m.rule_guide_quiz_page_title()} →</span>
-            <span class="title">{m.rule_guide_course_end()}</span>
-          </a>
+
+        {#if quiz.length > 0}
+          <GuideQuiz
+            heading={m.rule_guide_quiz_heading({ number: course.chapter })}
+            questions={quiz}
+            id="chapter-{course.chapter}-quiz"
+          />
         {/if}
-      </nav>
 
-      <!-- 断り書き。ページの型（GuidePage.disclaimer）で必須にしてある -->
-      <GuideDisclaimer />
-
-      <div class="back">
-        <Button
-          href={localizeHref(ROUTES.rules.index)}
-          target="_self"
-          width={isMobile ? 'full' : 'auto'}
-          size="medium"
-          variant="sky-blue">{m.rule_guide_breadcrumb_top()}</Button
+        <!-- 前後のレッスン。前から順に読めば理解が積み上がるように並べてある -->
+        <nav
+          class="pager"
+          aria-label={m.rule_guide_chapter({ number: course.chapter })}
+          bind:this={pager}
         >
+          {#if course.prev}
+            <a href={lessonHref(course.prev.key)}>
+              <span class="direction">← {m.rule_guide_prev()}</span>
+              <span class="title">{course.prev.title}</span>
+            </a>
+          {/if}
+          {#if course.next}
+            <a class="next" href={lessonHref(course.next.key)}>
+              <span class="direction"
+                >{course.nextIsNewChapter ? m.rule_guide_next_chapter() : m.rule_guide_next()} →</span
+              >
+              <span class="title">{course.next.title}</span>
+            </a>
+          {:else}
+            <a class="next" href={localizeHref(ROUTES.rules.quiz)}>
+              <span class="direction">{m.rule_guide_quiz_page_title()} →</span>
+              <span class="title">{m.rule_guide_course_end()}</span>
+            </a>
+          {/if}
+        </nav>
+
+        <!-- 断り書き。ページの型（GuidePage.disclaimer）で必須にしてある -->
+        <GuideDisclaimer />
+
+        <div class="back">
+          <Button
+            href={localizeHref(ROUTES.rules.index)}
+            target="_self"
+            width={isMobile ? 'full' : 'auto'}
+            size="medium"
+            variant="sky-blue">{m.rule_guide_breadcrumb_top()}</Button
+          >
+        </div>
       </div>
+      <aside class="side">
+        <div class="side-sticky">
+          <GuideOutline {outline} currentKey={page.key} />
+        </div>
+      </aside>
     </div>
   </section>
+
+  <!-- 狭い画面では、右端のつまみから目次を開く -->
+  <button
+    type="button"
+    class="outline-tab"
+    aria-expanded={outlineOpen}
+    aria-controls="guide-outline-drawer"
+    onclick={() => (outlineOpen = true)}
+  >
+    {m.rule_guide_outline_title()}
+  </button>
+  {#if outlineOpen}
+    <button
+      type="button"
+      class="backdrop"
+      aria-label={m.rule_guide_outline_close()}
+      onclick={() => (outlineOpen = false)}
+    ></button>
+    <div
+      class="drawer"
+      id="guide-outline-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label={m.rule_guide_outline_title()}
+    >
+      <div class="drawer-head">
+        <p>{m.rule_guide_outline_title()}</p>
+        <button type="button" class="close" onclick={() => (outlineOpen = false)}>
+          {m.rule_guide_outline_close()}
+        </button>
+      </div>
+      <GuideOutline {outline} currentKey={page.key} onnavigate={() => (outlineOpen = false)} />
+    </div>
+  {/if}
 </article>
 
+<svelte:window
+  onkeydown={(event) => {
+    if (event.key === 'Escape') outlineOpen = false
+  }}
+/>
+
 <style lang="scss">
+  /* ─── 目次（広い画面は右の列、狭い画面は右端のつまみ） ─── */
+
+  .layout {
+    width: 100%;
+  }
+
+  .side {
+    display: none;
+  }
+
+  @media (width >= 1180px) {
+    .layout {
+      display: grid;
+      gap: $space-size-48;
+      grid-template-columns: minmax(0, 48em) 260px;
+      justify-content: center;
+      padding-inline: $space-size-16;
+
+      .inner {
+        margin-inline: 0;
+        padding-inline: 0;
+      }
+    }
+
+    .side {
+      display: block;
+    }
+
+    .outline-tab {
+      display: none;
+    }
+
+    /* 帯の文字も、本文と同じ左端にそろえる（右の目次の列のぶんを右に空ける） */
+    .hero .inner {
+      max-width: calc(48em + #{$space-size-48} + 260px + #{$space-size-32});
+      padding-right: calc(#{$space-size-48} + 260px + #{$space-size-16});
+    }
+  }
+
+  /* 本文といっしょに流れず、画面の中にとどまる */
+  .side-sticky {
+    position: sticky;
+    top: calc(var(--header-height, 64px) + #{$space-size-24});
+    max-height: calc(100vh - var(--header-height, 64px) - #{$space-size-48});
+    padding-top: $space-size-48;
+    overflow-y: auto;
+  }
+
+  .outline-tab {
+    position: fixed;
+    padding: $space-size-12 $space-size-8;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: $white;
+    border: 0;
+    border-radius: $border-radius-8 0 0 $border-radius-8;
+    background: var(--accent);
+    top: 50%;
+    right: 0;
+    z-index: 950;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+  }
+
+  .backdrop {
+    position: fixed;
+    border: 0;
+    background: rgb(0 0 0 / 40%);
+    inset: 0;
+    z-index: 1100;
+    cursor: pointer;
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1101;
+    display: flex;
+    flex-direction: column;
+    gap: $space-size-12;
+    width: min(320px, 86vw);
+    padding: $space-size-16;
+    overflow-y: auto;
+    background: $white;
+    box-shadow: -4px 0 20px rgb(0 0 0 / 20%);
+    animation: slide-in 0.2s ease-out;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: $space-size-8;
+    border-bottom: $border-size-2 solid var(--accent);
+
+    p {
+      font-size: $font-size-16;
+      font-weight: bold;
+    }
+  }
+
+  .close {
+    padding: $space-size-4 $space-size-12;
+    font-size: $font-size-12;
+    color: map.get($gray, light-text);
+    border: 0;
+    border-radius: $border-radius-4;
+    background: map.get($gray, 50);
+    cursor: pointer;
+  }
+
   /* ほかのページと同じ組み方。帯（hero）で受けて、白い面に本文を置く */
   .guide {
     display: flex;

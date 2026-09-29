@@ -54,5 +54,8 @@
   "rule_guide_index_words_body": "よく出てくる言葉を、ひとことで説明しています。",
   "rule_guide_index_done": "全部読みました",
   "rule_guide_index_read_lesson": "レッスンを読む",
-  "rule_guide_index_lessons_toggle": "レッスン一覧（{count}）"
+  "rule_guide_index_lessons_toggle": "レッスン一覧（{count}）",
+  "rule_guide_outline_title": "章を選ぶ",
+  "rule_guide_outline_close": "閉じる",
+  "rule_guide_outline_home": "講座のトップへ"
 }

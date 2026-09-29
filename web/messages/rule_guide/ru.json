@@ -54,5 +54,8 @@
   "rule_guide_index_words_body": "Частые термины — по одной строке.",
   "rule_guide_index_done": "Все уроки прочитаны",
   "rule_guide_index_read_lesson": "Читать урок",
-  "rule_guide_index_lessons_toggle": "Уроки ({count})"
+  "rule_guide_index_lessons_toggle": "Уроки ({count})",
+  "rule_guide_outline_title": "Главы",
+  "rule_guide_outline_close": "Закрыть",
+  "rule_guide_outline_home": "К началу курса"
 }
