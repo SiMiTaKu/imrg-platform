@@ -18,6 +18,14 @@ import type { GlossaryTerm } from '../model/glossary'
  */
 export const GLOSSARY_JA: readonly GlossaryTerm[] = [
   {
+    slug: 'individual_all_around',
+    term: '個人総合',
+    reading: 'こじんそうごう',
+    summary:
+      '個人の4種目すべてを1つずつ演技し、その得点の合計で順位を決める競技。大会によっては2種目の合計のこともある。',
+    to: 'individual',
+  },
+  {
     slug: 'floor_area',
     term: '演技面',
     reading: 'えんぎめん',
@@ -90,7 +98,8 @@ export const GLOSSARY_JA: readonly GlossaryTerm[] = [
     slug: 'individual',
     term: '個人',
     reading: 'こじん',
-    summary: '1人で行う種目。手具を1つ持つ。演技時間は1分15秒から1分30秒。',
+    summary:
+      '1人で行う種目。スティック・リング・ロープ・クラブの4種目があり、1つの演技で手具を1つ使う。演技時間は1分15秒から1分30秒。',
     aliases: ['Individual', '個人競技'],
     to: 'individual',
   },
@@ -113,7 +122,8 @@ export const GLOSSARY_JA: readonly GlossaryTerm[] = [
     slug: 'apparatus',
     term: '手具',
     reading: 'しゅぐ',
-    summary: '個人が持つ道具。スティック、リング、ロープ、クラブの4種類。',
+    summary:
+      '個人が持つ道具。スティック、リング、ロープ、クラブの4種類があり、それぞれが1つの種目になる。',
     aliases: ['Apparatus', 'しゅぐ'],
     to: 'individual',
   },
@@ -193,7 +203,7 @@ export const GLOSSARY_JA: readonly GlossaryTerm[] = [
     slug: 'mens_rhythmic_gymnastics',
     term: '男子新体操',
     reading: 'だんししんたいそう',
-    summary: '日本で生まれた競技。5人でそろえる団体と、手具を1つ持つ個人がある。',
+    summary: '日本で生まれた競技。5人でそろえる団体と、手具を操る個人がある。',
     aliases: ["Men's Rhythmic Gymnastics", 'MRG'],
     to: 'basics',
   },
