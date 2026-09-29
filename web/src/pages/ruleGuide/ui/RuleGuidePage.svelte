@@ -165,84 +165,79 @@
   </section>
 
   <section class="body">
-    <!-- 広い画面では、本文の右に講座全体の目次を常に出す -->
-    <div class="layout">
-      <div class="inner">
-        <GuideBlocks blocks={page.blocks} />
+    <div class="inner">
+      <GuideBlocks blocks={page.blocks} />
 
-        {#if children.length > 0}
-          <section class="children">
-            <h2>{m.rule_guide_children_heading()}</h2>
-            <ul>
-              {#each children as child (child.key)}
-                <li>
-                  <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(child.key)))}>
-                    <span class="child-title">{child.title}</span>
-                    <span class="child-lead">{child.lead}</span>
-                  </a>
-                </li>
-              {/each}
-            </ul>
-          </section>
+      {#if children.length > 0}
+        <section class="children">
+          <h2>{m.rule_guide_children_heading()}</h2>
+          <ul>
+            {#each children as child (child.key)}
+              <li>
+                <a href={localizeHref(ROUTES.rules.page(guideKeyToPath(child.key)))}>
+                  <span class="child-title">{child.title}</span>
+                  <span class="child-lead">{child.lead}</span>
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </section>
+      {/if}
+
+      {#if quiz.length > 0}
+        <GuideQuiz
+          heading={m.rule_guide_quiz_heading({ number: course.chapter })}
+          questions={quiz}
+          id="chapter-{course.chapter}-quiz"
+        />
+      {/if}
+
+      <!-- 前後のレッスン。前から順に読めば理解が積み上がるように並べてある -->
+      <nav
+        class="pager"
+        aria-label={m.rule_guide_chapter({ number: course.chapter })}
+        bind:this={pager}
+      >
+        {#if course.prev}
+          <a href={lessonHref(course.prev.key)}>
+            <span class="direction">← {m.rule_guide_prev()}</span>
+            <span class="title">{course.prev.title}</span>
+          </a>
         {/if}
-
-        {#if quiz.length > 0}
-          <GuideQuiz
-            heading={m.rule_guide_quiz_heading({ number: course.chapter })}
-            questions={quiz}
-            id="chapter-{course.chapter}-quiz"
-          />
+        {#if course.next}
+          <a class="next" href={lessonHref(course.next.key)}>
+            <span class="direction"
+              >{course.nextIsNewChapter ? m.rule_guide_next_chapter() : m.rule_guide_next()} →</span
+            >
+            <span class="title">{course.next.title}</span>
+          </a>
+        {:else}
+          <a class="next" href={localizeHref(ROUTES.rules.quiz)}>
+            <span class="direction">{m.rule_guide_quiz_page_title()} →</span>
+            <span class="title">{m.rule_guide_course_end()}</span>
+          </a>
         {/if}
+      </nav>
 
-        <!-- 前後のレッスン。前から順に読めば理解が積み上がるように並べてある -->
-        <nav
-          class="pager"
-          aria-label={m.rule_guide_chapter({ number: course.chapter })}
-          bind:this={pager}
+      <!-- 断り書き。ページの型（GuidePage.disclaimer）で必須にしてある -->
+      <GuideDisclaimer />
+
+      <div class="back">
+        <Button
+          href={localizeHref(ROUTES.rules.index)}
+          target="_self"
+          width={isMobile ? 'full' : 'auto'}
+          size="medium"
+          variant="sky-blue">{m.rule_guide_breadcrumb_top()}</Button
         >
-          {#if course.prev}
-            <a href={lessonHref(course.prev.key)}>
-              <span class="direction">← {m.rule_guide_prev()}</span>
-              <span class="title">{course.prev.title}</span>
-            </a>
-          {/if}
-          {#if course.next}
-            <a class="next" href={lessonHref(course.next.key)}>
-              <span class="direction"
-                >{course.nextIsNewChapter ? m.rule_guide_next_chapter() : m.rule_guide_next()} →</span
-              >
-              <span class="title">{course.next.title}</span>
-            </a>
-          {:else}
-            <a class="next" href={localizeHref(ROUTES.rules.quiz)}>
-              <span class="direction">{m.rule_guide_quiz_page_title()} →</span>
-              <span class="title">{m.rule_guide_course_end()}</span>
-            </a>
-          {/if}
-        </nav>
-
-        <!-- 断り書き。ページの型（GuidePage.disclaimer）で必須にしてある -->
-        <GuideDisclaimer />
-
-        <div class="back">
-          <Button
-            href={localizeHref(ROUTES.rules.index)}
-            target="_self"
-            width={isMobile ? 'full' : 'auto'}
-            size="medium"
-            variant="sky-blue">{m.rule_guide_breadcrumb_top()}</Button
-          >
-        </div>
       </div>
-      <aside class="side">
-        <div class="side-sticky">
-          <GuideOutline {outline} currentKey={page.key} />
-        </div>
-      </aside>
     </div>
   </section>
 
-  <!-- 狭い画面では、右端のつまみから目次を開く -->
+  <!--
+    講座全体の目次は、右端のつまみから開く。PC でも常に出すと本文の邪魔になるので、
+    どの画面幅でも開け閉めする形にそろえている
+  -->
   <button
     type="button"
     class="outline-tab"
@@ -284,53 +279,7 @@
 />
 
 <style lang="scss">
-  /* ─── 目次（広い画面は右の列、狭い画面は右端のつまみ） ─── */
-
-  .layout {
-    width: 100%;
-  }
-
-  .side {
-    display: none;
-  }
-
-  @media (width >= 1180px) {
-    .layout {
-      display: grid;
-      gap: $space-size-48;
-      grid-template-columns: minmax(0, 48em) 260px;
-      justify-content: center;
-      padding-inline: $space-size-16;
-
-      .inner {
-        margin-inline: 0;
-        padding-inline: 0;
-      }
-    }
-
-    .side {
-      display: block;
-    }
-
-    .outline-tab {
-      display: none;
-    }
-
-    /* 帯の文字も、本文と同じ左端にそろえる（右の目次の列のぶんを右に空ける） */
-    .hero .inner {
-      max-width: calc(48em + #{$space-size-48} + 260px + #{$space-size-32});
-      padding-right: calc(#{$space-size-48} + 260px + #{$space-size-16});
-    }
-  }
-
-  /* 本文といっしょに流れず、画面の中にとどまる */
-  .side-sticky {
-    position: sticky;
-    top: calc(var(--header-height, 64px) + #{$space-size-24});
-    max-height: calc(100vh - var(--header-height, 64px) - #{$space-size-48});
-    padding-top: $space-size-48;
-    overflow-y: auto;
-  }
+  /* ─── 目次（右端のつまみから開く） ─── */
 
   .outline-tab {
     position: fixed;
