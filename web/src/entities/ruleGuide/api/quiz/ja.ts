@@ -28,7 +28,7 @@ export const GUIDE_QUIZ_JA: GuideQuiz = {
       question: '団体が持つ手具はどれですか。',
       choices: ['スティック', 'リング', 'クラブ', '何も持たない'],
       answer: 3,
-      explanation: '団体は手具を持ちません。5人の体の動きだけで演技します。',
+      explanation: '団体は手具を持ちません。5人の身体の動きだけで演技します。',
       from: 'basics',
     },
     {
@@ -119,7 +119,7 @@ export const GUIDE_QUIZ_JA: GuideQuiz = {
       choices: [
         '手具が空中で何回転したか',
         '投げた高さ',
-        '投げてから受けるまでに、体を360度回す技をいくつ入れたか',
+        '投げてから受けるまでに、身体を360度回す技をいくつ入れたか',
       ],
       answer: 2,
       explanation: '間に入れた技の数で決まります。0回ならA、4回以上ならEです。',
