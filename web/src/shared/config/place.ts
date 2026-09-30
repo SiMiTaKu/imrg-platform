@@ -58,8 +58,10 @@ export const PREFECTURE_NAMES_ENGLISH = {
  * 国名の英語表記。
  *
  * @remarks
- * 海外で開かれる大会など、会場が国名だけのデータを訳すために使う
+ * 海外で開かれる大会など、会場が国名だけのデータを訳すために使う。
+ * 会場名にこの国名が入っていれば海外の会場とみなし、地図は英語の名前で探す
  */
 export const COUNTRY_NAMES_ENGLISH = {
   スペイン: 'Spain',
+  イタリア: 'Italy',
 } as const

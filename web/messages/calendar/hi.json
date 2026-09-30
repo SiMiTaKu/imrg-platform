@@ -92,5 +92,7 @@
   "calendar_detail_venue_tbd": "अभी घोषित नहीं",
   "calendar_detail_streaming_none": "कोई जानकारी नहीं",
   "calendar_detail_streaming_check": "कृपया आधिकारिक साइट पर देखें",
+  "calendar_add_to_google_calendar": "Google Calendar में जोड़ें",
+  "calendar_open_in_google_maps": "Google Maps पर देखें",
   "calendar_related_title": "आसपास की तारीखों के आयोजन"
 }
