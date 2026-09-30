@@ -161,8 +161,19 @@ terraform apply
 | ----------------- | -------------------------------------------- |
 | `SITE_BASIC_AUTH` | `<利用者名>:<合言葉>`（tfvars に書いたもの） |
 
-`production` には、**必要なら承認者（Required reviewers）を設定する**。
-設定すると本番へ配る前に手で承認する一手間が入る。
+`production` は、**配れるブランチを `main` だけに絞っている**（Deployment branches and tags → Selected branches → `main`）。
+管理者も飛ばせないようにしている（Allow administrators to bypass … を外す）。
+ワークフローを書き換えたブランチから本番を選んで実行しても、ジョブが始まる前に止まる（2026-09-30 に設定）。
+
+```bash
+# いまの設定を見る
+gh api repos/SiMiTaKu/imrg-platform/environments/production \
+  --jq '{can_admins_bypass, deployment_branch_policy}'
+gh api repos/SiMiTaKu/imrg-platform/environments/production/deployment-branch-policies \
+  --jq '.branch_policies[] | {name, type}'
+```
+
+必要なら承認者（Required reviewers）も設定できる。設定すると本番へ配る前に手で承認する一手間が入る。
 
 ## 戻し方（ロールバック）
 
