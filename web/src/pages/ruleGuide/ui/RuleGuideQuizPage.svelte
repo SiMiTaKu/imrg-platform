@@ -5,7 +5,7 @@
   import { pageData } from '@shared/lib/device'
   import { localizeHref } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'
-  import { GuideDisclaimer, chapterColor } from '@widgets/ruleGuide'
+  import { GuideDisclaimer } from '@widgets/ruleGuide'
 
   /** 問題集。章ごとの理解度チェックを、講座の順番に並べる */
   interface Props {
@@ -68,7 +68,6 @@
             aria-controls="quiz-panel"
             class="tab"
             class:active={index === selected}
-            style:--accent={chapterColor(item.number)}
             onclick={() => select(index)}
           >
             <span class="tab-number">{item.number}</span>
@@ -81,12 +80,7 @@
       </div>
 
       {#if chapter}
-        <div
-          id="quiz-panel"
-          role="tabpanel"
-          aria-labelledby="quiz-tab-{chapter.number}"
-          style:--accent={chapterColor(chapter.number)}
-        >
+        <div id="quiz-panel" role="tabpanel" aria-labelledby="quiz-tab-{chapter.number}">
           <!-- 章を切り替えたら、解いている途中の状態は捨てて最初から出す -->
           {#key chapter.number}
             <!-- 問題集では、答えを確かめに戻れるよう解説のページへのリンクを出す -->
@@ -135,21 +129,21 @@
     cursor: pointer;
 
     &:hover {
-      border-color: var(--accent);
+      border-color: map.get($sky-blue, button);
     }
 
     &:focus-visible {
-      outline: $border-size-2 solid var(--accent);
+      outline: $border-size-2 solid map.get($sky-blue, button);
     }
 
-    /* 選んでいる章は、章の色で塗る */
+    /* 選んでいる章は青で塗る。問題集では章ごとに色を変えない */
     &.active {
       color: $white;
-      border-color: var(--accent);
-      background: var(--accent);
+      border-color: map.get($sky-blue, button);
+      background: map.get($sky-blue, button);
 
       .tab-number {
-        color: var(--accent);
+        color: map.get($sky-blue, button);
         background: $white;
       }
 
@@ -167,7 +161,7 @@
     font-weight: bold;
     color: $white;
     border-radius: 50%;
-    background: var(--accent);
+    background: map.get($sky-blue, button);
     flex: none;
     place-items: center;
   }
@@ -185,7 +179,7 @@
     flex: none;
     font-size: $font-size-12;
     font-weight: bold;
-    color: var(--accent);
+    color: map.get($sky-blue, button);
   }
 
   /* 解説のページと同じ組み方。帯で受けて、白い面に本文を置く */
