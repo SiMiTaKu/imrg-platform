@@ -92,5 +92,7 @@
   "calendar_detail_venue_tbd": "미정·미발표",
   "calendar_detail_streaming_none": "정보 없음",
   "calendar_detail_streaming_check": "공식 사이트에서 확인해 주세요",
+  "calendar_add_to_google_calendar": "Google 캘린더에 추가",
+  "calendar_open_in_google_maps": "Google 지도에서 보기",
   "calendar_related_title": "비슷한 시기에 열리는 대회"
 }
