@@ -46,5 +46,8 @@
   "video_card_title": "Exercice de {name}",
   "video_card_play": "Lire l’exercice de {name}",
   "video_card_again": "Revoir",
-  "modal_close": "Fermer"
+  "modal_close": "Fermer",
+  "cross_rules_label": "Découvrir les règles",
+  "cross_rules_from_oshimitsu": "Quand on sait comment la notation fonctionne, le même mouvement se voit autrement.",
+  "cross_rules_from_calendar": "Connaître les règles avant d'y aller permet de suivre ce qui se passe."
 }

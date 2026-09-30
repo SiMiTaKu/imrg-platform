@@ -1,0 +1,15 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "words_title": "Glossary",
+  "words_lead": "Terms used in men's rhythmic gymnastics, each explained in one line — not only rule terms, but also words used in practice and at competitions. Type to filter.",
+  "words_search_label": "Search terms",
+  "words_search_placeholder": "e.g. formation, difficulty, toshu",
+  "words_found": "{count} terms",
+  "words_empty": "No results for \"{keyword}\". Try another word.",
+  "words_detail": "Read more",
+  "words_clear": "Clear",
+  "words_eyebrow": "Men's rhythmic gymnastics dictionary",
+  "words_index_label": "Browse by kana",
+  "words_gyou": "{head}",
+  "words_other": "Others"
+}

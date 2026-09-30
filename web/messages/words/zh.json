@@ -1,0 +1,15 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "words_title": "术语集",
+  "words_lead": "用一句话说明男子艺术体操使用的词语。不仅是规则用语，也收录训练和比赛中使用的词。输入想找的词即可筛选。",
+  "words_search_label": "按词搜索",
+  "words_search_placeholder": "例：队形移动、难度、徒手",
+  "words_found": "{count}个词",
+  "words_empty": "没有找到「{keyword}」。请换个词试试。",
+  "words_detail": "查看详情",
+  "words_clear": "清除",
+  "words_eyebrow": "男子艺术体操词典",
+  "words_index_label": "按五十音查找",
+  "words_gyou": "{head}行",
+  "words_other": "字母・符号"
+}

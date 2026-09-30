@@ -177,7 +177,7 @@ export const FEATURES = [
     id: 'rules',
     title: m.top_feature_rules_title,
     body: m.top_feature_rules_body,
-    href: ROUTES.rules,
+    href: ROUTES.rules.index,
     badge: m.top_feature_rules_badge,
   },
   {

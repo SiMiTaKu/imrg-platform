@@ -1,0 +1,15 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "words_title": "用語集",
+  "words_lead": "男子新体操で使う言葉を、ひとことで説明します。ルールの言葉だけでなく、練習や大会で使う言葉も載せています。探したい言葉を入れると絞り込めます。",
+  "words_search_label": "言葉で探す",
+  "words_search_placeholder": "例：隊形移動、難度、徒手",
+  "words_found": "{count}語",
+  "words_empty": "「{keyword}」は見つかりませんでした。別の言葉で探してみてください。",
+  "words_detail": "詳しく見る",
+  "words_clear": "消す",
+  "words_eyebrow": "男子新体操の辞書",
+  "words_index_label": "五十音から探す",
+  "words_gyou": "{head}行",
+  "words_other": "英数字・記号"
+}

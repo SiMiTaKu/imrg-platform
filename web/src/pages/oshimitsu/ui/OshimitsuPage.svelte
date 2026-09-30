@@ -1,5 +1,21 @@
 <script lang="ts">
+  import { CrossLinks, type CrossLinkList } from '@features/crossLinks'
+  import { m } from '$lib/paraglide/messages'
+  import { localizeHref } from '@shared/lib/i18n'
+  import { ROUTES } from '@shared/routes'
   import { OshimitsuHero, RecommendedVideos, SearchWays } from '@widgets/oshimitsu'
+
+  /*
+    演技を見にきた人を、ルールの解説へ送る。
+    点の決まり方を知っていると、同じ演技でも見えるものが変わる
+  */
+  const rulesLink: CrossLinkList = $derived([
+    {
+      label: m.cross_rules_label(),
+      href: localizeHref(ROUTES.rules.index),
+      body: m.cross_rules_from_oshimitsu(),
+    },
+  ])
 </script>
 
 <!--
@@ -10,6 +26,7 @@
   <OshimitsuHero />
   <SearchWays />
   <RecommendedVideos />
+  <CrossLinks links={rulesLink} />
 </article>
 
 <style lang="scss">

@@ -15,6 +15,8 @@
       "./messages/calendar/{locale}.json",
       "./messages/oshimitsu/{locale}.json",
       "./messages/rules/{locale}.json",
+      "./messages/rule_guide/{locale}.json",
+      "./messages/words/{locale}.json",
       "./messages/judge/{locale}.json",
       "./messages/background_music/{locale}.json",
       "./messages/decorating_apparatus/{locale}.json",
