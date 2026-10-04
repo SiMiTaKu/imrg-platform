@@ -41,6 +41,10 @@ import Image13_3 from '../images/work-list-image-13-3.jpg?w=512;1024;1600&format
 import Image14_1 from '../images/work-list-image-14-1.jpg?w=512;1024;1600&format=webp&as=meta'
 import Image14_2 from '../images/work-list-image-14-2.jpg?w=512;1024;1600&format=webp&as=meta'
 import Image14_3 from '../images/work-list-image-14-3.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image15_1 from '../images/work-list-image-15-1.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image15_2 from '../images/work-list-image-15-2.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image15_3 from '../images/work-list-image-15-3.jpg?w=512;1024;1600&format=webp&as=meta'
+import Image15_4 from '../images/work-list-image-15-4.jpg?w=512;1024;1600&format=webp&as=meta'
 
 /** 手具装飾の作品1件 */
 export type DecoratingWork = {
@@ -64,4 +68,5 @@ export const WORK_LIST: readonly DecoratingWork[] = [
   { images: [Image12_1, Image12_2, Image12_3] },
   { images: [Image13_1, Image13_2, Image13_3] },
   { images: [Image14_1, Image14_2, Image14_3] },
+  { images: [Image15_1, Image15_2, Image15_3, Image15_4] },
 ]
