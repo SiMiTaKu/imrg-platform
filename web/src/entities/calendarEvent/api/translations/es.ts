@@ -1365,7 +1365,7 @@ export const ES_EVENT_TRANSLATIONS: EventTranslations = {
   '2026-11-26-6df3b8': {
     title: 'Copa Challenge de Japón Júnior de gimnasia rítmica 2026',
     venue: 'Takasaki Arena (Gunma)',
-    note: 'Se celebra el día antes de que comience el Campeonato de Japón Júnior en la misma sede. Las pruebas masculinas y femeninas se disputan juntas.',
+    note: 'Se celebra el día antes de que comience el Campeonato de Japón Júnior en la misma sede. Las pruebas masculinas y femeninas se disputan juntas. Los hombres compiten en individual (cuerda, mazas) y conjunto (manos libres).',
   },
   '2026-11-27-e2427f': {
     title: 'Chacott CHAMPIONSHIPS 44.º Campeonato de Japón Júnior de gimnasia rítmica',

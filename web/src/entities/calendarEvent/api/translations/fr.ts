@@ -1389,7 +1389,7 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
   '2026-11-26-6df3b8': {
     title: 'Challenge Cup junior du Japon de gymnastique rythmique 2026',
     venue: 'Takasaki Arena (Gunma)',
-    note: 'Organisé la veille du Championnat junior du Japon, sur le même site. Les épreuves masculines et féminines ont lieu ensemble.',
+    note: 'Organisé la veille du Championnat junior du Japon, sur le même site. Les épreuves masculines et féminines ont lieu ensemble. Les hommes concourent en individuel (corde, massues) et en groupe (mains libres).',
   },
   '2026-11-27-e2427f': {
     title: 'Chacott CHAMPIONSHIPS – 44e Championnat junior du Japon de gymnastique rythmique',
