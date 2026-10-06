@@ -1365,6 +1365,11 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
     venue: 'Takasaki Arena (Gunma)',
     note: "Championnat national qui désigne le meilleur du Japon. La compétition masculine comprend les épreuves individuelles et d'ensemble, sur le même site que la compétition féminine.",
   },
+  '2026-11-08-c4900c': {
+    title: 'BLUE Festival × BLUE Marché 2026',
+    venue: "Kakuhiro Group Super Arena (gymnase général de la ville d'Aomori) (Aomori)",
+    note: 'Un événement pour se rencontrer autour du sport, avec un marché. 10h00–17h00, entrée gratuite.',
+  },
   '2026-11-20-4dc9ec': {
     title: '34e Championnat de sélection des lycées du Tohoku de gymnastique rythmique',
     venue: 'Toyota Boshoku Tohoku Sunshine Arena (Iwate)',
@@ -1411,6 +1416,12 @@ export const FR_EVENT_TRANSLATIONS: EventTranslations = {
       '41e Championnat de la relève des lycées de Hokkaido / qualifications pour le Championnat national de sélection des lycées (gymnastique rythmique)',
     venue: 'Parc des sports NOPPORO Yashima Shokai (Hokkaido)',
     note: 'Championnat de la relève des lycées de Hokkaido, qui sert également de qualification pour le Championnat national de sélection des lycées.',
+  },
+  '2027-01-22-e9e86a': {
+    title:
+      'TV Shinshu Cup 30e Championnat de la Coupe des clubs de gymnastique rythmique de Nagano',
+    venue: 'Nagano Prefectural Budokan (Nagano)',
+    note: "Surnommée « Nagano Cup ». Compétition ouverte à tout le Japon ; les éditions précédentes comprenaient des catégories masculines senior, junior et enfants. Dates confirmées dans le plan annuel de l'Association de gymnastique de Nagano.",
   },
   '2027-02-0fff8f': {
     title: 'SANIX CUP – gala-compétition de gymnastique rythmique masculine 2027',
