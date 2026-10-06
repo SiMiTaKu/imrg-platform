@@ -44,18 +44,18 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^64.5.4",
+    "eslint-plugin-jsdoc": "^65.0.1",
     "eslint-plugin-svelte": "^3.23.0",
-    "eslint-plugin-tsdoc": "^0.5.3",
+    "eslint-plugin-tsdoc": "^0.5.4",
     "eslint-plugin-unused-imports": "^4.4.1",
-    "globals": "^17.12.0",
+    "globals": "^17.13.0",
     "husky": "^9.1.7",
-    "lint-staged": "^17.5.1",
+    "lint-staged": "^17.6.0",
     "postcss-html": "^2.0.0",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.9.9",
     "prettier-plugin-svelte": "^4.1.1",
-    "stylelint": "^17.15.0",
+    "stylelint": "^17.16.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.1",
     "textlint": "14.8.4",
@@ -69,6 +69,6 @@
     "textlint-rule-preset-jtf-style": "^3.0.3",
     "textlint-rule-prh": "^6.1.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.70.1"
+    "typescript-eslint": "^8.71.0"
   }
 }

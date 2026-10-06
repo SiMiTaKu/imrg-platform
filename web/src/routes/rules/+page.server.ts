@@ -1,4 +1,4 @@
-import { PUBLIC_RULES_PUBLISHED } from '$env/static/public'
+import { PUBLIC_RULES_PUBLISHED } from '$app/env/public'
 import { loadRuleBook } from '@entities/rule'
 import { META_DATA } from '@shared/config/meta'
 import { getLocale } from '@shared/lib/i18n'

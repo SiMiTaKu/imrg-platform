@@ -1,4 +1,4 @@
-import { PUBLIC_BASE_URL } from '$env/static/public'
+import { PUBLIC_BASE_URL } from '$app/env/public'
 import { EVENTS, UPDATED_AT } from '@entities/calendarEvent'
 import { BASE_LOCALE, localizePath, publishedLocales } from '@shared/lib/i18n'
 import type { SitemapEntry } from '@shared/lib/sitemap'

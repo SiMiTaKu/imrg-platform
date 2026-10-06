@@ -1,6 +1,6 @@
 ---
 description: 静的書き出し（adapter-static）と S3 + CloudFront での配信、SEO・OGP の決まり
-applyTo: '{web/src/routes/**/*,web/src/app.html,web/src/lib/hooks/**/*,web/src/model/**/*,web/static/**/*,web/svelte.config.js,terraform/**/*,.github/workflows/*deploy*.yml}'
+applyTo: '{web/src/routes/**/*,web/src/app.html,web/src/lib/hooks/**/*,web/src/model/**/*,web/static/**/*,web/sveltekit.config.js,terraform/**/*,.github/workflows/*deploy*.yml}'
 name: 静的サイトの書き出しと配信
 ---
 

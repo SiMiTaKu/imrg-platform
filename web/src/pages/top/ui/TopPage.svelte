@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_BASE_URL } from '$env/static/public'
+  import { PUBLIC_BASE_URL } from '$app/env/public'
   // TODO(キャラクター): CharacterTeam（案内役の5人の節）を出し直す（docs/TODO.md 5-9）
   import {
     // CharacterTeam,
