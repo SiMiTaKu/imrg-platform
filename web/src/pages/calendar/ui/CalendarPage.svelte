@@ -28,7 +28,7 @@
     type CalendarState,
   } from '@features/calendarFilter'
   import { pageData } from '@shared/lib/device'
-  import { PUBLIC_BASE_URL } from '$env/static/public'
+  import { PUBLIC_BASE_URL } from '$app/env/public'
   import { getLocale, localizeHref } from '@shared/lib/i18n'
   import type { SiteLocale } from '@shared/lib/i18n'
   import { ROUTES } from '@shared/routes'

@@ -1,5 +1,5 @@
 {
-  "extends": "./.svelte-kit/tsconfig.json",
+  "extends": "$app/tsconfig",
   "compilerOptions": {
     "allowJs": true,
     "allowImportingTsExtensions": true,
@@ -12,18 +12,7 @@
     "strict": true,
     "verbatimModuleSyntax": false
   },
-  // include は継承元（.svelte-kit/tsconfig.json）と合成されず上書きになる。
-  // $env などの型は SvelteKit が生成する .d.ts にあるので、ここにも並べる
-  "include": [
-    ".svelte-kit/ambient.d.ts",
-    ".svelte-kit/env.d.ts",
-    ".svelte-kit/non-ambient.d.ts",
-    ".svelte-kit/types/**/$types.d.ts",
-    "src/**/*",
-    "tests/**/*",
-    "svelte.config.js",
-    "vite.config.ts",
-    "vitest.config.ts"
-  ]
-  // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
+  // SvelteKit 3 では継承元（node_modules/$app/tsconfig.json）の types で $env などの型が入る
+  "include": ["src/**/*", "tests/**/*", "sveltekit.config.js", "vite.config.ts", "vitest.config.ts"]
+  // 別名は sveltekit.config.js の alias から継承元の paths に入る
 }

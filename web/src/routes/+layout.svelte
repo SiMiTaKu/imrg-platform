@@ -2,7 +2,7 @@
   import '../app/styles/global.css'
   import { m } from '$lib/paraglide/messages'
   import { onMount, type Snippet } from 'svelte'
-  import { PUBLIC_CF_BEACON_TOKEN } from '$env/static/public'
+  import { PUBLIC_CF_BEACON_TOKEN } from '$app/env/public'
   import { ANALYTICS_HOSTS } from '../app/config/analytics'
   import { Footer, Header, LocalePageLinks, ScrollToTopButton, StickyFooter } from '@widgets/layout'
 
