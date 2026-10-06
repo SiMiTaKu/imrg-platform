@@ -31,6 +31,7 @@ describe('calendarDetailMetaInput', () => {
           dateRange: '2026年10月30日（金）〜11月1日（日）',
           venue: '高崎アリーナ（群馬県）',
           note: '日本一を決める大会です。',
+          hasResults: false,
         },
       ],
       [
@@ -42,6 +43,7 @@ describe('calendarDetailMetaInput', () => {
           dateRange: 'Fri, Oct 30 – Sun, Nov 1, 2026',
           venue: 'Takasaki Arena',
           note: "The championships that decide Japan's best.",
+          hasResults: false,
         },
       ],
     ] as const)('%s', (_, locale, expected) => {
@@ -55,6 +57,39 @@ describe('calendarDetailMetaInput', () => {
 
       // #region Then
       expect(result).toEqual(expected)
+      // #endregion
+    })
+  })
+})
+
+describe('calendarDetailMetaInput の結果の有無', () => {
+  describe('正常系', () => {
+    it.each([
+      [
+        '結果のページを1つ持つ場合、hasResults が true になること',
+        [{ url: 'https://example.com/result.pdf' }],
+        true,
+      ],
+      [
+        '結果のページを団体と個人で2つ持つ場合、hasResults が true になること',
+        [
+          { label: { ja: '団体', en: 'Group' }, url: 'https://example.com/group.pdf' },
+          { label: { ja: '個人', en: 'Individual' }, url: 'https://example.com/individual.pdf' },
+        ],
+        true,
+      ],
+      ['結果のページが空の配列の場合、hasResults が false になること', [], false],
+    ] as const)('%s', (_, results, expected) => {
+      // #region Given
+      const withResults = makeEvent({ ...event, results })
+      // #endregion
+
+      // #region When
+      const result = calendarDetailMetaInput(withResults, 'ja')
+      // #endregion
+
+      // #region Then
+      expect(result.hasResults).toBe(expected)
       // #endregion
     })
   })
