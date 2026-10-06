@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button } from '@imrg-platform/design-system'
-  import { PUBLIC_BASE_URL } from '$env/static/public'
+  import { PUBLIC_BASE_URL } from '$app/env/public'
   import { m } from '$lib/paraglide/messages'
   import type { Chart } from 'chart.js/auto'
   import { CHARACTERS, Character } from '@entities/character'

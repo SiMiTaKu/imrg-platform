@@ -1,4 +1,4 @@
-import type { Handle } from '@sveltejs/kit'
+import type { Handle } from '@sveltejs/kit/hooks'
 import { paraglideMiddleware } from '$lib/paraglide/server'
 
 /** 拡張子の付いたパス（ページではなくファイル） */
@@ -14,8 +14,9 @@ const localeHandle: Handle = ({ event, resolve }) => {
   // SvelteKit の転送と往復して開けなくなる
   if (FILE_PATH.test(event.url.pathname)) return resolve(event)
 
-  return paraglideMiddleware(event.request, ({ request, locale }) => {
-    event.request = request
+  // SvelteKit 3 では event.request が読み取り専用になった。言語を外した URL への振り分けは
+  // hooks.ts の reroute がやるので、ミドルウェアが作り直した request は使わない
+  return paraglideMiddleware(event.request, ({ locale }) => {
     return resolve(event, {
       transformPageChunk({ html }) {
         return html.replace('%lang%', locale)
