@@ -1240,7 +1240,7 @@ export const ZH_EVENT_TRANSLATIONS: EventTranslations = {
   '2026-11-26-6df3b8': {
     title: '2026全日本少年艺术体操挑战杯',
     venue: '高崎竞技场（群马县）',
-    note: '在翌日于同一场馆开幕的全日本少年锦标赛之前举行，男女同场。',
+    note: '在翌日于同一场馆开幕的全日本少年锦标赛之前举行，男女同场。男子设个人（绳・棍棒）和团体（徒手）。',
   },
   '2026-11-27-e2427f': {
     title: 'Chacott CHAMPIONSHIPS 第44届全日本少年艺术体操锦标赛',
