@@ -1,6 +1,6 @@
 ---
 description: 静的書き出し（adapter-static）と S3 + CloudFront での配信、SEO・OGP の決まり
-applyTo: '{web/src/routes/**/*,web/src/app.html,web/src/lib/hooks/**/*,web/src/model/**/*,web/static/**/*,web/svelte.config.js,terraform/**/*,.github/workflows/*deploy*.yml}'
+applyTo: '{web/src/routes/**/*,web/src/app.html,web/src/lib/hooks/**/*,web/src/model/**/*,web/static/**/*,web/sveltekit.config.js,terraform/**/*,.github/workflows/*deploy*.yml}'
 name: 静的サイトの書き出しと配信
 ---
 
@@ -52,7 +52,8 @@ name: 静的サイトの書き出しと配信
 - ビルドと配信の手順は `.github/workflows/_deploy.yml` に1つだけ書き、3つのワークフローから呼ぶ
   - **自動デプロイ（PROD）** … `main` への push
   - **自動デプロイ（STG）** … `develop` への push
-  - **手動デプロイ** … ブランチと配り先を選んで実行。前の版へ戻すときもこれを使う
+  - **手動デプロイ（STG）** … ブランチを選んでステージングへ配る。**本番へは手で配れない**
+- 本番へ入る道は `main` への PR だけ。前の版へ戻すときも、`main` へ revert の PR を入れる（手順は `terraform/README.md` の「戻し方」）
 - レスポンスヘッダー（HSTS ほか）は CloudFront のレスポンスヘッダーポリシー
 - URL の整え方（`www` を外す・末尾スラッシュを付ける・`index.html` を返す）は CloudFront Functions（`terraform/modules/static_site/functions/request.js.tftpl`）
 - HTML は毎回取りに行く（`public, max-age=0, must-revalidate`）。ファイル名にハッシュが入る `/_app/immutable/**` は長期キャッシュ。配信のたびにキャッシュを捨てる

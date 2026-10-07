@@ -3,10 +3,11 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vite'
 import { imagetools } from 'vite-imagetools'
 import { SCSS_OPTIONS } from '@imrg-platform/design-system/scss.config'
+import svelteKitConfig from './sveltekit.config.js'
 
 export default defineConfig({
   plugins: [
-    sveltekit(),
+    sveltekit(svelteKitConfig),
     imagetools(),
     // 多言語化（TODO 3-4）。日本語は今の URL のまま、英語は /en/ 以下に書き出す
     paraglideVitePlugin({

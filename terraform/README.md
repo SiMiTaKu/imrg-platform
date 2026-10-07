@@ -37,22 +37,20 @@ CloudFrontは見る人が自分たちだけなので無料枠（毎月1TB）に�
 検索に載せない指定は、**本番と同じ中身が別のURLで見つかると本番の順位が下がる**のを防ぐため。
 合言葉（Basic認証）と合わせて二重にしている。
 
-### 手で選んで配る
+### 手で選んで配る（ステージングだけ）
 
-GitHubの **Actions → 手動デプロイ → Run workflow** で、**ブランチと配り先を選ぶ**。
-ブランチは画面上のドロップダウン、配り先（staging / production）は入力欄で選ぶ。
+GitHubの **Actions → 手動デプロイ（STG） → Run workflow** で、**ブランチを選んでステージングへ配る**。
 
 ```bash
-# ステージングへ（配り先の既定は staging）
 gh workflow run deploy-manual.yml --ref feature/なにか
-
-# 本番へ
-gh workflow run deploy-manual.yml --ref main -f environment=production
 ```
 
 ステージングはどのブランチからでも配れる。ワークフロー・GitHubの環境・IAMの信頼条件の
 いずれにもブランチの制限を入れていない。本番用の役割は `environment:production` にだけ
 許しているので、ステージング用の役割で本番へは配れない。
+
+**本番へは手で配れない。** 本番へ入る道は `main` への PR（自動デプロイ（PROD））だけにしている。
+レビューと CI を通っていない中身が、手元の操作ひとつで本番へ出るのを防ぐため（2026-09-30 に決めた）。
 
 ## なぜ Amplify から移したか
 
@@ -140,7 +138,7 @@ terraform apply
 | -------------------- | -------------------- | ------------ |
 | 自動デプロイ（PROD） | `main` への push     | 本番         |
 | 自動デプロイ（STG）  | `develop` への push  | ステージング |
-| 手動デプロイ         | 画面かコマンドで実行 | 選んだほう   |
+| 手動デプロイ（STG）  | 画面かコマンドで実行 | ステージング |
 
 ハッシュ付きの資産（`_app/immutable`）を先に置いてからHTMLを置き、キャッシュを捨て、
 最後に `/_app/version.json` が新しいビルドになるまで確かめる。
@@ -163,36 +161,48 @@ terraform apply
 | ----------------- | -------------------------------------------- |
 | `SITE_BASIC_AUTH` | `<利用者名>:<合言葉>`（tfvars に書いたもの） |
 
-`production` には、**必要なら承認者（Required reviewers）を設定する**。
-設定すると本番へ配る前に手で承認する一手間が入る。
+`production` は、**配れるブランチを `main` だけに絞っている**（Deployment branches and tags → Selected branches → `main`）。
+管理者も飛ばせないようにしている（Allow administrators to bypass … を外す）。
+ワークフローを書き換えたブランチから本番を選んで実行しても、ジョブが始まる前に止まる（2026-09-30 に設定）。
+
+```bash
+# いまの設定を見る
+gh api repos/SiMiTaKu/imrg-platform/environments/production \
+  --jq '{can_admins_bypass, deployment_branch_policy}'
+gh api repos/SiMiTaKu/imrg-platform/environments/production/deployment-branch-policies \
+  --jq '.branch_policies[] | {name, type}'
+```
+
+必要なら承認者（Required reviewers）も設定できる。設定すると本番へ配る前に手で承認する一手間が入る。
 
 ## 戻し方（ロールバック）
 
-配ったビルドは、そのまま `<バケット>-releases` の `builds/<コミット>.tar.gz` に取ってある（90日）。
-**作り直さずに、そのとき配ったものをそのまま戻せる。**
+本番へは手で配れないので、**戻すときも `main` へ revert の PR を入れる**。
+マージすると自動デプロイ（PROD）が作り直して配る（CI と配信で数分かかる）。
 
 ```bash
-# 1. いま何が公開されているかを見る
+# 1. いま何が公開されているかを見る（配ったコミットが書いてある）
 aws s3 cp s3://imrg-work-site-releases/current.txt - --profile imrg
 
-# 2. 戻せる版の一覧（新しい順）
-aws s3 ls s3://imrg-work-site-releases/builds/ --profile imrg | sort -r | head
+# 2. 問題のリリースのマージコミットを、main から切ったブランチで revert する
+git switch -c feature/revert-なにか origin/main
+git revert -m 1 <マージコミット>
+git push -u origin HEAD
 
-# 3. 戻す。GitHub の Actions → Deploy → Run workflow で、
-#    release に戻したいコミットを入れる（コマンドからでもよい）
-gh workflow run deploy-manual.yml --ref main -f environment=production -f release=<コミット>
+# 3. main 向けの PR を出し、CI が通ったらマージする
+gh pr create --base main --title "〇〇を戻す"
 ```
 
-1〜2分で戻る。作り直さないので、依存の更新で中身が変わってしまう心配がない。
+戻したあとは、原因を直した変更を `develop` から `main` へ、ふつうに入れ直す。
+`main` を巻き戻す（強制 push する）必要はない。`revert` のコミットを積むほうが、あとから履歴を追える。
 
-戻したあとは、原因を直した変更を `main` へ入れて、ふつうに配り直す。
-`main` を巻き戻す必要はない。`revert` のコミットを積むほうが、あとから履歴を追える。
+配ったビルドは `<バケット>-releases` の `builds/<コミット>.tar.gz` に取ってある（90日）。
+いまは戻すのには使わず、何がいつ公開されていたかを確かめるための記録として残している。
 
 | 困りごと                        | やること                                                            |
 | ------------------------------- | ------------------------------------------------------------------- |
-| 配った内容がおかしい            | 上の手順で前のコミットへ戻す                                        |
+| 配った内容がおかしい            | 上の手順で、`main` へ revert の PR を入れる                         |
 | ファイルを1つだけ壊した・消した | サイトのバケットは版を取ってある（30日）。S3 の画面から前の版を戻す |
-| 90日より前の版に戻したい        | そのコミットを手動デプロイ（`release` なし）で作り直す              |
 | 設定（CloudFront など）を壊した | `git revert` して `terraform apply`                                 |
 
 ## 監視

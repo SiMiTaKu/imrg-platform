@@ -92,5 +92,7 @@
   "calendar_detail_venue_tbd": "未定・未発表",
   "calendar_detail_streaming_none": "情報なし",
   "calendar_detail_streaming_check": "公式サイトでご確認ください",
+  "calendar_add_to_google_calendar": "Googleカレンダーに追加",
+  "calendar_open_in_google_maps": "Googleマップで見る",
   "calendar_related_title": "同じころに開かれる大会"
 }

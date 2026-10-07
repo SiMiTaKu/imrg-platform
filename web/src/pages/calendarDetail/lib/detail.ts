@@ -31,7 +31,7 @@ export const findCalendarEvent = (id: string): CalendarEvent => {
  * 詳細ページのメタ情報を作るための値
  * @param event - 大会
  * @param locale - 表示する言語
- * @returns 表示する言語の大会名・会場・日程・説明
+ * @returns 表示する言語の大会名・会場・日程・説明と、結果のページを持っているか
  */
 export const calendarDetailMetaInput = (
   event: CalendarEvent,
@@ -44,6 +44,7 @@ export const calendarDetailMetaInput = (
     dateRange: eventDateRange(event, locale),
     venue: localized.venue,
     note: localized.note,
+    hasResults: (event.results?.length ?? 0) > 0,
   }
 }
 

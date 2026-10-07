@@ -92,5 +92,7 @@
   "calendar_detail_venue_tbd": "Aún sin anunciar",
   "calendar_detail_streaming_none": "Sin información",
   "calendar_detail_streaming_check": "Consúltalo en la web oficial",
+  "calendar_add_to_google_calendar": "Añadir a Google Calendar",
+  "calendar_open_in_google_maps": "Ver en Google Maps",
   "calendar_related_title": "Competiciones en fechas próximas"
 }

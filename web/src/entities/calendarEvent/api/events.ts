@@ -3011,6 +3011,7 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "鯖江市総合体育館（福井県）", en: "Sabae City General Gymnasium" } },
     note: { ja: "11月27日から高崎アリーナで開かれる第44回全日本ジュニア新体操選手権大会の予選です。", en: "A qualifier for the 44th All Japan Junior Rhythmic Gymnastics Championships, held at Takasaki Arena from November 27." },
     sourceUrl: "https://jpn-gym.app.box.com/s/tncbrpgo9ot12hbh362839d6znbv805l/file/2338057738879",
+    results: [{ label: { ja: "A競技 個人総合", en: "Category A Individual All-Around" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260922_hokujr_mrg_a_total.pdf" }, { label: { ja: "A競技 個人種目別クラブ", en: "Category A Clubs" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260922_hokujr_mrg_a_club.pdf" }, { label: { ja: "A競技 個人種目別スティック", en: "Category A Stick" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260922_hokujr_mrg_a_stick.pdf" }, { label: { ja: "A競技 団体", en: "Category A Group" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260923_hokujr_mrg_a_group.pdf" }, { label: { ja: "全日本ジュニア新体操選手権大会 通過者", en: "Qualifiers for the All Japan Junior Championships" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260923_alljr_qualified_entries.pdf" }, { label: { ja: "B競技 個人総合", en: "Category B Individual All-Around" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260923_hokujr_mrg_b_total.pdf" }, { label: { ja: "B競技 個人種目別徒手", en: "Category B Freehand" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260923_hokujr_mrg_b_free.pdf" }, { label: { ja: "B競技 個人種目別リング", en: "Category B Rings" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260923_hokujr_mrg_b_rings.pdf" }, { label: { ja: "C競技 個人種目別徒手", en: "Category C Freehand" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260923_hokujr_mrg_c_free.pdf" }, { label: { ja: "高校の部 個人総合", en: "High School Individual All-Around" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260922_hokujr_mrg_h_total.pdf" }, { label: { ja: "高校の部 個人種目別スティック", en: "High School Stick" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260922_hokujr_mrg_h_stick.pdf" }, { label: { ja: "高校の部 個人種目別リング", en: "High School Rings" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260922_hokujr_mrg_h_rings.pdf" }, { label: { ja: "高校の部 団体", en: "High School Group" }, url: "https://fukui-gym.com/wp-content/uploads/2026/09/20260923_hokujr_mrg_h_group.pdf" }],
   },
   {
     id: "2026-09-22-a0d5bc",
@@ -3069,6 +3070,17 @@ export const EVENTS: CalendarEvent[] = [
     note: { ja: "日本一を決める大会です。男子は個人競技と団体競技を行います。女子と同じ会場で開かれます。", en: "The national championships that decide Japan's best. The men's competition includes both individual and group events, at the same venue as the women's competition." },
     officialUrl: "https://jpn-gym.or.jp/event/event-8002/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-8002/",
+  },
+  {
+    id: "2026-11-08-c4900c",
+    title: { ja: "BLUEフェスティバル×BLUEマルシェ 2026", en: "BLUE Festival × BLUE Marché 2026" },
+    category: "performance",
+    schedule: "fixed",
+    startDate: "2026-11-08",
+    venue: { name: { ja: "カクヒログループスーパーアリーナ（青森市総合体育館）（青森県）", en: "Kakuhiro Group Super Arena (Aomori City General Gymnasium)" } },
+    note: { ja: "運動をきっかけに交流するイベントとマルシェ。10:00〜17:00、入場無料。", en: "An event to connect through sports, with a marché. 10:00–17:00, free admission." },
+    officialUrl: "https://aomori-arena.jp/event/4864/",
+    sourceUrl: "https://aomori-arena.jp/event/4864/",
   },
   {
     id: "2026-11-20-4dc9ec",
@@ -3167,6 +3179,17 @@ export const EVENTS: CalendarEvent[] = [
     venue: { name: { ja: "NOPPOROヤシマ商会スポーツパーク（北海道）", en: "NOPPORO Yashima Shokai Sports Park" } },
     note: { ja: "北海道の高校生の新人大会で、全国高等学校選抜大会の予選を兼ねています。", en: "The new team championships for high schools in Hokkaido, which also serve as the qualifier for the National High School Invitational." },
     sourceUrl: "http://www.do-taisou.sakura.ne.jp/jigyoukeikaku.pdf",
+  },
+  {
+    id: "2027-01-22-e9e86a",
+    title: { ja: "テレビ信州杯 第30回長野県新体操クラブカップ選手権大会", en: "TV Shinshu Cup The 30th Nagano Prefecture Rhythmic Gymnastics Club Cup Championships" },
+    category: "national",
+    schedule: "fixed",
+    startDate: "2027-01-22",
+    endDate: "2027-01-24",
+    venue: { name: { ja: "長野県立武道館", en: "Nagano Prefectural Budokan" } },
+    note: { ja: "通称「長野カップ」。全国から参加するオープン大会で、男子はシニア・ジュニア・キッズの部があります（過去の回）。日程は長野県体操協会の年間予定表で確認。", en: "Known as the \"Nagano Cup\". An open meet with entries from across Japan; past editions included men's senior, junior and kids divisions. Dates confirmed in the Nagano Gymnastics Association's annual plan." },
+    sourceUrl: "http://w1.avis.ne.jp/~ngn-gym/Annual-Plan/R8-Annual-Plan.pdf",
   },
   {
     id: "2027-02-0fff8f",
