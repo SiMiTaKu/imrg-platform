@@ -3120,7 +3120,7 @@ export const EVENTS: CalendarEvent[] = [
     schedule: "fixed",
     startDate: "2026-11-26",
     venue: { name: { ja: "高崎アリーナ（群馬県）", en: "Takasaki Arena" } },
-    note: { ja: "翌日から同じ会場で開かれる全日本ジュニア選手権の前に行われる、男女共催の大会です。", en: "Held the day before the All Japan Junior Championships begin at the same venue. Men's and women's events are held together." },
+    note: { ja: "翌日から同じ会場で開かれる全日本ジュニア選手権の前に行われる、男女共催の大会です。男子は個人（ロープ・クラブ）と団体（徒手）があります。", en: "Held the day before the All Japan Junior Championships begin at the same venue. Men's and women's events are held together. Men compete in individual (rope, clubs) and group (no apparatus)." },
     officialUrl: "https://jpn-gym.or.jp/event/event-8004/",
     sourceUrl: "https://jpn-gym.or.jp/event/event-8004/",
   },
