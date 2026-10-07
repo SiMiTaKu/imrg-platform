@@ -15,9 +15,4 @@ export const variables = defineEnvVars({
     static: true,
     description: 'Cloudflare Web Analytics のサイトトークン。空なら計測しない',
   },
-  PUBLIC_RULES_PUBLISHED: {
-    public: true,
-    static: true,
-    description: '規則集（/rules/）を出すか。"true" のときだけ中身を出す',
-  },
 })

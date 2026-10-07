@@ -74,8 +74,8 @@
   "top_feature_calendar_body": "Toutes les compétitions du pays, année par année, avec dates, lieux et diffusion éventuelle.",
   "top_feature_calendar_badge": "{count}",
   "top_feature_rules_title": "Découvrir les règles",
-  "top_feature_rules_body": "Nous avons réorganisé le règlement pour qu'il se lise facilement, de la logique de notation aux règles de chaque engin.",
-  "top_feature_rules_badge": "Texte intégral",
+  "top_feature_rules_body": "Nous expliquons les règles de la gymnastique rythmique masculine pour les débutants : de la façon de noter aux règles propres à chaque engin.",
+  "top_feature_rules_badge": "Bientôt",
   "top_feature_judge_title": "Essayer de juger",
   "top_feature_judge_body": "Notez avec la même feuille que les juges. Votre regard changera.",
   "top_feature_judge_badge": "Essayer",
@@ -104,6 +104,6 @@
   "top_contact_x_description": "Actus en direct des compétitions",
   "top_contact_tiktok_description": "Vidéos courtes",
   "top_contact_operator": "Géré par le Projet d'internationalisation de la gymnastique rythmique masculine (Takumi Shimizu) / En activité depuis 2022",
-  "top_jsonld_organization_description": "Un site qui rassemble les informations de compétition, les explications du règlement, les vidéos de mouvements et les commandes de montage musical et de décoration d'engins en gymnastique rythmique masculine. Il est animé dans le but de faire connaître au monde ce sport né au Japon.",
+  "top_jsonld_organization_description": "Un site qui rassemble les informations de compétition, les explications des règles, les vidéos de mouvements et les commandes de montage musical et de décoration d'engins en gymnastique rythmique masculine. Il est animé dans le but de faire connaître au monde ce sport né au Japon.",
   "top_service_price_separator": " / "
 }

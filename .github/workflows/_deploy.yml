@@ -18,11 +18,6 @@ on:
         required: false
         default: true
         type: boolean
-      rules_published:
-        description: '規則集（/rules/）の中身を出すか。false なら「準備中」だけを出す'
-        required: false
-        default: false
-        type: boolean
 
 permissions:
   contents: read
@@ -58,9 +53,6 @@ jobs:
 
       - name: Build
         run: pnpm --filter @imrg-platform/web build
-        env:
-          # .env の既定（false）を、呼び出し側の指定で上書きする
-          PUBLIC_RULES_PUBLISHED: ${{ inputs.rules_published }}
 
       # 配ったものを取っておく。何がいつ公開されていたかを後から確かめられる
       - name: Store release
