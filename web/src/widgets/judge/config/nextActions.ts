@@ -19,7 +19,7 @@ export const JUDGE_NEXT_ACTIONS = [
      *
      */
     body: () => m.judge_next_rules_body(),
-    href: ROUTES.rules,
+    href: ROUTES.rules.index,
     /**
      *
      */

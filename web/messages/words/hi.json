@@ -1,0 +1,15 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "words_title": "शब्दावली",
+  "words_lead": "पुरुष लयबद्ध जिम्नास्टिक के शब्द, एक पंक्ति में — केवल नियमों के ही नहीं, अभ्यास और प्रतियोगिताओं में इस्तेमाल होने वाले शब्द भी। खोजने के लिए शब्द लिखें।",
+  "words_search_label": "शब्द से खोजें",
+  "words_search_placeholder": "जैसे: रचना परिवर्तन, कठिनाई, तोशु",
+  "words_found": "{count} शब्द",
+  "words_empty": "«{keyword}» नहीं मिला। कोई दूसरा शब्द आज़माएँ।",
+  "words_detail": "और देखें",
+  "words_clear": "साफ़ करें",
+  "words_eyebrow": "पुरुष लयबद्ध जिम्नास्टिक शब्दकोश",
+  "words_index_label": "काना से खोजें",
+  "words_gyou": "{head}",
+  "words_other": "अन्य"
+}

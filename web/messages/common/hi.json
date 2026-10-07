@@ -46,5 +46,8 @@
   "video_card_title": "{name} का प्रदर्शन",
   "video_card_play": "{name} का प्रदर्शन चलाएँ",
   "video_card_again": "फिर देखें",
-  "modal_close": "बंद करें"
+  "modal_close": "बंद करें",
+  "cross_rules_label": "नियम जानें",
+  "cross_rules_from_oshimitsu": "अंक कैसे तय होते हैं यह जानते ही वही प्रदर्शन अलग दिखने लगता है।",
+  "cross_rules_from_calendar": "जाने से पहले नियम जान लें तो वहाँ क्या हो रहा है यह समझ आता है।"
 }

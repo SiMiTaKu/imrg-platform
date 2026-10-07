@@ -1,0 +1,15 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "words_title": "Glosario",
+  "words_lead": "Los términos de la gimnasia rítmica masculina, explicados en una línea: no solo los del reglamento, también los que se usan en entrenamientos y competiciones. Escribe para filtrar.",
+  "words_search_label": "Buscar términos",
+  "words_search_placeholder": "p. ej. formación, dificultad, toshu",
+  "words_found": "{count} términos",
+  "words_empty": "No hay resultados para «{keyword}». Prueba con otra palabra.",
+  "words_detail": "Ver más",
+  "words_clear": "Borrar",
+  "words_eyebrow": "Diccionario de gimnasia rítmica masculina",
+  "words_index_label": "Buscar por kana",
+  "words_gyou": "{head}",
+  "words_other": "Otros"
+}

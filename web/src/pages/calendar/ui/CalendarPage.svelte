@@ -2,6 +2,7 @@
   import { tick } from 'svelte'
   import { afterNavigate } from '$app/navigation'
   import { Pagination } from '@imrg-platform/design-system'
+  import { CrossLinks, type CrossLinkList } from '@features/crossLinks'
   import { m } from '$lib/paraglide/messages'
   import { formatDay, formatMonth, toDateKey, toMonthKey } from '@shared/lib/date'
   import {
@@ -224,6 +225,18 @@
     await tick()
     resultsTop?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+
+  /*
+    大会を探しにきた人を、ルールの解説へ送る。
+    観に行く前にルールを知っておくと、その場で何が起きているか分かる
+  */
+  const rulesLink: CrossLinkList = $derived([
+    {
+      label: m.cross_rules_label(),
+      href: localizeHref(ROUTES.rules.index),
+      body: m.cross_rules_from_calendar(),
+    },
+  ])
 </script>
 
 {#snippet segmentLabel(message: typeof m.calendar_view_calendar)}
@@ -440,6 +453,7 @@
 
     <CalendarArchive />
     <CalendarContribute />
+    <CrossLinks links={rulesLink} />
   </div>
 </article>
 

@@ -46,5 +46,8 @@
   "video_card_title": "{name}的成套动作",
   "video_card_play": "播放{name}的成套动作",
   "video_card_again": "再看一次",
-  "modal_close": "关闭"
+  "modal_close": "关闭",
+  "cross_rules_label": "了解规则",
+  "cross_rules_from_oshimitsu": "知道计分方式后，同一套成套也会看出不同的东西。",
+  "cross_rules_from_calendar": "去现场前先了解规则，就能看懂当下发生了什么。"
 }

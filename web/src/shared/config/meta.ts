@@ -15,6 +15,16 @@ export interface PageMeta {
   ogType: 'website' | 'article'
 }
 
+/** ルールの解説のページのメタ情報を作るための値。表示中の言語の値を渡す */
+export interface RuleGuideMetaInput {
+  /** ページの見出し */
+  title: string
+  /** 最初の答え。そのまま説明文にする */
+  lead: string
+  /** 鍵から作ったパス（`score/difficulty` の形） */
+  path: string
+}
+
 /** 大会の詳細ページのメタ情報を作るための値。表示中の言語の値を渡す */
 export interface CalendarDetailMetaInput {
   /** 大会の ID */
@@ -162,14 +172,49 @@ export const META_DATA = {
     ogType: 'website',
   }),
   /**
-   * ルールブック
+   * ルールの解説の入口
    * @returns メタ情報
    */
   rules: (): PageMeta => ({
     title: pageTitle(m.meta_rules_page()),
     description: m.meta_rules_description(),
-    path: ROUTES.rules,
+    path: ROUTES.rules.index,
     ogType: 'website',
+  }),
+  /**
+   * ルールの解説の問題集
+   * @returns メタ情報
+   */
+  ruleGuideQuiz: (): PageMeta => ({
+    title: pageTitle(m.rule_guide_quiz_page_title()),
+    description: m.rule_guide_quiz_page_lead(),
+    path: ROUTES.rules.quiz,
+    ogType: 'website',
+  }),
+  /**
+   * 用語集
+   * @returns メタ情報
+   */
+  words: (): PageMeta => ({
+    title: pageTitle(m.words_title()),
+    description: m.words_lead(),
+    path: ROUTES.words.index,
+    ogType: 'website',
+  }),
+  /**
+   * ルールの解説の1ページ。
+   *
+   * @remarks
+   * 説明文は本文の最初の答え（`lead`）から作る。
+   * ページごとに書き分ける必要がないので、書き忘れも起きない
+   * @param input - ページの見出し・最初の答え・鍵から作ったパス
+   * @returns メタ情報
+   */
+  ruleGuide: (input: RuleGuideMetaInput): PageMeta => ({
+    title: pageTitle(input.title),
+    description: input.lead,
+    path: ROUTES.rules.page(input.path),
+    ogType: 'article',
   }),
   /**
    * プライバシーポリシー

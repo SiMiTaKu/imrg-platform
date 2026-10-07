@@ -46,5 +46,8 @@
   "video_card_title": "Упражнение: {name}",
   "video_card_play": "Воспроизвести упражнение: {name}",
   "video_card_again": "Ещё раз",
-  "modal_close": "Закрыть"
+  "modal_close": "Закрыть",
+  "cross_rules_label": "Разбор правил",
+  "cross_rules_from_oshimitsu": "Когда понимаешь, как считают баллы, то же выступление выглядит иначе.",
+  "cross_rules_from_calendar": "Если знать правила заранее, на трибуне понятно, что происходит."
 }
