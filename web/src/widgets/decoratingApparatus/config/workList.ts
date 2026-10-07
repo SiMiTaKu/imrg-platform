@@ -1,3 +1,4 @@
+import { Apparatus } from '@shared/config/apparatus'
 import type { ImageSourceMeta } from '@shared/ui'
 import Image1_1 from '../images/work-list-image-1-1.jpg?w=512;1024;1600&format=webp&as=meta'
 import Image1_2 from '../images/work-list-image-1-2.jpg?w=512;1024;1600&format=webp&as=meta'
@@ -48,25 +49,33 @@ import Image15_4 from '../images/work-list-image-15-4.jpg?w=512;1024;1600&format
 
 /** 手具装飾の作品1件 */
 export type DecoratingWork = {
+  /** どの手具か。一覧の絞り込みと並び順に使う */
+  apparatus: (typeof Apparatus)[keyof typeof Apparatus]
   /** 作品の写真（1作品に複数枚。カードを押すたびに切り替える） */
   images: ImageSourceMeta[][]
 }
 
-/** 手具装飾の作品（写真だけで、説明文は無い） */
+/**
+ * 手具装飾の作品（写真だけで、説明文は無い）。
+ *
+ * @remarks
+ * この並びが作品の番号（1 始まり）になる。新しい作品は末尾に足し、途中に入れない（番号がずれる）。
+ * 画面での並びは手具ごとにまとめ直す（`lib/works.ts`）
+ */
 export const WORK_LIST: readonly DecoratingWork[] = [
-  { images: [Image1_1, Image1_2, Image1_3] },
-  { images: [Image2_1, Image2_2, Image2_3] },
-  { images: [Image3_1, Image3_2, Image3_3] },
-  { images: [Image4_1, Image4_2, Image4_3] },
-  { images: [Image5_1, Image5_2, Image5_3] },
-  { images: [Image6_1, Image6_2, Image6_3] },
-  { images: [Image7_1, Image7_2, Image7_3] },
-  { images: [Image8_1, Image8_2, Image8_3] },
-  { images: [Image9_2, Image9_1, Image9_3] },
-  { images: [Image10_1, Image10_2, Image10_3] },
-  { images: [Image11_1, Image11_2, Image11_3] },
-  { images: [Image12_1, Image12_2, Image12_3] },
-  { images: [Image13_3, Image13_1, Image13_2] },
-  { images: [Image14_1, Image14_2, Image14_3] },
-  { images: [Image15_1, Image15_2, Image15_3, Image15_4] },
+  { apparatus: Apparatus.RING, images: [Image1_1, Image1_2, Image1_3] },
+  { apparatus: Apparatus.RING, images: [Image2_1, Image2_2, Image2_3] },
+  { apparatus: Apparatus.RING, images: [Image3_1, Image3_2, Image3_3] },
+  { apparatus: Apparatus.RING, images: [Image4_1, Image4_2, Image4_3] },
+  { apparatus: Apparatus.RING, images: [Image5_1, Image5_2, Image5_3] },
+  { apparatus: Apparatus.RING, images: [Image6_1, Image6_2, Image6_3] },
+  { apparatus: Apparatus.STICK, images: [Image7_1, Image7_2, Image7_3] },
+  { apparatus: Apparatus.STICK, images: [Image8_1, Image8_2, Image8_3] },
+  { apparatus: Apparatus.CLUB, images: [Image9_2, Image9_1, Image9_3] },
+  { apparatus: Apparatus.CLUB, images: [Image10_1, Image10_2, Image10_3] },
+  { apparatus: Apparatus.RING, images: [Image11_2, Image11_1, Image11_3] },
+  { apparatus: Apparatus.CLUB, images: [Image12_1, Image12_2, Image12_3] },
+  { apparatus: Apparatus.STICK, images: [Image13_3, Image13_1, Image13_2] },
+  { apparatus: Apparatus.CLUB, images: [Image14_1, Image14_2, Image14_3] },
+  { apparatus: Apparatus.CLUB, images: [Image15_1, Image15_2, Image15_3, Image15_4] },
 ]
