@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import { PUBLIC_BASE_URL } from '$env/static/public'
+  import { PUBLIC_BASE_URL } from '$app/env/public'
 </script>
 
 <script lang="ts">
@@ -24,6 +24,7 @@
   import { RelatedEvents } from '@widgets/calendarDetail'
   import { NEARBY_COUNT } from '../config/detailConfig'
   import { buildSportsEventJsonLd, eventCountdown, nearbyEvents } from '../lib/detail'
+  import { googleCalendarUrl, googleMapsUrl } from '../lib/externalLinks'
 
   /** 大会の詳細ページの引数 */
   interface Props {
@@ -77,6 +78,19 @@
       ),
     ),
   )
+  // 日付が決まっていてまだ終わっていない大会だけ、Google カレンダーへ入れられるようにする
+  const calendarUrl = $derived(
+    countdown && !countdown.finished
+      ? googleCalendarUrl(event, {
+          title: localized.title,
+          location: localized.venue,
+          pageUrl: `${PUBLIC_BASE_URL}${localizeHref(ROUTES.calendar.detail(event.id))}`,
+        })
+      : undefined,
+  )
+  // 都道府県名だけの会場やオンライン開催は、地図を開いても場所が分からないので出さない
+  const mapUrl = $derived(googleMapsUrl(event))
+
   // .svelte の中に閉じタグをそのまま書くと script の終わりと見なされるため、文字列を分けて組み立てる
   const jsonLdTag = $derived(`<script type="application/ld+json">${jsonLd}<` + '/script>')
 </script>
@@ -132,6 +146,11 @@
         {#if isTentative(event)}
           <span class="fact-note">{m.calendar_tag_tentative()}</span>
         {/if}
+        {#if calendarUrl}
+          <a class="fact-link" href={calendarUrl} rel="noopener noreferrer" target="_blank"
+            >{m.calendar_add_to_google_calendar()}</a
+          >
+        {/if}
       </dd>
     </div>
 
@@ -140,6 +159,11 @@
       <dd>
         {#if localized.venue}
           <span class="fact-main">{localized.venue}</span>
+          {#if mapUrl}
+            <a class="fact-link" href={mapUrl} rel="noopener noreferrer" target="_blank"
+              >{m.calendar_open_in_google_maps()}</a
+            >
+          {/if}
         {:else}
           <span class="fact-empty">{m.calendar_detail_venue_tbd()}</span>
         {/if}
@@ -390,6 +414,27 @@
   .fact-text {
     font-size: $font-size-14;
     line-height: 1.7;
+  }
+
+  // カード内の外部リンク。ボタンほど大きくせず、押せることが分かる枠つきの小さな形にする
+  .fact-link {
+    align-self: flex-start;
+    padding: $space-size-4 $space-size-12;
+    font-size: $font-size-12;
+    font-weight: bold;
+    color: map.get($sky-blue, text);
+    text-decoration: none;
+    border: $border-size-1 solid map.get($sky-blue, border);
+    border-radius: $border-radius-64;
+    background: $white;
+  }
+
+  .fact-link::after {
+    content: ' ↗';
+  }
+
+  .fact-link:hover {
+    background: map.get($sky-blue, background);
   }
 
   .fact-empty {

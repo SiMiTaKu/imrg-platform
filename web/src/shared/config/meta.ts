@@ -37,6 +37,8 @@ export interface CalendarDetailMetaInput {
   venue?: string
   /** その大会の説明。無ければ決まり文句にする */
   note?: string
+  /** 結果のページを持っているか。持っていれば、タイトルと説明文の頭で「結果」を出す */
+  hasResults: boolean
 }
 
 /**
@@ -81,14 +83,19 @@ export const META_DATA = {
    * @returns メタ情報
    */
   calendarDetail: (input: CalendarDetailMetaInput): PageMeta => ({
-    title: m.meta_calendar_detail_title({ event: input.title }),
-    description: m.meta_calendar_detail_description({
-      event: input.title,
-      dateRange: input.dateRange,
-      venue: input.venue ? m.meta_calendar_detail_venue({ venue: input.venue }) : '',
-      // 検索結果に出るのは前の方だけなので、末尾はその大会の話にする
-      tail: input.note ?? m.meta_calendar_detail_fallback(),
-    }),
+    // 終わった大会は「〇〇 結果」で探される。結果を持つページは、タイトルと説明文の頭で結果を出す
+    title: input.hasResults
+      ? m.meta_calendar_detail_title_result({ event: input.title })
+      : m.meta_calendar_detail_title({ event: input.title }),
+    description:
+      (input.hasResults ? m.meta_calendar_detail_result_lead() : '') +
+      m.meta_calendar_detail_description({
+        event: input.title,
+        dateRange: input.dateRange,
+        venue: input.venue ? m.meta_calendar_detail_venue({ venue: input.venue }) : '',
+        // 検索結果に出るのは前の方だけなので、末尾はその大会の話にする
+        tail: input.note ?? m.meta_calendar_detail_fallback(),
+      }),
     path: ROUTES.calendar.detail(input.id),
     ogType: 'article',
   }),

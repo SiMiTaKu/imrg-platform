@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_BASE_URL } from '$env/static/public'
+  import { PUBLIC_BASE_URL } from '$app/env/public'
   import { m } from '$lib/paraglide/messages'
   import { OGP_IMAGE } from '../config/layout'
   import type { PageMeta } from '@shared/config/meta'
