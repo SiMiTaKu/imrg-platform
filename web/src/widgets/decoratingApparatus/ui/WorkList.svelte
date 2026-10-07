@@ -1,27 +1,23 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages'
-  import { APPARATUSES } from '@shared/config/apparatus'
+  import { Apparatus } from '@shared/config/apparatus'
   import { pageData } from '@shared/lib/device'
   import { SectionHeading } from '@features/sectionHeading'
   import { WORKS_HEADING } from '../config/content'
   import { WORK_LIST } from '../config/workList'
-  import { apparatusCounts, filterByApparatus, groupByApparatus, numberWorks } from '../lib/works'
   import WorkTile from './WorkTile.svelte'
   import WorkViewer from './WorkViewer.svelte'
 
   const isMobile = $derived($pageData.isMobile)
 
-  /** 番号は WORK_LIST の並びで決まり、手具ごとに並べ替えても変えない */
-  const WORKS = groupByApparatus(numberWorks(WORK_LIST), APPARATUSES)
-  /** 作品のある手具だけをボタンにする（作品の無い手具は出さない） */
-  const FILTERS = apparatusCounts(WORKS, APPARATUSES)
+  /** 絞り込みのボタン（すべて・スティック・リング・クラブ） */
+  const FILTERS = [Apparatus.STICK, Apparatus.RING, Apparatus.CLUB]
 
   /** 絞り込んでいる手具。null はすべて */
   let selected = $state<string | null>(null)
-  const shown = $derived(filterByApparatus(WORKS, selected))
 
-  /** 大きく見ている作品。null は閉じている */
-  let opened = $state<(typeof WORKS)[number] | null>(null)
+  /** 大きく見ている作品の番号（0 始まり）。null は閉じている */
+  let openedIndex = $state<number | null>(null)
 </script>
 
 <section class="work-list" class:mobile={isMobile} id="works">
@@ -44,10 +40,10 @@
           aria-pressed={selected === null}
           onclick={() => (selected = null)}
         >
-          {m.decorating_apparatus_filter_all()}<span class="count">{WORKS.length}</span>
+          {m.decorating_apparatus_filter_all()}
         </button>
       </li>
-      {#each FILTERS as { apparatus, count } (apparatus.slug)}
+      {#each FILTERS as apparatus (apparatus.slug)}
         {@const current = selected === apparatus.slug}
         <li>
           <button
@@ -57,7 +53,7 @@
             aria-pressed={current}
             onclick={() => (selected = apparatus.slug)}
           >
-            {apparatus.label()}<span class="count">{count}</span>
+            {apparatus.label()}
           </button>
         </li>
       {/each}
@@ -66,21 +62,23 @@
 
   <!-- 作例は写真だけを隙間なく並べる。左右の余白も取らず、画面の端まで敷き詰める -->
   <ul class="list">
-    {#each shown as work (work.number)}
-      <WorkTile
-        images={work.images}
-        alt={m.decorating_apparatus_work_image_alt({ work: work.number, image: 1 })}
-        onOpen={() => (opened = work)}
-      />
+    {#each WORK_LIST as work, index (index)}
+      {#if selected === null || work.apparatus.slug === selected}
+        <WorkTile
+          images={work.images}
+          alt={m.decorating_apparatus_work_image_alt({ work: index + 1, image: 1 })}
+          onOpen={() => (openedIndex = index)}
+        />
+      {/if}
     {/each}
   </ul>
 
-  {#if opened !== null}
+  {#if openedIndex !== null}
     <WorkViewer
-      images={opened.images}
-      alt={m.decorating_apparatus_work_image_alt({ work: opened.number, image: 1 })}
-      workNumber={opened.number}
-      onClose={() => (opened = null)}
+      images={WORK_LIST[openedIndex].images}
+      alt={m.decorating_apparatus_work_image_alt({ work: openedIndex + 1, image: 1 })}
+      workNumber={openedIndex + 1}
+      onClose={() => (openedIndex = null)}
     />
   {/if}
 </section>
@@ -129,7 +127,6 @@
   // 推しミツ！の絞り込み（FilterNav）と同じ見た目にそろえる
   .chip {
     display: inline-flex;
-    gap: $space-size-8;
     min-height: 40px;
     padding: 0 $space-size-16;
     font-size: $font-size-14;
@@ -155,16 +152,6 @@
     color: $white;
     border-color: map.get($sky-blue, button);
     background: map.get($sky-blue, button);
-  }
-
-  .count {
-    font-size: $font-size-12;
-    font-weight: normal;
-    color: map.get($gray, light-text);
-  }
-
-  .chip.current .count {
-    color: map.get($sky-blue, 100);
   }
 
   .list {
