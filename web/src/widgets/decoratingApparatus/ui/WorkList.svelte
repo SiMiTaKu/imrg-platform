@@ -13,11 +13,16 @@
   /** 絞り込みのボタン（すべて・スティック・リング・クラブ） */
   const FILTERS = [Apparatus.STICK, Apparatus.RING, Apparatus.CLUB]
 
-  /** 絞り込んでいる手具。null はすべて */
-  let selected = $state<string | null>(null)
-
-  /** 大きく見ている作品の番号（0 始まり）。null は閉じている */
-  let openedIndex = $state<number | null>(null)
+  /**
+   * 画面の状態。let を使わないよう、オブジェクトを const で持って中身を書き換える
+   * （Svelte 5 は、値を丸ごと入れ替える状態だけ let が要る）
+   */
+  const view = $state<{
+    /** 絞り込んでいる手具の slug。無ければすべて */
+    selected?: string
+    /** 大きく見ている作品の番号（0 始まり）。無ければ閉じている */
+    openedIndex?: number
+  }>({})
 </script>
 
 <section class="work-list" class:mobile={isMobile} id="works">
@@ -36,22 +41,22 @@
         <button
           type="button"
           class="chip"
-          class:current={selected === null}
-          aria-pressed={selected === null}
-          onclick={() => (selected = null)}
+          class:current={view.selected === undefined}
+          aria-pressed={view.selected === undefined}
+          onclick={() => (view.selected = undefined)}
         >
           {m.decorating_apparatus_filter_all()}
         </button>
       </li>
       {#each FILTERS as apparatus (apparatus.slug)}
-        {@const current = selected === apparatus.slug}
+        {@const current = view.selected === apparatus.slug}
         <li>
           <button
             type="button"
             class="chip"
             class:current
             aria-pressed={current}
-            onclick={() => (selected = apparatus.slug)}
+            onclick={() => (view.selected = apparatus.slug)}
           >
             {apparatus.label()}
           </button>
@@ -63,22 +68,23 @@
   <!-- 作例は写真だけを隙間なく並べる。左右の余白も取らず、画面の端まで敷き詰める -->
   <ul class="list">
     {#each WORK_LIST as work, index (index)}
-      {#if selected === null || work.apparatus.slug === selected}
+      {#if view.selected === undefined || work.apparatus.slug === view.selected}
         <WorkTile
           images={work.images}
           alt={m.decorating_apparatus_work_image_alt({ work: index + 1, image: 1 })}
-          onOpen={() => (openedIndex = index)}
+          onOpen={() => (view.openedIndex = index)}
         />
       {/if}
     {/each}
   </ul>
 
-  {#if openedIndex !== null}
+  {#if view.openedIndex !== undefined}
+    {@const openedIndex = view.openedIndex}
     <WorkViewer
       images={WORK_LIST[openedIndex].images}
       alt={m.decorating_apparatus_work_image_alt({ work: openedIndex + 1, image: 1 })}
       workNumber={openedIndex + 1}
-      onClose={() => (openedIndex = null)}
+      onClose={() => (view.openedIndex = undefined)}
     />
   {/if}
 </section>
