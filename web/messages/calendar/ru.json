@@ -92,5 +92,7 @@
   "calendar_detail_venue_tbd": "Пока не объявлено",
   "calendar_detail_streaming_none": "Нет информации",
   "calendar_detail_streaming_check": "Уточните на официальном сайте",
+  "calendar_add_to_google_calendar": "Добавить в Google Календарь",
+  "calendar_open_in_google_maps": "Открыть в Google Картах",
   "calendar_related_title": "События в те же дни"
 }

@@ -92,5 +92,7 @@
   "calendar_detail_venue_tbd": "未定·未公布",
   "calendar_detail_streaming_none": "暂无信息",
   "calendar_detail_streaming_check": "请在官方网站确认",
+  "calendar_add_to_google_calendar": "添加到 Google 日历",
+  "calendar_open_in_google_maps": "在 Google 地图中查看",
   "calendar_related_title": "同一时期举办的比赛"
 }

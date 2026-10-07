@@ -1,25 +1,13 @@
-name: 手動デプロイ
+name: 手動デプロイ（STG）
 
-# 配りたいブランチと配り先を選んで実行する。
-# ブランチは画面右上の「Run workflow」で選ぶ（コマンドなら --ref で指定する）
+# 選んだブランチをステージングへ配る。
+# ブランチは画面右上の「Run workflow」で選ぶ（コマンドなら --ref で指定する）。
+# 本番へは配れない。本番へ入る道は main への PR（自動デプロイ（PROD））だけにする
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: '配り先'
-        required: true
-        type: choice
-        default: staging
-        options:
-          - staging
-          - production
-      release:
-        description: '戻したいリリースのコミット（空なら、選んだブランチを作って配る）'
-        required: false
-        type: string
 
 concurrency:
-  group: deploy-${{ inputs.environment }}
+  group: deploy-staging
   cancel-in-progress: false
 
 permissions:
@@ -31,8 +19,7 @@ jobs:
     uses: ./.github/workflows/_deploy.yml
     secrets: inherit
     with:
-      environment: ${{ inputs.environment }}
-      site_url: ${{ inputs.environment == 'production' && 'https://imrg.work/' || 'https://stg.imrg.work/' }}
-      release: ${{ inputs.release }}
-      # 本番へ配ったものだけ、あとで戻せるように取っておく
-      store_release: ${{ inputs.environment == 'production' }}
+      environment: staging
+      site_url: https://stg.imrg.work/
+      # 取っておくのは本番へ配ったものだけ
+      store_release: false

@@ -1,4 +1,4 @@
-import { PUBLIC_BASE_URL } from '$env/static/public'
+import { PUBLIC_BASE_URL } from '$app/env/public'
 
 /** ページの先頭へ戻るボタンを出す、スクロール量（px） */
 export const SHOW_SCROLL_TO_TOP_AFTER = 500

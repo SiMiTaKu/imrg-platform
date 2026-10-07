@@ -92,5 +92,7 @@
   "calendar_detail_venue_tbd": "Not announced yet",
   "calendar_detail_streaming_none": "No information",
   "calendar_detail_streaming_check": "Please check the official site",
+  "calendar_add_to_google_calendar": "Add to Google Calendar",
+  "calendar_open_in_google_maps": "View on Google Maps",
   "calendar_related_title": "Events around the same time"
 }
