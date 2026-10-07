@@ -62,11 +62,11 @@ export const WORK_LIST: readonly DecoratingWork[] = [
   { images: [Image6_1, Image6_2, Image6_3] },
   { images: [Image7_1, Image7_2, Image7_3] },
   { images: [Image8_1, Image8_2, Image8_3] },
-  { images: [Image9_1, Image9_2, Image9_3] },
+  { images: [Image9_2, Image9_1, Image9_3] },
   { images: [Image10_1, Image10_2, Image10_3] },
   { images: [Image11_1, Image11_2, Image11_3] },
   { images: [Image12_1, Image12_2, Image12_3] },
-  { images: [Image13_1, Image13_2, Image13_3] },
+  { images: [Image13_3, Image13_1, Image13_2] },
   { images: [Image14_1, Image14_2, Image14_3] },
   { images: [Image15_1, Image15_2, Image15_3, Image15_4] },
 ]
